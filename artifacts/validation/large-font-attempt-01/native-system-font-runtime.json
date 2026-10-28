@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "immersionVersion": "edge-to-edge-v1",
+  "source": "Official hilog capture began before cold launch of the owned Ability",
+  "installedHapSha256": "3854b74f33e6ddf7b13db859d54523bd15a37c7fdd33983cf7bf2152f7d33cc2",
+  "checks": {
+    "actualWindowReported": true,
+    "actualImmersiveWindow": true,
+    "transparentSystemBars": true,
+    "requestedFontScaleReported": true,
+    "threeIndependentTlsCases": true
+  },
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "fontScale": 1.3,
+    "appColorMode": 1,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "cutoutTopPx": 84,
+    "cutoutBottomPx": 0,
+    "immersiveLayout": "enabled",
+    "systemBarPropertiesObserved": true,
+    "statusBarColor": "#00FFFFFF",
+    "navigationBarColor": "#00FFFFFF",
+    "statusBarContentColor": "#FF000000",
+    "navigationBarContentColor": "#FF000000"
+  },
+  "material": {
+    "supported": true,
+    "state": 1,
+    "type": 2,
+    "level": 0
+  },
+  "tls": {
+    "customCaAccepted": true,
+    "untrustedCaRejected": true,
+    "untrustedFailureCode": "TLS_ERROR",
+    "wrongHostnameRejected": true,
+    "wrongHostnameFailureCode": "TLS_ERROR"
+  },
+  "records": [
+    {
+      "widthPx": 1320,
+      "heightPx": 2848,
+      "density": 3.375,
+      "topInsetPx": 131,
+      "bottomInsetPx": 94,
+      "widthVp": 391.1111111111111,
+      "contentHeightVp": 777.1851851851852,
+      "fontScale": 1.3,
+      "appColorMode": 1,
+      "leftInsetPx": 0,
+      "rightInsetPx": 0,
+      "cutoutTopPx": 84,
+      "cutoutBottomPx": 0,
+      "immersiveLayout": "enabled",
+      "systemBarPropertiesObserved": true,
+      "statusBarColor": "#00FFFFFF",
+      "navigationBarColor": "#00FFFFFF",
+      "statusBarContentColor": "#FF000000",
+      "navigationBarContentColor": "#FF000000"
+    },
+    {
+      "supported": true,
+      "state": 1,
+      "type": 2,
+      "level": 0
+    },
+    {
+      "customCaAccepted": true,
+      "untrustedCaRejected": true,
+      "untrustedFailureCode": "TLS_ERROR",
+      "wrongHostnameRejected": true,
+      "wrongHostnameFailureCode": "TLS_ERROR"
+    }
+  ]
+}

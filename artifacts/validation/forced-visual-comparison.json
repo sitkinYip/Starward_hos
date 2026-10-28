@@ -1,0 +1,313 @@
+{
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "fontScale": 1
+  },
+  "snapshotSha256": "0c547436d8466e3c01e2458143fb965195f133f3a570784f294d01954c5e70d5",
+  "webGroup": "artifacts/web-legacy-pre-system-forced",
+  "nativeReport": "artifacts/native-legacy-pre-system/auth-capture-summary.json",
+  "meaning": "Blank forced-password UI frames vs exact same-font DOM; no password submission by the Web replay. Native heading frame fills remaining row width while Web h2 is intrinsic text width, so heading widths are not equivalent glyph bounds.",
+  "themes": [
+    {
+      "theme": "light",
+      "rectangles": [
+        {
+          "element": "title",
+          "nativeBoundsPx": [
+            189,
+            1171,
+            1254,
+            1293
+          ],
+          "nativeContentVp": [
+            56.0,
+            308.14814814814815,
+            315.55555555555554,
+            36.148148148148145
+          ],
+          "webCssPx": [
+            56,
+            308.578125,
+            264,
+            36
+          ],
+          "nativeMinusWeb": [
+            0.0,
+            -0.42997685185184764,
+            51.55555555555554,
+            0.14814814814814525
+          ],
+          "widthComparable": false
+        },
+        {
+          "element": "old-password",
+          "nativeBoundsPx": [
+            67,
+            1584,
+            1255,
+            1760
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            430.51851851851853,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            430.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.45023148148146674,
+            1.0,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        },
+        {
+          "element": "new-password",
+          "nativeBoundsPx": [
+            67,
+            1905,
+            1255,
+            2081
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            525.6296296296297,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            525.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.33912037037032405,
+            1.0,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        },
+        {
+          "element": "confirm-password",
+          "nativeBoundsPx": [
+            67,
+            2227,
+            1255,
+            2403
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            621.0370370370371,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            620.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            0.06828703703706651,
+            1.0,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        },
+        {
+          "element": "primary-action",
+          "nativeBoundsPx": [
+            67,
+            2457,
+            1253,
+            2633
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            689.1851851851852,
+            351.4074074074074,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            688.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            0.21643518518521887,
+            0.40740740740739056,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        }
+      ],
+      "nativePngSha256": "20a5efbe74b65b54b7eba4ba1f94106317a9520a00b45e21a5b181fbe174be60"
+    },
+    {
+      "theme": "dark",
+      "rectangles": [
+        {
+          "element": "title",
+          "nativeBoundsPx": [
+            189,
+            1171,
+            1254,
+            1293
+          ],
+          "nativeContentVp": [
+            56.0,
+            308.14814814814815,
+            315.55555555555554,
+            36.148148148148145
+          ],
+          "webCssPx": [
+            56,
+            308.578125,
+            264,
+            36
+          ],
+          "nativeMinusWeb": [
+            0.0,
+            -0.42997685185184764,
+            51.55555555555554,
+            0.14814814814814525
+          ],
+          "widthComparable": false
+        },
+        {
+          "element": "old-password",
+          "nativeBoundsPx": [
+            67,
+            1584,
+            1255,
+            1760
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            430.51851851851853,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            430.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.45023148148146674,
+            1.0,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        },
+        {
+          "element": "new-password",
+          "nativeBoundsPx": [
+            67,
+            1905,
+            1255,
+            2081
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            525.6296296296297,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            525.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.33912037037032405,
+            1.0,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        },
+        {
+          "element": "confirm-password",
+          "nativeBoundsPx": [
+            67,
+            2227,
+            1255,
+            2403
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            621.0370370370371,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            620.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            0.06828703703706651,
+            1.0,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        },
+        {
+          "element": "primary-action",
+          "nativeBoundsPx": [
+            67,
+            2457,
+            1253,
+            2633
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            689.1851851851852,
+            351.4074074074074,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            688.96875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            0.21643518518521887,
+            0.40740740740739056,
+            0.14814814814814525
+          ],
+          "widthComparable": true
+        }
+      ],
+      "nativePngSha256": "c93b9f6cb365a6e48c43b55601e8a0d881537ac9cc8e0c6a02b646047f522ac7"
+    }
+  ],
+  "evidenceRole": "legacy-pre-system-reference",
+  "visualCriteria": "legacy-web-alignment",
+  "supersededBy": "arkui-system-v1"
+}

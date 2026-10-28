@@ -1,0 +1,124 @@
+{
+  "status": "capture_integrity_and_enumerated_content_verified",
+  "createdAt": "2026-10-28T08:36:41.810371+00:00",
+  "scope": "Offline verification of the final3bac captures only; capture completion does not mean all Web pixels or all features are equivalent.",
+  "deviceOperations": 0,
+  "controlOperations": 0,
+  "counts": {
+    "authCaptures": 4,
+    "mainCaptures": 18,
+    "newMainCaptures": 18,
+    "uniqueNativeImages": 22,
+    "strictOriginalPixelPatchesVerified": 22,
+    "loadedDetailsWithAuthoritativeProgress": 8,
+    "extraImagesExcludedFrom18": 1
+  },
+  "hap": {
+    "sha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+    "visualCriteria": "arkui-system-v1",
+    "immersionVersion": "edge-to-edge-v1",
+    "source": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "b1b472c9881673be8b204ccd5ed2508897ceb0444c116de2a57e95b1b3cfec9e",
+    "verification": "Packaged HAP bytes match the explicit manifest; device installation requires its separate log"
+  },
+  "viewRevision": "authoritative-progress-and-keyboard-resize",
+  "windowSource": {
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceSha256": "70d23aef0d9609c7e5f372955c62add253011d4071f23d7a64f7022f7b4757f5"
+  },
+  "fileHashesAndTrees": "All22 PNG SHA, actual sizes and original strict pixel patches match their capture record; all22 sanitised UI trees were parsed and hashed. Per-file results in native-system-visual-content-check.json.",
+  "resume": {
+    "retainedCount": 0,
+    "newCapturedCount": 18,
+    "singleCompletedMainRun": true,
+    "sourceChain": []
+  },
+  "actualChineseStateHints": {
+    "detail-waiting-dark": "静候启程，旅程开放后就能出发。",
+    "detail-waiting-light": "静候启程，旅程开放后就能出发。",
+    "detail-expired-dark": "已过开放时间，请联系游戏管理员。",
+    "detail-expired-light": "已过开放时间，请联系游戏管理员。",
+    "detail-locked-dark": "等级暂不符合，请确认场次的参与等级。",
+    "detail-locked-light": "等级暂不符合，请确认场次的参与等级。"
+  },
+  "faultCaptures": [
+    {
+      "theme": "dark",
+      "screenshot": "detail-404-fault-dark.png",
+      "explicitInjection": true,
+      "authoritativeProgressHidden": true,
+      "oldStartAndDetailCleared": true
+    },
+    {
+      "theme": "light",
+      "screenshot": "detail-404-fault-light.png",
+      "explicitInjection": true,
+      "authoritativeProgressHidden": true,
+      "oldStartAndDetailCleared": true
+    }
+  ],
+  "faultRecoveries": [
+    {
+      "theme": "dark",
+      "method": "GET",
+      "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+      "status": 200,
+      "injected": false,
+      "authoritativeProgressRestored": true
+    },
+    {
+      "theme": "light",
+      "method": "GET",
+      "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+      "status": 200,
+      "injected": false,
+      "authoritativeProgressRestored": true
+    }
+  ],
+  "cleanup": {
+    "auth": {
+      "singleReadyRestored": true,
+      "newPasswordConfirmed": true,
+      "loggedOut": true
+    },
+    "main": {
+      "scenarioRestored": true,
+      "loggedOut": true,
+      "faultNeutralised": true
+    }
+  },
+  "extraSystemAreaEvidence": {
+    "screenshot": "system-home-behind-bar.png",
+    "screenshotSha256": "dd801a3bee81b7936fac87dd59fe8f82ea5a210092d93c90d66ccf7e51b226e7",
+    "countsTowardMain18": false,
+    "currentScrollBounds": [
+      67,
+      1010,
+      1253,
+      2848
+    ],
+    "physicalBottomPx": 2848,
+    "gestureRegionTopPx": 2754,
+    "actualAssignmentProgressText": "已解开 0 / 2",
+    "actualTextBounds": [
+      343,
+      2750,
+      1176,
+      2811
+    ],
+    "interpretation": "Actual second-card content crosses behind the official floating material bar and continues into the gesture region."
+  },
+  "imePrivacyScope": "Both new ordinary empty-account IME PNGs visually inspected: standard keys/icons, no visible credentials, candidate text or clipboard content. No device clipboard audit or password-IME screenshot pass is claimed.",
+  "resolvedCapturedGaps": [
+    {
+      "issue": "Default0/0 progress on a fatal detail error",
+      "verifiedIn": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+      "evidence": "Both404 rows/tree/PNG hide progress, both realGET200 recoveries restore it; all8 loaded detail images retain real progress."
+    }
+  ],
+  "knownVisualGaps": [],
+  "limitations": [
+    "This is capture integrity and specific content verification; independent Web comparison remains separate",
+    "No actual spoken-reader, reduced-motion setting toggle, unsupported-material device or foldable-hardware verification is claimed"
+  ]
+}

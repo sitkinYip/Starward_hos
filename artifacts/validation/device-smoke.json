@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "installedHapSha256": "82baeefc53191a437ca4e2ca67b0c3174676e799e79b54da310888e456961fd6",
+  "checks": [
+    "App identifies the isolated demo environment before any credential entry",
+    "System Back cannot reveal protected home before authentication",
+    "Successful demo login reaches mandatory password change",
+    "Password change unlocks the native home",
+    "Passport renders the authenticated player",
+    "Home renders the assigned chapter",
+    "Native destination renders read-only assignment projection",
+    "Read-only scope is visible and the start command is disabled",
+    "System Back from detail returns to home",
+    "History shows its distinct empty state",
+    "Logout removes protected content and returns to login",
+    "App renders the dark canvas after explicit theme selection",
+    "App renders the light canvas after explicit theme selection"
+  ],
+  "count": 13,
+  "environment": "in-memory mock on API26 physical device",
+  "screenshots": [
+    "forced-password.png",
+    "home.png",
+    "detail.png",
+    "history.png",
+    "login-dark.png",
+    "login-light.png"
+  ],
+  "themeSamples": [
+    {
+      "theme": "dark",
+      "control": "theme-dark",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        33,
+        1518
+      ]
+    },
+    {
+      "theme": "light",
+      "control": "theme-light",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        33,
+        1518
+      ]
+    }
+  ],
+  "notes": "CLI UiTest operations; not a Hypium instrument-test report or production/network acceptance."
+}

@@ -1,0 +1,1285 @@
+{
+  "status": "captured",
+  "visualCriteria": "arkui-system-v1",
+  "environment": "real isolated PocketBase over verified HTTPS",
+  "capturedAt": "2026-10-28T08:35:08.652343+00:00",
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "fontScale": 1,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceRecord": 0,
+    "sourceSha256": "70d23aef0d9609c7e5f372955c62add253011d4071f23d7a64f7022f7b4757f5"
+  },
+  "hap": {
+    "sha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+    "visualCriteria": "arkui-system-v1",
+    "immersionVersion": "edge-to-edge-v1",
+    "source": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "b1b472c9881673be8b204ccd5ed2508897ceb0444c116de2a57e95b1b3cfec9e",
+    "verification": "Packaged HAP bytes match the explicit manifest; device installation requires its separate log"
+  },
+  "immersionVersion": "edge-to-edge-v1",
+  "count": 18,
+  "states": [
+    {
+      "state": "home",
+      "theme": "dark",
+      "screenshot": "home-dark.png",
+      "uiTree": "ui-home-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        34,
+        1118
+      ],
+      "sampleRegion": {
+        "kind": "page canvas outside padded journey Scroll",
+        "bounds": [
+          0,
+          1010,
+          67,
+          2848
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          67,
+          1010,
+          1253,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "303482722302d8be4decf800503f6608c14f8bb8bda795a0fabc91284b02b68a",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail",
+      "theme": "dark",
+      "screenshot": "detail-dark.png",
+      "uiTree": "ui-detail-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          1950
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "48147bcd436babede56a2beb4307c164345ffda641b39f219b48852cc652af90",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "history",
+      "theme": "dark",
+      "screenshot": "history-dark.png",
+      "uiTree": "ui-history-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        34,
+        1118
+      ],
+      "sampleRegion": {
+        "kind": "page canvas outside padded journey Scroll",
+        "bounds": [
+          0,
+          1010,
+          67,
+          2848
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          67,
+          1010,
+          1253,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "4ebc2e341317f3b6fc9afae7387a175872afbf045a30def67cb001e1eb6e9fce",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "logout",
+      "theme": "dark",
+      "screenshot": "logout-dark.png",
+      "uiTree": "ui-logout-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        94,
+        1416
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "account",
+        "bounds": [
+          67,
+          1403,
+          1255,
+          1430
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "90ff9b1f7dd6a9e39efbc9cb6516169ab9f9ea8806fc94d720a2bd257113cf96",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "login-keyboard",
+      "theme": "dark",
+      "screenshot": "login-keyboard-dark.png",
+      "uiTree": "ui-login-keyboard-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        94,
+        1416
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "account",
+        "bounds": [
+          67,
+          1403,
+          1255,
+          1430
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          1788
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          1788
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "31e858f203c4ed1f695fbd594ddf2cb517a53d6867accf1e23f4d58f9997d7e3",
+      "keyboard": true,
+      "keyboardFocus": "account",
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "home",
+      "theme": "light",
+      "screenshot": "home-light.png",
+      "uiTree": "ui-home-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        34,
+        1118
+      ],
+      "sampleRegion": {
+        "kind": "page canvas outside padded journey Scroll",
+        "bounds": [
+          0,
+          1010,
+          67,
+          2848
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          67,
+          1010,
+          1253,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "6189865caaea8497c516cf8ddfa27960cb03da2c896bfb556aef5dbe92f81604",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail",
+      "theme": "light",
+      "screenshot": "detail-light.png",
+      "uiTree": "ui-detail-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          1950
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "e55c936baddf7982ef65c84445de7c39837f7c87709fedcbd5dae566ae259317",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "history",
+      "theme": "light",
+      "screenshot": "history-light.png",
+      "uiTree": "ui-history-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        34,
+        1118
+      ],
+      "sampleRegion": {
+        "kind": "page canvas outside padded journey Scroll",
+        "bounds": [
+          0,
+          1010,
+          67,
+          2848
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          67,
+          1010,
+          1253,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "405c1b1a1a107afcd77d23dbcebf3bddc6c93433c09224362ad1487a6bc25bfe",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "logout",
+      "theme": "light",
+      "screenshot": "logout-light.png",
+      "uiTree": "ui-logout-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        94,
+        1416
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "account",
+        "bounds": [
+          67,
+          1403,
+          1255,
+          1430
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "363252015508fc44fa0a55b6ccbbced91b9bfd0e537bd3f6c267ec6a514c58b9",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "login-keyboard",
+      "theme": "light",
+      "screenshot": "login-keyboard-light.png",
+      "uiTree": "ui-login-keyboard-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        94,
+        1416
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "account",
+        "bounds": [
+          67,
+          1403,
+          1255,
+          1430
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          1788
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          1788
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "2a9b74bdbc3fa8cf38df8e23894b0988b58438b5e2f416caf58adcc508d72f7c",
+      "keyboard": true,
+      "keyboardFocus": "account",
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-waiting",
+      "theme": "dark",
+      "screenshot": "detail-waiting-dark.png",
+      "uiTree": "ui-detail-waiting-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          2069
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "2c21ec52cb522a4336ce5b077a269ede6a0e5e17c9786e2fe3af351ea780dfa3",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-waiting",
+      "theme": "light",
+      "screenshot": "detail-waiting-light.png",
+      "uiTree": "ui-detail-waiting-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          2069
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "11d437b9154ca5113e3512b9795abe2efdc3576014cea99e55d08b7fa32b1345",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-expired",
+      "theme": "dark",
+      "screenshot": "detail-expired-dark.png",
+      "uiTree": "ui-detail-expired-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          2264
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "d84e155c6ecbbe263d9e229839b79cd7c65ea8f325f273ef396b5994d6cd99a9",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-expired",
+      "theme": "light",
+      "screenshot": "detail-expired-light.png",
+      "uiTree": "ui-detail-expired-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          2264
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "b86bcb96ecf910cb2ae7fff8c2e18695160369173412ba65cafb80715344d37b",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-locked",
+      "theme": "dark",
+      "screenshot": "detail-locked-dark.png",
+      "uiTree": "ui-detail-locked-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          2069
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "bdc4614965f428a33ae525b4f3bf0e5306c23492e796fcd8e303dff9a5305168",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-locked",
+      "theme": "light",
+      "screenshot": "detail-locked-light.png",
+      "uiTree": "ui-detail-locked-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          498,
+          1280,
+          2069
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "2935695b1b94b68383e2972e9c01d40962a9b743eb7f5eaebc7c1c2afe4ef42b",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": false,
+      "authoritativeProgressHidden": null,
+      "fault": null
+    },
+    {
+      "state": "detail-404-fault",
+      "theme": "dark",
+      "screenshot": "detail-404-fault-dark.png",
+      "uiTree": "ui-detail-404-fault-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          552,
+          1280,
+          922
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "0d836aec6111a409097ed337a838a179d9449a4558ff0318a36ab75c3a964b0a",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": true,
+      "authoritativeProgressHidden": true,
+      "fault": {
+        "method": "GET",
+        "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+        "status": 404,
+        "kind": "explicit resilience injection; not a real backend business failure",
+        "webSnapshot": "visual-responses-detail404.json"
+      }
+    },
+    {
+      "state": "detail-404-fault",
+      "theme": "light",
+      "screenshot": "detail-404-fault-light.png",
+      "uiTree": "ui-detail-404-fault-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        20,
+        984
+      ],
+      "sampleRegion": {
+        "kind": "detail page canvas outside actual 12vp body inset, away from title shadow",
+        "bounds": [
+          0,
+          444,
+          40,
+          2848
+        ],
+        "geometryRule": "horizontal midpoint of actual left body padding; 160vp below Scroll top, capped at its midpoint",
+        "insetBodyBounds": [
+          40,
+          552,
+          1280,
+          922
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          444,
+          1320,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "c92d20a730019d275d8b550ed67e30e845ae3e281fc0df3f40e2c761cf37a913",
+      "keyboard": false,
+      "keyboardFocus": null,
+      "visibleInputsEmpty": true,
+      "injectedResilience": true,
+      "authoritativeProgressHidden": true,
+      "fault": {
+        "method": "GET",
+        "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+        "status": 404,
+        "kind": "explicit resilience injection; not a real backend business failure",
+        "webSnapshot": "visual-responses-detail404.json"
+      }
+    }
+  ],
+  "preservedExisting": [
+    "login-light.png",
+    "login-dark.png",
+    "forced-password-light.png",
+    "forced-password-dark.png"
+  ],
+  "cleanup": {
+    "scenarioRestored": true,
+    "loggedOut": true,
+    "faultNeutralised": true
+  },
+  "snapshots": [
+    {
+      "kind": "waiting",
+      "file": "artifacts/private/https-isolation/visual-responses-waiting.json",
+      "source": "real successful player GETs",
+      "containsCredentials": false
+    },
+    {
+      "kind": "expired",
+      "file": "artifacts/private/https-isolation/visual-responses-expired.json",
+      "source": "real successful player GETs",
+      "containsCredentials": false
+    },
+    {
+      "kind": "locked",
+      "file": "artifacts/private/https-isolation/visual-responses-locked.json",
+      "source": "real successful player GETs",
+      "containsCredentials": false
+    },
+    {
+      "kind": "detail404-fault",
+      "file": "artifacts/private/https-isolation/visual-responses-detail404.json",
+      "source": "real success DTOs plus explicit synthetic error parameters",
+      "injectedResilience": true
+    }
+  ],
+  "observations": [
+    {
+      "kind": "historical password-focus screenshot blackout",
+      "source": "artifacts/validation/keyboard-snapshot-analysis.json",
+      "sourceScreenshot": "artifacts/native-system-visual-attempt-01/login-keyboard-dark.png",
+      "screenshotSha256": "35562c5782b08539225035e5d26006c2230eda73498209e8b2f2c5ae78a641f0",
+      "keyboardFocus": "password",
+      "themeVerified": false,
+      "acceptanceCredit": false,
+      "cause": "Exact OS cause unconfirmed; secure-keyboard snapshot protection is an inference"
+    },
+    {
+      "kind": "ready",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    },
+    {
+      "kind": "ready",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    },
+    {
+      "kind": "multi-card content behind floating bar",
+      "extraEvidence": true,
+      "status": "captured",
+      "countsTowardMain18": false,
+      "screenshot": "system-home-behind-bar.png",
+      "uiTree": "ui-system-home-behind-bar.json",
+      "visibleInputsEmpty": true,
+      "keyboard": false,
+      "theme": "light",
+      "scrollPosition": "original top",
+      "scrollBounds": [
+        67,
+        1010,
+        1253,
+        2848
+      ],
+      "floatingBarBounds": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        34,
+        1118
+      ],
+      "sampleRegion": {
+        "kind": "page canvas outside padded journey Scroll",
+        "bounds": [
+          0,
+          1010,
+          67,
+          2848
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          67,
+          1010,
+          1253,
+          2848
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "dd801a3bee81b7936fac87dd59fe8f82ea5a210092d93c90d66ccf7e51b226e7"
+    },
+    {
+      "kind": "waiting",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    },
+    {
+      "kind": "expired",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    },
+    {
+      "kind": "locked",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    },
+    {
+      "kind": "ready",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    },
+    {
+      "kind": "ready",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    }
+  ],
+  "faultRecoveries": [
+    {
+      "theme": "dark",
+      "method": "GET",
+      "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+      "status": 200,
+      "injected": false,
+      "authoritativeProgressRestored": true
+    },
+    {
+      "theme": "light",
+      "method": "GET",
+      "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+      "status": 200,
+      "injected": false,
+      "authoritativeProgressRestored": true
+    }
+  ],
+  "resumedFrom": null,
+  "newCapturedCount": 18,
+  "limitations": [
+    "No password change, entry, answer, reward or production writes",
+    "Supplemental states publish existing disposable test sessions only",
+    "Two 404 screenshots use an explicit synthetic fault; recovery must be a real GET 200",
+    "Keyboard visuals focus the blank ordinary account field; password-focus blackouts are separate failed observations",
+    "Screenshots and sanitised UI trees; visual comparison is a separate assessment"
+  ]
+}

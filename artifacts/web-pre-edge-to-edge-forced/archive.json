@@ -1,0 +1,38 @@
+{
+  "stage": "pre-edge-to-edge and before disposable backend epoch renewal",
+  "currentAcceptanceCredit": false,
+  "archiveOf": "artifacts/web-isolated-forced",
+  "archivedAt": "2026-10-28T07:01:55.988517+00:00",
+  "files": [
+    {
+      "file": "capture-summary.json",
+      "sha256": "583adf67ad8ebbe119afe7fcff68cacf67d1318bd448b25841db0825ddca12b0"
+    },
+    {
+      "file": "forced-password-dark.json",
+      "sha256": "5f643dbc2ee0f03be223e60daa871d761447bf1ca177fb0aaa4287ffc50cda91"
+    },
+    {
+      "file": "forced-password-dark.png",
+      "sha256": "0865ca66c60bd33dadd2d48dc03cd67b170517cc5e97f9d580a3894313f752e6"
+    },
+    {
+      "file": "forced-password-light.json",
+      "sha256": "3943479ba19e194750a768053442b13438c76668bfdf8af32114880cc169b64b"
+    },
+    {
+      "file": "forced-password-light.png",
+      "sha256": "f7f3c11c94898d6864937d7907897cdc09b4408e305974355484f4a27401d97f"
+    },
+    {
+      "file": "provenance.json",
+      "sha256": "5774653a5f792cdfee39eb13641d0e5a040a16e18f2c3191d564cd358dbbd065"
+    }
+  ],
+  "excludedMetadata": [
+    {
+      "file": "provenance.json",
+      "reason": "Original metadata was stale relative to the captured PNG group. Preserve its bytes for history; use capture-summary.json and archived file SHA instead."
+    }
+  ]
+}

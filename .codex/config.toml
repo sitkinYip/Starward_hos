@@ -1,0 +1,14 @@
+[mcp_servers.harmonyos_developer_knowledge]
+url = "https://connect-api.cloud.huawei.com/api/developerknowledge/mcp"
+enabled_tools = [ "searchDocuments", "getDocumentsById" ]
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+
+[mcp_servers.deveco-mcp]
+type = "stdio"
+command = "devecocli"
+args = [ "serve", "mcp" ]
+enabled = true
+
+[mcp_servers.deveco-mcp.env]
+PROJECT_PATH = "/Users/sitkin/my_code/starward_hm"

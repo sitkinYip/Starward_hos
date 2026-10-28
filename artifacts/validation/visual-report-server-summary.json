@@ -1,0 +1,104 @@
+{
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "scope": "Preview HTTP isolation and browser controls only; no final native acceptance implied.",
+  "bind": "127.0.0.1",
+  "status": "passed",
+  "tests": 14,
+  "passed": 14,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "public report",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "public manifest",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "verified auth PNG",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "historical reference",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "private blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "raw UI input tree blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "unknown report blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "directory listing blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "encoded traversal blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "double encoded traversal blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "backslash path blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "foreign Host blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "file symlink blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "directory symlink blocked",
+      "status": 404,
+      "target": "isolated same-handler fixture"
+    }
+  ],
+  "checkedAt": "2026-10-28T06:57:32.341638+00:00",
+  "httpScope": "13 live viewer requests and one isolated identical-handler directory-symlink probe; not native device, screenshot comparison or product acceptance.",
+  "httpChecksSource": "artifacts/validation/visual-report-server-http-checks.json",
+  "browserChecksSource": "artifacts/validation/visual-report-server-browser-checks.json",
+  "browserSmoke": {
+    "stateButtons": 22,
+    "verifiedAvailabilityMatches": true,
+    "defaultNativeArea": "full",
+    "legacyImageLoaded": true,
+    "pageErrors": 0,
+    "cspErrors": 0,
+    "unexpectedHttpErrors": 0,
+    "screenshotsGenerated": 1
+  },
+  "serverLifecycle": "Own detached viewer remains running for local review; verify stored PID ownership before stopping.",
+  "backendOrDeviceTouched": false,
+  "viewer": {
+    "url": "http://127.0.0.1:5179/visual-comparison/index.html",
+    "bind": "127.0.0.1",
+    "privateFilesServed": false,
+    "pidFile": "artifacts/private/visual-report-viewer.pid"
+  }
+}

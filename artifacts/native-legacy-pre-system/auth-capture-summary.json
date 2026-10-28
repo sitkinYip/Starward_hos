@@ -1,0 +1,291 @@
+{
+  "status": "captured",
+  "count": 4,
+  "states": [
+    {
+      "state": "login",
+      "theme": "dark",
+      "screenshot": "login-dark.png",
+      "uiTree": "ui-login-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        24,
+        274
+      ],
+      "themeVerified": true,
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true,
+      "pixels": [
+        1320,
+        2848
+      ]
+    },
+    {
+      "state": "login",
+      "theme": "light",
+      "screenshot": "login-light.png",
+      "uiTree": "ui-login-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        24,
+        274
+      ],
+      "themeVerified": true,
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true,
+      "pixels": [
+        1320,
+        2848
+      ]
+    },
+    {
+      "state": "forced-password",
+      "theme": "dark",
+      "screenshot": "forced-password-dark.png",
+      "uiTree": "ui-forced-password-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        24,
+        274
+      ],
+      "themeVerified": true,
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true,
+      "pixels": [
+        1320,
+        2848
+      ]
+    },
+    {
+      "state": "forced-password",
+      "theme": "light",
+      "screenshot": "forced-password-light.png",
+      "uiTree": "ui-forced-password-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        24,
+        274
+      ],
+      "themeVerified": true,
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true,
+      "pixels": [
+        1320,
+        2848
+      ]
+    }
+  ],
+  "capturedAt": "2026-10-27T05:27:39.053909+00:00",
+  "environment": "real isolated PocketBase over verified HTTPS",
+  "fontScale": 1,
+  "density": 3.375,
+  "mutatingVisualPrerequisite": true,
+  "passwordChangeAttempts": 1,
+  "passwordChangeResponseConfirmed": true,
+  "cleanup": {
+    "singleReadyRestored": true,
+    "newPasswordConfirmed": true,
+    "loggedOut": true
+  },
+  "requestLedger": [
+    {
+      "phase": "mutating-auth-visual-prerequisite",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "This auth precondition performs one real isolated password change",
+    "It is separate from the read-only visual capture script",
+    "No production, start, answer or reward operation is performed",
+    "Capture is not a completed visual comparison"
+  ]
+}

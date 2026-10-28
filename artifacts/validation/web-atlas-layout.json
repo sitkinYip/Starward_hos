@@ -1,0 +1,4116 @@
+{
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "method": "Read-only headless Chrome DOM and SVG getBBox/getScreenCTM; frozen E2E fixture replay; no screenshot, no browser backend requests",
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "runs": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "font": "original-system-font",
+      "measurements": {
+        "story": {
+          "x": 20,
+          "y": 84,
+          "width": 350,
+          "height": 204.578125,
+          "centerX": 195,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "storyCopy": {
+          "x": 20,
+          "y": 84,
+          "width": 186.5625,
+          "height": 204.578125,
+          "centerX": 113.28125,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "atlas": {
+          "x": 100,
+          "y": -23.71875,
+          "width": 420,
+          "height": 420,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "102.281px",
+          "right": "-150px",
+          "left": "80px",
+          "transform": "matrix(1, 0, 0, 1, 0, -210)",
+          "opacity": "0.22"
+        },
+        "outer": {
+          "x": 108.390625,
+          "y": -15.328125,
+          "width": 403.21875,
+          "height": 403.21875,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "8.39062px",
+          "right": "8.39062px",
+          "left": "8.39062px",
+          "transform": "none",
+          "opacity": "0.5"
+        },
+        "middle": {
+          "x": 167.1875,
+          "y": 43.46875,
+          "width": 285.625,
+          "height": 285.625,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "67.1875px",
+          "right": "67.1875px",
+          "left": "67.1875px",
+          "transform": "none",
+          "opacity": "0.7"
+        },
+        "inner": {
+          "x": 230.1875,
+          "y": 106.46875,
+          "width": 159.625,
+          "height": 159.625,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "130.188px",
+          "right": "130.188px",
+          "left": "130.188px",
+          "transform": "none",
+          "opacity": "0.6"
+        },
+        "star": {
+          "x": 259.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "159.594px",
+          "right": "159.594px",
+          "left": "159.594px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svg": {
+          "x": 259.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "left": "auto",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "north": {
+          "x": 305.796875,
+          "y": 5.671875,
+          "width": 7.671875,
+          "height": 11,
+          "centerX": 309.6328125,
+          "centerY": 11.171875,
+          "position": "absolute",
+          "top": "29.3906px",
+          "right": "206.531px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "south": {
+          "x": 305.796875,
+          "y": 355.890625,
+          "width": 5.625,
+          "height": 11,
+          "centerX": 308.609375,
+          "centerY": 361.390625,
+          "position": "absolute",
+          "top": "379.609px",
+          "right": "208.578px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 267.4718123995699,
+              "y": 143.7530623995699,
+              "width": 85.05638271197677,
+              "height": 85.05638872087002,
+              "centerX": 310.0000037555583,
+              "centerY": 186.2812567600049
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 108.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 105.390625,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 109.390625,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 5.390625,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "196.609px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 108.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 446.40625,
+              "y": 37.828125,
+              "width": 6,
+              "height": 6,
+              "centerX": 449.40625,
+              "centerY": 40.828125
+            },
+            "relativeToAtlas": {
+              "x": 346.40625,
+              "y": 61.546875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "52.1562px",
+              "left": "337.016px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 108.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 310,
+              "y": 386.890625,
+              "width": 12,
+              "height": 12,
+              "centerX": 316,
+              "centerY": 392.890625
+            },
+            "relativeToAtlas": {
+              "x": 210,
+              "y": 410.609375,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "401.219px",
+              "left": "200.609px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 167.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 164.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 168.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 64.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "137.812px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 167.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 406.421875,
+              "y": 81.328125,
+              "width": 6,
+              "height": 6,
+              "centerX": 409.421875,
+              "centerY": 84.328125
+            },
+            "relativeToAtlas": {
+              "x": 306.421875,
+              "y": 105.046875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "36.8594px",
+              "left": "238.234px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 230.1875,
+              "y": 106.46875,
+              "width": 159.625,
+              "height": 159.625,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 227.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 231.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 127.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "74.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "homeMeasurements": {
+        "homeIntro": {
+          "x": 20,
+          "y": 100,
+          "width": 350,
+          "height": 107.1875,
+          "centerX": 195,
+          "centerY": 153.59375,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "homeAtlas": {
+          "x": 170,
+          "y": 60,
+          "width": 210,
+          "height": 210,
+          "centerX": 275,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "-40px",
+          "right": "-10px",
+          "left": "150px",
+          "transform": "none",
+          "opacity": "0.17"
+        },
+        "homeStar": {
+          "x": 249.796875,
+          "y": 139.796875,
+          "width": 50.40625,
+          "height": 50.40625,
+          "centerX": 275,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "79.7969px",
+          "right": "79.7969px",
+          "left": "79.7969px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 253.73590619978495,
+              "y": 143.73590619978495,
+              "width": 42.52819135598838,
+              "height": 42.52819436043501,
+              "centerX": 275.00000187777914,
+              "centerY": 165.00000338000245
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          },
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "screenBbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "centerX": 0,
+              "centerY": 0
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 174.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 171.1875,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 175.1875,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 1.1875,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "95.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 174.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 342.859375,
+              "y": 91.125,
+              "width": 6,
+              "height": 6,
+              "centerX": 345.859375,
+              "centerY": 94.125
+            },
+            "relativeToAtlas": {
+              "x": 172.859375,
+              "y": 31.125,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "25.9375px",
+              "left": "167.672px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 174.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 275,
+              "y": 264.8125,
+              "width": 12,
+              "height": 12,
+              "centerX": 281,
+              "centerY": 270.8125
+            },
+            "relativeToAtlas": {
+              "x": 105,
+              "y": 204.8125,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "199.625px",
+              "left": "99.8125px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 203.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 200.59375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 204.59375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 30.59375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "66.4062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 203.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 322.875,
+              "y": 112.890625,
+              "width": 6,
+              "height": 6,
+              "centerX": 325.875,
+              "centerY": 115.890625
+            },
+            "relativeToAtlas": {
+              "x": 152.875,
+              "y": 52.890625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "18.2969px",
+              "left": "118.281px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 235.09375,
+              "y": 125.09375,
+              "width": 79.8125,
+              "height": 79.8125,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 232.09375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 236.09375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 62.09375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "34.9062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "detailMeasurements": {
+        "brief": {
+          "x": 12,
+          "y": 108.578125,
+          "width": 366,
+          "height": 419.375,
+          "centerX": 195,
+          "centerY": 318.265625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefArt": {
+          "x": 237,
+          "y": 49.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 337,
+          "centerY": 149.578125,
+          "position": "absolute",
+          "top": "-60px",
+          "right": "-60px",
+          "left": "224px",
+          "transform": "none",
+          "opacity": "0.16"
+        },
+        "briefAtlas": {
+          "x": 237,
+          "y": 49.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 337,
+          "centerY": 149.578125,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefStar": {
+          "x": 313,
+          "y": 125.578125,
+          "width": 48,
+          "height": 48,
+          "centerX": 337,
+          "centerY": 149.578125,
+          "position": "absolute",
+          "top": "76px",
+          "right": "76px",
+          "left": "76px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 316.75099313259125,
+              "y": 129.32911813259125,
+              "width": 40.49801731109619,
+              "height": 40.49802017211914,
+              "centerX": 337.00000178813934,
+              "centerY": 149.57812821865082
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 241,
+              "y": 53.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 337,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 238,
+              "y": 145.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 242,
+              "centerY": 149.578125
+            },
+            "relativeToAtlas": {
+              "x": 1,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "91px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 241,
+              "y": 53.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 337,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 401.59375,
+              "y": 79.265625,
+              "width": 6,
+              "height": 6,
+              "centerX": 404.59375,
+              "centerY": 82.265625
+            },
+            "relativeToAtlas": {
+              "x": 164.59375,
+              "y": 29.6875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "24.6875px",
+              "left": "159.594px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 241,
+              "y": 53.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 337,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 337,
+              "y": 244.578125,
+              "width": 12,
+              "height": 12,
+              "centerX": 343,
+              "centerY": 250.578125
+            },
+            "relativeToAtlas": {
+              "x": 100,
+              "y": 195,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "190px",
+              "left": "95px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 269,
+              "y": 81.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 337,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 266,
+              "y": 145.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 270,
+              "centerY": 149.578125
+            },
+            "relativeToAtlas": {
+              "x": 29,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "63px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 269,
+              "y": 81.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 337,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 382.546875,
+              "y": 99.984375,
+              "width": 6,
+              "height": 6,
+              "centerX": 385.546875,
+              "centerY": 102.984375
+            },
+            "relativeToAtlas": {
+              "x": 145.546875,
+              "y": 50.40625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "17.4062px",
+              "left": "112.547px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 299,
+              "y": 111.578125,
+              "width": 76,
+              "height": 76,
+              "centerX": 337,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 296,
+              "y": 145.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 300,
+              "centerY": 149.578125
+            },
+            "relativeToAtlas": {
+              "x": 59,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "33px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "font": "same-native-NotoSerifSC",
+      "measurements": {
+        "story": {
+          "x": 20,
+          "y": 84,
+          "width": 350,
+          "height": 204.578125,
+          "centerX": 195,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "storyCopy": {
+          "x": 20,
+          "y": 84,
+          "width": 186.5625,
+          "height": 204.578125,
+          "centerX": 113.28125,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "atlas": {
+          "x": 100,
+          "y": -23.71875,
+          "width": 420,
+          "height": 420,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "102.281px",
+          "right": "-150px",
+          "left": "80px",
+          "transform": "matrix(1, 0, 0, 1, 0, -210)",
+          "opacity": "0.22"
+        },
+        "outer": {
+          "x": 108.390625,
+          "y": -15.328125,
+          "width": 403.21875,
+          "height": 403.21875,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "8.39062px",
+          "right": "8.39062px",
+          "left": "8.39062px",
+          "transform": "none",
+          "opacity": "0.5"
+        },
+        "middle": {
+          "x": 167.1875,
+          "y": 43.46875,
+          "width": 285.625,
+          "height": 285.625,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "67.1875px",
+          "right": "67.1875px",
+          "left": "67.1875px",
+          "transform": "none",
+          "opacity": "0.7"
+        },
+        "inner": {
+          "x": 230.1875,
+          "y": 106.46875,
+          "width": 159.625,
+          "height": 159.625,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "130.188px",
+          "right": "130.188px",
+          "left": "130.188px",
+          "transform": "none",
+          "opacity": "0.6"
+        },
+        "star": {
+          "x": 259.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "159.594px",
+          "right": "159.594px",
+          "left": "159.594px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svg": {
+          "x": 259.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 310,
+          "centerY": 186.28125,
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "left": "auto",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "north": {
+          "x": 305.796875,
+          "y": 5.671875,
+          "width": 7.96875,
+          "height": 15,
+          "centerX": 309.78125,
+          "centerY": 13.171875,
+          "position": "absolute",
+          "top": "29.3906px",
+          "right": "206.234px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "south": {
+          "x": 305.796875,
+          "y": 351.890625,
+          "width": 5.671875,
+          "height": 15,
+          "centerX": 308.6328125,
+          "centerY": 359.390625,
+          "position": "absolute",
+          "top": "375.609px",
+          "right": "208.531px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 267.4718123995699,
+              "y": 143.7530623995699,
+              "width": 85.05638271197677,
+              "height": 85.05638872087002,
+              "centerX": 310.0000037555583,
+              "centerY": 186.2812567600049
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 108.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 105.390625,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 109.390625,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 5.390625,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "196.609px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 108.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 446.40625,
+              "y": 37.828125,
+              "width": 6,
+              "height": 6,
+              "centerX": 449.40625,
+              "centerY": 40.828125
+            },
+            "relativeToAtlas": {
+              "x": 346.40625,
+              "y": 61.546875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "52.1562px",
+              "left": "337.016px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 108.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 310,
+              "y": 386.890625,
+              "width": 12,
+              "height": 12,
+              "centerX": 316,
+              "centerY": 392.890625
+            },
+            "relativeToAtlas": {
+              "x": 210,
+              "y": 410.609375,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "401.219px",
+              "left": "200.609px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 167.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 164.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 168.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 64.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "137.812px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 167.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 406.421875,
+              "y": 81.328125,
+              "width": 6,
+              "height": 6,
+              "centerX": 409.421875,
+              "centerY": 84.328125
+            },
+            "relativeToAtlas": {
+              "x": 306.421875,
+              "y": 105.046875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "36.8594px",
+              "left": "238.234px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 230.1875,
+              "y": 106.46875,
+              "width": 159.625,
+              "height": 159.625,
+              "centerX": 310,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 227.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 231.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 127.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "74.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "homeMeasurements": {
+        "homeIntro": {
+          "x": 20,
+          "y": 100,
+          "width": 350,
+          "height": 107.1875,
+          "centerX": 195,
+          "centerY": 153.59375,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "homeAtlas": {
+          "x": 170,
+          "y": 60,
+          "width": 210,
+          "height": 210,
+          "centerX": 275,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "-40px",
+          "right": "-10px",
+          "left": "150px",
+          "transform": "none",
+          "opacity": "0.17"
+        },
+        "homeStar": {
+          "x": 249.796875,
+          "y": 139.796875,
+          "width": 50.40625,
+          "height": 50.40625,
+          "centerX": 275,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "79.7969px",
+          "right": "79.7969px",
+          "left": "79.7969px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 253.73590619978495,
+              "y": 143.73590619978495,
+              "width": 42.52819135598838,
+              "height": 42.52819436043501,
+              "centerX": 275.00000187777914,
+              "centerY": 165.00000338000245
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          },
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "screenBbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "centerX": 0,
+              "centerY": 0
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 174.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 171.1875,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 175.1875,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 1.1875,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "95.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 174.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 342.859375,
+              "y": 91.125,
+              "width": 6,
+              "height": 6,
+              "centerX": 345.859375,
+              "centerY": 94.125
+            },
+            "relativeToAtlas": {
+              "x": 172.859375,
+              "y": 31.125,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "25.9375px",
+              "left": "167.672px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 174.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 275,
+              "y": 264.8125,
+              "width": 12,
+              "height": 12,
+              "centerX": 281,
+              "centerY": 270.8125
+            },
+            "relativeToAtlas": {
+              "x": 105,
+              "y": 204.8125,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "199.625px",
+              "left": "99.8125px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 203.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 200.59375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 204.59375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 30.59375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "66.4062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 203.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 322.875,
+              "y": 112.890625,
+              "width": 6,
+              "height": 6,
+              "centerX": 325.875,
+              "centerY": 115.890625
+            },
+            "relativeToAtlas": {
+              "x": 152.875,
+              "y": 52.890625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "18.2969px",
+              "left": "118.281px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 235.09375,
+              "y": 125.09375,
+              "width": 79.8125,
+              "height": 79.8125,
+              "centerX": 275,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 232.09375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 236.09375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 62.09375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "34.9062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "detailMeasurements": {
+        "brief": {
+          "x": 12,
+          "y": 109.578125,
+          "width": 366,
+          "height": 419.375,
+          "centerX": 195,
+          "centerY": 319.265625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefArt": {
+          "x": 237,
+          "y": 50.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 337,
+          "centerY": 150.578125,
+          "position": "absolute",
+          "top": "-60px",
+          "right": "-60px",
+          "left": "224px",
+          "transform": "none",
+          "opacity": "0.16"
+        },
+        "briefAtlas": {
+          "x": 237,
+          "y": 50.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 337,
+          "centerY": 150.578125,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefStar": {
+          "x": 313,
+          "y": 126.578125,
+          "width": 48,
+          "height": 48,
+          "centerX": 337,
+          "centerY": 150.578125,
+          "position": "absolute",
+          "top": "76px",
+          "right": "76px",
+          "left": "76px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 316.75099313259125,
+              "y": 130.32911813259125,
+              "width": 40.49801731109619,
+              "height": 40.49802017211914,
+              "centerX": 337.00000178813934,
+              "centerY": 150.57812821865082
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 241,
+              "y": 54.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 337,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 238,
+              "y": 146.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 242,
+              "centerY": 150.578125
+            },
+            "relativeToAtlas": {
+              "x": 1,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "91px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 241,
+              "y": 54.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 337,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 401.59375,
+              "y": 80.265625,
+              "width": 6,
+              "height": 6,
+              "centerX": 404.59375,
+              "centerY": 83.265625
+            },
+            "relativeToAtlas": {
+              "x": 164.59375,
+              "y": 29.6875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "24.6875px",
+              "left": "159.594px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 241,
+              "y": 54.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 337,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 337,
+              "y": 245.578125,
+              "width": 12,
+              "height": 12,
+              "centerX": 343,
+              "centerY": 251.578125
+            },
+            "relativeToAtlas": {
+              "x": 100,
+              "y": 195,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "190px",
+              "left": "95px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 269,
+              "y": 82.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 337,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 266,
+              "y": 146.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 270,
+              "centerY": 150.578125
+            },
+            "relativeToAtlas": {
+              "x": 29,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "63px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 269,
+              "y": 82.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 337,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 382.546875,
+              "y": 100.984375,
+              "width": 6,
+              "height": 6,
+              "centerX": 385.546875,
+              "centerY": 103.984375
+            },
+            "relativeToAtlas": {
+              "x": 145.546875,
+              "y": 50.40625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "17.4062px",
+              "left": "112.547px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 299,
+              "y": 112.578125,
+              "width": 76,
+              "height": 76,
+              "centerX": 337,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 296,
+              "y": 146.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 300,
+              "centerY": 150.578125
+            },
+            "relativeToAtlas": {
+              "x": 59,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "33px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 391,
+        "height": 777
+      },
+      "font": "original-system-font",
+      "measurements": {
+        "story": {
+          "x": 20,
+          "y": 84,
+          "width": 351,
+          "height": 204.578125,
+          "centerX": 195.5,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "storyCopy": {
+          "x": 20,
+          "y": 84,
+          "width": 186.5625,
+          "height": 204.578125,
+          "centerX": 113.28125,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "atlas": {
+          "x": 101,
+          "y": -23.71875,
+          "width": 420,
+          "height": 420,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "102.281px",
+          "right": "-150px",
+          "left": "81px",
+          "transform": "matrix(1, 0, 0, 1, 0, -210)",
+          "opacity": "0.22"
+        },
+        "outer": {
+          "x": 109.390625,
+          "y": -15.328125,
+          "width": 403.21875,
+          "height": 403.21875,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "8.39062px",
+          "right": "8.39062px",
+          "left": "8.39062px",
+          "transform": "none",
+          "opacity": "0.5"
+        },
+        "middle": {
+          "x": 168.1875,
+          "y": 43.46875,
+          "width": 285.625,
+          "height": 285.625,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "67.1875px",
+          "right": "67.1875px",
+          "left": "67.1875px",
+          "transform": "none",
+          "opacity": "0.7"
+        },
+        "inner": {
+          "x": 231.1875,
+          "y": 106.46875,
+          "width": 159.625,
+          "height": 159.625,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "130.188px",
+          "right": "130.188px",
+          "left": "130.188px",
+          "transform": "none",
+          "opacity": "0.6"
+        },
+        "star": {
+          "x": 260.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "159.594px",
+          "right": "159.594px",
+          "left": "159.594px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svg": {
+          "x": 260.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "left": "auto",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "north": {
+          "x": 306.796875,
+          "y": 5.671875,
+          "width": 7.671875,
+          "height": 11,
+          "centerX": 310.6328125,
+          "centerY": 11.171875,
+          "position": "absolute",
+          "top": "29.3906px",
+          "right": "206.531px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "south": {
+          "x": 306.796875,
+          "y": 355.890625,
+          "width": 5.625,
+          "height": 11,
+          "centerX": 309.609375,
+          "centerY": 361.390625,
+          "position": "absolute",
+          "top": "379.609px",
+          "right": "208.578px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 268.4718123995699,
+              "y": 143.7530623995699,
+              "width": 85.05638271197677,
+              "height": 85.05638872087002,
+              "centerX": 311.0000037555583,
+              "centerY": 186.2812567600049
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 109.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 106.390625,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 110.390625,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 5.390625,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "196.609px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 109.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 447.40625,
+              "y": 37.828125,
+              "width": 6,
+              "height": 6,
+              "centerX": 450.40625,
+              "centerY": 40.828125
+            },
+            "relativeToAtlas": {
+              "x": 346.40625,
+              "y": 61.546875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "52.1562px",
+              "left": "337.016px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 109.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 311,
+              "y": 386.890625,
+              "width": 12,
+              "height": 12,
+              "centerX": 317,
+              "centerY": 392.890625
+            },
+            "relativeToAtlas": {
+              "x": 210,
+              "y": 410.609375,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "401.219px",
+              "left": "200.609px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 168.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 165.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 169.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 64.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "137.812px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 168.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 407.421875,
+              "y": 81.328125,
+              "width": 6,
+              "height": 6,
+              "centerX": 410.421875,
+              "centerY": 84.328125
+            },
+            "relativeToAtlas": {
+              "x": 306.421875,
+              "y": 105.046875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "36.8594px",
+              "left": "238.234px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 231.1875,
+              "y": 106.46875,
+              "width": 159.625,
+              "height": 159.625,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 228.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 232.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 127.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "74.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "homeMeasurements": {
+        "homeIntro": {
+          "x": 20,
+          "y": 100,
+          "width": 351,
+          "height": 107.1875,
+          "centerX": 195.5,
+          "centerY": 153.59375,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "homeAtlas": {
+          "x": 171,
+          "y": 60,
+          "width": 210,
+          "height": 210,
+          "centerX": 276,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "-40px",
+          "right": "-10px",
+          "left": "151px",
+          "transform": "none",
+          "opacity": "0.17"
+        },
+        "homeStar": {
+          "x": 250.796875,
+          "y": 139.796875,
+          "width": 50.40625,
+          "height": 50.40625,
+          "centerX": 276,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "79.7969px",
+          "right": "79.7969px",
+          "left": "79.7969px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 254.73590619978495,
+              "y": 143.73590619978495,
+              "width": 42.52819135598838,
+              "height": 42.52819436043501,
+              "centerX": 276.00000187777914,
+              "centerY": 165.00000338000245
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          },
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "screenBbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "centerX": 0,
+              "centerY": 0
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 175.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 172.1875,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 176.1875,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 1.1875,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "95.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 175.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 343.859375,
+              "y": 91.125,
+              "width": 6,
+              "height": 6,
+              "centerX": 346.859375,
+              "centerY": 94.125
+            },
+            "relativeToAtlas": {
+              "x": 172.859375,
+              "y": 31.125,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "25.9375px",
+              "left": "167.672px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 175.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 276,
+              "y": 264.8125,
+              "width": 12,
+              "height": 12,
+              "centerX": 282,
+              "centerY": 270.8125
+            },
+            "relativeToAtlas": {
+              "x": 105,
+              "y": 204.8125,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "199.625px",
+              "left": "99.8125px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 204.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 201.59375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 205.59375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 30.59375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "66.4062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 204.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 323.875,
+              "y": 112.890625,
+              "width": 6,
+              "height": 6,
+              "centerX": 326.875,
+              "centerY": 115.890625
+            },
+            "relativeToAtlas": {
+              "x": 152.875,
+              "y": 52.890625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "18.2969px",
+              "left": "118.281px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 236.09375,
+              "y": 125.09375,
+              "width": 79.8125,
+              "height": 79.8125,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 233.09375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 237.09375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 62.09375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "34.9062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "detailMeasurements": {
+        "brief": {
+          "x": 12,
+          "y": 108.578125,
+          "width": 367,
+          "height": 419.375,
+          "centerX": 195.5,
+          "centerY": 318.265625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefArt": {
+          "x": 238,
+          "y": 49.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 338,
+          "centerY": 149.578125,
+          "position": "absolute",
+          "top": "-60px",
+          "right": "-60px",
+          "left": "225px",
+          "transform": "none",
+          "opacity": "0.16"
+        },
+        "briefAtlas": {
+          "x": 238,
+          "y": 49.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 338,
+          "centerY": 149.578125,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefStar": {
+          "x": 314,
+          "y": 125.578125,
+          "width": 48,
+          "height": 48,
+          "centerX": 338,
+          "centerY": 149.578125,
+          "position": "absolute",
+          "top": "76px",
+          "right": "76px",
+          "left": "76px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 317.75099313259125,
+              "y": 129.32911813259125,
+              "width": 40.49801731109619,
+              "height": 40.49802017211914,
+              "centerX": 338.00000178813934,
+              "centerY": 149.57812821865082
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 242,
+              "y": 53.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 338,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 239,
+              "y": 145.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 243,
+              "centerY": 149.578125
+            },
+            "relativeToAtlas": {
+              "x": 1,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "91px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 242,
+              "y": 53.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 338,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 402.59375,
+              "y": 79.265625,
+              "width": 6,
+              "height": 6,
+              "centerX": 405.59375,
+              "centerY": 82.265625
+            },
+            "relativeToAtlas": {
+              "x": 164.59375,
+              "y": 29.6875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "24.6875px",
+              "left": "159.594px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 242,
+              "y": 53.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 338,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 338,
+              "y": 244.578125,
+              "width": 12,
+              "height": 12,
+              "centerX": 344,
+              "centerY": 250.578125
+            },
+            "relativeToAtlas": {
+              "x": 100,
+              "y": 195,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "190px",
+              "left": "95px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 270,
+              "y": 81.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 338,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 267,
+              "y": 145.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 271,
+              "centerY": 149.578125
+            },
+            "relativeToAtlas": {
+              "x": 29,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "63px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 270,
+              "y": 81.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 338,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 383.546875,
+              "y": 99.984375,
+              "width": 6,
+              "height": 6,
+              "centerX": 386.546875,
+              "centerY": 102.984375
+            },
+            "relativeToAtlas": {
+              "x": 145.546875,
+              "y": 50.40625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "17.4062px",
+              "left": "112.547px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 300,
+              "y": 111.578125,
+              "width": 76,
+              "height": 76,
+              "centerX": 338,
+              "centerY": 149.578125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 297,
+              "y": 145.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 301,
+              "centerY": 149.578125
+            },
+            "relativeToAtlas": {
+              "x": 59,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "33px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 391,
+        "height": 777
+      },
+      "font": "same-native-NotoSerifSC",
+      "measurements": {
+        "story": {
+          "x": 20,
+          "y": 84,
+          "width": 351,
+          "height": 204.578125,
+          "centerX": 195.5,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "storyCopy": {
+          "x": 20,
+          "y": 84,
+          "width": 186.5625,
+          "height": 204.578125,
+          "centerX": 113.28125,
+          "centerY": 186.2890625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "atlas": {
+          "x": 101,
+          "y": -23.71875,
+          "width": 420,
+          "height": 420,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "102.281px",
+          "right": "-150px",
+          "left": "81px",
+          "transform": "matrix(1, 0, 0, 1, 0, -210)",
+          "opacity": "0.22"
+        },
+        "outer": {
+          "x": 109.390625,
+          "y": -15.328125,
+          "width": 403.21875,
+          "height": 403.21875,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "8.39062px",
+          "right": "8.39062px",
+          "left": "8.39062px",
+          "transform": "none",
+          "opacity": "0.5"
+        },
+        "middle": {
+          "x": 168.1875,
+          "y": 43.46875,
+          "width": 285.625,
+          "height": 285.625,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "67.1875px",
+          "right": "67.1875px",
+          "left": "67.1875px",
+          "transform": "none",
+          "opacity": "0.7"
+        },
+        "inner": {
+          "x": 231.1875,
+          "y": 106.46875,
+          "width": 159.625,
+          "height": 159.625,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "130.188px",
+          "right": "130.188px",
+          "left": "130.188px",
+          "transform": "none",
+          "opacity": "0.6"
+        },
+        "star": {
+          "x": 260.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "absolute",
+          "top": "159.594px",
+          "right": "159.594px",
+          "left": "159.594px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svg": {
+          "x": 260.59375,
+          "y": 135.875,
+          "width": 100.8125,
+          "height": 100.8125,
+          "centerX": 311,
+          "centerY": 186.28125,
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "left": "auto",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "north": {
+          "x": 306.796875,
+          "y": 5.671875,
+          "width": 7.96875,
+          "height": 15,
+          "centerX": 310.78125,
+          "centerY": 13.171875,
+          "position": "absolute",
+          "top": "29.3906px",
+          "right": "206.234px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "south": {
+          "x": 306.796875,
+          "y": 351.890625,
+          "width": 5.671875,
+          "height": 15,
+          "centerX": 309.6328125,
+          "centerY": 359.390625,
+          "position": "absolute",
+          "top": "375.609px",
+          "right": "208.531px",
+          "left": "205.797px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 268.4718123995699,
+              "y": 143.7530623995699,
+              "width": 85.05638271197677,
+              "height": 85.05638872087002,
+              "centerX": 311.0000037555583,
+              "centerY": 186.2812567600049
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 109.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 106.390625,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 110.390625,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 5.390625,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "196.609px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 109.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 447.40625,
+              "y": 37.828125,
+              "width": 6,
+              "height": 6,
+              "centerX": 450.40625,
+              "centerY": 40.828125
+            },
+            "relativeToAtlas": {
+              "x": 346.40625,
+              "y": 61.546875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "52.1562px",
+              "left": "337.016px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 109.390625,
+              "y": -15.328125,
+              "width": 403.21875,
+              "height": 403.21875,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 311,
+              "y": 386.890625,
+              "width": 12,
+              "height": 12,
+              "centerX": 317,
+              "centerY": 392.890625
+            },
+            "relativeToAtlas": {
+              "x": 210,
+              "y": 410.609375,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "401.219px",
+              "left": "200.609px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 168.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 165.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 169.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 64.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "137.812px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 168.1875,
+              "y": 43.46875,
+              "width": 285.625,
+              "height": 285.625,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 407.421875,
+              "y": 81.328125,
+              "width": 6,
+              "height": 6,
+              "centerX": 410.421875,
+              "centerY": 84.328125
+            },
+            "relativeToAtlas": {
+              "x": 306.421875,
+              "y": 105.046875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "36.8594px",
+              "left": "238.234px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 231.1875,
+              "y": 106.46875,
+              "width": 159.625,
+              "height": 159.625,
+              "centerX": 311,
+              "centerY": 186.28125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 228.1875,
+              "y": 182.28125,
+              "width": 8,
+              "height": 8,
+              "centerX": 232.1875,
+              "centerY": 186.28125
+            },
+            "relativeToAtlas": {
+              "x": 127.1875,
+              "y": 206,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "74.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "homeMeasurements": {
+        "homeIntro": {
+          "x": 20,
+          "y": 100,
+          "width": 351,
+          "height": 107.1875,
+          "centerX": 195.5,
+          "centerY": 153.59375,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "homeAtlas": {
+          "x": 171,
+          "y": 60,
+          "width": 210,
+          "height": 210,
+          "centerX": 276,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "-40px",
+          "right": "-10px",
+          "left": "151px",
+          "transform": "none",
+          "opacity": "0.17"
+        },
+        "homeStar": {
+          "x": 250.796875,
+          "y": 139.796875,
+          "width": 50.40625,
+          "height": 50.40625,
+          "centerX": 276,
+          "centerY": 165,
+          "position": "absolute",
+          "top": "79.7969px",
+          "right": "79.7969px",
+          "left": "79.7969px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 254.73590619978495,
+              "y": 143.73590619978495,
+              "width": 42.52819135598838,
+              "height": 42.52819436043501,
+              "centerX": 276.00000187777914,
+              "centerY": 165.00000338000245
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          },
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "screenBbox": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "centerX": 0,
+              "centerY": 0
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 175.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 172.1875,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 176.1875,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 1.1875,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "95.8125px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 175.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 343.859375,
+              "y": 91.125,
+              "width": 6,
+              "height": 6,
+              "centerX": 346.859375,
+              "centerY": 94.125
+            },
+            "relativeToAtlas": {
+              "x": 172.859375,
+              "y": 31.125,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "25.9375px",
+              "left": "167.672px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 175.1875,
+              "y": 64.1875,
+              "width": 201.625,
+              "height": 201.625,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 276,
+              "y": 264.8125,
+              "width": 12,
+              "height": 12,
+              "centerX": 282,
+              "centerY": 270.8125
+            },
+            "relativeToAtlas": {
+              "x": 105,
+              "y": 204.8125,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "199.625px",
+              "left": "99.8125px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 204.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 201.59375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 205.59375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 30.59375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "66.4062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 204.59375,
+              "y": 93.59375,
+              "width": 142.8125,
+              "height": 142.8125,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 323.875,
+              "y": 112.890625,
+              "width": 6,
+              "height": 6,
+              "centerX": 326.875,
+              "centerY": 115.890625
+            },
+            "relativeToAtlas": {
+              "x": 152.875,
+              "y": 52.890625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "18.2969px",
+              "left": "118.281px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 236.09375,
+              "y": 125.09375,
+              "width": 79.8125,
+              "height": 79.8125,
+              "centerX": 276,
+              "centerY": 165
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 233.09375,
+              "y": 161,
+              "width": 8,
+              "height": 8,
+              "centerX": 237.09375,
+              "centerY": 165
+            },
+            "relativeToAtlas": {
+              "x": 62.09375,
+              "y": 101,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "34.9062px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      },
+      "detailMeasurements": {
+        "brief": {
+          "x": 12,
+          "y": 109.578125,
+          "width": 367,
+          "height": 419.375,
+          "centerX": 195.5,
+          "centerY": 319.265625,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefArt": {
+          "x": 238,
+          "y": 50.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 338,
+          "centerY": 150.578125,
+          "position": "absolute",
+          "top": "-60px",
+          "right": "-60px",
+          "left": "225px",
+          "transform": "none",
+          "opacity": "0.16"
+        },
+        "briefAtlas": {
+          "x": 238,
+          "y": 50.578125,
+          "width": 200,
+          "height": 200,
+          "centerX": 338,
+          "centerY": 150.578125,
+          "position": "relative",
+          "top": "0px",
+          "right": "0px",
+          "left": "0px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "briefStar": {
+          "x": 314,
+          "y": 126.578125,
+          "width": 48,
+          "height": 48,
+          "centerX": 338,
+          "centerY": 150.578125,
+          "position": "absolute",
+          "top": "76px",
+          "right": "76px",
+          "left": "76px",
+          "transform": "none",
+          "opacity": "1"
+        },
+        "svgShapes": [
+          {
+            "tag": "path",
+            "bbox": {
+              "x": 20.00529670715332,
+              "y": 20.00529670715332,
+              "width": 215.9894256591797,
+              "height": 215.98944091796875
+            },
+            "screenBbox": {
+              "x": 317.75099313259125,
+              "y": 130.32911813259125,
+              "width": 40.49801731109619,
+              "height": 40.49802017211914,
+              "centerX": 338.00000178813934,
+              "centerY": 150.57812821865082
+            },
+            "stroke": "none",
+            "strokeWidth": "1px",
+            "fill": "rgb(57, 123, 109)"
+          }
+        ],
+        "orbitMarkers": [
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 1,
+            "orbitRect": {
+              "x": 242,
+              "y": 54.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 338,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 239,
+              "y": 146.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 243,
+              "centerY": 150.578125
+            },
+            "relativeToAtlas": {
+              "x": 1,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "91px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 2,
+            "orbitRect": {
+              "x": 242,
+              "y": 54.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 338,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 402.59375,
+              "y": 80.265625,
+              "width": 6,
+              "height": 6,
+              "centerX": 405.59375,
+              "centerY": 83.265625
+            },
+            "relativeToAtlas": {
+              "x": 164.59375,
+              "y": 29.6875,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "24.6875px",
+              "left": "159.594px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--outer",
+            "index": 3,
+            "orbitRect": {
+              "x": 242,
+              "y": 54.578125,
+              "width": 192,
+              "height": 192,
+              "centerX": 338,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.5"
+            },
+            "viewportRect": {
+              "x": 338,
+              "y": 245.578125,
+              "width": 12,
+              "height": 12,
+              "centerX": 344,
+              "centerY": 251.578125
+            },
+            "relativeToAtlas": {
+              "x": 100,
+              "y": 195,
+              "width": 12,
+              "height": 12
+            },
+            "style": {
+              "top": "190px",
+              "left": "95px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 1,
+            "orbitRect": {
+              "x": 270,
+              "y": 82.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 338,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 267,
+              "y": 146.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 271,
+              "centerY": 150.578125
+            },
+            "relativeToAtlas": {
+              "x": 29,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "63px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--middle",
+            "index": 2,
+            "orbitRect": {
+              "x": 270,
+              "y": 82.578125,
+              "width": 136,
+              "height": 136,
+              "centerX": 338,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px solid rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.7"
+            },
+            "viewportRect": {
+              "x": 383.546875,
+              "y": 100.984375,
+              "width": 6,
+              "height": 6,
+              "centerX": 386.546875,
+              "centerY": 103.984375
+            },
+            "relativeToAtlas": {
+              "x": 145.546875,
+              "y": 50.40625,
+              "width": 6,
+              "height": 6
+            },
+            "style": {
+              "top": "17.4062px",
+              "left": "112.547px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(57, 123, 109)"
+            }
+          },
+          {
+            "orbit": "celestial-atlas__orbit celestial-atlas__orbit--inner",
+            "index": 1,
+            "orbitRect": {
+              "x": 300,
+              "y": 112.578125,
+              "width": 76,
+              "height": 76,
+              "centerX": 338,
+              "centerY": 150.578125
+            },
+            "orbitStyle": {
+              "border": "1px dashed rgb(57, 123, 109)",
+              "padding": "0px",
+              "opacity": "0.6"
+            },
+            "viewportRect": {
+              "x": 297,
+              "y": 146.578125,
+              "width": 8,
+              "height": 8,
+              "centerX": 301,
+              "centerY": 150.578125
+            },
+            "relativeToAtlas": {
+              "x": 59,
+              "y": 96,
+              "width": 8,
+              "height": 8
+            },
+            "style": {
+              "top": "33px",
+              "left": "-4px",
+              "border": "1px solid rgb(57, 123, 109)",
+              "boxSizing": "border-box",
+              "background": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "browser": "156.0.8078.48"
+}

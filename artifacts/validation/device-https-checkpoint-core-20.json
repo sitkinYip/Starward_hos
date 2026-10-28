@@ -1,0 +1,384 @@
+{
+  "status": "incomplete",
+  "requestedPhase": "all",
+  "currentPhase": "core",
+  "environment": "real isolated PocketBase 0.40.1 over verified HTTPS and official USB forwarding",
+  "deviceApi": 26,
+  "count": 20,
+  "checks": [
+    {
+      "label": "Native App visibly identifies the isolated HTTPS environment",
+      "cases": [
+        "A01"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Empty login sends no authentication POST",
+      "cases": [
+        "A02"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Real wrong-password response stays on login without private content",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Injected login 503 remains recoverable in place",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": true
+    },
+    {
+      "label": "A new authenticated /me GET consumes the injected 200 invalid DTO and shows the exact contract error without entering protected UI",
+      "cases": [
+        "A05"
+      ],
+      "phase": "core",
+      "injectedResilience": true
+    },
+    {
+      "label": "A native double tap during delayed authentication sends exactly one normalized login POST",
+      "cases": [
+        "A03"
+      ],
+      "phase": "core",
+      "injectedResilience": true
+    },
+    {
+      "label": "Cold protected deep link stops at mandatory password gate without list or detail requests",
+      "cases": [
+        "A01",
+        "A03",
+        "A06"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "System Back cannot bypass mandatory password change",
+      "cases": [
+        "A06"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Actual OS edge swipe cannot reveal a protected page before password change",
+      "cases": [
+        "A06",
+        "V03"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Invalid password input short sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Invalid password input same-as-old sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Invalid password input confirmation sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Invalid password input utf8-limit sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Wrong old password performs one real POST and retains the mandatory gate",
+      "cases": [
+        "A08"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "One successful real password change automatically resumes the pending native detail route",
+      "cases": [
+        "A01",
+        "A08",
+        "B01"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Detail presents the explicit read-only scope beside the start control",
+      "cases": [
+        "B01",
+        "B02"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Actual OS edge swipe from detail returns to native home",
+      "cases": [
+        "V03",
+        "B01"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Detail return restores the native home",
+      "cases": [
+        "B01"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Real assigned card presents state ready",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Real assigned card presents state waiting",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    }
+  ],
+  "phases": [],
+  "requestLedger": [
+    {
+      "phase": "host-readonly-forced-snapshot",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "failure",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "case": "A05",
+      "auth": {
+        "method": "POST",
+        "status": 200,
+        "fault": false
+      },
+      "me": {
+        "method": "GET",
+        "status": 200,
+        "fault": true
+      },
+      "uiError": "服务返回了不兼容的数据，请更新应用或联系管理员。"
+    },
+    {
+      "case": "V03",
+      "action": "actual left-edge horizontal swipe",
+      "gateOutcome": "Ability closed; relaunch remained gated",
+      "recognition": "not inferred from keyEvent Back"
+    }
+  ],
+  "limitations": [
+    "CLI/UiTest device evidence; not a Hypium instrument report",
+    "Injected failures test resilience; they are not observed production failures",
+    "No production environment, start, answer or reward writes were performed"
+  ],
+  "error": {
+    "classification": "tool-or-expectation-needs-review",
+    "message": "Acceptance expectation did not hold: Real assigned card presents state expired",
+    "businessFailureClaimed": false
+  }
+}

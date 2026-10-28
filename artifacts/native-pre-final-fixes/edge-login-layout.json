@@ -1,0 +1,351 @@
+{
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "fontScale": 1,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceRecord": 0,
+    "sourceSha256": "7bcf2bee524b843dff8edda36178432a61c0e762ab5977c91c57dfaa0ab77225"
+  },
+  "webGroup": "artifacts/web-isolated-content",
+  "nativeGroup": "artifacts/native-system-visual",
+  "windowReport": "artifacts/native-system-visual/auth-capture-summary.json",
+  "windowReportSha256": "840b295817c5604a709901a1364369c80357cc2488e29de29380e682b1da5e45",
+  "visualCriteria": "arkui-system-v1",
+  "webDataScope": "Login layout only; no form submission or player/assignment DTO consumption. Browser API request list is empty.",
+  "geometryMeaning": "UiTest component frames vs DOM rectangles; painted edges may differ.",
+  "themes": [
+    {
+      "theme": "light",
+      "rectangles": [
+        {
+          "element": "title",
+          "nativeBoundsPx": [
+            67,
+            1172,
+            1253,
+            1285
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            308.44444444444446,
+            351.4074074074074,
+            33.48148148148148
+          ],
+          "webCssPx": [
+            20,
+            308.578125,
+            351,
+            33.59375
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.13368055555554292,
+            0.40740740740739056,
+            -0.11226851851851904
+          ]
+        },
+        {
+          "element": "account",
+          "nativeBoundsPx": [
+            67,
+            1430,
+            1255,
+            1606
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            384.8888888888889,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            385.171875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.28298611111108585,
+            1.0,
+            0.14814814814814525
+          ]
+        },
+        {
+          "element": "password",
+          "nativeBoundsPx": [
+            67,
+            1751,
+            1255,
+            1927
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            480.0,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            480.171875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.171875,
+            1.0,
+            0.14814814814814525
+          ]
+        },
+        {
+          "element": "primary-action",
+          "nativeBoundsPx": [
+            67,
+            1982,
+            1253,
+            2158
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            548.4444444444445,
+            351.4074074074074,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            548.171875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            0.2725694444444571,
+            0.40740740740739056,
+            0.14814814814814525
+          ]
+        }
+      ],
+      "atlasPaint": {
+        "imagePx": [
+          1320,
+          2848
+        ],
+        "roiPx": [
+          843,
+          569,
+          1248,
+          941
+        ],
+        "selectedPixels": 8785,
+        "pathRasterBoundsPx": [
+          908,
+          617,
+          1194,
+          903
+        ],
+        "pathCenterVp": [
+          311.4074074074074,
+          186.37037037037038
+        ],
+        "pathSizeVp": [
+          84.74074074074075,
+          84.74074074074075
+        ],
+        "method": "Read-only PNG decode; threshold .22-opacity star fill in a text-free ROI, excluding fainter rings/axes; <=1px antialias edge uncertainty",
+        "webPathCenterCssPx": [
+          311.0,
+          186.28125
+        ],
+        "centerDifferenceVp": [
+          0.40740740740739056,
+          0.0891203703703809
+        ]
+      },
+      "provenance": {
+        "login-light.png": {
+          "sha256": "97a28c0f189358303654702cc2e15b8829d31e5560bdbc7389574fb6e4e8a639",
+          "mtime": "2026-10-28T15:03:06.336233"
+        },
+        "ui-login-light.json": {
+          "sha256": "53cacce208e25a0ac708b1c7028ddfaccd57c78e3e44c86542ec02286ca9fb04",
+          "mtime": "2026-10-28T15:03:02.060236"
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "rectangles": [
+        {
+          "element": "title",
+          "nativeBoundsPx": [
+            67,
+            1172,
+            1253,
+            1285
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            308.44444444444446,
+            351.4074074074074,
+            33.48148148148148
+          ],
+          "webCssPx": [
+            20,
+            308.578125,
+            351,
+            33.59375
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.13368055555554292,
+            0.40740740740739056,
+            -0.11226851851851904
+          ]
+        },
+        {
+          "element": "account",
+          "nativeBoundsPx": [
+            67,
+            1430,
+            1255,
+            1606
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            384.8888888888889,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            385.171875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.28298611111108585,
+            1.0,
+            0.14814814814814525
+          ]
+        },
+        {
+          "element": "password",
+          "nativeBoundsPx": [
+            67,
+            1751,
+            1255,
+            1927
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            480.0,
+            352.0,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            480.171875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            -0.171875,
+            1.0,
+            0.14814814814814525
+          ]
+        },
+        {
+          "element": "primary-action",
+          "nativeBoundsPx": [
+            67,
+            1982,
+            1253,
+            2158
+          ],
+          "nativeContentVp": [
+            19.85185185185185,
+            548.4444444444445,
+            351.4074074074074,
+            52.148148148148145
+          ],
+          "webCssPx": [
+            20,
+            548.171875,
+            351,
+            52
+          ],
+          "nativeMinusWeb": [
+            -0.1481481481481488,
+            0.2725694444444571,
+            0.40740740740739056,
+            0.14814814814814525
+          ]
+        }
+      ],
+      "atlasPaint": {
+        "imagePx": [
+          1320,
+          2848
+        ],
+        "roiPx": [
+          843,
+          569,
+          1248,
+          941
+        ],
+        "selectedPixels": 8601,
+        "pathRasterBoundsPx": [
+          908,
+          617,
+          1194,
+          903
+        ],
+        "pathCenterVp": [
+          311.4074074074074,
+          186.37037037037038
+        ],
+        "pathSizeVp": [
+          84.74074074074075,
+          84.74074074074075
+        ],
+        "method": "Read-only PNG decode; threshold .22-opacity star fill in a text-free ROI, excluding fainter rings/axes; <=1px antialias edge uncertainty",
+        "webPathCenterCssPx": [
+          311.0,
+          186.28125
+        ],
+        "centerDifferenceVp": [
+          0.40740740740739056,
+          0.0891203703703809
+        ]
+      },
+      "provenance": {
+        "login-dark.png": {
+          "sha256": "dba078ba339fcf5b08f383adbbdf59bfdc2bbebc8a842fc0cf48dd6ff9343555",
+          "mtime": "2026-10-28T15:02:45.777826"
+        },
+        "ui-login-dark.json": {
+          "sha256": "53cacce208e25a0ac708b1c7028ddfaccd57c78e3e44c86542ec02286ca9fb04",
+          "mtime": "2026-10-28T15:02:41.358298"
+        }
+      }
+    }
+  ],
+  "immersionVersion": "edge-to-edge-v1",
+  "hap": {
+    "sha256": "2b757938002a224a7e6f1aebdb62d78eaa7ab3e02989db8eaf6cbd5272979b16",
+    "visualCriteria": "arkui-system-v1",
+    "immersionVersion": "edge-to-edge-v1",
+    "source": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "75c615f8292da9a3f0b87854edbe1778ad108d422f6ee71e9402bcc0db317b03",
+    "verification": "Packaged HAP bytes match the explicit manifest; device installation requires its separate log"
+  }
+}

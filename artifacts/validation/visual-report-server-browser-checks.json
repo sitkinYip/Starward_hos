@@ -1,0 +1,402 @@
+{
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "expectedHap": {
+    "file": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "b1b472c9881673be8b204ccd5ed2508897ceb0444c116de2a57e95b1b3cfec9e",
+    "sha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+    "immersionVersion": "edge-to-edge-v1"
+  },
+  "pairManifest": {
+    "file": "artifacts/visual-comparison/pairs.json",
+    "sha256": "6f9ac03c3ce9a81af067149c1a817f17f118150572efdc13cb2909a22f815a3b"
+  },
+  "checkedAt": "2026-10-28T08:41:10.454650+00:00",
+  "scope": "Viewer framework only. Screenshot/source pairing and native product acceptance are separate conclusions.",
+  "browser": {
+    "title": "Starward 官方 ArkUI 版业务与布局对照",
+    "states": 22,
+    "counts": "新准则来源映射：主配对 18/18，显式404故障 2/2，原生键盘 2/2。Web参考输入SHA-256：c83854996f09a7c6176dd08e76f3cef9fc08ef846b10042c8874af08be866996。截图配对不等于官方材质、交互、动画或折叠适配已验收。",
+    "selectedState": "login-light",
+    "nativeHidden": false,
+    "areaDisabled": false,
+    "defaultNativeArea": "full",
+    "runtime": "独立运行证据：交互检查 22/22 通过；设备材质支持=true，运行记录 state/type/level=1/2/0；实际系统栏背景status/navigation=#00000000/#00000000，layout=enabled。仅一台API26手机；减少动画、录制动效、读屏、折叠/悬停/分栏/窗口变化及强制材质降级需另有实测，截图不替代这些结论。",
+    "window": "本图窗口 1320×2848px，density=3.375，避让区top/bottom=131/94px；实测来源record[0]、SHA-256 70d23aef0d9609c7e5f372955c62add253011d4071f23d7a64f7022f7b4757f5。当前展示完整原生屏幕及状态栏/手势区，用于查看全窗口材质连续性。仅做CSS显示换算，原PNG不修改。官方容器的批准平台差异不按逐像素相等判定。"
+  },
+  "stateImages": [
+    {
+      "state": "login-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "login-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "forced-password-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "forced-password-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "home-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "home-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "history-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "history-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "logout-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "logout-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-waiting-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-waiting-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-expired-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-expired-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-locked-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-locked-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-404-fault-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "detail-404-fault-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": true,
+        "pixels": [
+          391,
+          777
+        ]
+      }
+    },
+    {
+      "state": "login-keyboard-light",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": false,
+        "expectedUnavailable": true
+      }
+    },
+    {
+      "state": "login-keyboard-dark",
+      "native": {
+        "loaded": true,
+        "pixels": [
+          1320,
+          2848
+        ]
+      },
+      "web": {
+        "loaded": false,
+        "expectedUnavailable": true
+      }
+    }
+  ],
+  "legacyImageLoaded": true,
+  "pageErrors": [],
+  "cspErrors": [],
+  "httpErrors": [],
+  "expectedUnservedFaviconOnly": true
+}

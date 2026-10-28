@@ -1,0 +1,281 @@
+{
+  "status": "reviewed_with_known_non_platform_differences",
+  "checkedAt": "2026-10-28T08:39:23.844455+00:00",
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "hapSha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+  "hapSourceSha256": "b1b472c9881673be8b204ccd5ed2508897ceb0444c116de2a57e95b1b3cfec9e",
+  "sourceReports": {
+    "auth": {
+      "file": "artifacts/native-system-visual/auth-capture-summary.json",
+      "sha256": "562aac26c3bc8459afc6ac9b58da41a8e0d8229f12e95266fb454ebadd0650c8"
+    },
+    "visual": {
+      "file": "artifacts/native-system-visual/capture-summary.json",
+      "sha256": "4574ca2b7d414f553bacb2beb247b88279672d91b14e579137ef6caef4d7c191"
+    }
+  },
+  "nativeReviewedCount": 22,
+  "webReviewedCount": 20,
+  "extraNativeReviewedCount": 1,
+  "method": "Manual inspection of every original native and Web PNG with full native system areas visible; geometry separately measured from current UiTest/DOM sources.",
+  "scope": "Captured source coverage, manual visual findings, offline artifact checks and device UI assertions are separate conclusions. This is not 22 all-features or pixel-equality passes.",
+  "knownNonPlatformDifferences": [
+    {
+      "id": "card-rail-ornament",
+      "states": [
+        "home-light",
+        "home-dark"
+      ],
+      "status": "pending_adjustment",
+      "description": "首页卡片编号栏菱形装饰在原生顶部与01轻微重叠，Web位于栏底部。这是待调整的原生装饰布局细节，不属于官方材质批准差异；主要场次信息与入口仍可读。"
+    },
+    {
+      "id": "fault-retry-copy",
+      "states": [
+        "detail-404-fault-light",
+        "detail-404-fault-dark"
+      ],
+      "status": "pending_adjustment",
+      "description": "404重试按钮原生为“重试”，Web为“重新尝试”。此为待调整的短文案差异，重试语义与操作保留，不属于官方材质批准差异。"
+    }
+  ],
+  "nativeKeyboardScope": "Both ordinary blank account IME images have only standard keys/tool icons, no visible private candidates, clipboard content or credentials. The IME uses the device theme. Password secure-IME and simultaneous field/CTA visibility are not inferred.",
+  "detailFaultScope": "Both final 404 images show the error and recovery actions without a default 0/0. Live GET200 recovery is recorded by the native capture report.",
+  "extraEvidence": [
+    {
+      "kind": "multi-card content behind the official floating bar",
+      "label": "四场次内容与官方悬浮底栏（额外原图，不计18项）",
+      "directory": "native-system-visual",
+      "file": "system-home-behind-bar.png",
+      "sha256": "dd801a3bee81b7936fac87dd59fe8f82ea5a210092d93c90d66ccf7e51b226e7",
+      "shaScope": "capture-time PNG SHA-256 validated against current bytes",
+      "countsTowardMain18": false,
+      "theme": "light",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "scrollBounds": [
+        67,
+        1010,
+        1253,
+        2848
+      ],
+      "floatingBarBounds": [
+        106,
+        2531,
+        1214,
+        2721
+      ]
+    }
+  ],
+  "webSnapshotCompatibility": [
+    {
+      "webGroup": "web-isolated-content",
+      "webCaptureReportSha256": "15afad58817f92f30afeee881ebfd6be5102f9bf66f9c0259f2df187472ee7e0",
+      "webSnapshotSha256": "c83854996f09a7c6176dd08e76f3cef9fc08ef846b10042c8874af08be866996",
+      "latestNativeSnapshotSha256": "84c2e43426ca1f5700711f1d5f1b18fc080b07ee907bb2dd1b12413f75f53220",
+      "samePlayerId": true,
+      "sameAssignmentId": true,
+      "changedDTOPaths": [
+        "assignment.serverTime"
+      ],
+      "renderedFactsEquivalent": true
+    },
+    {
+      "webGroup": "web-isolated-forced",
+      "webCaptureReportSha256": "b62425f97b7ae833e4350e25782e98eaeee04b8645f8454a78a5f62266d3a426",
+      "webSnapshotSha256": "49208fb29fc8232546350d639bcb0cc3e07afe07ce321c1a3d02d8efb281d934",
+      "latestNativeSnapshotSha256": "d7bbeb417102157ad68991c495f3a5a1c696362d7236fea303eda4e0512ef57b",
+      "samePlayerId": true,
+      "sameAssignmentId": true,
+      "changedDTOPaths": [
+        "assignment.serverTime"
+      ],
+      "renderedFactsEquivalent": true
+    },
+    {
+      "webGroup": "web-isolated-waiting",
+      "webCaptureReportSha256": "47b6d4cef10beb5ebcd9011c900193e85cf9edc12b825e5d9aa7c5a1b6979cf7",
+      "webSnapshotSha256": "0f1b4195c64365c4a45fc6479d3dd345e74d35661c53ffd8eef4e556d0ca6899",
+      "latestNativeSnapshotSha256": "106f5a6259688be36983a8af3bc0838b241fee1484e0f0ae249573672947bc45",
+      "samePlayerId": true,
+      "sameAssignmentId": true,
+      "changedDTOPaths": [
+        "assignment.serverTime"
+      ],
+      "renderedFactsEquivalent": true
+    },
+    {
+      "webGroup": "web-isolated-expired",
+      "webCaptureReportSha256": "9ba0c6ad3fcb27cb06abf1e0af1f3c1f23f7796a79c97f6b6e843cfd1469dd22",
+      "webSnapshotSha256": "465edaaaa59be282fac3370134490c2c0881ce58c7b63077f0b6582df91e50ee",
+      "latestNativeSnapshotSha256": "ac50707dda6cc09cdc5443228b3f85ec1f0e44c3f1d4a7ced576c61dc7af45a9",
+      "samePlayerId": true,
+      "sameAssignmentId": true,
+      "changedDTOPaths": [
+        "assignment.serverTime"
+      ],
+      "renderedFactsEquivalent": true
+    },
+    {
+      "webGroup": "web-isolated-locked",
+      "webCaptureReportSha256": "44dfc149033aa1f9a9c25254e56da6c0d9a5b3d313811820a37a13b0d20406a7",
+      "webSnapshotSha256": "13f5f86ecb26ccc9bfc4823ba0e50d00642429def324c0e525126fb0bdc7105d",
+      "latestNativeSnapshotSha256": "c716cb9d3c7405fe1d7ffc1fc04e24ed31ab56132634984aaa86227d40307588",
+      "samePlayerId": true,
+      "sameAssignmentId": true,
+      "changedDTOPaths": [
+        "assignment.serverTime"
+      ],
+      "renderedFactsEquivalent": true
+    },
+    {
+      "webGroup": "web-isolated-error",
+      "webCaptureReportSha256": "f65ac3a2ccc712553bd91ca9c07338f2d50f85d7713546d82fde0d33f077adb7",
+      "webSnapshotSha256": "d0b65619d792e815d40e54391a3b6fd9174a5b0fe427408aa66de061b8c56e5b",
+      "latestNativeSnapshotSha256": "cbd847c1236dcf9670cec8b4bdac3b8ada88606344e887ee2ac84c939b2992d0",
+      "samePlayerId": true,
+      "sameAssignmentId": true,
+      "changedDTOPaths": [
+        "assignment.serverTime"
+      ],
+      "renderedFactsEquivalent": true
+    }
+  ],
+  "states": [
+    {
+      "state": "login-light",
+      "nativeSha256": "26298288a0811488a1a7a4cbc8e389512180df4d96103295fbaaad3d00130069",
+      "webSha256": "a634f0e395390ff3f6a6eb5c85f27188c7ca25610c16811ece4f62312f3ae790",
+      "reviewed": true
+    },
+    {
+      "state": "login-dark",
+      "nativeSha256": "f0c97e30ee3f2224bfe7eeeadc1ea49c2a0d4375bf06489add6ca371a97a3388",
+      "webSha256": "39a5ab3ebaf541ccebb0927f87e36721676f4de5003fcae25892f3457f0e9602",
+      "reviewed": true
+    },
+    {
+      "state": "forced-password-light",
+      "nativeSha256": "b3369b574446e604c203952ef224f311409411974ad7c9be043b2253034d9b6b",
+      "webSha256": "a9685e5db0beb0520877963b73feb96b102cbdf4ed687139ac50a5c2d0c7a2f1",
+      "reviewed": true
+    },
+    {
+      "state": "forced-password-dark",
+      "nativeSha256": "f7568e4b21eb1affc58a5dde83d56023aeea27623f0cd0f4423c75c24059f9c5",
+      "webSha256": "0865ca66c60bd33dadd2d48dc03cd67b170517cc5e97f9d580a3894313f752e6",
+      "reviewed": true
+    },
+    {
+      "state": "home-light",
+      "nativeSha256": "6189865caaea8497c516cf8ddfa27960cb03da2c896bfb556aef5dbe92f81604",
+      "webSha256": "c93eee5c9669fdd8d8b229a1f5859785f87a596492b71a24e6f00904221425a6",
+      "reviewed": true
+    },
+    {
+      "state": "home-dark",
+      "nativeSha256": "303482722302d8be4decf800503f6608c14f8bb8bda795a0fabc91284b02b68a",
+      "webSha256": "57d4dc131c21329ff04fded8988e9192cc066fc82f309a5c7d14e86315446600",
+      "reviewed": true
+    },
+    {
+      "state": "detail-light",
+      "nativeSha256": "e55c936baddf7982ef65c84445de7c39837f7c87709fedcbd5dae566ae259317",
+      "webSha256": "bb04ecc160147178f35d0dfb526d40fd94bfa18bacb5b6869ec3d33630a1bbc6",
+      "reviewed": true
+    },
+    {
+      "state": "detail-dark",
+      "nativeSha256": "48147bcd436babede56a2beb4307c164345ffda641b39f219b48852cc652af90",
+      "webSha256": "a3a7c0d15caf8c5fbf68986d7baefff3c6a3e2e1633aa7bd9b42a4e15b41a8ef",
+      "reviewed": true
+    },
+    {
+      "state": "history-light",
+      "nativeSha256": "405c1b1a1a107afcd77d23dbcebf3bddc6c93433c09224362ad1487a6bc25bfe",
+      "webSha256": "a39c89044281cd877723b07ad108645d103b9e3df757031c0386dd504893af16",
+      "reviewed": true
+    },
+    {
+      "state": "history-dark",
+      "nativeSha256": "4ebc2e341317f3b6fc9afae7387a175872afbf045a30def67cb001e1eb6e9fce",
+      "webSha256": "253f21064902731fe105d8a6e283a7c020d066ebe7b3b6576721ebe29837c447",
+      "reviewed": true
+    },
+    {
+      "state": "logout-light",
+      "nativeSha256": "363252015508fc44fa0a55b6ccbbced91b9bfd0e537bd3f6c267ec6a514c58b9",
+      "webSha256": "a634f0e395390ff3f6a6eb5c85f27188c7ca25610c16811ece4f62312f3ae790",
+      "reviewed": true
+    },
+    {
+      "state": "logout-dark",
+      "nativeSha256": "90ff9b1f7dd6a9e39efbc9cb6516169ab9f9ea8806fc94d720a2bd257113cf96",
+      "webSha256": "53768694cb65aeb73f6fa7ae5bb0bdd98ca389a8f6472e7bb7076f93666ee80b",
+      "reviewed": true
+    },
+    {
+      "state": "detail-waiting-light",
+      "nativeSha256": "11d437b9154ca5113e3512b9795abe2efdc3576014cea99e55d08b7fa32b1345",
+      "webSha256": "dfbf22b649151a534045b60c5179b358c98130a2531a3decf96fa28d438e48e7",
+      "reviewed": true
+    },
+    {
+      "state": "detail-waiting-dark",
+      "nativeSha256": "2c21ec52cb522a4336ce5b077a269ede6a0e5e17c9786e2fe3af351ea780dfa3",
+      "webSha256": "3a98c60a1f5335f7660f443de396a4ca8491646bfdecf9892812aebb47385271",
+      "reviewed": true
+    },
+    {
+      "state": "detail-expired-light",
+      "nativeSha256": "b86bcb96ecf910cb2ae7fff8c2e18695160369173412ba65cafb80715344d37b",
+      "webSha256": "b9654b05464949e5fddabb5808b9372d953933410a9e858f8a3633203a9ee7e1",
+      "reviewed": true
+    },
+    {
+      "state": "detail-expired-dark",
+      "nativeSha256": "d84e155c6ecbbe263d9e229839b79cd7c65ea8f325f273ef396b5994d6cd99a9",
+      "webSha256": "3db853253262fd7c3c96cb2834c57d025014394758b4de54d155c143dd5f4a4c",
+      "reviewed": true
+    },
+    {
+      "state": "detail-locked-light",
+      "nativeSha256": "2935695b1b94b68383e2972e9c01d40962a9b743eb7f5eaebc7c1c2afe4ef42b",
+      "webSha256": "5388052c5db5513c25994b86b7f48cb803f93383f2d7271ee177705c49eafb0c",
+      "reviewed": true
+    },
+    {
+      "state": "detail-locked-dark",
+      "nativeSha256": "bdc4614965f428a33ae525b4f3bf0e5306c23492e796fcd8e303dff9a5305168",
+      "webSha256": "1dbb0ce2dcdc0ed853cb82845e375383e087fc74560f69f6d1d9fd4d61b416db",
+      "reviewed": true
+    },
+    {
+      "state": "detail-404-fault-light",
+      "nativeSha256": "c92d20a730019d275d8b550ed67e30e845ae3e281fc0df3f40e2c761cf37a913",
+      "webSha256": "681b0b05ca13e5cfc15b6c784ce024ed8c5cf6b8fb8131f193ba349ff89a4123",
+      "reviewed": true
+    },
+    {
+      "state": "detail-404-fault-dark",
+      "nativeSha256": "0d836aec6111a409097ed337a838a179d9449a4558ff0318a36ab75c3a964b0a",
+      "webSha256": "6197e12b566c91a95eef6f570166642f3a353dc82dd9ff84a8469ce13e32f936",
+      "reviewed": true
+    },
+    {
+      "state": "login-keyboard-light",
+      "nativeSha256": "2a9b74bdbc3fa8cf38df8e23894b0988b58438b5e2f416caf58adcc508d72f7c",
+      "webSha256": null,
+      "reviewed": true
+    },
+    {
+      "state": "login-keyboard-dark",
+      "nativeSha256": "31e858f203c4ed1f695fbd594ddf2cb517a53d6867accf1e23f4d58f9997d7e3",
+      "webSha256": null,
+      "reviewed": true
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "count": 14,
+  "checks": [
+    {
+      "name": "public report",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "public manifest",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "verified auth PNG",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "historical reference",
+      "status": 200,
+      "target": "live viewer"
+    },
+    {
+      "name": "private blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "raw UI input tree blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "unknown report blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "directory listing blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "encoded traversal blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "double encoded traversal blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "backslash path blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "foreign Host blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "file symlink blocked",
+      "status": 404,
+      "target": "live viewer"
+    },
+    {
+      "name": "directory symlink blocked",
+      "status": 404,
+      "target": "isolated same-handler fixture"
+    }
+  ],
+  "viewerBind": "127.0.0.1",
+  "privateFilesServed": false,
+  "pairManifest": {
+    "file": "artifacts/visual-comparison/pairs.json",
+    "sha256": "6f9ac03c3ce9a81af067149c1a817f17f118150572efdc13cb2909a22f815a3b"
+  },
+  "checkedAt": "2026-10-28T08:41:04.051944+00:00",
+  "scope": "13 live viewer requests and one isolated identical-handler directory-symlink probe; not native device, screenshot comparison or product acceptance."
+}

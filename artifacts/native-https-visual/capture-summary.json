@@ -1,0 +1,175 @@
+{
+  "status": "incomplete",
+  "environment": "real isolated PocketBase over verified HTTPS",
+  "capturedAt": "2026-10-27T05:53:27.488281+00:00",
+  "count": 5,
+  "states": [
+    {
+      "state": "home",
+      "theme": "dark",
+      "screenshot": "home-dark.png",
+      "uiTree": "ui-home-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        24,
+        919
+      ],
+      "themeVerified": true,
+      "keyboard": false,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "injectedResilience": false,
+      "fault": null
+    },
+    {
+      "state": "detail",
+      "theme": "dark",
+      "screenshot": "detail-dark.png",
+      "uiTree": "ui-detail-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        20,
+        328
+      ],
+      "themeVerified": true,
+      "keyboard": false,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "injectedResilience": false,
+      "fault": null
+    },
+    {
+      "state": "history",
+      "theme": "dark",
+      "screenshot": "history-dark.png",
+      "uiTree": "ui-history-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        24,
+        919
+      ],
+      "themeVerified": true,
+      "keyboard": false,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "injectedResilience": false,
+      "fault": null
+    },
+    {
+      "state": "logout",
+      "theme": "dark",
+      "screenshot": "logout-dark.png",
+      "uiTree": "ui-logout-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        24,
+        1517
+      ],
+      "themeVerified": true,
+      "keyboard": false,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "injectedResilience": false,
+      "fault": null
+    },
+    {
+      "state": "login-keyboard",
+      "theme": "dark",
+      "screenshot": "login-keyboard-dark.png",
+      "uiTree": "ui-login-keyboard-dark.json",
+      "canvasRGB": [
+        0,
+        0,
+        0
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        24,
+        1493
+      ],
+      "themeVerified": false,
+      "keyboard": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "injectedResilience": false,
+      "fault": null
+    }
+  ],
+  "preservedExisting": [
+    "login-light.png",
+    "login-dark.png",
+    "forced-password-light.png",
+    "forced-password-dark.png"
+  ],
+  "cleanup": {
+    "scenarioRestored": true,
+    "loggedOut": true,
+    "faultNeutralised": true
+  },
+  "snapshots": [],
+  "observations": [
+    {
+      "kind": "ready",
+      "startClickable": null,
+      "disabledObservation": "not exposed by UI dump"
+    }
+  ],
+  "faultRecoveries": [],
+  "limitations": [
+    "No password change, entry, answer, reward or production writes",
+    "Supplemental states publish existing disposable test sessions only",
+    "Two 404 screenshots use an explicit synthetic fault; recovery must be a real GET 200",
+    "Screenshots and sanitised UI trees; visual comparison is a separate assessment"
+  ],
+  "error": "Actual screenshot canvas does not match the requested theme"
+}

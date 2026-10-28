@@ -1,0 +1,37 @@
+{
+  "snapshotSha256": "3e4ea98088cefea848dd365613b3425d9b45b6e8015db4d6a43637cee771f71e",
+  "snapshotArchive": "artifacts/private/web-visual-inputs/3e4ea98088cefea848dd365613b3425d9b45b6e8015db4d6a43637cee771f71e.json",
+  "snapshotProvenance": {
+    "environment": "real isolated PocketBase over verified HTTPS",
+    "capturedAt": "2026-10-27T05:27:16.627584+00:00",
+    "operations": "real auth and GET after native password change; one ready assignment",
+    "responseRewriting": false
+  },
+  "responseSourceCounts": {
+    "synthetic_auth_render_driver": 2,
+    "actual_snapshot_player": 13,
+    "actual_snapshot_assignments": 8,
+    "actual_snapshot_assignment": 3
+  },
+  "renderDrivers": "Auth and any password-change replies are synthetic local render drivers, not real browser network operations.",
+  "auxiliaryAPIs": "Notifications/rewards, if requested, return fixed empty local responses outside this first-slice scope; they are not actual backend snapshots.",
+  "browserUsesRealBackend": false,
+  "requestedStates": [
+    "login",
+    "home",
+    "detail",
+    "history",
+    "logout"
+  ],
+  "suppliedActualSnapshotDTOs": [
+    "player",
+    "assignment",
+    "assignments"
+  ],
+  "consumedActualSnapshotDTOs": [
+    "player",
+    "assignments",
+    "assignment"
+  ],
+  "auxiliaryEmptyResponsesObserved": 0
+}

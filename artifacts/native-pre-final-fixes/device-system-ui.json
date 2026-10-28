@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "hap": {
+    "sha256": "2b757938002a224a7e6f1aebdb62d78eaa7ab3e02989db8eaf6cbd5272979b16",
+    "visualCriteria": "arkui-system-v1",
+    "immersionVersion": "edge-to-edge-v1",
+    "source": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "75c615f8292da9a3f0b87854edbe1778ad108d422f6ee71e9402bcc0db317b03",
+    "verification": "Packaged HAP bytes match the explicit manifest; device installation requires its separate log"
+  },
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "fontScale": 1,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceRecord": 0,
+    "sourceSha256": "7bcf2bee524b843dff8edda36178432a61c0e762ab5977c91c57dfaa0ab77225"
+  },
+  "count": 22,
+  "checks": [
+    "Native title retains the isolated environment label",
+    "Actual main window is immersive and both system bar backgrounds are transparent",
+    "Actual dark and light app themes use legible white and black system bar content",
+    "Title actions avoid the real status bar and cutout while their material paints behind it",
+    "Home uses native Navigation title and nested native Tabs",
+    "First avatar click opens the official account Sheet",
+    "System Back dismisses Sheet without leaving home",
+    "Native category Tabs show the distinct history empty state",
+    "Deferred bottom destination cannot enter an empty page",
+    "Official Refresh gesture makes one new successful list GET",
+    "The native floating bar keeps its interactive surface above the actual gesture safe area",
+    "Scrolling content extends to the physical bottom behind the transparent gesture region",
+    "List viewport extends behind the floating native bottom bar",
+    "The fixed synchronization refresh block has been removed",
+    "The unchanged sync sentence is the final scrolling item and is fully above the floating bar at the end",
+    "Refresh 503 keeps the previously loaded list and exposes retry",
+    "Refresh failure recovers through one new real HTTPS GET",
+    "Read-only detail uses native NavDestination and title",
+    "Start remains unavailable after native container migration",
+    "System edge Back returns from detail to home",
+    "Official Sheet logout clears credentials and protected content",
+    "Back after logout cannot reveal the account or protected home"
+  ],
+  "geometry": [
+    {
+      "control": "safe-title-picker",
+      "bounds": [
+        839,
+        192,
+        1253,
+        353
+      ],
+      "safeTopPx": 131
+    },
+    {
+      "control": "floating-overlap",
+      "scroll": [
+        67,
+        1010,
+        1253,
+        2848
+      ],
+      "barItem": [
+        146,
+        2544,
+        403,
+        2707
+      ]
+    },
+    {
+      "control": "sync-sentence",
+      "text": [
+        87,
+        2419,
+        1233,
+        2473
+      ],
+      "floatingBarTop": 2531,
+      "lastItem": [
+        87,
+        2338,
+        1233,
+        2848
+      ]
+    }
+  ],
+  "cleanup": {
+    "singleReadyRestored": true,
+    "loggedOut": true
+  },
+  "environment": "real isolated PocketBase over verified USB HTTPS",
+  "updatedAt": "2026-10-28T07:09:51.478840+00:00",
+  "limitations": [
+    "One API26 physical phone; no foldable hardware, spoken reader or motion recording",
+    "Injected 503 is a resilience test, not an observed production failure"
+  ]
+}

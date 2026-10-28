@@ -1,0 +1,65 @@
+{
+  "status": "interrupted",
+  "requestedPhase": "all",
+  "currentPhase": "core",
+  "environment": "real isolated PocketBase 0.40.1 over verified HTTPS and official USB forwarding",
+  "deviceApi": 26,
+  "count": 3,
+  "checks": [
+    {
+      "label": "Native App visibly identifies the isolated HTTPS environment",
+      "cases": [
+        "A01"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Empty login sends no authentication POST",
+      "cases": [
+        "A02"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Real wrong-password response stays on login without private content",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    }
+  ],
+  "phases": [],
+  "requestLedger": [
+    {
+      "phase": "host-readonly-forced-snapshot",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    }
+  ],
+  "observations": [],
+  "limitations": [
+    "CLI/UiTest device evidence; not a Hypium instrument report",
+    "Injected failures test resilience; they are not observed production failures",
+    "No production environment, start, answer or reward writes were performed"
+  ],
+  "interruptionReason": "Stopped by test owner to fix input replacement before continuing; not a business pass/fail."
+}

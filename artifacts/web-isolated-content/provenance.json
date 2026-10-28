@@ -1,0 +1,29 @@
+{
+  "snapshotSha256": "c83854996f09a7c6176dd08e76f3cef9fc08ef846b10042c8874af08be866996",
+  "captureSummarySha256": "15afad58817f92f30afeee881ebfd6be5102f9bf66f9c0259f2df187472ee7e0",
+  "snapshotArchive": "artifacts/private/web-visual-inputs/c83854996f09a7c6176dd08e76f3cef9fc08ef846b10042c8874af08be866996.json",
+  "sourceResolution": "Same capture-time snapshot bytes; originalFile in capture-summary records any immutable-copy relocation.",
+  "responseSourceCounts": {
+    "synthetic_auth_render_driver": 2,
+    "actual_snapshot_player": 12,
+    "actual_snapshot_assignments": 8,
+    "actual_snapshot_assignment": 3
+  },
+  "browserUsesRealBackend": false,
+  "requestedStates": [
+    "login",
+    "home",
+    "detail",
+    "history",
+    "logout"
+  ],
+  "consumedActualSnapshotDTOs": [
+    "player",
+    "assignments",
+    "assignment"
+  ],
+  "renderDrivers": "Authentication and any password reply are synthetic browser rendering drivers; no browser backend write occurs.",
+  "auxiliaryEmptyResponsesObserved": 0,
+  "auxiliaryAPIs": "Any fixed empty notification/reward response is outside this slice and is not actual snapshot data or migrated capability.",
+  "scope": "Browser content reference only. Native HTTPS and final HAP/window verification have separate evidence."
+}

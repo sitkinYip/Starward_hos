@@ -1,0 +1,126 @@
+{
+  "id": "arkui-system-v1",
+  "status": "final_phone_capture_and_scoped_visual_review_complete_with_pending_details",
+  "policySources": [
+    "AGENTS.md",
+    "docs/architecture-decisions.md#adr-013"
+  ],
+  "referenceRole": "Frozen Web remains the business content, copy and information-layout reference. Legacy native captures do not establish this new version's acceptance.",
+  "compareDirectly": [
+    "Brand and source assets",
+    "Chinese copy and visible business facts",
+    "Authentication/password gates and account isolation",
+    "Current/history/detail/error state meaning",
+    "Field/action visibility, safe-area and keyboard reachability",
+    "Information hierarchy and approved responsive placement"
+  ],
+  "approvedPlatformDifferences": [
+    "Official ArkUI top-container material with the existing brand/title/action layout",
+    "Official transparent floating bottom Tabs and platform material fallback",
+    "Official classification Tabs, Sheet, Toast/Dialog and system interaction feedback",
+    "Official navigation/sheet/tab motion and reduced-motion behaviour",
+    "Home list extends beneath the floating bar; original sync sentence is the last scroll-content item, without a fixed sync block",
+    "Edge-to-edge status/navigation-area material backgrounds; foreground content alone avoids system insets without solid black/white spacer blocks"
+  ],
+  "notApprovedByPolicyAlone": [
+    "Changed or missing business copy",
+    "Hidden fields/actions",
+    "Auth or password gate bypass",
+    "Client-authored business success",
+    "Unreadable material fallback",
+    "Fake unimplemented destinations",
+    "A literal section symbol replacing intended layout content"
+  ],
+  "runtimeChecks": [
+    {
+      "id": "system-topbar",
+      "requirement": "Preserve brand/title/actions and safe areas; record actual material support, enabled state and fallback for both themes",
+      "status": "partial",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "verifiedScope": "Final HAP-bound 22-check report and measured window verify Navigation/environment label, full-screen app root, safe foreground placement and transparent status/navigation backgrounds; explicit theme records and auth4 are separate evidence.",
+      "outstanding": "Forced fallback and accessibility readability are not tested.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/device-system-ui.json"
+    },
+    {
+      "id": "floating-bottom-tabs",
+      "requirement": "Show official floating Tabs, verify content scrolls underneath and the last sync sentence remains reachable above required bottom clearance",
+      "status": "partial",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "verifiedScope": "Final edge-to-edge HAP-bound 22-check report verifies actual Scroll/bar overlap, no fixed sync block and sync text2419–2473px above bar2531px at scroll end.",
+      "outstanding": "Additional window sizes and IME interaction need separate coverage.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/device-system-ui.json"
+    },
+    {
+      "id": "classification-tabs",
+      "requirement": "Verify official current/history switching, counts, selection/focus and preserved content state",
+      "status": "partial",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "verifiedScope": "Actual native current/history switch shows the distinct history empty state.",
+      "outstanding": "Spoken-reader/focus and broader retained-state permutations are not tested.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/device-system-ui.json"
+    },
+    {
+      "id": "sheet",
+      "requirement": "Verify actual official Sheet presentation/dismissal/back handling and no auth/private-state restoration",
+      "status": "partial",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "verifiedScope": "Official account Sheet opens on first avatar click; system Back dismisses it; logout clears protected state and Back cannot restore it.",
+      "outstanding": "Drag dismissal and other sheet presentation sizes are not tested.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/device-system-ui.json"
+    },
+    {
+      "id": "feedback",
+      "requirement": "Verify official Toast/Dialog for short feedback; persistent actionable auth/contract/password uncertainty errors remain available",
+      "status": "partial",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "verifiedScope": "Deferred destination stays on the valid page and Refresh failure exposes retry with existing content.",
+      "outstanding": "Toast/Dialog presentation, persistent auth/password uncertainty and spoken feedback need their own runtime cases.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/device-system-ui.json"
+    },
+    {
+      "id": "refresh",
+      "requirement": "Verify actual read-only request ledger, independent Refresh animation state, busy gating, success/failure recovery and no write driven by animation",
+      "status": "partial",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "verifiedScope": "Actual successful list GET, injected 503 keeping prior content, and one real GET recovery are recorded.",
+      "outstanding": "Concurrent busy/interruption semantics and no animation-driven writes are not independently established by these 22 checks.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/device-system-ui.json"
+    },
+    {
+      "id": "motion",
+      "requirement": "Record normal and reduced-motion completion plus interruption without business-state mutation",
+      "status": "not_run",
+      "evidence": "artifacts/validation/device-system-ui.json",
+      "outstanding": "Normal/reduced-motion recording and interruption checks remain unexecuted."
+    },
+    {
+      "id": "adaptive-window",
+      "requirement": "Record actual phone/window dimensions and avoid areas; fold/hover/split/window-change coverage needs its own device evidence",
+      "status": "partial",
+      "evidence": "artifacts/validation/native-system-runtime.json",
+      "verifiedScope": "Final edge-to-edge-v1 runtime records width/height/density, system/cutout insets and observed transparent system-bar properties on one API26 phone.",
+      "outstanding": "Fold/hover/split/window-change and additional hardware are not tested.",
+      "historicalEvidence": "artifacts/native-pre-edge-to-edge/native-system-runtime.json"
+    }
+  ],
+  "resultRule": "SDK declarations, implementation, compilation and screenshot pairing are separate from actual runtime and interaction verification. No runtime check is passed by this policy file.",
+  "immersionVersion": "edge-to-edge-v1",
+  "finalCaptureRequirement": {
+    "hap": "Exact SHA of the final edge-to-edge-v1 HAP plus hash of its validation record",
+    "window": "Exact measured runtime record and source-file SHA; no inherited window claim from superseded captures"
+  },
+  "currentVisualReview": {
+    "hapSha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+    "authCaptured": 4,
+    "mainCaptured": 18,
+    "newMainCaptured": 18,
+    "mainResumed": false,
+    "sourceCoverage": {
+      "primaryPairs": 18,
+      "faultPairs": 2,
+      "nativeOnlyKeyboard": 2
+    },
+    "manualReview": "artifacts/visual-comparison/visual-review.json",
+    "knownNonPlatformDifferences": "Two pending details are documented in the manual review and visible viewer notes; source coverage does not declare pixel or wording equality."
+  }
+}

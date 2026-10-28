@@ -1,0 +1,736 @@
+[
+  {
+    "bounds": [
+      0,
+      0,
+      1320,
+      2848
+    ],
+    "children": [
+      {
+        "type": "root",
+        "bounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "children": [
+          {
+            "type": "Navigation",
+            "bounds": [
+              0,
+              132,
+              1320,
+              2848
+            ],
+            "children": [
+              {
+                "type": "NavBar",
+                "bounds": [
+                  0,
+                  132,
+                  1320,
+                  2848
+                ],
+                "children": [
+                  {
+                    "type": "NavBarContent",
+                    "bounds": [
+                      0,
+                      132,
+                      1320,
+                      2848
+                    ],
+                    "children": [
+                      {
+                        "type": "Scroll",
+                        "bounds": [
+                          0,
+                          132,
+                          1320,
+                          2754
+                        ],
+                        "scrollable": true,
+                        "children": [
+                          {
+                            "type": "Column",
+                            "bounds": [
+                              0,
+                              132,
+                              1320,
+                              2754
+                            ],
+                            "children": [
+                              {
+                                "type": "Row",
+                                "bounds": [
+                                  67,
+                                  132,
+                                  1253,
+                                  415
+                                ],
+                                "children": [
+                                  {
+                                    "type": "Row",
+                                    "bounds": [
+                                      67,
+                                      205,
+                                      508,
+                                      340
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "Image",
+                                        "bounds": [
+                                          67,
+                                          212,
+                                          189,
+                                          334
+                                        ],
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "Column",
+                                        "bounds": [
+                                          229,
+                                          205,
+                                          508,
+                                          340
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "text": "赴星之约",
+                                            "bounds": [
+                                              229,
+                                              205,
+                                              474,
+                                              286
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "text": "向着星辰的冒险",
+                                            "bounds": [
+                                              229,
+                                              286,
+                                              508,
+                                              340
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Blank",
+                                    "bounds": [
+                                      508,
+                                      132,
+                                      839,
+                                      415
+                                    ],
+                                    "children": []
+                                  },
+                                  {
+                                    "id": "theme-picker",
+                                    "type": "Row",
+                                    "bounds": [
+                                      839,
+                                      192,
+                                      1253,
+                                      353
+                                    ],
+                                    "children": [
+                                      {
+                                        "id": "theme-system",
+                                        "type": "Button",
+                                        "bounds": [
+                                          852,
+                                          205,
+                                          977,
+                                          340
+                                        ],
+                                        "clickable": true,
+                                        "children": [
+                                          {
+                                            "type": "Image",
+                                            "bounds": [
+                                              886,
+                                              244,
+                                              943,
+                                              301
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "id": "theme-light",
+                                        "type": "Button",
+                                        "bounds": [
+                                          984,
+                                          205,
+                                          1109,
+                                          340
+                                        ],
+                                        "clickable": true,
+                                        "children": [
+                                          {
+                                            "type": "Image",
+                                            "bounds": [
+                                              1018,
+                                              244,
+                                              1075,
+                                              301
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "id": "theme-dark",
+                                        "type": "Button",
+                                        "bounds": [
+                                          1115,
+                                          205,
+                                          1240,
+                                          340
+                                        ],
+                                        "clickable": true,
+                                        "children": [
+                                          {
+                                            "type": "Image",
+                                            "bounds": [
+                                              1149,
+                                              244,
+                                              1206,
+                                              301
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "environment-badge",
+                                    "type": "Text",
+                                    "text": "隔离测试环境",
+                                    "bounds": [
+                                      67,
+                                      371,
+                                      229,
+                                      405
+                                    ],
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Stack",
+                                "bounds": [
+                                  67,
+                                  415,
+                                  1253,
+                                  1105
+                                ],
+                                "children": [
+                                  {
+                                    "type": "Stack",
+                                    "bounds": [
+                                      0,
+                                      0,
+                                      0,
+                                      0
+                                    ],
+                                    "hitTestBehavior": "None",
+                                    "children": [
+                                      {
+                                        "type": "__Common__",
+                                        "bounds": [
+                                          0,
+                                          0,
+                                          0,
+                                          0
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Stack",
+                                            "bounds": [
+                                              337,
+                                              256,
+                                              1320,
+                                              1674
+                                            ],
+                                            "hitTestBehavior": "None",
+                                            "children": [
+                                              {
+                                                "type": "Circle",
+                                                "bounds": [
+                                                  365,
+                                                  284,
+                                                  1320,
+                                                  1645
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Circle",
+                                                "bounds": [
+                                                  399,
+                                                  318,
+                                                  1320,
+                                                  1611
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Circle",
+                                                "bounds": [
+                                                  564,
+                                                  483,
+                                                  1320,
+                                                  1447
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Circle",
+                                                "bounds": [
+                                                  547,
+                                                  466,
+                                                  1320,
+                                                  1464
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Circle",
+                                                "bounds": [
+                                                  776,
+                                                  695,
+                                                  1315,
+                                                  1234
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Line",
+                                                "bounds": [
+                                                  525,
+                                                  442,
+                                                  1320,
+                                                  1486
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Line",
+                                                "bounds": [
+                                                  523,
+                                                  444,
+                                                  1320,
+                                                  1484
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Image",
+                                                "bounds": [
+                                                  876,
+                                                  795,
+                                                  1216,
+                                                  1135
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Circle",
+                                                "bounds": [
+                                                  352,
+                                                  951,
+                                                  379,
+                                                  978
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Text",
+                                                "text": "N",
+                                                "bounds": [
+                                                  1032,
+                                                  355,
+                                                  1059,
+                                                  403
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Text",
+                                                "text": "S",
+                                                "bounds": [
+                                                  1032,
+                                                  1518,
+                                                  1052,
+                                                  1566
+                                                ],
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Column",
+                                    "bounds": [
+                                      67,
+                                      523,
+                                      1253,
+                                      1062
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "text": "一场属于你的解谜之旅",
+                                        "bounds": [
+                                          67,
+                                          523,
+                                          1253,
+                                          564
+                                        ],
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "Text",
+                                        "text": "答案之外，\n另有天地。",
+                                        "bounds": [
+                                          67,
+                                          618,
+                                          1253,
+                                          940
+                                        ],
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "Text",
+                                        "text": "循着线索，走进属于你的故事。",
+                                        "bounds": [
+                                          67,
+                                          983,
+                                          1253,
+                                          1062
+                                        ],
+                                        "children": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Column",
+                                "bounds": [
+                                  67,
+                                  1104,
+                                  1253,
+                                  2754
+                                ],
+                                "children": [
+                                  {
+                                    "type": "Text",
+                                    "text": "以你的名字，开启冒险。",
+                                    "bounds": [
+                                      67,
+                                      1171,
+                                      1253,
+                                      1284
+                                    ],
+                                    "children": []
+                                  },
+                                  {
+                                    "type": "Column",
+                                    "bounds": [
+                                      67,
+                                      1338,
+                                      1253,
+                                      2688
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "Column",
+                                        "bounds": [
+                                          67,
+                                          1338,
+                                          1253,
+                                          1605
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "text": "登录账号",
+                                            "bounds": [
+                                              67,
+                                              1338,
+                                              1253,
+                                              1402
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "id": "account",
+                                            "type": "TextInput",
+                                            "text": "[input omitted]",
+                                            "bounds": [
+                                              67,
+                                              1429,
+                                              1255,
+                                              1605
+                                            ],
+                                            "clickable": true,
+                                            "longClickable": true,
+                                            "scrollable": true,
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Column",
+                                        "bounds": [
+                                          67,
+                                          1659,
+                                          1253,
+                                          1927
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "text": "密码",
+                                            "bounds": [
+                                              67,
+                                              1659,
+                                              1253,
+                                              1723
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "id": "password",
+                                            "type": "TextInput",
+                                            "text": "[input omitted]",
+                                            "bounds": [
+                                              67,
+                                              1750,
+                                              1255,
+                                              1926
+                                            ],
+                                            "clickable": true,
+                                            "longClickable": true,
+                                            "scrollable": true,
+                                            "children": [
+                                              {
+                                                "type": "Stack",
+                                                "bounds": [
+                                                  1154,
+                                                  1804,
+                                                  1255,
+                                                  1872
+                                                ],
+                                                "clickable": true,
+                                                "children": [
+                                                  {
+                                                    "type": "SymbolGlyph",
+                                                    "bounds": [
+                                                      1154,
+                                                      1804,
+                                                      1222,
+                                                      1872
+                                                    ],
+                                                    "children": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Row",
+                                        "bounds": [
+                                          67,
+                                          2035,
+                                          1253,
+                                          2405
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Image",
+                                            "bounds": [
+                                              124,
+                                              2098,
+                                              198,
+                                              2172
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Column",
+                                            "bounds": [
+                                              239,
+                                              2092,
+                                              1196,
+                                              2348
+                                            ],
+                                            "children": [
+                                              {
+                                                "id": "error-message",
+                                                "type": "Text",
+                                                "text": "请求失败，请检查输入或联系游戏管理员",
+                                                "bounds": [
+                                                  239,
+                                                  2092,
+                                                  1196,
+                                                  2172
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Row",
+                                                "bounds": [
+                                                  239,
+                                                  2213,
+                                                  1196,
+                                                  2348
+                                                ],
+                                                "children": [
+                                                  {
+                                                    "id": "error-return-home",
+                                                    "type": "Button",
+                                                    "bounds": [
+                                                      239,
+                                                      2213,
+                                                      597,
+                                                      2348
+                                                    ],
+                                                    "clickable": true,
+                                                    "children": [
+                                                      {
+                                                        "type": "Row",
+                                                        "bounds": [
+                                                          286,
+                                                          2250,
+                                                          550,
+                                                          2311
+                                                        ],
+                                                        "children": [
+                                                          {
+                                                            "type": "Image",
+                                                            "bounds": [
+                                                              286,
+                                                              2250,
+                                                              347,
+                                                              2311
+                                                            ],
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "type": "Text",
+                                                            "text": "回到首页",
+                                                            "bounds": [
+                                                              374,
+                                                              2255,
+                                                              550,
+                                                              2306
+                                                            ],
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "id": "primary-action",
+                                        "type": "Button",
+                                        "bounds": [
+                                          67,
+                                          2512,
+                                          1253,
+                                          2688
+                                        ],
+                                        "clickable": true,
+                                        "children": [
+                                          {
+                                            "type": "Row",
+                                            "bounds": [
+                                              121,
+                                              2566,
+                                              1199,
+                                              2634
+                                            ],
+                                            "children": [
+                                              {
+                                                "type": "Text",
+                                                "text": "进入冒险",
+                                                "bounds": [
+                                                  485,
+                                                  2568,
+                                                  714,
+                                                  2631
+                                                ],
+                                                "children": []
+                                              },
+                                              {
+                                                "type": "Image",
+                                                "bounds": [
+                                                  768,
+                                                  2566,
+                                                  836,
+                                                  2634
+                                                ],
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "login-help",
+                                    "type": "Button",
+                                    "bounds": [
+                                      67,
+                                      2728,
+                                      1253,
+                                      2754
+                                    ],
+                                    "clickable": true,
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

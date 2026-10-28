@@ -1,0 +1,275 @@
+{
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "measuredAt": "2026-10-28T08:21:02.466522+00:00",
+  "hap": {
+    "sha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+    "visualCriteria": "arkui-system-v1",
+    "immersionVersion": "edge-to-edge-v1",
+    "source": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "b1b472c9881673be8b204ccd5ed2508897ceb0444c116de2a57e95b1b3cfec9e",
+    "verification": "Packaged HAP bytes match the explicit manifest; device installation requires its separate log"
+  },
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "fontScale": 1,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceRecord": 0,
+    "sourceSha256": "70d23aef0d9609c7e5f372955c62add253011d4071f23d7a64f7022f7b4757f5"
+  },
+  "nativeCaptureReport": "artifacts/native-system-visual/auth-capture-summary.json",
+  "nativeCaptureReportSha256": "562aac26c3bc8459afc6ac9b58da41a8e0d8229f12e95266fb454ebadd0650c8",
+  "webCaptureReport": "artifacts/web-isolated-forced/capture-summary.json",
+  "webCaptureReportSha256": "b62425f97b7ae833e4350e25782e98eaeee04b8645f8454a78a5f62266d3a426",
+  "geometryMeaning": "Actual UiTest component frames vs same-font frozen Web DOM rectangles after removing measured top inset; not painted-edge or typography equality.",
+  "uiTreeHashScope": "Current original UiTest bytes at measurement time; auth capture does not record capture-time UiTest hashes.",
+  "provenance": {
+    "light": {
+      "artifacts/native-system-visual/ui-forced-password-light.json": "0f123c67aaab69214f6a99fc16853cda9dfe0c0c5a27046e5de3df36eab41fa5",
+      "artifacts/native-system-visual/forced-password-light.png": "b3369b574446e604c203952ef224f311409411974ad7c9be043b2253034d9b6b",
+      "artifacts/web-isolated-forced/forced-password-light.json": "8edab8bcca067aa77bc47e34bfac02beab6363aeed6cc38f462aec340c4acbc1"
+    },
+    "dark": {
+      "artifacts/native-system-visual/ui-forced-password-dark.json": "0f123c67aaab69214f6a99fc16853cda9dfe0c0c5a27046e5de3df36eab41fa5",
+      "artifacts/native-system-visual/forced-password-dark.png": "f7568e4b21eb1affc58a5dde83d56023aeea27623f0cd0f4423c75c24059f9c5",
+      "artifacts/web-isolated-forced/forced-password-dark.json": "5f643dbc2ee0f03be223e60daa871d761447bf1ca177fb0aaa4287ffc50cda91"
+    }
+  },
+  "rows": [
+    {
+      "theme": "light",
+      "control": "old-password",
+      "nativeBoundsPx": [
+        67,
+        1585,
+        1255,
+        1761
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        430.81481481481484,
+        352.0,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        430.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        -0.15393518518516203,
+        1.0,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "light",
+      "control": "new-password",
+      "nativeBoundsPx": [
+        67,
+        1906,
+        1255,
+        2082
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        525.925925925926,
+        352.0,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        525.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        -0.042824074074019336,
+        1.0,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "light",
+      "control": "confirm-password",
+      "nativeBoundsPx": [
+        67,
+        2228,
+        1255,
+        2404
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        621.3333333333334,
+        352.0,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        620.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        0.36458333333337123,
+        1.0,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "light",
+      "control": "primary-action",
+      "nativeBoundsPx": [
+        67,
+        2458,
+        1253,
+        2634
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        689.4814814814815,
+        351.4074074074074,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        688.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        0.5127314814815236,
+        0.40740740740739056,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "dark",
+      "control": "old-password",
+      "nativeBoundsPx": [
+        67,
+        1585,
+        1255,
+        1761
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        430.81481481481484,
+        352.0,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        430.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        -0.15393518518516203,
+        1.0,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "dark",
+      "control": "new-password",
+      "nativeBoundsPx": [
+        67,
+        1906,
+        1255,
+        2082
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        525.925925925926,
+        352.0,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        525.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        -0.042824074074019336,
+        1.0,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "dark",
+      "control": "confirm-password",
+      "nativeBoundsPx": [
+        67,
+        2228,
+        1255,
+        2404
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        621.3333333333334,
+        352.0,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        620.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        0.36458333333337123,
+        1.0,
+        0.14814814814814525
+      ]
+    },
+    {
+      "theme": "dark",
+      "control": "primary-action",
+      "nativeBoundsPx": [
+        67,
+        2458,
+        1253,
+        2634
+      ],
+      "nativeContentVp": [
+        19.85185185185185,
+        689.4814814814815,
+        351.4074074074074,
+        52.148148148148145
+      ],
+      "webCssPx": [
+        20,
+        688.96875,
+        351,
+        52
+      ],
+      "nativeMinusWeb": [
+        -0.1481481481481488,
+        0.5127314814815236,
+        0.40740740740739056,
+        0.14814814814814525
+      ]
+    }
+  ],
+  "limitations": [
+    "Original physical PNG files remain unchanged. Content coordinates support layout comparison; inspect the full image for immersive system areas.",
+    "This measurement does not establish spoken-reader, dynamic theme, animation, IME or larger-font acceptance."
+  ],
+  "maxAbsVerticalDifferenceVp": 0.5127314814815236
+}

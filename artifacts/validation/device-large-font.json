@@ -1,0 +1,649 @@
+{
+  "status": "passed",
+  "count": 42,
+  "checks": [
+    "App identifies the isolated HTTPS environment",
+    "Two-line story title height proves the installed App uses fontScale 1.3",
+    "Login control remains wholly reachable: account",
+    "Login control remains wholly reachable: password",
+    "Login control remains wholly reachable: primary-action",
+    "Larger-font account-help disclosure remains wholly reachable",
+    "Native animation-backed account help still opens at the larger font size",
+    "Password probe starts masked",
+    "Native password eye reveals only the non-sensitive probe in memory",
+    "Native password eye restores masking",
+    "large-font-login-password focused field is wholly visible above the keyboard",
+    "large-font-login-password primary action is reachable inside the App with the keyboard open",
+    "large-font-login-password scrolling did not require a gesture inside the keyboard",
+    "large-font-login-password native keyboard opens and closes",
+    "large-font-login-account focused field is wholly visible above the keyboard",
+    "large-font-login-account primary action is reachable inside the App with the keyboard open",
+    "large-font-login-account scrolling did not require a gesture inside the keyboard",
+    "large-font-login-account native keyboard opens and closes",
+    "Visibility and keyboard probes send no authentication request",
+    "Real initial-password login remains behind the mandatory gate",
+    "Mandatory password control remains wholly reachable: old-password",
+    "Mandatory password control remains wholly reachable: new-password",
+    "Mandatory password control remains wholly reachable: confirm-password",
+    "Mandatory password control remains wholly reachable: primary-action",
+    "large-font-forced-old-password focused field is wholly visible above the keyboard",
+    "large-font-forced-old-password primary action is reachable inside the App with the keyboard open",
+    "large-font-forced-old-password scrolling did not require a gesture inside the keyboard",
+    "large-font-forced-old-password native keyboard opens and closes",
+    "large-font-forced-new-password focused field is wholly visible above the keyboard",
+    "large-font-forced-new-password primary action is reachable inside the App with the keyboard open",
+    "large-font-forced-new-password scrolling did not require a gesture inside the keyboard",
+    "large-font-forced-new-password native keyboard opens and closes",
+    "large-font-forced-confirm-password focused field is wholly visible above the keyboard",
+    "large-font-forced-confirm-password primary action is reachable inside the App with the keyboard open",
+    "large-font-forced-confirm-password scrolling did not require a gesture inside the keyboard",
+    "large-font-forced-confirm-password native keyboard opens and closes",
+    "One real password change unlocks the large-font home",
+    "Larger-font native bar stays above the actual gesture region",
+    "Larger-font final sync sentence is fully reachable above the floating bar",
+    "Read-only detail start control is wholly reachable at the larger font size",
+    "System Back from detail returns to the larger-font home",
+    "Explicit logout clears both login fields"
+  ],
+  "environment": "real isolated PocketBase over strictly verified HTTPS",
+  "visualCriteria": "arkui-system-v1",
+  "immersionVersion": "edge-to-edge-v1",
+  "installedHapSha256": "fdda384054fbdb51e1276bc30dfb9fbeb9a7ec850f8fc84f5235e1e95857fad1",
+  "fontScale": 1.3,
+  "density": 3.375,
+  "densitySource": {
+    "path": "artifacts/validation/native-system-font-runtime.json",
+    "sha256": "25b8e465c851779cfc3b64d7ebc46ff9d33e8ecf3ec03a05b550ff770b73311a"
+  },
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "fontScale": 1.3,
+    "appColorMode": 1,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "cutoutTopPx": 84,
+    "cutoutBottomPx": 0,
+    "immersiveLayout": "enabled",
+    "systemBarPropertiesObserved": true,
+    "statusBarColor": "#00FFFFFF",
+    "navigationBarColor": "#00FFFFFF",
+    "statusBarContentColor": "#FF000000",
+    "navigationBarContentColor": "#FF000000"
+  },
+  "geometry": [
+    {
+      "control": "two-line-story-title",
+      "bounds": [
+        67,
+        630,
+        1253,
+        1048
+      ],
+      "heightVp": 123.85185185185185,
+      "expectedHeightVp": 123.76,
+      "defaultHeightVp": 95.2
+    },
+    {
+      "control": "account",
+      "bounds": [
+        67,
+        1615,
+        1255,
+        1791
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "password",
+      "bounds": [
+        67,
+        1955,
+        1255,
+        2131
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        2186,
+        1253,
+        2362
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "login-help",
+      "bounds": [
+        67,
+        2401,
+        1253,
+        2555
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "password",
+      "bounds": [
+        67,
+        1396,
+        1255,
+        1572
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        1023,
+        1253,
+        1199
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "account",
+      "bounds": [
+        67,
+        1548,
+        1255,
+        1724
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1788
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1788
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        1407,
+        1253,
+        1583
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1788
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1788
+      ]
+    },
+    {
+      "control": "old-password",
+      "bounds": [
+        67,
+        1990,
+        1255,
+        2166
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "new-password",
+      "bounds": [
+        67,
+        2330,
+        1255,
+        2506
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "confirm-password",
+      "bounds": [
+        67,
+        1880,
+        1255,
+        2056
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        2110,
+        1253,
+        2286
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "old-password",
+      "bounds": [
+        67,
+        1199,
+        1255,
+        1375
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        868,
+        1253,
+        1044
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "new-password",
+      "bounds": [
+        67,
+        1396,
+        1255,
+        1572
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        1347,
+        1253,
+        1523
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "confirm-password",
+      "bounds": [
+        67,
+        1396,
+        1255,
+        1572
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "primary-action",
+      "bounds": [
+        67,
+        1003,
+        1253,
+        1179
+      ],
+      "viewport": [
+        0,
+        415,
+        1320,
+        1606
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        1606
+      ]
+    },
+    {
+      "control": "large-font-floating-bar",
+      "bounds": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "safeBottomPx": 2754
+    },
+    {
+      "control": "assignment-sync-note-text",
+      "bounds": [
+        87,
+        2401,
+        1233,
+        2471
+      ],
+      "viewport": [
+        67,
+        1268,
+        1253,
+        2531
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    },
+    {
+      "control": "start-assignment",
+      "bounds": [
+        124,
+        1673,
+        1196,
+        1849
+      ],
+      "viewport": [
+        0,
+        444,
+        1320,
+        2848
+      ],
+      "appRoot": [
+        0,
+        132,
+        1320,
+        2848
+      ]
+    }
+  ],
+  "passwordFocusKeyboardObservations": [
+    {
+      "field": "password",
+      "keyboardVisible": true,
+      "source": "official UiTest bounds above actual IME",
+      "screenshotAttempted": false,
+      "visualThemeAcceptanceCredit": false,
+      "reason": "Previous password-focus snapshots were entirely black; exact OS cause is unconfirmed"
+    },
+    {
+      "field": "old-password",
+      "keyboardVisible": true,
+      "source": "official UiTest bounds above actual IME",
+      "screenshotAttempted": false,
+      "visualThemeAcceptanceCredit": false,
+      "reason": "Previous password-focus snapshots were entirely black; exact OS cause is unconfirmed"
+    },
+    {
+      "field": "new-password",
+      "keyboardVisible": true,
+      "source": "official UiTest bounds above actual IME",
+      "screenshotAttempted": false,
+      "visualThemeAcceptanceCredit": false,
+      "reason": "Previous password-focus snapshots were entirely black; exact OS cause is unconfirmed"
+    },
+    {
+      "field": "confirm-password",
+      "keyboardVisible": true,
+      "source": "official UiTest bounds above actual IME",
+      "screenshotAttempted": false,
+      "visualThemeAcceptanceCredit": false,
+      "reason": "Previous password-focus snapshots were entirely black; exact OS cause is unconfirmed"
+    }
+  ],
+  "cleanup": {
+    "newPasswordConfirmed": true,
+    "singleReadyRestored": true,
+    "loggedOut": true,
+    "passwordWritePerformed": false
+  },
+  "requestLedger": [
+    {
+      "phase": "large-font-including-explicit-cleanup",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/hjh8m9ub7syhwd3",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    }
+  ],
+  "capturedAt": "2026-10-28T08:04:54.950467+00:00",
+  "limitations": [
+    "No actual screen reader or spoken accessibility validation",
+    "Only this App fontSizeScale test configuration; system-wide settings were not changed",
+    "Whole-control visibility and scrolling are device evidence; not an accessibility audit",
+    "Cleanup mutations do not count as successful UI acceptance"
+  ]
+}

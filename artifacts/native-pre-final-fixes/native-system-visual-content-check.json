@@ -1,0 +1,264 @@
+{
+  "status": "passed",
+  "count": 104,
+  "checks": [
+    "Reports are captured4/captured18 with exact state counts",
+    "Capture report binds the frozen edge HAP manifest",
+    "Capture report window source bytes remain unchanged",
+    "Capture report binds the frozen edge HAP manifest",
+    "Capture report window source bytes remain unchanged",
+    "All22 native state/theme pairs are unique",
+    "PNG bytes match capture hash: login-dark.png",
+    "PNG dimensions match: login-dark.png",
+    "Independent strict original5x5 pixel verification: login-dark.png",
+    "Both login inputs exist: login-dark.png",
+    "Protected player name absent from logged-out view: login-dark.png",
+    "PNG bytes match capture hash: login-light.png",
+    "PNG dimensions match: login-light.png",
+    "Independent strict original5x5 pixel verification: login-light.png",
+    "Both login inputs exist: login-light.png",
+    "Protected player name absent from logged-out view: login-light.png",
+    "PNG bytes match capture hash: forced-password-dark.png",
+    "PNG dimensions match: forced-password-dark.png",
+    "Independent strict original5x5 pixel verification: forced-password-dark.png",
+    "All forced password fields and primary action visible: forced-password-dark.png",
+    "PNG bytes match capture hash: forced-password-light.png",
+    "PNG dimensions match: forced-password-light.png",
+    "Independent strict original5x5 pixel verification: forced-password-light.png",
+    "All forced password fields and primary action visible: forced-password-light.png",
+    "PNG bytes match capture hash: home-dark.png",
+    "PNG dimensions match: home-dark.png",
+    "Independent strict original5x5 pixel verification: home-dark.png",
+    "PNG bytes match capture hash: detail-dark.png",
+    "PNG dimensions match: detail-dark.png",
+    "Independent strict original5x5 pixel verification: detail-dark.png",
+    "PNG bytes match capture hash: history-dark.png",
+    "PNG dimensions match: history-dark.png",
+    "Independent strict original5x5 pixel verification: history-dark.png",
+    "Distinct history empty state: history-dark.png",
+    "PNG bytes match capture hash: logout-dark.png",
+    "PNG dimensions match: logout-dark.png",
+    "Independent strict original5x5 pixel verification: logout-dark.png",
+    "Both login inputs exist: logout-dark.png",
+    "Protected player name absent from logged-out view: logout-dark.png",
+    "PNG bytes match capture hash: login-keyboard-dark.png",
+    "PNG dimensions match: login-keyboard-dark.png",
+    "Independent strict original5x5 pixel verification: login-keyboard-dark.png",
+    "Both login inputs exist: login-keyboard-dark.png",
+    "Protected player name absent from logged-out view: login-keyboard-dark.png",
+    "Ordinary empty-account IME prerequisites: login-keyboard-dark.png",
+    "PNG bytes match capture hash: home-light.png",
+    "PNG dimensions match: home-light.png",
+    "Independent strict original5x5 pixel verification: home-light.png",
+    "PNG bytes match capture hash: detail-light.png",
+    "PNG dimensions match: detail-light.png",
+    "Independent strict original5x5 pixel verification: detail-light.png",
+    "PNG bytes match capture hash: history-light.png",
+    "PNG dimensions match: history-light.png",
+    "Independent strict original5x5 pixel verification: history-light.png",
+    "Distinct history empty state: history-light.png",
+    "PNG bytes match capture hash: logout-light.png",
+    "PNG dimensions match: logout-light.png",
+    "Independent strict original5x5 pixel verification: logout-light.png",
+    "Both login inputs exist: logout-light.png",
+    "Protected player name absent from logged-out view: logout-light.png",
+    "PNG bytes match capture hash: login-keyboard-light.png",
+    "PNG dimensions match: login-keyboard-light.png",
+    "Independent strict original5x5 pixel verification: login-keyboard-light.png",
+    "Both login inputs exist: login-keyboard-light.png",
+    "Protected player name absent from logged-out view: login-keyboard-light.png",
+    "Ordinary empty-account IME prerequisites: login-keyboard-light.png",
+    "PNG bytes match capture hash: detail-waiting-dark.png",
+    "PNG dimensions match: detail-waiting-dark.png",
+    "Independent strict original5x5 pixel verification: detail-waiting-dark.png",
+    "Actual business-state hint: detail-waiting-dark.png",
+    "PNG bytes match capture hash: detail-waiting-light.png",
+    "PNG dimensions match: detail-waiting-light.png",
+    "Independent strict original5x5 pixel verification: detail-waiting-light.png",
+    "Actual business-state hint: detail-waiting-light.png",
+    "PNG bytes match capture hash: detail-expired-dark.png",
+    "PNG dimensions match: detail-expired-dark.png",
+    "Independent strict original5x5 pixel verification: detail-expired-dark.png",
+    "Actual business-state hint: detail-expired-dark.png",
+    "PNG bytes match capture hash: detail-expired-light.png",
+    "PNG dimensions match: detail-expired-light.png",
+    "Independent strict original5x5 pixel verification: detail-expired-light.png",
+    "Actual business-state hint: detail-expired-light.png",
+    "PNG bytes match capture hash: detail-locked-dark.png",
+    "PNG dimensions match: detail-locked-dark.png",
+    "Independent strict original5x5 pixel verification: detail-locked-dark.png",
+    "Actual business-state hint: detail-locked-dark.png",
+    "PNG bytes match capture hash: detail-locked-light.png",
+    "PNG dimensions match: detail-locked-light.png",
+    "Independent strict original5x5 pixel verification: detail-locked-light.png",
+    "Actual business-state hint: detail-locked-light.png",
+    "PNG bytes match capture hash: detail-404-fault-dark.png",
+    "PNG dimensions match: detail-404-fault-dark.png",
+    "Independent strict original5x5 pixel verification: detail-404-fault-dark.png",
+    "Explicit404 clears old detail and shows its labelled error: detail-404-fault-dark.png",
+    "PNG bytes match capture hash: detail-404-fault-light.png",
+    "PNG dimensions match: detail-404-fault-light.png",
+    "Independent strict original5x5 pixel verification: detail-404-fault-light.png",
+    "Explicit404 clears old detail and shows its labelled error: detail-404-fault-light.png",
+    "Final18 explicitly combines retained10/new8",
+    "Resume source SHA/build/window verified: artifacts/native-system-visual-attempt-04/capture-summary.json",
+    "Resume source SHA/build/window verified: artifacts/native-system-visual-attempt-02/capture-summary.json",
+    "Both explicit404 captures were followed by a real successful GET recovery",
+    "Both capture workflows completed all cleanup flags",
+    "Supplemental four-card behind-bar photo is separate from18"
+  ],
+  "files": [
+    {
+      "screenshot": "login-dark.png",
+      "sha256": "dba078ba339fcf5b08f383adbbdf59bfdc2bbebc8a842fc0cf48dd6ff9343555",
+      "uiTree": "ui-login-dark.json",
+      "uiTreeSha256": "53cacce208e25a0ac708b1c7028ddfaccd57c78e3e44c86542ec02286ca9fb04"
+    },
+    {
+      "screenshot": "login-light.png",
+      "sha256": "97a28c0f189358303654702cc2e15b8829d31e5560bdbc7389574fb6e4e8a639",
+      "uiTree": "ui-login-light.json",
+      "uiTreeSha256": "53cacce208e25a0ac708b1c7028ddfaccd57c78e3e44c86542ec02286ca9fb04"
+    },
+    {
+      "screenshot": "forced-password-dark.png",
+      "sha256": "272d9140afc41d37691fb340020064de266bbf88d8e1f401c26ea5dc33f6f360",
+      "uiTree": "ui-forced-password-dark.json",
+      "uiTreeSha256": "0f123c67aaab69214f6a99fc16853cda9dfe0c0c5a27046e5de3df36eab41fa5"
+    },
+    {
+      "screenshot": "forced-password-light.png",
+      "sha256": "972fdaee300661e2228de83842d5c324e9c4ae00f68923598f59e0eb87d959a5",
+      "uiTree": "ui-forced-password-light.json",
+      "uiTreeSha256": "0f123c67aaab69214f6a99fc16853cda9dfe0c0c5a27046e5de3df36eab41fa5"
+    },
+    {
+      "screenshot": "home-dark.png",
+      "sha256": "f71836aeb8cd19c0af9fe1bbb52d4e6d0fa1052680d451751507396d4345f1f4",
+      "uiTree": "ui-home-dark.json",
+      "uiTreeSha256": "b260e8b1532dc082837e3f6e0c42a60fb8a3e5b0c98ef4dfe61ec6a1897cc678"
+    },
+    {
+      "screenshot": "detail-dark.png",
+      "sha256": "7013a1ce91ca3bc923a6dde567789626b214aea5e2d70a18a00492580170b5f7",
+      "uiTree": "ui-detail-dark.json",
+      "uiTreeSha256": "f7a47ee24019766ef56dd2e326ad1a490bba3602e9f638b479db447992a3abeb"
+    },
+    {
+      "screenshot": "history-dark.png",
+      "sha256": "e2191b6b113dc1ac1264af3a1d35d19d847c1ecee86a94ce27b33b2d1694f90f",
+      "uiTree": "ui-history-dark.json",
+      "uiTreeSha256": "661f58716b64ac820344f3fcc13e77d508265788dea31468fee378df6a6c2af5"
+    },
+    {
+      "screenshot": "logout-dark.png",
+      "sha256": "a39f74a5994e2c06b2bd4c373e430eaf03588ed1d54edcb643de62b4c015ed06",
+      "uiTree": "ui-logout-dark.json",
+      "uiTreeSha256": "53cacce208e25a0ac708b1c7028ddfaccd57c78e3e44c86542ec02286ca9fb04"
+    },
+    {
+      "screenshot": "login-keyboard-dark.png",
+      "sha256": "356c40477e2fa8d897cf12c3f2d0f26f96b2f24fbd7381467cac2447c29b7c00",
+      "uiTree": "ui-login-keyboard-dark.json",
+      "uiTreeSha256": "4df905482af5578cdcfa3a26175fa52e351537617e3558155ee9871ad586e6e9"
+    },
+    {
+      "screenshot": "home-light.png",
+      "sha256": "6e9e0dbcacdcfb970ff9a6f8d565c8f87419c599d0d3aa463f5345b6d25416e4",
+      "uiTree": "ui-home-light.json",
+      "uiTreeSha256": "b260e8b1532dc082837e3f6e0c42a60fb8a3e5b0c98ef4dfe61ec6a1897cc678"
+    },
+    {
+      "screenshot": "detail-light.png",
+      "sha256": "10eb0f4e812346b01d9273ec602c1209ec0abb858308db5705c7332ee72903af",
+      "uiTree": "ui-detail-light.json",
+      "uiTreeSha256": "f7a47ee24019766ef56dd2e326ad1a490bba3602e9f638b479db447992a3abeb"
+    },
+    {
+      "screenshot": "history-light.png",
+      "sha256": "07fa150b1eac6ea6a528fd02ac8d3c66cb2e83e716e7b3ec7f7f97c18e777ec4",
+      "uiTree": "ui-history-light.json",
+      "uiTreeSha256": "661f58716b64ac820344f3fcc13e77d508265788dea31468fee378df6a6c2af5"
+    },
+    {
+      "screenshot": "logout-light.png",
+      "sha256": "d087402ad742dd4f28af6465e5b13adb90b79914aee1f9c73310eda4a0e1e618",
+      "uiTree": "ui-logout-light.json",
+      "uiTreeSha256": "53cacce208e25a0ac708b1c7028ddfaccd57c78e3e44c86542ec02286ca9fb04"
+    },
+    {
+      "screenshot": "login-keyboard-light.png",
+      "sha256": "b87ca6e85e13dd2b377dde771d312e4eb1bdbf28e199733155643de860c59802",
+      "uiTree": "ui-login-keyboard-light.json",
+      "uiTreeSha256": "4df905482af5578cdcfa3a26175fa52e351537617e3558155ee9871ad586e6e9"
+    },
+    {
+      "screenshot": "detail-waiting-dark.png",
+      "sha256": "374e0145a890154563640522d9269420c3294f41cc456d4de2a030bdc338929b",
+      "uiTree": "ui-detail-waiting-dark.json",
+      "uiTreeSha256": "307d21a44fd3a84c90d1a4f7ef9a9e19a71cf14e0ce9004a4cc3c2689d5fa2b3"
+    },
+    {
+      "screenshot": "detail-waiting-light.png",
+      "sha256": "e6092627f8b56a1b40d197ed442a7e4a93cafe323a20e7a1a2de11d8c729eff0",
+      "uiTree": "ui-detail-waiting-light.json",
+      "uiTreeSha256": "307d21a44fd3a84c90d1a4f7ef9a9e19a71cf14e0ce9004a4cc3c2689d5fa2b3"
+    },
+    {
+      "screenshot": "detail-expired-dark.png",
+      "sha256": "5161b6695c55511b29b7b537c2d88aa14794af60830723b869ed406359c0d571",
+      "uiTree": "ui-detail-expired-dark.json",
+      "uiTreeSha256": "48035fa4cc5575d4d9ffd1a1255b32c3e77b3ee841eeb36aa4a14041ec80ba05"
+    },
+    {
+      "screenshot": "detail-expired-light.png",
+      "sha256": "194951ced37e874c54ee4532d3f3a445c23a31f941c37ce266a86b8d9198d274",
+      "uiTree": "ui-detail-expired-light.json",
+      "uiTreeSha256": "48035fa4cc5575d4d9ffd1a1255b32c3e77b3ee841eeb36aa4a14041ec80ba05"
+    },
+    {
+      "screenshot": "detail-locked-dark.png",
+      "sha256": "d5d01c2bfa21425fab19dcfe0ab07171234925e810c15637b9485be844e96d00",
+      "uiTree": "ui-detail-locked-dark.json",
+      "uiTreeSha256": "8430f8e525d648eb77152de02ea8b64a8b50641de96cecbc668613429a11bf5c"
+    },
+    {
+      "screenshot": "detail-locked-light.png",
+      "sha256": "e920f3f1dc54479391563a924785238cb9e221b30a487af24588065959ba7947",
+      "uiTree": "ui-detail-locked-light.json",
+      "uiTreeSha256": "8430f8e525d648eb77152de02ea8b64a8b50641de96cecbc668613429a11bf5c"
+    },
+    {
+      "screenshot": "detail-404-fault-dark.png",
+      "sha256": "e591c7ddb45bd9ee2a2eb9512ed940db66f336562447d4f9607c794e23f1f674",
+      "uiTree": "ui-detail-404-fault-dark.json",
+      "uiTreeSha256": "57b427c5c688b915115f86a446e168145ed2bb2845b159690a34be37223cd51a"
+    },
+    {
+      "screenshot": "detail-404-fault-light.png",
+      "sha256": "e5d72d2a4eb571495dfd30bb636d23c3ae55bea3285ec89e5dbc062bca3149be",
+      "uiTree": "ui-detail-404-fault-light.json",
+      "uiTreeSha256": "57b427c5c688b915115f86a446e168145ed2bb2845b159690a34be37223cd51a"
+    }
+  ],
+  "resumeChain": [
+    {
+      "source": "artifacts/native-system-visual-attempt-04/capture-summary.json",
+      "sha256": "30923f816a15991207c509f846d99530e733e720dd2404a3cec0effa5c97ecc1",
+      "status": "incomplete",
+      "count": 10
+    },
+    {
+      "source": "artifacts/native-system-visual-attempt-02/capture-summary.json",
+      "sha256": "20e42072509ffdf86e5755dd6699c47ec87b1094d6bf5014e50e98b3171fcc8d",
+      "status": "incomplete",
+      "count": 7
+    }
+  ],
+  "scope": "Offline review of actual captured artifacts; no device/control operations",
+  "ordinaryImeVisualPrivacyReview": "Both displayed account-focused PNGs inspected: standard keys/icons, no visible credentials, candidate text or clipboard content. This is not a device clipboard audit.",
+  "limitations": [
+    "Capture original password-focus blackout remains a separate failed observation with unconfirmed OS cause",
+    "No claimed continuous video, spoken reader or foldable hardware result"
+  ]
+}

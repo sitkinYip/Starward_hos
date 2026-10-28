@@ -1,0 +1,114 @@
+{
+  "status": "capture_integrity_verified_with_known_visual_gap",
+  "scope": "Offline verification of actual recorded files, source bindings and enumerated Chinese business states. Capture completion is not full Web visual equivalence or all-feature acceptance.",
+  "deviceOperations": 0,
+  "controlOperations": 0,
+  "counts": {
+    "authCaptures": 4,
+    "mainCaptures": 18,
+    "uniqueNativeImages": 22,
+    "strictOriginalPixelPatchesVerified": 22,
+    "extraImagesExcludedFrom18": 1
+  },
+  "hap": {
+    "sha256": "2b757938002a224a7e6f1aebdb62d78eaa7ab3e02989db8eaf6cbd5272979b16",
+    "visualCriteria": "arkui-system-v1",
+    "immersionVersion": "edge-to-edge-v1",
+    "source": "artifacts/validation/native-system-visual-hap.json",
+    "sourceSha256": "75c615f8292da9a3f0b87854edbe1778ad108d422f6ee71e9402bcc0db317b03",
+    "verification": "Packaged HAP bytes match the explicit manifest; device installation requires its separate log"
+  },
+  "windowSource": {
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceSha256": "7bcf2bee524b843dff8edda36178432a61c0e762ab5977c91c57dfaa0ab77225"
+  },
+  "fileHashesAndTrees": "All22 PNG SHA and real PNG sizes match their report; all22 sanitised UI trees were parsed and hashed. Detailed per-file hashes are in native-system-visual-content-check.json.",
+  "resume": {
+    "retainedCount": 10,
+    "newCapturedCount": 8,
+    "singleUninterruptedRun": false,
+    "verifiedSourceChain": [
+      {
+        "source": "artifacts/native-system-visual-attempt-04/capture-summary.json",
+        "sha256": "30923f816a15991207c509f846d99530e733e720dd2404a3cec0effa5c97ecc1",
+        "originalStatus": "incomplete",
+        "originalCount": 10
+      },
+      {
+        "source": "artifacts/native-system-visual-attempt-02/capture-summary.json",
+        "sha256": "20e42072509ffdf86e5755dd6699c47ec87b1094d6bf5014e50e98b3171fcc8d",
+        "originalStatus": "incomplete",
+        "originalCount": 7
+      }
+    ]
+  },
+  "actualChineseStateHints": {
+    "detail-waiting-dark": "静候启程，旅程开放后就能出发。",
+    "detail-waiting-light": "静候启程，旅程开放后就能出发。",
+    "detail-expired-dark": "已过开放时间，请联系游戏管理员。",
+    "detail-expired-light": "已过开放时间，请联系游戏管理员。",
+    "detail-locked-dark": "等级暂不符合，请确认场次的参与等级。",
+    "detail-locked-light": "等级暂不符合，请确认场次的参与等级。"
+  },
+  "faultCaptures": [
+    {
+      "theme": "dark",
+      "explicitInjection": true,
+      "oldStartAndDetailCleared": true,
+      "screenshot": "detail-404-fault-dark.png"
+    },
+    {
+      "theme": "light",
+      "explicitInjection": true,
+      "oldStartAndDetailCleared": true,
+      "screenshot": "detail-404-fault-light.png"
+    }
+  ],
+  "faultRecoveries": "Both explicit404 captures have separately recorded subsequent real GET200 recovery.",
+  "cleanup": {
+    "auth": {
+      "singleReadyRestored": true,
+      "newPasswordConfirmed": true,
+      "loggedOut": true
+    },
+    "main": {
+      "scenarioRestored": true,
+      "loggedOut": true,
+      "faultNeutralised": true
+    }
+  },
+  "extraSystemAreaEvidence": {
+    "screenshot": "system-home-behind-bar.png",
+    "screenshotSha256": "6cdbefb31f8357ece31030506a46ce38a2ff0f462817afc1ea848f52be74d55e",
+    "countsTowardMain18": false,
+    "currentScrollBounds": [
+      67,
+      1010,
+      1253,
+      2848
+    ],
+    "physicalBottomPx": 2848,
+    "gestureRegionTopPx": 2754,
+    "actualAssignmentProgressText": "已解开 0 / 2",
+    "actualTextBounds": [
+      343,
+      2750,
+      1176,
+      2811
+    ],
+    "interpretation": "Actual second-card content crosses behind the floating material bar and continues into the gesture region; this is an additional four-assignment home image, not another state pair."
+  },
+  "imePrivacyScope": "Both empty-account IME PNGs visually inspected: standard keys/icons, no visible credentials, candidate text or clipboard content. No device clipboard audit or password-IME screenshot pass is claimed.",
+  "knownVisualGaps": [
+    {
+      "capturedHap": "2b757938002a224a7e6f1aebdb62d78eaa7ab3e02989db8eaf6cbd5272979b16",
+      "state": "detail-404-fault",
+      "issue": "Captured header still displays default 0/0 completed progress while no detail DTO is available; that value is not authoritative business data.",
+      "evidence": [
+        "detail-404-fault-dark.png",
+        "detail-404-fault-light.png"
+      ],
+      "scope": "This gap is in the captured build. Later source or HAP changes are outside this offline audit."
+    }
+  ]
+}

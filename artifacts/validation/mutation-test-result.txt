@@ -1,0 +1,21 @@
+class=Domain
+test=passwordValidationHonorsUtf8Limit
+result=Success
+test=passwordValidationRejectsMismatchOldAndBounds
+result=Success
+test=completedAndCancelledPrecedeTimeWindows
+result=Success
+test=timeAndRankBoundariesRemainExclusiveAtEnd
+Error in timeAndRankBoundariesRemainExclusiveAtEnd, expect expired equals locked
+    at AssertException (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:75:9)
+    at anonymous (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:1149:37)
+    at anonymous (entry/src/test/Domain.test.ets:43:44)
+    at anonymous (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:90:19)
+    at getFuncWithArgsZero (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:82:12)
+    at processedFunc (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:161:24)
+    at asyncRun (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:1030:24)
+    at asyncRunSpecs (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:729:32)
+result=Failure
+test=activeAssignmentKeepsAccessAfterRankChanges
+result=Success
+Tests run: 5, Failure: 1, Error: 0, Pass: 4, Ignore: 0

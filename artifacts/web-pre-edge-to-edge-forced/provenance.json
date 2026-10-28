@@ -1,0 +1,30 @@
+{
+  "snapshotSha256": "0c547436d8466e3c01e2458143fb965195f133f3a570784f294d01954c5e70d5",
+  "snapshotArchive": "artifacts/private/web-visual-inputs/0c547436d8466e3c01e2458143fb965195f133f3a570784f294d01954c5e70d5.json",
+  "snapshotProvenance": {
+    "player": "actual forced GET /me at 2026-10-27T05:25:38.920010+00:00",
+    "assignmentAndList": "actual post-gate GET at 2026-10-27T05:27:16.627584+00:00",
+    "visualUse": "forced UI consumes only the original forced player",
+    "mixedCaptureTimes": true,
+    "responseRewriting": false
+  },
+  "responseSourceCounts": {
+    "synthetic_auth_render_driver": 2,
+    "actual_snapshot_player": 6
+  },
+  "renderDrivers": "Auth and any password-change replies are synthetic local render drivers, not real browser network operations.",
+  "auxiliaryAPIs": "Notifications/rewards, if requested, return fixed empty local responses outside this first-slice scope; they are not actual backend snapshots.",
+  "browserUsesRealBackend": false,
+  "requestedStates": [
+    "forced-password"
+  ],
+  "suppliedActualSnapshotDTOs": [
+    "player",
+    "assignment",
+    "assignments"
+  ],
+  "consumedActualSnapshotDTOs": [
+    "player"
+  ],
+  "auxiliaryEmptyResponsesObserved": 0
+}

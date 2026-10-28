@@ -1,0 +1,3875 @@
+{
+  "status": "passed",
+  "requestedPhase": "resume-resilience",
+  "currentPhase": "explicit-logout",
+  "startedAt": "2026-10-27T05:15:26.048533+00:00",
+  "updatedAt": "2026-10-27T05:23:00.707615+00:00",
+  "environment": "real isolated PocketBase 0.40.1 over verified HTTPS and official USB forwarding",
+  "deviceApi": 26,
+  "count": 49,
+  "checks": [
+    {
+      "label": "Native App visibly identifies the isolated HTTPS environment",
+      "cases": [
+        "A01"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Empty login sends no authentication POST",
+      "cases": [
+        "A02"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real wrong-password response stays on login without private content",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Injected login 503 remains recoverable in place",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": true,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "A new authenticated /me GET consumes the injected 200 invalid DTO and shows the exact contract error without entering protected UI",
+      "cases": [
+        "A05"
+      ],
+      "phase": "core",
+      "injectedResilience": true,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "A native double tap during delayed authentication sends exactly one normalized login POST",
+      "cases": [
+        "A03"
+      ],
+      "phase": "core",
+      "injectedResilience": true,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Cold protected deep link stops at mandatory password gate without list or detail requests",
+      "cases": [
+        "A01",
+        "A03",
+        "A06"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "System Back cannot bypass mandatory password change",
+      "cases": [
+        "A06"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Actual OS edge swipe cannot reveal a protected page before password change",
+      "cases": [
+        "A06",
+        "V03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Invalid password input short sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Invalid password input same-as-old sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Invalid password input confirmation sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Invalid password input utf8-limit sends no password POST",
+      "cases": [
+        "A07"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Wrong old password performs one real POST and retains the mandatory gate",
+      "cases": [
+        "A08"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "One successful real password change automatically resumes the pending native detail route",
+      "cases": [
+        "A01",
+        "A08",
+        "B01"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Detail presents the explicit read-only scope beside the start control",
+      "cases": [
+        "B01",
+        "B02"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Actual OS edge swipe from detail returns to native home",
+      "cases": [
+        "V03",
+        "B01"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Detail return restores the native home",
+      "cases": [
+        "B01"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real assigned card presents state ready",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real assigned card presents state waiting",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real assigned card presents state expired",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real assigned card presents state locked",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "History has its own empty-state wording",
+      "cases": [
+        "H02"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Archiving real test sessions produces the distinct current-list empty state",
+      "cases": [
+        "H02"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real test assignment status active has correct category and label",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real test assignment status completed has correct category and label",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Real test assignment status cancelled has correct category and label",
+      "cases": [
+        "H01",
+        "H03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "All observed authenticated native requests preserve Authorization token without Bearer",
+      "cases": [
+        "A03"
+      ],
+      "phase": "core",
+      "injectedResilience": false,
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "checkpointShaChain": [
+          "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+          "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+        ]
+      }
+    },
+    {
+      "label": "Injected list 503 preserves the previous valid list",
+      "cases": [
+        "H02",
+        "B04"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "List retry recovers from the explicitly injected service failure",
+      "cases": [
+        "H02"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected detail 503 retains the previous valid detail",
+      "cases": [
+        "B04"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Detail retry replaces the temporary error with a real successful GET",
+      "cases": [
+        "B04"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected terminal detail 404 clears the old private detail",
+      "cases": [
+        "B03"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected terminal detail 403 clears the old private detail",
+      "cases": [
+        "B03"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected terminal detail 410 clears the old private detail",
+      "cases": [
+        "B03"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected terminal detail 409 clears the old private detail",
+      "cases": [
+        "B03"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected 18-second delay reaches the native timeout and exposes retry",
+      "cases": [
+        "A04",
+        "B04"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Explicit retry succeeds after a timed-out detail read",
+      "cases": [
+        "B04"
+      ],
+      "phase": "resilience",
+      "injectedResilience": true
+    },
+    {
+      "label": "Foreground restoration makes a real /me round trip",
+      "cases": [
+        "H04"
+      ],
+      "phase": "resilience",
+      "injectedResilience": false
+    },
+    {
+      "label": "Real server-disabled player returns to login and clears protected content",
+      "cases": [
+        "A09",
+        "B03"
+      ],
+      "phase": "resilience",
+      "injectedResilience": false
+    },
+    {
+      "label": "Server disable was observed as an actual player /me 401",
+      "cases": [
+        "A09"
+      ],
+      "phase": "resilience",
+      "injectedResilience": false
+    },
+    {
+      "label": "Injected lost response happens after exactly one completed real password write",
+      "cases": [
+        "A08"
+      ],
+      "phase": "password-response-loss",
+      "injectedResilience": true
+    },
+    {
+      "label": "Unconfirmed password change is never replayed automatically",
+      "cases": [
+        "A08"
+      ],
+      "phase": "password-response-loss",
+      "injectedResilience": true
+    },
+    {
+      "label": "Explicit forced-page logout clears account and password inputs",
+      "cases": [
+        "A09"
+      ],
+      "phase": "password-response-loss",
+      "injectedResilience": false
+    },
+    {
+      "label": "New-password login confirms the real write whose response was lost",
+      "cases": [
+        "A08"
+      ],
+      "phase": "password-response-loss",
+      "injectedResilience": true
+    },
+    {
+      "label": "Final paired-visual data is one real ready assignment after mandatory password change",
+      "cases": [
+        "V01"
+      ],
+      "phase": "visual-data-snapshot",
+      "injectedResilience": false
+    },
+    {
+      "label": "Explicit account-menu logout clears credentials and protected content",
+      "cases": [
+        "A09"
+      ],
+      "phase": "explicit-logout",
+      "injectedResilience": false
+    },
+    {
+      "label": "Back and Ability restoration cannot recover private pages after logout",
+      "cases": [
+        "A09"
+      ],
+      "phase": "explicit-logout",
+      "injectedResilience": false
+    },
+    {
+      "label": "All three native theme controls remain reachable after logout",
+      "cases": [
+        "V02"
+      ],
+      "phase": "explicit-logout",
+      "injectedResilience": false
+    }
+  ],
+  "phases": [
+    {
+      "phase": "core",
+      "status": "passed",
+      "preservedEvidence": {
+        "checkpointSha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda"
+      }
+    },
+    {
+      "phase": "resilience",
+      "status": "passed"
+    },
+    {
+      "phase": "password-response-loss",
+      "status": "passed"
+    },
+    {
+      "phase": "visual-data-snapshot",
+      "status": "passed"
+    },
+    {
+      "phase": "explicit-logout",
+      "status": "passed"
+    }
+  ],
+  "requestLedger": [
+    {
+      "phase": "checkpoint.checkpoint.host-readonly-forced-snapshot",
+      "sourceAttemptStatus": "incomplete",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "checkpoint.checkpoint.failure",
+      "sourceAttemptStatus": "incomplete",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "checkpoint.resume-reattach-readonly-authentication",
+      "sourceAttemptStatus": "incomplete",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "checkpoint.core",
+      "sourceAttemptStatus": "incomplete",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "checkpoint.failure",
+      "sourceAttemptStatus": "incomplete",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "resume-reattach-readonly-authentication",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 502,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "resilience",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 502,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 404,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 403,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 410,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 409,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 401,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 401,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "before-reset-for-response-loss",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 502,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 404,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 403,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 410,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 409,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 401,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 401,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "password-response-loss",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "visual-data-snapshot",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "explicit-logout",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "case": "A05",
+      "auth": {
+        "method": "POST",
+        "status": 200,
+        "fault": false
+      },
+      "me": {
+        "method": "GET",
+        "status": 200,
+        "fault": true
+      },
+      "uiError": "服务返回了不兼容的数据，请更新应用或联系管理员。"
+    },
+    {
+      "case": "V03",
+      "action": "actual left-edge horizontal swipe",
+      "gateOutcome": "Ability closed; relaunch remained gated",
+      "recognition": "not inferred from keyEvent Back"
+    }
+  ],
+  "resumedFrom": {
+    "file": "artifacts/validation/device-https-checkpoint-core-28.json",
+    "sha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+    "sourceStatus": "incomplete",
+    "sourceCount": 29,
+    "preservedCheckCount": 28,
+    "preservedChecksNotReexecuted": [
+      "Native App visibly identifies the isolated HTTPS environment",
+      "Empty login sends no authentication POST",
+      "Real wrong-password response stays on login without private content",
+      "Injected login 503 remains recoverable in place",
+      "A new authenticated /me GET consumes the injected 200 invalid DTO and shows the exact contract error without entering protected UI",
+      "A native double tap during delayed authentication sends exactly one normalized login POST",
+      "Cold protected deep link stops at mandatory password gate without list or detail requests",
+      "System Back cannot bypass mandatory password change",
+      "Actual OS edge swipe cannot reveal a protected page before password change",
+      "Invalid password input short sends no password POST",
+      "Invalid password input same-as-old sends no password POST",
+      "Invalid password input confirmation sends no password POST",
+      "Invalid password input utf8-limit sends no password POST",
+      "Wrong old password performs one real POST and retains the mandatory gate",
+      "One successful real password change automatically resumes the pending native detail route",
+      "Detail presents the explicit read-only scope beside the start control",
+      "Actual OS edge swipe from detail returns to native home",
+      "Detail return restores the native home",
+      "Real assigned card presents state ready",
+      "Real assigned card presents state waiting",
+      "Real assigned card presents state expired",
+      "Real assigned card presents state locked",
+      "History has its own empty-state wording",
+      "Archiving real test sessions produces the distinct current-list empty state",
+      "Real test assignment status active has correct category and label",
+      "Real test assignment status completed has correct category and label",
+      "Real test assignment status cancelled has correct category and label",
+      "All observed authenticated native requests preserve Authorization token without Bearer"
+    ],
+    "discardedChecksToRetest": [
+      "Injected list 503 preserves the previous valid list"
+    ],
+    "interruptedAttemptCountedAsPassedPhase": false,
+    "matchingDetailPath": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+    "backendResetForReattachment": false,
+    "checkpointChain": [
+      {
+        "file": "artifacts/validation/device-https-checkpoint-core-20.json",
+        "sha256": "b4eb7ed3dadb7bdd6e1175dc727f344a36fbb7afefc6f8d5c6a73fc8abdda621",
+        "sourceStatus": "incomplete",
+        "preservedCheckCount": 18
+      },
+      {
+        "file": "artifacts/validation/device-https-checkpoint-core-28.json",
+        "sha256": "39011819e541ddd9034646c22240644b04b77cd09622fbc2ff37b3fac48c7dda",
+        "sourceStatus": "incomplete",
+        "preservedCheckCount": 28
+      }
+    ],
+    "newPasswordReattachmentConfirmed": true
+  },
+  "limitations": [
+    "CLI/UiTest device evidence; not a Hypium instrument report",
+    "Injected failures test resilience; they are not observed production failures",
+    "No production environment, start, answer or reward writes were performed"
+  ]
+}

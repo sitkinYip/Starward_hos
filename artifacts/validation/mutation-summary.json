@@ -1,0 +1,7 @@
+{
+  "mutation": "assignmentKind end window: Date.parse(item.endsAt) <= now -> > now",
+  "command": "scripts/hm.sh test Domain",
+  "exitCode": 1,
+  "testResult": "class=Domain\ntest=passwordValidationHonorsUtf8Limit\nresult=Success\ntest=passwordValidationRejectsMismatchOldAndBounds\nresult=Success\ntest=completedAndCancelledPrecedeTimeWindows\nresult=Success\ntest=timeAndRankBoundariesRemainExclusiveAtEnd\nError in timeAndRankBoundariesRemainExclusiveAtEnd, expect expired equals locked\n    at AssertException (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:75:9)\n    at anonymous (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:1149:37)\n    at anonymous (entry/src/test/Domain.test.ets:43:44)\n    at anonymous (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:90:19)\n    at getFuncWithArgsZero (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:82:12)\n    at processedFunc (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:161:24)\n    at asyncRun (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:1030:24)\n    at asyncRunSpecs (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:729:32)\nresult=Failure\ntest=activeAssignmentKeepsAccessAfterRankChanges\nresult=Success\nTests run: 5, Failure: 1, Error: 0, Pass: 4, Ignore: 0\n",
+  "sourceRestored": true
+}

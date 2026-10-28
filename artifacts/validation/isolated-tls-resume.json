@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checks": 3,
+  "operation": "resume",
+  "positive": "curl --cacert: HTTP200",
+  "withoutCa": "curl exit60: untrusted chain rejected",
+  "wrongHostname": "curl --cacert for localhost: exit60, SAN mismatch rejected",
+  "san": [
+    "IP:127.0.0.1"
+  ],
+  "tlsVerificationDisabled": false,
+  "systemTrustStoreModified": false,
+  "nativeTrust": "API26 caData only in isolated test config",
+  "certificateFingerprintSha256": "18:20:FA:A1:E6:C0:72:D9:A5:9F:B7:DA:4B:DB:88:69:25:24:31:8C:C5:91:1A:6C:AF:82:56:53:C6:5D:17:BC",
+  "caSha256": "8b9b4f83b56d2f37d030104de1566505c2196773d10b1232d9523eb7b0d66ab4",
+  "reverseForwardConfirmed": true,
+  "certificateReused": true,
+  "reverseForwardReused": true,
+  "backendReset": false,
+  "causeOfPriorTermination": "not established; original execution output unavailable",
+  "abortResilience": {
+    "partialHealthRequestDisconnects": 12,
+    "gatewayAndBackendAliveAfterDisconnects": true,
+    "explicitDroppedHealthResponse": true,
+    "upstreamHealthCompletedBeforeDrop": true,
+    "subsequentVerifiedHealth": 200,
+    "authenticationRequestsAdded": 0,
+    "playerWritesPerformed": false
+  }
+}

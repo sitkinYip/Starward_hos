@@ -1,0 +1,39 @@
+{
+  "status": "observed App and IME snapshot blackout; exact OS cause unconfirmed",
+  "visualCriteria": "arkui-system-v1",
+  "sourceAttempt": "artifacts/native-system-visual-attempt-01",
+  "sourceScreenshot": "artifacts/native-system-visual-attempt-01/login-keyboard-dark.png",
+  "screenshotSha256": "35562c5782b08539225035e5d26006c2230eda73498209e8b2f2c5ae78a641f0",
+  "uiTree": "artifacts/native-system-visual-attempt-01/ui-login-keyboard-dark.json",
+  "uiTreeSha256": "c45795538edb6a53dae9879479848b1c0743241d7625917815b28571d6e82251",
+  "keyboardFocus": "password",
+  "visibleInputsEmpty": true,
+  "keyboardVisibleFromUiTest": true,
+  "sample": [
+    94,
+    1392
+  ],
+  "observedSampleRGB": [
+    0,
+    0,
+    0
+  ],
+  "originalThemeVerified": false,
+  "appBounds": [
+    0,
+    132,
+    1320,
+    1606
+  ],
+  "appPureBlackPixelFraction": 1.0,
+  "imeBounds": [
+    0,
+    1606,
+    1320,
+    2754
+  ],
+  "imePureBlackPixelFraction": 1.0,
+  "inference": "System secure-password keyboard screenshot protection is plausible because both app and IME are entirely black while the UI tree exposes the form; this is an inference, not a confirmed OS diagnostic.",
+  "acceptanceCredit": false,
+  "nextVisualMethod": "Focus the empty ordinary account TextInput and independently verify its native keyboard and requested App theme; password-field accessibility remains a separate UI-tree check."
+}

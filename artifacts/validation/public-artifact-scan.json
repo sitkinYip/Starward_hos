@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "scanned_at": "2026-10-28T08:42:32.492867+00:00",
+  "scope": "Git-visible regular files; known private-state literals, optional in-memory device identifiers, decoded JWT shapes, private PEM headers and signing file extensions",
+  "public_candidate_file_count": 814,
+  "skipped_nonregular_file_count": 0,
+  "read_error_count": 0,
+  "read_errors": [],
+  "private_state_field_counts": [
+    {
+      "category": "known_account",
+      "count": 2
+    },
+    {
+      "category": "known_auth_token",
+      "count": 0
+    },
+    {
+      "category": "known_control_token",
+      "count": 2
+    },
+    {
+      "category": "known_device_identifier",
+      "count": 1
+    },
+    {
+      "category": "known_password",
+      "count": 4
+    }
+  ],
+  "sensitive_finding_count": 0,
+  "sensitive_findings": [],
+  "private_key_rejection_check_references": [
+    {
+      "file": "entry/src/main/ets/platform/AppEnvironment.ets",
+      "category": "private_key_rejection_check_reference",
+      "count": 1
+    },
+    {
+      "file": "scripts/configure-integration.py",
+      "category": "private_key_rejection_check_reference",
+      "count": 1
+    }
+  ],
+  "source_repository_status_counts": [
+    {
+      "repository": "questions-web",
+      "change_entry_count": 0
+    },
+    {
+      "repository": "sitkin-pb-backend-management",
+      "change_entry_count": 0
+    }
+  ]
+}

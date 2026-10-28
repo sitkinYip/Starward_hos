@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-28T08:24:39.221518+00:00",
+  "commands": [
+    "scripts/hm.sh lint",
+    "scripts/hm.sh test"
+  ],
+  "compiledHapSha256": "3bacb424dee59591cc7cb9604bc53a3ab9e32e05fb89e2b9ab2cfee8d3eeaebe",
+  "hapUnchangedDuringChecks": true,
+  "deviceActionsPerformed": false,
+  "testReport": {
+    "file": "artifacts/validation/local-test-summary.json",
+    "sha256": "aa5703497db6ccdb95f15eb7d2d3e695e77dafcf4871a85b8661eb76bd927402",
+    "tests": 37,
+    "passed": 37,
+    "failed": 0,
+    "ignored": 0
+  },
+  "lintReport": {
+    "file": "artifacts/validation/lint.json",
+    "sha256": "4bb19d121cf82a737fb846f1ccaacbed51889cb869a858cc20eb8fc88246062d",
+    "issues": 0,
+    "errors": 0,
+    "warnings": 0,
+    "reportedFilesChecked": 0
+  },
+  "sourceFiles": {
+    "entry/src/main/ets/business/GameRepository.ets": "34252bbb5acadc3aa59a9de82220edfbc403b992fb203765fd0daa7019f6d091",
+    "entry/src/main/ets/business/assignmentState.ets": "6ba432b95ed939aebc8e7937cb3a2210a9afdc4f03aa803037b39181a0613c49",
+    "entry/src/main/ets/business/models.ets": "ebe88059540ae5c6849d12412ac696d886e366e5e5ae2ebb8b6cb9a38c206480",
+    "entry/src/main/ets/data/DtoDecoder.ets": "6574215fbab32df197664776c9bb8d860df4d8e8be49f4d22bc2f5ec579cdebe",
+    "entry/src/main/ets/data/HttpsGameRepository.ets": "7c62ab6049e6c84be6ac8e3c26e660f79d9a9bef5f7b4339bd2a62fa2044a424",
+    "entry/src/main/ets/data/MockGameRepository.ets": "fd74617af5049d4fbfc21bf7541961259bf0945a888b4d71a242937adad5e47a",
+    "entry/src/main/ets/entryability/EntryAbility.ets": "1da3a10b0fd7f0cc8afbd9dbe7d34b532df14fa1918eb8955334e5b84ca0f6db",
+    "entry/src/main/ets/features/SliceViewModel.ets": "9f7f44fdc858df8d317bf55a9c98efa453ed5a67a309ab405716a624a1839b33",
+    "entry/src/main/ets/features/createSliceViewModel.ets": "64fec53963dea3fee67305bf7c59543267892823ff1deec0ea040a8cbb51ba2d",
+    "entry/src/main/ets/pages/Index.ets": "08cd266e9816bc545bdaa2ba539ad20ff8d5344810aec2814054cfc583258f12",
+    "entry/src/main/ets/platform/AppEnvironment.ets": "286e0de9975710944b239ff3695d4ed419581bb1e93210617fcf731cd0b9f669",
+    "entry/src/main/ets/platform/AppLifecycle.ets": "1cfc7b24a438551e816ebfb36449994abd358674e9fb8009618dd4733dfcebeb",
+    "entry/src/main/ets/platform/HttpTransport.ets": "4fc91c7f939a6446b41410f6ce969515f10ba56900c24fe144003d1c9b65c9f4",
+    "entry/src/main/ets/platform/ImmersiveWindow.ets": "78605adce77e7f3ee13b579bc791064ff091954d8a123b436ff62b04143b2161",
+    "entry/src/main/ets/platform/LaunchRoutes.ets": "b9ce2f29e01de76fc288b098cdd568f23033f1664fac65d850428a123b50c4fe",
+    "entry/src/main/ets/platform/TlsProbe.ets": "81282647d9f06df303a63e239e76b947e07ac143ddc983d3756fb364a5c3b467",
+    "entry/src/main/ets/platform/WindowMetrics.ets": "f0ff375b4a2b1acee9c8a1fc63ea2971fddd0fa9b75f833f3046a6a5e84f408a",
+    "entry/src/main/ets/ui/DetailFact.ets": "7ffef75cb2808e675cccd909448e07184555d7375a582e486062911f583665bd",
+    "entry/src/main/ets/ui/ErrorMessages.ets": "4cd30f3d5c608a09ab329f09915f88c1cff9c8e883d6258859e158eb6dbade2e",
+    "entry/src/main/ets/ui/LabeledInput.ets": "fac6d6497ad5544933b5b8d5b9bf72c999d63d8bd69e509cd5883799aaff1a06",
+    "entry/src/main/ets/ui/PrimaryAction.ets": "94ac0115094e10ad77aa26530ced4d072390940248ecc74fd1c764208f79471a",
+    "entry/src/main/ets/ui/StarwardAccountSheet.ets": "86468b5ab4cd7e0f417a00bc1bd86bcb44270adc558ac1ae5b3eaf3ab963d1a1",
+    "entry/src/main/ets/ui/StarwardAtlas.ets": "356c2b2b40fd040ca6666eb8704a30f14605afefd67a3609b871415c1cd28b95",
+    "entry/src/main/ets/ui/StarwardFeedback.ets": "7150eec2c236521a36f993d546ea9b5d4788381a20d7301058b49f0a561c5896",
+    "entry/src/main/ets/ui/StarwardMaterial.ets": "439d50a2908288ba2b36b8cfef599bc4c829ef773f91c2766e6181d3a28e807a",
+    "entry/src/main/ets/ui/StarwardMotion.ets": "63e49449ac31a9fc6b6a0c02af1d00506025020f33618b66200cb8001a0ec6a9",
+    "entry/src/main/ets/ui/StarwardRefresh.ets": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "entry/src/main/ets/ui/StarwardTabs.ets": "40966a884bea2b1706f5618e9ecf79be2cf43a48bfaaf856989b200c8f05863b"
+  }
+}

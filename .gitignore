@@ -1,0 +1,30 @@
+.DS_Store
+.idea/
+.hvigor/
+.deveco/
+oh_modules/
+**/oh_modules/
+**/build/
+local.properties
+*.p12
+*.p7b
+*.cer
+*.csr
+*.key
+.env
+.env.*
+artifacts/private/
+**/.test/
+artifacts/*.log
+artifacts/lint*.json
+
+# Local IDE signing config; tracked example contains no signing material.
+/build-profile.json5
+
+**/__pycache__/
+*.pyc
+
+# Ephemeral test HTTPS origin, never a production default.
+/entry/src/main/resources/rawfile/integration.json
+
+/entry/src/main/resources/rawfile/integration-ca.pem

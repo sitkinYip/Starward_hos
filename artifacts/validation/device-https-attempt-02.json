@@ -1,0 +1,156 @@
+{
+  "status": "incomplete",
+  "requestedPhase": "all",
+  "currentPhase": "core",
+  "environment": "real isolated PocketBase 0.40.1 over verified HTTPS and official USB forwarding",
+  "deviceApi": 26,
+  "count": 5,
+  "checks": [
+    {
+      "label": "Native App visibly identifies the isolated HTTPS environment",
+      "cases": [
+        "A01"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Empty login sends no authentication POST",
+      "cases": [
+        "A02"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Real wrong-password response stays on login without private content",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": false
+    },
+    {
+      "label": "Injected login 503 remains recoverable in place",
+      "cases": [
+        "A04"
+      ],
+      "phase": "core",
+      "injectedResilience": true
+    },
+    {
+      "label": "Injected invalid /me DTO cannot enter the authenticated UI",
+      "cases": [
+        "A05"
+      ],
+      "phase": "core",
+      "injectedResilience": true,
+      "evidenceValidity": "invalidated; excluded from acceptance"
+    }
+  ],
+  "phases": [],
+  "requestLedger": [
+    {
+      "phase": "host-readonly-forced-snapshot",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    },
+    {
+      "phase": "failure",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 503,
+          "fault": true,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 400,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        }
+      ]
+    }
+  ],
+  "observations": [],
+  "limitations": [
+    "CLI/UiTest device evidence; not a Hypium instrument report",
+    "Injected failures test resilience; they are not observed production failures",
+    "No production environment, start, answer or reward writes were performed"
+  ],
+  "error": {
+    "classification": "tool-or-expectation-needs-review",
+    "message": "Official command failed: devecocli ui text",
+    "businessFailureClaimed": false
+  },
+  "evidenceWarning": "Input driver appended text; malformed /me assertion lacked correlation and is invalidated. This incomplete attempt is not final acceptance."
+}

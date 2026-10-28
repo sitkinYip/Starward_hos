@@ -1,0 +1,426 @@
+{
+  "status": "captured",
+  "visualCriteria": "arkui-system-v1",
+  "count": 4,
+  "states": [
+    {
+      "state": "login",
+      "theme": "dark",
+      "screenshot": "login-dark.png",
+      "uiTree": "ui-login-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        94,
+        1416
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "account",
+        "bounds": [
+          67,
+          1403,
+          1255,
+          1430
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          2755
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "989c610031291f23edcdf385a6f985d16864caffab01fc698931371ac20c2d3f",
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true
+    },
+    {
+      "state": "login",
+      "theme": "light",
+      "screenshot": "login-light.png",
+      "uiTree": "ui-login-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        94,
+        1416
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "account",
+        "bounds": [
+          67,
+          1403,
+          1255,
+          1430
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          2755
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "53dfc5982fc4d8d72aad4b4f18c1b53392b983f757f1f3c8a9b2b5deae326226",
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true
+    },
+    {
+      "state": "forced-password",
+      "theme": "dark",
+      "screenshot": "forced-password-dark.png",
+      "uiTree": "ui-forced-password-dark.json",
+      "canvasRGB": [
+        16,
+        17,
+        15
+      ],
+      "expectedRGB": [
+        16,
+        17,
+        15
+      ],
+      "sample": [
+        94,
+        1572
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "old-password",
+        "bounds": [
+          67,
+          1558,
+          1255,
+          1585
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          2755
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "39d31e24a5f9edeb80c00e49d3f83a28b6d5ac928e611f411887ad8230f88b5b",
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true
+    },
+    {
+      "state": "forced-password",
+      "theme": "light",
+      "screenshot": "forced-password-light.png",
+      "uiTree": "ui-forced-password-light.json",
+      "canvasRGB": [
+        255,
+        255,
+        255
+      ],
+      "expectedRGB": [
+        255,
+        255,
+        255
+      ],
+      "sample": [
+        94,
+        1572
+      ],
+      "sampleRegion": {
+        "kind": "form label-to-input canvas gap",
+        "field": "old-password",
+        "bounds": [
+          67,
+          1558,
+          1255,
+          1585
+        ],
+        "appBounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "scrollBounds": [
+          0,
+          415,
+          1320,
+          2755
+        ]
+      },
+      "sampleFlat": true,
+      "themeVerified": true,
+      "pixels": [
+        1320,
+        2848
+      ],
+      "pngDecoder": "Pillow",
+      "screenshotSha256": "6dc8e6f4f9cd2ff8c7a70c572e7ba465e9d98537f80705b6b26940731e099a39",
+      "storyTitleBounds": [
+        67,
+        618,
+        1253,
+        940
+      ],
+      "scrollPosition": "original top",
+      "visibleInputsEmpty": true
+    }
+  ],
+  "capturedAt": "2026-10-27T06:29:02.346303+00:00",
+  "environment": "real isolated PocketBase over verified HTTPS",
+  "fontScale": 1,
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "fontScale": 1,
+    "widthVp": 391.1111111111111,
+    "contentHeightVp": 777.1851851851852,
+    "source": "artifacts/validation/native-system-runtime.json",
+    "sourceRecord": 0,
+    "sourceSha256": "15c7e1647e4a9cd09876c8ad51df08a5b09aed4cdea8dfb08afa1606772bd51f"
+  },
+  "mutatingVisualPrerequisite": true,
+  "passwordChangeAttempts": 1,
+  "passwordChangeResponseConfirmed": true,
+  "cleanup": {
+    "singleReadyRestored": true,
+    "newPasswordConfirmed": true,
+    "loggedOut": true
+  },
+  "requestLedger": [
+    {
+      "phase": "mutating-auth-visual-prerequisite",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/d2h6jl6625x0d3d",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "bearer": false,
+          "authenticated": true
+        }
+      ]
+    }
+  ],
+  "nativeRefreshes": [
+    {
+      "trigger": "official Refresh pull gesture",
+      "method": "GET",
+      "path": "/api/questions/v1/assignments",
+      "ordinal": 2,
+      "status": 200,
+      "fault": false,
+      "viewport": [
+        67,
+        1010,
+        1253,
+        2755
+      ],
+      "gesture": [
+        731,
+        1145,
+        731,
+        1685
+      ]
+    }
+  ],
+  "limitations": [
+    "This auth precondition performs one real isolated password change",
+    "It is separate from the read-only visual capture script",
+    "No production, start, answer or reward operation is performed",
+    "Capture is not a completed visual comparison"
+  ]
+}

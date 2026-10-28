@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-28T08:41:21.543040+00:00",
+  "runnerIdentityVerifiedByUidArgvAndWorkingDirectory": true,
+  "stopOrder": [
+    "own TLS runner",
+    "own disposable backend runner"
+  ],
+  "ownHttpsForwardRemoved": true,
+  "temporaryTlsDirectoryRemoved": true,
+  "temporaryDatabaseDirectoryRemoved": true,
+  "liveStateFileRemoved": true,
+  "ownedContainersBefore": 1,
+  "ownedContainersAfter": 0,
+  "closedOwnLoopbackListeners": {
+    "backend": true,
+    "proxy": true,
+    "control": true,
+    "tls": true
+  },
+  "packagedIntegrationConfigAbsent": true,
+  "packagedPublicCaAbsent": true,
+  "privateStateCheckpointsRemovedAfterScan": true,
+  "visualViewerRetained": true,
+  "unrelatedContainersOrForwardsChanged": false,
+  "ownWebBaselineServerStopped": true,
+  "visualViewerRespondsOnLoopback": true,
+  "finishedAt": "2026-10-28T08:43:14.233181+00:00",
+  "privateStateCheckpointFilesRemoved": [
+    "pre-edge-environment-state.json",
+    "final-environment-state.json",
+    "restart-state.json"
+  ],
+  "publicScanReport": "artifacts/validation/public-artifact-scan.json",
+  "publicScanReportSha256": "f585788af9c33a58983137751d7f11c4f4665daa7a2614deab4b050dbc8b17d2",
+  "publicFilesScanned": 814,
+  "sensitiveFindings": 0,
+  "readErrors": 0
+}

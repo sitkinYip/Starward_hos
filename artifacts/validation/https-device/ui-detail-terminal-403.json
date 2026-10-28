@@ -1,0 +1,370 @@
+[
+  {
+    "bounds": [
+      0,
+      0,
+      1320,
+      2848
+    ],
+    "children": [
+      {
+        "type": "root",
+        "bounds": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "children": [
+          {
+            "type": "Navigation",
+            "bounds": [
+              0,
+              132,
+              1320,
+              2848
+            ],
+            "children": [
+              {
+                "type": "NavigationContent",
+                "bounds": [
+                  0,
+                  132,
+                  1320,
+                  2848
+                ],
+                "children": [
+                  {
+                    "type": "NavDestination",
+                    "bounds": [
+                      0,
+                      132,
+                      1320,
+                      2848
+                    ],
+                    "children": [
+                      {
+                        "type": "NavDestinationContent",
+                        "bounds": [
+                          0,
+                          132,
+                          1320,
+                          2848
+                        ],
+                        "children": [
+                          {
+                            "type": "Scroll",
+                            "bounds": [
+                              0,
+                              132,
+                              1320,
+                              2754
+                            ],
+                            "children": [
+                              {
+                                "type": "Column",
+                                "bounds": [
+                                  0,
+                                  132,
+                                  1320,
+                                  1259
+                                ],
+                                "children": [
+                                  {
+                                    "type": "Row",
+                                    "bounds": [
+                                      40,
+                                      212,
+                                      1280,
+                                      444
+                                    ],
+                                    "children": [
+                                      {
+                                        "id": "account-menu",
+                                        "type": "Stack",
+                                        "bounds": [
+                                          40,
+                                          254,
+                                          189,
+                                          403
+                                        ],
+                                        "clickable": true,
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "text": "远",
+                                            "bounds": [
+                                              40,
+                                              254,
+                                              189,
+                                              403
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "text": "≡",
+                                            "bounds": [
+                                              135,
+                                              338,
+                                              206,
+                                              409
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Column",
+                                        "bounds": [
+                                          229,
+                                          212,
+                                          1075,
+                                          443
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "text": "QUEST SESSION",
+                                            "bounds": [
+                                              229,
+                                              212,
+                                              619,
+                                              261
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "text": "远航者",
+                                            "bounds": [
+                                              229,
+                                              281,
+                                              452,
+                                              382
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "text": "RANK 1 · 初见",
+                                            "bounds": [
+                                              229,
+                                              398,
+                                              537,
+                                              443
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Column",
+                                        "bounds": [
+                                          1115,
+                                          244,
+                                          1280,
+                                          412
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "text": "0/0",
+                                            "bounds": [
+                                              1115,
+                                              244,
+                                              1280,
+                                              335
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "text": "已完成",
+                                            "bounds": [
+                                              1168,
+                                              355,
+                                              1280,
+                                              412
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Row",
+                                    "bounds": [
+                                      40,
+                                      552,
+                                      1280,
+                                      922
+                                    ],
+                                    "children": [
+                                      {
+                                        "type": "Image",
+                                        "bounds": [
+                                          97,
+                                          615,
+                                          171,
+                                          689
+                                        ],
+                                        "children": []
+                                      },
+                                      {
+                                        "type": "Column",
+                                        "bounds": [
+                                          212,
+                                          609,
+                                          1223,
+                                          865
+                                        ],
+                                        "children": [
+                                          {
+                                            "id": "error-message",
+                                            "type": "Text",
+                                            "text": "隔离详情终态 403",
+                                            "bounds": [
+                                              212,
+                                              609,
+                                              1223,
+                                              689
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Row",
+                                            "bounds": [
+                                              212,
+                                              730,
+                                              1223,
+                                              865
+                                            ],
+                                            "children": [
+                                              {
+                                                "id": "request-retry",
+                                                "type": "Button",
+                                                "text": "重试",
+                                                "bounds": [
+                                                  212,
+                                                  730,
+                                                  400,
+                                                  865
+                                                ],
+                                                "clickable": true,
+                                                "children": []
+                                              },
+                                              {
+                                                "id": "error-return-home",
+                                                "type": "Button",
+                                                "bounds": [
+                                                  427,
+                                                  730,
+                                                  785,
+                                                  865
+                                                ],
+                                                "clickable": true,
+                                                "children": [
+                                                  {
+                                                    "type": "Row",
+                                                    "bounds": [
+                                                      474,
+                                                      767,
+                                                      738,
+                                                      828
+                                                    ],
+                                                    "children": [
+                                                      {
+                                                        "type": "Image",
+                                                        "bounds": [
+                                                          474,
+                                                          767,
+                                                          535,
+                                                          828
+                                                        ],
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "type": "Text",
+                                                        "text": "回到首页",
+                                                        "bounds": [
+                                                          562,
+                                                          772,
+                                                          738,
+                                                          823
+                                                        ],
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "id": "return-home",
+                                    "type": "Button",
+                                    "bounds": [
+                                      40,
+                                      1029,
+                                      304,
+                                      1178
+                                    ],
+                                    "clickable": true,
+                                    "children": [
+                                      {
+                                        "type": "Row",
+                                        "bounds": [
+                                          40,
+                                          1073,
+                                          304,
+                                          1134
+                                        ],
+                                        "children": [
+                                          {
+                                            "type": "Image",
+                                            "bounds": [
+                                              40,
+                                              1073,
+                                              101,
+                                              1134
+                                            ],
+                                            "children": []
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "text": "回到首页",
+                                            "bounds": [
+                                              128,
+                                              1078,
+                                              304,
+                                              1129
+                                            ],
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
