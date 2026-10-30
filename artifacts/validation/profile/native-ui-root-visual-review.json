@@ -1,0 +1,123 @@
+{
+  "status": "reviewed_static_with_explicit_limits",
+  "createdAt": "2026-10-30T05:20:32.614454+00:00",
+  "hapSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90",
+  "mainReport": {
+    "file": "artifacts/validation/profile/device-native-ui-refinements.json",
+    "sha256": "67f2c8d7a2deb0d2cd6f2bf42d7a1da50c6be1be01fad8755d292e245fa5e1ba"
+  },
+  "sourceWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "frozenWebVisualReference": {
+    "file": "artifacts/validation/profile/web-profile-visual.json",
+    "sha256": "b51d6bf904dfb6dc60085b19143e1005f8815242f0fa759ca651460cf225e10b",
+    "scope": "Existing synthetic-auth/snapshot Web visual reference; no new browser real-backend claim"
+  },
+  "rootOriginalsViewed": 13,
+  "visuallyObservableOriginals": 12,
+  "passwordFocusBlackOriginals": 1,
+  "observations": {
+    "normalAndFilledIcons": "Home selected compass filled / passport outlined; profile selected passport filled / compass outlined. Both light-green and dark-gold native bars and corresponding menu states visibly distinguish selection. Assets match the frozen Web regular/fill source provenance.",
+    "sidePanel": "Home/right and detail/left final positioning visible; official glass backplate and original business content retained. Profile selected menu row and filled icon clear in both themes.",
+    "nicknameIme": "Real keyboard visible, native bottom bar absent; full save action visibly above keyboard. After dismissal bottom bar and unsubmitted nickname restored.",
+    "passwordIme": "Current main separately verifies native node exposure, real resized App viewport, complete52vp action and Back/draft behavior. Its captured App pixels are black, so no visual-content pass is claimed.",
+    "systemAreas": "Normal images show page/material extending through transparent system regions, consistent with the approved native strategy."
+  },
+  "limits": [
+    "Static images do not prove touch-following light, release selection, entry/exit direction in motion, or interruption/reduced-animation behavior. Separate gesture observations/manual review required.",
+    "No foldable/hover/split/window-change or screen-reader claim.",
+    "The existing 1a40 Web/native24-image visual report remains immutable; this report covers the6a UI delta."
+  ],
+  "originals": [
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/official-panel-home-close.png",
+      "sha256": "98efcf6c2f7ec283330d440b8fe0c0fb0862e038a3f1b80317827d5206a29d35",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/official-panel-home-back.png",
+      "sha256": "caaed0edf3a1b05ad9b65846a945d9ab396d376426309c0ba3aff26500ba97d5",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/official-panel-home-mask.png",
+      "sha256": "4473a1e4361bf6a820ad7f7e71b79708638bf68872559d1e095b662622b33949",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/official-panel-detail-back.png",
+      "sha256": "72d30ba9b1f695855fcd7db24a085bb733d79c3303706742eda8905683aaf061",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/nickname-ime-whole-save.png",
+      "sha256": "b19dc0295b079b2ad9e020e4f90b1b468daa0b9ddacfdfa1b75e21a25fddbca6",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/nickname-ime-dismissed-draft.png",
+      "sha256": "eb684a1b27358943cfa00a96c5d122bda980b0e7975b0c5c924bb4e49f3327b2",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/security-ime-whole-save.png",
+      "sha256": "2abd11894989f8e4acde67d4b76ed28777c1b52dccc5ea50142fb520d80c04e9",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "App content black during password focus; no pixel/layout/theme pass from this image"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/native-bar-home-dark.png",
+      "sha256": "3df65eefebb32cb92582fd9882171c9d88d26305aa709d8b03e37e9399cfb812",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/native-bar-profile-dark.png",
+      "sha256": "8769233c22503c6524a0069ba1de5a926463f1b597ac0e0a8694808dc7cbefa0",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/official-panel-profile-dark.png",
+      "sha256": "54018ce45e8398180d960174e69f83da64caea6d8212b072fd2523dcb338a1fd",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/native-bar-home-light.png",
+      "sha256": "29b2141dd7d88044398c1a9d775f8555814cd3e76b70a6fea49b8f84715682ca",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/native-bar-profile-light.png",
+      "sha256": "6b5db8383d57f919754ce2c6797bd0d0d4d2a2c63d91cbe160defdf82443a928",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T050029216153Z/official-panel-profile-light.png",
+      "sha256": "de707b7a63577882bd454931359d00733c7c91f7bfaac850856d10b288e1d6fa",
+      "scope": "Private original; may show the dedicated test account",
+      "rootOriginalViewed": true,
+      "visualObservation": "Static original reviewed"
+    }
+  ]
+}

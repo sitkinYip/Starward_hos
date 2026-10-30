@@ -108,7 +108,11 @@ async function manifest() {
     fail('Preview ownership manifest is invalid');
   }
   if (JSON.stringify(await hashes(snapshot)) !== JSON.stringify(value.sourceHashes)) fail('Frozen preview source changed; refusing automatic migration');
-  if (exec('docker', ['image', 'inspect', '--format', '{{.Id}}', image]).trim() !== value.imageId) fail('Preview PB image changed');
+  const images = JSON.parse(exec('docker', ['image', 'inspect', value.imageId]));
+  if (!Array.isArray(images) || images.length !== 1 || images[0].Id !== value.imageId ||
+      images[0].Architecture !== 'arm64' || !Array.isArray(images[0].RepoTags) || !images[0].RepoTags.includes(value.image)) {
+    fail('Immutable preview PB image identity, logical tag or architecture changed');
+  }
   await regular(caFile); await regular(caKey);
   if (digest(await readFile(caFile)) !== value.caSha256) fail('Preview CA changed; explicit reconfiguration and install are required');
   const authority = new X509Certificate(await readFile(caFile));
@@ -144,7 +148,7 @@ function bootstrapSuperuser(value, identity, password, running) {
   const line = ['/pb/pocketbase', 'superuser', 'upsert', identity, password, ...runtime].map(shellLiteral).join(' ') + '\n';
   // Secrets travel on stdin, not Docker argv/ExecConfig or persistent files.
   if (running) { containerInfo(value); exec('docker', ['exec', '-i', value.container, '/bin/sh', '-s'], line); }
-  else exec('docker', ['run', '--rm', '--network=none', ...mounts(), '--entrypoint', '/bin/sh', value.imageId, '-s'], line);
+  else exec('docker', ['run', '-i', '--rm', '--network=none', ...mounts(), '--entrypoint', '/bin/sh', value.imageId, '-s'], line);
 }
 async function api(base, route, { token, body, method = body === undefined ? 'GET' : 'POST' } = {}) {
   const response = await fetch(base + route, { method, headers: { Accept: 'application/json',
@@ -172,6 +176,7 @@ async function withAdmin(value, base, callback, bootstrap) {
   const password = bootstrap?.password || secret();
   if (!bootstrap) bootstrapSuperuser(value, email, password, true);
   const auth = await api(base, '/api/collections/_superusers/auth-with-password', { body: { identity: email, password } });
+  if (auth.record?.email !== email || !/^[a-z0-9]{15}$/.test(auth.record?.id || '')) fail('Temporary superuser authentication did not identify its exact generated record');
   const adminAccount = 'preview_' + randomBytes(8).toString('hex');
   const adminPassword = secret();
   let adminId;
@@ -189,7 +194,22 @@ async function withAdmin(value, base, callback, bootstrap) {
       await api(base, '/api/collections/game_admins/records/' + adminId, { token: auth.token, method: 'PATCH',
         body: { status: 'disabled', password: discarded, passwordConfirm: discarded } });
     }
-    await api(base, '/api/collections/_superusers/records/' + auth.record.id, { token: auth.token, method: 'DELETE' });
+    const users = await api(base, '/api/collections/_superusers/records?perPage=1', { token: auth.token });
+    if (!Number.isSafeInteger(users.totalItems) || users.totalItems < 1 || !Array.isArray(users.items) || users.items.length !== 1) {
+      fail('Temporary superuser cleanup could not establish the exact current collection count');
+    }
+    if (users.totalItems > 1) {
+      await api(base, '/api/collections/_superusers/records/' + auth.record.id, { token: auth.token, method: 'DELETE' });
+      value.bootstrapSuperuserCleanupMethod = 'deleted_temporary_record';
+    } else {
+      // PB0.40.1 forbids deleting the only superuser in its core hook, including
+      // CLI delete. Retire this same record's credential without creating one.
+      if (users.items[0].id !== auth.record.id || users.items[0].email !== email) fail('The sole superuser no longer matches this exact temporary identity');
+      containerInfo(value);
+      const line = ['/pb/pocketbase', 'superuser', 'update', email, secret(), ...runtime].map(shellLiteral).join(' ') + '\n';
+      exec('docker', ['exec', '-i', value.container, '/bin/sh', '-s'], line);
+      value.bootstrapSuperuserCleanupMethod = 'retired_single_password';
+    }
   }
 }
 async function seed(value, base, bootstrap) {
@@ -275,7 +295,7 @@ async function prepare() {
   await mkdir(snapshot, { mode: 0o700 }); await mkdir(data, { mode: 0o700 }); await mkdir(tls, { mode: 0o700 });
   await cp(path.join(backend, 'pb_hooks'), path.join(snapshot, 'pb_hooks'), { recursive: true, errorOnExist: true, force: false });
   await cp(path.join(backend, 'pb_migrations'), path.join(snapshot, 'pb_migrations'), { recursive: true, errorOnExist: true, force: false });
-  const imageId = exec('docker', ['image', 'inspect', '--format', '{{.Id}}', image]).trim();
+  const imageId = exec('docker', ['image', 'inspect', '--format', '{{.Id}}', 'docker.io/library/' + image]).trim();
   if (!/^sha256:[a-f0-9]{64}$/.test(imageId)) fail('The verified own PB image must already be prepared');
   if (!exec('docker', ['run', '--rm', '--network=none', imageId, '--version']).includes(' ' + version)) fail('Unexpected preview PB runtime');
   exec(openssl, ['genpkey', '-algorithm', 'EC', '-pkeyopt', 'ec_paramgen_curve:P-256', '-out', caKey]);

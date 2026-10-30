@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "scope": "Fixed isolated preview direct-login/read-only native smoke",
+  "hapSha256": "c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b",
+  "bindingSha256": {
+    "hap": "c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b",
+    "runtime": "77f6f84e2894cc376594a62afc02dc43af54559bc739fd2584eb0c08612d9527",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "61059c59de2ec4fc964ee01566557dca7e31fc1535d19ae0559529f6897b0460",
+    "hostReadiness": "87b37b96a5f15571577b21c6d4edcd33cd26acd9f3161a205233c6bf6d7b517c",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e"
+  },
+  "checksPassed": 13,
+  "checks": [
+    "Fresh strict Host HTTPS confirms the ordinary fixed preview identity",
+    "Fresh Host assignment list exactly matches the dedicated seeded preview records",
+    "Fixed preview smoke starts at empty native login",
+    "Native login visibly identifies its isolated real HTTPS configuration",
+    "The fixed preview login reaches home without the first-password gate",
+    "All dedicated real preview assignment identities are reachable in native home",
+    "Native profile nickname matches the fresh authoritative preview player",
+    "Native profile shows the fixed preview account as read-only",
+    "Account menu Back returns to the same native profile",
+    "Explicit preview logout returns to both empty login inputs",
+    "The fixed preview login reaches home without the first-password gate",
+    "All dedicated real preview assignment identities are reachable in native home",
+    "The second direct session is left on authenticated home for the reviewer"
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261030T061931715267Z/first-direct-home.png",
+      "sha256": "db5bb83c4d4368859b1291acef988bb8e680d3ad5d504ad2f57add7f4a05f954",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261030T061931715267Z/fixed-preview-profile.png",
+      "sha256": "757bc28842288120b65c03fbe5cfefb7d43e45f5900ccd19553afdbac79e013c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261030T061931715267Z/second-direct-home.png",
+      "sha256": "be3f5eb3fa2b5f7a01d29307de44f030661859f911fac566e10bdf00d05aa49c",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "cleanup": {
+    "firstExplicitLogoutObserved": true,
+    "firstLogoutInputsEmpty": true,
+    "secondDirectLoginObserved": true,
+    "finalStateObserved": true
+  },
+  "leftLoggedInForReview": true,
+  "businessWriteLedgerObserved": false,
+  "writeScope": "Commands only authenticate/read/navigate/logout; no profile-save, password-save, reset or fault control is invoked. No server write-ledger claim.",
+  "appCredentialsPersisted": false,
+  "createdAt": "2026-10-30T06:24:36.186512+00:00"
+}

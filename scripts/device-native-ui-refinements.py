@@ -144,7 +144,7 @@ def exposed(row):
 
 
 class RefinementUI(CORE.ProfileUI):
-    """Keep originals private; inspect actual IME geometry rather than a screen size."""
+    """Keep originals private; measure actual keyboard-constrained App viewports."""
     def __init__(self, state, density, directory, side_panel=False):
         super().__init__(state, density)
         self.output = directory
@@ -154,7 +154,8 @@ class RefinementUI(CORE.ProfileUI):
         self.ime_evidence = []
         self.raw_evidence = []
         self.remote_cleanup_ok = True
-        self.ime_bottom = None
+        self.available_bottom = None
+        self.no_keyboard_baseline = None
         self.main_bar_hidden_observed = False
         self.side_panel = side_panel
 
@@ -240,47 +241,106 @@ class RefinementUI(CORE.ProfileUI):
         # Do not convert a tool failure into a false keyboard result.
         return bool(self.keyboard_windows())
 
+    def profile_root_geometry(self):
+        roots = [node for node in self.flat if node.get('type') == 'root' and node.get('bounds')]
+        profiles = [node for node in self.flat if node.get('id') == 'profile-scroll']
+        require(len(roots) == len(profiles) == 1 and self.find(PANEL_ID) is None,
+                'A unique actual profile root without the account panel is required for keyboard geometry')
+        require(any(node is profiles[0] for node in flatten(roots[0])),
+                'The actual profile Scroll must belong to the measured App root')
+        app, scroll = rect(roots[0]['bounds']), rect(profiles[0].get('bounds'))
+        require(positive(app) and positive(scroll) and inside(scroll, app),
+                'The actual profile Scroll must fit its own positive App root')
+        return app
+
+    @staticmethod
+    def keyboard_geometry(app, baseline, root_boxes, frame, density):
+        require(positive(app) and positive(frame) and inside(app, frame),
+                'Actual App and display geometry must be positive and contained')
+        require(root_boxes, 'Observed input-window roots are required before any keyboard viewport measurement')
+        classifications, usable = [], []
+        for box in root_boxes:
+            valid = (box is not None and positive(box) and inside(box, frame) and box[1] > app[1] and
+                     box[3] - box[1] < (frame[3] - frame[1]) * .85 and
+                     box[2] - box[0] >= (app[2] - app[0]) * .5)
+            classifications.append('direct_ime_geometry' if valid else 'rejected_full_screen_or_ambiguous_root')
+            if valid:
+                usable.append(box)
+        require(len(usable) <= 1, 'Multiple plausible IME rectangles remain ambiguous')
+        if usable:
+            box = usable[0]
+            available = [app[0], app[1], app[2], min(app[3], box[1])]
+            require(positive(available), 'The actual IME rectangle leaves no positive App viewport')
+            return {'measurementMode': 'direct_ime_window', 'imeWindowBoundsPx': box,
+                'imeWindowHeightVp': (box[3] - box[1]) / density,
+                'availableViewportPx': available, 'availableViewportHeightVp': (available[3] - available[1]) / density,
+                'rootClassifications': classifications, 'appViewportReductionPx': None}
+        require(isinstance(baseline, list) and len(baseline) == 4 and positive(baseline),
+                'A real same-profile no-keyboard App-root baseline is required for RESIZE measurement')
+        require(inside(baseline, frame) and app[:3] == baseline[:3] and app[3] < baseline[3],
+                'The actual App root must retain its origin and width and become strictly shorter with IME observed')
+        return {'measurementMode': 'actual_resized_app_viewport', 'imeWindowBoundsPx': None,
+            'imeWindowHeightVp': None, 'availableViewportPx': app,
+            'availableViewportHeightVp': (app[3] - app[1]) / density,
+            'noKeyboardAppRootPx': baseline, 'appViewportReductionPx': baseline[3] - app[3],
+            'appViewportReductionVp': (baseline[3] - app[3]) / density,
+            'rootClassifications': classifications,
+            'quantityMeaning': 'Observed App-root RESIZE reduction; not a measured IME-window height'}
+
     def actual_ime(self, label):
         self.main_bar_hidden_observed = False
         self.capture()
-        app = self.app_rect()
+        app = self.profile_root_geometry()
+        frame_roots = self.tree if isinstance(self.tree, list) else [self.tree]
+        frame = next((rect(node['bounds']) for node in frame_roots if node.get('bounds')), None)
+        require(frame is not None and positive(frame), 'The actual captured display wrapper is unavailable')
         windows, raw = self.windows()
-        candidates = [item for item in windows if any(part in str(item.get('name', '')).lower()
-            for part in ('inputmethod', 'input_method', 'keyboard', 'hmosime'))]
-        require(len(candidates) == 1, 'Exactly one actual IME window is required for this straight-phone check')
-        window_id = str(candidates[0].get('id', ''))
-        require(re.fullmatch(r'\d+', window_id) is not None, 'The observed IME window id is invalid')
-        # Read the observed system IME root only, without key/suggestion subtrees.
-        layout = self.run('devecocli', 'ui', 'layout', '--window', window_id,
-                          '--format', 'json', '--mode', 'full', '--depth', '1')
-        data = json.loads(layout)
-        roots = data if isinstance(data, list) else [data]
-        bounds = [rect(item.get('bounds')) for item in roots if item.get('bounds')]
-        require(len(bounds) == 1, 'An unambiguous actual IME root rectangle is required')
-        box = bounds[0]
-        require(positive(box) and box[1] > app[1] and box[3] - box[1] < self.height * .85 and
-                box[2] - box[0] >= (app[2] - app[0]) * .5,
-                'A full-screen or ambiguous rectangle cannot stand in for the actual IME viewport')
-        self.ime_bottom = box[1]
         windows_path = self.output / ('windows-' + label + '-' + uuid.uuid4().hex + '.json')
-        ime_path = self.output / ('ime-root-' + label + '-' + uuid.uuid4().hex + '.json')
         self.persist_raw(windows_path, raw)
-        self.persist_raw(ime_path, layout)
-        record = {'label': label, 'boundsPx': box, 'heightVp': (box[3] - box[1]) / self.density,
-            'source': 'Actual named IME window from official CLI inventory, root-only layout',
+        candidates = [item for item in windows if item.get('displayId') == 0 and any(
+            part in str(item.get('name', '')).lower() for part in ('inputmethod', 'input_method', 'keyboard', 'hmosime'))]
+        record = {'label': label, 'measurementMode': 'not_yet_measured', 'observedImeCandidates': len(candidates),
             'privateInventory': {'file': str(windows_path.relative_to(ROOT)), 'sha256': sha(windows_path)},
-            'privateRoot': {'file': str(ime_path.relative_to(ROOT)), 'sha256': sha(ime_path)}}
+            'currentAppRootPx': app, 'windowRootMeasurements': [],
+            'source': 'Own foreground/profile roots and observed official primary-display input-window metadata'}
         self.ime_evidence.append(record)
+        require(candidates, 'An observed primary-display IME window is required before measuring the available App viewport')
+        root_boxes, identifiers = [], set()
+        for candidate in candidates:
+            window_id = str(candidate.get('id', ''))
+            require(re.fullmatch(r'\d+', window_id) is not None and window_id not in identifiers,
+                    'Observed input-window identifiers must be valid and unique')
+            identifiers.add(window_id)
+            # Root-only reads deliberately exclude keyboard keys and suggestions.
+            layout = self.run('devecocli', 'ui', 'layout', '--window', window_id,
+                              '--format', 'json', '--mode', 'full', '--depth', '1')
+            data = json.loads(layout)
+            roots = data if isinstance(data, list) else [data]
+            bounds = [rect(item.get('bounds')) for item in roots if item.get('bounds')]
+            box = bounds[0] if len(bounds) == 1 else None
+            root_boxes.append(box)
+            path = self.output / ('ime-root-' + label + '-' + uuid.uuid4().hex + '.json')
+            self.persist_raw(path, layout)
+            record['windowRootMeasurements'].append({'rootBoundsPx': box,
+                'privateRoot': {'file': str(path.relative_to(ROOT)), 'sha256': sha(path)}})
+        baseline = self.no_keyboard_baseline
+        measured = self.keyboard_geometry(app, baseline['boundsPx'] if baseline else None, root_boxes, frame, self.density)
+        record.update(measured)
+        if baseline:
+            record['noKeyboardBaseline'] = baseline
+        self.available_bottom = measured['availableViewportPx'][3]
+        # Input-window reads must not substitute a changed or foreign App tree.
         self.capture()
+        require(self.profile_root_geometry() == app, 'The measured own-App keyboard viewport changed before use')
         return record
 
     def viewport(self, node_id=None):
         # A hidden native bar may remain in a CLI tree with original bounds.
         # Bypass the old bar clipping only after its raw hidden state is observed.
-        bounds = (CORE.DeviceUI.viewport(self, node_id) if self.ime_bottom is not None and
+        bounds = (CORE.DeviceUI.viewport(self, node_id) if self.available_bottom is not None and
                   self.main_bar_hidden_observed else super().viewport(node_id))
-        if self.ime_bottom is not None:
-            bounds[3] = min(bounds[3], self.ime_bottom)
+        if self.available_bottom is not None:
+            bounds[3] = min(bounds[3], self.available_bottom)
         elif any(node.get('id') in ('current-scroll', 'history-scroll')
                  for node in self.path_to(node_id) or []):
             bar_path = self.path_to('nav-home')
@@ -292,10 +352,28 @@ class RefinementUI(CORE.ProfileUI):
 
     def hide_keyboard(self):
         # Refuse to send Back to another foreground app or a system screen.
+        previous = self.no_keyboard_baseline
+        self.no_keyboard_baseline = None
         self.capture()
         super().hide_keyboard()
-        self.ime_bottom = None
+        self.available_bottom = None
         self.main_bar_hidden_observed = False
+        self.capture()
+        if self.find('profile-scroll') is not None and self.find(PANEL_ID) is None:
+            # A baseline is local to this live profile page and genuinely absent
+            # IME. Never use the display wrapper or another page as its height.
+            require(not self.keyboard_visible(), 'The profile baseline still has an observed IME window')
+            if previous:
+                self.wait(lambda ui: ui.profile_root_geometry() == previous['boundsPx'],
+                          'actual profile App root restores after keyboard dismissal', timeout=12)
+            app = self.profile_root_geometry()
+            path = self.output / ('no-keyboard-profile-root-' + uuid.uuid4().hex + '.json')
+            sample = {'type': 'root', 'bounds': app,
+                'scope': 'Extracted actual own-profile typed-root geometry after observed IME absence; descendants omitted'}
+            self.persist_raw(path, json.dumps(sample, ensure_ascii=False))
+            self.no_keyboard_baseline = {'boundsPx': app,
+                'sourceRoot': {'file': str(path.relative_to(ROOT)), 'sha256': sha(path)},
+                'sourcePage': 'profile', 'observedImeAbsent': True}
 
     def swipe(self, direction):
         self.capture()
@@ -861,7 +939,7 @@ class Acceptance:
             if self.ui.find(node_id) is not None and positive(rect(self.ui.find(node_id).get('bounds'))) and
             not any(row.get('id') == node_id and row.get('visible') == 'false' for row in related)]
         self.check(not exposed_rows and not unresolved_cli,
-            'The actual IME viewport exposes no native main bar or navigation hit targets', 'IME')
+            'The actual keyboard-constrained App viewport exposes no native main bar or navigation hit targets', 'IME')
         self.ui.main_bar_hidden_observed = True
         return {'nativeMainNodes': len(related), 'exposedNativeMainNodes': len(exposed_rows),
             'sourceRawSha256': evidence.get('sha256'), 'directTapIntoIme': False,
@@ -872,7 +950,7 @@ class Acceptance:
         bounds, view = action['bounds'], self.ui.viewport(node_id)
         require(self.ui.keyboard_visible(), 'The keyboard disappeared before the whole-action measurement')
         self.check(bounds[3] - bounds[1] >= 52 * self.ui.density - 2 and inside(bounds, view),
-                   'The complete52vp primary action is inside the actual IME-clipped interaction viewport', 'IME')
+                   'The complete52vp primary action is inside the measured keyboard-constrained App interaction viewport', 'IME')
         self.session['geometry'].append({'label': label, 'nodeId': node_id, 'boundsPx': bounds,
             'interactionViewportPx': view, 'heightVp': (bounds[3] - bounds[1]) / self.ui.density})
         self.take(label)
@@ -900,7 +978,7 @@ class Acceptance:
         self.ui.fill_without_dismiss('profile-name', draft)
         self.ui.wait(lambda u: u.keyboard_visible(), 'actual nickname IME window after input')
         ime = self.ui.actual_ime('nickname')
-        self.check(ime['heightVp'] > 0, 'An actual positive-height IME window is observed for nickname editing', 'IME')
+        self.check(ime['availableViewportHeightVp'] > 0, 'An observed IME has a measured actual available App viewport for nickname editing', 'IME')
         hidden = self.hidden_bar('nickname-bar-hidden')
         self.session['observations'].append({'case': 'IME', 'label': 'nickname-hidden-bar', **hidden})
         self.whole_action('profile-save', 'nickname-ime-whole-save')
@@ -921,7 +999,7 @@ class Acceptance:
         self.ui.run('devecocli', 'ui', 'click', '--id', PASSWORD_IDS[-1])
         self.ui.wait(lambda u: u.keyboard_visible(), 'actual security IME window after focus')
         ime = self.ui.actual_ime('security-confirm')
-        self.check(ime['heightVp'] > 0, 'An actual positive-height IME window is observed for password editing', 'IME')
+        self.check(ime['availableViewportHeightVp'] > 0, 'An observed IME has a measured actual available App viewport for password editing', 'IME')
         hidden = self.hidden_bar('security-bar-hidden')
         self.session['observations'].append({'case': 'IME', 'label': 'security-hidden-bar', **hidden})
         self.whole_action('security-save', 'security-ime-whole-save')
@@ -930,7 +1008,7 @@ class Acceptance:
         while self.ui.keyboard_visible() and time.monotonic() < deadline:
             time.sleep(.1)
         require(not self.ui.keyboard_visible(), 'The first actual Back did not dismiss IME')
-        self.ui.ime_bottom = None
+        self.ui.available_bottom = None
         self.ui.main_bar_hidden_observed = False
         self.bar_restored('security-ime-bar-restored')
         observed, _ = self.destination('security-first-back')
@@ -967,6 +1045,12 @@ class Acceptance:
         self.check(True, 'Four new-HAP home/profile originals after theme requests are captured for separate icon/material review', 'CAPTURE')
 
     def cleanup(self):
+        # Every explicit recovery is a new observation, even if an earlier
+        # cleanup of this session had succeeded before an external UI probe.
+        for key in ('themeRestoredToSystem', 'loggedOut', 'loginInputsEmpty', 'noBusinessWrites'):
+            self.session['cleanup'][key] = False
+        self.session['writeDelta'] = None
+        self.save()
         self.ui.hide_keyboard()
         self.ui.capture()
         self.theme('system')

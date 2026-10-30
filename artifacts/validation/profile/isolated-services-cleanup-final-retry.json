@@ -1,0 +1,24 @@
+{
+  "status": "incomplete",
+  "scope": "Only current disposable TLS/gate/backend/container/database/state lifecycle cleanup",
+  "startedAt": "2026-10-30T05:37:16.410065+00:00",
+  "finishedAt": "2026-10-30T05:37:16.761146+00:00",
+  "checks": {},
+  "officialTlsStopRequested": false,
+  "officialBackendStopRequested": false,
+  "helperSha256": "bddb1b8063b8bf19275c1f719f92b79c9f9bb4afee0bf4b0ab82af66eebe90ca",
+  "privateDraftSha256": "4d16bd6ea5e79452062a0293d127179bdd92cd4c9628892f7a8ab1dc8f94b869",
+  "mutatorSourceSha256": {
+    "scripts/isolated-tls.mjs": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "scripts/isolated-backend.mjs": "4cd054d67565a32a1512e58f92705f0adbae3ed2a75cb04a730ff28deb14a01a",
+    "scripts/isolated-response-gate.mjs": "c5dbb8bb6df3531ac34742751908c203f00a4bfda6fb6a19c7d227255185b9c7",
+    "scripts/prepare-isolation-harness.mjs": "08fd804e41036d3ebce5b08b5fdf338b2d6fad2ab6c6f72feb078f244d60f2d1",
+    "artifacts/private/https-isolation/harness/server.mjs": "95ecec3f10e5c6b526332e21c269421fc053045b159550fcb7270489ecf517e4"
+  },
+  "containerIdentitySha256": null,
+  "previewEnvironmentTouched": false,
+  "forceKillOrBroadDockerCleanup": false,
+  "backupsAndHistoricalPrivateCredentialsCleaned": false,
+  "remainingScope": "Root separately reviews/removes exact TLS backup materials and historical private credentials; no whole-environment cleanup claim",
+  "failure": "The exact disposable container image, mounts or loopback binding does not match the current epoch"
+}

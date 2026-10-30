@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "scope": "Only five SHA-verified owned avatar test-media URIs and their exact temporary exports",
+  "updatedAt": "2026-10-30T05:35:48.543623+00:00",
+  "driverSha256": "edbe7cd2bea157c98d368b1149ad3aa325709e10512d49d00ea2dcae98420a0c",
+  "privatePlanSha256": "68632b8d4bddd15a76c5ac7406eea87b028d30a7d06f7d460c217ba808ef0d80",
+  "fixtureCount": 5,
+  "connectedTargetCount": 1,
+  "identifiersPersisted": false,
+  "noApplicationOrServiceChanges": true,
+  "entries": [
+    {
+      "kind": "main-png",
+      "fixtureSha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+      "bytes": 4244,
+      "freshMediaReadbackSha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+      "mediaDeleted": true,
+      "queryAfterCount": 0,
+      "exactTemporaryExports": 2,
+      "allExactExportsAbsent": true
+    },
+    {
+      "kind": "oversize-png",
+      "fixtureSha256": "b52f7eab739f47dcb1389b191125f0b93e66222c9588f90949d818535ee9afd7",
+      "bytes": 52428801,
+      "freshMediaReadbackSha256": "b52f7eab739f47dcb1389b191125f0b93e66222c9588f90949d818535ee9afd7",
+      "mediaDeleted": true,
+      "queryAfterCount": 0,
+      "exactTemporaryExports": 2,
+      "allExactExportsAbsent": true
+    },
+    {
+      "kind": "unsupported-gif",
+      "fixtureSha256": "18657257b2652ae8adb2626ba8bdf35579bb3008790928aef453b4012fbceb60",
+      "bytes": 3590,
+      "freshMediaReadbackSha256": "18657257b2652ae8adb2626ba8bdf35579bb3008790928aef453b4012fbceb60",
+      "mediaDeleted": true,
+      "queryAfterCount": 0,
+      "exactTemporaryExports": 2,
+      "allExactExportsAbsent": true
+    },
+    {
+      "kind": "jpeg-exif6",
+      "fixtureSha256": "ac6d357a9077f1bb8ec626df6e516304fff0912e31c6b0877fafbb3d855742ef",
+      "bytes": 112117,
+      "freshMediaReadbackSha256": "ac6d357a9077f1bb8ec626df6e516304fff0912e31c6b0877fafbb3d855742ef",
+      "mediaDeleted": true,
+      "queryAfterCount": 0,
+      "exactTemporaryExports": 2,
+      "allExactExportsAbsent": true
+    },
+    {
+      "kind": "webp-rgb",
+      "fixtureSha256": "32716d284a2c910d7a99c55bff7e5e3cd441e4349864ebd269953109be49b7b9",
+      "bytes": 604,
+      "freshMediaReadbackSha256": "32716d284a2c910d7a99c55bff7e5e3cd441e4349864ebd269953109be49b7b9",
+      "mediaDeleted": true,
+      "queryAfterCount": 0,
+      "exactTemporaryExports": 2,
+      "allExactExportsAbsent": true
+    }
+  ]
+}

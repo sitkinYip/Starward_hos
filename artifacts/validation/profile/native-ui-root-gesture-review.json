@@ -1,0 +1,66 @@
+{
+  "status": "automated_native_release_selection_verified",
+  "createdAt": "2026-10-30T05:29:26.072812+00:00",
+  "scope": "This API26 phone/current6a floating native TabBar: released official swipe and native pre-longpress drag in both directions",
+  "sourceReport": {
+    "file": "artifacts/validation/profile/native-ui-refinements-drag.json",
+    "sha256": "7918b8195b740f9f519124645bae43209fbb2720cd759c992ab9ea5594db4c70"
+  },
+  "hapSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90",
+  "automatedGestureOutcomes": [
+    {
+      "gestureKind": "swipe",
+      "direction": "home-to-profile",
+      "actualEndDestination": "profile",
+      "nativeFinalIndex": 3,
+      "targetSelectionObserved": true,
+      "fallbackTargetClick": false
+    },
+    {
+      "gestureKind": "swipe",
+      "direction": "profile-to-home",
+      "actualEndDestination": "home",
+      "nativeFinalIndex": 0,
+      "targetSelectionObserved": true,
+      "fallbackTargetClick": false
+    },
+    {
+      "gestureKind": "drag",
+      "direction": "home-to-profile",
+      "actualEndDestination": "profile",
+      "nativeFinalIndex": 3,
+      "targetSelectionObserved": true,
+      "fallbackTargetClick": false
+    },
+    {
+      "gestureKind": "drag",
+      "direction": "profile-to-home",
+      "actualEndDestination": "home",
+      "nativeFinalIndex": 0,
+      "targetSelectionObserved": true,
+      "fallbackTargetClick": false
+    }
+  ],
+  "verifiedOutcomeCount": 4,
+  "rootEndStateOriginalsViewed": 4,
+  "endStateIcons": "Each destination and matching filled selected icon are visible in the four original end-state screenshots",
+  "oldObservationsOrBusinessChecksInherited": false,
+  "newCommandsExecutedByThisReview": 0,
+  "businessWriteDelta": {
+    "profilePatch": 0,
+    "passwordPost": 0
+  },
+  "cleanup": {
+    "themeRestoredToSystem": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "noBusinessWrites": true,
+    "remoteDumpsRemoved": true,
+    "logStopped": true
+  },
+  "limits": [
+    "End-state originals and callback logs do not prove the visible moving light or tactile feel. Manual review remains separate.",
+    "No unlifted hover/cancel/interrupted gesture or reduced-animation setting acceptance.",
+    "These are observations on the fixed current phone/SDK, not a callback ordering guarantee for all systems."
+  ]
+}

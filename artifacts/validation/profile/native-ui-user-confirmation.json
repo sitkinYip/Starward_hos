@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "status": "user_confirmed",
+  "recordedAt": "2026-10-30T06:33:06.726306+00:00",
+  "evidenceType": "Explicit user reply to the manual review question in this conversation",
+  "sourceQuestionItemId": "[\"request_user_input_async\",\"call_b073001f71df4c68835263d175543d9e\",0]",
+  "question": "手机已留在固定预览账号中，自动化已停止。方便时请手动拖动悬浮底栏，在「启程」与「护照」之间松手切换，并打开头像侧栏：跟手光感、松手选中和侧栏进出方向是否符合你的预期？",
+  "userAnswer": "符合预期",
+  "confirmed": [
+    "Floating bottom bar touch-follow light meets user expectations",
+    "Drag and release selection between 启程 and 护照 meets user expectations",
+    "Avatar side panel entry/exit direction meets user expectations"
+  ],
+  "context": {
+    "lastInstalledHapAtHandoffSha256": "c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b",
+    "packageSourceBindingReport": "artifacts/validation/profile/preview-package-source-binding.json",
+    "packageSourceBindingReportSha256": "19cf9511b823b3e4d19e1327dadef825ed068eda74ab7443cd3da3cade8bede8",
+    "nativePreviewHandoffReport": "artifacts/validation/profile/preview-native-smoke.json",
+    "nativePreviewHandoffReportSha256": "c63aed805a9c218a0589366a623fe91a8d0bfd5b9acb2da16315978307054751",
+    "secondDirectSessionLeftAtHome": true,
+    "appVersionNotReinspectedForThisReply": true
+  },
+  "newRootPhoneActions": 0,
+  "rootPersonallyObservedMotion": false,
+  "historicalReportsModified": false,
+  "limitations": [
+    "The confirmation is the user manual observation in the handed-off preview context; it is not a new automated test or Root motion recording.",
+    "It does not establish haptic feedback, cancellation/interruption, reduced-animation settings, every theme/platform or foldable coverage.",
+    "It does not establish preview stop/restart persistence or behavior after a user-initiated password change."
+  ],
+  "newUiAutomationCommands": 0
+}

@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "scope": "Current6a SidePanel host: one real own-PNG crop preview/cancel regression only",
+  "hapSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90",
+  "runtimeSha256": "66c45cbe66f9e525d9337e03c4c0925203ffbbca02b31b14e579eebdbd190a9d",
+  "mainPrerequisiteSha256": "67f2c8d7a2deb0d2cd6f2bf42d7a1da50c6be1be01fad8755d292e245fa5e1ba",
+  "buildManifestSha256": "0f6c1af2aed76609677a45bbc48205b37f26f4186c4afd6af5a621bb8bb24483",
+  "driverSha256": "adf8dca92b0e91181dec5f24fd170b93dcf17f618ee4ade33f3997bffe60550f",
+  "credentialEpochOnly": true,
+  "oldUiChecksInherited": false,
+  "checks": [
+    "Regression starts at empty current6a login",
+    "Native profile starts at the authoritative saved nickname",
+    "No pending avatar exists before the independent crop cancellation",
+    "The current SidePanel host presents the complete real square crop preview without a crop error",
+    "Cancel returns to the unchanged nickname editor",
+    "Cancel leaves no pending avatar draft",
+    "Fresh HTTPS confirms avatar and nickname unchanged after cancel",
+    "Regression logout clears both login inputs",
+    "Restoring follow-system produces no theme error",
+    "The independent crop-cancel round issues zero profile PATCH/password POST writes"
+  ],
+  "count": 10,
+  "cleanup": {
+    "cropCancelled": true,
+    "profileUnchanged": true,
+    "noPendingAvatar": true,
+    "authoritativeUnchanged": true,
+    "noBusinessWrites": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "themeRestoredToSystem": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-validation/current-ui-crop-cancel/capture-20261030T052803096224Z/current6a-crop-preview.png",
+      "sha256": "dd9421acc562c02b4c77db3883620a42b6af2789f3201ce4bb76c3e2fe0355c2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-validation/current-ui-crop-cancel/capture-20261030T052803096224Z/current6a-profile-after-cancel.png",
+      "sha256": "6193d2ef36f2da228485910878b6b907dd5f63fbfd6e31b84dec5790f6cccbe8",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "selectionEvidence": {
+    "rawSha256": "90cd675ebc201d8852d94a37fa861cfed2708039addf7423c8ec24eb440e4ef9",
+    "privateEvidence": "artifacts/private/profile-picker/selection-20261030T052959757330Z",
+    "fixtureSha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+    "oneNewOwnSelectionVerified": true
+  },
+  "businessWriteDelta": {
+    "profilePatch": 0,
+    "passwordPost": 0
+  },
+  "themeRestoreObservation": {
+    "requestSent": true,
+    "controlAvailable": true,
+    "selectionObservable": false,
+    "selectionFlags": {},
+    "dynamicSystemModeFollowing": "outside_this_crop_smoke"
+  },
+  "requestedTheme": "light",
+  "visualReview": "pending_root_original_review",
+  "noCropConfirmOrUploadInvoked": true
+}

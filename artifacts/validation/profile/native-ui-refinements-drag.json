@@ -1,0 +1,617 @@
+{
+  "status": "observed",
+  "stage": "gesture-finished-root-review-pending",
+  "scope": "Independent official injected native-bar gesture observation",
+  "startedAt": "2026-10-30T05:19:46.602945+00:00",
+  "updatedAt": "2026-10-30T05:24:53.819454+00:00",
+  "environment": "Original disposable S2 player over strict USB HTTPS; no fixed preview player",
+  "hap": {
+    "packagedSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-ui-final-nav.json",
+    "sha256": "66c45cbe66f9e525d9337e03c4c0925203ffbbca02b31b14e579eebdbd190a9d"
+  },
+  "sourceBinding": {
+    "baseHapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "patchSha256": "4b0cf5bbf0a37398181ca30ad5bc9d38cc121b99c720c39d92d6308c3fc5453d",
+    "patchManifestSha256": "830e4aa03223c20714f9a9bcc65cb7aa7039301d81484ad15cc2cc90aa4707bd",
+    "businessSourcesUnchanged": true,
+    "oldUiChecksInherited": false,
+    "configurationTimeoutMs": 15000,
+    "newUiSources": [
+      {
+        "file": "entry/src/main/ets/ui/StarwardSidePanel.ets",
+        "sha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16"
+      }
+    ],
+    "accountMenuContainer": "official_prompt_action_side_panel"
+  },
+  "credentialEpochOnly": {
+    "coreSha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "s2Sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "privateOwnerWitnessSha256": "54693c1d4073b4633f232b8682898d75f19ea2500c5b86d7e8549feb31211b8c",
+    "newPasswordKey": "newPassword",
+    "freshHttpsIdentityCheck": true
+  },
+  "driver": {
+    "file": "scripts/device-native-ui-refinements.py",
+    "sha256": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "profileUiHelperSha256": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818"
+  },
+  "count": 2,
+  "checks": [
+    {
+      "case": "LOGIN",
+      "label": "The new HAP starts at empty login in the original disposable HTTPS environment"
+    },
+    {
+      "case": "LOGIN",
+      "label": "The original S2 password reaches home without a forced-password write"
+    }
+  ],
+  "observations": [],
+  "geometry": [],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/gesture-swipe-home-to-profile.png",
+      "sha256": "20cc05fc7c29e6787c7a50191980fcdc0a83e3ed45d7c4cde92c95833d7a43d4",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/gesture-swipe-profile-to-home.png",
+      "sha256": "9613745f0bcc91c6447301f071a509ddd5b28237ccfe584bb880fa601f07ecb7",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/gesture-drag-home-to-profile.png",
+      "sha256": "a18c6408da00ef22f303c7fb709a266bd4516c503549304184870fb6f46a036f",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/gesture-drag-profile-to-home.png",
+      "sha256": "f4a79aae4c652b63708822e9a351b137bf7fb8c3bef7c574f3ac8e19236f750e",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateTrees": [
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/ui-gesture-swipe-home-to-profile-df7ff5c4e2d84dcaa7df4ddb63bb8e03.json",
+      "sha256": "296868b79afb3cbdc22b28b14f231a12800e9e2859a9b6b58d296daf4ae788d1",
+      "source": "Official CLI full tree; input credential literals checked absent"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/ui-gesture-swipe-profile-to-home-ad664977257d484b80f35307f1f019d1.json",
+      "sha256": "c134752e4978ba33ca2d4bd0b735d7f6119f46aad21e34d46c6346afda20411a",
+      "source": "Official CLI full tree; input credential literals checked absent"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/ui-gesture-drag-home-to-profile-ec7c663a932f46ed893675135c5c2b36.json",
+      "sha256": "296868b79afb3cbdc22b28b14f231a12800e9e2859a9b6b58d296daf4ae788d1",
+      "source": "Official CLI full tree; input credential literals checked absent"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/ui-gesture-drag-profile-to-home-ced88e17facf428dbf18cd47d9a05426.json",
+      "sha256": "c134752e4978ba33ca2d4bd0b735d7f6119f46aad21e34d46c6346afda20411a",
+      "source": "Official CLI full tree; input credential literals checked absent"
+    }
+  ],
+  "rawEvidence": [
+    {
+      "label": "initial-login-panel-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-initial-login-panel-absent-a1d346effb7d4df1aba6b15950815473.json",
+      "remoteRemoved": true,
+      "sha256": "381529579b91676a38289fea70021b40931a794da276b50806472c4cb4f95e39"
+    },
+    {
+      "label": "ordinary-login-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-ordinary-login-home-8ba8702f043e43e4a1515fafca5dbaf7.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-destination-home-e0d06727d7b74291ba669d20732bab4d.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "swipe-home-to-profile-before",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-swipe-home-to-profile-before-62cba9509f094d99b1f29c6eebe53562.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "swipe-home-to-profile-after",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-swipe-home-to-profile-after-b910f8b5608744a3a2482c996714fa70.json",
+      "remoteRemoved": true,
+      "sha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-destination-profile-4e8fb28bcfff483fb34c7806a6a7c8c7.json",
+      "remoteRemoved": true,
+      "sha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4"
+    },
+    {
+      "label": "swipe-profile-to-home-before",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-swipe-profile-to-home-before-03c1fafd82a043b1815857d9d25a0ef6.json",
+      "remoteRemoved": true,
+      "sha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4"
+    },
+    {
+      "label": "swipe-profile-to-home-after",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-swipe-profile-to-home-after-36fb66377fe348689214d5a54fee0d36.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-destination-home-a5b99948bcc34a34bee5c1a7a045befb.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "drag-home-to-profile-before",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-drag-home-to-profile-before-6a6abfcd25244a2fa3a809f32c80a899.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "drag-home-to-profile-after",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-drag-home-to-profile-after-428c95eb17c1495bb6b1c8df46db3bd7.json",
+      "remoteRemoved": true,
+      "sha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-destination-profile-4742ae0fdac54a1492e64d217a1818f1.json",
+      "remoteRemoved": true,
+      "sha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4"
+    },
+    {
+      "label": "drag-profile-to-home-before",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-drag-profile-to-home-before-a7e9c966e4d947c9983299703b34b9d8.json",
+      "remoteRemoved": true,
+      "sha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4"
+    },
+    {
+      "label": "drag-profile-to-home-after",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-drag-profile-to-home-after-c55008213e7e45dcae8c799ce8c1d612.json",
+      "remoteRemoved": true,
+      "sha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19"
+    },
+    {
+      "label": "theme-after-configuration",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-theme-after-configuration-eceacddf10644ddcb532078747f8e3cb.json",
+      "remoteRemoved": true,
+      "sha256": "a33d6f637f79e0a718f9fc14fd5c5a312b7c85a1279dd509084b87a97cedd536"
+    },
+    {
+      "label": "theme-menu-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-theme-menu-dismissed-c98860ae2cf6486c83278d732aef9668.json",
+      "remoteRemoved": true,
+      "sha256": "621f85cf712c51a852cc88865f8739d52430ce145ff17e81dbc515c314ee6e7c"
+    },
+    {
+      "label": "logout-panel-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/raw-logout-panel-dismissed-8205943223dc4e37a84f28cc5b420ba0.json",
+      "remoteRemoved": true,
+      "sha256": "dad95960a65248fafffcc724f967d714f6ccc7d71c1332b08383d3bf711ad83c"
+    }
+  ],
+  "imeEvidence": [],
+  "themeActions": [
+    {
+      "requested": "system",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_review"
+    }
+  ],
+  "visualReview": "pending_root_original_image_review",
+  "dragObservations": [
+    {
+      "direction": "home-to-profile",
+      "gestureKind": "swipe",
+      "status": "observed",
+      "initiatedAt": "2026-10-30T05:21:19.644709+00:00",
+      "sourceDestination": "home",
+      "requestedTarget": "profile",
+      "officialInjectedGesturePx": [
+        [
+          274,
+          2626
+        ],
+        [
+          1044,
+          2626
+        ]
+      ],
+      "officialCliCommand": [
+        "devecocli",
+        "ui",
+        "swipe",
+        "274",
+        "2626",
+        "1044",
+        "2626",
+        "--speed",
+        "600"
+      ],
+      "speedPxPerSecond": 600,
+      "preDragLongPress": "not_requested",
+      "nativeBarBoundsPx": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "sourceRawSha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19",
+      "privateLogFile": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-0cdb80ebe0b1484bbfe964bf65137e69.log",
+      "measuredOffsetBytes": 432,
+      "productCustomGestureUsed": false,
+      "targetClickFallbackUsed": false,
+      "observedAt": "2026-10-30T05:21:33.818732+00:00",
+      "preparation": "Separate normal native click establishes the source before log offset",
+      "actualEndDestination": "profile",
+      "destinationChangedToTarget": true,
+      "officialCallbackWrapperEvents": [
+        {
+          "kind": "click",
+          "index": 3,
+          "active": 0,
+          "param": 0
+        },
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 3,
+          "active": 0,
+          "param": 0
+        },
+        {
+          "kind": "intent",
+          "index": 3,
+          "param": 0
+        },
+        {
+          "kind": "param",
+          "selected": 3,
+          "active": 0
+        },
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 3,
+          "active": 3,
+          "param": 3
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "active": 3,
+          "param": 3
+        }
+      ],
+      "endRawSha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4",
+      "privateLog": {
+        "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-0cdb80ebe0b1484bbfe964bf65137e69.log",
+        "sha256": "c028cc3c84b4883552910ebe71aaec1d978517446a1161531e370aa2491c65eb",
+        "measuredOffsetBytes": 432
+      },
+      "capabilityAcceptance": "Root must distinguish injection outcome, manual gesture and official support"
+    },
+    {
+      "direction": "profile-to-home",
+      "gestureKind": "swipe",
+      "status": "observed",
+      "initiatedAt": "2026-10-30T05:22:02.050343+00:00",
+      "sourceDestination": "profile",
+      "requestedTarget": "home",
+      "officialInjectedGesturePx": [
+        [
+          1044,
+          2626
+        ],
+        [
+          274,
+          2626
+        ]
+      ],
+      "officialCliCommand": [
+        "devecocli",
+        "ui",
+        "swipe",
+        "1044",
+        "2626",
+        "274",
+        "2626",
+        "--speed",
+        "600"
+      ],
+      "speedPxPerSecond": 600,
+      "preDragLongPress": "not_requested",
+      "nativeBarBoundsPx": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "sourceRawSha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4",
+      "privateLogFile": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-a22cd08a37c4417da399c2c7055d9087.log",
+      "measuredOffsetBytes": 1552,
+      "productCustomGestureUsed": false,
+      "targetClickFallbackUsed": false,
+      "observedAt": "2026-10-30T05:22:16.403963+00:00",
+      "preparation": "Separate normal native click establishes the source before log offset",
+      "actualEndDestination": "home",
+      "destinationChangedToTarget": true,
+      "officialCallbackWrapperEvents": [
+        {
+          "kind": "click",
+          "index": 0,
+          "active": 3,
+          "param": 3
+        },
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "active": 3,
+          "param": 3
+        },
+        {
+          "kind": "intent",
+          "index": 0,
+          "param": 3
+        },
+        {
+          "kind": "param",
+          "selected": 0,
+          "active": 3
+        },
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "active": 0,
+          "param": 0
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "active": 0,
+          "param": 0
+        }
+      ],
+      "endRawSha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19",
+      "privateLog": {
+        "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-a22cd08a37c4417da399c2c7055d9087.log",
+        "sha256": "b8d4751cb58fb8a6f88a511d4b192354f53617df86322cdb623d0bf610c9e99e",
+        "measuredOffsetBytes": 1552
+      },
+      "capabilityAcceptance": "Root must distinguish injection outcome, manual gesture and official support"
+    },
+    {
+      "direction": "home-to-profile",
+      "gestureKind": "drag",
+      "status": "observed",
+      "initiatedAt": "2026-10-30T05:22:44.979942+00:00",
+      "sourceDestination": "home",
+      "requestedTarget": "profile",
+      "officialInjectedGesturePx": [
+        [
+          274,
+          2626
+        ],
+        [
+          1044,
+          2626
+        ]
+      ],
+      "officialCliCommand": [
+        "devecocli",
+        "ui",
+        "drag",
+        "274",
+        "2626",
+        "1044",
+        "2626",
+        "--speed",
+        "600"
+      ],
+      "speedPxPerSecond": 600,
+      "preDragLongPress": "native_default_duration_not_measured",
+      "nativeBarBoundsPx": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "sourceRawSha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19",
+      "privateLogFile": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-d8a49b349ad042b1bd2f2c78f22ef5ed.log",
+      "measuredOffsetBytes": 2551,
+      "productCustomGestureUsed": false,
+      "targetClickFallbackUsed": false,
+      "observedAt": "2026-10-30T05:22:59.813473+00:00",
+      "preparation": "Separate normal native click establishes the source before log offset",
+      "actualEndDestination": "profile",
+      "destinationChangedToTarget": true,
+      "officialCallbackWrapperEvents": [
+        {
+          "kind": "click",
+          "index": 3,
+          "active": 0,
+          "param": 0
+        },
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 3,
+          "active": 0,
+          "param": 0
+        },
+        {
+          "kind": "intent",
+          "index": 3,
+          "param": 0
+        },
+        {
+          "kind": "param",
+          "selected": 3,
+          "active": 0
+        },
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 3,
+          "active": 3,
+          "param": 3
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "active": 3,
+          "param": 3
+        }
+      ],
+      "endRawSha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4",
+      "privateLog": {
+        "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-d8a49b349ad042b1bd2f2c78f22ef5ed.log",
+        "sha256": "c4691a83d4686d119d93c157b769eebe9d9118cbb9c7b3e28d41a4ca581eac80",
+        "measuredOffsetBytes": 2551
+      },
+      "capabilityAcceptance": "Root must distinguish injection outcome, manual gesture and official support"
+    },
+    {
+      "direction": "profile-to-home",
+      "gestureKind": "drag",
+      "status": "observed",
+      "initiatedAt": "2026-10-30T05:23:28.755883+00:00",
+      "sourceDestination": "profile",
+      "requestedTarget": "home",
+      "officialInjectedGesturePx": [
+        [
+          1044,
+          2626
+        ],
+        [
+          274,
+          2626
+        ]
+      ],
+      "officialCliCommand": [
+        "devecocli",
+        "ui",
+        "drag",
+        "1044",
+        "2626",
+        "274",
+        "2626",
+        "--speed",
+        "600"
+      ],
+      "speedPxPerSecond": 600,
+      "preDragLongPress": "native_default_duration_not_measured",
+      "nativeBarBoundsPx": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "sourceRawSha256": "2520adc1501d8e2d3eb1420dc8a0bddeecb72322fe3af126ca16a7fcff424cc4",
+      "privateLogFile": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-1aa9a965a3bf4fd8bfae5a141fc48a33.log",
+      "measuredOffsetBytes": 3671,
+      "productCustomGestureUsed": false,
+      "targetClickFallbackUsed": false,
+      "observedAt": "2026-10-30T05:23:44.450482+00:00",
+      "preparation": "Separate normal native click establishes the source before log offset",
+      "actualEndDestination": "home",
+      "destinationChangedToTarget": true,
+      "officialCallbackWrapperEvents": [
+        {
+          "kind": "click",
+          "index": 0,
+          "active": 3,
+          "param": 3
+        },
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "active": 3,
+          "param": 3
+        },
+        {
+          "kind": "intent",
+          "index": 0,
+          "param": 3
+        },
+        {
+          "kind": "param",
+          "selected": 0,
+          "active": 3
+        },
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "active": 0,
+          "param": 0
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "active": 0,
+          "param": 0
+        }
+      ],
+      "endRawSha256": "f95c4abe89c0a35e7619fd0bf9b4f891e441571902b8f94489caa0b8c24fcd19",
+      "privateLog": {
+        "file": "artifacts/private/native-ui-refinements/drag-20261030T051946602656Z/navigation-1aa9a965a3bf4fd8bfae5a141fc48a33.log",
+        "sha256": "9632e7cab6b73b778ac0002dbc59ca368c65e2dc888fbac14d657099b872647f",
+        "measuredOffsetBytes": 3671
+      },
+      "capabilityAcceptance": "Root must distinguish injection outcome, manual gesture and official support"
+    }
+  ],
+  "dragCapabilityConclusion": "not_determined_by_injection",
+  "businessWriteDelta": {
+    "profilePatch": 0,
+    "passwordPost": 0
+  },
+  "cleanup": {
+    "themeRestoredToSystem": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "noBusinessWrites": true,
+    "remoteDumpsRemoved": true,
+    "logStopped": true
+  },
+  "limitations": [
+    "Visual normal/fill and optical effects require separate Root original-image review",
+    "No foldable, hover, split-window or reader/physical-keyboard acceptance is claimed",
+    "Hidden-bar proof checks actual exposed native nodes; no tap is injected into the system keyboard",
+    "A scripted swipe or drag is not proof of the manual system drag-selection capability",
+    "Account panel geometry alone does not prove material pixels or entry/exit motion direction",
+    "No profile save, password save, game-start, answer, reward or notification-read action is performed"
+  ]
+}

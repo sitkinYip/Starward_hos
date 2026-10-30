@@ -1,0 +1,991 @@
+{
+  "schema": 1,
+  "status": "offline_binding_verified",
+  "createdAt": "2026-10-30T06:20:11.896280+00:00",
+  "scope": "Offline fixed-preview package/source/resource binding only; no old-HAP UI acceptance is inherited",
+  "newHap": {
+    "file": "entry/build/default/outputs/default/entry-default-signed.hap",
+    "sha256": "c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b",
+    "privateArchive": "artifacts/private/profile-haps/preview-c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b.hap",
+    "privateArchiveMode": "0600"
+  },
+  "oldHap": {
+    "file": "artifacts/private/profile-haps/ui-final-nav-6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90.hap",
+    "sha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90",
+    "sourceManifest": "artifacts/validation/profile/ui-final-nav-hap.json",
+    "sourceManifestSha256": "0f6c1af2aed76609677a45bbc48205b37f26f4186c4afd6af5a621bb8bb24483",
+    "oldEvidenceModified": false
+  },
+  "sourceBinding": {
+    "currentEntrySourceCount": 35,
+    "baselineSourceCount": 35,
+    "exactSourceSetEqual": true,
+    "allSourceBytesEqualToOldManifest": true,
+    "comparisonRows": [
+      {
+        "file": "entry/src/main/ets/business/GameRepository.ets",
+        "baselineSha256": "a8fa4712576ae5b6a887953b87736a90ef3a2b62c3923d4ff45a3422e8ded503",
+        "currentSha256": "a8fa4712576ae5b6a887953b87736a90ef3a2b62c3923d4ff45a3422e8ded503",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/business/assignmentState.ets",
+        "baselineSha256": "6ba432b95ed939aebc8e7937cb3a2210a9afdc4f03aa803037b39181a0613c49",
+        "currentSha256": "6ba432b95ed939aebc8e7937cb3a2210a9afdc4f03aa803037b39181a0613c49",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/business/models.ets",
+        "baselineSha256": "e7aa44c068d7a8a4d86cb830aed13e1efb104b5f3927e82eedba2487adf12999",
+        "currentSha256": "e7aa44c068d7a8a4d86cb830aed13e1efb104b5f3927e82eedba2487adf12999",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/data/DtoDecoder.ets",
+        "baselineSha256": "fa3b7e598adf83c4b0ca0c9b3db292c37a70ee9240f3a5693296b840c3d822c1",
+        "currentSha256": "fa3b7e598adf83c4b0ca0c9b3db292c37a70ee9240f3a5693296b840c3d822c1",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/data/HttpsGameRepository.ets",
+        "baselineSha256": "34eb752b7f8ac3432e846234c134196bcee7c96b4e78ea02660d17a027dcd712",
+        "currentSha256": "34eb752b7f8ac3432e846234c134196bcee7c96b4e78ea02660d17a027dcd712",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/data/MockGameRepository.ets",
+        "baselineSha256": "899dd2759313250f03c4673b058a2134a323f1fed2bf1bf6a535be93287e3e8c",
+        "currentSha256": "899dd2759313250f03c4673b058a2134a323f1fed2bf1bf6a535be93287e3e8c",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/entryability/EntryAbility.ets",
+        "baselineSha256": "1da3a10b0fd7f0cc8afbd9dbe7d34b532df14fa1918eb8955334e5b84ca0f6db",
+        "currentSha256": "1da3a10b0fd7f0cc8afbd9dbe7d34b532df14fa1918eb8955334e5b84ca0f6db",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/features/ProfilePage.ets",
+        "baselineSha256": "b0778df26a09a25d69aa400b13906e32cb006a72869f47587db10073f681a41b",
+        "currentSha256": "b0778df26a09a25d69aa400b13906e32cb006a72869f47587db10073f681a41b",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/features/SliceViewModel.ets",
+        "baselineSha256": "8090beaf8ea6934ac8cb2f82dd9425dc18d099fcad46d52e05c3125e41d2dbcf",
+        "currentSha256": "8090beaf8ea6934ac8cb2f82dd9425dc18d099fcad46d52e05c3125e41d2dbcf",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/features/createSliceViewModel.ets",
+        "baselineSha256": "8ed62822bdf2045adfb07b3bac5350a5ed25d16216d05e1bd7a0912b75f796a6",
+        "currentSha256": "8ed62822bdf2045adfb07b3bac5350a5ed25d16216d05e1bd7a0912b75f796a6",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/pages/Index.ets",
+        "baselineSha256": "792715a46b53539abdf961f1084b1cb4b0d6514bb4af15a5c95eba5c23e4d73d",
+        "currentSha256": "792715a46b53539abdf961f1084b1cb4b0d6514bb4af15a5c95eba5c23e4d73d",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/AppEnvironment.ets",
+        "baselineSha256": "286e0de9975710944b239ff3695d4ed419581bb1e93210617fcf731cd0b9f669",
+        "currentSha256": "286e0de9975710944b239ff3695d4ed419581bb1e93210617fcf731cd0b9f669",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/AppLifecycle.ets",
+        "baselineSha256": "1cfc7b24a438551e816ebfb36449994abd358674e9fb8009618dd4733dfcebeb",
+        "currentSha256": "1cfc7b24a438551e816ebfb36449994abd358674e9fb8009618dd4733dfcebeb",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/AvatarEditor.ets",
+        "baselineSha256": "e79f4e3c422e6fdc963b015559f109c6b37f7a963891da7be67516e2c16465a2",
+        "currentSha256": "e79f4e3c422e6fdc963b015559f109c6b37f7a963891da7be67516e2c16465a2",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/HttpTransport.ets",
+        "baselineSha256": "9136a5d70dd1480e4aff2476fb7591671e5e7658dc89ecfaa39c8a9053629602",
+        "currentSha256": "9136a5d70dd1480e4aff2476fb7591671e5e7658dc89ecfaa39c8a9053629602",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/ImmersiveWindow.ets",
+        "baselineSha256": "78605adce77e7f3ee13b579bc791064ff091954d8a123b436ff62b04143b2161",
+        "currentSha256": "78605adce77e7f3ee13b579bc791064ff091954d8a123b436ff62b04143b2161",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/LaunchRoutes.ets",
+        "baselineSha256": "b9ce2f29e01de76fc288b098cdd568f23033f1664fac65d850428a123b50c4fe",
+        "currentSha256": "b9ce2f29e01de76fc288b098cdd568f23033f1664fac65d850428a123b50c4fe",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/TlsProbe.ets",
+        "baselineSha256": "81282647d9f06df303a63e239e76b947e07ac143ddc983d3756fb364a5c3b467",
+        "currentSha256": "81282647d9f06df303a63e239e76b947e07ac143ddc983d3756fb364a5c3b467",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/platform/WindowMetrics.ets",
+        "baselineSha256": "f0ff375b4a2b1acee9c8a1fc63ea2971fddd0fa9b75f833f3046a6a5e84f408a",
+        "currentSha256": "f0ff375b4a2b1acee9c8a1fc63ea2971fddd0fa9b75f833f3046a6a5e84f408a",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/DetailFact.ets",
+        "baselineSha256": "7ffef75cb2808e675cccd909448e07184555d7375a582e486062911f583665bd",
+        "currentSha256": "7ffef75cb2808e675cccd909448e07184555d7375a582e486062911f583665bd",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/ErrorMessages.ets",
+        "baselineSha256": "95c0ea592fad491036efd616d8fa453c77d03f292162d1750ea7dda586747e5e",
+        "currentSha256": "95c0ea592fad491036efd616d8fa453c77d03f292162d1750ea7dda586747e5e",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/LabeledInput.ets",
+        "baselineSha256": "4c7a99d81675a8645b9443890ac956d8f5e79876f96a649eb1c49909d1d78481",
+        "currentSha256": "4c7a99d81675a8645b9443890ac956d8f5e79876f96a649eb1c49909d1d78481",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/PrimaryAction.ets",
+        "baselineSha256": "94ac0115094e10ad77aa26530ced4d072390940248ecc74fd1c764208f79471a",
+        "currentSha256": "94ac0115094e10ad77aa26530ced4d072390940248ecc74fd1c764208f79471a",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardAccountSheet.ets",
+        "baselineSha256": "86468b5ab4cd7e0f417a00bc1bd86bcb44270adc558ac1ae5b3eaf3ab963d1a1",
+        "currentSha256": "86468b5ab4cd7e0f417a00bc1bd86bcb44270adc558ac1ae5b3eaf3ab963d1a1",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardAtlas.ets",
+        "baselineSha256": "356c2b2b40fd040ca6666eb8704a30f14605afefd67a3609b871415c1cd28b95",
+        "currentSha256": "356c2b2b40fd040ca6666eb8704a30f14605afefd67a3609b871415c1cd28b95",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardAvatarCrop.ets",
+        "baselineSha256": "4e34391ae019d3993e4de0ea2608dbdacd43dc64b3b94bf2a0320929d422be0f",
+        "currentSha256": "4e34391ae019d3993e4de0ea2608dbdacd43dc64b3b94bf2a0320929d422be0f",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardFeedback.ets",
+        "baselineSha256": "7150eec2c236521a36f993d546ea9b5d4788381a20d7301058b49f0a561c5896",
+        "currentSha256": "7150eec2c236521a36f993d546ea9b5d4788381a20d7301058b49f0a561c5896",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardKeyboard.ets",
+        "baselineSha256": "6b2043997299ee4f52b9f74bb7c83592aae353ea09af9f3b5cad94f51d245b5e",
+        "currentSha256": "6b2043997299ee4f52b9f74bb7c83592aae353ea09af9f3b5cad94f51d245b5e",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardMaterial.ets",
+        "baselineSha256": "06378a29dfab4969430208a2c5ec2540a1ed9043f3ee09dfff531243626803e2",
+        "currentSha256": "06378a29dfab4969430208a2c5ec2540a1ed9043f3ee09dfff531243626803e2",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardMotion.ets",
+        "baselineSha256": "63e49449ac31a9fc6b6a0c02af1d00506025020f33618b66200cb8001a0ec6a9",
+        "currentSha256": "63e49449ac31a9fc6b6a0c02af1d00506025020f33618b66200cb8001a0ec6a9",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardPassport.ets",
+        "baselineSha256": "9eb638f1c3e786e2f463169593e4e229b9c96893d75660b807d65c19301d1b89",
+        "currentSha256": "9eb638f1c3e786e2f463169593e4e229b9c96893d75660b807d65c19301d1b89",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardPlayerAvatar.ets",
+        "baselineSha256": "f1537f85de38d86689e80bf802f88bdb71678b06044ca56b80fe75e092030297",
+        "currentSha256": "f1537f85de38d86689e80bf802f88bdb71678b06044ca56b80fe75e092030297",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardRefresh.ets",
+        "baselineSha256": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+        "currentSha256": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardSidePanel.ets",
+        "baselineSha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16",
+        "currentSha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16",
+        "equal": true
+      },
+      {
+        "file": "entry/src/main/ets/ui/StarwardTabs.ets",
+        "baselineSha256": "566777a8f4e13acd55b5555b38f493f376f9b28766f25b05844aa3744ed4d48d",
+        "currentSha256": "566777a8f4e13acd55b5555b38f493f376f9b28766f25b05844aa3744ed4d48d",
+        "equal": true
+      }
+    ],
+    "currentSourceSetSha256": "b29499b95585a13e1d8f2ff54899040ef15899c7f6308c067c5c36e09df0d437",
+    "meaning": "Current 35 repository source files match the old frozen source manifest; packaged code identity is separately checked by ABC bytes."
+  },
+  "navigationIcons": {
+    "count": 8,
+    "manifest": "artifacts/private/ui-refinements-final-nav-draft-20261030T033123997976Z/manifest.json",
+    "manifestSha256": "830e4aa03223c20714f9a9bcc65cb7aa7039301d81484ad15cc2cc90aa4707bd",
+    "allCurrentAndPackagedBytesEqualToFrozenResources": true,
+    "resources": [
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_compass_regular.svg",
+        "entry": "resources/base/media/icon_nav_compass_regular.svg",
+        "frozenSha256": "5593799066c98ace41dc4335bdc01711357c1a48cf974bc30e2941edec6db11e",
+        "oldPackagedSha256": "5593799066c98ace41dc4335bdc01711357c1a48cf974bc30e2941edec6db11e",
+        "newPackagedSha256": "5593799066c98ace41dc4335bdc01711357c1a48cf974bc30e2941edec6db11e",
+        "currentSourceSha256": "5593799066c98ace41dc4335bdc01711357c1a48cf974bc30e2941edec6db11e",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_compass_fill.svg",
+        "entry": "resources/base/media/icon_nav_compass_fill.svg",
+        "frozenSha256": "bca09100d1d8cfc5586ae63c72e589ba1b6a7da697dc42594de7e39831612995",
+        "oldPackagedSha256": "bca09100d1d8cfc5586ae63c72e589ba1b6a7da697dc42594de7e39831612995",
+        "newPackagedSha256": "bca09100d1d8cfc5586ae63c72e589ba1b6a7da697dc42594de7e39831612995",
+        "currentSourceSha256": "bca09100d1d8cfc5586ae63c72e589ba1b6a7da697dc42594de7e39831612995",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_sparkle_regular.svg",
+        "entry": "resources/base/media/icon_nav_sparkle_regular.svg",
+        "frozenSha256": "17fdd3ed4b75ab13930217401f6e88c513ca078a1e30fd564ba9b47ec5af73b1",
+        "oldPackagedSha256": "17fdd3ed4b75ab13930217401f6e88c513ca078a1e30fd564ba9b47ec5af73b1",
+        "newPackagedSha256": "17fdd3ed4b75ab13930217401f6e88c513ca078a1e30fd564ba9b47ec5af73b1",
+        "currentSourceSha256": "17fdd3ed4b75ab13930217401f6e88c513ca078a1e30fd564ba9b47ec5af73b1",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_sparkle_fill.svg",
+        "entry": "resources/base/media/icon_nav_sparkle_fill.svg",
+        "frozenSha256": "4b1130ea650fdb0096aef6159216c80c8ec42953ff3d1823de76ad62d5d882f7",
+        "oldPackagedSha256": "4b1130ea650fdb0096aef6159216c80c8ec42953ff3d1823de76ad62d5d882f7",
+        "newPackagedSha256": "4b1130ea650fdb0096aef6159216c80c8ec42953ff3d1823de76ad62d5d882f7",
+        "currentSourceSha256": "4b1130ea650fdb0096aef6159216c80c8ec42953ff3d1823de76ad62d5d882f7",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_envelope_regular.svg",
+        "entry": "resources/base/media/icon_nav_envelope_regular.svg",
+        "frozenSha256": "95cf8e9373336621b798aa58cab8d18b82f904c02aa1f19d72e4b51e38ab191c",
+        "oldPackagedSha256": "95cf8e9373336621b798aa58cab8d18b82f904c02aa1f19d72e4b51e38ab191c",
+        "newPackagedSha256": "95cf8e9373336621b798aa58cab8d18b82f904c02aa1f19d72e4b51e38ab191c",
+        "currentSourceSha256": "95cf8e9373336621b798aa58cab8d18b82f904c02aa1f19d72e4b51e38ab191c",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_envelope_fill.svg",
+        "entry": "resources/base/media/icon_nav_envelope_fill.svg",
+        "frozenSha256": "7ab885e19056c5cb4d044c6b8c48202e76d3da3727dbe61f95958b87f7ecbbd8",
+        "oldPackagedSha256": "7ab885e19056c5cb4d044c6b8c48202e76d3da3727dbe61f95958b87f7ecbbd8",
+        "newPackagedSha256": "7ab885e19056c5cb4d044c6b8c48202e76d3da3727dbe61f95958b87f7ecbbd8",
+        "currentSourceSha256": "7ab885e19056c5cb4d044c6b8c48202e76d3da3727dbe61f95958b87f7ecbbd8",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_passport_regular.svg",
+        "entry": "resources/base/media/icon_nav_passport_regular.svg",
+        "frozenSha256": "3900116bd88caeaa45e6a3272159a3e575c9c3ea5889c1a0dba2d817c3d0ea9b",
+        "oldPackagedSha256": "3900116bd88caeaa45e6a3272159a3e575c9c3ea5889c1a0dba2d817c3d0ea9b",
+        "newPackagedSha256": "3900116bd88caeaa45e6a3272159a3e575c9c3ea5889c1a0dba2d817c3d0ea9b",
+        "currentSourceSha256": "3900116bd88caeaa45e6a3272159a3e575c9c3ea5889c1a0dba2d817c3d0ea9b",
+        "allEqual": true
+      },
+      {
+        "file": "entry/src/main/resources/base/media/icon_nav_passport_fill.svg",
+        "entry": "resources/base/media/icon_nav_passport_fill.svg",
+        "frozenSha256": "1acee63a2b0f818e07cda96bd3e9e9df93a1146dac465cfb1804505c920b6efd",
+        "oldPackagedSha256": "1acee63a2b0f818e07cda96bd3e9e9df93a1146dac465cfb1804505c920b6efd",
+        "newPackagedSha256": "1acee63a2b0f818e07cda96bd3e9e9df93a1146dac465cfb1804505c920b6efd",
+        "currentSourceSha256": "1acee63a2b0f818e07cda96bd3e9e9df93a1146dac465cfb1804505c920b6efd",
+        "allEqual": true
+      }
+    ]
+  },
+  "zipComparison": {
+    "oldEntryCount": 48,
+    "newEntryCount": 48,
+    "oldDuplicateNames": false,
+    "newDuplicateNames": false,
+    "entrySetEqual": true,
+    "onlyOldEntries": [],
+    "onlyNewEntries": [],
+    "changedUncompressedEntries": [
+      "ets/symbolMap.map",
+      "resources/rawfile/integration-ca.pem",
+      "resources/rawfile/integration.json"
+    ],
+    "uncompressedEntryChangeScope": "Dedicated trust anchor bytes; integration JSON serialization with identical JSON values; complete symbol-map record order only",
+    "allOtherUncompressedEntriesByteEqual": true,
+    "entries": [
+      {
+        "entry": ".pages.info",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 72,
+        "newBytes": 72,
+        "oldSha256": "9d0a4cbe712ebd6927744589ee20ae35199ad1ce59b052fc4dd89c276e09e3e9",
+        "newSha256": "9d0a4cbe712ebd6927744589ee20ae35199ad1ce59b052fc4dd89c276e09e3e9",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "ets/modules.abc",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 569548,
+        "newBytes": 569548,
+        "oldSha256": "c656eb40e043ceb54534688b4d19782cfcea696abc0b977dfe506918ca100be1",
+        "newSha256": "c656eb40e043ceb54534688b4d19782cfcea696abc0b977dfe506918ca100be1",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "ets/sourceMaps.map",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 241818,
+        "newBytes": 241818,
+        "oldSha256": "979a52e82fe17e3b5a142c2b58756c42cad5104a1b9f7b301740d722c914c9b9",
+        "newSha256": "979a52e82fe17e3b5a142c2b58756c42cad5104a1b9f7b301740d722c914c9b9",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "ets/symbolMap.map",
+        "uncompressedBytesEqual": false,
+        "oldBytes": 168281,
+        "newBytes": 168281,
+        "oldSha256": "4c378911a84575e113271d400224ca4eb29480a71c55f6de87cb7d55c7d16e77",
+        "newSha256": "6e5e92b8edce5d1bab8a20f48f6584f732513a36cbd45e77838e9eb2fd953cb7",
+        "zipMetadataChangedFields": [
+          "date_time",
+          "CRC"
+        ]
+      },
+      {
+        "entry": "module.json",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 1582,
+        "newBytes": 1582,
+        "oldSha256": "85b3591be8cb91a1b2ad9009363ceff1007308575d2af47a90b0d53cbb98ee9b",
+        "newSha256": "85b3591be8cb91a1b2ad9009363ceff1007308575d2af47a90b0d53cbb98ee9b",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "pack.info",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 534,
+        "newBytes": 534,
+        "oldSha256": "d6d7f9d214a40bf80fb4bb8b52daa6d48eb6809deca9269ae8c7cf1e7c79d688",
+        "newSha256": "d6d7f9d214a40bf80fb4bb8b52daa6d48eb6809deca9269ae8c7cf1e7c79d688",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "pkgContextInfo.json",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 444,
+        "newBytes": 444,
+        "oldSha256": "af059474ed1721c89418a27da23e70a2cc35d7135478d5baa8ea1c603fb3238c",
+        "newSha256": "af059474ed1721c89418a27da23e70a2cc35d7135478d5baa8ea1c603fb3238c",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources.index",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 5310,
+        "newBytes": 5310,
+        "oldSha256": "a6b48927d929b0e0e5733ab808706fbf0098eca7404cc33d19a5a80fa63de880",
+        "newSha256": "a6b48927d929b0e0e5733ab808706fbf0098eca7404cc33d19a5a80fa63de880",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/background.png",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 91942,
+        "newBytes": 91942,
+        "oldSha256": "497edeafc51af043c73e72ee8c4fbac4663357ef1ba275c0289f31a366b26239",
+        "newSha256": "497edeafc51af043c73e72ee8c4fbac4663357ef1ba275c0289f31a366b26239",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/foreground.png",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 8805,
+        "newBytes": 8805,
+        "oldSha256": "57e549283f255505a649042f36a1d6793c307a69a94c9fa7e27a38af38ddbe8c",
+        "newSha256": "57e549283f255505a649042f36a1d6793c307a69a94c9fa7e27a38af38ddbe8c",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_arrow_left.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 273,
+        "newBytes": 273,
+        "oldSha256": "286183b8647150a47d6bade7099968dc39588b743fa4a6f6cdf2c8ee787fb6d5",
+        "newSha256": "286183b8647150a47d6bade7099968dc39588b743fa4a6f6cdf2c8ee787fb6d5",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_arrow_right.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 270,
+        "newBytes": 270,
+        "oldSha256": "3d6963f775d236d5a7fb065f5b5d4b45d8afd5d21c0c3f26b970cce7b2483618",
+        "newSha256": "3d6963f775d236d5a7fb065f5b5d4b45d8afd5d21c0c3f26b970cce7b2483618",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_clock.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 312,
+        "newBytes": 312,
+        "oldSha256": "cdab11e62e34df92f209609788bc59314d413a86b06f9063520f6471d612ffd9",
+        "newSha256": "cdab11e62e34df92f209609788bc59314d413a86b06f9063520f6471d612ffd9",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_close.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 309,
+        "newBytes": 309,
+        "oldSha256": "18c1de36aadf11d7131ec42a64498154aa6f326b1f57e465e4d1eaef4e83821d",
+        "newSha256": "18c1de36aadf11d7131ec42a64498154aa6f326b1f57e465e4d1eaef4e83821d",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_compass.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 315,
+        "newBytes": 315,
+        "oldSha256": "a47aca66d92348d4440035b40cffe0c1f8168e8cf10a32433c15ee66831c296b",
+        "newSha256": "a47aca66d92348d4440035b40cffe0c1f8168e8cf10a32433c15ee66831c296b",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_compass_thin.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 421,
+        "newBytes": 421,
+        "oldSha256": "6e89ddd701a60c978845f65babddd2c9f2b8c9685b0d502b442900a354989f2d",
+        "newSha256": "6e89ddd701a60c978845f65babddd2c9f2b8c9685b0d502b442900a354989f2d",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_desktop.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 374,
+        "newBytes": 374,
+        "oldSha256": "97d1b7de86af27a5960150f3d3c050a048c2e21a1230e3be5a9e87faf58f5b0b",
+        "newSha256": "97d1b7de86af27a5960150f3d3c050a048c2e21a1230e3be5a9e87faf58f5b0b",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_envelope.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 307,
+        "newBytes": 307,
+        "oldSha256": "d063854320084904a1bc7bb0711eda6f6b489be45c5b6f5c03c3d707304f0cf5",
+        "newSha256": "d063854320084904a1bc7bb0711eda6f6b489be45c5b6f5c03c3d707304f0cf5",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_house.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 372,
+        "newBytes": 372,
+        "oldSha256": "bf78f7c0af7883efdbb0c7554df77e6a3ac0315998345da1ac4aa0bc0982b0a4",
+        "newSha256": "bf78f7c0af7883efdbb0c7554df77e6a3ac0315998345da1ac4aa0bc0982b0a4",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_key.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 665,
+        "newBytes": 665,
+        "oldSha256": "8b7f8ec43d067c1cfe6dafd21d8e5372b2b4589940136ecacf1f8c6fded884ee",
+        "newSha256": "8b7f8ec43d067c1cfe6dafd21d8e5372b2b4589940136ecacf1f8c6fded884ee",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_logout.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 371,
+        "newBytes": 371,
+        "oldSha256": "7fc16eee7ea7b316792fbc6b110511e2660cefd10e197f4cf002b7451a4b07e6",
+        "newSha256": "7fc16eee7ea7b316792fbc6b110511e2660cefd10e197f4cf002b7451a4b07e6",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_map.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 455,
+        "newBytes": 455,
+        "oldSha256": "63e46d2549808aaa5e9aa5943415d33b42c88ae5646f61d0c2a62b25162e70fa",
+        "newSha256": "63e46d2549808aaa5e9aa5943415d33b42c88ae5646f61d0c2a62b25162e70fa",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_moon.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 560,
+        "newBytes": 560,
+        "oldSha256": "95c1e4e48ef53ab0646a2f07559eefcde0ceb8f89318c2fa4766d8fad2889060",
+        "newSha256": "95c1e4e48ef53ab0646a2f07559eefcde0ceb8f89318c2fa4766d8fad2889060",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_compass_fill.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 372,
+        "newBytes": 372,
+        "oldSha256": "bca09100d1d8cfc5586ae63c72e589ba1b6a7da697dc42594de7e39831612995",
+        "newSha256": "bca09100d1d8cfc5586ae63c72e589ba1b6a7da697dc42594de7e39831612995",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_compass_regular.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 484,
+        "newBytes": 484,
+        "oldSha256": "5593799066c98ace41dc4335bdc01711357c1a48cf974bc30e2941edec6db11e",
+        "newSha256": "5593799066c98ace41dc4335bdc01711357c1a48cf974bc30e2941edec6db11e",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_envelope_fill.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 332,
+        "newBytes": 332,
+        "oldSha256": "7ab885e19056c5cb4d044c6b8c48202e76d3da3727dbe61f95958b87f7ecbbd8",
+        "newSha256": "7ab885e19056c5cb4d044c6b8c48202e76d3da3727dbe61f95958b87f7ecbbd8",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_envelope_regular.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 364,
+        "newBytes": 364,
+        "oldSha256": "95cf8e9373336621b798aa58cab8d18b82f904c02aa1f19d72e4b51e38ab191c",
+        "newSha256": "95cf8e9373336621b798aa58cab8d18b82f904c02aa1f19d72e4b51e38ab191c",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_passport_fill.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 620,
+        "newBytes": 620,
+        "oldSha256": "1acee63a2b0f818e07cda96bd3e9e9df93a1146dac465cfb1804505c920b6efd",
+        "newSha256": "1acee63a2b0f818e07cda96bd3e9e9df93a1146dac465cfb1804505c920b6efd",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_passport_regular.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 626,
+        "newBytes": 626,
+        "oldSha256": "3900116bd88caeaa45e6a3272159a3e575c9c3ea5889c1a0dba2d817c3d0ea9b",
+        "newSha256": "3900116bd88caeaa45e6a3272159a3e575c9c3ea5889c1a0dba2d817c3d0ea9b",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_sparkle_fill.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 574,
+        "newBytes": 574,
+        "oldSha256": "4b1130ea650fdb0096aef6159216c80c8ec42953ff3d1823de76ad62d5d882f7",
+        "newSha256": "4b1130ea650fdb0096aef6159216c80c8ec42953ff3d1823de76ad62d5d882f7",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_nav_sparkle_regular.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 748,
+        "newBytes": 748,
+        "oldSha256": "17fdd3ed4b75ab13930217401f6e88c513ca078a1e30fd564ba9b47ec5af73b1",
+        "newSha256": "17fdd3ed4b75ab13930217401f6e88c513ca078a1e30fd564ba9b47ec5af73b1",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_passport.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 569,
+        "newBytes": 569,
+        "oldSha256": "081061b9eb71b451ab4fafaf126b0d2d5854b370415cf4f10494c9380893e690",
+        "newSha256": "081061b9eb71b451ab4fafaf126b0d2d5854b370415cf4f10494c9380893e690",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_puzzle.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 799,
+        "newBytes": 799,
+        "oldSha256": "080a929ee8a52a3e67029f0258bfde8edcd5a27701a01a6c781ea6eeb3b64dca",
+        "newSha256": "080a929ee8a52a3e67029f0258bfde8edcd5a27701a01a6c781ea6eeb3b64dca",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_sparkle.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 691,
+        "newBytes": 691,
+        "oldSha256": "0b8d674e4607e4883f1cc69572fddf23ac22f2f830a2259b4bb25ae6c9e4deb4",
+        "newSha256": "0b8d674e4607e4883f1cc69572fddf23ac22f2f830a2259b4bb25ae6c9e4deb4",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_star_four.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 587,
+        "newBytes": 587,
+        "oldSha256": "de2825137da0d7c97e8a905c7bbf9f39181282147926e1b98109e797d0268d8e",
+        "newSha256": "de2825137da0d7c97e8a905c7bbf9f39181282147926e1b98109e797d0268d8e",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_sun.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 710,
+        "newBytes": 710,
+        "oldSha256": "e67ff20b4da4bd86d8f66a5002641f25dc9ab88b442fbd7271ea12acbc75f443",
+        "newSha256": "e67ff20b4da4bd86d8f66a5002641f25dc9ab88b442fbd7271ea12acbc75f443",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_user.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 401,
+        "newBytes": 401,
+        "oldSha256": "3b1e2542643482a0201e7f272b1dbf43531561ea77c8fc295ffff63adfe9c109",
+        "newSha256": "3b1e2542643482a0201e7f272b1dbf43531561ea77c8fc295ffff63adfe9c109",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/icon_warning.svg",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 319,
+        "newBytes": 319,
+        "oldSha256": "485100d2b79b35bcf2f100043dc28456233d2c2470bfa78fa39b7a8d8bc05cd0",
+        "newSha256": "485100d2b79b35bcf2f100043dc28456233d2c2470bfa78fa39b7a8d8bc05cd0",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/layered_image.json",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 81,
+        "newBytes": 81,
+        "oldSha256": "bafb39ab0834f3f2617265aa6e9601a2b2873364b8affc894bf1d3cc5c9a48ce",
+        "newSha256": "bafb39ab0834f3f2617265aa6e9601a2b2873364b8affc894bf1d3cc5c9a48ce",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/startIcon.png",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 20093,
+        "newBytes": 20093,
+        "oldSha256": "567c7c0c7a321ca180e010ad880f0f7519f6d351ac2b9665e2ee710e7cfe7778",
+        "newSha256": "567c7c0c7a321ca180e010ad880f0f7519f6d351ac2b9665e2ee710e7cfe7778",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/starward_icon.png",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 342765,
+        "newBytes": 342765,
+        "oldSha256": "19d89134c3ad2a35acaeac1d0fe46e881168958fdc53b39c0c2a3e695daaf37e",
+        "newSha256": "19d89134c3ad2a35acaeac1d0fe46e881168958fdc53b39c0c2a3e695daaf37e",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/media/starward_mark.png",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 30898,
+        "newBytes": 30898,
+        "oldSha256": "7e7a56fd5fcec382547042f58a56aecaf7416945a6f36a10b1f2bbbd7a488c6f",
+        "newSha256": "7e7a56fd5fcec382547042f58a56aecaf7416945a6f36a10b1f2bbbd7a488c6f",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/base/profile/main_pages.json",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 23,
+        "newBytes": 23,
+        "oldSha256": "93846868ae31b5507d3e0675b3a364dab27a9e2ea7edb2a39c9a2bb70846d1f6",
+        "newSha256": "93846868ae31b5507d3e0675b3a364dab27a9e2ea7edb2a39c9a2bb70846d1f6",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/rawfile/fonts/NotoSerifSC.ttf",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 25125512,
+        "newBytes": 25125512,
+        "oldSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+        "newSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      },
+      {
+        "entry": "resources/rawfile/integration-ca.pem",
+        "uncompressedBytesEqual": false,
+        "oldBytes": 668,
+        "newBytes": 672,
+        "oldSha256": "afd2be4eb95da9739a9abf8d19897b59810009dccb09b5a425e8efba4fb3f4a1",
+        "newSha256": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+        "zipMetadataChangedFields": [
+          "compress_size",
+          "date_time",
+          "CRC",
+          "file_size"
+        ]
+      },
+      {
+        "entry": "resources/rawfile/integration.json",
+        "uncompressedBytesEqual": false,
+        "oldBytes": 114,
+        "newBytes": 103,
+        "oldSha256": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+        "newSha256": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+        "zipMetadataChangedFields": [
+          "compress_size",
+          "date_time",
+          "CRC",
+          "file_size"
+        ]
+      },
+      {
+        "entry": "resources/rawfile/licenses/NotoSerifSC-OFL.txt",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 4350,
+        "newBytes": 4350,
+        "oldSha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6",
+        "newSha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6",
+        "zipMetadataChangedFields": [
+          "date_time",
+          "extra"
+        ]
+      },
+      {
+        "entry": "resources/rawfile/licenses/Phosphor-Icons-LICENSE.txt",
+        "uncompressedBytesEqual": true,
+        "oldBytes": 1071,
+        "newBytes": 1071,
+        "oldSha256": "6918b72504641180600cbbd4a86b0dfa9dfccf788775694325b71b9a029f6eb4",
+        "newSha256": "6918b72504641180600cbbd4a86b0dfa9dfccf788775694325b71b9a029f6eb4",
+        "zipMetadataChangedFields": [
+          "date_time"
+        ]
+      }
+    ],
+    "archiveBytesEqual": false,
+    "signatureBlockParsed": false,
+    "archiveContainerMeaning": "Signed HAP bytes differ. This report compares ZIP members and metadata; it does not attribute or normalize signing-block bytes outside ZIP entries.",
+    "unchangedUncompressedEntryCount": 45
+  },
+  "abc": {
+    "entries": [
+      "ets/modules.abc"
+    ],
+    "allPackagedAbcBytesEqual": true
+  },
+  "symbolMap": {
+    "entry": "ets/symbolMap.map",
+    "bytesEqual": false,
+    "completeRecordCounterEqual": true,
+    "shapeEqual": true,
+    "oldShape": {
+      "recordCount": 1226,
+      "moduleCount": 35,
+      "functionCount": 1191,
+      "uniqueRecordKeys": true,
+      "canonicalRecordsSha256": "795ba58a75371105eca5fe64334a5788e4a7be7caca36fcf5555767da19ea79c"
+    },
+    "newShape": {
+      "recordCount": 1226,
+      "moduleCount": 35,
+      "functionCount": 1191,
+      "uniqueRecordKeys": true,
+      "canonicalRecordsSha256": "795ba58a75371105eca5fe64334a5788e4a7be7caca36fcf5555767da19ea79c"
+    },
+    "recordOrderOnlyDifference": true,
+    "method": "Only symbol_records() parsed complete LF-terminated fixed-SDK records and Counter equality; timeout validator was not called",
+    "helperFile": "scripts/hap_timeout_variant.py",
+    "helperSha256": "0f7753a10668c7143b0a65785157ae74afa3bacf27178e668a8e47fc42c6a4ed"
+  },
+  "configuration": {
+    "bytesEqual": false,
+    "objectEqual": true,
+    "old": {
+      "isolated": true,
+      "endpoint": "https://127.0.0.1:18443",
+      "timeoutMs": 15000,
+      "probeTls": true,
+      "fontScale": 1.0
+    },
+    "new": {
+      "isolated": true,
+      "endpoint": "https://127.0.0.1:18443",
+      "timeoutMs": 15000,
+      "probeTls": true,
+      "fontScale": 1
+    },
+    "bothTimeoutMs15000": true,
+    "timeoutVariantValidatorUsed": false,
+    "jsonSemanticValuesEqual": true,
+    "jsonFieldOrderEqual": true,
+    "differentNumericSerialization": {
+      "field": "fontScale",
+      "oldLiteral": "1.0",
+      "newLiteral": "1",
+      "jsonTypeBoth": "number",
+      "exactNumericValueEqual": true
+    },
+    "byteDifferenceMeaning": "Whitespace compaction and equivalent JSON number literal fontScale 1.0 to 1; both timeoutMs remain the integer15000. Integration entry byte hashes still differ and are preserved above."
+  },
+  "dedicatedTrustAnchor": {
+    "entry": "resources/rawfile/integration-ca.pem",
+    "oldSha256": "afd2be4eb95da9739a9abf8d19897b59810009dccb09b5a425e8efba4fb3f4a1",
+    "newSha256": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "bytesChanged": true,
+    "certificateContentsCopiedToReport": false
+  },
+  "acceptanceBoundary": {
+    "deviceServiceDatabaseOrSecretFilesTouched": false,
+    "buildInstallOrDeviceCommandsExecutedByThisAudit": false,
+    "oldUi39Inherited": false,
+    "newHapUiChecksPerformedByThisAudit": false,
+    "newHapRuntimeOrHttpsAcceptedByThisComparison": false,
+    "addedUiAcceptanceCount": 0,
+    "newHapRuntimeProvenanceReferenced": true
+  },
+  "limitations": [
+    "This offline comparison does not replace new-preview-HAP runtime, native direct-login, HTTPS, interaction or visual acceptance.",
+    "The old 6a HAP and reports remain unchanged; their 39 UI checks are not results for the new signed preview HAP.",
+    "No CA certificate contents, symbol records, credentials, sessions or device identifiers are copied into this report."
+  ],
+  "rootExecutionProvenance": {
+    "officialRun": {
+      "privateLog": "artifacts/private/profile-validation/preview-final-official-run-20261030.log",
+      "logSha256": "90bfc0f37563db1612a0a885adc8079b2902b6d768ee0809cac729d0a362e574",
+      "exitCode": 0,
+      "outcomeWitness": "Root observed the actual completed official run exit0; this offline audit did not execute the build/install/device action",
+      "rawLogCopiedOrPrinted": false
+    },
+    "newRuntime": {
+      "file": "artifacts/validation/profile/runtime-preview-final.json",
+      "sha256": "77f6f84e2894cc376594a62afc02dc43af54559bc739fd2584eb0c08612d9527",
+      "status": "passed",
+      "installedHapSha256": "c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b",
+      "sixNamedChecksPassed": true
+    },
+    "freshness": {
+      "file": "artifacts/validation/profile/runtime-preview-freshness.json",
+      "sha256": "eff6a1351013ebb908bebabbb8062318a0acfa7b3c48fe702d3732143c6860a2",
+      "status": "passed",
+      "sameCurrentOwnedProcessOnly": true,
+      "sixRuntimeChecksPassed": true,
+      "runtimeReportSha256": "77f6f84e2894cc376594a62afc02dc43af54559bc739fd2584eb0c08612d9527"
+    },
+    "scope": "References separately executed new-preview-HAP runtime evidence; does not convert old6a UI39 or this ZIP audit into new-HAP UI acceptance."
+  },
+  "independentPackageReadOnlyReview": {
+    "reviewer": "preview_environment",
+    "zipEntrySetAndThreeActualChangesConfirmed": true,
+    "abcBytesEqualConfirmed": true,
+    "symbolCompleteRecordCounterEqualConfirmed": true,
+    "configurationJsonValuesEqualConfirmed": true,
+    "deviceServiceDatabaseActions": false
+  }
+}

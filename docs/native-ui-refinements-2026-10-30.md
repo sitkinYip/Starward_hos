@@ -1,17 +1,19 @@
 # 直板机底栏与账户菜单调整计划
 
-记录日期：2026-10-30（Asia/Shanghai）。本文件记录用户新增要求、固定 API26 官方能力和待验证的补丁方案。**本文件保留冻结草案、首次真实编译失败、后续独立证据及最终菜单图标快照；各版本的构建、安装和功能验收分别记录。** 实际执行结果另见[任务1验证记录](slice-02-profile-validation.md)。首份底栏补丁保留原字节，第二份合并草案增加官方左右账户面板；首次编译问题另建 compiler-fix 草案，菜单图标双态另建 final-nav 草案，均不覆盖此前来源。不修改既有验收表的历史结果，不把 1a40 基础包的报告归给这些补丁。
+记录日期：2026-10-30（Asia/Shanghai）。本文件记录用户新增要求、固定API26官方能力、版本来源和逐状态结果。**本文件保留冻结草案、首次真实编译失败、后续独立证据及最终菜单图标快照；各版本的构建、安装和功能验收分别记录。** 实际执行结果另见[任务1验证记录](slice-02-profile-validation.md)。首份底栏补丁保留原字节，第二份合并草案增加官方左右账户面板；首次编译问题另建 compiler-fix 草案，菜单图标双态另建 final-nav 草案，均不覆盖此前来源。不修改既有验收表的历史结果，不把 1a40 基础包的报告归给这些补丁。
 
 本轮要求是：输入时底栏不随键盘顶起；四个底栏图标按 Web 使用未选中 regular、选中 fill；优先接入官方触摸流光及可能存在的松手选项切换；账户菜单如能直接使用官方能力保留材质并按头像位置从左右出现则接入，否则保留现有效果。固定预览账号属于隔离环境工作，不在这个 UI 补丁内。
 
-截至本次恢复，最终菜单草案对应的 `6a5232af…` 已实际构建、签名安装，72/72业务测试、lint零issues（filesChecked=0）及独立六项runtime通过，来源见 `artifacts/validation/profile/ui-final-nav-hap.json`。新UI主轮尚未通过：此前一次在10项导航检查后等待面板超时，独立清理完成；最新 `27ccd0f8…` 驱动尝试已做Host只读身份/计数前置，但首个aa命令失败，官方HDC设备列表为空，未取得本轮UI启动成功证据。当前报告为incomplete/0项，结束后写入增量和四项业务清理标志仍未完成；设备恢复后先用原cleanup实际核验，再显式新建尝试。下表IME、视觉及拖拽待验状态不因构建或runtime通过而改变。
+当前final-nav HAP `6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90` 的新主轮 `profile/device-native-ui-refinements.json` 已实际passed/count39，SHA `67f2c8d7a2deb0d2cd6f2bf42d7a1da50c6be1be01fad8755d292e245fa5e1ba`，绑定runtime-ui-final-nav六项与final-nav manifest `830e4aa0…`。本次driver为 `a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad`；六项cleanup全true，真实profilePatch/passwordPost增量各0，旧UI检查未继承。覆盖正常登录、启程/护照及未开放入口保留原页、首页右/详情左官方面板的关闭/Back/可见蒙层与返回、主题/退出，以及昵称和密码键盘、草稿与Back行为。该主轮不保存资料、不改密、不入场答题。 独立 `profile/native-ui-root-visual-review.json` 为reviewed_static_with_explicit_limits，SHA `32725c37417962cbe7403c0a5c4b99f95c6f74fcab4b3dae74c133d8e37abb51`，严格绑定本轮39项报告。Root亲看13张原图：12张可观察；密码焦点1张App内容黑，不计像素、布局或主题目视通过。两主题底栏及菜单的regular/fill选中态、首页右/详情左最终位置、官方玻璃与原内容、昵称键盘下浮栏隐藏/完整保存及收起后草稿均已静态核实。静态图不证明跟手流光、松手跨项选择、入退场方向在运动中正确或中断/减少动画行为；松手选择由后续独立官方注入记录承接，其余动态范围继续单列。1a40的24图保持其基线，不替代本轮，也不反向改写旧报告。 官方注入松手选择的独立结果见下节；跟手光感/触感及入退场等动态未知。crop-cancel独立10项及两原图review已完成，见下节；媒体与旧环境精准清理已有独立通过报告，预览状态修复、Host、新包runtime六项与独立直接登录13项/3原图审阅已完成，可直接审查；服务运行依赖电脑/Docker/USB。
+
+当前用户手验补充（2026-10-30）：用户在最终交付的 `c2fdc343…` 固定预览中，手动拖动浮栏启程↔护照并松手切换、打开头像侧栏，对“跟手光感、松手选中和侧栏进出方向是否符合预期”明确回复“符合预期”。来源见 `artifacts/validation/profile/native-ui-user-confirmation.json`。这三项从当前待验中移除；6a历史采集、静态及官方注入报告的原限制保留，不反向改写。此次没有新增自动化或Root动态目视，不扩展为触感、取消/中断、减少动画、双主题全覆盖、折叠、重启或主动改密通过。
 
 ## 基线与资料
 
 - 固定 Studio 26.0.0.851、SDK 26.0.0.105、compile/target/min API26。本次只读核对其 SDK 声明和官方知识 MCP；未升级工具。
 - Web 冻结提交为 `4b7d1a0a00051ac630e459b0fd6c074f821d7455`。本次核对前原仓库 clean，未修改原 Web 或后端。
 - 草案准备阶段未改应用源码或 HAP；Root 后续已应用第二份并执行真实构建，其失败和修正见下文。补丁准备时 HAP 为 `1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb`。基础包和独立超时变体的证据分别记录，不能被这些 UI 草案继承。
-- 官方知识均先使用包含 API26 的查询搜索，再读取命中文档全文。SDK 接口见 `openharmony/ets/component/tabs.d.ts`、`tab_content.d.ts`、`common.d.ts`、`sidebar.d.ts`，以及 `api/@ohos.arkui.uiMaterial.d.ts`、`@ohos.arkui.StateManagement.d.ts`、`@ohos.window.d.ts`。文档解释行为，实际可编译与真机表现仍待验证。
+- 官方知识均先使用包含 API26 的查询搜索，再读取命中文档全文。SDK 接口见 `openharmony/ets/component/tabs.d.ts`、`tab_content.d.ts`、`common.d.ts`、`sidebar.d.ts`，以及 `api/@ohos.arkui.uiMaterial.d.ts`、`@ohos.arkui.StateManagement.d.ts`、`@ohos.window.d.ts`。文档解释行为，可编译与真机表现依各版本真实报告分别记录。
 
 ## 官方能力与边界
 
@@ -24,7 +26,7 @@
 | 底栏图标 | `BottomTabBarStyle.iconStyle` 自 API12，只配置选中/未选中颜色；不会把 regular 的路径自动变为 fill。SVG 不设置内置 width/height，交给原生图标布局。 | 继续用官方 BottomTabBarStyle，以父批准的索引选择两组矢量。 |
 | 官方侧边 Sheet | `SheetType.SIDE` 自 API20；官方文档限定窗口宽度至少 600vp 才支持。默认右入、镜像左入，不能按头像指定转场方向。手机窄窗口支持底部或全屏类型。 | 这个限制只适用于现有 Sheet 参数，不能扩大为所有官方弹层无法实现。第二草案改用下面的 PromptAction。 |
 | SideBarContainer | `sideBarPosition` 自 API9，可左右布局；普通内容区不在通用沉浸材质生效范围。官方弹层和指定控件另有全页面材质支持。 | 本轮不采用这个普通侧栏容器，不添加自制模糊。 |
-| PromptAction 官方 Dialog | `UIContext.getPromptAction().openCustomDialog(CustomDialogOptions)` 自 API12；alignment 在 BaseDialogOptions 自 API11、transition 自 API12；实际草案使用的 dialogTransition / maskTransition 自 API19，systemMaterial 自 26.0.0，Stage、ArkUI.Full，无新增权限。options-builder 重载保留官方容器，可组合左右对齐和官方 TransitionEffect。 | 第二合并草案使用官方 THICK 材质、实际头像位置和官方 move 转场，保留用户认可的材质；实际左右位置、关闭、返回及动效待新包验证。 |
+| PromptAction 官方 Dialog | `UIContext.getPromptAction().openCustomDialog(CustomDialogOptions)` 自 API12；alignment 在 BaseDialogOptions 自 API11、transition 自 API12；实际草案使用的 dialogTransition / maskTransition 自 API19，systemMaterial 自 26.0.0，Stage、ArkUI.Full，无新增权限。options-builder 重载保留官方容器，可组合左右对齐和官方 TransitionEffect。 | 第二合并草案使用官方 THICK 材质、实际头像位置和官方 move 转场，保留用户认可的材质；当前6a已独立验证左右最终位置、关闭、Back与原页返回；入退运动方向、中断和减少动画仍待专项观察。 |
 
 官方来源：[Tabs](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-tabs)、[TabContent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-tabcontent)、[沉浸材质通用能力](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-immersive-light-sense-common-capability)、[沉浸光感典型场景](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-immersive-light-sample)、[V1/V2 内置对象迁移](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-v1-v2-migration-inner-object)、[半模态转场](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition)、[SideBarContainer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-sidebarcontainer)、[材质生效范围](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-immersive-light-sense-faq)、[UIContext PromptAction](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-uicontext-promptaction)、[PromptAction 对话框选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-promptaction)。
 
@@ -83,24 +85,38 @@ Root 随后在 Index 的 `menuDestination` 增加 `normalIcon` / `selectedIcon` 
 
 前一 compiler-fix 包 `193b1e973c35ed1d893de32af4b3e75be30d0daca457d76b26e502505ba15fd8` 已由 Root 真实编译、签名安装，运行 72 个业务测试、lint 零错误及新包 6 项 runtime 检查。该包首次 UI 主 run 完成 10 项后因 CLI 前台瞬态识别中断，保留 incomplete；原始记录停在导航收尾，不能解释为头像面板打开失败。Root 之后用真实头像中心独立点击，bundle 范围原始布局出现四个面板 ID，并亲看 `artifacts/private/native-ui-refinements/panel-probe-20261030/panel-light-right.png`，确认浅色右侧浮动面板保留官方玻璃和内容 Scroll。这是该包的独立观察，不是其完整 UI 主 run 通过，也不归入 final-nav 新包结果。
 
-最终菜单资源的深浅主题、选中与未选中态，以及该源码对应的新构建、安装和后续 UI 检查仍由 Root 分别验证。先前失败记录、旧清单与独立观察不改写为最终包通过。
+最终菜单资源的深浅主题和选中双态已由本轮独立静态报告核对，当前39项结果单列；先前失败记录、旧清单与独立观察不改写为通过。旧193b/6a的incomplete10、首aa失败的incomplete0，以及在旧IME几何门禁中断的incomplete21均独立保留，完成cleanup不改功能状态。count0归档 `profile/attempts/device-native-ui-refinements-20261030T044247730768Z.json` SHA52d9a5e6…；count21归档 `profile/attempts/device-native-ui-refinements-20261030T050029215328Z.json` SHA `b328a858ad8cecbf657a4675466268b7feee1cd7f1411be99eb6caae96ec45e9`，二者六cleanup全true。USB重接后只恢复精确自有reverse且严格Host200，`profile/network-resume-reconnect-20261030.json` SHA c10b847b…保留该恢复事实；新的A902 run独立开始，不继承旧checks。
 
-## 分状态待验
+## 逐状态实际结果与待验范围
 
 | 项目 | 必须观察的结果 | 当前状态 |
 | --- | --- | --- |
-| 构建与静态检查 | 固定配套运行时下 ArkTS/Hvigor、codelinter；检查真实报告及范围。 | 第二草案失败 10505001；193b 修正版构建安装及配套检查完成；final-nav 新包结果独立记录 |
-| 昵称 IME | 键盘出现时底栏离开显示和命中，真实压缩视口中输入、完整保存动作可达；收键盘恢复底栏及当前页面，未提交昵称草稿保留。 | 未执行 |
-| 改密 IME | 三个字段焦点和主要动作均可达；隐藏/恢复底栏不清空编辑内容，不触发请求；Back 先收键盘，账号/路由边界仍符合已有规则。 | 未执行 |
-| 导航回归 | 启程和护照正常切换；收藏/来信不跳回启程；内容点击、重试及滚动不形成底栏意图；隐藏、取消和销毁清待提交事务。 | 193b 主 run 部分执行后中断；final-nav 待独立验证 |
-| 图标 | 底栏及四个菜单入口深浅色正常截图中未选中为空心、选中为实心；浅色能辨识选中项，品牌色和官方材质保持。 | final-nav 复用原 8 个资源已实现；新包视觉待验证 |
-| 官方光感 | 设备材质启用时原生流光跟手、松手恢复；不支持/禁用和减少动画策略分别如实记录，不由代码存在推定效果。 | 未执行 |
-| 拖动松手选择 | 实际跨项移动及取消；以官方事件和落定页面判定能力；尚无证据前不记通过。 | 未执行 |
-| 账户菜单 | 新官方 Dialog 在首页和详情按真实头像位置对齐；原生关闭、Back、遮罩、内容滚动、主题、退出、重复打开和返回关系分别验证。来源数据和业务顺序保持。 | 193b 浅色右面板有独立真实观察；完整主 run 与 final-nav 新包仍待验证 |
+| 构建与静态检查 | 固定配套运行时下ArkTS/Hvigor、codelinter及真实报告范围。 | 6a真实构建签名安装、72/72测试和runtime6通过；lint零缺陷，独立原日志35输入路径解释见lint-native-evidence；不是新lint |
+| 昵称 IME | 键盘期间隐藏实际浮栏及命中，保留实例/草稿，主要动作可达，收起后恢复。 | 本手机6a主轮通过；实际AppRoot RESIZE、完整52vp保存、草稿恢复和原图静态均核实 |
+| 改密 IME | 三字段与主要动作可达；Back先收键盘并保留草稿，离开护照清字段。 | 本手机6a原生节点/真实可用区/52vp与Back通过；该焦点截图黑，不计像素或主题目视通过 |
+| 导航回归 | 启程/护照切换，收藏/来信保留原页，菜单和返回关系正常。 | 当前39项范围已通过；旧incomplete10/21/0独立保留，非触摸/读屏路径仍单列 |
+| 图标 | 底栏及四菜单regular/fill，两主题选中态清晰。 | Root按6a新原图独立静态核实，未由颜色或源码推定动态通过 |
+| 官方光感 | 材质支持时跟手、松手恢复；降级和减少动画按实际记录。 | 官方配置已接入，静态玻璃可见；c2fd交付预览的跟手光感与松手选中获用户手验确认，降级/触感/取消/中断/减少动画仍未验 |
+| 拖动松手选择 | 实际跨项移动，以原生事件与落定页面判断；取消/中断另验，不自制坐标选择。 | 本手机官方注入swipe/预长按drag正反4次释放选中已核，未补目标点击；人工手感、取消/中断和平台全支持不宣称 |
+| 账户菜单 | 实际头像侧对齐、关闭/Back/蒙层/滚动/主题/退出和返回关系。 | 6a的39项及左右最终静态位置/玻璃已核；c2fd交付预览的侧栏进出方向另获用户手验确认，中断/减少动画仍未验 |
 
 以上聚焦直板机及当前业务链路。折叠、悬停、分栏和窗口专项仍遵循主体业务完成后逐项验证的既定顺序。
 
 新面板的实际窗口、头像与最终背板矩形会分别保留。原生容器可能保留系统边距，静态最终位置不能证明进入方向；原生 move 入场/退出方向、材质和动画中断需要 Root 查看实际过程，不能因源码选择了 START/END 或一张终态截图就记为方向动效通过。
+
+## 独立官方手势观察（已执行）
+
+独立 `profile/native-ui-refinements-drag.json` 保持status=observed、stage=gesture-finished-root-review-pending，SHA `7918b8195b740f9f519124645bae43209fbb2720cd759c992ab9ea5594db4c70`，绑定同6a/runtime/A902。6个实际阶段正常退出，swipe与原生预长按drag各正反方向共4次观察均实际落到目标启程/护照，原生最终索引0/3并记录click→will→intent→param→change；未自制产品手势，也未补点目标。六cleanup全true，资料/改密写增量各0。Root另亲看4张终态原图，选中fill与目的地一致；独立 `profile/native-ui-root-gesture-review.json` 为automated_native_release_selection_verified，SHA `7fa8311e8715adad8660624d4eee76af41f167d134004fa7de22612a8353f731`，verifiedOutcomeCount=4，review自身newCommandsExecuted=0。结论仅为固定API26当前手机/6a的官方注入松手选中结果，不是人工操作通过、所有平台能力或回调总顺序保证；跟手移动光感、触感、未抬手/取消/中断、减少动画和入退场运动仍未目视或专项验收。
+
+## 当前宿主裁剪预览取消回归（已执行）
+
+当前6a独立 `profile/native-ui-crop-cancel-regression.json` 实际passed/count10，SHA `c9f8bf03aa11d5bda6dad1a27da65bdc1cf1ab00cfba1ee310e17bcce7f86fcb`，绑定39项主轮67f2…、同HAP/runtime和私有助手adf8dca9…。实际exact自有PNG选择并点击系统Complete，原生方形预览无错误，随后只取消：无pending、昵称与头像经新HTTPS读取保持不变；8项cleanup全true，资料/改密写增量0。Root亲看两张新原图，独立 `profile/native-ui-crop-cancel-root-review.json` 为reviewed，SHA `7ed3eea195b6e2837df80d11888120e73de245137077ed7240fc6b4082e199ab`；源采集报告visualReview=pending保持原样，由该独立review承接目视。范围只为当前SidePanel宿主兼容的真实Picker→裁剪预览→cancel，不确认、不上传，不扩写全部裁剪控件安全区或6a重新跑过1a40完整上传链。恢复follow-system仅记录动作/控件和无错误，选中辅助属性不可观测，不作动态跟随系统主题通过。
+
+## 当前驱动与原lint证据
+
+驱动的11项AST隔离检查已passed，仅验证几何拒绝边界及重复cleanup先清旧标志/写入增量：私有 `artifacts/private/ui-resize-viewport-driver-draft-20261030T045823893635Z/offline-guard-check.json` SHA `705ebfa9a47604681d0e1afbaa5d19473b23cdb25803b5bdeeb3f87f8143af1a`。它没有设备/网络/服务或业务执行，不并入39项或业务完成度。
+
+`profile/lint-native-evidence.json`（SHA `df12779b2c2214c13ae78e5918d2454513d0ed9982164bcddba53bb7df534ca2`）解释原11:31固定工具链执行，不是新lint或新增验收：原 `lint.json` 仍0 issues/filesChecked=0。Studio先过滤无缺陷文件，CLI统计剩余报告路径，因此该字段不是输入扫描数；原ArkPerf FileCount35及HPAuditor的35条唯一路径与当前35文件集合一致，独立证明当时处理这些输入路径。报告中的当前源码SHA仅绑定本次说明时的字节，不作当时逐文件SHA的回溯证明。原日志“文件不存在”定位为扫描后临时规则文件unlink ENOENT，具体缺哪一个未记；默认配置按官方分流跳过ESLint，HPA的12项安全规则flag启用，而ArkPerf独立registry的InvalidRule不等于全局规则失效。零缺陷不作安全认证或逐规则覆盖证明；未改配置、旧日志或原结果，也未重跑。
 
 ## 准备结果
 
@@ -114,12 +130,19 @@ Root 随后在 Index 的 `menuDestination` 增加 `normalIcon` / `selectedIcon` 
 
 | 阶段 | 操作与结果边界 |
 | --- | --- |
-| `run` | 从已存在的空登录开始，核对真实 HTTPS 身份，重新执行导航、昵称与密码 IME、完整 52vp 动作、草稿和 Back；合并草案再测主页/只读详情的实际头像方向、面板原生关闭/Back/安全可见遮罩点击及返回关系。抓取深浅主题请求后的主页/资料四原图及新面板原图。恢复跟随系统、显式退出、清空登录并确认零资料/密码写入。报告为 `profile/device-native-ui-refinements.json`，视觉审阅仍单列 pending。 |
+| `run` | 从已存在的空登录开始，核对真实 HTTPS 身份，重新执行导航、昵称与密码 IME、完整 52vp 动作、草稿和 Back；合并草案再测主页/只读详情的实际头像方向、面板原生关闭/Back/安全可见遮罩点击及返回关系。抓取深浅主题请求后的主页/资料四原图及新面板原图。恢复跟随系统、显式退出、清空登录并确认零资料/密码写入。报告为 `profile/device-native-ui-refinements.json`；本轮39项已通过，独立静态审阅另见native-ui-root-visual-review，动态不由此计通过。 |
 | `drag-begin` | 要求本次新包的 `run` 已通过且完成清理，重新登录，建立独立手势观察会话。 |
-| `drag --direction home-to-profile` / `profile-to-home` | 先以正常页签点击独立建立起始页，再按真实可见原生项中心与原生栏矩形注入官方 swipe，保存原生回调封装日志和实际落定页。不在滑动失败后补点目标，不要求一定切换成功，不由注入结果判定系统手动滑选能力。 |
+| `drag --direction home-to-profile` / `profile-to-home`，配合 `--gesture-kind swipe` 或 `drag` | 正常页签点击先独立建立起始页，再于真实原生栏内分别注入官方swipe或原生默认预长按drag，保存封装回调及实际落定页；后者预长按持续时间未实测。不补点目标，观察不要求必定切换，不由注入结果判定人工手感或平台全支持。本轮四次落定结果另由独立Root复核记录。 |
 | `drag-finish` | 结束观察并恢复主题、退出和核对零写入；没有执行拖动则如实记为未执行。独立报告为 `profile/native-ui-refinements-drag.json`。 |
 | `cleanup` / `drag-cleanup` | 仅对同一新包中途失败的相应会话重试受守卫清理，保留 incomplete；不能用普通 cleanup 改写已通过的主报告。 |
 
-IME 测量先从官方窗口清单找到实际输入法窗口，再读取该窗口根矩形；拒绝以全屏或模糊矩形代替键盘可用区。隐藏与恢复均读取 bundle 范围原始 UiTest 属性：恢复要求原生栏和四项真实可见、启用且可点击，不能仅因 CLI 仍列出旧 ID 就判通过。隐藏状态不向键盘区域盲点，检查的是实际暴露的原生命中目标和 `Visibility.None` 语义；手动交互及原图审阅仍由 Root 完成。
+IME测量保留官方窗口清单及各根，优先接受唯一有效的小IME根；根全屏或不明确时仍拒作IME高度，只在无IME实测基准、同页唯一AppRoot同原点/宽度且实际缩短时记录可用App视口。昵称与密码均观察到命名IME窗口，但两个IME根均为全屏矩形，已明确拒作键盘几何。可用区取同页无IME基准AppRoot `[0,132,1320,2848]` 与实际RESIZE后的根：昵称 `[0,132,1320,1788]`、密码 `[0,132,1320,1606]`，保持原点/宽度且真实缩短；报告的imeWindowBoundsPx/imeWindowHeightVp为null，缩短量不称IME高度。原始UiTest核实浮栏无可见或命中目标，完整52vp动作位于真实可用区；收键盘后浮栏四项恢复，昵称草稿及三密码保留，后续离开护照清密码，均无资料/改密写。隐藏与恢复均读取 bundle 范围原始 UiTest 属性：恢复要求原生栏和四项真实可见、启用且可点击，不能仅因 CLI 仍列出旧 ID 就判通过。隐藏状态不向键盘区域盲点，检查的是实际暴露的原生命中目标和 `Visibility.None` 语义；手动交互及原图审阅仍由 Root 完成。
 
 所有 UI 原图、原始属性、窗口根信息和日志仅写入本项目 private 目录，权限 600；凭据明文不进入这些文件或公开报告。公开报告仅保留摘要、方法、矩形和范围。任何独立再执行都需显式 `--new-attempt`，保留旧报告及各自私有证据目录。
+
+
+## 环境收尾的独立证据
+
+本轮旧一次性环境清理已取得三份独立实际报告：`profile/owned-avatar-media-cleanup.json` passed（SHA `7ed276e89d9009f876cf02977b3866d4d08801e8fdc047f86f81389fe5ab9f7f`），仅5个自有测试媒体逐个新读回SHA核验后删除exact URI及各2个精确临时导出，查询均0；`profile/isolated-services-cleanup-final-complete.json` passed/9项（SHA `c4962d816368ed43fda23c8f8b462c2d318a27faf8c91b87447e0b73408ddd55`），旧TLS/gate/backend进程、监听、reverse、一次性容器/DB及运行凭据状态均已消失，其他映射保持不变；`profile/isolated-private-material-cleanup-final.json` passed（SHA `0f7ac7ad37a9ef4b073350f21f9fb0daebdf26542169c7d7b61f1f408a6f0d5a`），8份旧TLS备份材料逐SHA删除，只留非secret清单/恢复日志，持久预览目录之外的旧私钥文件为0。先前三份stop preflight均incomplete、checks为空且未请求官方stop，历史保留；最终服务报告自身不宣称备份已清，由后一份材料报告承接。没有宽泛Docker/目录删除或系统信任/签名修改，固定预览DB/CA/登录文件独立保留。
+
+固定预览已完成真实seed、正式首次改密及显式状态修复，后续直接登录实测已通过，账号已可供审查。首次因Docker stdin缺少`-i`失败，经业务写入0核验后显式恢复prepared；第二次seed和改密成功后，PB0.40.1拒绝删除唯一superuser，保留initializing而未重放。随后 `profile/preview-initialization-reconcile.json` 实际passed，SHA `75ba302cacd5bf9fa5fca9764b92542bd8afdb961efdf12d57db9228724df5c3`：官方CLI对同一bootstrap身份换成不保留的随机密码，password hash/tokenKey均已变化，27个game表逐值与SHA一致、玩家口令/CA不变、seedReplayed=false，核验后才标complete并补回原IDs。最终runner `61059c59de2ec4fc964ee01566557dca7e31fc1535d19ae0559529f6897b0460` 的唯一记录退役及镜像immutableID/逻辑tag/arm64校验已静态复核。`profile/preview-environment.json` 已取得host_ready_native_pending（SHA `87b37b96a5f15571577b21c6d4edcd33cd26acd9f3161a205233c6bf6d7b517c`）：正式玩家直接登录verified_direct_login，独立CA可信200、不可信及错误主机名均拒绝，不开放玩家故障/重置接口；该原报告保持Host范围。新预览HAP `c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b` 已经官方run构建签名安装，`profile/runtime-preview-final.json` 六项实际passed（SHA `77f6f84e2894cc376594a62afc02dc43af54559bc739fd2584eb0c08612d9527`），包括真机API可信CA接受及不可信/错误主机名TLS_ERROR、系统区透明和深浅内容色。独立 `profile/runtime-preview-freshness.json` passed（SHA `eff6a1351013ebb908bebabbb8062318a0acfa7b3c48fe702d3732143c6860a2`），以当前自有进程的7条原始记录核window/material/TLS/双主题与原报告相同，不保存设备/进程标识，不改原runtime。新预览包的 `profile/preview-native-smoke.json` 已实际passed/13项（SHA `c63aed805a9c218a0589366a623fe91a8d0bfd5b9acb2da16315978307054751`）：固定普通账号从空登录直接进首页，真实四类场次、权威资料/只读账号、菜单Back、显式退出空输入及第二次直接登录均已核；四项收尾全true，第二次会话有意留在已认证首页供用户审查。独立 `profile/preview-native-root-review.json` 为reviewed_static（SHA `467dcc5b64f2a1b70b14900dfc96638e75742330adece9dcb7d29ef068d36cff`），Root逐SHA亲看3张原图，已停止手机自动化。此13项只认证/读取/导航/退出，不重跑资料、头像或密码写链，也没有服务端写台账计数结论。固定账号直接预览现已可交付，服务收口时仍运行且Host直接登录再次验证；需电脑保持唤醒、Docker运行、手机USB连接。独立 `profile/preview-package-source-binding.json` 为offline_binding_verified（SHA `19cf9511b823b3e4d19e1327dadef825ed068eda74ab7443cd3da3cade8bede8`）：35份源、8个导航SVG和包内ABC与6a逐字节相同；48个ZIP成员集合相同，45个内容字节相同，实际仅独立CA、完整1226条symbolMap记录重排及integration JSON空白/fontScale `1.0`→`1` 序列化变化，JSON值/顺序相同且timeout均15000。新signed HAP独立600归档，旧包/报告未改；不解析或归因ZIP之外的签名块。它只作离线来源绑定，不继承6a主轮39项为新包通过。停止/重启持久保留及用户改密后的行为也未因此完成实测。

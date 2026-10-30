@@ -1,15 +1,15 @@
 {
   "status": "passed",
-  "scanned_at": "2026-10-29T03:07:06.073995+00:00",
+  "scanned_at": "2026-10-30T06:28:56.486421+00:00",
   "scope": "Git-visible regular files; known private-state literals, optional in-memory device identifiers, decoded JWT shapes, private PEM headers and signing file extensions",
-  "public_candidate_file_count": 855,
+  "public_candidate_file_count": 1000,
   "skipped_nonregular_file_count": 0,
   "read_error_count": 0,
   "read_errors": [],
   "private_state_field_counts": [
     {
       "category": "known_account",
-      "count": 1
+      "count": 0
     },
     {
       "category": "known_auth_token",
@@ -17,7 +17,7 @@
     },
     {
       "category": "known_control_token",
-      "count": 1
+      "count": 0
     },
     {
       "category": "known_device_identifier",
@@ -25,7 +25,7 @@
     },
     {
       "category": "known_password",
-      "count": 2
+      "count": 0
     }
   ],
   "sensitive_finding_count": 0,

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "createdAt": "2026-10-30T05:40:38.992015+00:00",
+  "servicesReport": {
+    "file": "artifacts/validation/profile/isolated-services-cleanup-final-complete.json",
+    "sha256": "c4962d816368ed43fda23c8f8b462c2d318a27faf8c91b87447e0b73408ddd55"
+  },
+  "transitionReportSha256": "30fd9aa5b00d4f136d607cf17224c7bf5915fd324b5d92b8dcec310addd0770b",
+  "backupManifestSha256": "3cf953b5fccb3ba6d75c8618504da184baf471aaa5d17f6fa359f74f88d3f4c6",
+  "exactBackupMaterialsVerifiedAndRemoved": 8,
+  "onlyNonSecretManifestAndResumeLogRemainInBackup": true,
+  "oldRuntimeCredentialStateGone": true,
+  "privateKeyFilesOutsidePersistentPreview": 0,
+  "persistentPreviewCredentialsCaAndDatabasePreserved": true,
+  "scope": "Old dedicated disposable environment only. Existing known-secret inventory found only the removed state; no broad private-directory deletion, system trust or signing change."
+}

@@ -39,9 +39,9 @@ ENDPOINT = 'https://127.0.0.1:18443'
 ACCOUNT = 'starward_preview'
 RUNTIME_CHECKS = ('actualWindowReported', 'actualImmersiveWindow', 'transparentSystemBars',
                   'requestedFontScaleReported', 'threeIndependentTlsCases', 'actualLightAndDarkBarContent')
-SPEC = importlib.util.spec_from_file_location('preview_profile_ui', ROOT / 'scripts/device-profile-acceptance.py')
-CORE = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(CORE)
+SPEC = importlib.util.spec_from_file_location('preview_refinement_ui', ROOT / 'scripts/device-native-ui-refinements.py')
+NATIVE_UI = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(NATIVE_UI)
 
 
 def sha(path):
@@ -150,6 +150,7 @@ class Smoke:
         self.bound = {'hap': HAP, 'runtime': self.runtime_path, 'manifest': BASE / 'manifest.json',
                       'runner': RUNNER, 'hostReadiness': self.host_report, 'config': CONFIG, 'ca': self.ca_path,
                       'profileUI': ROOT / 'scripts/device-profile-acceptance.py', 'nativeUI': ROOT / 'scripts/native_device_ui.py',
+                      'refinementUI': ROOT / 'scripts/device-native-ui-refinements.py',
                       'driver': Path(__file__)}
         self.binding = {key: sha(path) for key, path in self.bound.items()}
         if REPORT.exists():
@@ -159,9 +160,9 @@ class Smoke:
         PRIVATE.chmod(0o700)
         self.directory = PRIVATE / ('capture-' + stamp)
         self.directory.mkdir(mode=0o700)
-        self.ui = CORE.ProfileUI({'account': self.login['account'], 'initialPassword': self.login['password']}, density)
-        self.ui.output = self.directory
-        self.ui.shots = self.directory
+        # Reuse only the reviewed UI class; no disposable Acceptance/control is constructed.
+        self.ui = NATIVE_UI.RefinementUI({'account': self.login['account'], 'initialPassword': self.login['password']},
+                                         density, self.directory, side_panel=True)
         self.checks = []
         self.cleanup = {'firstExplicitLogoutObserved': False, 'firstLogoutInputsEmpty': False,
                         'secondDirectLoginObserved': False, 'finalStateObserved': False}

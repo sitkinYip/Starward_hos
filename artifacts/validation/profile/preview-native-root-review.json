@@ -1,0 +1,37 @@
+{
+  "status": "reviewed_static",
+  "observedAt": "2026-10-30T06:26:02.989737+00:00",
+  "reviewer": "Root personally viewed all three original PNGs",
+  "scope": "Dedicated preview HAP static direct-login/home/profile originals; no physical gesture or motion claim",
+  "hapSha256": "c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b",
+  "nativeSmokeReportSha256": "c63aed805a9c218a0589366a623fe91a8d0bfd5b9acb2da16315978307054751",
+  "reviewedOriginalCount": 3,
+  "images": [
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261030T061931715267Z/first-direct-home.png",
+      "sha256": "db5bb83c4d4368859b1291acef988bb8e680d3ad5d504ad2f57add7f4a05f954",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261030T061931715267Z/fixed-preview-profile.png",
+      "sha256": "757bc28842288120b65c03fbe5cfefb7d43e45f5900ccd19553afdbac79e013c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261030T061931715267Z/second-direct-home.png",
+      "sha256": "be3f5eb3fa2b5f7a01d29307de44f030661859f911fac566e10bdf00d05aa49c",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "observations": [
+    "First and second native home originals visibly identify the isolated environment and show genuine seeded assignment content.",
+    "Selected compass is filled; other bottom icons are outlined. Floating native material reveals the underlying list; system gesture area has the page background.",
+    "Native profile original visibly shows expected review nickname and fixed starward_preview account as read-only; selected passport icon is filled and Save is visible."
+  ],
+  "limits": [
+    "Static images do not verify physical moving light, tactile experience, entry/exit motion, interruption or reduced-animation behavior.",
+    "This preview smoke authenticates, reads, navigates and logs out; it does not repeat profile/avatar/password writes or inherit the previous HAP39 UI checks."
+  ],
+  "leftAuthenticatedForReview": true,
+  "phoneAutomationStoppedAfterSmoke": true
+}

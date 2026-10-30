@@ -1,0 +1,27 @@
+{
+  "status": "reviewed",
+  "sourceReport": {
+    "file": "artifacts/validation/profile/native-ui-crop-cancel-regression.json",
+    "sha256": "c9f8bf03aa11d5bda6dad1a27da65bdc1cf1ab00cfba1ee310e17bcce7f86fcb"
+  },
+  "hapSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90",
+  "createdAt": "2026-10-30T05:35:26.697104+00:00",
+  "originalsViewed": 2,
+  "observations": [
+    "The actual owned PNG A/B/C/D quadrant image appears in the native square crop preview with light glass material and original controls.",
+    "After cancel the unchanged authoritative saved avatar and nickname reappear with no pending draft."
+  ],
+  "scope": "Current SidePanel host compatibility for Picker/crop-preview/cancel only. No confirm/upload or all crop control reachability is claimed from these two images.",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-validation/current-ui-crop-cancel/capture-20261030T052803096224Z/current6a-crop-preview.png",
+      "sha256": "dd9421acc562c02b4c77db3883620a42b6af2789f3201ce4bb76c3e2fe0355c2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-validation/current-ui-crop-cancel/capture-20261030T052803096224Z/current6a-profile-after-cancel.png",
+      "sha256": "6193d2ef36f2da228485910878b6b907dd5f63fbfd6e31b84dec5790f6cccbe8",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ]
+}
