@@ -1,0 +1,44 @@
+{
+  "status": "prepared_not_executed",
+  "preparedAt": "2026-10-29T02:36:51.016Z",
+  "source": "frozen backend/tests/server.mjs; original file left unchanged",
+  "sourceSha256": "8025b804aa06b1ae73ebb02c7051a06874f53d9f6de1bdd1b363dc8ddb78bb9c",
+  "adapter": "artifacts/private/https-isolation/harness/server.mjs",
+  "adapterSha256": "95ecec3f10e5c6b526332e21c269421fc053045b159550fcb7270489ecf517e4",
+  "changes": [
+    {
+      "anchor": "static ../scripts/runtime.mjs import",
+      "occurrences": 1,
+      "replacement": "Absolute file URL of the original frozen backend scripts/runtime.mjs"
+    },
+    {
+      "anchor": "400 iterations with50ms delay",
+      "occurrences": 1,
+      "replacement": "Explicit Date.now() startup deadline",
+      "startupTimeoutMs": 120000
+    },
+    {
+      "anchor": "startup GET /api/health",
+      "occurrences": 1,
+      "replacement": "Bounded AbortSignal.timeout for each readiness request",
+      "healthRequestTimeoutMs": 1500
+    }
+  ],
+  "unchanged": [
+    "business hooks",
+    "migrations",
+    "seed logic",
+    "contracts",
+    "database lifecycle",
+    "50ms poll delay"
+  ],
+  "originalSourceUnchanged": true,
+  "serverStartedByPreparation": false,
+  "acceptanceCredit": "Preparation and source-integrity evidence only; not startup, HTTPS or UI acceptance",
+  "execution": {
+    "status": "backend_started",
+    "observedAt": "2026-10-29T02:37:10.059865+00:00",
+    "playerProxyHealthStatus": 200,
+    "scope": "Dedicated disposable PocketBase started after computer reboot; HTTPS and UI separate"
+  }
+}

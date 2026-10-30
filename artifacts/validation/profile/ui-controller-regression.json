@@ -1,0 +1,64 @@
+{
+  "status": "passed_offline_controller_regression",
+  "at": "2026-10-30T03:16:08.373272+00:00",
+  "actualAppSourceSha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16",
+  "driverSha256": "7bb610ee0f165def056cb1031eb7cb812f053899fd2dad013ea8b421ac652d61",
+  "originalPreparedDriverSha256": "7bb610ee0f165def056cb1031eb7cb812f053899fd2dad013ea8b421ac652d61",
+  "caseCount": 10,
+  "cases": [
+    {
+      "name": "native-options-and-size",
+      "status": "passed"
+    },
+    {
+      "name": "left-anchor-and-reduced-motion",
+      "status": "passed"
+    },
+    {
+      "name": "repeated-open-and-close-without-animation-callback",
+      "status": "passed"
+    },
+    {
+      "name": "logout-before-pending-success",
+      "status": "passed"
+    },
+    {
+      "name": "host-disappears-before-pending-rejection",
+      "status": "passed"
+    },
+    {
+      "name": "cancel-new-tap-old-rejection-retains-new-intent",
+      "status": "passed"
+    },
+    {
+      "name": "current-rejection-reports-once",
+      "status": "passed"
+    },
+    {
+      "name": "native-back-or-mask-dismiss",
+      "status": "passed"
+    },
+    {
+      "name": "background-clears-content-and-closes",
+      "status": "passed"
+    },
+    {
+      "name": "old-disappear-does-not-close-new-dialog",
+      "status": "passed"
+    }
+  ],
+  "mutation": {
+    "changedOnlyInMemory": true,
+    "forcedCurrentGuard": true,
+    "detectedByCases": [
+      "host-disappears-before-pending-rejection",
+      "cancel-new-tap-old-rejection-retains-new-intent"
+    ]
+  },
+  "boundary": "Actual proposed controller methods extracted before declarative builders; decorators erased; native dialog, lifecycle and rendering simulated. Not ArkTS/Hvigor, UI, motion, material or HTTPS acceptance.",
+  "rootIndependentlyExecuted": true,
+  "sourceFileMutatedOnDisk": false,
+  "deviceActions": 0,
+  "servicesStarted": 0,
+  "actualUiAcceptanceClaimed": false
+}

@@ -2,7 +2,9 @@ import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
 import { createSliceViewModel } from '../features/createSliceViewModel';
-import { AssignmentSummary } from '../business/models';
+import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
+import { ProfilePage } from '../features/ProfilePage';
+import { AvatarEditor, AvatarSelection } from '../platform/AvatarEditor';
 import { assignmentKind, assignmentState } from '../business/assignmentState';
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { LaunchRoutes } from '../platform/LaunchRoutes';
@@ -15,8 +17,14 @@ import { StarwardMaterial, StarwardTitleSurface } from '../ui/StarwardMaterial';
 import { StarwardBottomTabs, StarwardJourneyTabs, StarwardSyncNote } from '../ui/StarwardTabs';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardAccountSheet } from '../ui/StarwardAccountSheet';
+import { StarwardSidePanel } from '../ui/StarwardSidePanel';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardMotion } from '../ui/StarwardMotion';
+import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
+import { StarwardAvatarCrop } from '../ui/StarwardAvatarCrop';
+import { StarwardPassport } from '../ui/StarwardPassport';
+import { StarwardKeyboard } from '../ui/StarwardKeyboard';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @ComponentV2
@@ -33,6 +41,12 @@ struct Index {
   @Local selectedId: string = '';
   @Local showHelp: boolean = false;
   @Local showAccount: boolean = false;
+  @Local accountAnchorWindowX: number = -1;
+  @Local mainIndex: number = 0;
+  @Local returnAssignmentId: string = '';
+  @Local avatarSelection: AvatarSelection | null = null;
+  @Local showAvatarCrop: boolean = false;
+  @Local avatarPicking: boolean = false;
   @Local theme: number = 0;
   @Local themeError: string = '';
   @Local displayFont: string = 'serif';
@@ -41,6 +55,8 @@ struct Index {
   @Local lobbyAtlasWidth: number = 350;
   @Local detailAtlasWidth: number = 366;
   private motion: StarwardMotion = new StarwardMotion();
+  private avatarEditor: AvatarEditor = new AvatarEditor();
+  private avatarPickRevision: number = 0;
   private paths: NavPathStack = new NavPathStack();
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -92,11 +108,13 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.showAccount = false;
     this.motion.stop();
     AppLifecycle.unsubscribe(this.lifecycle);
     LaunchRoutes.unsubscribe(this.routeListener);
     this.stopClock();
     this.clearPasswords();
+    this.cancelAvatarCrop();
   }
 
   @Monitor('vm.gate')
@@ -105,8 +123,102 @@ struct Index {
     if (this.vm.gate !== 'home') {
       this.paths.clear();
       this.showAccount = false;
+      this.mainIndex = 0;
+      this.returnAssignmentId = '';
+      this.cancelAvatarCrop();
     } else {
       this.dispatchPendingRoute();
+    }
+  }
+
+  @Monitor('showAvatarCrop')
+  cropVisibilityChanged(): void {
+    if (!this.showAvatarCrop) {
+      this.avatarSelection?.dispose();
+      this.avatarSelection = null;
+      this.avatarEditor.dispose();
+    }
+  }
+
+  onBackPress(): boolean {
+    const keyboardHeight: number = Math.max(this.avoidArea.keyboard.bottomRect.height,
+      this.avoidArea.keyboard.topRect.height, this.avoidArea.keyboard.leftRect.height, this.avoidArea.keyboard.rightRect.height);
+    hilog.info(0x0000, 'StarwardBack', 'keyboard=%{public}s height=%{public}d main=%{public}d depth=%{public}d',
+      this.avoidArea.keyboard.visible.toString(), Math.round(keyboardHeight), this.mainIndex, this.paths.size());
+    if (this.avoidArea.keyboard.visible && keyboardHeight > 0) {
+      StarwardKeyboard.dismiss(this.getUIContext());
+      return true;
+    }
+    if (this.showAvatarCrop) {
+      this.cancelAvatarCrop();
+      return true;
+    }
+    if (this.showAccount) {
+      this.showAccount = false;
+      return true;
+    }
+    if (this.vm.gate === 'home' && this.paths.size() === 0 && this.mainIndex !== 0) {
+      this.goMain(0);
+      return true;
+    }
+    return false;
+  }
+
+  private cancelAvatarCrop(): void {
+    this.avatarPickRevision++;
+    this.avatarPicking = false;
+    this.showAvatarCrop = false;
+    this.avatarSelection?.dispose();
+    this.avatarSelection = null;
+    this.avatarEditor.dispose();
+  }
+
+  private async pickAvatar(): Promise<void> {
+    if (this.vm.gate !== 'home' || this.vm.profileBusy || this.vm.securityBusy || this.avatarPicking ||
+      this.vm.securityUnconfirmed) {
+      return;
+    }
+    const revision: number = ++this.avatarPickRevision;
+    const playerId: string = this.vm.player.id;
+    this.avatarPicking = true;
+    try {
+      const selected: AvatarSelection | null = await this.avatarEditor.pick();
+      if (revision !== this.avatarPickRevision || this.vm.gate !== 'home' || this.vm.player.id !== playerId) {
+        selected?.dispose();
+        return;
+      }
+      if (selected !== null) {
+        this.avatarSelection = selected;
+        this.showAvatarCrop = true;
+      }
+    } catch (error) {
+      if (revision === this.avatarPickRevision && this.vm.gate === 'home' && this.vm.player.id === playerId) {
+        this.vm.reportProfileError(error instanceof GameFailure ? error.message :
+          '图片处理失败，请重新选择 JPG、PNG 或 WebP 图片。');
+      }
+    } finally {
+      if (revision === this.avatarPickRevision) {
+        this.avatarPicking = false;
+      }
+    }
+  }
+
+  private goMain(index: number): void {
+    if (this.vm.gate !== 'home') {
+      return;
+    }
+    if (index === 1 || index === 2) {
+      StarwardFeedback.toast(this.getUIContext(), index === 1 ? '收藏暂未开放' : '来信暂未开放');
+      return;
+    }
+    if (this.paths.size() > 0 && this.selectedId.length > 0) {
+      this.returnAssignmentId = this.selectedId;
+    }
+    this.showAccount = false;
+    this.paths.clear();
+    this.mainIndex = index;
+    if (index === 3) {
+      this.vm.openProfile();
     }
   }
 
@@ -139,6 +251,9 @@ struct Index {
     this.history = false;
     this.selectedId = '';
     this.showAccount = false;
+    this.mainIndex = 0;
+    this.returnAssignmentId = '';
+    this.cancelAvatarCrop();
   }
 
   private setTheme(mode: number): void {
@@ -208,6 +323,11 @@ struct Index {
     if (this.vm.gate !== 'home') {
       return;
     }
+    if (this.vm.securityUnconfirmed) {
+      StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
+      return;
+    }
+    this.mainIndex = 0;
     this.selectedId = id;
     this.vm.openAssignment(id);
     this.paths.pushPath({ name: 'assignment' });
@@ -255,15 +375,24 @@ struct Index {
   @Builder
   avatar() {
     Stack({ alignContent: Alignment.BottomEnd }) {
-      Text(this.vm.player.displayName.substring(0, 1) || '旅').fontFamily(this.displayFont).fontSize(22)
-        .fontColor($r('app.color.accent_text')).width(44).height(44).textAlign(TextAlign.Center)
-        .backgroundColor($r('app.color.surface')).border({ width: 1, color: $r('app.color.accent_border'), radius: 22 })
+      StarwardPlayerAvatar({ name: this.vm.player.displayName, avatar: this.vm.avatarImage, avatarSize: 44,
+        decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
       Text('≡').fontSize(13).fontColor($r('app.color.accent')).width(21).height(21).textAlign(TextAlign.Center)
         .backgroundColor($r('app.color.raised')).border({ width: 1, color: $r('app.color.accent_border'), radius: 11 })
         .offset({ x: 5, y: 2 })
     }.width(44).height(44).id('account-menu').accessibilityText('打开冒险者菜单')
       .accessibilityRole(AccessibilityRoleType.BUTTON).focusable(true)
-      .onClick(() => this.showAccount = true)
+      .onClick((event: ClickEvent) => this.openAccount(event))
+  }
+
+  private openAccount(event: ClickEvent): void {
+    if (this.vm.gate !== 'home') {
+      return;
+    }
+    const area: Area = event.target.area;
+    const center: number = Number(area.globalPosition.x) + Number(area.width) / 2;
+    this.accountAnchorWindowX = Number.isFinite(center) ? center : event.windowX;
+    this.showAccount = true;
   }
 
   @Builder
@@ -548,7 +677,7 @@ struct Index {
         ForEach(this.visibleItems(history), (item: AssignmentSummary, index: number) => {
           this.assignmentCard(item, index)
         }, (item: AssignmentSummary, index: number) => `${index}:${JSON.stringify(item)}`)
-        StarwardSyncNote({ tailClearance: 84 + this.safeBottom() })
+        StarwardSyncNote({ tailClearance: this.bottomContentClearance() })
       }.width('100%').padding({ top: 24, left: 6, right: 6 })
     }.id(history ? 'history-scroll' : 'current-scroll').width('100%').height('100%')
       .scrollBar(BarState.Off).align(Alignment.Top)
@@ -587,12 +716,29 @@ struct Index {
 
   @Builder
   home() {
-    StarwardBottomTabs({ floatingGap: 10 + this.safeBottom(), journeys: () => { this.journeys() },
+    StarwardBottomTabs({ floatingGap: 10 + this.safeBottom(), selectedIndex: this.mainIndex,
+      hideBar: this.keyboardOccupiesViewport(), materialInteractionEnabled: !this.motion.reduced,
+      selected: (index: number) => {
+        if (this.vm.gate !== 'home' || this.paths.size() > 0) {
+          return;
+        }
+        this.mainIndex = index;
+        if (index === 3) {
+          this.vm.openProfile();
+        }
+      }, journeys: () => { this.journeys() }, passport: () => { this.profile() },
       unavailableSelected: (index: number) => {
         const names: string[] = ['启程', '收藏', '来信', '护照'];
         StarwardFeedback.toast(this.getUIContext(), `${names[index]}暂未开放`);
       }
     })
+  }
+
+  @Builder
+  profile() {
+    ProfilePage({ vm: this.vm, active: this.mainIndex === 3 && this.paths.size() === 0,
+      displayFont: this.displayFont, bottomClearance: this.bottomContentClearance(), pickingAvatar: this.avatarPicking,
+      chooseAvatar: () => this.pickAvatar(), logout: () => this.logout() })
   }
 
   @Builder
@@ -721,6 +867,16 @@ struct Index {
     }
   }
 
+  private keyboardOccupiesViewport(): boolean {
+    const area: window.UIEnvAvoidAreaVP = this.avoidArea.keyboard;
+    return area.visible && Math.max(area.bottomRect.height, area.topRect.height,
+      area.leftRect.height, area.rightRect.height) > 0;
+  }
+
+  private bottomContentClearance(): number {
+    return this.keyboardOccupiesViewport() ? 20 : 84 + this.safeBottom();
+  }
+
   private safeTop(): number {
     return Math.max(0, this.avoidArea.statusBar.topRect.height, this.avoidArea.cutout.topRect.height);
   }
@@ -756,13 +912,55 @@ struct Index {
   }
 
   @Builder
+  menuDestination(index: number, label: string, description: string, hint: string, normalIcon: Resource,
+    selectedIcon: Resource) {
+    Button({ type: ButtonType.Normal }) {
+      Row({ space: 14 }) {
+        this.icon(this.paths.size() === 0 && this.mainIndex === index ? selectedIcon : normalIcon, 23,
+          $r('app.color.accent_text'))
+        Column({ space: 4 }) {
+          Text(description).fontSize(15).fontColor($r('app.color.text'))
+          Text(hint).fontSize(11).fontColor($r('app.color.muted'))
+        }.layoutWeight(1).alignItems(HorizontalAlign.Start)
+        if (index === 1 || index === 2) {
+          Text('暂未开放').fontSize(10).fontColor($r('app.color.subtle'))
+        }
+        this.icon($r('app.media.icon_arrow_right'), 17, $r('app.color.subtle'))
+      }.width('100%').padding({ top: 12, bottom: 12 })
+    }.id(index === 0 ? 'menu-home' : index === 1 ? 'menu-rewards' : index === 2 ? 'menu-notifications' : 'menu-profile')
+      .width('100%').constraintSize({ minHeight: 64 }).borderRadius(10).padding({ left: 12, right: 12 })
+      .backgroundColor(this.paths.size() === 0 && this.mainIndex === index ? $r('app.color.accent_faint') : Color.Transparent)
+      .accessibilitySelected(this.paths.size() === 0 && this.mainIndex === index)
+      .accessibilityText(`${label}，${description}，${hint}${index === 1 || index === 2 ? '，暂未开放' : ''}`)
+      .onClick(() => this.goMain(index))
+  }
+
+  @Builder
   accountSheet() {
     Scroll() {
       Column({ space: 20 }) {
-        Text(this.vm.player.displayName).fontFamily(this.displayFont).fontSize(26).fontColor($r('app.color.strong'))
-        Text(`RANK ${this.vm.player.level.order} · ${this.vm.player.level.name}`).fontFamily('monospace')
-          .fontSize(12).fontColor($r('app.color.accent_text'))
-        Text(`${this.vm.player.totalXp} EXP`).fontSize(13).fontColor($r('app.color.muted'))
+        StarwardPassport({ player: this.vm.player, avatar: this.vm.avatarImage, displayFont: this.displayFont, menu: true,
+          decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
+        Column({ space: 4 }) {
+          if (this.returnAssignmentId.length > 0 && this.paths.size() === 0) {
+            Button('返回答题 · 接着刚才的线索继续', { type: ButtonType.Normal })
+              .id('menu-return-assignment').width('100%').constraintSize({ minHeight: 52 })
+              .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
+              .onClick(() => {
+                this.showAccount = false;
+                this.openAssignment(this.returnAssignmentId);
+              })
+          }
+          this.menuDestination(0, '启程', '我的场次', '继续未完的冒险', $r('app.media.icon_nav_compass_regular'),
+            $r('app.media.icon_nav_compass_fill'))
+          this.menuDestination(1, '收藏', '奇遇收藏', '收好线索与战利品', $r('app.media.icon_nav_sparkle_regular'),
+            $r('app.media.icon_nav_sparkle_fill'))
+          this.menuDestination(2, '来信', '旅途来信', '查收远方的消息', $r('app.media.icon_nav_envelope_regular'),
+            $r('app.media.icon_nav_envelope_fill'))
+          this.menuDestination(3, '护照', '冒险者护照', '装扮你的冒险名片', $r('app.media.icon_nav_passport_regular'),
+            $r('app.media.icon_nav_passport_fill'))
+        }.width('100%')
+        Text('旅途光线').fontSize(12).fontColor($r('app.color.muted'))
         this.themePicker()
         InlineError({ message: this.themeError, fieldId: 'theme-error-message' })
         Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.vm.mode === 'https' ? '隔离测试环境' : '环境配置无效')
@@ -770,7 +968,26 @@ struct Index {
         Button('退出登录', { type: ButtonType.Normal }).id('logout').width('100%').height(44)
           .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent).onClick(() => this.logout())
       }.width('100%').alignItems(HorizontalAlign.Start).padding(24)
-    }.width('100%').height('100%').scrollBar(BarState.Off)
+    }.id('account-menu-scroll').width('100%').height('100%').scrollBar(BarState.Off)
+  }
+
+  @Builder
+  accountOverlay() {
+    StarwardSidePanel({ visible: this.showAccount!!, title: '冒险者菜单', ownerActive: this.vm.gate === 'home',
+      ownerKey: this.vm.player.id, anchorWindowX: this.accountAnchorWindowX, reducedMotion: this.motion.reduced,
+      failed: () => StarwardFeedback.toast(this.getUIContext(), '菜单暂时无法打开，请重试。'),
+      anchor: () => { this.rootNavigation() }, content: () => { this.accountSheet() } })
+  }
+
+  @Builder
+  avatarCropContent() {
+    StarwardAvatarCrop({ selection: this.avatarSelection,
+      confirmed: (upload: AvatarUpload) => {
+        if (this.vm.gate === 'home') {
+          this.vm.selectProfileAvatar(upload);
+        }
+        this.cancelAvatarCrop();
+      }, cancelled: () => this.cancelAvatarCrop(), reselect: () => this.pickAvatar() })
   }
 
   @Builder
@@ -790,8 +1007,8 @@ struct Index {
 
   build() {
     Stack() {
-      StarwardAccountSheet({ visible: this.showAccount!!,
-        anchor: () => { this.rootNavigation() }, content: () => { this.accountSheet() }
+      StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
+        anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
       }).width('100%').height('100%')
     }.width('100%').height('100%').backgroundColor($r('app.color.canvas'))
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])

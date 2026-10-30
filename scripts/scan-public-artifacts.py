@@ -154,9 +154,14 @@ def repository_status_counts():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, default=OUTPUT,
+                        help='Write a separate report below artifacts/validation.')
     parser.add_argument('--known-device-stdin', action='store_true',
                         help='Read a JSON array of device identifiers from stdin, only into memory.')
     args = parser.parse_args()
+    destination = (ROOT / args.output).resolve()
+    if not destination.is_relative_to((ROOT / 'artifacts/validation').resolve()):
+        parser.error('Scan output must remain under this project artifacts/validation')
     known = {category: set() for category in CATEGORIES}
     errors, findings, references = [], [], []
     for private_path in PRIVATE_STATES:
@@ -230,7 +235,6 @@ def main():
         'private_key_rejection_check_references': references,
         'source_repository_status_counts': repository_status_counts(),
     }
-    destination = ROOT / OUTPUT
     destination.parent.mkdir(parents=True, exist_ok=True)
     temporary = destination.with_suffix('.json.tmp')
     temporary.write_text(json.dumps(report, ensure_ascii=True, indent=2) + '\n', encoding='utf-8')

@@ -5,7 +5,8 @@ import { spawnSync } from 'node:child_process';
 import { cp, mkdir, readFile, writeFile, chmod, rm } from 'node:fs/promises';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
+import { prepareIsolationHarness } from './prepare-isolation-harness.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const privateRoot = path.join(root, 'artifacts/private/https-isolation');
@@ -72,7 +73,8 @@ if (command !== 'start') throw new Error('Usage: isolated-backend.mjs prepare|st
 await mkdir(privateRoot, { recursive: true, mode: 0o700 });
 process.env.PB_DOCKER_IMAGE = image;
 process.env.TMPDIR = privateRoot;
-const { createTestServer } = await import(pathToFileURL(path.join(backend, 'tests/server.mjs')).href);
+const harness = await prepareIsolationHarness(backend, privateRoot);
+const { createTestServer } = await import(harness.moduleUrl);
 const server = await createTestServer();
 let proxy, localControl, closing = false, fault = null, requests = [];
 const state = { pid: process.pid, backendBase: server.base, proxyBase: '', controlBase: '', controlToken: secret(), account: 'hm_' + randomBytes(5).toString('hex'), initialPassword: secret(), newPassword: secret(), playerId: '', assignmentId: '', assignments: {}, version, mode: 'real isolated PocketBase', backendSourceCommit: exec('git', ['rev-parse', 'HEAD'], { cwd: path.dirname(backend) }).trim(), imageId: exec('docker', ['image', 'inspect', '--format', '{{.Id}}', image]).trim(), sourceDirectory: server.directory };
@@ -116,7 +118,7 @@ async function seed() {
   state.otherPlayerId = secondary.id;
 }
 function permitted(method, pathname) {
-  return (method === 'GET' && (pathname === '/api/health' || pathname === '/api/questions/v1/me' || pathname === '/api/questions/v1/notifications' || pathname === '/api/questions/v1/rewards' || pathname === '/api/questions/v1/assignments' || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}$/.test(pathname) || /^\/api\/files\/game_players\/[a-z0-9]{15}\/[a-zA-Z0-9._%-]+$/.test(pathname))) || (method === 'POST' && ['/api/collections/game_players/auth-with-password', '/api/questions/v1/me/change-password', '/api/files/token'].includes(pathname));
+  return (method === 'GET' && (pathname === '/api/health' || pathname === '/api/questions/v1/me' || pathname === '/api/questions/v1/notifications' || pathname === '/api/questions/v1/rewards' || pathname === '/api/questions/v1/assignments' || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}$/.test(pathname) || /^\/api\/files\/game_players\/[a-z0-9]{15}\/[a-zA-Z0-9._%-]+$/.test(pathname))) || (method === 'POST' && ['/api/collections/game_players/auth-with-password', '/api/questions/v1/me/change-password', '/api/files/token'].includes(pathname)) || (method === 'PATCH' && pathname === '/api/questions/v1/me/profile');
 }
 function reply(res, status, body) {
   if (res.destroyed || res.writableEnded) return;
@@ -130,7 +132,7 @@ async function listener(req, res) {
   const origin = req.headers.origin;
   if (origin && /^http:\/\/(localhost|127\.0\.0\.1|local\.sitkin\.top)(:\d+)?$/.test(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin); res.setHeader('Vary', 'Origin');
-    res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, Accept'); res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, Accept'); res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   } else if (origin) { reply(res, 403, { error: { code: 'ORIGIN_DENIED', message: '隔离环境来源受限' } }); return; }
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
   if (!permitted(req.method, url.pathname)) { reply(res, 404, { error: { code: 'NOT_FOUND', message: '隔离玩家代理不提供此接口' } }); return; }
@@ -138,6 +140,15 @@ async function listener(req, res) {
   requests.push(row); requests = requests.slice(-1000);
   try {
     const body = await jsonBody(req);
+    // Structural evidence only: never retain multipart boundaries, fields,
+    // filenames, image bytes, credentials, file-token values or query strings.
+    if (url.pathname === '/api/questions/v1/me/profile' && req.method === 'PATCH') {
+      const contentType = req.headers['content-type'] || '';
+      row.bodyKind = /^multipart\/form-data(?:;|$)/i.test(contentType) ? 'multipart' : /^application\/json(?:;|$)/i.test(contentType) ? 'json' : 'other';
+      row.avatarPartPresent = row.bodyKind === 'multipart' && /(?:^|\r\n)Content-Disposition:[^\r\n]*\bname="avatar"(?:;|\r\n)/i.test(body.toString('latin1'));
+      row.requestBytes = body.length;
+    }
+    if (/^\/api\/files\/game_players\//.test(url.pathname)) row.fileTokenProvided = url.searchParams.has('token');
     let dropAfterForward = false;
     if (fault && (!fault.path || url.pathname === fault.path) && (!fault.method || req.method === fault.method)) {
       const selected = fault; fault = null; row.fault = true;

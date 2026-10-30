@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checks": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "error": null,
+  "hapSha256": "03e562ab41402ef1e8cccc986ed43f12d58aedc9e7efd30cae07ece2af819f23",
+  "scope": "Native IME Back and draft retention; no profile/password writes",
+  "checkLabels": [
+    "Filling a nickname closes the native keyboard and preserves the unsaved draft/profile",
+    "First system Back closes only the visible native IME",
+    "The next system Back reaches the authenticated home",
+    "Explicit logout clears both login fields"
+  ],
+  "privateScriptSha256": "2aedd1911de53956595645fc85b2035be095d8dd2f5c79f599ffc10635d02111"
+}

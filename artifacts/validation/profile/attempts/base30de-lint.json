@@ -1,0 +1,19 @@
+{
+  "issues": [
+    {
+      "file": "/Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardTabs.ets",
+      "line": 143,
+      "column": 11,
+      "severity": "Warning",
+      "rule": "@performance/high-frequency-log-check",
+      "message": "Avoid printing logs in frequent functions. The call chain here is as follows: entry/src/main/ets/ui/StarwardTabs.ets:143:this.beginInput\n>>entry/src/main/ets/ui/StarwardTabs.ets:50:hilog.info"
+    }
+  ],
+  "summary": {
+    "filesChecked": 1,
+    "issues": 1,
+    "errors": 0,
+    "warnings": 1,
+    "suggestions": 0
+  }
+}

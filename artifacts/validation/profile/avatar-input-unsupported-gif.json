@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "scope": "Actual owned source-input boundary and recovery; not proof of automatic Picker filtering",
+  "case": "unsupported-gif",
+  "startedAt": "2026-10-30T02:39:41.526500+00:00",
+  "updatedAt": "2026-10-30T02:44:13.389578+00:00",
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb"
+  },
+  "inputSha256": {
+    "core": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "runtime": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+    "s2": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "mainAvatar": "5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b",
+    "receipts": "306e04a5f4e0860e3007f56ae0e5de59a25b39b63e74e433bd621225fdb634bb",
+    "fixtures": "ccd10293e81fa4e84c3b47a465daaed1dd1f5dba1abe050c9844aef25eb62166",
+    "state": "c4917ea6902d73fbbac1d839240e3eb4a352c9de178fda6fe01378d51ff56c4a",
+    "driver": "68e7e6411a3a05598561f94d7e3c81826a6d0cacd9b0f75bce9d1400019605c4",
+    "avatarUI": "683690423bd62cc7b210fa4b7151f4a515a34f64d67b395d0dab850d517799d9",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "snapshot": "8408f9435a748ac384f4dd6e4d858e475dd6427b9f54864c7e9dce7602630cc0",
+    "selector": "286086036a00f23d022f51ededb02b4ffee01b85bbe8193f1493c46afd148312",
+    "integration": "c377e093b3dc46e9d55af484d0e5104272a76a6e045c3957875e33a0db4f23c3",
+    "editor": "e79f4e3c422e6fdc963b015559f109c6b37f7a963891da7be67516e2c16465a2",
+    "crop": "4e34391ae019d3993e4de0ea2608dbdacd43dc64b3b94bf2a0320929d422be0f"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-09.json",
+    "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+  },
+  "fixture": {
+    "sha256": "18657257b2652ae8adb2626ba8bdf35579bb3008790928aef453b4012fbceb60",
+    "bytes": 3590,
+    "format": "GIF",
+    "sourceAndReadbackShaVerified": true,
+    "normalizedSelectorReceiptSha256": "ae097131284de59c1182952a042a2d939b608ad94cc1a8ba90cda114aac40568"
+  },
+  "stage": "observed_and_cleaned",
+  "outcome": {
+    "kind": "native_error_sheet_rejected_source",
+    "sheetPresented": true,
+    "validCropPreviewAbsent": true,
+    "exactSourceMessage": true,
+    "confirmDisabled": true
+  },
+  "expectedBusinessError": {
+    "code": "AVATAR_INVALID_TYPE",
+    "message": "请选择 JPG、PNG 或 WebP 图片。"
+  },
+  "checks": [
+    {
+      "label": "Actual source-specific native message; no valid crop preview and error-Sheet confirm disabled when present"
+    }
+  ],
+  "selectionEvidence": {
+    "exactSelectionRecorded": true,
+    "newSelectionRecords": 1,
+    "selectionRawSha256": "3d89bf855c1072fb5b914ca77b2113df19846df0c41953712eb073ebbccac634",
+    "privateSelectionSha256": "2e3d2184dd8a18b18c01fd4196d27303e2fbe209a9bd6d3b8de581263beec656"
+  },
+  "rawEvidence": [
+    {
+      "phase": "picker-open",
+      "sha256": "175c44dbfa36c43145eb822d626555a6ebe4f4af8f2d33276d233ed86e2990a3"
+    },
+    {
+      "phase": "source-result-before-generic-app-ui",
+      "sha256": "8b404402337254f981b6fdfeddde7d04c5c533297c6030dd85222e9000a7170f"
+    },
+    {
+      "phase": "source-error-confirm-state",
+      "sha256": "8b404402337254f981b6fdfeddde7d04c5c533297c6030dd85222e9000a7170f"
+    },
+    {
+      "phase": "before-cleanup-0",
+      "sha256": "8b404402337254f981b6fdfeddde7d04c5c533297c6030dd85222e9000a7170f"
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/avatar-input-boundaries/run-unsupported-gif-20261030T023941525678Z/profile-before-source.png",
+      "sha256": "f1ee04fb1f442f32a3f9b6b8ee05fe383d5db4439b2fc6e3ce4a2851d5fc3f3d",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/avatar-input-boundaries/run-unsupported-gif-20261030T023941525678Z/source-specific-rejection.png",
+      "sha256": "5d5f9023f5b57d90a2a35edbad07b1373a7c843824434ddc66372a365a1956a2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/avatar-input-boundaries/run-unsupported-gif-20261030T023941525678Z/profile-after-source-cancel.png",
+      "sha256": "5991b2cad0b044514c05ae2418542feac02d19f693afac1160f18ca6aa95c22d",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "cleanup": {
+    "cropOrPickerCancelled": true,
+    "profileAndPendingUnchanged": true,
+    "authoritativePlayerUnchanged": true,
+    "noProfilePatch": true,
+    "noPasswordWrite": true,
+    "loggedOut": true,
+    "emptyLoginInputs": true
+  },
+  "privateOriginals": "artifacts/private/avatar-input-boundaries/run-unsupported-gif-20261030T023941525678Z",
+  "hostTraffic": "Authentication/me GET only; no host upload",
+  "notExecuted": [
+    "No production, profile save, password change or native crop confirmation is performed",
+    "A visible enabled Picker item is not claimed to prove filtering or official rejection",
+    "System Picker screenshots/personal thumbnail pixels are not exported by this driver"
+  ]
+}

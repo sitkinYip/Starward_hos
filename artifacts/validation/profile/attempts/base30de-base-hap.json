@@ -1,0 +1,157 @@
+{
+  "scope": "Task1 source/signed-HAP provenance only; functional results remain separate",
+  "hapSha256": "30de19566545126979d3cfa2a779f2a258d17ace101bfa9be5e5f7296af58683",
+  "privateArchive": "artifacts/private/profile-haps/base-30de19566545126979d3cfa2a779f2a258d17ace101bfa9be5e5f7296af58683.hap",
+  "codeSha256": "bfea629f50ed5c4f9f046be46f2a33833921734a32eebe4457a6ea216ede8a88",
+  "arktsBytecode": [
+    {
+      "file": "ets/modules.abc",
+      "sha256": "8a9026c8e9968dc3ba2aaeec5d00b938f474d89b568101426a5fb692b1f439fd"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "file": "entry/src/main/ets/business/GameRepository.ets",
+      "sha256": "a8fa4712576ae5b6a887953b87736a90ef3a2b62c3923d4ff45a3422e8ded503"
+    },
+    {
+      "file": "entry/src/main/ets/business/assignmentState.ets",
+      "sha256": "6ba432b95ed939aebc8e7937cb3a2210a9afdc4f03aa803037b39181a0613c49"
+    },
+    {
+      "file": "entry/src/main/ets/business/models.ets",
+      "sha256": "e7aa44c068d7a8a4d86cb830aed13e1efb104b5f3927e82eedba2487adf12999"
+    },
+    {
+      "file": "entry/src/main/ets/data/DtoDecoder.ets",
+      "sha256": "fa3b7e598adf83c4b0ca0c9b3db292c37a70ee9240f3a5693296b840c3d822c1"
+    },
+    {
+      "file": "entry/src/main/ets/data/HttpsGameRepository.ets",
+      "sha256": "34eb752b7f8ac3432e846234c134196bcee7c96b4e78ea02660d17a027dcd712"
+    },
+    {
+      "file": "entry/src/main/ets/data/MockGameRepository.ets",
+      "sha256": "899dd2759313250f03c4673b058a2134a323f1fed2bf1bf6a535be93287e3e8c"
+    },
+    {
+      "file": "entry/src/main/ets/entryability/EntryAbility.ets",
+      "sha256": "1da3a10b0fd7f0cc8afbd9dbe7d34b532df14fa1918eb8955334e5b84ca0f6db"
+    },
+    {
+      "file": "entry/src/main/ets/features/ProfilePage.ets",
+      "sha256": "b0778df26a09a25d69aa400b13906e32cb006a72869f47587db10073f681a41b"
+    },
+    {
+      "file": "entry/src/main/ets/features/SliceViewModel.ets",
+      "sha256": "8090beaf8ea6934ac8cb2f82dd9425dc18d099fcad46d52e05c3125e41d2dbcf"
+    },
+    {
+      "file": "entry/src/main/ets/features/createSliceViewModel.ets",
+      "sha256": "8ed62822bdf2045adfb07b3bac5350a5ed25d16216d05e1bd7a0912b75f796a6"
+    },
+    {
+      "file": "entry/src/main/ets/pages/Index.ets",
+      "sha256": "74bc162cdb747fa33e36ed4ef716b19187cb9be91217173c5672461136c5b299"
+    },
+    {
+      "file": "entry/src/main/ets/platform/AppEnvironment.ets",
+      "sha256": "286e0de9975710944b239ff3695d4ed419581bb1e93210617fcf731cd0b9f669"
+    },
+    {
+      "file": "entry/src/main/ets/platform/AppLifecycle.ets",
+      "sha256": "1cfc7b24a438551e816ebfb36449994abd358674e9fb8009618dd4733dfcebeb"
+    },
+    {
+      "file": "entry/src/main/ets/platform/AvatarEditor.ets",
+      "sha256": "e79f4e3c422e6fdc963b015559f109c6b37f7a963891da7be67516e2c16465a2"
+    },
+    {
+      "file": "entry/src/main/ets/platform/HttpTransport.ets",
+      "sha256": "9136a5d70dd1480e4aff2476fb7591671e5e7658dc89ecfaa39c8a9053629602"
+    },
+    {
+      "file": "entry/src/main/ets/platform/ImmersiveWindow.ets",
+      "sha256": "78605adce77e7f3ee13b579bc791064ff091954d8a123b436ff62b04143b2161"
+    },
+    {
+      "file": "entry/src/main/ets/platform/LaunchRoutes.ets",
+      "sha256": "b9ce2f29e01de76fc288b098cdd568f23033f1664fac65d850428a123b50c4fe"
+    },
+    {
+      "file": "entry/src/main/ets/platform/TlsProbe.ets",
+      "sha256": "81282647d9f06df303a63e239e76b947e07ac143ddc983d3756fb364a5c3b467"
+    },
+    {
+      "file": "entry/src/main/ets/platform/WindowMetrics.ets",
+      "sha256": "f0ff375b4a2b1acee9c8a1fc63ea2971fddd0fa9b75f833f3046a6a5e84f408a"
+    },
+    {
+      "file": "entry/src/main/ets/ui/DetailFact.ets",
+      "sha256": "7ffef75cb2808e675cccd909448e07184555d7375a582e486062911f583665bd"
+    },
+    {
+      "file": "entry/src/main/ets/ui/ErrorMessages.ets",
+      "sha256": "95c0ea592fad491036efd616d8fa453c77d03f292162d1750ea7dda586747e5e"
+    },
+    {
+      "file": "entry/src/main/ets/ui/LabeledInput.ets",
+      "sha256": "4c7a99d81675a8645b9443890ac956d8f5e79876f96a649eb1c49909d1d78481"
+    },
+    {
+      "file": "entry/src/main/ets/ui/PrimaryAction.ets",
+      "sha256": "94ac0115094e10ad77aa26530ced4d072390940248ecc74fd1c764208f79471a"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardAccountSheet.ets",
+      "sha256": "86468b5ab4cd7e0f417a00bc1bd86bcb44270adc558ac1ae5b3eaf3ab963d1a1"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardAtlas.ets",
+      "sha256": "356c2b2b40fd040ca6666eb8704a30f14605afefd67a3609b871415c1cd28b95"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardAvatarCrop.ets",
+      "sha256": "8460b829295ab6bea90ed8426ae276b2ee26208568943f13e4372cc8df161611"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardFeedback.ets",
+      "sha256": "7150eec2c236521a36f993d546ea9b5d4788381a20d7301058b49f0a561c5896"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardKeyboard.ets",
+      "sha256": "6b2043997299ee4f52b9f74bb7c83592aae353ea09af9f3b5cad94f51d245b5e"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardMaterial.ets",
+      "sha256": "439d50a2908288ba2b36b8cfef599bc4c829ef773f91c2766e6181d3a28e807a"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardMotion.ets",
+      "sha256": "63e49449ac31a9fc6b6a0c02af1d00506025020f33618b66200cb8001a0ec6a9"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardPassport.ets",
+      "sha256": "9eb638f1c3e786e2f463169593e4e229b9c96893d75660b807d65c19301d1b89"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardPlayerAvatar.ets",
+      "sha256": "f1537f85de38d86689e80bf802f88bdb71678b06044ca56b80fe75e092030297"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardRefresh.ets",
+      "sha256": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardTabs.ets",
+      "sha256": "4d910a7d6c052aaf8f8edb21e0401a10fe21d92569ecee3d60db2bd9884d26d6"
+    }
+  ],
+  "configuration": {
+    "isolated": true,
+    "endpoint": "https://127.0.0.1:18443",
+    "timeoutMs": 2000,
+    "fontScale": 1,
+    "probeTls": true
+  }
+}

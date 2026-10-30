@@ -1,0 +1,332 @@
+{
+  "status": "passed",
+  "scope": "Task1 mobile Web layout/copy reference only",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "sourceCheckoutCleanBefore": true,
+  "viewport": {
+    "width": 391,
+    "height": 844,
+    "deviceScaleFactor": 1,
+    "nativeWidthReferenceVp": 391.111111,
+    "rounding": "Browser width rounds the measured native width to391 CSSpx",
+    "nativeSafeAreaApplied": false,
+    "note": "Native status/gesture avoid areas remain separate runtime evidence; browser does not emulate them"
+  },
+  "snapshot": {
+    "sha256": "f6c48fe70f27499c38146b972ff2f7028d5d1ef9fbc75f078e4604c081b48b9c",
+    "archiveFile": "artifacts/private/web-profile-inputs/f6c48fe70f27499c38146b972ff2f7028d5d1ef9fbc75f078e4604c081b48b9c.json",
+    "assignmentCount": 4
+  },
+  "browserUsesRealBackend": false,
+  "apiInterception": "All /api/* fulfilled in Playwright, including unknown routes; no API request continued",
+  "renderDrivers": "Login, optional mandatory-password reply and file tokens are synthetic rendering drivers; no browser backend write",
+  "auxiliaryAPIs": "Notification/reward replies, if requested, are fixed empty fixtures outside Task1",
+  "fontControl": {
+    "enabled": true,
+    "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "method": "Same optional controlled serif override as first-slice capture; Web source unchanged"
+  },
+  "avatarReplay": {
+    "provided": true,
+    "sha256": "c04d20a84724f038be96a3aca754efa923e9e8a219804fec3d75cf2c646c4dd2",
+    "source": "Caller-provided private readback bytes; browser serves only the replay fixture"
+  },
+  "servedFrozenSourceChecks": [
+    {
+      "theme": "dark",
+      "source": "src/api/game.schema.ts",
+      "sha256": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/config/ui-copy.ts",
+      "sha256": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/pages/GameProfilePage.tsx",
+      "sha256": "35525e9ebbf42809d76b5a3162612e9d97845c0cf02957768ca29c4e699f8b11",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/GameSidebar.tsx",
+      "sha256": "8d0e957fb74ae9ad98516b8e7a661abe21dbc05c79b56962a33f892b2c389d5f",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/components/ProfileEditor.tsx",
+      "sha256": "7a5438166a92b3f588f43c5151b5a75e51f4fe9a5f5608ef6e5c702dbb62286b",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/components/AvatarCropDialog.tsx",
+      "sha256": "f33a857e5b25d440bb45225493231ea3b88aa52df2159c9e2abff9ad63c8393b",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/components/avatar-crop.css",
+      "sha256": "c5b3075ea4241eb880857144255abc25ea15b5210f52214963dadd9f8a1c6c80",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/components/ui/Dialog.tsx",
+      "sha256": "3424d6686401869fe002c809d5a9b2c40c2080b127247aaf9815b0329acd63db",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/avatar-image.ts",
+      "sha256": "4323d8d4756a0ac41dc70acdb5dc8ea6e48e5fb5dedac9db15c1c930e5de3898",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/styles/components/controls-and-overlays.css",
+      "sha256": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/styles/foundation/tokens.css",
+      "sha256": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/api/game.schema.ts",
+      "sha256": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/config/ui-copy.ts",
+      "sha256": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/pages/GameProfilePage.tsx",
+      "sha256": "35525e9ebbf42809d76b5a3162612e9d97845c0cf02957768ca29c4e699f8b11",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/GameSidebar.tsx",
+      "sha256": "8d0e957fb74ae9ad98516b8e7a661abe21dbc05c79b56962a33f892b2c389d5f",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/components/ProfileEditor.tsx",
+      "sha256": "7a5438166a92b3f588f43c5151b5a75e51f4fe9a5f5608ef6e5c702dbb62286b",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/components/AvatarCropDialog.tsx",
+      "sha256": "f33a857e5b25d440bb45225493231ea3b88aa52df2159c9e2abff9ad63c8393b",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/components/avatar-crop.css",
+      "sha256": "c5b3075ea4241eb880857144255abc25ea15b5210f52214963dadd9f8a1c6c80",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/components/ui/Dialog.tsx",
+      "sha256": "3424d6686401869fe002c809d5a9b2c40c2080b127247aaf9815b0329acd63db",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/avatar-image.ts",
+      "sha256": "4323d8d4756a0ac41dc70acdb5dc8ea6e48e5fb5dedac9db15c1c930e5de3898",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/styles/components/controls-and-overlays.css",
+      "sha256": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/styles/foundation/tokens.css",
+      "sha256": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+      "matches": true
+    }
+  ],
+  "schemaChecks": [
+    {
+      "name": "player",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "dark"
+    },
+    {
+      "name": "assignment",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "dark"
+    },
+    {
+      "name": "assignments",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "dark"
+    },
+    {
+      "name": "player",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "light"
+    },
+    {
+      "name": "assignment",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "light"
+    },
+    {
+      "name": "assignments",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "light"
+    }
+  ],
+  "states": [
+    {
+      "state": "profile-identity",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-identity-dark.png",
+      "screenshotSha256": "004a74f33d30569151aa5e661161f2cf745f95c41e3b9b17759a5144478ada3d",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-avatar-crop",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-avatar-crop-dark.png",
+      "screenshotSha256": "eaeea4b30f78e4b382cbaa24a0761b88eca6dd62801791c0f56da8c479765801",
+      "documentFitsWidth": true,
+      "privateGeometry": {
+        "file": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-avatar-crop-dark.json",
+        "sha256": "b7547e23d6e790ba4b34dd4997f480514ed39a31e69f118a7ff02723eac8d411"
+      },
+      "privateDom": {
+        "file": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-avatar-crop-dark.html",
+        "sha256": "5d36230d17eb288e78d802ba88702e389be8dd6cd0552a36af5739ca434fcc80"
+      }
+    },
+    {
+      "state": "profile-security",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-security-dark.png",
+      "screenshotSha256": "58695be08b9727157ee913f789a7e1078f0996d59499916b1b02bbc932715e2c",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-menu",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-menu-dark.png",
+      "screenshotSha256": "1b26896497a0da48b4201b4a7b7269b82b0c099cb5c56361beae2bb95b20a009",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-identity",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-identity-light.png",
+      "screenshotSha256": "28e2e7a75ca41a35e64f1fe10473f9723ef3aacb0c2cc46f8f13c16697847f58",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-avatar-crop",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-avatar-crop-light.png",
+      "screenshotSha256": "e1fab19514fb063bc4835245dfebbcad4e92d6a3759fc76137eff565d1158dde",
+      "documentFitsWidth": true,
+      "privateGeometry": {
+        "file": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-avatar-crop-light.json",
+        "sha256": "15d328d6e71c61a64a6d6c4423c35a9ede92de18aec160fe90dbe5b5fa657178"
+      },
+      "privateDom": {
+        "file": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-avatar-crop-light.html",
+        "sha256": "c5cbc9dfb1b50ad3b9c5bd2a87ca5dd02982a87f987cd35de51dbf6e322af7e9"
+      }
+    },
+    {
+      "state": "profile-security",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-security-light.png",
+      "screenshotSha256": "3dd3eb0bb149f23c19eab76a6ff83c8e350686f20924107b8530de071c7be1fc",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-menu",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/profile-menu-light.png",
+      "screenshotSha256": "6327a84114856b9f1aaedbc83a05a0959dbc210489e61f5152866aa1da6c3aaf",
+      "documentFitsWidth": true
+    }
+  ],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0,
+  "unexpectedApiCount": 0,
+  "externalRequestsAllowed": 0,
+  "blockedExternalRequestCount": 0,
+  "cropReference": {
+    "source": "artifacts/validation/profile/avatar-fixture.png",
+    "sourceSha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+    "sourceBytes": 4244,
+    "sourceMimeType": "image/png",
+    "privateSourceArchive": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/crop-source.png",
+    "selection": "Real profile input[type=file].set_input_files with the SHA-bound original PNG bytes",
+    "captureStatus": "captured",
+    "visualAcceptance": "not_evaluated",
+    "cropConfirmationClicked": false,
+    "profileWriteRequestCount": 0,
+    "dialogCancelledThemes": [
+      "dark",
+      "light"
+    ],
+    "sourceSha256RecheckedAfter": true
+  },
+  "browser": {
+    "name": "Google Chrome headless",
+    "version": "156.0.8078.49"
+  },
+  "sourceCheckoutCleanAfter": true,
+  "responseSourceCounts": {
+    "synthetic_login_render_driver": 2,
+    "actual_readonly_player_snapshot": 8,
+    "actual_readonly_assignments_snapshot": 4,
+    "synthetic_file_token_render_driver": 4,
+    "private_avatar_byte_replay": 4
+  },
+  "privateRawEvidence": {
+    "file": "artifacts/private/web-profile-visual/capture-20261029T061845411020Z/browser-raw.json",
+    "sha256": "3ae5ec1c17d3fe4e6f7bfa4d46c650522854173c02c473ac7b4fe6578b3e2861"
+  }
+}

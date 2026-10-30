@@ -1,0 +1,250 @@
+{
+  "status": "incomplete",
+  "stage": "incomplete-run-cleaned",
+  "scope": "New UI-only HAP straight-phone checks",
+  "startedAt": "2026-10-30T03:11:59.961046+00:00",
+  "updatedAt": "2026-10-30T03:25:16.375676+00:00",
+  "environment": "Original disposable S2 player over strict USB HTTPS; no fixed preview player",
+  "hap": {
+    "packagedSha256": "193b1e973c35ed1d893de32af4b3e75be30d0daca457d76b26e502505ba15fd8"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-ui-refinements-01.json",
+    "sha256": "66517ed3587ab47eebd6bf671a13f785480e93b8cd016a088e861919ea6d76fc"
+  },
+  "sourceBinding": {
+    "baseHapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "patchSha256": "27c1a323cbfe6c000f677d90e6a60f44a0e452ce1921d33d0231b606befb0b4a",
+    "patchManifestSha256": "927ae25e29befcaee4bf5cfe3465ea265b8e60caf72e2e56f1b8c654b17c61b6",
+    "businessSourcesUnchanged": true,
+    "oldUiChecksInherited": false,
+    "configurationTimeoutMs": 15000,
+    "newUiSources": [
+      {
+        "file": "entry/src/main/ets/ui/StarwardSidePanel.ets",
+        "sha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16"
+      }
+    ],
+    "accountMenuContainer": "official_prompt_action_side_panel"
+  },
+  "credentialEpochOnly": {
+    "coreSha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "s2Sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "privateOwnerWitnessSha256": "54693c1d4073b4633f232b8682898d75f19ea2500c5b86d7e8549feb31211b8c",
+    "newPasswordKey": "newPassword",
+    "freshHttpsIdentityCheck": true
+  },
+  "driver": {
+    "file": "scripts/device-native-ui-refinements.py",
+    "sha256": "ae2e2797a554e11e8cf9750275250d2ccc40bfca3a15cf6b0e21e42b9e6ef50a",
+    "profileUiHelperSha256": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818"
+  },
+  "count": 10,
+  "checks": [
+    {
+      "case": "LOGIN",
+      "label": "The new HAP starts at empty login in the original disposable HTTPS environment"
+    },
+    {
+      "case": "LOGIN",
+      "label": "The original S2 password reaches home without a forced-password write"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    }
+  ],
+  "observations": [],
+  "geometry": [],
+  "privateScreenshots": [],
+  "privateTrees": [],
+  "rawEvidence": [
+    {
+      "label": "initial-login-panel-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-initial-login-panel-absent-c80fd49d0c254c5083d6150479863b90.json",
+      "remoteRemoved": true,
+      "sha256": "7c9b73f2fa8bae35c4301becd409d91511a9687e9a8e1a2c2219c966adbd0096"
+    },
+    {
+      "label": "ordinary-login-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-ordinary-login-home-1947afd68f6c43f4bf930437a85f59a5.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-destination-profile-398131d6ee6a42e690fe7c287ce6e5ea.json",
+      "remoteRemoved": true,
+      "sha256": "15e13fa42dc6f83044af40f91bce275a03c77a6e9dd2d8bde8ca0222fbf55bf8"
+    },
+    {
+      "label": "deferred-profile-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-profile-0-29060066ec414164bdca4bab875eb6dc.json",
+      "remoteRemoved": true,
+      "sha256": "15e13fa42dc6f83044af40f91bce275a03c77a6e9dd2d8bde8ca0222fbf55bf8"
+    },
+    {
+      "label": "deferred-profile-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-profile-0-b88bd045a4bf4e75b7268f7f8ad7bf0e.json",
+      "remoteRemoved": true,
+      "sha256": "15e13fa42dc6f83044af40f91bce275a03c77a6e9dd2d8bde8ca0222fbf55bf8"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-destination-home-70e9dbd2139e4ef1aff97eed5f1baaa6.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "deferred-home-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-home-0-c772eb17754944f5857cc3096a471001.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "deferred-home-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-home-0-8b036101e09747079d8e6fc8c3d688a3.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-destination-profile-e0cdc5712b8d4dd9a8f20fe4e93e05fa.json",
+      "remoteRemoved": true,
+      "sha256": "15e13fa42dc6f83044af40f91bce275a03c77a6e9dd2d8bde8ca0222fbf55bf8"
+    },
+    {
+      "label": "deferred-profile-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-profile-1-dda6ec81132b4b10bc05c912f5a6f705.json",
+      "remoteRemoved": true,
+      "sha256": "15e13fa42dc6f83044af40f91bce275a03c77a6e9dd2d8bde8ca0222fbf55bf8"
+    },
+    {
+      "label": "deferred-profile-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-profile-1-564ef2c6fe90400cbc805093c9b0d6c0.json",
+      "remoteRemoved": true,
+      "sha256": "15e13fa42dc6f83044af40f91bce275a03c77a6e9dd2d8bde8ca0222fbf55bf8"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-destination-home-52b07569011d401790baf5123033e98b.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "deferred-home-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-home-1-33488e1bb42f4c64b9db7a423d9301e4.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "deferred-home-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-deferred-home-1-28ca8aa46c984d89a6ee6b7c4dee9b3b.json",
+      "remoteRemoved": true,
+      "sha256": "4233b3cd7935695f6aaf8e68e05c6fc4055ec83b942614ca9487749e3bd303ac"
+    },
+    {
+      "label": "theme-existing-panel",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-theme-existing-panel-983147184e6645c494417f083c31c613.json",
+      "remoteRemoved": true,
+      "sha256": "3ec77bd07f2d4754ed18e42605501a3b4381a72f41668a3669838264f3d80e83"
+    },
+    {
+      "label": "theme-after-configuration",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-theme-after-configuration-fb0b6f0a4f5a4ed48d9ce347ad1d4fe6.json",
+      "remoteRemoved": true,
+      "sha256": "52fbed86d91e513ccebef0ce0c5746d081063f88cb5e2f7cf4d96c65292334f6"
+    },
+    {
+      "label": "theme-menu-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-theme-menu-dismissed-caecd63727f7483fa8c36584b468fb38.json",
+      "remoteRemoved": true,
+      "sha256": "71317e3952e30987345fea8eff2efe49c0f530158070aea9c6e6e35aa9c8ec9c"
+    },
+    {
+      "label": "logout-panel-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T031159960640Z/raw-logout-panel-dismissed-e9fed1be8cc1427bb1602282c56e7e5d.json",
+      "remoteRemoved": true,
+      "sha256": "820c2b618328ab90d93a88bac502b6ad9c94887f7ea1c6d30a48f6a2545da91c"
+    }
+  ],
+  "imeEvidence": [],
+  "themeActions": [
+    {
+      "requested": "system",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_review"
+    }
+  ],
+  "visualReview": "pending_root_original_image_review",
+  "dragObservations": [],
+  "dragCapabilityConclusion": "not_determined_by_injection",
+  "businessWriteDelta": {
+    "profilePatch": 0,
+    "passwordPost": 0
+  },
+  "cleanup": {
+    "themeRestoredToSystem": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "noBusinessWrites": true,
+    "remoteDumpsRemoved": true,
+    "logStopped": true
+  },
+  "limitations": [
+    "Visual normal/fill and optical effects require separate Root original-image review",
+    "No foldable, hover, split-window or reader/physical-keyboard acceptance is claimed",
+    "Hidden-bar proof checks actual exposed native nodes; no tap is injected into the system keyboard",
+    "A scripted swipe is not proof of the manual system drag-selection capability",
+    "Account panel geometry alone does not prove material pixels or entry/exit motion direction",
+    "No profile save, password save, game-start, answer, reward or notification-read action is performed"
+  ],
+  "error": "A guarded native UI stage stopped; inspect private evidence and actual foreground before continuing"
+}

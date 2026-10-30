@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "scope": "Controlled own temporary TLS restart and response-gate readiness only",
+  "startedAt": "2026-10-30T02:55:42.933614+00:00",
+  "updatedAt": "2026-10-30T02:55:45.908431+00:00",
+  "stage": "gate_ready_without_arming",
+  "checks": {
+    "frozenVariantRuntimeAndSources": true,
+    "ownTlsAndBackendProcesses": true,
+    "ownLoopbackListeners": true,
+    "soleDeviceAndExactOwnReverseMapping": true,
+    "caSanKeysAndPackagedAuthority": true,
+    "privateOriginalMaterialBackupVerified": true,
+    "gracefulStopPidPortStateAndMaterialsCleared": true,
+    "originalBytesAndOnlyTlsMetadataRestored": true,
+    "sameTlsIdentityAndReverseMappingResumed": true,
+    "officialThreeTlsChecksPassed": true,
+    "authenticatedFreshUnarmedGateReady": true,
+    "nonTlsBackendStatePreserved": true
+  },
+  "lateResponseOrNativeUiAccepted": false,
+  "nativeUiInspected": false,
+  "backendReset": false,
+  "databaseOrPlayerWrite": false,
+  "newCaCreated": false,
+  "gateArmedByHelper": false,
+  "oldOwnRunnerStopped": true,
+  "newOwnRunnerStarted": true,
+  "privateBackup": "artifacts/private/https-isolation/gate-transition-20261030T025543641120Z",
+  "backupCleanup": "Root removes only this exact private backup after final environment cleanup",
+  "failureRecovery": "Retain original materials and private manifest; inspect the recorded stage before any manual recovery",
+  "provenance": {
+    "basePackagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "variantPackagedSha256": "d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4",
+    "runtime": {
+      "file": "artifacts/validation/profile/runtime-late-15s.json",
+      "sha256": "cb2265144332ff4b99f72759983599b0f0ca3a651f07138f529280c1c981bdc6"
+    },
+    "baseManifest": {
+      "file": "artifacts/validation/profile/base-hap.json",
+      "sha256": "7e42dea6d38dd7a9069a721147cb44b1f6f18cc1354aebfc71d3ad462e583c53"
+    },
+    "onlyTimeoutConfigurationChanged": true,
+    "baseTimeoutMs": 2000,
+    "variantTimeoutMs": 15000,
+    "abcBytesIdentical": true,
+    "sourceFileCount": 34,
+    "caSha256": "afd2be4eb95da9739a9abf8d19897b59810009dccb09b5a425e8efba4fb3f4a1",
+    "packagedEntryComparison": {
+      "changedPackagedEntries": [
+        "ets/symbolMap.map",
+        "resources/rawfile/integration.json"
+      ],
+      "uncompressedPackagedEntries": 40,
+      "onlyTimeoutConfigurationChanged": true,
+      "allOtherPackagedEntriesByteIdentical": true,
+      "packagedByteChangeScope": "integration timeout; optional complete symbol-map record reordering only",
+      "symbolMap": {
+        "entry": "ets/symbolMap.map",
+        "present": true,
+        "recordCount": 1173,
+        "moduleCount": 34,
+        "functionCount": 1139,
+        "uniqueRecordKeys": true,
+        "canonicalRecordsSha256": "e266ef53c64180b12eda59a9eb01da4fa00774d18dd2ed73aee610f9c2138ded",
+        "baseSha256": "7ce0364b7a18d2c514330ca42692f52f64d9aa6d40382cd0fd20ff3352b7dbfa",
+        "variantSha256": "fd97481eb1cf6f9b52ffa82e9c20a573e84610dfa29c7095bcfa3f143697999d",
+        "bytesIdentical": false,
+        "completeRecordMultisetIdentical": true,
+        "onlyRecordOrderChanged": true
+      }
+    },
+    "provenanceHelperSha256": "0f7753a10668c7143b0a65785157ae74afa3bacf27178e668a8e47fc42c6a4ed"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "status": "reviewed",
+  "reviewedAt": "2026-10-30T02:31:05.533160+00:00",
+  "scope": "Actual 1a40 task1 visual baseline; pending 2026-10-30 UI refinements remain separate",
+  "hapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "sources": {
+    "native": {
+      "file": "artifacts/validation/profile/native-profile-visual.json",
+      "sha256": "4c639ff60ccaae87a1482327161838d0eed9bde8904bb68fd8198c127455d6aa"
+    },
+    "web": {
+      "file": "artifacts/validation/profile/web-profile-visual.json",
+      "sha256": "b51d6bf904dfb6dc60085b19143e1005f8815242f0fa759ca651460cf225e10b"
+    },
+    "crop": {
+      "file": "artifacts/validation/profile/native-avatar-crop-visual.json",
+      "sha256": "05ed5b63f2093ebb0d4d4e2f29e0d98361f32154cc24a579cb6b782d7437ecee"
+    }
+  },
+  "pairingReceiptSha256": "caf0c8993617eb3af3766f9027849cc7a65aa3d7706708970522f8c8265567ed",
+  "pairs": [
+    {
+      "group": "identity",
+      "theme": "dark",
+      "web": "profile-identity",
+      "native": [
+        "profile-identity-top",
+        "profile-identity-bottom"
+      ]
+    },
+    {
+      "group": "security",
+      "theme": "dark",
+      "web": "profile-security",
+      "native": [
+        "profile-security-top",
+        "profile-security-bottom"
+      ]
+    },
+    {
+      "group": "menu",
+      "theme": "dark",
+      "web": "profile-menu",
+      "native": [
+        "profile-menu-top",
+        "profile-menu-bottom"
+      ]
+    },
+    {
+      "group": "crop",
+      "theme": "dark",
+      "web": "profile-avatar-crop",
+      "native": [
+        "profile-avatar-crop-top",
+        "profile-avatar-crop-controls"
+      ]
+    },
+    {
+      "group": "identity",
+      "theme": "light",
+      "web": "profile-identity",
+      "native": [
+        "profile-identity-top",
+        "profile-identity-bottom"
+      ]
+    },
+    {
+      "group": "security",
+      "theme": "light",
+      "web": "profile-security",
+      "native": [
+        "profile-security-top",
+        "profile-security-bottom"
+      ]
+    },
+    {
+      "group": "menu",
+      "theme": "light",
+      "web": "profile-menu",
+      "native": [
+        "profile-menu-top",
+        "profile-menu-bottom"
+      ]
+    },
+    {
+      "group": "crop",
+      "theme": "light",
+      "web": "profile-avatar-crop",
+      "native": [
+        "profile-avatar-crop-top",
+        "profile-avatar-crop-controls"
+      ]
+    }
+  ],
+  "actualOriginalsViewed": {
+    "web": 8,
+    "native": 12,
+    "crop": 4
+  },
+  "observations": [
+    "Both themes preserve brand/copy, actual saved avatar and authoritative level/XP/RANK/next-level/extra-display.",
+    "Profile readonly account and full save action, security three empty password fields and full save action are reachable in bottom position.",
+    "Menu shows authoritative identity/Atlas/XP, four formal destinations, theme controls and logout. Deferred destinations explicitly remain unavailable.",
+    "Actual theme metrics confirm dark/light and transparent system bars; Root separately viewed each original."
+  ],
+  "approvedNativeDifferences": [
+    "Official Navigation/material, floating Tabs, SubTabBarStyle, Progress and native control shapes/feedback",
+    "Phone account/crop bottom Sheet; official SIDE width restriction and user explicitly permits retaining Sheet",
+    "Native square preview and three native sliders replacing Web crop dialog zoom layout"
+  ],
+  "remainingGaps": [
+    {
+      "id": "NAV-ICON",
+      "status": "pending_new_refinement",
+      "detail": "Base 1a40 unselected compass is filled and selected passport remains outline; fix prepared separately."
+    },
+    {
+      "id": "NAV-IME",
+      "status": "pending_new_refinement",
+      "detail": "User reports floating bar follows IME and obscures input; new hide-bar behavior requires actual keyboard verification."
+    },
+    {
+      "id": "NAV-LIGHT",
+      "status": "pending_new_refinement",
+      "detail": "Base material interactive/lightEffect were not enabled; official flow and any native drag selection need independent verification."
+    }
+  ],
+  "notClaimed": [
+    "Pixel-identical Web rendering",
+    "Unimplemented reward/notification/adventure business",
+    "Foldable or other deferred device tests",
+    "New refinement HAP acceptance"
+  ],
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb"
+  }
+}

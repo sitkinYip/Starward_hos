@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "scope": "Actual phone rendering of one formally configured nonempty profile extension",
+  "hap": {
+    "packagedSha256": "30de19566545126979d3cfa2a779f2a258d17ace101bfa9be5e5f7296af58683"
+  },
+  "source": "Root image-view inspection; no synthetic native DTO",
+  "seedReport": {
+    "file": "artifacts/validation/profile/profile-extra-seed.json",
+    "sha256": "913a0317e53be1175a6ae61a8038d62afc769ada310afbe1e1dc58276a95d8ba"
+  },
+  "screenshot": {
+    "file": "artifacts/private/profile-device/avatar-profile-saved.png",
+    "sha256": "536eec141ae1a7f876365f1d3fa71b7a4a1c43ce2b4c655536cccb2066208e13"
+  },
+  "observedLabel": "原生资料验收标记",
+  "observedText": "专用隔离玩家 · 扩展资料已回源",
+  "limitations": [
+    "One actual player-visible text extension; not all malformed or long-field UI states."
+  ]
+}

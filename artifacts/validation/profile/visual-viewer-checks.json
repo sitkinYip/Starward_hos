@@ -1,0 +1,65 @@
+{
+  "scope": "Loopback static-viewer access checks only; no business acceptance",
+  "at": "2026-10-30T02:32:17.805448+00:00",
+  "status": "passed",
+  "checks": [
+    {
+      "check": "index",
+      "actualStatus": 200,
+      "expectedStatus": 200,
+      "passed": true,
+      "bytes": 10992,
+      "cspPresent": true
+    },
+    {
+      "check": "metadata",
+      "actualStatus": 200,
+      "expectedStatus": 200,
+      "passed": true,
+      "bytes": 3343,
+      "cspPresent": true
+    },
+    {
+      "check": "no-state",
+      "actualStatus": 404,
+      "expectedStatus": 404,
+      "passed": true,
+      "bytes": 10,
+      "cspPresent": true
+    },
+    {
+      "check": "no-private",
+      "actualStatus": 404,
+      "expectedStatus": 404,
+      "passed": true,
+      "bytes": 10,
+      "cspPresent": true
+    },
+    {
+      "check": "no-directory",
+      "actualStatus": 404,
+      "expectedStatus": 404,
+      "passed": true,
+      "bytes": 10,
+      "cspPresent": true
+    },
+    {
+      "check": "no-query",
+      "actualStatus": 404,
+      "expectedStatus": 404,
+      "passed": true,
+      "bytes": 10,
+      "cspPresent": true
+    },
+    {
+      "check": "host-guard",
+      "actualStatus": 404,
+      "expectedStatus": "4xx denial",
+      "passed": true,
+      "bytes": 10,
+      "cspPresent": true
+    }
+  ],
+  "initialAttemptSha256": "774d9b2f58441ffd375298f8b865085bee4c86593fe4c298233955fb9b340cd9",
+  "correction": "Host guard requirement is denial, not a particular 403 response; actual404 is the intended rejection. Metadata is a defined whitelist route and expects200."
+}

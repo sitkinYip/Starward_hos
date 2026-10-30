@@ -1,0 +1,189 @@
+{
+  "status": "incomplete",
+  "scope": "Task1 core navigation, nickname and ordinary password change",
+  "environment": "real isolated PocketBase over strict USB HTTPS",
+  "deviceApi": 26,
+  "startedAt": "2026-10-29T03:09:10.257506+00:00",
+  "updatedAt": "2026-10-29T03:14:46.408801+00:00",
+  "count": 15,
+  "checks": [
+    {
+      "case": "R1",
+      "label": "The phone is explicitly using the dedicated HTTPS environment",
+      "injectedResilience": false
+    },
+    {
+      "case": "R1",
+      "label": "One real forced password change reaches the authenticated home",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Account menu exposes the four formal destinations and logout",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "System Back dismisses the menu while preserving the profile page",
+      "injectedResilience": false
+    },
+    {
+      "case": "R1",
+      "label": "The home tab still reaches the real assignment list",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "The account menu opens the same usable profile destination as the bottom tab",
+      "injectedResilience": false
+    },
+    {
+      "case": "N2",
+      "label": "The real account is displayed as read-only text",
+      "injectedResilience": false
+    },
+    {
+      "case": "N2",
+      "label": "The real profile exposes its avatar-selection action",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Deferred destination stays out of an empty page: nav-rewards",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Deferred destination stays out of an empty page: nav-notifications",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Deferred menu action stays out of an empty page: menu-rewards",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Deferred menu action stays out of an empty page: menu-notifications",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "The account menu home action reaches the usable home page",
+      "injectedResilience": false
+    },
+    {
+      "case": "P1",
+      "label": "The nickname input is reachable inside the actual keyboard-resized viewport",
+      "injectedResilience": false
+    },
+    {
+      "case": "P1",
+      "label": "The whole52vp profile action is reachable while the native keyboard remains open",
+      "injectedResilience": false
+    }
+  ],
+  "observations": [],
+  "hap": {
+    "packagedSha256": "0f799c580cb3b0f533a1146c711b6977c0975c7cb4d725d518ee3aa518a0e4e2",
+    "installationEvidence": "Separate official scripts/hm.sh run log is required"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-05.json",
+    "sha256": "f7b28d2a4f7ebbd7736cbf02aa80790792e3d2722dd7b8dd8745bce552254190"
+  },
+  "requestLedger": [
+    {
+      "phase": "final-cleanup",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true
+  },
+  "finalPasswordKey": "newPassword",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-device/profile-identity.png",
+      "sha256": "862d4f4158e3801a254cc9a330ba1c12ab072c956b0dfcca7fa85f359ebf453a",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "notExecuted": [
+    "A1/A2/A3/A4 system picker, crop, upload and protected-avatar handling",
+    "S2 ordinary-password response-loss recovery",
+    "Foldable/hover/split-window work is deferred by user instruction"
+  ],
+  "limitations": [
+    "CLI/UiTest core checks are not Hypium instrument tests",
+    "Injected failures are labelled, not observed production failures",
+    "No production, start, answer, reward or notification-read write"
+  ],
+  "error": "Expected test control is not reachable: profile-name"
+}

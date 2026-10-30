@@ -4,6 +4,7 @@ import contractTests from './Contract.test';
 import domainTests from './Domain.test';
 import repositoryTests from './Repository.test';
 import viewModelTests from './ViewModel.test';
+import profileViewModelTests from './ProfileViewModel.test';
 
 export default function testsuite(): void {
   routeTests();
@@ -12,4 +13,5 @@ export default function testsuite(): void {
   contractTests();
   repositoryTests();
   viewModelTests();
+  profileViewModelTests();
 }

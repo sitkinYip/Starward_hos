@@ -7,12 +7,18 @@ import { spawn, spawnSync } from 'node:child_process';
 import { createHash, createPublicKey, X509Certificate } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createIsolatedResponseGate } from './isolated-response-gate.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const privateRoot = path.join(root, 'artifacts/private/https-isolation');
 const statePath = path.join(privateRoot, 'state.json');
 const tlsDir = path.join(privateRoot, 'tls');
 const rawCa = path.join(root, 'entry/src/main/resources/rawfile/integration-ca.pem');
+const evidenceDirectory = path.resolve(root, process.env.STARWARD_VALIDATION_DIR || 'artifacts/validation');
+if (evidenceDirectory !== path.join(root, 'artifacts/validation') &&
+    !evidenceDirectory.startsWith(path.join(root, 'artifacts/validation') + path.sep)) {
+  throw new Error('Validation output must remain inside this project artifacts/validation');
+}
 const operation = process.argv[2] || 'status';
 const devicePort = 18443;
 const openssl = '/opt/homebrew/bin/openssl';
@@ -28,6 +34,8 @@ if (operation === 'status') { const s = await state(); console.log(JSON.stringif
 if (!['start', 'resume'].includes(operation)) throw new Error('Usage: isolated-tls.mjs start|resume|status|stop');
 const s = await state();
 const reuse = operation === 'resume';
+const gateEnabled = process.env.STARWARD_RESPONSE_GATE === '1';
+if (gateEnabled && !reuse) throw new Error('The response gate is only available with explicit TLS resume');
 const previousTls = s.tls;
 if (s.mode !== 'real isolated PocketBase' || new URL(s.proxyBase).hostname !== '127.0.0.1') throw new Error('Requires this disposable loopback player proxy');
 if (s.tls?.pid) {
@@ -80,12 +88,15 @@ if (reuse) {
   await writeFile(rawCa, caBytes);
 }
 const proxyOrigin = new URL(s.proxyBase);
+let responseGate = null;
 const gateway = https.createServer({ key: await readFile(key), cert: await readFile(cert), minVersion: 'TLSv1.2' }, (req, res) => {
   let upstream, remote;
+  const gateTicket = responseGate?.claim(req, res);
   let aborted = false;
   const abort = () => {
     if (aborted) return;
     aborted = true;
+    gateTicket?.fail('TLS_FORWARD_ABORTED');
     upstream?.destroy();
     remote?.destroy();
     res.destroy();
@@ -104,6 +115,7 @@ const gateway = https.createServer({ key: await readFile(key), cert: await readF
       remote.on('error', abort);
       remote.on('close', () => { if (!remote.complete) abort(); });
       if (aborted || res.destroyed) { remote.destroy(); return; }
+      if (gateTicket) { void gateTicket.hold(remote); return; }
       try { res.writeHead(remote.statusCode, remote.headers); remote.pipe(res); }
       catch { abort(); }
     });
@@ -125,6 +137,8 @@ let forwardInstalled = false;
 let forwardCreated = false;
 let forwardReused = false;
 try {
+  if (gateEnabled) responseGate = await createIsolatedResponseGate({ state: s, privateDirectory: tlsDir,
+    avatarSessionPath: path.join(root, 'artifacts/private/profile-device/avatar-session.json') });
   const matching = forwards.split(/\r?\n/).filter(line => line.includes('tcp:' + devicePort));
   if (reuse && matching.length) {
     if (matching.length !== 1 || !matching[0].includes('tcp:' + hostPort)) throw new Error('Saved reverse forward does not match; no mapping changed');
@@ -155,13 +169,21 @@ try {
   const latest = await state();
   latest.tls = { ...(reuse ? previousTls : {}), base: 'https://127.0.0.1:' + devicePort, hostBase, hostPort, devicePort, caPath: ca, rawCaPath: rawCa, caSha256: caDigest, fingerprint, pid: process.pid, reverseForward: 'official hdc rport; this mapping only', expiresInDays: 2,
     ...(reuse ? { resumedAt: new Date().toISOString(), previousPid: previousTls.pid, certificateReused: true, reverseForwardReused: forwardReused } : {}) };
+  if (responseGate) latest.tls.responseGate = { receiptPath: responseGate.receiptPath };
+  else delete latest.tls.responseGate;
   await persist(latest);
   const evidence = { status: 'passed', checks: 3, operation, positive: 'curl --cacert: HTTP200', withoutCa: 'curl exit60: untrusted chain rejected', wrongHostname: 'curl --cacert for localhost: exit60, SAN mismatch rejected', san: ['IP:127.0.0.1'], tlsVerificationDisabled: false, systemTrustStoreModified: false, nativeTrust: 'API26 caData only in isolated test config', certificateFingerprintSha256: fingerprint, caSha256: caDigest, reverseForwardConfirmed: true, certificateReused: reuse, reverseForwardReused: forwardReused, backendReset: false, causeOfPriorTermination: 'not established; original execution output unavailable' };
-  await mkdir(path.join(root, 'artifacts/validation'), { recursive: true });
+  if (reuse && gateEnabled && process.env.STARWARD_TLS_RESUME_REASON === 'controlled_gate_activation') {
+    evidence.causeOfPriorTermination = 'controlled graceful stop/resume for explicit response-gate activation';
+  }
+  if (responseGate) evidence.responseGate = responseGate.manifest;
+  await mkdir(evidenceDirectory, { recursive: true });
   const evidenceName = reuse ? 'isolated-tls-resume.json' : 'isolated-tls.json';
-  await writeFile(path.join(root, 'artifacts/validation', evidenceName), JSON.stringify(evidence, null, 2) + '\n');
-  console.log(JSON.stringify({ ready: true, deviceBase: latest.tls.base, hostPort, caPath: ca, fingerprint, certificateReused: reuse, evidence: 'artifacts/validation/' + evidenceName }));
+  await writeFile(path.join(evidenceDirectory, evidenceName), JSON.stringify(evidence, null, 2) + '\n');
+  console.log(JSON.stringify({ ready: true, deviceBase: latest.tls.base, hostPort, caPath: ca, fingerprint,
+    certificateReused: reuse, evidence: path.relative(root, path.join(evidenceDirectory, evidenceName)) }));
 } catch (error) {
+  await responseGate?.close();
   gateway.close();
   if (forwardCreated) spawnSync('hdc', ['fport', 'rm', 'tcp:' + devicePort, 'tcp:' + hostPort], { stdio: 'pipe' });
   throw error;
@@ -169,6 +191,7 @@ try {
 let stopping = false;
 const stop = async () => {
   if (stopping) return; stopping = true;
+  await responseGate?.close();
   gateway.close();
   if (forwardInstalled) spawnSync('hdc', ['fport', 'rm', 'tcp:' + devicePort, 'tcp:' + hostPort], { stdio: 'pipe' });
   try { const latest = await state(); if (latest.tls?.pid === process.pid) { delete latest.tls; await persist(latest); } } catch {}

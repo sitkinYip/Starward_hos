@@ -29,7 +29,7 @@ export struct ErrorNotice {
             .fontColor($r('app.color.danger')).width('100%').accessibilityText(`错误：${this.message}`)
           Row({ space: 8 }) {
             if (this.retryable) {
-              Button('重试', { type: ButtonType.Normal }).id('request-retry').height(40)
+              Button('重新尝试', { type: ButtonType.Normal }).id('request-retry').height(40)
                 .fontSize(13).padding({ left: 14, right: 14 }).borderRadius(10)
                 .fontColor($r('app.color.text')).backgroundColor($r('app.color.surface'))
                 .border({ width: 1, color: $r('app.color.border_strong') }).onClick(() => this.retry())

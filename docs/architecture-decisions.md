@@ -156,6 +156,66 @@
 
 **官方依据：** [UIContext.setKeyboardAvoidMode](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-uicontext-uicontext#setkeyboardavoidmode11)，官方知识MCP先搜索再读全文，核API26 SDK。RESIZE影响页面，不改变Sheet等弹层自己的避让策略；本切片Sheet没有输入字段。
 
+## ADR-016：手机账户导航、资料草稿与头像资源边界
+
+**问题：** 首切片只有账户摘要Sheet和只读场次，不能把外观入口等同完整导航或资料能力。昵称编辑、受保护头像和后续改密带来草稿、二进制、资源释放及token轮换的独立生命周期。
+
+**选择（已采纳，任务1实现与验证中）：** 手机正式入口继续由Navigation/NavPathStack和官方Tabs/Sheet承接，资料页提供身份/安全分区。主页面、菜单和场次返回共享同一受门禁检查的业务路由；未实现的奖品/来信仍明确未开放，不创建假成功或空页面。侧栏摘要展示与完整资料编辑分开，保留Web的品牌、文案、身份和返回场次语义。
+
+**资料与网络：** ViewModel持有昵称及已确认头像草稿，用户开始编辑后后台/me更新不能覆盖草稿；显式保存才调用Repository。纯昵称为JSON PATCH，带头像为multipart PATCH，均对直接GamePlayer返回做完整边界校验。错误保留有用草稿并允许明确重试；同次保存单飞。原生TextInput程序回填触发的相同值回声不作为用户新编辑，避免清除已确认的保存反馈。后续改密仍只发一次，不套资料重试或通用POST重试；成功原子轮换token、玩家及账号代次，清空密码。
+
+**图像与平台：** 系统Photo Picker、图像解码/裁剪/压缩封装在platform和ui中，领域仅接受平台无关的文件名、媒体类型及二进制数据。原图类型JPEG/PNG/WebP、50MiB上限来自Web；输出为用户确认的方图JPEG、边长最多512、目标最多200KiB，服务端硬限2MiB。裁剪确认并非业务保存，取消/重选/离开或账号代次失效释放旧PixelMap、URI访问及临时资源，不自动发资料PATCH。官方组件不能满足裁剪交互时组合ArkUI基础控件，并明确实际交互来源，不冒称官方裁剪能力。
+
+**受保护头像：** Repository负责认证、file-token获取/失效后限次重取、分段编码的文件路径和真实二进制读取；UI不拼URL，不持有受保护URL。头像结果绑定发起账号代次、玩家ID和文件版本；退出、切换或新头像保存后旧响应不能回填。图像解码失败由UI按仍在用的精确图像引用和账号/gate边界回报ViewModel，持久显示失败并等待用户显式重试；返回成功的文件GET不等于图像已解码显示。旧图或旧预览失败不清除新图，读取成功须清除先前图像错误。token与头像只保留运行时内存，不预先宣称安全持久登录；不新增相册全量访问权限以替代系统Picker。
+
+**非空扩展的测试输入：** extraDisplay必须来自服务端正式解析，不在原生硬编码虚构身份信息。隔离验证如需非空值，仅对自有一次性容器中的唯一专用玩家，通过正式管理definition、preview、dispatch及inspect创建目标绑定，再以严格HTTPS玩家/me核对精确tuple和原事实未变。该Host seed与手机实际展示分别记录，不能将准备断言数算作UI或业务完成度；临时管理凭据只允许stdin/进程内存，不落盘或进入报告。
+
+**验证：** 按任务1逐点表验证菜单/页面/场次返回、昵称草稿/真实PATCH/失败恢复、Picker取消、可调整裁剪确认及输出图像、真实multipart/file-token/file-GET、后续改密单次与新密确认、退出与迟到响应隔离。客户端内存测试、真实服务端协议、设备UI和图片结果分别记录，不能互相替代。改密丢响应的每次新实验命令独立记录，不继承失败尝试checks，不自动重放上一次写请求；系统组件禁用状态须读取官方原始UiTest实际属性，不能将CLI省略属性当成false。头像基础链路与退出后迟到文件200分别取证：若使用仅private的长超时配置变体，须核对源码及ABC字节一致、绑定该变体HAP/runtime和显式hold/release过程，不能据此把base 2秒版本记为同版专项通过。折叠等专项留待主体迁移后。实际结果见 [任务1验收](slice-02-profile-validation.md)，当前未执行项不标通过。
+
+## ADR-017：官方浮动Tabs输入事务与业务路由隔离
+
+日期：2026-10-29；2026-10-30追加当前base视觉与网络恢复。状态：当前1a40手机Touch专项9项、完整新core34/S2-13/supplement22已通过，头像基础28及JPEG EXIF6/WebP各8项亦已通过；Web8/Native12/crop4已独立reviewed但保留NAV三项新refinement，两类App输入拒绝已同1a40通过、迟到6项仅独立15秒变体通过；当前6a新UI待验；首次probe的计划点击遮挡已定位为驱动问题，旧30de无点击坐标仍不确定唯一根因，不将index0日志直接等同内容触摸误判。
+
+**问题与已知事实：** 固定DevEco Studio 26.0.0.851、SDK 26.0.0.105及当前API26直板真机上，早期护照点击未开放收藏会回启程，坐标和用户手动操作均复现。日志曾显示click0/will3→0、再click1/will0→1及迟到0回调，但唯一根因未确定，不推广为全部API26设备共同问题。index双向绑定单独调整或命中阻断未形成成功修复证据。
+
+**base30de选择及有限验证：** 保留官方Tabs、BottomTabBarStyle、材质、命中和动画，旧封装在整个Tabs观察Touch事务；只有官方will/click产生pending，Touch Up排队提交最后原生索引，Cancel/外部路由/销毁清理，事务外不形成意图。父selectedIndex是业务目的地，activeIndex!!只同步UI；onContentWillChange仅放行与父允许目的地一致的0/3，onChange不直接反向写路由，根gate及NavPathStack再门控。资料身份/安全Tabs另用section!!及生命周期清密码，不由导航排队驱动写请求。
+
+旧HAP0f799的7步probe、base30de的core34/S2-13/supplement22分别保留对应真实覆盖，不能证明所有内容控件/页签交叉时序均安全，也不能转记新HAP。base30de头像实际20项incomplete：file503显示持久错误后，自动化请求点avatar-retry却回启程且没有新头像GET。此前曾将最小日志解释为“内容Touch开启事务接受phantom0”，但日志没有原始点击位置，只能证明index0路由发生；该根因判断证据不足，现更正为待定位。旧30de驱动viewport只对profile-/security-前缀避让浮栏而遗漏avatar-retry，但没有该次点击点记录；保留incomplete及现象，不将它先定为产品缺陷，也不据后续新HAP测量倒推唯一原因。
+
+**当前1a40候选：** 固定SDK官方barModifier承接仅bar区域Touch，并增加父索引对齐；继续由官方Tabs负责命中、材质及动画，不按自造图标坐标替代导航。候选HAP `1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb`已实际构建/签名/安装，72/72测试、lint0问题/filesChecked0及runtime-09六项passed；这些不是业务验收。候选初次probe回首页，独立 `profile/avatar-retry-hit-geometry.json`已实测：retry rect[67,2580,391,2729]px，计划中心[229,2654]px落在官方NativeTabBar rect[106,2531,1214,2721]px内，旧viewport[0,415,1320,2848]px没有裁掉浮栏。该报告仅测量、未发retryclick，不能算头像重试通过，但足以确认新probe的驱动遮挡，不据此宣布barModifier失败或产品有缺陷。驱动已改为按真实path祖先含profile-scroll统一避让bar，独立crop/menu无此祖先保留自有viewport；产品HAP不变，同1a40 `profile/native-bar-content-probe.json`9项已实际passed：retry新GET200且保持护照、四次收藏/来信不离页、启程/护照切换、内容滚动/昵称焦点不跳首页，cleanup两true。旧S2仅提供当前专用密码key并经Host核身份，未继承旧业务checks。该证据只属于当前Touch专项；随后1a40完整新core34与独立S2-13均已实际passed，report SHA分别ef049839…/5dceb457…且绑定runtime-09，checks不继承30de。新supplement22也已同版passed（SHA0376e398…，绑定上述新依赖），三run各自cleanup通过；新的Avatar已显式new-attempt实际28项基础passed（SHA5f410842…），覆盖真实Picker/裁剪、multipart、403/503/解码恢复和普通退出；JPEG EXIF6及WebP RGB另各8项同版passed。输入拒绝两轮与独立15秒变体迟到6项已另取报告，后者不计base2秒同版通过；同版深浅视觉已有下述独立reviewed基线，三项新refinement仍待验，旧passed数字不得继承。专项9项原字节d044已归档，最新9c3a报告仅追加源SHA/命令/原mtime完成时间元数据，不是新的功能重执行。
+
+**输入范围的已知缺口：** 没有Touch的外设键盘/读屏页签激活目前被守卫明确拒绝，属于已知不支持，不只是未验证，也不属于折叠专项。账户菜单Button提供另一组导航入口，不证明底栏辅助功能或正式可访问性完成；单列缺口，不阻塞当前直板机Touch业务切片。未来接入须有真实键盘/读屏证据，不能将未知回调当有效Touch放行。IME文本编辑独立：base30de core已验昵称及完整52vp保存动作在实际键盘压缩视口可达，不替代外设键盘导航或读屏验证。
+
+**图像专项实际范围：** 1a40基础Avatar28绑定runtime-09、新core34/S2-13及Root新原图SHA回执；JPEG Orientation6与RGB WebP各8项以真实Picker、唯一原生multipart、token/文件200及Host只读结果证明规范化/中心裁剪。HTTP200解码损坏故障在自有精确SHA文件中注入并恢复，不属生产故障；自动同步不应把已报解码失败自动重读，显式重试有实际新GET200证据。普通退出已验，延迟响应退出和实际跨另一账号并发仍分开，不能据基础28称全部账号边界通过。
+
+**Picker输入边界的观察限制：** 同版第三轮搜索观察已finish且六项cleanup true，整体not_observable，不因退出完成而标过滤通过。Root核完整文件名已提交且精确自有50MiB+1 PNG单项visible/enabled、未selected；该事实既不能证明系统过滤生效，也不能证明选中/完成可成功。后续独立negative选择/官方完成已取得两类App兜底拒绝证据，原系统过滤not_observable保持。同1a40/runtime-09的50MiB+1 PNG与GIF两轮已真实选定精确自有URI并点击官方完成，均落到原生错误Sheet：有效裁剪预览缺席、确认禁用、类型/大小文案精确对应；每轮7项cleanup true，未发资料PATCH或改密POST。`profile/avatar-input-oversize-png.json` SHA `5032ba4124f1f695209a29cce2088453bd23101681eb2f28a6a832499f8153aa`，`profile/avatar-input-unsupported-gif.json` SHA `95923a9e6a55a0be0ba3b58e8c283d828ef20a77cf415171abf3a579587577e4`，各有1个实际边界检查。Root分别亲看错误Sheet，独立review SHA为dd1ffe5f…/a166d70d…。通过的是App兜底拒绝与恢复，原Picker过滤not_observable不改。 输入边界与视觉基线分别取证，不能互相代替。
+
+**固定SDK官方能力依据：** `TabsOptions.barModifier`自API15可用，`CommonModifier`自API12，通用onTouch自API7；固定API26声明已核，并已由真实ArkTS编译器通过。SysCap为SystemCapability.ArkUI.ArkUI.Full，Stage模型，无额外权限，生命周期仍由现有Touch Cancel/外部路由/组件销毁清理待提交事务。依据为官方[Tabs接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-tabs)、[Touch Event](https://developer.huawei.com/consumer/en/doc/harmonyos-references-V14/ts-universal-events-touch-V14)及固定SDK `component/tabs.d.ts`、`api/@ohos.arkui.modifier.d.ts`、`component/common.d.ts`声明；接口可编译不等于全部平台输入通过。
+
+**视觉及后续验证：** 旧头像7图中Button/Slider默认蓝漏品牌token的发现保留原归属；1a40已修后，当前同版Web8（SHA b51d6bf9…）、Native12（SHA 4c639ff6…）和crop4（SHA 05ed5b63…）已全部捕获，Root亲看24张未编辑原图/8组配对。独立 `profile/visual-review.json` status=reviewed，SHA `44fcc1457a8ae83df5fc9f7dd1c5aaa1a7a6f60df1d0ac5f24adc2866b049ca1`，绑定1a40/runtime-09与三份来源，核品牌/文案、权威资料、只读账号及可达动作；官方材质/控件、手机底部Sheet及三Slider裁剪布局列为批准差异。采集报告自身crop themeVerified=false/visualReview=pending保持原样，由Root独立review承接主题目视结论，不混写采集与验收。NAV-ICON、NAV-IME、NAV-LIGHT仍pending_new_refinement，不称零差异、新HAP或全部动效通过；完整键盘/读屏输入范围仍单列。5180回环viewer已准备并启动24PNG，私有manifest SHA `3812ef0edf591f77b3070585bfc817babb03f42f9d9d761e03720ec9e130e179`，不改变原始证据或代替业务验证。参考[Tabs接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-tabs)及固定SDK声明；输入事务来自本项目边界和实际观察，不是官方对异常根因的认定，工具链或设备变化后须重验其必要性及输入范围。
+
+**恢复与交付边界：** 2026-10-30手机连接中断的实际reverse缺失由 `profile/network-resume-20261030.json`记录（SHA d9bd1926…）；仅恢复自有18443映射，账号/配置/其它映射未改，手机HTTPS登录、资料和fresh light裁剪已重新确认。中断旧light及网络失败独立归档，不改旧结果。输入拒绝两轮与独立15秒迟到专项已完成，最终测试媒体/旧环境清理仍未完成。`scripts/preview-environment.mjs`已独立静态复核，并实际执行prepare生成独立本机私有配置；当前manifest为initialized=false、initializationStatus=prepared。尚未start服务、完成真实初始化改密、配置预览新包或手机直接登录；固定账号可用性、持久保留及用户改密后的行为未验收，不记PVIEW通过。 不算任务1最终完成。
+
+**迟到专项与来源工具的最终边界：** 独立15秒变体HAP `d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4`已构建签名安装，`profile/runtime-late-15s.json`六项passed（SHA cb226514…）；`profile/device-profile-avatar-late.json`实际passed/count6，SHA `44f27226a1cb1804251b355b212148e410ee2dfe085ed772d312480855655ec9`。先在同变体完成正常原生头像GET200和实际退出校准，再hold精确SHA的真实文件200，观察空登录后release，下游finish且无client abort；响应结束、Back/Ability重启及冷启动仍为空登录，旧资料/头像/菜单缺席。gate中恰1次原生受保护文件GET、0次Host文件读取，5项cleanup全true。finish仅代表TLS下游写出，不是解码回调；不覆盖真实切到另一账号，也不将2秒base或后续UI包记为同版专项通过。 `profile/hap-timeout-variant-host.json`实际passed/23项，SHA `81c96c7b31787aac356714020376ec27b8a7199388744cf8e8c4834c552a329f`，仅为离线来源验证工具：34份源码、ABC和CA字节一致；除integration timeout由2000改15000外，仅symbolMap的1173条完整唯一记录重排，保留所有键和值，其余打包条目一致。严格校验及反例不忽略symbolMap、不重打包signed HAP，不计业务、签名有效性或UI通过。实际变体安装/runtime来源另见 `profile/late-variant-hap.json`（SHA b762fbe4…）。
+
+## ADR-018：键盘期间收起浮栏与官方左右玻璃面板
+
+2026-10-30用户要求修正输入遮挡、空心/实心选中图标、官方触摸流光，并在官方能力允许时按头像所在侧打开菜单。
+
+**选择（已采纳；新包已构建安装，完整UI验收待完成）：** 保持同一Tabs及表单实例，按真实键盘避让区隐藏原生TabBar并清理未完成的输入事务；收键盘后恢复浮栏。底栏和原四个账户菜单入口复用冻结Web的四组Phosphor regular/fill矢量及MIT许可；菜单资源选中沿用原背景/无障碍条件，不更改布局或路由。仅底栏显式启用官方ImmersiveMaterial交互/流光，并服从减少动画设置；跨项拖动松手选择以真实系统回调和手机结果为准，不自制坐标选择器。
+
+官方SheetType.SIDE要求至少600vp，但补查确认这不限制PromptAction的options-builder自定义Dialog。新增ui封装使用官方Dialog背板、ImmersiveMaterial.THICK、按头像真实窗口坐标选择CenterStart/End与官方TransitionEffect.move；内容顺序、Scroll和业务入口保持。面板受安全区、400vp宽及90%可用高度约束，并额外留异侧空间。不得使用等同customStyle=true的ComponentContent重载，也不制作仿制玻璃或手势。封装负责重复打开、过期异步打开、后台/宿主退出及账号边界，页面负责业务意图；业务事实不由动画结束回调推动。
+
+**当前新UI执行边界：** 当前final-nav UI HAP为 `6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90`，绑定final-nav manifest SHA `830e4aa03223c20714f9a9bcc65cb7aa7039301d81484ad15cc2cc90aa4707bd`；已真实编译签名安装及运行时检查，`profile/runtime-ui-final-nav.json`六项passed，SHA `66c45cbe66f9e525d9337e03c4c0925203ffbbca02b31b14e579eebdbd190a9d`。其图标、IME浮栏、官方流光和左右菜单完整验收仍pending。上一6a run incomplete10已独立归档且cleanup六项true，不是完整通过。新driver SHA `27ccd0f88953f12ee6a79faa5dd41ec5a3b652e845c798a61880b0e6a8ef0ce4`的最新run保留incomplete/count0：已完成Host只读身份及beforeCounts，首个官方aa命令返回失败，deviceStarted未置位，未取得UI动作或启动成功证据；Root另查HDC targets为Empty，已请用户重接USB。脚本未发业务写请求，但结束后的写入增量尚未核验，cleanup.noBusinessWrites仍false，不能记已验证零写或完整清理。该次恢复不改产品，USB恢复后先原有cleanup，再显式new-attempt。1a40的24图及193b旧包独立右面板观察均不升级为6a视觉/功能通过。
+
+版本、官方来源及原型/验收入口见[本轮UI调整](native-ui-refinements-2026-10-30.md)。旧1a40的底部Sheet截图与检查继续属于其基线；新面板的材质、方向、Back、蒙层、动作可达和退出必须独立验证。
+
+## ADR-019：人工预览与故障验收分别持有隔离环境
+
+2026-10-30用户要求固定专用账号直接登录预览。**选择（已采纳；静态审阅与prepare完成，实际服务/手机验收待执行）：** 另建本机持久PB和HTTPS预览，固定starward_preview账号通过真实初始化改密后进入普通登录状态；不在App绕过服务端强改密门禁。预览与一次性故障/改密验收不共用DB、玩家、状态、CA或控制入口，预览玩家代理不提供故障与重置API。原生会话仍仅内存，不声称支持记住登录。
+
+用户要求的固定口令仅保存在忽略的本机600权限登录文件；不进入代码、样例或公开报告。停止预览保留DB/CA/登录信息，启动核验原进程、容器、监听及官方USB映射归属；用户改密后不静默重置。证书续期和恢复步骤见[隔离预览说明](isolated-preview-environment.md)。最终可为用户保留预览服务，但必须完成旧一次性环境的凭据、DB、CA及映射清理，不能误用同一套清理命令销毁预览。 当前私有manifest仍initialized=false/initializationStatus=prepared，初始化改密是首次启动时必须实际完成的流程，不能由prepare推定固定登录已可用。`profile/public-artifact-scan-pre-ui-resume.json`本轮实际passed，973个公开候选文件、0发现、0读取错误，SHA `85f9d649242febf9c5b01a3bacd24b684a29e292ec4eb9c4803b07a5ed977744`；本次未提供known-device，不扩大为已覆盖特定设备标识的扫描，也不代替最终环境清理。
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

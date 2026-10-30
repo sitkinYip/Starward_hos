@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "target": "nav-profile",
+      "profile": true,
+      "expectedProfile": true,
+      "actionStartedAt": "2026-10-29T03:07:24.611441+00:00"
+    },
+    {
+      "target": "nav-rewards",
+      "profile": true,
+      "expectedProfile": true,
+      "actionStartedAt": "2026-10-29T03:07:32.710744+00:00"
+    },
+    {
+      "target": "nav-notifications",
+      "profile": true,
+      "expectedProfile": true,
+      "actionStartedAt": "2026-10-29T03:07:39.302986+00:00"
+    },
+    {
+      "target": "nav-rewards",
+      "profile": true,
+      "expectedProfile": true,
+      "actionStartedAt": "2026-10-29T03:07:46.903646+00:00"
+    },
+    {
+      "target": "nav-notifications",
+      "profile": true,
+      "expectedProfile": true,
+      "actionStartedAt": "2026-10-29T03:07:54.394068+00:00"
+    },
+    {
+      "target": "nav-home",
+      "profile": false,
+      "expectedProfile": false,
+      "actionStartedAt": "2026-10-29T03:08:01.928559+00:00"
+    },
+    {
+      "target": "nav-profile",
+      "profile": true,
+      "expectedProfile": true,
+      "actionStartedAt": "2026-10-29T03:08:09.779606+00:00"
+    }
+  ],
+  "hapSha256": "0f799c580cb3b0f533a1146c711b6977c0975c7cb4d725d518ee3aa518a0e4e2",
+  "scope": "Actual straight-phone native floating Tabs; seven navigation actions only",
+  "notAcceptanceFor": [
+    "nickname writes",
+    "password changes",
+    "avatar",
+    "foldables"
+  ],
+  "privateEventLogSha256": "ff30c24b347c71b26c0e00920bcbce41754329edb4b07445272be66fd614f087"
+}

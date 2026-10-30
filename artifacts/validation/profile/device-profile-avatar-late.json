@@ -1,0 +1,343 @@
+{
+  "status": "passed",
+  "scope": "Independent actual late protected-avatar response after native logout on the15000ms private integration variant",
+  "startedAt": "2026-10-30T02:56:19.576670+00:00",
+  "updatedAt": "2026-10-30T02:58:23.238531+00:00",
+  "environment": "Dedicated real PocketBase over strict USB HTTPS; controlled real-response holding",
+  "base2000msLateResponseAccepted": false,
+  "productionFault": false,
+  "injectedTransportGate": true,
+  "hap": {
+    "packagedSha256": "d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4"
+  },
+  "provenance": {
+    "basePackagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "variantPackagedSha256": "d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4",
+    "sourceFileCount": 34,
+    "sourceFileSetAndSha256Match": true,
+    "abcEntries": [
+      {
+        "file": "ets/modules.abc",
+        "sha256": "b9732311faac3cb25aaeed76097c04238e0e8e03ad05fd943772611539439466"
+      }
+    ],
+    "abcBytesIdentical": true,
+    "changedPackagedEntries": [
+      "ets/symbolMap.map",
+      "resources/rawfile/integration.json"
+    ],
+    "uncompressedPackagedEntries": 40,
+    "onlyTimeoutConfigurationChanged": true,
+    "allOtherPackagedEntriesByteIdentical": true,
+    "packagedByteChangeScope": "integration timeout; optional complete symbol-map record reordering only",
+    "symbolMap": {
+      "entry": "ets/symbolMap.map",
+      "present": true,
+      "recordCount": 1173,
+      "moduleCount": 34,
+      "functionCount": 1139,
+      "uniqueRecordKeys": true,
+      "canonicalRecordsSha256": "e266ef53c64180b12eda59a9eb01da4fa00774d18dd2ed73aee610f9c2138ded",
+      "baseSha256": "7ce0364b7a18d2c514330ca42692f52f64d9aa6d40382cd0fd20ff3352b7dbfa",
+      "variantSha256": "fd97481eb1cf6f9b52ffa82e9c20a573e84610dfa29c7095bcfa3f143697999d",
+      "bytesIdentical": false,
+      "completeRecordMultisetIdentical": true,
+      "onlyRecordOrderChanged": true
+    },
+    "baseTimeoutMs": 2000,
+    "variantTimeoutMs": 15000,
+    "caSha256": "afd2be4eb95da9739a9abf8d19897b59810009dccb09b5a425e8efba4fb3f4a1",
+    "caBytesIdentical": true,
+    "provenanceHelperSha256": "0f7753a10668c7143b0a65785157ae74afa3bacf27178e668a8e47fc42c6a4ed"
+  },
+  "prerequisites": {
+    "baseHap": {
+      "file": "artifacts/validation/profile/base-hap.json",
+      "sha256": "7e42dea6d38dd7a9069a721147cb44b1f6f18cc1354aebfc71d3ad462e583c53"
+    },
+    "core": {
+      "file": "artifacts/validation/profile/device-profile-acceptance.json",
+      "sha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1"
+    },
+    "baseRuntime": {
+      "file": "artifacts/validation/profile/runtime-09.json",
+      "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+    },
+    "s2": {
+      "file": "artifacts/validation/profile/device-profile-password-uncertain.json",
+      "sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407"
+    },
+    "mainAvatar": {
+      "file": "artifacts/validation/profile/device-profile-avatar.json",
+      "sha256": "5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b"
+    },
+    "variantRuntime": {
+      "file": "artifacts/validation/profile/runtime-late-15s.json",
+      "sha256": "cb2265144332ff4b99f72759983599b0f0ca3a651f07138f529280c1c981bdc6"
+    },
+    "jpegExif6": {
+      "file": "artifacts/validation/profile/avatar-source-jpeg-exif6.json",
+      "sha256": "f1f19918535ed60b3098b7e7ccfd51c20b0fc2e2004188db50662abc4095f844"
+    },
+    "webpRgb": {
+      "file": "artifacts/validation/profile/avatar-source-webp-rgb.json",
+      "sha256": "d0202724a15894dfede7c55a0881caaa589baa75b68fbbe7b9ca652c916d7942"
+    },
+    "visualReview": {
+      "file": "artifacts/validation/profile/visual-review.json",
+      "sha256": "44fcc1457a8ae83df5fc9f7dd1c5aaa1a7a6f60df1d0ac5f24adc2866b049ca1"
+    }
+  },
+  "optionalIndependentEvidence": {
+    "jpegExif6": {
+      "file": "artifacts/validation/profile/avatar-source-jpeg-exif6.json",
+      "sha256": "f1f19918535ed60b3098b7e7ccfd51c20b0fc2e2004188db50662abc4095f844",
+      "status": "passed",
+      "sameBaseHap": true,
+      "requiredForThisIndependentScope": false
+    },
+    "webpRgb": {
+      "file": "artifacts/validation/profile/avatar-source-webp-rgb.json",
+      "sha256": "d0202724a15894dfede7c55a0881caaa589baa75b68fbbe7b9ca652c916d7942",
+      "status": "passed",
+      "sameBaseHap": true,
+      "requiredForThisIndependentScope": false
+    },
+    "visualReview": {
+      "file": "artifacts/validation/profile/visual-review.json",
+      "sha256": "44fcc1457a8ae83df5fc9f7dd1c5aaa1a7a6f60df1d0ac5f24adc2866b049ca1",
+      "status": "reviewed",
+      "sameBaseHap": true,
+      "requiredForThisIndependentScope": false
+    }
+  },
+  "count": 6,
+  "checks": [
+    {
+      "case": "A4-late-15000ms-variant",
+      "label": "Fresh authenticated read-only me/file-token/file reads establish this dedicated player current owned avatar and exact original-body SHA"
+    },
+    {
+      "case": "A4-late-15000ms-variant",
+      "label": "The same installed15000ms variant first completes a normal native owned-avatar GET200"
+    },
+    {
+      "case": "A4-late-15000ms-variant",
+      "label": "Native menu and reachable logout geometry/swipes are calibrated and actually log out on this same variant"
+    },
+    {
+      "case": "A4-late-15000ms-variant",
+      "label": "Actual native empty login is observed before release of the SHA-matched real200 body, followed by downstream finish without client abort"
+    },
+    {
+      "case": "A4-late-15000ms-variant",
+      "label": "The gated experiment contains one real native protected-file GET200 and authenticated nonBearer file-token traffic, with no Host file read after arm"
+    },
+    {
+      "case": "A4-late-15000ms-variant",
+      "label": "After the actual response finishes, native UI, OS Back/Ability relaunch and cold launch remain at empty login with authenticated avatar/profile/menu containers absent"
+    }
+  ],
+  "currentOwnedAvatar": {
+    "sha256": "c04d20a84724f038be96a3aca754efa923e9e8a219804fec3d75cf2c646c4dd2",
+    "bytes": 31401,
+    "contentType": "image/jpeg"
+  },
+  "gate": {
+    "receiptSha256": "b742a16b3df6924a11a5ebb8789e0641bc15f209ce5a6a8133607dee8f6928a5",
+    "instanceId": "5a6803e77ca8be1b49d292353513f66b",
+    "manifestVersion": 1,
+    "ledger": {
+      "gateId": "6dee0a334685163c041b218b25373d4a",
+      "state": "finished",
+      "ttlMs": 14000,
+      "bodySha256Matched": true,
+      "armed": {
+        "at": "2026-10-30T02:57:46.020Z",
+        "elapsedMs": 120603.9
+      },
+      "requestReceived": {
+        "at": "2026-10-30T02:57:46.646Z",
+        "elapsedMs": 121229.463
+      },
+      "held": {
+        "at": "2026-10-30T02:57:46.652Z",
+        "elapsedMs": 121235.332
+      },
+      "released": {
+        "at": "2026-10-30T02:57:51.553Z",
+        "elapsedMs": 126136.471
+      },
+      "downstreamFinished": {
+        "at": "2026-10-30T02:57:51.553Z",
+        "elapsedMs": 126136.812
+      },
+      "clientAborted": null,
+      "failed": null
+    },
+    "finishMeaning": "Node TLS downstream response finish/flush; native image decoding is not acknowledged by this event"
+  },
+  "lateResponse": {
+    "executed": true,
+    "appTimeoutMs": 15000,
+    "gateTtlMs": 14000,
+    "calibratedMenuSwipes": 0,
+    "sameVariantNativeCalibration": true,
+    "original200BodySha256Held": true,
+    "emptyLoginObservedWhileHeld": true,
+    "downstreamFinishedWithoutAbort": true,
+    "emptyAfterResponseBackAndRelaunch": true,
+    "emptyLoginObservedAt": "2026-10-30T02:57:51.552277+00:00",
+    "nativeTraffic": {
+      "protectedGetCount": 1,
+      "fileTokenPostCount": 1,
+      "hostFileReadsAfterArm": 0
+    }
+  },
+  "requestStructureCounts": [
+    {
+      "method": "POST",
+      "route": "/api/collections/game_players/auth-with-password",
+      "status": 200,
+      "fault": false,
+      "bearer": false,
+      "fileTokenProvided": false,
+      "count": 4
+    },
+    {
+      "method": "GET",
+      "route": "/api/questions/v1/me",
+      "status": 200,
+      "fault": false,
+      "bearer": false,
+      "fileTokenProvided": false,
+      "count": 6
+    },
+    {
+      "method": "POST",
+      "route": "/api/files/token",
+      "status": 200,
+      "fault": false,
+      "bearer": false,
+      "fileTokenProvided": false,
+      "count": 4
+    },
+    {
+      "method": "GET",
+      "route": "/api/files/game_players/[owner]/[current-avatar]",
+      "status": 200,
+      "fault": false,
+      "bearer": false,
+      "fileTokenProvided": true,
+      "count": 4
+    },
+    {
+      "method": "GET",
+      "route": "/api/questions/v1/assignments",
+      "status": 200,
+      "fault": false,
+      "bearer": false,
+      "fileTokenProvided": false,
+      "count": 2
+    },
+    {
+      "method": "GET",
+      "route": "/api/health",
+      "status": 200,
+      "fault": false,
+      "bearer": false,
+      "fileTokenProvided": false,
+      "count": 1
+    }
+  ],
+  "cleanup": {
+    "ownGateNeutralised": true,
+    "loggedOut": true,
+    "emptyLoginInputs": true,
+    "backAndRelaunchEmpty": true,
+    "noBusinessWrites": true
+  },
+  "businessWritesObserved": 0,
+  "privateOriginals": "artifacts/private/avatar-late-device/run-20261030T025619662715Z",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/avatar-late-device/run-20261030T025619662715Z/late-after-real-response.png",
+      "sha256": "8e5739d14323af3bb9cc08e6f0abbcf7b521a7627ecf47c46fa3662f99e88a65",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/avatar-late-device/run-20261030T025619662715Z/late-after-back-and-relaunch.png",
+      "sha256": "425fd064c2515cf63e3a3917535be5900e9d1e7fb5222958fe24bed3237baace",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/avatar-late-device/run-20261030T025619662715Z/late-after-cold-relaunch.png",
+      "sha256": "649a1b23de3c278c6ce8090e22679b322b38313fc1843a192d4e5974c2722688",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "observations": [
+    {
+      "phase": "pre-existing-empty-login",
+      "observedAt": "2026-10-30T02:56:23.095869+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "after-calibration-logout",
+      "observedAt": "2026-10-30T02:57:17.445385+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "empty-login-before-gate-release",
+      "observedAt": "2026-10-30T02:57:51.550053+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "after-downstream-finish",
+      "observedAt": "2026-10-30T02:57:53.491203+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "after-response-stable",
+      "observedAt": "2026-10-30T02:58:00.721963+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "after-back-and-ability-relaunch",
+      "observedAt": "2026-10-30T02:58:05.373169+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "after-cold-relaunch",
+      "observedAt": "2026-10-30T02:58:14.107091+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    },
+    {
+      "phase": "final-empty-login",
+      "observedAt": "2026-10-30T02:58:23.188659+00:00",
+      "emptyLoginInputs": true,
+      "authenticatedRouteAndAvatarContainersAbsent": true,
+      "privatePlayerTextAbsent": true
+    }
+  ],
+  "notExecuted": [
+    "The2000ms base HAP late-response race is not accepted by this variant run",
+    "Actual switching to another credentialed account during a protected-file request is outside this run",
+    "The transport finish event is not a native image-decode callback or a pixel-identity assertion",
+    "Foldable, hover and split-window scenarios remain deferred"
+  ]
+}

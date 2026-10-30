@@ -1,0 +1,279 @@
+{
+  "binding": {
+    "hapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "sha256": {
+      "runtime": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+      "core": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+      "s2": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+      "mainAvatar": "5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b",
+      "importReceipt": "c3fb8d7d69af6f975648370b1db3221b2f70927863b570b537e76ea80d149a5f",
+      "fixture": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+      "driver": "1b47c0324f91020b75f6d0890ab7c82ab4af7db7c264ec92ac27268699473d53",
+      "avatarUI": "683690423bd62cc7b210fa4b7151f4a515a34f64d67b395d0dab850d517799d9",
+      "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+      "pickerSelector": "286086036a00f23d022f51ededb02b4ffee01b85bbe8193f1493c46afd148312",
+      "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+      "snapshot": "8408f9435a748ac384f4dd6e4d858e475dd6427b9f54864c7e9dce7602630cc0",
+      "integration": "c377e093b3dc46e9d55af484d0e5104272a76a6e045c3957875e33a0db4f23c3"
+    }
+  },
+  "themes": {
+    "dark": {
+      "status": "captured",
+      "theme": "dark",
+      "startedAt": "2026-10-29T06:18:19.348427+00:00",
+      "updatedAt": "2026-10-29T06:21:33.699321+00:00",
+      "checks": [
+        "The independent theme session starts at empty login",
+        "The profile nickname starts at its authoritative saved value",
+        "No avatar draft is pending before Picker",
+        "The actual native crop preview is fully reachable and square",
+        "The complete native 52vp crop confirm action is reachable without confirming",
+        "Cancelling crop preserves the original nickname editor",
+        "Cancelling crop leaves no pending avatar draft",
+        "Strict HTTPS confirms original nickname and avatar unchanged",
+        "Explicit logout clears both login inputs",
+        "Crop evidence submits zero profile PATCH and password POST writes"
+      ],
+      "privateScreenshots": [
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/dark-20261029T061819348059Z/crop-dark-top.png",
+          "sha256": "ad318546a0e08cc281f2ddf86b25d22e71e268cfeacb409ff99fcf94360eafdd",
+          "scope": "Private original; may show the dedicated test account"
+        },
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/dark-20261029T061819348059Z/crop-dark-controls.png",
+          "sha256": "6b946f17de8432998440e2cd93f4a92c07bb381005e7cb7e733a08402693e308",
+          "scope": "Private original; may show the dedicated test account"
+        }
+      ],
+      "privateTrees": [
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/dark-20261029T061819348059Z/ui-crop-top.json",
+          "sha256": "12e3f49640517a5260c86815c327bdccbf4960773790276dfc85148f73ef5ebb"
+        },
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/dark-20261029T061819348059Z/ui-crop-controls.json",
+          "sha256": "11e2d6b195283d51e6cab3aecfcbe8a65c4939deb10b70c8acc482fe244c732d"
+        }
+      ],
+      "geometry": {
+        "preview": {
+          "nodeId": "avatar-crop-preview",
+          "boundsPx": [
+            81,
+            611,
+            1239,
+            1769
+          ],
+          "viewportPx": [
+            0,
+            374,
+            1320,
+            2848
+          ],
+          "widthVp": 343.1111111111111,
+          "heightVp": 343.1111111111111
+        },
+        "confirm": {
+          "nodeId": "avatar-crop-confirm",
+          "boundsPx": [
+            81,
+            2187,
+            1239,
+            2363
+          ],
+          "viewportPx": [
+            0,
+            374,
+            1320,
+            2848
+          ],
+          "widthVp": 343.1111111111111,
+          "heightVp": 52.148148148148145
+        }
+      },
+      "cleanup": {
+        "cropCancelled": true,
+        "themeRestoredToSystem": true,
+        "loggedOut": true,
+        "emptyLoginInputs": true,
+        "noBusinessWrites": true
+      },
+      "themeVerified": false,
+      "themeVerification": "Root visual review of private originals is pending",
+      "themeAction": {
+        "requested": "dark",
+        "selectionObservable": false,
+        "selectionFlags": {},
+        "pixelThemeVerified": false
+      },
+      "selectionEvidence": {
+        "status": "selection_sent_separately",
+        "reportFile": "artifacts/validation/profile/picker-selections.json",
+        "observedReportSha256": "115a6a244cf424a22954a41b8d7bb2f3fecdc03ca0ce559c87941936a4afe7f5",
+        "privateFrozenReport": "artifacts/private/profile-device/native-avatar-crop/dark-20261029T061819348059Z/picker-selection-report.json",
+        "privateFrozenReportSha256": "115a6a244cf424a22954a41b8d7bb2f3fecdc03ca0ce559c87941936a4afe7f5",
+        "actualSelectionRawSha256": "1af0fa02866263c2b88995e92c6d751ba2d8cca788f11c990decdbd3e89cc1bf",
+        "cropPresented": "Independently checked by actual App crop controls in this stage"
+      },
+      "businessWriteDelta": {
+        "profilePatch": 0,
+        "passwordPost": 0
+      },
+      "privateSession": {
+        "file": "artifacts/private/profile-device/native-avatar-crop/dark-session.json",
+        "sha256": "968915a823058a932e3873b21e4c901257e6af4096bca531d30f349f7d222c97"
+      }
+    },
+    "light": {
+      "status": "captured",
+      "theme": "light",
+      "startedAt": "2026-10-30T02:18:41.842527+00:00",
+      "updatedAt": "2026-10-30T02:21:33.376394+00:00",
+      "checks": [
+        "The independent theme session starts at empty login",
+        "The profile nickname starts at its authoritative saved value",
+        "No avatar draft is pending before Picker",
+        "The actual native crop preview is fully reachable and square",
+        "The complete native 52vp crop confirm action is reachable without confirming",
+        "Cancelling crop preserves the original nickname editor",
+        "Cancelling crop leaves no pending avatar draft",
+        "Strict HTTPS confirms original nickname and avatar unchanged",
+        "Explicit logout clears both login inputs",
+        "Crop evidence submits zero profile PATCH and password POST writes"
+      ],
+      "privateScreenshots": [
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/light-20261030T021841842272Z/crop-light-top.png",
+          "sha256": "b63fba85d3fae42adfce95ce8fdc7a529009d31d2dcf974ca11ab144a14f30cd",
+          "scope": "Private original; may show the dedicated test account"
+        },
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/light-20261030T021841842272Z/crop-light-controls.png",
+          "sha256": "3a7b6f14e6e269f1ef47ad0a410c8ac47f746ab7d604c46da6e07f65e8ef5424",
+          "scope": "Private original; may show the dedicated test account"
+        }
+      ],
+      "privateTrees": [
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/light-20261030T021841842272Z/ui-crop-top.json",
+          "sha256": "12e3f49640517a5260c86815c327bdccbf4960773790276dfc85148f73ef5ebb"
+        },
+        {
+          "file": "artifacts/private/profile-device/native-avatar-crop/light-20261030T021841842272Z/ui-crop-controls.json",
+          "sha256": "11e2d6b195283d51e6cab3aecfcbe8a65c4939deb10b70c8acc482fe244c732d"
+        }
+      ],
+      "geometry": {
+        "preview": {
+          "nodeId": "avatar-crop-preview",
+          "boundsPx": [
+            81,
+            611,
+            1239,
+            1769
+          ],
+          "viewportPx": [
+            0,
+            374,
+            1320,
+            2848
+          ],
+          "widthVp": 343.1111111111111,
+          "heightVp": 343.1111111111111
+        },
+        "confirm": {
+          "nodeId": "avatar-crop-confirm",
+          "boundsPx": [
+            81,
+            2187,
+            1239,
+            2363
+          ],
+          "viewportPx": [
+            0,
+            374,
+            1320,
+            2848
+          ],
+          "widthVp": 343.1111111111111,
+          "heightVp": 52.148148148148145
+        }
+      },
+      "cleanup": {
+        "cropCancelled": true,
+        "themeRestoredToSystem": true,
+        "loggedOut": true,
+        "emptyLoginInputs": true,
+        "noBusinessWrites": true
+      },
+      "themeVerified": false,
+      "themeVerification": "Root visual review of private originals is pending",
+      "themeAction": {
+        "requested": "light",
+        "selectionObservable": false,
+        "selectionFlags": {},
+        "pixelThemeVerified": false
+      },
+      "selectionEvidence": {
+        "status": "selection_sent_separately",
+        "reportFile": "artifacts/validation/profile/picker-selections.json",
+        "observedReportSha256": "97c188bca1bead2079218fb5db50870fef48a7382339dcda07cdde539f00daf5",
+        "privateFrozenReport": "artifacts/private/profile-device/native-avatar-crop/light-20261030T021841842272Z/picker-selection-report.json",
+        "privateFrozenReportSha256": "97c188bca1bead2079218fb5db50870fef48a7382339dcda07cdde539f00daf5",
+        "actualSelectionRawSha256": "715ba493bef5e50667c0f4dc3e55089b3463c5adabe4e08595780ec44f5f13f3",
+        "cropPresented": "Independently checked by actual App crop controls in this stage"
+      },
+      "businessWriteDelta": {
+        "profilePatch": 0,
+        "passwordPost": 0
+      },
+      "privateSession": {
+        "file": "artifacts/private/profile-device/native-avatar-crop/light-session.json",
+        "sha256": "e95826a2857274ba06b14dd2e74192e7b40bb115c2829217d57af1245449fbbe"
+      }
+    }
+  },
+  "status": "complete",
+  "scope": "Real native crop Sheet theme evidence only; no visual acceptance or avatar upload",
+  "environment": "Dedicated disposable PocketBase over strict USB HTTPS",
+  "updatedAt": "2026-10-30T02:21:33.376984+00:00",
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-09.json",
+    "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+  },
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb"
+  },
+  "prerequisiteSha256": {
+    "runtime": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+    "core": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "s2": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "mainAvatar": "5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b"
+  },
+  "fixture": {
+    "file": "artifacts/validation/profile/avatar-fixture.png",
+    "sha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+    "nonPrivateGeneratedImage": true,
+    "importReceiptSha256": "c3fb8d7d69af6f975648370b1db3221b2f70927863b570b537e76ea80d149a5f"
+  },
+  "driverSha256": "1b47c0324f91020b75f6d0890ab7c82ab4af7db7c264ec92ac27268699473d53",
+  "visualReview": "pending",
+  "limitations": [
+    "Captured/complete describe evidence collection and cleanup, not root visual approval",
+    "Picker selection and Complete are separate actual root actions",
+    "No system color-mode metric is inferred from the requested theme",
+    "Foldable and other device scopes remain deferred"
+  ],
+  "interruptedAttempt": {
+    "archive": "artifacts/private/profile-evidence-archive/light-interruption-20261030T021514550362Z",
+    "originalReportSha256": "2b766bd53326b9a4f050b2db3e3cd1c2b0bf8280e6dd91ef90fb035685e3e11e",
+    "lightCleanup": "not_inferred_after_interruption"
+  },
+  "networkInterruptedAttempt": {
+    "archive": "artifacts/private/profile-evidence-archive/light-network-retry-20261030T021823925089Z",
+    "originalReportSha256": "ddfdf9e45c7113da9db4cb8c381838d30ad91d7e51fc2807025e0174f768098a",
+    "reason": "Actual native login network error; missing own USB reverse restored; own login inputs explicitly cleared. No successful light capture inferred."
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "status": "incomplete",
+  "stage": "incomplete-run-cleaned",
+  "scope": "New UI-only HAP straight-phone checks",
+  "startedAt": "2026-10-30T03:32:42.349970+00:00",
+  "updatedAt": "2026-10-30T03:50:53.803322+00:00",
+  "environment": "Original disposable S2 player over strict USB HTTPS; no fixed preview player",
+  "hap": {
+    "packagedSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-ui-final-nav.json",
+    "sha256": "66c45cbe66f9e525d9337e03c4c0925203ffbbca02b31b14e579eebdbd190a9d"
+  },
+  "sourceBinding": {
+    "baseHapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "patchSha256": "4b0cf5bbf0a37398181ca30ad5bc9d38cc121b99c720c39d92d6308c3fc5453d",
+    "patchManifestSha256": "830e4aa03223c20714f9a9bcc65cb7aa7039301d81484ad15cc2cc90aa4707bd",
+    "businessSourcesUnchanged": true,
+    "oldUiChecksInherited": false,
+    "configurationTimeoutMs": 15000,
+    "newUiSources": [
+      {
+        "file": "entry/src/main/ets/ui/StarwardSidePanel.ets",
+        "sha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16"
+      }
+    ],
+    "accountMenuContainer": "official_prompt_action_side_panel"
+  },
+  "credentialEpochOnly": {
+    "coreSha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "s2Sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "privateOwnerWitnessSha256": "54693c1d4073b4633f232b8682898d75f19ea2500c5b86d7e8549feb31211b8c",
+    "newPasswordKey": "newPassword",
+    "freshHttpsIdentityCheck": true
+  },
+  "driver": {
+    "file": "scripts/device-native-ui-refinements.py",
+    "sha256": "0633adf2ad37c0523946efc2ce543f51bdd8a59162c73df4d036ad05c47acbea",
+    "profileUiHelperSha256": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818"
+  },
+  "count": 10,
+  "checks": [
+    {
+      "case": "LOGIN",
+      "label": "The new HAP starts at empty login in the original disposable HTTPS environment"
+    },
+    {
+      "case": "LOGIN",
+      "label": "The original S2 password reaches home without a forced-password write"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    },
+    {
+      "case": "NAV",
+      "label": "A deferred tab leaves the actually visible destination unchanged"
+    }
+  ],
+  "observations": [],
+  "geometry": [],
+  "privateScreenshots": [],
+  "privateTrees": [
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/ui-failure-last-view-dff48a089a684c149e3f98876374e7c5.json",
+      "sha256": "ba4d4ff6eb840675561bece6c0280579dfb137fd01141f729642cdb7f68de8ee",
+      "source": "Official CLI full tree; input credential literals checked absent"
+    },
+    {
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/ui-failure-last-own-app-d3cbf5922fda4b19a8f415906e3428dd.json",
+      "sha256": "ba4d4ff6eb840675561bece6c0280579dfb137fd01141f729642cdb7f68de8ee",
+      "source": "Official CLI full tree; input credential literals checked absent"
+    }
+  ],
+  "rawEvidence": [
+    {
+      "label": "initial-login-panel-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-initial-login-panel-absent-3640943f50ba487f9ae7d76b6f179ce9.json",
+      "remoteRemoved": true,
+      "sha256": "619bf80b6a6a6ea0cfab3ed6a21bf0f222abdb185561f0cd763c9fc5eaad135a"
+    },
+    {
+      "label": "ordinary-login-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-ordinary-login-home-ffa40a4de7cd4794ac43337ce6e2e44a.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-destination-profile-97ebc6468f7d4ea48b428f1d1091a749.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "deferred-profile-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-profile-0-a1c3bbf6654f4413ad1c997c0043e03c.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "deferred-profile-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-profile-0-f1487c6901be4d59a4ca5fae9ecc03c2.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-destination-home-bf1abe9fdbcb45fb8bdecea8fc4d8bb4.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "deferred-home-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-home-0-cbf31c5777b2419f8c6c548f50663526.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "deferred-home-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-home-0-02683f82494b45c8824aa82fbe0aa3f2.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-destination-profile-14c985c56dff4d26bcd0549e53e143b2.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "deferred-profile-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-profile-1-0342fd2f4368430fbc70e9b6386b58a8.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "deferred-profile-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-profile-1-217529c0986e4e9f9810948fa8a3a11c.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-destination-home-23a38295891c467580d8a0a046d72230.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "deferred-home-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-home-1-52d01e622be542c19db5e20a6bd6a45b.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "deferred-home-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-deferred-home-1-39f9b11e991c4a4386d1f7dde872e238.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "destination-profile",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-destination-profile-8b6d6d969a1941e1a669cf53ac3e3a10.json",
+      "remoteRemoved": true,
+      "sha256": "3efb254178e6226267b8ec1d705a063529103040d6560fdd25b468312122b1c6"
+    },
+    {
+      "label": "destination-home",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-destination-home-aa31e0cef685407ea8787e11d5f7ac06.json",
+      "remoteRemoved": true,
+      "sha256": "4c32d51b99e58340ddae65fdb3cb42e4f6a6ed8fde5f51cca63472cc90431561"
+    },
+    {
+      "label": "theme-after-configuration",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-theme-after-configuration-c41cc2be1c514d7eac75bcadfcbb2626.json",
+      "remoteRemoved": true,
+      "sha256": "1eed6dc72bbd05bc21b694fb8aec18d57ba916b98d623591c645889a9960f080"
+    },
+    {
+      "label": "theme-menu-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-theme-menu-dismissed-28d1a229d04f403c9cd508b6e3232ba6.json",
+      "remoteRemoved": true,
+      "sha256": "ae97571ef80ab3c0208aa3518d9628bc7e7f8706bdf20215e2cf6f41bcb072d1"
+    },
+    {
+      "label": "logout-panel-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-logout-panel-dismissed-e200a3f76bfe4aaaa83855b99acea239.json",
+      "remoteRemoved": true,
+      "sha256": "b2c32ec4aaba3e853827d031d6668750c66cda14f0b1a7ccf29965ba81e7ecc4"
+    },
+    {
+      "label": "theme-existing-panel",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-theme-existing-panel-e998e8fc9a6a4bf0a05d0d095430ccab.json",
+      "remoteRemoved": true,
+      "sha256": "c07e5360ce249408ad260cc39e3c504c3490b04f72cf73c57f399e3211f6265b"
+    },
+    {
+      "label": "theme-after-configuration",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-theme-after-configuration-137654ed38434db29f1ddc0c56a9d352.json",
+      "remoteRemoved": true,
+      "sha256": "a20e42f8f00919e124da1d7c6af27da6364e52191172b490250e7f500c04e895"
+    },
+    {
+      "label": "theme-menu-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-theme-menu-dismissed-59b998ea167e4c169ba2f2263f08a055.json",
+      "remoteRemoved": true,
+      "sha256": "f8e611625a542fe978ab1fa11a5382ea8021ac984aadb03f0902ea4768b0caea"
+    },
+    {
+      "label": "logout-panel-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/native-ui-refinements/main-20261030T033242349825Z/raw-logout-panel-dismissed-139073b1ec0049e092988ea519b08b8c.json",
+      "remoteRemoved": true,
+      "sha256": "3ac30dc7a35fff63d6981b26fa62900e2f527bfa9dde4a9bdfdc0776a6fa97ad"
+    }
+  ],
+  "imeEvidence": [],
+  "themeActions": [
+    {
+      "requested": "system",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_review"
+    },
+    {
+      "requested": "system",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_review"
+    }
+  ],
+  "visualReview": "pending_root_original_image_review",
+  "dragObservations": [],
+  "dragCapabilityConclusion": "not_determined_by_injection",
+  "businessWriteDelta": {
+    "profilePatch": 0,
+    "passwordPost": 0
+  },
+  "cleanup": {
+    "themeRestoredToSystem": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "noBusinessWrites": true,
+    "remoteDumpsRemoved": true,
+    "logStopped": true
+  },
+  "limitations": [
+    "Visual normal/fill and optical effects require separate Root original-image review",
+    "No foldable, hover, split-window or reader/physical-keyboard acceptance is claimed",
+    "Hidden-bar proof checks actual exposed native nodes; no tap is injected into the system keyboard",
+    "A scripted swipe or drag is not proof of the manual system drag-selection capability",
+    "Account panel geometry alone does not prove material pixels or entry/exit motion direction",
+    "No profile save, password save, game-start, answer, reward or notification-read action is performed"
+  ],
+  "error": "A guarded native UI stage stopped; inspect private evidence and actual foreground before continuing"
+}

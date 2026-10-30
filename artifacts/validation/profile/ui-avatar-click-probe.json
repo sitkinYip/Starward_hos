@@ -1,0 +1,31 @@
+{
+  "status": "observed_dispatch_difference",
+  "at": "2026-10-30T03:49:52.932338+00:00",
+  "hapSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90",
+  "scope": "Independent official-tool observation; not complete UI acceptance",
+  "observations": [
+    "First CLI id-based avatar action returned0 but scoped immediate tree showed profile and no menu. Subsequent direct UiTest pointer action opened the true official panel.",
+    "While the official panel stayed open, default CLI and bundle-scoped raw both exposed all four reviewed panel ids; no constant CLI-scope blind spot established.",
+    "A later controlled UiTest home click then CLI avatar click succeeded at reported1180,272 and exposed the panel. Dispatch/timing difference remains; no product defect or permanent CLI defect inferred."
+  ],
+  "evidence": [
+    {
+      "privateFile": "artifacts/private/native-ui-refinements/paired-panel-probe-20261030/after-cli-id-click.json",
+      "sha256": "c5155dc05ab6323cc45c2fdb47e05c89c91791c60babe775f7308eff624fb184"
+    },
+    {
+      "privateFile": "artifacts/private/native-ui-refinements/paired-panel-probe-20261030/after-direct-own-coordinate-click.json",
+      "sha256": "8062975064477e4c32126d0becc49c755cd78fb9451fce7e86ad9bbb227522c3"
+    },
+    {
+      "privateFile": "artifacts/private/native-ui-refinements/paired-panel-probe-20261030/default-cli-while-panel.json",
+      "sha256": "cc270b39330fb1ceb6c0028085b94d089aa4c4ad718a6f1dd78d21b3241ab3e2"
+    },
+    {
+      "privateFile": "artifacts/private/native-ui-refinements/paired-panel-probe-20261030/scoped-after-default-cli.json",
+      "sha256": "8062975064477e4c32126d0becc49c755cd78fb9451fce7e86ad9bbb227522c3"
+    }
+  ],
+  "nativeDialogActualOpenProven": true,
+  "additionalActionMethodNeeded": "Use an exact visible owned avatar rectangle and direct official UiTest pointer action, with background destination stability check; no product hit testing."
+}

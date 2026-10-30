@@ -1,5 +1,6 @@
 import { GameRepository } from '../business/GameRepository';
-import { AssignmentDetail, AssignmentSummary, GameFailure, Player, Rank, validatePasswordChange } from '../business/models';
+import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player, Rank,
+  validateAvatarUpload, validateDisplayName, validatePasswordChange } from '../business/models';
 import { decodeAssignment } from './DtoDecoder';
 
 export function sampleAssignment(): AssignmentDetail {
@@ -26,6 +27,9 @@ export class MockGameRepository implements GameRepository {
   private authenticated: boolean = false;
   private currentPassword: string = 'Starward1234';
   private mustChange: boolean = true;
+  private currentDisplayName: string = '远航者';
+  private currentAvatar: AvatarImage | null = null;
+  private avatarRevision: number = 0;
 
   constructor(delayMs: number = 160) {
     this.delayMs = delayMs;
@@ -35,7 +39,8 @@ export class MockGameRepository implements GameRepository {
     const player: Player = new Player();
     player.id = 'playeralice';
     player.account = 'alice';
-    player.displayName = '远航者';
+    player.displayName = this.currentDisplayName;
+    player.avatar = this.currentAvatar === null ? '' : 'demo-avatar.jpg';
     player.mustChangePassword = this.mustChange;
     const level: Rank = new Rank();
     level.id = 'rank1';
@@ -117,6 +122,48 @@ export class MockGameRepository implements GameRepository {
     if (this.mustChange) {
       throw new GameFailure('PASSWORD_CHANGE_REQUIRED', '首次登录，请先修改密码', 403);
     }
+  }
+
+  async updateProfile(displayName: string, avatar: AvatarUpload | null = null): Promise<Player> {
+    const generation: number = this.requireSession();
+    this.ensureChanged();
+    const validation: string = validateDisplayName(displayName);
+    if (validation.length > 0) {
+      throw new GameFailure('VALIDATION_ERROR', validation);
+    }
+    if (avatar !== null) {
+      const avatarValidation: string = validateAvatarUpload(avatar);
+      if (avatarValidation.length > 0) {
+        throw new GameFailure('VALIDATION_ERROR', avatarValidation);
+      }
+    }
+    await this.pause('updateProfile', generation);
+    this.currentDisplayName = displayName.trim();
+    if (avatar !== null) {
+      const image: AvatarImage = new AvatarImage();
+      image.data = avatar.data.slice(0);
+      image.mimeType = avatar.mimeType;
+      this.currentAvatar = image;
+      this.avatarRevision++;
+    }
+    return this.player();
+  }
+
+  async avatar(forceRefresh: boolean = false): Promise<AvatarImage | null> {
+    const generation: number = this.requireSession();
+    this.ensureChanged();
+    const revision: number = this.avatarRevision;
+    await this.pause(forceRefresh ? 'avatarRefresh' : 'avatar', generation);
+    if (revision !== this.avatarRevision) {
+      throw new GameFailure('CANCELLED', '头像已更新，本次请求已取消。');
+    }
+    if (this.currentAvatar === null) {
+      return null;
+    }
+    const result: AvatarImage = new AvatarImage();
+    result.data = this.currentAvatar.data.slice(0);
+    result.mimeType = this.currentAvatar.mimeType;
+    return result;
   }
 
   async assignments(): Promise<AssignmentSummary[]> {

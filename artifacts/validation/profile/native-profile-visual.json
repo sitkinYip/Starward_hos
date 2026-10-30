@@ -1,0 +1,3345 @@
+{
+  "status": "passed",
+  "scope": "Task1 actual ArkUI profile/menu screenshots and safe geometry",
+  "startedAt": "2026-10-30T02:21:44.601575+00:00",
+  "updatedAt": "2026-10-30T02:30:30.883488+00:00",
+  "count": 12,
+  "states": [
+    {
+      "state": "profile-identity-top",
+      "theme": "dark",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-identity-top-dark.png",
+      "screenshotSha256": "d976b9485ca197094a5bba6fbf57f400a459d59186ea002d6a53a3bfaab04e75",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-identity-top-dark.json",
+      "uiTreeSha256": "bf2a628c558df89fe446e70fdf1e50151db6af005b80d897fbff9f774cb40e79",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 0,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          16,
+          17,
+          15
+        ],
+        "expectedRGB": [
+          16,
+          17,
+          15
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              829,
+              1253,
+              1745
+            ],
+            "boundsVp": [
+              19.852,
+              245.63,
+              371.259,
+              517.037
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 271.407
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              1812,
+              660,
+              1991
+            ],
+            "boundsVp": [
+              19.852,
+              536.889,
+              195.556,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              1812,
+              1253,
+              1991
+            ],
+            "boundsVp": [
+              195.556,
+              536.889,
+              371.259,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-avatar-pick",
+            "type": "Button",
+            "boundsPx": [
+              364,
+              2072,
+              662,
+              2221
+            ],
+            "boundsVp": [
+              107.852,
+              613.926,
+              196.148,
+              658.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-name",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              2528,
+              1253,
+              2704
+            ],
+            "boundsVp": [
+              19.852,
+              749.037,
+              371.259,
+              801.185
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": {
+        "stableObservations": 3,
+        "positioningSwipes": 2,
+        "scrollBoundsPx": [
+          0,
+          415,
+          1320,
+          2848
+        ],
+        "interactionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ]
+      },
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-identity-bottom",
+      "theme": "dark",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-identity-bottom-dark.png",
+      "screenshotSha256": "0e893a41ad9a1488a89180a969e5f0a779187f53a048c28baf1ea0e189721fc8",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-identity-bottom-dark.json",
+      "uiTreeSha256": "aa2df92a5aea700bc8bce5fe06859bb0652ed9d9644e28a6edd89a214c6c0a18",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 0,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          16,
+          17,
+          15
+        ],
+        "expectedRGB": [
+          16,
+          17,
+          15
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              868
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              257.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 134.222
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              935,
+              660,
+              1114
+            ],
+            "boundsVp": [
+              19.852,
+              277.037,
+              195.556,
+              330.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              935,
+              1253,
+              1114
+            ],
+            "boundsVp": [
+              195.556,
+              277.037,
+              371.259,
+              330.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-avatar-pick",
+            "type": "Button",
+            "boundsPx": [
+              364,
+              1195,
+              662,
+              1344
+            ],
+            "boundsVp": [
+              107.852,
+              354.074,
+              196.148,
+              398.222
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-name",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1651,
+              1253,
+              1827
+            ],
+            "boundsVp": [
+              19.852,
+              489.185,
+              371.259,
+              541.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "profile-account",
+            "type": "Text",
+            "boundsPx": [
+              67,
+              2055,
+              420,
+              2110
+            ],
+            "boundsVp": [
+              19.852,
+              608.889,
+              124.444,
+              625.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 16.296
+          },
+          {
+            "id": "profile-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": null,
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-security-top",
+      "theme": "dark",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-security-top-dark.png",
+      "screenshotSha256": "28fe5f7548edf1a935115a62e03a9bfa9d4ce21570ff919ff555c55e08f866b1",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-security-top-dark.json",
+      "uiTreeSha256": "60c3dc6b0a2f509688273e3271c93b326ff108269af8d80ba5b9181c53fc146f",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 0,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          16,
+          17,
+          15
+        ],
+        "expectedRGB": [
+          16,
+          17,
+          15
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              829,
+              1253,
+              1745
+            ],
+            "boundsVp": [
+              19.852,
+              245.63,
+              371.259,
+              517.037
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 271.407
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              1812,
+              660,
+              1991
+            ],
+            "boundsVp": [
+              19.852,
+              536.889,
+              195.556,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              1812,
+              1253,
+              1991
+            ],
+            "boundsVp": [
+              195.556,
+              536.889,
+              371.259,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              2479,
+              1253,
+              2655
+            ],
+            "boundsVp": [
+              19.852,
+              734.519,
+              371.259,
+              786.667
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              2814,
+              1253,
+              2848
+            ],
+            "boundsVp": [
+              19.852,
+              833.778,
+              371.259,
+              843.852
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 10.074
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": {
+        "stableObservations": 3,
+        "positioningSwipes": 3,
+        "scrollBoundsPx": [
+          0,
+          415,
+          1320,
+          2848
+        ],
+        "interactionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ]
+      },
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-security-bottom",
+      "theme": "dark",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-security-bottom-dark.png",
+      "screenshotSha256": "4c7540a49e6bb93a0141bfb1cd07dbc7c8382a4cf9ff946f62c81c8f2f826601",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-security-bottom-dark.json",
+      "uiTreeSha256": "2b6d31e4a4238c52b8d0071f0eb40188d68d077b201eff8bb8172a5414b748de",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 0,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          16,
+          17,
+          15
+        ],
+        "expectedRGB": [
+          16,
+          17,
+          15
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              595
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              176.296
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.333
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              662,
+              660,
+              841
+            ],
+            "boundsVp": [
+              19.852,
+              196.148,
+              195.556,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              662,
+              1253,
+              841
+            ],
+            "boundsVp": [
+              195.556,
+              196.148,
+              371.259,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1329,
+              1253,
+              1505
+            ],
+            "boundsVp": [
+              19.852,
+              393.778,
+              371.259,
+              445.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1664,
+              1253,
+              1840
+            ],
+            "boundsVp": [
+              19.852,
+              493.037,
+              371.259,
+              545.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-confirm-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1999,
+              1253,
+              2175
+            ],
+            "boundsVp": [
+              19.852,
+              592.296,
+              371.259,
+              644.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": null,
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-menu-top",
+      "theme": "dark",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-menu-top-dark.png",
+      "screenshotSha256": "3d765cd7fed728905d52f49225d7df60f71eaf1bd8144f6c4419ed420af5dbed",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-menu-top-dark.json",
+      "uiTreeSha256": "d4557d8bea5539e6daf9d4b7a4ebe9604b009cf12ebe098d76d08cc682e3df4a",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 0,
+      "canvas": null,
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          374,
+          1320,
+          2848
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              595
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              176.296
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.333
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              662,
+              660,
+              841
+            ],
+            "boundsVp": [
+              19.852,
+              196.148,
+              195.556,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              662,
+              1253,
+              841
+            ],
+            "boundsVp": [
+              195.556,
+              196.148,
+              371.259,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1329,
+              1253,
+              1505
+            ],
+            "boundsVp": [
+              19.852,
+              393.778,
+              371.259,
+              445.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1664,
+              1253,
+              1840
+            ],
+            "boundsVp": [
+              19.852,
+              493.037,
+              371.259,
+              545.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-confirm-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1999,
+              1253,
+              2175
+            ],
+            "boundsVp": [
+              19.852,
+              592.296,
+              371.259,
+              644.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "menu-home",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1138,
+              1239,
+              1354
+            ],
+            "boundsVp": [
+              24.0,
+              337.185,
+              367.111,
+              401.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-rewards",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1368,
+              1239,
+              1584
+            ],
+            "boundsVp": [
+              24.0,
+              405.333,
+              367.111,
+              469.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-notifications",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1597,
+              1239,
+              1813
+            ],
+            "boundsVp": [
+              24.0,
+              473.185,
+              367.111,
+              537.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-profile",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1827,
+              1239,
+              2043
+            ],
+            "boundsVp": [
+              24.0,
+              541.333,
+              367.111,
+              605.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "theme-picker",
+            "type": "Row",
+            "boundsPx": [
+              81,
+              2224,
+              495,
+              2385
+            ],
+            "boundsVp": [
+              24.0,
+              658.963,
+              146.667,
+              706.667
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 47.704
+          },
+          {
+            "id": "theme-dark",
+            "type": "Button",
+            "boundsPx": [
+              357,
+              2237,
+              482,
+              2372
+            ],
+            "boundsVp": [
+              105.778,
+              662.815,
+              142.815,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "theme-light",
+            "type": "Button",
+            "boundsPx": [
+              226,
+              2237,
+              351,
+              2372
+            ],
+            "boundsVp": [
+              66.963,
+              662.815,
+              104.0,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "logout",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              2564,
+              1239,
+              2713
+            ],
+            "boundsVp": [
+              24.0,
+              759.704,
+              367.111,
+              803.852
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": {
+        "stableObservations": 3,
+        "positioningSwipes": 2,
+        "scrollBoundsPx": [
+          0,
+          374,
+          1320,
+          2848
+        ],
+        "interactionViewportPx": [
+          0,
+          374,
+          1320,
+          2848
+        ]
+      },
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-menu-bottom",
+      "theme": "dark",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-menu-bottom-dark.png",
+      "screenshotSha256": "d1aa93accf77543f271b319721d64a3546f79cce1310e765c9eb9e4db8f39b4a",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-menu-bottom-dark.json",
+      "uiTreeSha256": "d4557d8bea5539e6daf9d4b7a4ebe9604b009cf12ebe098d76d08cc682e3df4a",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 0,
+      "canvas": null,
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          374,
+          1320,
+          2848
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              595
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              176.296
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.333
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              662,
+              660,
+              841
+            ],
+            "boundsVp": [
+              19.852,
+              196.148,
+              195.556,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              662,
+              1253,
+              841
+            ],
+            "boundsVp": [
+              195.556,
+              196.148,
+              371.259,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1329,
+              1253,
+              1505
+            ],
+            "boundsVp": [
+              19.852,
+              393.778,
+              371.259,
+              445.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1664,
+              1253,
+              1840
+            ],
+            "boundsVp": [
+              19.852,
+              493.037,
+              371.259,
+              545.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-confirm-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1999,
+              1253,
+              2175
+            ],
+            "boundsVp": [
+              19.852,
+              592.296,
+              371.259,
+              644.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "menu-home",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1138,
+              1239,
+              1354
+            ],
+            "boundsVp": [
+              24.0,
+              337.185,
+              367.111,
+              401.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-rewards",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1368,
+              1239,
+              1584
+            ],
+            "boundsVp": [
+              24.0,
+              405.333,
+              367.111,
+              469.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-notifications",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1597,
+              1239,
+              1813
+            ],
+            "boundsVp": [
+              24.0,
+              473.185,
+              367.111,
+              537.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-profile",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1827,
+              1239,
+              2043
+            ],
+            "boundsVp": [
+              24.0,
+              541.333,
+              367.111,
+              605.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "theme-picker",
+            "type": "Row",
+            "boundsPx": [
+              81,
+              2224,
+              495,
+              2385
+            ],
+            "boundsVp": [
+              24.0,
+              658.963,
+              146.667,
+              706.667
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 47.704
+          },
+          {
+            "id": "theme-dark",
+            "type": "Button",
+            "boundsPx": [
+              357,
+              2237,
+              482,
+              2372
+            ],
+            "boundsVp": [
+              105.778,
+              662.815,
+              142.815,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "theme-light",
+            "type": "Button",
+            "boundsPx": [
+              226,
+              2237,
+              351,
+              2372
+            ],
+            "boundsVp": [
+              66.963,
+              662.815,
+              104.0,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "logout",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              2564,
+              1239,
+              2713
+            ],
+            "boundsVp": [
+              24.0,
+              759.704,
+              367.111,
+              803.852
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": null,
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-identity-top",
+      "theme": "light",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-identity-top-light.png",
+      "screenshotSha256": "7fa8a999c4a759f686794c4a6b761ca9e6d5d2aca69ca271e0341ceb40b850ea",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-identity-top-light.json",
+      "uiTreeSha256": "bf2a628c558df89fe446e70fdf1e50151db6af005b80d897fbff9f774cb40e79",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 1,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          255,
+          255,
+          255
+        ],
+        "expectedRGB": [
+          255,
+          255,
+          255
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              829,
+              1253,
+              1745
+            ],
+            "boundsVp": [
+              19.852,
+              245.63,
+              371.259,
+              517.037
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 271.407
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              1812,
+              660,
+              1991
+            ],
+            "boundsVp": [
+              19.852,
+              536.889,
+              195.556,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              1812,
+              1253,
+              1991
+            ],
+            "boundsVp": [
+              195.556,
+              536.889,
+              371.259,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-avatar-pick",
+            "type": "Button",
+            "boundsPx": [
+              364,
+              2072,
+              662,
+              2221
+            ],
+            "boundsVp": [
+              107.852,
+              613.926,
+              196.148,
+              658.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-name",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              2528,
+              1253,
+              2704
+            ],
+            "boundsVp": [
+              19.852,
+              749.037,
+              371.259,
+              801.185
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": {
+        "stableObservations": 3,
+        "positioningSwipes": 2,
+        "scrollBoundsPx": [
+          0,
+          415,
+          1320,
+          2848
+        ],
+        "interactionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ]
+      },
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-identity-bottom",
+      "theme": "light",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-identity-bottom-light.png",
+      "screenshotSha256": "3f122a4a78c5c36180405ec7bddccd0bdb51477ba78e4e0ce1809f1f64040c50",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-identity-bottom-light.json",
+      "uiTreeSha256": "aa2df92a5aea700bc8bce5fe06859bb0652ed9d9644e28a6edd89a214c6c0a18",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 1,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          255,
+          255,
+          255
+        ],
+        "expectedRGB": [
+          255,
+          255,
+          255
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              868
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              257.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 134.222
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              935,
+              660,
+              1114
+            ],
+            "boundsVp": [
+              19.852,
+              277.037,
+              195.556,
+              330.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              935,
+              1253,
+              1114
+            ],
+            "boundsVp": [
+              195.556,
+              277.037,
+              371.259,
+              330.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-avatar-pick",
+            "type": "Button",
+            "boundsPx": [
+              364,
+              1195,
+              662,
+              1344
+            ],
+            "boundsVp": [
+              107.852,
+              354.074,
+              196.148,
+              398.222
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-name",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1651,
+              1253,
+              1827
+            ],
+            "boundsVp": [
+              19.852,
+              489.185,
+              371.259,
+              541.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "profile-account",
+            "type": "Text",
+            "boundsPx": [
+              67,
+              2055,
+              420,
+              2110
+            ],
+            "boundsVp": [
+              19.852,
+              608.889,
+              124.444,
+              625.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 16.296
+          },
+          {
+            "id": "profile-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": null,
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-security-top",
+      "theme": "light",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-security-top-light.png",
+      "screenshotSha256": "9a39dec68a567c152eee908750a5b3969678e72fb8248e9e896c702c78e85bd5",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-security-top-light.json",
+      "uiTreeSha256": "60c3dc6b0a2f509688273e3271c93b326ff108269af8d80ba5b9181c53fc146f",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 1,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          255,
+          255,
+          255
+        ],
+        "expectedRGB": [
+          255,
+          255,
+          255
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              829,
+              1253,
+              1745
+            ],
+            "boundsVp": [
+              19.852,
+              245.63,
+              371.259,
+              517.037
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 271.407
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              1812,
+              660,
+              1991
+            ],
+            "boundsVp": [
+              19.852,
+              536.889,
+              195.556,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              1812,
+              1253,
+              1991
+            ],
+            "boundsVp": [
+              195.556,
+              536.889,
+              371.259,
+              589.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              2479,
+              1253,
+              2655
+            ],
+            "boundsVp": [
+              19.852,
+              734.519,
+              371.259,
+              786.667
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              2814,
+              1253,
+              2848
+            ],
+            "boundsVp": [
+              19.852,
+              833.778,
+              371.259,
+              843.852
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 10.074
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": {
+        "stableObservations": 3,
+        "positioningSwipes": 3,
+        "scrollBoundsPx": [
+          0,
+          415,
+          1320,
+          2848
+        ],
+        "interactionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ]
+      },
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-security-bottom",
+      "theme": "light",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-security-bottom-light.png",
+      "screenshotSha256": "fa85e364a8723193b8027f5e658c8c6636dfb743d88cf60d1bc37d9afec368f2",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-security-bottom-light.json",
+      "uiTreeSha256": "2b6d31e4a4238c52b8d0071f0eb40188d68d077b201eff8bb8172a5414b748de",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 1,
+      "canvas": {
+        "pointPx": [
+          27,
+          955
+        ],
+        "observedRGB": [
+          255,
+          255,
+          255
+        ],
+        "expectedRGB": [
+          255,
+          255,
+          255
+        ],
+        "flat5x5": true,
+        "themeVerified": true,
+        "rule": "8vp into actual20vp side padding;160vp below profile Scroll top, capped at half its height"
+      },
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          415,
+          1320,
+          2531
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              595
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              176.296
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.333
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              662,
+              660,
+              841
+            ],
+            "boundsVp": [
+              19.852,
+              196.148,
+              195.556,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              662,
+              1253,
+              841
+            ],
+            "boundsVp": [
+              195.556,
+              196.148,
+              371.259,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1329,
+              1253,
+              1505
+            ],
+            "boundsVp": [
+              19.852,
+              393.778,
+              371.259,
+              445.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1664,
+              1253,
+              1840
+            ],
+            "boundsVp": [
+              19.852,
+              493.037,
+              371.259,
+              545.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-confirm-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1999,
+              1253,
+              2175
+            ],
+            "boundsVp": [
+              19.852,
+              592.296,
+              371.259,
+              644.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": null,
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-menu-top",
+      "theme": "light",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-menu-top-light.png",
+      "screenshotSha256": "af342e4bdecd59c5f219ab6c140db8cea6322297a9931ff7e2e41d70096331de",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-menu-top-light.json",
+      "uiTreeSha256": "d4557d8bea5539e6daf9d4b7a4ebe9604b009cf12ebe098d76d08cc682e3df4a",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 1,
+      "canvas": null,
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          374,
+          1320,
+          2848
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              595
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              176.296
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.333
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              662,
+              660,
+              841
+            ],
+            "boundsVp": [
+              19.852,
+              196.148,
+              195.556,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              662,
+              1253,
+              841
+            ],
+            "boundsVp": [
+              195.556,
+              196.148,
+              371.259,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1329,
+              1253,
+              1505
+            ],
+            "boundsVp": [
+              19.852,
+              393.778,
+              371.259,
+              445.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1664,
+              1253,
+              1840
+            ],
+            "boundsVp": [
+              19.852,
+              493.037,
+              371.259,
+              545.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-confirm-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1999,
+              1253,
+              2175
+            ],
+            "boundsVp": [
+              19.852,
+              592.296,
+              371.259,
+              644.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "menu-home",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1138,
+              1239,
+              1354
+            ],
+            "boundsVp": [
+              24.0,
+              337.185,
+              367.111,
+              401.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-rewards",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1368,
+              1239,
+              1584
+            ],
+            "boundsVp": [
+              24.0,
+              405.333,
+              367.111,
+              469.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-notifications",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1597,
+              1239,
+              1813
+            ],
+            "boundsVp": [
+              24.0,
+              473.185,
+              367.111,
+              537.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-profile",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1827,
+              1239,
+              2043
+            ],
+            "boundsVp": [
+              24.0,
+              541.333,
+              367.111,
+              605.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "theme-picker",
+            "type": "Row",
+            "boundsPx": [
+              81,
+              2224,
+              495,
+              2385
+            ],
+            "boundsVp": [
+              24.0,
+              658.963,
+              146.667,
+              706.667
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 47.704
+          },
+          {
+            "id": "theme-dark",
+            "type": "Button",
+            "boundsPx": [
+              357,
+              2237,
+              482,
+              2372
+            ],
+            "boundsVp": [
+              105.778,
+              662.815,
+              142.815,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "theme-light",
+            "type": "Button",
+            "boundsPx": [
+              226,
+              2237,
+              351,
+              2372
+            ],
+            "boundsVp": [
+              66.963,
+              662.815,
+              104.0,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "logout",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              2564,
+              1239,
+              2713
+            ],
+            "boundsVp": [
+              24.0,
+              759.704,
+              367.111,
+              803.852
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": {
+        "stableObservations": 3,
+        "positioningSwipes": 2,
+        "scrollBoundsPx": [
+          0,
+          374,
+          1320,
+          2848
+        ],
+        "interactionViewportPx": [
+          0,
+          374,
+          1320,
+          2848
+        ]
+      },
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    },
+    {
+      "state": "profile-menu-bottom",
+      "theme": "light",
+      "screenshot": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/profile-menu-bottom-light.png",
+      "screenshotSha256": "54cac8826964e08349b14fdba319ae2f47d79febc2f130c023dd4f47c456b0ee",
+      "uiTree": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/ui-profile-menu-bottom-light.json",
+      "uiTreeSha256": "d4557d8bea5539e6daf9d4b7a4ebe9604b009cf12ebe098d76d08cc682e3df4a",
+      "pixels": [
+        1320,
+        2848
+      ],
+      "actualThemeVerified": true,
+      "actualThemeRecordIndex": 1,
+      "canvas": null,
+      "safeGeometry": {
+        "appRootBoundsPx": [
+          0,
+          132,
+          1320,
+          2848
+        ],
+        "contentInteractionViewportPx": [
+          0,
+          374,
+          1320,
+          2848
+        ],
+        "controls": [
+          {
+            "id": "account-menu",
+            "type": "Stack",
+            "boundsPx": [
+              1105,
+              197,
+              1254,
+              346
+            ],
+            "boundsVp": [
+              327.407,
+              58.37,
+              371.556,
+              102.519
+            ],
+            "insideContentInteractionViewport": false,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "profile-passport",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              415,
+              1253,
+              595
+            ],
+            "boundsVp": [
+              19.852,
+              122.963,
+              371.259,
+              176.296
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.333
+          },
+          {
+            "id": "profile-identity-tab",
+            "type": "Column",
+            "boundsPx": [
+              67,
+              662,
+              660,
+              841
+            ],
+            "boundsVp": [
+              19.852,
+              196.148,
+              195.556,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "profile-security-tab",
+            "type": "Column",
+            "boundsPx": [
+              660,
+              662,
+              1253,
+              841
+            ],
+            "boundsVp": [
+              195.556,
+              196.148,
+              371.259,
+              249.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 53.037
+          },
+          {
+            "id": "security-old-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1329,
+              1253,
+              1505
+            ],
+            "boundsVp": [
+              19.852,
+              393.778,
+              371.259,
+              445.926
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-new-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1664,
+              1253,
+              1840
+            ],
+            "boundsVp": [
+              19.852,
+              493.037,
+              371.259,
+              545.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-confirm-password",
+            "type": "TextInput",
+            "boundsPx": [
+              67,
+              1999,
+              1253,
+              2175
+            ],
+            "boundsVp": [
+              19.852,
+              592.296,
+              371.259,
+              644.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "security-save",
+            "type": "Button",
+            "boundsPx": [
+              67,
+              2242,
+              1253,
+              2418
+            ],
+            "boundsVp": [
+              19.852,
+              664.296,
+              371.259,
+              716.444
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 52.148
+          },
+          {
+            "id": "menu-home",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1138,
+              1239,
+              1354
+            ],
+            "boundsVp": [
+              24.0,
+              337.185,
+              367.111,
+              401.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-rewards",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1368,
+              1239,
+              1584
+            ],
+            "boundsVp": [
+              24.0,
+              405.333,
+              367.111,
+              469.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-notifications",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1597,
+              1239,
+              1813
+            ],
+            "boundsVp": [
+              24.0,
+              473.185,
+              367.111,
+              537.185
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "menu-profile",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              1827,
+              1239,
+              2043
+            ],
+            "boundsVp": [
+              24.0,
+              541.333,
+              367.111,
+              605.333
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 64.0
+          },
+          {
+            "id": "theme-picker",
+            "type": "Row",
+            "boundsPx": [
+              81,
+              2224,
+              495,
+              2385
+            ],
+            "boundsVp": [
+              24.0,
+              658.963,
+              146.667,
+              706.667
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 47.704
+          },
+          {
+            "id": "theme-dark",
+            "type": "Button",
+            "boundsPx": [
+              357,
+              2237,
+              482,
+              2372
+            ],
+            "boundsVp": [
+              105.778,
+              662.815,
+              142.815,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "theme-light",
+            "type": "Button",
+            "boundsPx": [
+              226,
+              2237,
+              351,
+              2372
+            ],
+            "boundsVp": [
+              66.963,
+              662.815,
+              104.0,
+              702.815
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 40.0
+          },
+          {
+            "id": "logout",
+            "type": "Button",
+            "boundsPx": [
+              81,
+              2564,
+              1239,
+              2713
+            ],
+            "boundsVp": [
+              24.0,
+              759.704,
+              367.111,
+              803.852
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 44.148
+          },
+          {
+            "id": "nav-home",
+            "type": "Column",
+            "boundsPx": [
+              146,
+              2544,
+              403,
+              2707
+            ],
+            "boundsVp": [
+              43.259,
+              753.778,
+              119.407,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          },
+          {
+            "id": "nav-profile",
+            "type": "Column",
+            "boundsPx": [
+              916,
+              2544,
+              1173,
+              2707
+            ],
+            "boundsVp": [
+              271.407,
+              753.778,
+              347.556,
+              802.074
+            ],
+            "insideContentInteractionViewport": true,
+            "visibleHeightVp": 48.296
+          }
+        ],
+        "keyboardVisible": false
+      },
+      "topBoundary": null,
+      "businessAcceptance": false,
+      "webConsistencyClaimed": false
+    }
+  ],
+  "environment": "Dedicated isolated HTTPS player; screenshots and raw UI remain private",
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "installationEvidence": "Separate official scripts/hm.sh run log is required"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-09.json",
+    "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+  },
+  "corePrerequisite": {
+    "file": "artifacts/validation/profile/device-profile-acceptance.json",
+    "sha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1"
+  },
+  "passwordSource": {
+    "kind": "matching passed S2",
+    "sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407"
+  },
+  "avatarPrerequisite": {
+    "present": true,
+    "matchesCurrentBuild": true,
+    "sourceSha256": "5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b",
+    "status": "passed",
+    "basicUploadPhaseCompleted": true
+  },
+  "window": {
+    "widthPx": 1320,
+    "heightPx": 2848,
+    "density": 3.375,
+    "fontScale": 1,
+    "topInsetPx": 131,
+    "bottomInsetPx": 94,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "immersiveLayout": "enabled",
+    "statusBarColor": "#00000000",
+    "navigationBarColor": "#00000000"
+  },
+  "actualThemeRecords": [
+    {
+      "requestedTheme": "dark",
+      "logStartByteOffset": 1054,
+      "record": {
+        "appColorMode": 0,
+        "widthPx": 1320,
+        "heightPx": 2848,
+        "density": 3.375,
+        "fontScale": 1,
+        "statusBarContentColor": "#FFFFFFFF",
+        "navigationBarContentColor": "#FFFFFFFF",
+        "statusBarColor": "#00000000",
+        "navigationBarColor": "#00000000",
+        "immersiveLayout": "enabled"
+      },
+      "verification": "Fresh official StarwardMetrics record after native theme selection; raw log kept private"
+    },
+    {
+      "requestedTheme": "light",
+      "logStartByteOffset": 2108,
+      "record": {
+        "appColorMode": 1,
+        "widthPx": 1320,
+        "heightPx": 2848,
+        "density": 3.375,
+        "fontScale": 1,
+        "statusBarContentColor": "#FF000000",
+        "navigationBarContentColor": "#FF000000",
+        "statusBarColor": "#00000000",
+        "navigationBarColor": "#00000000",
+        "immersiveLayout": "enabled"
+      },
+      "verification": "Fresh official StarwardMetrics record after native theme selection; raw log kept private"
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "hilogStopped": true
+  },
+  "privateOriginals": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z",
+  "businessWritesObserved": 0,
+  "webComparisonPerformed": false,
+  "acceptanceCredit": "Actual phone captures, theme and geometry only; Web consistency requires separate visual review",
+  "notExecuted": [
+    "Cross-device/foldable/hover/window tests are deferred",
+    "Screenshots alone do not prove avatar pixels, pending writes or all business error states"
+  ],
+  "privateMetricsLog": {
+    "file": "artifacts/private/native-profile-visual/capture-20261030T022144601260Z/metrics-hilog.log",
+    "sha256": "b64cc414820e5f9fc973eb74339a97a0b7447458f8711fd737e93ed6b3b39b05"
+  }
+}

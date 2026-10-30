@@ -1,0 +1,48 @@
+{
+  "status": "incomplete",
+  "scope": "Task1 mobile Web layout/copy reference only",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "sourceCheckoutCleanBefore": true,
+  "viewport": {
+    "width": 391,
+    "height": 844,
+    "deviceScaleFactor": 1,
+    "nativeWidthReferenceVp": 391.111111,
+    "rounding": "Browser width rounds the measured native width to391 CSSpx",
+    "nativeSafeAreaApplied": false,
+    "note": "Native status/gesture avoid areas remain separate runtime evidence; browser does not emulate them"
+  },
+  "snapshot": {
+    "sha256": "dbe1f32b1b88af9d67dbf654338c51f4bdeeb8de93912acbbccab16a79a6cdd0",
+    "archiveFile": "artifacts/private/web-profile-inputs/dbe1f32b1b88af9d67dbf654338c51f4bdeeb8de93912acbbccab16a79a6cdd0.json",
+    "assignmentCount": 4
+  },
+  "browserUsesRealBackend": false,
+  "apiInterception": "All /api/* fulfilled in Playwright, including unknown routes; no API request continued",
+  "renderDrivers": "Login, optional mandatory-password reply and file tokens are synthetic rendering drivers; no browser backend write",
+  "auxiliaryAPIs": "Notification/reward replies, if requested, are fixed empty fixtures outside Task1",
+  "fontControl": {
+    "enabled": false,
+    "sha256": null,
+    "method": "Same optional controlled serif override as first-slice capture; Web source unchanged"
+  },
+  "avatarReplay": {
+    "provided": false,
+    "sha256": null,
+    "source": "Caller-provided private readback bytes; browser serves only the replay fixture"
+  },
+  "servedFrozenSourceChecks": [],
+  "schemaChecks": [],
+  "states": [],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0,
+  "unexpectedApiCount": 0,
+  "externalRequestsAllowed": 0,
+  "blockedExternalRequestCount": 0,
+  "responseSourceCounts": {},
+  "error": "Profile reference capture did not finish all frozen-source, schema, state and browser checks",
+  "privateRawEvidence": {
+    "file": "artifacts/private/web-profile-visual/capture-20261029T025229631704Z/browser-raw.json",
+    "sha256": "6aa2e2534ec6288068f2b51ca0924c6bbd4605c0d5d926a03243674c4813e188"
+  }
+}

@@ -1,6 +1,6 @@
 import { HttpsGameRepository } from '../data/HttpsGameRepository';
 import { GameRepository } from '../business/GameRepository';
-import { AssignmentDetail, AssignmentSummary, GameFailure, Player } from '../business/models';
+import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player } from '../business/models';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { NativeHttpTransport } from '../platform/HttpTransport';
 import { SliceViewModel } from './SliceViewModel';
@@ -32,6 +32,14 @@ class UnavailableRepository implements GameRepository {
   }
 
   async assignment(id: string): Promise<AssignmentDetail> {
+    throw new GameFailure('CONFIG_ERROR', this.reason);
+  }
+
+  async updateProfile(displayName: string, avatar: AvatarUpload | null = null): Promise<Player> {
+    throw new GameFailure('CONFIG_ERROR', this.reason);
+  }
+
+  async avatar(forceRefresh: boolean = false): Promise<AvatarImage | null> {
     throw new GameFailure('CONFIG_ERROR', this.reason);
   }
 

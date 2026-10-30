@@ -16,7 +16,7 @@ success = results.count('Success')
 failed = results.count('Error') + results.count('Failure')
 ignored = results.count('Ignore')
 summary = {'tests': len(tests), 'passed': success, 'failed': failed, 'ignored': ignored, 'source': str(report)}
-output = Path('artifacts/validation/local-test-summary.json')
+output = Path(sys.argv[2]) if len(sys.argv) > 2 else Path('artifacts/validation/local-test-summary.json')
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
 print(json.dumps(summary, ensure_ascii=False))

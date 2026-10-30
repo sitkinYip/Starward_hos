@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "environment": "host-only synthetic HTTP fixtures; no live state/CA/PB/device",
+  "count": 29,
+  "checks": [
+    "private receipt mode600",
+    "control rejects missing token",
+    "reject malformed or foreign own-path fixture",
+    "reject malformed or foreign own-path fixture",
+    "reject malformed or foreign own-path fixture",
+    "reject malformed or foreign own-path fixture",
+    "reject malformed or foreign own-path fixture",
+    "reject ttl over14s",
+    "reject missing expected digest",
+    "missing private session cannot arm",
+    "foreign private session cannot arm",
+    "current file independent from historicalPNG receipt",
+    "second arm rejected while live",
+    "headers/body remain withheld",
+    "received and held distinct with SHA match",
+    "unrelated response unaffected",
+    "one arm captures only one request",
+    "wrong gate release rejected",
+    "explicit release acknowledged",
+    "original bytes and header unchanged",
+    "finish only after release, no abort",
+    "release cannot replay",
+    "ledger and manifest omit path/token/body/credentials",
+    "client close records abort without finish",
+    "expiry aborts held response without release or finish",
+    "real bytes mismatch fails closed",
+    "upstream non200 fails closed",
+    "over2MiB fails closed",
+    "stop aborts withheld response and removes receipt"
+  ],
+  "source": {
+    "scripts/test-response-gate.mjs": "44e7766a8c2cf3fc7965dd75b12cc3f765293a05d77c910284b7391afa4b9a78",
+    "scripts/isolated-response-gate.mjs": "c5dbb8bb6df3531ac34742751908c203f00a4bfda6fb6a19c7d227255185b9c7"
+  },
+  "runtime": "v24.14.1"
+}

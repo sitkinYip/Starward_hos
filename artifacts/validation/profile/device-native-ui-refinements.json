@@ -1,0 +1,82 @@
+{
+  "status": "incomplete",
+  "stage": "incomplete-run-cleaned",
+  "scope": "New UI-only HAP straight-phone checks",
+  "startedAt": "2026-10-30T03:56:17.222094+00:00",
+  "updatedAt": "2026-10-30T04:42:24.700687+00:00",
+  "environment": "Original disposable S2 player over strict USB HTTPS; no fixed preview player",
+  "hap": {
+    "packagedSha256": "6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-ui-final-nav.json",
+    "sha256": "66c45cbe66f9e525d9337e03c4c0925203ffbbca02b31b14e579eebdbd190a9d"
+  },
+  "sourceBinding": {
+    "baseHapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "patchSha256": "4b0cf5bbf0a37398181ca30ad5bc9d38cc121b99c720c39d92d6308c3fc5453d",
+    "patchManifestSha256": "830e4aa03223c20714f9a9bcc65cb7aa7039301d81484ad15cc2cc90aa4707bd",
+    "businessSourcesUnchanged": true,
+    "oldUiChecksInherited": false,
+    "configurationTimeoutMs": 15000,
+    "newUiSources": [
+      {
+        "file": "entry/src/main/ets/ui/StarwardSidePanel.ets",
+        "sha256": "84d2a8858a568f31bf480c2f6fe2746e2c93b8466fbb945fb5edc4232ee45f16"
+      }
+    ],
+    "accountMenuContainer": "official_prompt_action_side_panel"
+  },
+  "credentialEpochOnly": {
+    "coreSha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "s2Sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "privateOwnerWitnessSha256": "54693c1d4073b4633f232b8682898d75f19ea2500c5b86d7e8549feb31211b8c",
+    "newPasswordKey": "newPassword",
+    "freshHttpsIdentityCheck": true
+  },
+  "driver": {
+    "file": "scripts/device-native-ui-refinements.py",
+    "sha256": "27ccd0f88953f12ee6a79faa5dd41ec5a3b652e845c798a61880b0e6a8ef0ce4",
+    "profileUiHelperSha256": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818"
+  },
+  "count": 0,
+  "checks": [],
+  "observations": [],
+  "geometry": [],
+  "privateScreenshots": [],
+  "privateTrees": [],
+  "rawEvidence": [],
+  "imeEvidence": [],
+  "themeActions": [
+    {
+      "requested": "system",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_review"
+    }
+  ],
+  "visualReview": "pending_root_original_image_review",
+  "dragObservations": [],
+  "dragCapabilityConclusion": "not_determined_by_injection",
+  "businessWriteDelta": {
+    "profilePatch": 0,
+    "passwordPost": 0
+  },
+  "cleanup": {
+    "themeRestoredToSystem": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "noBusinessWrites": true,
+    "remoteDumpsRemoved": true,
+    "logStopped": true
+  },
+  "limitations": [
+    "Visual normal/fill and optical effects require separate Root original-image review",
+    "No foldable, hover, split-window or reader/physical-keyboard acceptance is claimed",
+    "Hidden-bar proof checks actual exposed native nodes; no tap is injected into the system keyboard",
+    "A scripted swipe or drag is not proof of the manual system drag-selection capability",
+    "Account panel geometry alone does not prove material pixels or entry/exit motion direction",
+    "No profile save, password save, game-start, answer, reward or notification-read action is performed"
+  ],
+  "error": "A guarded native UI stage stopped; inspect private evidence and actual foreground before continuing"
+}

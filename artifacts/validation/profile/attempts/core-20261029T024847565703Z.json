@@ -1,0 +1,143 @@
+{
+  "status": "incomplete",
+  "scope": "Task1 core navigation, nickname and ordinary password change",
+  "environment": "real isolated PocketBase over strict USB HTTPS",
+  "deviceApi": 26,
+  "startedAt": "2026-10-29T02:44:45.671302+00:00",
+  "updatedAt": "2026-10-29T02:47:58.341795+00:00",
+  "count": 9,
+  "checks": [
+    {
+      "case": "R1",
+      "label": "The phone is explicitly using the dedicated HTTPS environment",
+      "injectedResilience": false
+    },
+    {
+      "case": "R1",
+      "label": "One real forced password change reaches the authenticated home",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Account menu exposes the four formal destinations and logout",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "System Back dismisses the menu while preserving the profile page",
+      "injectedResilience": false
+    },
+    {
+      "case": "R1",
+      "label": "The home tab still reaches the real assignment list",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "The account menu opens the same usable profile destination as the bottom tab",
+      "injectedResilience": false
+    },
+    {
+      "case": "N2",
+      "label": "The real account is displayed as read-only text",
+      "injectedResilience": false
+    },
+    {
+      "case": "N2",
+      "label": "The real profile exposes its avatar-selection action",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Deferred destination stays out of an empty page: nav-rewards",
+      "injectedResilience": false
+    }
+  ],
+  "observations": [],
+  "hap": {
+    "packagedSha256": "2da7204e26afcf0b5e8e34ffb8cf96b97f123fa1671e6403781b500981a8021b",
+    "installationEvidence": "Separate official scripts/hm.sh run log is required"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-02.json",
+    "sha256": "75744c7e26a14f70131737d5546a44ce81ffb3b62ea1fab4837b6c033f232b81"
+  },
+  "requestLedger": [
+    {
+      "phase": "final-cleanup",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false
+  },
+  "finalPasswordKey": "newPassword",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-device/profile-identity.png",
+      "sha256": "912c68951ce27978e69185972c176793d4637c254607904b4eb71af87f977cf6",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "notExecuted": [
+    "A1/A2/A3/A4 system picker, crop, upload and protected-avatar handling",
+    "S2 ordinary-password response-loss recovery",
+    "Foldable/hover/split-window work is deferred by user instruction"
+  ],
+  "limitations": [
+    "CLI/UiTest core checks are not Hypium instrument tests",
+    "Injected failures are labelled, not observed production failures",
+    "No production, start, answer, reward or notification-read write"
+  ],
+  "error": "Task1 UI cleanup did not complete"
+}

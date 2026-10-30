@@ -1,0 +1,4361 @@
+{
+  "status": "passed",
+  "scope": "Task1 system Picker, crop, multipart, protected-avatar recovery and ordinary logout; delayed-response logout is an independent scope",
+  "environment": "dedicated real PocketBase over strict USB HTTPS",
+  "startedAt": "2026-10-29T05:43:31.800580+00:00",
+  "updatedAt": "2026-10-29T05:55:22.969070+00:00",
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-09.json",
+    "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+  },
+  "corePrerequisite": {
+    "file": "artifacts/validation/profile/device-profile-acceptance.json",
+    "sha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1"
+  },
+  "securityPrerequisiteSha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+  "phases": [
+    "picker-open",
+    "crop-cancelled",
+    "reselect-open",
+    "pending-repick-open",
+    "pending-repick-cancelled",
+    "avatar-saved",
+    "recovery-and-logout",
+    "decode-corrupt-restored",
+    "visual-reviewed"
+  ],
+  "count": 28,
+  "checks": [
+    {
+      "case": "A1",
+      "label": "Before selecting, no avatar draft is pending",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The actual native crop preview exposes a square viewport",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "Cancelling a prepared/adjusted crop preserves the nickname draft and sends no PATCH",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The actual native crop preview exposes a square viewport",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The actual native crop preview exposes a square viewport",
+      "injectedResilience": false
+    },
+    {
+      "case": "A1",
+      "label": "Cancelling system reselect keeps the earlier crop usable without any new profile PATCH",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The first crop confirmation creates a pending avatar, retains the nickname and sends no PATCH",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The actual native crop preview exposes a square viewport",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "Cancelling a second native crop keeps the earlier pending avatar and nickname without a profile PATCH",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The retained pending avatar remains unsaved with the original nickname before explicit save",
+      "injectedResilience": false
+    },
+    {
+      "case": "A3",
+      "label": "Injected multipart503 preserves the selected avatar for an explicit retry",
+      "injectedResilience": true
+    },
+    {
+      "case": "A3",
+      "label": "The native retry sends a real authenticated multipart PATCH containing an avatar part",
+      "injectedResilience": false
+    },
+    {
+      "case": "A3",
+      "label": "After saving, native code requests a new file token and fetches the protected avatar200",
+      "injectedResilience": false
+    },
+    {
+      "case": "A3",
+      "label": "Real uploaded bytes are a512px square JPEG within200KiB",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "Re-encoded avatar contains no source EXIF fields",
+      "injectedResilience": false
+    },
+    {
+      "case": "A3",
+      "label": "Four authoritative output colour patches match the actual selected fixture",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "The entire real JPEG matches the independent centered crop and is substantially closer than an incorrect whole-image stretch",
+      "injectedResilience": false
+    },
+    {
+      "case": "A4",
+      "label": "One injected file403 causes exactly one fresh file token and successful protected-file retry",
+      "injectedResilience": true
+    },
+    {
+      "case": "A4",
+      "label": "Protected-file403 does not expire the main account and the recovered profile remains usable",
+      "injectedResilience": true
+    },
+    {
+      "case": "A4",
+      "label": "Injected file503 exposes a persistent image error while preserving account access",
+      "injectedResilience": true
+    },
+    {
+      "case": "A4",
+      "label": "Explicit native avatar retry performs a new real GET200 and clears the image error",
+      "injectedResilience": false
+    },
+    {
+      "case": "A4",
+      "label": "Logout and Back/Ability relaunch expose no former profile draft or private image view",
+      "injectedResilience": false
+    },
+    {
+      "case": "A4",
+      "label": "Real HTTP200 image/jpeg with valid JPEG magic but corrupt image bytes exposes a native image error and retry action",
+      "injectedResilience": true
+    },
+    {
+      "case": "A4",
+      "label": "The actual native decode error persists across foreground/me sync without automatic file rereads",
+      "injectedResilience": true
+    },
+    {
+      "case": "A4",
+      "label": "After exact fixture restoration, explicit native retry performs a new real GET200 and clears the image error",
+      "injectedResilience": true
+    },
+    {
+      "case": "A4",
+      "label": "Corrupt-image recovery leaves empty login after Back/relaunch and submits no profile/password write",
+      "injectedResilience": true
+    },
+    {
+      "case": "A3",
+      "label": "Root visual inspection confirms the actual fixture renders in both profile and account menu; screenshot SHA bound",
+      "injectedResilience": false
+    },
+    {
+      "case": "A2",
+      "label": "Root visual inspection confirms visible crop adjustment and preserved crop after system reselect cancellation",
+      "injectedResilience": false
+    }
+  ],
+  "requestLedger": [
+    {
+      "phase": "cancelled-native-crop",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "confirmed-avatar-pending-before-repick",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "earlier-avatar-pending-after-repick-cancel",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "real-native-avatar-upload",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "multipart",
+          "avatarPartPresent": true,
+          "requestBytes": 30350
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "multipart",
+          "avatarPartPresent": true,
+          "requestBytes": 30350
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        }
+      ]
+    },
+    {
+      "phase": "file-recovery-and-final-logout",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "multipart",
+          "avatarPartPresent": true,
+          "requestBytes": 30350
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "multipart",
+          "avatarPartPresent": true,
+          "requestBytes": 30350
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 403,
+          "fault": true,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 503,
+          "fault": true,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        }
+      ]
+    },
+    {
+      "phase": "injected-owned-storage-corrupt-image-restored-and-retried",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "json",
+          "avatarPartPresent": false,
+          "requestBytes": 39
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 400,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments/uwm9xxifjpbxfq1",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": true,
+          "responseDropped": true,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 503,
+          "fault": true,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "multipart",
+          "avatarPartPresent": true,
+          "requestBytes": 30350
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/questions/v1/me/profile",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false,
+          "bodyKind": "multipart",
+          "avatarPartPresent": true,
+          "requestBytes": 30350
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 403,
+          "fault": true,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 503,
+          "fault": true,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        }
+      ]
+    }
+  ],
+  "hostReads": [
+    {
+      "purpose": "readback-only after native upload",
+      "fileTokenStatus": 200,
+      "fileStatus": 200,
+      "contentType": "image/jpeg",
+      "bytes": 29980
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-device/avatar-crop-default-before-cancel.png",
+      "sha256": "88ba2647fe3a5ba82c39925745d24cea8796bc205c50104931a8e15a1fcb9287",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-crop-adjusted-before-cancel.png",
+      "sha256": "ba0b54fe42da48f4b37402bf020458cf165fe3d87890194d01c5ccc12f4a2be2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-crop-after-cancelled-reselect.png",
+      "sha256": "2a8125bce8b110ca1d46d30841da945b20ca3253e4ce6207b82967679dea55b2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-pending-before-repick.png",
+      "sha256": "9569c5bd888118c5654738dca19375fe2e8ca6c231001da35be815a36a11cbe5",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-pending-after-repick-cancel.png",
+      "sha256": "e098295958c4ddf667d516bb2dbc84a506882c37cd06e2b258c6f589df891025",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-pending.png",
+      "sha256": "ad225323f3e72eb42e5bf0d686c40ac5b0a7bb16b15281d6a62fa75dd8d308bd",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-profile-saved.png",
+      "sha256": "d9c50a6bc1440eda2425a127a9edfb6c3b21713c17bff4143ae12ac82ad0dea7",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-menu-saved.png",
+      "sha256": "3c4a09a6e9b889e4be013a5e35ce7f6633901fb775e02efd6a78433ba0e3c5be",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-token-recovered.png",
+      "sha256": "37091e0d6c77f72835733158af60a35cc4ad666828af0eecb87d1305b958b992",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-file-retry-recovered.png",
+      "sha256": "9bdee52b95c896382b7c2f752e8c68ebec765e71c4c0bdb7caf16996aaa6f9e7",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-decode-corrupt-error.png",
+      "sha256": "3b3a867d0a3ced1c04117397907a9ce0fd2edce9249d590686b43a3b8cb1fbf5",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/avatar-decode-corrupt-recovered.png",
+      "sha256": "cb03a2485e5a8fc77d920e8011b6acecf2bb5993a716751211a63843af75ed57",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "fixture": {
+    "sha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+    "nonPrivateGeneratedImage": true,
+    "selection": "Actual system Picker selection between staged commands; no host upload"
+  },
+  "notExecuted": [
+    "Invalid/over50MiB source selection needs a separate actual Picker check",
+    "EXIF orientation cases are not covered by the orientation-free PNG fixture",
+    "Actual switching to another account with an in-flight avatar is not exercised; old-generation unit tests are separate",
+    "Foldable/hover/split-window testing is deferred by user instruction",
+    "The independent delayed-avatar logout phase is still pending or failed; basic403/503 and decode recovery retain their separate results"
+  ],
+  "finalPasswordKey": "newPassword",
+  "observations": [
+    "Official zoom/horizontal/vertical Slider click commands executed in cancelled draft; exact values were not exposed or asserted. Private before/after images require visual review.",
+    "The repeated selection uses the same exact imported PNG. Pending-retention checks assert visible pending state, unchanged nickname and no new write; they do not establish identity of in-memory avatar bytes."
+  ],
+  "outputImage": {
+    "sha256": "3f20f20739598c32a9852e628ce65d0d7c9481a0c83317103730eb120398257d",
+    "width": 512,
+    "height": 512,
+    "bytes": 29980,
+    "format": "JPEG"
+  },
+  "imageComparison": {
+    "method": "Full512x512 RGB mean absolute channel error in0..255 units",
+    "sourceFixtureSha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+    "expected": {
+      "sourceCrop": [
+        192,
+        0,
+        832,
+        640
+      ],
+      "resize": [
+        512,
+        512
+      ],
+      "resampling": "Pillow LANCZOS"
+    },
+    "wrongHypothesis": "Entire1024x640 fixture stretched directly to512x512",
+    "centerCropMae": 5.116179,
+    "wholeImageStretchMae": 13.930321,
+    "thresholds": {
+      "maxCenterCropMae": 8,
+      "minWrongMinusCorrectMae": 5,
+      "minWrongToCorrectRatio": 1.6
+    },
+    "tolerance": "Allows native scaling and two JPEG encodes; distinguishes wrong crop geometry. Threshold fixed before phone execution."
+  },
+  "lateFileLogout": {
+    "status": "pending",
+    "executed": false
+  },
+  "phaseStatuses": {
+    "pendingRepickCancellation": "passed",
+    "basicFileRecovery": "passed",
+    "decodeCorruptRecovery": "passed",
+    "lateFileLogout": "pending"
+  },
+  "injectedStorageFault": {
+    "executed": true,
+    "injectedStorageFault": true,
+    "scope": "Exact SHA-verified avatar from this phone native multipart in the disposable backend only",
+    "productionFault": false,
+    "stage": "original_bytes_restored",
+    "originalSha256": "3f20f20739598c32a9852e628ce65d0d7c9481a0c83317103730eb120398257d",
+    "injectedHex": "ffd8ff00",
+    "injectedBytes": 4,
+    "restored": true,
+    "cleanupLoggedOut": true,
+    "automaticNativeRereadObserved": false,
+    "backup": {
+      "file": "artifacts/private/profile-device/avatar-storage-backup-20261029T055302163407Z.jpg",
+      "sha256": "3f20f20739598c32a9852e628ce65d0d7c9481a0c83317103730eb120398257d",
+      "mode": "0600"
+    },
+    "corruptReadback": {
+      "source": "Host read-only strict HTTPS probe, separate from subsequent native request",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 4,
+      "sha256": "374ffede23adbc8bc625205f4bf86750807ffb6ce71fc7d10cac8bded0872bf5"
+    },
+    "restoredSha256": "3f20f20739598c32a9852e628ce65d0d7c9481a0c83317103730eb120398257d",
+    "restoredReadback": {
+      "source": "Host read-only strict HTTPS probe, separate from subsequent native request",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 29980,
+      "sha256": "3f20f20739598c32a9852e628ce65d0d7c9481a0c83317103730eb120398257d"
+    }
+  },
+  "visualEvidence": {
+    "receiptSha256": "8bd40b6bdf493c6f624145d33547a3042a636881535b7ea2d1d7203382d837a1",
+    "source": "Root inspection of SHA-bound private originals"
+  }
+}

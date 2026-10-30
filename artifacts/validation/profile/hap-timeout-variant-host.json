@@ -1,0 +1,136 @@
+{
+  "status": "passed",
+  "scope": "Offline HAP provenance tooling only; no native, service, signature-validity or business acceptance",
+  "createdAt": "2026-10-30T02:54:38.895523+00:00",
+  "baseHapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "variantHapSha256": "d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4",
+  "baseManifestSha256": "7e42dea6d38dd7a9069a721147cb44b1f6f18cc1354aebfc71d3ad462e583c53",
+  "helperSha256": "0f7753a10668c7143b0a65785157ae74afa3bacf27178e668a8e47fc42c6a4ed",
+  "testDriverSha256": "63c1f2f453ccec85394b3b480a5447e8742c052e155494acefcd5124d4bd12bb",
+  "comparison": {
+    "changedPackagedEntries": [
+      "ets/symbolMap.map",
+      "resources/rawfile/integration.json"
+    ],
+    "uncompressedPackagedEntries": 40,
+    "onlyTimeoutConfigurationChanged": true,
+    "allOtherPackagedEntriesByteIdentical": true,
+    "packagedByteChangeScope": "integration timeout; optional complete symbol-map record reordering only",
+    "symbolMap": {
+      "entry": "ets/symbolMap.map",
+      "present": true,
+      "recordCount": 1173,
+      "moduleCount": 34,
+      "functionCount": 1139,
+      "uniqueRecordKeys": true,
+      "canonicalRecordsSha256": "e266ef53c64180b12eda59a9eb01da4fa00774d18dd2ed73aee610f9c2138ded",
+      "baseSha256": "7ce0364b7a18d2c514330ca42692f52f64d9aa6d40382cd0fd20ff3352b7dbfa",
+      "variantSha256": "fd97481eb1cf6f9b52ffa82e9c20a573e84610dfa29c7095bcfa3f143697999d",
+      "bytesIdentical": false,
+      "completeRecordMultisetIdentical": true,
+      "onlyRecordOrderChanged": true
+    }
+  },
+  "formatEvidence": {
+    "officialSource": "https://github.com/openharmony/arkcompiler_ets_frontend/blob/3271e689443900dbce3ad766c881f397a38e2c76/es2panda/util/symbolTable.cpp#L72",
+    "fixedSdkObservedFormat": "34 module and1139 three-field function records, all with unique self-contained keys",
+    "scopeLimit": "OpenHarmony reader explains record-key semantics; it is not asserted to be the exact commercial SDK source revision"
+  },
+  "checkCount": 23,
+  "checks": [
+    {
+      "check": "actual original signed-HAP pair accepts only declared configuration and mapping-order changes",
+      "passed": true
+    },
+    {
+      "check": "all frozen ArkTS source files still match original manifest",
+      "passed": true
+    },
+    {
+      "check": "all runtime ABC bytes are exactly identical and match the frozen base manifest",
+      "passed": true
+    },
+    {
+      "check": "original CA bytes remain exactly identical",
+      "passed": true
+    },
+    {
+      "check": "real mapping comparison preserves every complete record and unique symbol key",
+      "passed": true
+    },
+    {
+      "check": "byte-identical symbol map remains accepted",
+      "passed": true
+    },
+    {
+      "check": "arbitrary order of complete unique original records remains accepted",
+      "passed": true
+    },
+    {
+      "check": "one valid-format symbol hash change is rejected",
+      "passed": true
+    },
+    {
+      "check": "one removed symbol record is rejected",
+      "passed": true
+    },
+    {
+      "check": "one duplicate symbol record/key is rejected",
+      "passed": true
+    },
+    {
+      "check": "unknown record grammar is rejected",
+      "passed": true
+    },
+    {
+      "check": "even matching malformed maps cannot bypass format validation",
+      "passed": true
+    },
+    {
+      "check": "blank map record is rejected",
+      "passed": true
+    },
+    {
+      "check": "map CRLF normalization is not accepted as record reordering",
+      "passed": true
+    },
+    {
+      "check": "one runtime bytecode byte change is rejected",
+      "passed": true
+    },
+    {
+      "check": "one authority byte change is rejected",
+      "passed": true
+    },
+    {
+      "check": "one unrelated packaged-entry byte change is rejected",
+      "passed": true
+    },
+    {
+      "check": "an extra packaged entry is rejected",
+      "passed": true
+    },
+    {
+      "check": "a removed packaged entry is rejected",
+      "passed": true
+    },
+    {
+      "check": "another timeout is rejected",
+      "passed": true
+    },
+    {
+      "check": "another configuration field is rejected",
+      "passed": true
+    },
+    {
+      "check": "duplicate JSON configuration keys are rejected",
+      "passed": true
+    },
+    {
+      "check": "unchanged base configuration is rejected as a timeout variant",
+      "passed": true
+    }
+  ],
+  "originalSignedHapsRewritten": false,
+  "deviceOrServiceCommandsExecuted": false
+}

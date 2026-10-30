@@ -2,13 +2,23 @@ import { uiMaterial } from '@kit.ArkUI';
 
 /** API 26 ArkUI system material; no blur/shadow imitation or HDS enums. */
 export class StarwardMaterial {
-  static create(style: uiMaterial.ImmersiveStyle): uiMaterial.ImmersiveMaterial | undefined {
+  static create(style: uiMaterial.ImmersiveStyle,
+    interactionEnabled: boolean | undefined = undefined): uiMaterial.ImmersiveMaterial | undefined {
     try {
       if (!uiMaterial.isImmersiveMaterialSupported() ||
         uiMaterial.getMaterialInfo().state === uiMaterial.MaterialState.DISABLE) {
         return undefined;
       }
-      return new uiMaterial.ImmersiveMaterial({ style: style });
+      const options: uiMaterial.ImmersiveOptions = { style: style };
+      if (interactionEnabled !== undefined) {
+        options.interactive = interactionEnabled;
+        if (interactionEnabled) {
+          options.lightEffect = {};
+        } else {
+          options.lightEffect = null;
+        }
+      }
+      return new uiMaterial.ImmersiveMaterial(options);
     } catch {
       // Capability queries must not prevent the ordinary surface from rendering.
       return undefined;

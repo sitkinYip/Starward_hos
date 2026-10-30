@@ -2,6 +2,85 @@
 
 核验日期：2026-10-27；2026-10-28追加系统区沉浸、空详情进度及键盘避让修复（Asia/Shanghai）。本表把功能存在、代码实现、实际运行和视觉对照分开记录；列出验收项不等于通过。修复后最新源码37/37业务测试及lint（0 issues、filesChecked=0）已实际复跑通过；迁移前真实HTTPS49项和沉浸调整前官方UI17项保留各自版本归属。独立1.3字号构建已42/42通过；正常字号HTTPS构建22/22系统UI与6项运行时检查通过，认证4图及主视觉18图captured且清理完成。最终默认mock另有13/13冒烟与4项运行时检查通过，已恢复设备；Web20与原生22图已逐图对照，保留两项非官方细节待调，不标逐字逐像素全过。旧正常字号22项UI与22图已归档为修复前证据，不借旧计数推定新HAP通过。完整结果见 [首切片验收记录](slice-01-validation.md)、[HTTPS及视觉复核](slice-01-https-and-visual-validation.md) 与 [官方ArkUI验证](arkui-system-validation.md)。
 
+## 本轮补充验收计划（2026-10-30，实施前）
+
+用户要求继续任务1，并在收尾后处理预览账号及底栏体验。以下仅列计划，不代表已实现或验收通过；1a40/runtime09及既有报告继续保留原版本归属。
+
+| 编号 | 小功能与逐状态验收 | 当前状态 |
+| --- | --- | --- |
+| PVIEW | 独立持久隔离PB/HTTPS；固定专用预览账号登录直接进入；重启保留数据；用户自行改密后不静默重置；预览不暴露故障控制，不使用生产账号 | 准备中；尚未启动、安装或手机登录验收 |
+| NAV-IME | 真实键盘出现时隐藏浮栏及其命中区域；保留页面/表单实例与草稿；输入、滚动及主要动作可达；键盘关闭后浮栏恢复，返回不误切页 | 待实现及直板机实测 |
+| NAV-ICON | 四个页签使用Web正式regular/fill矢量；未选中空心、选中实心；深浅色均清楚，暂未开放入口保持原页 | 待实现及深浅色目视 |
+| NAV-LIGHT | 使用官方ImmersiveMaterial交互和触摸流光；先保留输入守卫，实测点击、拖动、松手及取消；没有官方跨项选择事件时不得自制坐标手势冒充系统能力 | 官方能力调研完成，未实现或实测 |
+| MENU-SIDE | 保留官方沉浸玻璃材质，按头像实际位置左右侧入；Back/关闭/蒙层/菜单路由、滚动及账号退出逐项验证 | 补查确认官方PromptAction options-builder Dialog支持同材质及官方move转场；原Sheet SIDE的600vp限制不代表所有官方弹层都不支持。组合原型待应用、构建及手机验证，不自制模糊或手势 |
+
+## 当前业务完成度与推进顺序（2026-10-28）
+
+当前只完成第一个基础切片，尚不能在原生端完成一次冒险。下述范围来自实际页面及Repository接口，不以通过的测试数量折算整体迁移百分比。
+
+| 业务部分 | 当前实际状态 |
+| --- | --- |
+| 登录、首次强制改密、退出及门禁 | 已实现并验证；凭据仅内存，尚不支持重启恢复登录 |
+| 首页场次列表 | 当前/历史分类、状态展示、空态、错误/重试、刷新已实现并验证 |
+| 场次页 | 仅开始前只读详情及状态/返回；开始按钮禁用，无入场或答题 |
+| 侧栏/账户菜单与底栏 | 部分实现：账户Sheet仅昵称、等级、经验、主题和退出；没有完整侧栏导航/资料能力。底栏仅“启程”可用，“收藏”“来信”“护照”尚未接通 |
+| 个人资料 | 昵称编辑保存、头像选图裁剪上传、资料页及后续改密入口均未实现；首次强制改密不代表完整资料模块已完成 |
+| 入场与答题 | 入场、取题、填空/选择、多题导航、判题/冷却/锁定、进度和完成结算均未实现 |
+| 线索、剧情与媒体 | 文本/图片/视频线索、信纸/祝福、BGM/配音/视频、完整演出与中断恢复均未实现 |
+| 奖品与来信 | 奖品列表/领取信息、通知列表/未读弹窗/已读写入、星海信笺均未实现 |
+| 后续原生能力 | 安全持久登录、桌面卡片、Push未实现；不计为已迁移的Web业务 |
+
+按用户最新优先级，后续按手机业务模块拆小片推进：补齐正式导航及账户/资料功能 → 入场与答题完整链路 → 线索、剧情、媒体、奖品与来信逐点迁移 → 直板机完整回归。每一小点先核契约和逐状态要求，再实现、构建/业务检查、真机操作及隔离真实请求验证，不把空页面或仅编译成功记为完成。
+
+折叠、悬停、分栏及窗口变化专项（V05）放到主体功能迁移完成后再用模拟器/对应设备逐个验收；当前保留官方组件和响应式实现边界，不为这些未执行项阻塞手机业务迁移。既有测试和截图继续证明对应小切片，不能代替尚未迁移的业务。
+
+## 任务1实施前检查点（2026-10-28）
+
+用户已授权先执行手机导航、侧栏与账户资料模块。实现前逐点表和实际结果入口见 [任务1验收](slice-02-profile-validation.md)，边界见 [ADR-016](architecture-decisions.md#adr-016手机账户导航资料草稿与头像资源边界)。上方业务完成度表和本段标题保留开始本轮前的基线；本轮结果单独追加，不改写历史首切片证据。
+
+小点依次核对：手机导航与侧栏/护照入口、资料加载和只读账号、昵称草稿/保存/错误重试、系统选图取消及校验、用户可调裁剪与受限输出、multipart上传及受保护头像、后续改密和不确定结果恢复、退出清理及原手机链路回归。奖品/来信业务、入场答题、剧情媒体及安全持久登录不因菜单出现而计完成。折叠/悬停/分栏专项延后，不阻塞当前直板机功能迁移。
+
+### 任务1执行结果追加（2026-10-30）
+
+手机账户菜单、护照资料、昵称草稿/保存、头像选图裁剪及后续改密代码已加入；当前有部分实际手机/隔离HTTPS通过证据，任务1尚未整体验收。共享 `StarwardPassport`已补齐与Web一致的护照标题、等级名/Lv、XP/RANK、进度、下一等级名及菜单紧凑经验信息；`Player.extraDisplay`兼容清洗与原文展示已实现，非空扩展已分别取得正式管理派发/严格HTTPS /me的Host证据和base30de实际截图label/text目视证据，仅覆盖本次一条扩展。ArkTS/Hvigor已实际构建成功，最新业务测试72/72、失败0、忽略0，见 `artifacts/validation/profile/local-test-summary.json`。base30de曾有Touch调试hilog高频调用1 warning/filesChecked=1，保留当时归属；新1a40候选移除后，当前 `profile/lint.json` issues/errors/warnings/suggestions均0、filesChecked=0，不以此声称非零文件扫描或交互通过。
+
+旧演示HAP `b51702dc…` 的runtime4项、未完成mock UI，以及旧隔离HAP `090f75d0…`、`2da7204e…`、`2a52d1e3…`各自runtime/失败尝试保留，不继承到新版本。底栏“护照点击收藏跳回启程”已由日志、坐标和用户手动复现；先click0/will3→0、再click1/will0→1被拦截及迟到0回调的唯一根因仍未确认，不推广为所有API26设备行为。
+
+按[ADR-017](architecture-decisions.md#adr-017官方浮动tabs输入事务与业务路由隔离)采用真实Touch输入事务：观察整个Tabs，只有官方页签will/click产生pending，只提交最终原生索引，取消/外部路由/销毁清待提交，根gate/返回栈再门控，保留官方命中、材质和动画。HAP `0f799c58…` 的 `profile/navigation-input-probe.json`7步触摸导航passed仅属于旧版有限探针；base30de完整core中也已实际验证收藏/来信的底栏及菜单入口不进入空页且保留资料。无Touch的外设键盘/读屏页签激活目前被明确拒绝，属于已知不支持的路径，不只是未验证，也不属于折叠专项。菜单Button有替代导航入口，不等于底栏辅助功能或正式可访问性完成；该缺口单列，不阻塞当前手机Touch业务切片，未来须实现并独立实测。
+
+旧base官方安装的HTTPS HAP为 `30de19566545126979d3cfa2a779f2a258d17ace101bfa9be5e5f7296af58683`，`profile/runtime-08.json`6项passed，`profile/attempts/base30de-base-hap.json`冻结旧HAP/ABC/源码SHA。`profile/profile-save-probe.json`在同版4项passed，核实真实JSON保存、服务端trim、/me回源及无真实编辑时保存提示保持。`profile/ime-back-probe.json`的4项则属于旧HAP `03e562ab…`，证明先Back关闭实际IME、再Back回首页及退出空字段，不混作30de同版计数。
+
+当前 `profile/device-profile-acceptance.json`在2026-10-29T04:22:40Z实际passed/count34，原字节SHA-256为 `9a6b2059c62e5231947d5137c4b6dd1b28ad58768a0c956c7397c93c75dc6e4b`，同30de/runtime-08。本次fresh reset完整新run确实执行首次强改密，无旧检查继承；真实覆盖菜单/底栏、P1昵称IME可达/空白校验/草稿、P2 JSON保存与回源、P3注入延迟/503及显式重试、S1错误旧密和单次普通改密200/字段清空/新密重登入，以及原详情返回关系。该core的faultNeutralised和loggedOut均true；不代表全部测试环境已清理。S2同版最新独立完整initial→new实验已13项passed，报告SHA `a578628c26ec6ced5d7dee3388993463f8210930855ee144d9e8aa835c5c9395`，明确绑定core SHA `9a6b2059…`。实际单次上游POST200后丢响应，未知结果持续可见，原始UiTest核实密码/资料写入禁用且没有重放，退出后Host及手机新认证确认目标密码、恢复资料使用，最终空登录且cleanup两true。此前incomplete3为CLI省略enabled及类型误读，独立反向实验incomplete7为离屏退出按钮驱动未seek，均归档、无checks继承；每次改密均为新的显式实验，不是自动重试。同版supplement已22项passed，报告SHA `5a65db540e7245bd634fffcb908403465e1c347e639b7625b39dbe0108d9ca9d`，明确绑定runtime-08/core34/S2-13。实际覆盖昵称40字符原生上限、未保存草稿离页无写、子页及整个护照离开清三密码、当前/历史、一次官方Refresh恰一新GET200，以及深浅主题动作后的资料数据/控件可达；恢复followSystem，logout/主题恢复/无资料改密写三项cleanup均true。CLI未暴露的菜单/主题辅助功能选中态仍not_observable，不等于正式可访问性或目视对照完成。
+
+非空extraDisplay的 `profile/profile-extra-seed.json`已Host passed，checks数组9项、无count字段：仅唯一自有一次性容器内，经正式管理definition/preview唯一目标/dispatch/inspect，再用玩家严格HTTPS /me核exact tuple且原身份/头像/等级等事实不变，手机实际展示另见 `profile/extra-display-ui-review.json` passed（SHA `956789298399b9792fe29efc93ae80949ede2c0a1008d9d09b6153b9a3e61821`），绑定base30de和实际原图，Root核准精确label/text；不扩写全部扩展边界状态。`profile/response-gate-host.json`的29项为Node v24.14.1下的合成代理工具行为检查，不是业务或手机通过，该29项只记当时的工具准备；后续真实gate激活和独立15秒迟到结果另列，不改变此Host范围。头像base30de真实运行已到20项但incomplete（报告SHA `0f42a91a77475a2f8b2d9dadd8bffacf485b13b7c3ee71a933fa2fdaf29d8e28`）：已验Picker/裁剪取消与pending保留、真实multipart503→200、512方形JPEG≤200KiB/无EXIF/中心裁剪MAE、文件403两token且200恢复不注销、503持久错误。其后自动化请求点击头像重试却回启程且没有新GET，恢复未完成。旧事件日志仅证明index0路由，缺少点击点；旧30de缺点击坐标，唯一根因仍待确认，不能把“内容触摸触发phantom0”写成已定事实。新1a40首次probe由 `profile/avatar-retry-hit-geometry.json`仅测量passed确认：retry rect[67,2580,391,2729]px、计划点[229,2654]px落在真实NativeTabBar rect[106,2531,1214,2721]px内，旧viewport[0,415,1320,2848]px遗漏浮栏避让。测量没有发送retryclick（报告SHA `c0087e63…`、cleanup两true），只证明新probe的驱动遮挡，不倒推旧30de原因或算barModifier失败。驱动已按profile-scroll实际祖先统一避让bar，独立crop/menu保持自有viewport，修正后同1a40的 `profile/native-bar-content-probe.json`已9项passed（最新SHA `9c3a314a548fa2620f8b41b6d95f8f2a44e596da767d88a416e3f694c3160f6d`）：内容retry实际新GET200且保持资料，四次收藏/来信保留护照，启程/护照切换及内容滚动/昵称焦点正常，cleanup两true。旧S2仅提供当前密码key并经Host重新确认身份，不继承其业务checks；不扩写外设键盘/读屏或完整头像验收。该9项原字节d044另存attempts/native-bar-content-probe-09-before-provenance.json，最新仅补源SHA/命令/原mtime完成时间，并未重新执行或增加检查。core34/S2-13/supplement22仅保留各自实际覆盖，不能移到新HAP。
+
+此前旧头像目视阶段已查看7张原图并以私有回执绑定SHA，核实profile/menu四象限头像、调整裁剪及取消保留可见pending；当时Crop Button/Slider默认蓝未接品牌token，是固定Web对照确认的真实差异，不属官方材质批准差异，保留该发现的旧版归属。新候选已修品牌token和高频debug日志，源码修正不替代新图目视。新1a40候选HAP `1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb`已实际build/签名/安装，采用官方barModifier仅bar Touch及父索引对齐；72/72业务测试、lint零问题/filesChecked=0、runtime-09六项passed。候选初次probe遮挡定位为驱动，校正后9项Touch专项通过；新完整core已同版34项passed（SHA `ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1`）、新S2已13项passed（SHA `5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407`），均绑定runtime-09并cleanup两true；core为fresh reset实际首次强改密，S2为独立initial→new一次丢响应实验，不继承30de checks。新supplement已同版22项passed（SHA `0376e3986d0e64f08c2d398a91cc05c7ba6f6e61bbce1e850a1f691ea547b880`），明确新runtime/core/S2依赖，logout/主题恢复/无profile或password写三cleanup true；三份09日志均0退出，不借旧22。1a40 Avatar新attempt已基础28项passed（SHA `5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b`）：实际Picker/可调裁剪与取消保留、multipart503→200、512方形JPEG29980bytes/无EXIF及中心裁剪MAE、403一次换token/503显式重试、真实200损坏图解码持久错误与精确恢复后手动GET200、普通退出/Back/重启，以及Root新原图SHA目视。旧30de incomplete20仍按原版归档，不继承为新检查。独立迟到文件logout已在15秒变体通过6项，实际切另一账号并行头像读取仍未验，不把基础或变体通过写成全部A4通过。同版原生逐状态Web配对已完成独立reviewed，保留NAV-ICON/NAV-IME/NAV-LIGHT待新refinement；最终环境清理仍未完成。“退出后迟到200”已完成独立private 15秒变体与真实hold/release，报告及来源工具见下表；不计base2秒通过，也不继承到新UI包。旧Web6图保留原归属；新 `profile/web-profile-visual.json`已passed共8图（identity/security/menu/crop深浅，SHA `b51d6bf904dfb6dc60085b19143e1005f8815242f0fa759ca651460cf225e10b`），Root现已逐张查看Web8/Native12/crop4共24张原图，独立结论另见下段visual-review。browserUsesRealBackend=false，使用只读快照/实际头像字节本地回放，不代替原生功能、真实写入或最终配对通过。
+
+新run前65份旧文件/报告/私有图已按 `profile/attempts/evidence-archive-20261029T051741266386Z.json`保存original→archive和SHA映射，避免同名输出重写使旧来源失真。当前 `profile/base-hap.json`已冻结1a40 signed HAP和34份源码精确副本，旧base30de manifest另存attempts；上述旧报告SHA按档案核验，不迁移为1a40通过。首切片历史未改。
+
+同1a40/runtime-09的真实格式补充已各8项passed：JPEG EXIF6报告SHA `f1f19918535ed60b3098b7e7ccfd51c20b0fc2e2004188db50662abc4095f844`，实际规范化顺时针90°后中心裁剪，512方形JPEG33069bytes/无EXIF，正确MAE4.870021而忽略方向84.884430；WebP RGB报告SHA `d0202724a15894dfede7c55a0881caaa589baa75b68fbbe7b9ca652c916d7942`，512方形JPEG31401bytes/无EXIF，中心裁剪MAE5.083350、错误整图拉伸23.316803。均为实际Picker→原生裁剪/唯一multipart200→新token/文件GET200→Host只读回源，依赖新core/S2/Avatar SHA且logout/空登录两true，不扩写alpha WebP或其他全部方向。
+
+同1a40/runtime-09视觉基线现已完成：`profile/native-profile-visual.json`passed/12图，SHA `4c639ff60ccaae87a1482327161838d0eed9bde8904bb68fd8198c127455d6aa`，全部actualThemeVerified=true、三cleanup true；`profile/native-avatar-crop-visual.json`complete/4图，SHA `05ed5b63f2093ebb0d4d4e2f29e0d98361f32154cc24a579cb6b782d7437ecee`，两主题各5cleanup true、PATCH及改密写入增量0。采集层的crop themeVerified=false/visualReview=pending不改写，由独立 `profile/visual-review.json` reviewed（SHA `44fcc1457a8ae83df5fc9f7dd1c5aaa1a7a6f60df1d0ac5f24adc2866b049ca1`）绑定三份来源并承接Root亲看24原图/8组配对的结论。品牌、文案、权威资料与可达操作已核对；官方材质/手机Sheet/三Slider裁剪布局为批准差异，NAV-ICON、NAV-IME、NAV-LIGHT仍pending_new_refinement，不声称零差异、完整动效或新包通过。5180回环viewer已准备并启动24PNG，私有manifest `artifacts/private/profile-comparison/review-20261030T023133491575Z/manifest.json` SHA `3812ef0edf591f77b3070585bfc817babb03f42f9d9d761e03720ec9e130e179`，旧5179保持首切片归属。
+
+2026-10-30恢复时，Host严格HTTPS可达而手机登录连接中断，实际官方reverse映射为空；Root仅恢复自有18443到既有TLS监听，未改其它映射、账号或配置。`profile/network-resume-20261030.json` SHA `d9bd1926fb8f4f87881205e97690c41da90e0101e7a6966189529256c997bb8c`记录phoneHttpsRecheck=passed_actual_native_login_profile_and_crop并绑定新crop SHA。旧light中断stage与网络失败已归档，新fresh light另取证，不改旧结果。
+
+任务1当前剩余是6a UI包的NAV三项/左右菜单完整逐状态验证、最终测试媒体/旧验收环境清理，以及固定预览首次启动、初始化和手机直接登录。两类输入兜底拒绝与独立15秒迟到专项已有实际结果，原Picker搜索过滤not_observable不改。顶部实施前计划保持历史原状，实际新增结果以下表和任务1验收为准；不把完成这些证据记为全游戏迁移或任务1最终完成。
+
+### 2026-10-30收尾证据与当前待验包
+
+| 版本/范围 | 当前可核事实 |
+| --- | --- |
+| 1a40输入拒绝 | 同1a40/runtime-09的50MiB+1 PNG与GIF两轮已真实选定精确自有URI并点击官方完成，均落到原生错误Sheet：有效裁剪预览缺席、确认禁用、类型/大小文案精确对应；每轮7项cleanup true，未发资料PATCH或改密POST。`profile/avatar-input-oversize-png.json` SHA `5032ba4124f1f695209a29cce2088453bd23101681eb2f28a6a832499f8153aa`，`profile/avatar-input-unsupported-gif.json` SHA `95923a9e6a55a0be0ba3b58e8c283d828ef20a77cf415171abf3a579587577e4`，各有1个实际边界检查。Root分别亲看错误Sheet，独立review SHA为dd1ffe5f…/a166d70d…。通过的是App兜底拒绝与恢复，原Picker过滤not_observable不改。 |
+| 1a40视觉基线 | Root已亲看Web8/Native12/crop4共24原图、8组配对；visual-review为reviewed并绑定1a40/runtime-09，NAV三项新refinement仍pending。不计6a新包视觉通过。 |
+| d03独立15秒变体 | 独立15秒变体HAP `d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4`已构建签名安装，`profile/runtime-late-15s.json`六项passed（SHA cb226514…）；`profile/device-profile-avatar-late.json`实际passed/count6，SHA `44f27226a1cb1804251b355b212148e410ee2dfe085ed772d312480855655ec9`。先在同变体完成正常原生头像GET200和实际退出校准，再hold精确SHA的真实文件200，观察空登录后release，下游finish且无client abort；响应结束、Back/Ability重启及冷启动仍为空登录，旧资料/头像/菜单缺席。gate中恰1次原生受保护文件GET、0次Host文件读取，5项cleanup全true。finish仅代表TLS下游写出，不是解码回调；不覆盖真实切到另一账号，也不将2秒base或后续UI包记为同版专项通过。 |
+| 来源工具 | `profile/hap-timeout-variant-host.json`实际passed/23项，SHA `81c96c7b31787aac356714020376ec27b8a7199388744cf8e8c4834c552a329f`，仅为离线来源验证工具：34份源码、ABC和CA字节一致；除integration timeout由2000改15000外，仅symbolMap的1173条完整唯一记录重排，保留所有键和值，其余打包条目一致。严格校验及反例不忽略symbolMap、不重打包signed HAP，不计业务、签名有效性或UI通过。实际变体安装/runtime来源另见 `profile/late-variant-hap.json`（SHA b762fbe4…）。 |
+| 6a最终导航UI包 | 当前final-nav UI HAP为 `6a5232af434e2fed8d6d56b50e25f7bf86b7cf24de22bd6523bdc79f23d5ad90`，绑定final-nav manifest SHA `830e4aa03223c20714f9a9bcc65cb7aa7039301d81484ad15cc2cc90aa4707bd`；已真实编译签名安装及运行时检查，`profile/runtime-ui-final-nav.json`六项passed，SHA `66c45cbe66f9e525d9337e03c4c0925203ffbbca02b31b14e579eebdbd190a9d`。其图标、IME浮栏、官方流光和左右菜单完整验收仍pending。上一6a run incomplete10已独立归档且cleanup六项true，不是完整通过。新driver SHA `27ccd0f88953f12ee6a79faa5dd41ec5a3b652e845c798a61880b0e6a8ef0ce4`的最新run保留incomplete/count0：已完成Host只读身份及beforeCounts，首个官方aa命令返回失败，deviceStarted未置位，未取得UI动作或启动成功证据；Root另查HDC targets为Empty，已请用户重接USB。脚本未发业务写请求，但结束后的写入增量尚未核验，cleanup.noBusinessWrites仍false，不能记已验证零写或完整清理。该次恢复不改产品，USB恢复后先原有cleanup，再显式new-attempt。1a40的24图及193b旧包独立右面板观察均不升级为6a视觉/功能通过。 |
+| 固定预览 | `scripts/preview-environment.mjs`已独立静态复核，并实际执行prepare生成独立本机私有配置；当前manifest为initialized=false、initializationStatus=prepared。尚未start服务、完成真实初始化改密、配置预览新包或手机直接登录；固定账号可用性、持久保留及用户改密后的行为未验收，不记PVIEW通过。 |
+| 公开文件扫描 | `profile/public-artifact-scan-pre-ui-resume.json`本轮实际passed，973个公开候选文件、0发现、0读取错误，SHA `85f9d649242febf9c5b01a3bacd24b684a29e292ec4eb9c4803b07a5ed977744`；本次未提供known-device，不扩大为已覆盖特定设备标识的扫描，也不代替最终环境清理。 |
+| 最终清理 | 媒体、旧验收DB/CA/凭据及映射尚未最终清理；精准媒体helper已有离线有效计划，未执行。预览prepare目录独立保留，不能混用旧环境清理。 |
+
+具体逐状态结果和版本归属持续回填 [任务1验收](slice-02-profile-validation.md)。测试数、准备脚本、部分断言和截图数量均不作为整体迁移完成率。
+
 ## 冻结基线与证据边界
 
 | 对象 | 本次实测 | 含义 |
@@ -108,7 +187,7 @@ GameAssignmentSummary 的字段为 id、player、session、status、order、star
 | F01 | 后续 Form Kit：未登录、摘要、离线、刷新、点击 | 进程隔离持久化摘要；私密字段裁减；退出清卡片；统一鉴权深链 | 预研“卡片预留”，需官方版本核验 |
 | F02 | 后续 Push Kit：token 注册/轮换/解绑、消息/点击、去重 | 后端绑定和发信；收到消息回源；推送不成为事实源；统一鉴权路由 | 预研“Push 预留”，当前没有等价 Web 推送能力 |
 
-以上后续项均为待实现/待验证。应在每次切片验收报告中明确本次覆盖编号，避免空表被误认为完成清单。
+以上是首切片冻结的后续范围表，不自动等于当前全部未实现。P01/P02/P03在任务1已有分状态实际证据，详见本表执行结果追加和对应报告；其余业务仍按各切片验证。每次须明确本次覆盖编号，未覆盖状态不因入口或部分通过而算完成。
 
 ## 夹具、文案和视觉输入
 

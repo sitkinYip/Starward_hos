@@ -1,0 +1,67 @@
+{
+  "status": "reviewed_no_high_confidence_core_blockers",
+  "method": "Independent five-axis read-only review using code-review-and-quality; tests first and native evidence checked",
+  "requiredFindings": 0,
+  "criticalFindings": 0,
+  "axes": {
+    "correctness": "Profile revision/account generation/exact avatar identity guard stale callbacks; ordinary password uncertain result blocks replay",
+    "readability": "State and cancellation conditions explicit; no blocking complexity regression in reviewed core",
+    "architecture": "Page/ViewModel/domain/repository/platform boundaries follow ADR; domain remains platform independent",
+    "security": "Raw Authorization token, credentials/file tokens only in memory, no automatic password retry, owner-bound resource cleanup",
+    "performance": "Bounded responses/image previews/encoding attempts; no unbounded repeated network loop found"
+  },
+  "reviewedSourceFiles": [
+    {
+      "file": "entry/src/main/ets/features/SliceViewModel.ets",
+      "sha256": "8090beaf8ea6934ac8cb2f82dd9425dc18d099fcad46d52e05c3125e41d2dbcf"
+    },
+    {
+      "file": "entry/src/main/ets/features/ProfilePage.ets",
+      "sha256": "b0778df26a09a25d69aa400b13906e32cb006a72869f47587db10073f681a41b"
+    },
+    {
+      "file": "entry/src/main/ets/data/DtoDecoder.ets",
+      "sha256": "fa3b7e598adf83c4b0ca0c9b3db292c37a70ee9240f3a5693296b840c3d822c1"
+    },
+    {
+      "file": "entry/src/main/ets/data/HttpsGameRepository.ets",
+      "sha256": "34eb752b7f8ac3432e846234c134196bcee7c96b4e78ea02660d17a027dcd712"
+    },
+    {
+      "file": "entry/src/main/ets/platform/HttpTransport.ets",
+      "sha256": "9136a5d70dd1480e4aff2476fb7591671e5e7658dc89ecfaa39c8a9053629602"
+    },
+    {
+      "file": "entry/src/main/ets/platform/AvatarEditor.ets",
+      "sha256": "e79f4e3c422e6fdc963b015559f109c6b37f7a963891da7be67516e2c16465a2"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardAvatarCrop.ets",
+      "sha256": "4e34391ae019d3993e4de0ea2608dbdacd43dc64b3b94bf2a0320929d422be0f"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardPlayerAvatar.ets",
+      "sha256": "f1537f85de38d86689e80bf802f88bdb71678b06044ca56b80fe75e092030297"
+    },
+    {
+      "file": "entry/src/main/ets/business/models.ets",
+      "sha256": "e7aa44c068d7a8a4d86cb830aed13e1efb104b5f3927e82eedba2487adf12999"
+    },
+    {
+      "file": "entry/src/main/ets/business/GameRepository.ets",
+      "sha256": "a8fa4712576ae5b6a887953b87736a90ef3a2b62c3923d4ff45a3422e8ded503"
+    }
+  ],
+  "unitEvidence": "Original72 real report checked by reviewer; new final-nav suite also actually rerun separately",
+  "mutationEvidence": {
+    "file": "artifacts/validation/profile/ui-controller-regression.json",
+    "sha256": "dfe28001ee653744e29e2f2f41f2f12f4359834a9b8777f5c4f58e4849e9e8d5",
+    "scope": "Offline actual SidePanel controller only; not native UI or business counts"
+  },
+  "limits": [
+    "Reviewer did not independently run suite or mutate core sources",
+    "New native UI, material/motion, fixed preview and final runtime require their separate actual reports",
+    "15s late response evidence applies only its independent variant; no inherited2s pass",
+    "Remaining adventure/reward/notification/foldable scopes remain outside current completed business"
+  ]
+}

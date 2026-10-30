@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { assignmentKind, assignmentState } from '../main/ets/business/assignmentState';
-import { AssignmentSummary, utf8Length, validatePasswordChange } from '../main/ets/business/models';
+import { AssignmentSummary, AvatarUpload, utf8Length, validateAvatarUpload, validateDisplayName,
+  validatePasswordChange } from '../main/ets/business/models';
 
 export default function domainTests(): void {
   describe('Domain', () => {
@@ -19,6 +20,31 @@ export default function domainTests(): void {
       expect(validatePasswordChange('Starward1234', 'a'.repeat(72), 'a'.repeat(72)).length > 0).assertTrue();
       expect(validatePasswordChange('Starward1234', 'NewStarward1234', 'Different1234').length > 0).assertTrue();
       expect(validatePasswordChange('Starward1234', 'Starward1234', 'Starward1234').length > 0).assertTrue();
+    });
+
+    it('profileValidatesServerNameAndFinalUploadBoundary', 0, () => {
+      expect(validateDisplayName('   ').length > 0).assertTrue();
+      expect(validateDisplayName(' 星辰旅人 ')).assertEqual('');
+      expect(validateDisplayName('星'.repeat(40))).assertEqual('');
+      expect(validateDisplayName('星'.repeat(41)).length > 0).assertTrue();
+      const upload: AvatarUpload = new AvatarUpload();
+      upload.data = new Uint8Array([255, 216, 255, 0]).buffer as ArrayBuffer;
+      expect(validateAvatarUpload(upload)).assertEqual('');
+      upload.filename = '../avatar.jpg';
+      expect(validateAvatarUpload(upload).length > 0).assertTrue();
+      upload.filename = 'avatar.jpg';
+      upload.mimeType = 'image/png';
+      expect(validateAvatarUpload(upload).length > 0).assertTrue();
+      upload.mimeType = 'image/jpeg';
+      upload.data = new ArrayBuffer(2 * 1024 * 1024 + 1);
+      expect(validateAvatarUpload(upload).length > 0).assertTrue();
+    });
+
+    it('unknownAvatarBytesCannotPassWithAnEmptyClaimedMime', 0, () => {
+      const upload: AvatarUpload = new AvatarUpload();
+      upload.mimeType = '';
+      upload.data = new Uint8Array([1, 2, 3, 4]).buffer as ArrayBuffer;
+      expect(validateAvatarUpload(upload).length > 0).assertTrue();
     });
 
     it('completedAndCancelledPrecedeTimeWindows', 0, () => {

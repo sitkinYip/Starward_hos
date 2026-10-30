@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "scope": "Actual current-HAP phone rendering of one formally configured profile extension",
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-09.json",
+    "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+  },
+  "source": "Root inspection of original private live-HTTPS phone screenshot",
+  "seedReport": {
+    "file": "artifacts/validation/profile/profile-extra-seed.json",
+    "sha256": "913a0317e53be1175a6ae61a8038d62afc769ada310afbe1e1dc58276a95d8ba",
+    "note": "Prior same disposable backend management preparation; not a current-HAP UI acceptance report"
+  },
+  "screenshot": {
+    "file": "artifacts/private/profile-device/avatar-profile-saved.png",
+    "sha256": "d9c50a6bc1440eda2425a127a9edfb6c3b21713c17bff4143ae12ac82ad0dea7"
+  },
+  "observedLabel": "原生资料验收标记",
+  "observedText": "专用隔离玩家 · 扩展资料已回源",
+  "limitations": [
+    "One real player-visible text extension, not all malformed or long UI states"
+  ]
+}

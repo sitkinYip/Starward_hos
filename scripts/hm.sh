@@ -9,6 +9,7 @@ export JAVA_HOME="$STARWARD_STUDIO/Contents/jbr/Contents/Home"
 export DEVECO_SDK_HOME="$STARWARD_STUDIO/Contents/sdk"
 export PATH="$NODE_HOME/bin:$JAVA_HOME/bin:$STARWARD_STUDIO/Contents/tools/ohpm/bin:$DEVECO_SDK_HOME/default/openharmony/toolchains:$PATH"
 STARWARD_HVIGOR="$STARWARD_STUDIO/Contents/tools/hvigor/bin/hvigorw"
+STARWARD_VALIDATION_DIR="${STARWARD_VALIDATION_DIR:-artifacts/validation}"
 cd -- "$STARWARD_ROOT"
 if [[ ! -f build-profile.json5 ]]; then
   cp -- build-profile.example.json5 build-profile.json5
@@ -50,19 +51,20 @@ PY
     devecocli run --module entry --product default --build-mode debug
     ;;
   lint)
-    mkdir -p artifacts/validation
-    rm -f -- artifacts/validation/lint.json
-    devecocli check lint entry/src/main/ets --config-path code-linter.json5 --product default --format json --output-path artifacts/validation/lint.json
+    mkdir -p -- "$STARWARD_VALIDATION_DIR"
+    rm -f -- "$STARWARD_VALIDATION_DIR/lint.json"
+    devecocli check lint entry/src/main/ets --config-path code-linter.json5 --product default --format json --output-path "$STARWARD_VALIDATION_DIR/lint.json"
     ;;
   test)
     STARWARD_RESULT=entry/.test/default/intermediates/test/coverage_data/test_result.txt
-    rm -f -- "$STARWARD_RESULT" artifacts/validation/local-test-summary.json
+    mkdir -p -- "$STARWARD_VALIDATION_DIR"
+    rm -f -- "$STARWARD_RESULT" "$STARWARD_VALIDATION_DIR/local-test-summary.json"
     if [[ -n "${2:-}" ]]; then
       "$STARWARD_HVIGOR" test -p module=entry -p coverage=false -p "scope=$2" --no-daemon
     else
       "$STARWARD_HVIGOR" test -p module=entry -p coverage=false --no-daemon
     fi
-    python3 scripts/verify-test-result.py "$STARWARD_RESULT"
+    python3 scripts/verify-test-result.py "$STARWARD_RESULT" "$STARWARD_VALIDATION_DIR/local-test-summary.json"
     ;;
   *)
     echo 'Usage: scripts/hm.sh {doctor|install|build|run|lint|test [SuiteName#methodName]}'

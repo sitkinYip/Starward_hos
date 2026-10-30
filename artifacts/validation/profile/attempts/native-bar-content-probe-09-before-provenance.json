@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "scope": "Actual native TabBar source and avatar retry regression; prior S2 used only to identify current dedicated password",
+  "hapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "runtimeSha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+  "checks": [
+    "Native profile tab opens while avatar error is present",
+    "Content avatar retry makes a real GET200 and does not switch to home",
+    "Deferred native tab retains profile: nav-rewards",
+    "Deferred native tab retains profile: nav-notifications",
+    "Deferred native tab retains profile: nav-rewards",
+    "Deferred native tab retains profile: nav-notifications",
+    "Real native home tab still navigates",
+    "Real native profile tab still navigates",
+    "Content scrolling and nickname focus location do not create a home route"
+  ],
+  "count": 9,
+  "cleanup": {
+    "loggedOut": true,
+    "faultNeutralised": true
+  },
+  "error": null,
+  "privateScreenshotScope": "Actual owned App only"
+}

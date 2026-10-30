@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { GameFailure } from '../main/ets/business/models';
-import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeLogin, decodePassword, decodePlayer } from '../main/ets/data/DtoDecoder';
+import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer } from '../main/ets/data/DtoDecoder';
 import { WEB_ASSIGNMENT_JSON, WEB_ASSIGNMENTS_JSON, WEB_PLAYER_JSON } from './fixtures/WebFixture';
 
 export const PLAYER_JSON: string = '{"id":"playeralice","account":"alice","displayName":"Alice","avatar":"","mustChangePassword":true,"totalXp":0,"level":{"id":"rank1","order":1,"name":"初见者","minTotalXp":0},"nextLevel":null}';
@@ -14,6 +14,10 @@ function expectContractFailure(action: () => void): void {
     code = (error as GameFailure).code;
   }
   expect(code).assertEqual('CONTRACT_ERROR');
+}
+
+function playerWithDisplay(display: string): string {
+  return PLAYER_JSON.slice(0, -1) + ',"extraDisplay":' + display + '}';
 }
 
 export default function contractTests(): void {
@@ -76,6 +80,83 @@ export default function contractTests(): void {
       const blocked: GameFailure = decodeApiFailure('{"error":{"code":"MUST_CHANGE_PASSWORD","message":"请先修改密码"}}', 403);
       expect(blocked.code).assertEqual('MUST_CHANGE_PASSWORD');
       expect(blocked.message).assertEqual('请先修改密码');
+    });
+
+    it('fileTokenRequiresANonemptyString', 0, () => {
+      expect(decodeFileToken('{"token":"temporary-file-token"}')).assertEqual('temporary-file-token');
+      expectContractFailure(() => { decodeFileToken('{"token":""}'); });
+      expectContractFailure(() => { decodeFileToken('{"token":null}'); });
+      expectContractFailure(() => { decodeFileToken('{"token":5}'); });
+      expectContractFailure(() => { decodeFileToken('{}'); });
+    });
+
+    it('defaultsAbsentAndNonArrayOptionalDisplayToEmptyWithoutWeakeningCorePlayer', 0, () => {
+      expect(decodePlayer(PLAYER_JSON).extraDisplay.length).assertEqual(0);
+      const values: string[] = ['null', '{}', '"legacy"', '2', 'true', '[]'];
+      for (let i: number = 0; i < values.length; i++) {
+        expect(decodePlayer(playerWithDisplay(values[i])).extraDisplay.length).assertEqual(0);
+      }
+      expectContractFailure(() => {
+        decodePlayer(playerWithDisplay('null').replace('"totalXp":0', '"totalXp":"invalid"'));
+      });
+    });
+
+    it('preservesServerDisplayFieldsOnMeProfileAndPasswordPlayerDecoding', 0, () => {
+      const body: string = playerWithDisplay('[{"key":"team","label":"所属队伍","text":"追星组\\n第二行","ignored":"extension"},' +
+        '{"key":"","label":"","text":""}]');
+      const player = decodePlayer(body);
+      expect(player.extraDisplay.length).assertEqual(2);
+      expect(player.extraDisplay[0].key).assertEqual('team');
+      expect(player.extraDisplay[0].label).assertEqual('所属队伍');
+      expect(player.extraDisplay[0].text).assertEqual('追星组\n第二行');
+      expect(player.extraDisplay[1].key).assertEqual('');
+      expect(player.extraDisplay[1].label).assertEqual('');
+      expect(player.extraDisplay[1].text).assertEqual('');
+      const rotated = decodePassword('{"token":"rotated-test-token","player":' + body + '}');
+      expect(rotated.player.extraDisplay.length).assertEqual(2);
+      expect(rotated.player.extraDisplay[0].text).assertEqual(player.extraDisplay[0].text);
+    });
+
+    it('isolatesMalformedOptionalDisplayItemsAndEnforcesTheFormalWebStringLimits', 0, () => {
+      const display: string = '[null,[],1,true,"old",{},' +
+        '{"key":1,"label":"队伍","text":"甲"},' +
+        '{"key":"a","label":false,"text":"甲"},' +
+        '{"key":"b","label":"队伍","text":null},' +
+        '{"key":"c","label":"队伍"},' +
+        '{"key":"' + 'k'.repeat(61) + '","label":"队伍","text":"甲"},' +
+        '{"key":"d","label":"' + '字'.repeat(101) + '","text":"甲"},' +
+        '{"key":"e","label":"队伍","text":"' + '字'.repeat(4001) + '"},' +
+        '{"key":"' + 'k'.repeat(60) + '","label":"' + '字'.repeat(100) + '","text":"' + '字'.repeat(4000) + '"}]';
+      const player = decodePlayer(playerWithDisplay(display));
+      expect(player.extraDisplay.length).assertEqual(1);
+      expect(player.extraDisplay[0].key.length).assertEqual(60);
+      expect(player.extraDisplay[0].label.length).assertEqual(100);
+      expect(player.extraDisplay[0].text.length).assertEqual(4000);
+    });
+
+    it('keepsTheFirstValidDisplayKeyAndItsServerOrder', 0, () => {
+      const player = decodePlayer(playerWithDisplay('[{"key":"team","label":null,"text":"invalid"},' +
+        '{"key":"team","label":"队伍","text":"first"},' +
+        '{"key":"badge","label":"称号","text":"second"},' +
+        '{"key":"team","label":"重复","text":"ignored"},' +
+        '{"key":"Team","label":"大写","text":"third"}]'));
+      expect(player.extraDisplay.length).assertEqual(3);
+      expect(player.extraDisplay[0].key).assertEqual('team');
+      expect(player.extraDisplay[0].text).assertEqual('first');
+      expect(player.extraDisplay[1].key).assertEqual('badge');
+      expect(player.extraDisplay[2].key).assertEqual('Team');
+    });
+
+    it('considersOnlyTheFirstHundredRawDisplayItems', 0, () => {
+      let display: string = '[';
+      for (let i: number = 0; i < 99; i++) {
+        display += 'null,';
+      }
+      display += '{"key":"hundred","label":"第100项","text":"kept"},' +
+        '{"key":"overflow","label":"第101项","text":"ignored"}]';
+      const player = decodePlayer(playerWithDisplay(display));
+      expect(player.extraDisplay.length).assertEqual(1);
+      expect(player.extraDisplay[0].key).assertEqual('hundred');
     });
   });
 }

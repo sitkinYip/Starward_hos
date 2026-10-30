@@ -7,6 +7,12 @@ export class Rank {
   minTotalXp: number = 0;
 }
 
+export class ExtraDisplay {
+  key: string = '';
+  label: string = '';
+  text: string = '';
+}
+
 export class Player {
   id: string = '';
   account: string = '';
@@ -16,6 +22,19 @@ export class Player {
   totalXp: number = 0;
   level: Rank = new Rank();
   nextLevel: Rank | null = null;
+  extraDisplay: ExtraDisplay[] = [];
+}
+
+// Platform-independent image payloads. Protected URLs and credentials stay in the Repository.
+export class AvatarUpload {
+  filename: string = 'avatar.jpg';
+  mimeType: string = 'image/jpeg';
+  data: ArrayBuffer = new ArrayBuffer(0);
+}
+
+export class AvatarImage {
+  data: ArrayBuffer = new ArrayBuffer(0);
+  mimeType: string = '';
 }
 
 export class AssignmentSummary {
@@ -84,6 +103,41 @@ export function validatePasswordChange(oldPassword: string, password: string, co
   }
   if (password === oldPassword) {
     return '新密码不能与当前密码相同。';
+  }
+  return '';
+}
+
+export function validateDisplayName(value: string): string {
+  if (value.trim().length === 0) {
+    return '给自己起个名字，再出发吧。';
+  }
+  return value.trim().length > 40 ? '昵称格式不正确' : '';
+}
+
+export function avatarMimeType(data: ArrayBuffer): string {
+  const bytes: Uint8Array = new Uint8Array(data);
+  if (bytes.length >= 3 && bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255) {
+    return 'image/jpeg';
+  }
+  if (bytes.length >= 8 && bytes[0] === 137 && bytes[1] === 80 && bytes[2] === 78 && bytes[3] === 71 &&
+    bytes[4] === 13 && bytes[5] === 10 && bytes[6] === 26 && bytes[7] === 10) {
+    return 'image/png';
+  }
+  if (bytes.length >= 12 && bytes[0] === 82 && bytes[1] === 73 && bytes[2] === 70 && bytes[3] === 70 &&
+    bytes[8] === 87 && bytes[9] === 69 && bytes[10] === 66 && bytes[11] === 80) {
+    return 'image/webp';
+  }
+  return '';
+}
+
+export function validateAvatarUpload(value: AvatarUpload): string {
+  if (value.data.byteLength === 0 || value.data.byteLength > 2 * 1024 * 1024) {
+    return '资料无效：头像仅支持 JPG、PNG、WebP，最大 2MB';
+  }
+  const detectedMime: string = avatarMimeType(value.data);
+  if (value.filename.length === 0 || /[\/\\\r\n]/.test(value.filename) ||
+    detectedMime.length === 0 || detectedMime !== value.mimeType) {
+    return '请选择 JPG、PNG 或 WebP 图片。';
   }
   return '';
 }

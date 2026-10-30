@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "scope": "Actual native TabBar source and avatar retry regression; prior S2 used only to identify current dedicated password",
+  "hapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "runtimeSha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+  "checks": [
+    "Native profile tab opens while avatar error is present",
+    "Content avatar retry makes a real GET200 and does not switch to home",
+    "Deferred native tab retains profile: nav-rewards",
+    "Deferred native tab retains profile: nav-notifications",
+    "Deferred native tab retains profile: nav-rewards",
+    "Deferred native tab retains profile: nav-notifications",
+    "Real native home tab still navigates",
+    "Real native profile tab still navigates",
+    "Content scrolling and nickname focus location do not create a home route"
+  ],
+  "count": 9,
+  "cleanup": {
+    "loggedOut": true,
+    "faultNeutralised": true
+  },
+  "error": null,
+  "privateScreenshotScope": "Actual owned App only",
+  "provenance": {
+    "driver": {
+      "file": "artifacts/private/profile-validation/probe-native-bar.py",
+      "sha256": "50c4b194d919efcca64a04c507df45fd079acf660f7bfb72c41bafe06ad40114"
+    },
+    "helpers": {
+      "scripts/device-profile-acceptance.py": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+      "scripts/native_device_ui.py": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43"
+    },
+    "commandArgv": [
+      "python3",
+      "artifacts/private/profile-validation/probe-native-bar.py"
+    ],
+    "finishedAtFromOriginalReportMtime": "2026-10-29T05:16:24.102616+00:00",
+    "startedAtCaptured": false,
+    "functionalChecksReexecutedForThisMetadataAppend": false
+  }
+}

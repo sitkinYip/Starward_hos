@@ -1,0 +1,828 @@
+{
+  "status": "passed",
+  "scope": "Task1 phone identity, length limit, unsaved drafts, category, Refresh and theme supplement",
+  "environment": "real isolated PocketBase over strict USB HTTPS",
+  "deviceApi": 26,
+  "startedAt": "2026-10-29T05:33:11.554015+00:00",
+  "updatedAt": "2026-10-29T05:43:11.619240+00:00",
+  "count": 22,
+  "checks": [
+    {
+      "case": "R1",
+      "label": "The same dedicated HTTPS phone starts at empty login after the passed S2 run"
+    },
+    {
+      "case": "R1",
+      "label": "The authoritative new password reaches home without another forced change"
+    },
+    {
+      "case": "N2",
+      "label": "The profile passport shows authoritative nickname, level, EXP, rank code and next-level text"
+    },
+    {
+      "case": "N2",
+      "label": "The account Sheet shows authoritative nickname, level, EXP and remaining/max-level text"
+    },
+    {
+      "case": "P1",
+      "label": "Actual input of41 ASCII characters leaves exactly the first40 in the native nickname field without a PATCH"
+    },
+    {
+      "case": "P1",
+      "label": "Leaving the profile with an unsaved nickname makes no write and does not change the authoritative nickname"
+    },
+    {
+      "case": "P1",
+      "label": "The temporary length-test draft is restored by editing only, without saving it"
+    },
+    {
+      "case": "S1",
+      "label": "Leaving the security section clears all three native password fields without a password POST"
+    },
+    {
+      "case": "S1",
+      "label": "Leaving the profile destination also clears all three native password fields without a write"
+    },
+    {
+      "case": "R1",
+      "label": "The native history category retains both distinct empty-state sentences"
+    },
+    {
+      "case": "R1",
+      "label": "Switching back from history reaches the existing current assignment action"
+    },
+    {
+      "case": "R1",
+      "label": "One actual official Refresh pull makes exactly one new non-injected HTTPS200 assignment GET"
+    },
+    {
+      "case": "R1",
+      "label": "Category changes and Refresh do not submit profile or password writes"
+    },
+    {
+      "case": "R1",
+      "label": "The nickname editor retains its current value after the native theme action: dark"
+    },
+    {
+      "case": "N2",
+      "label": "The profile passport shows authoritative nickname, level, EXP, rank code and next-level text"
+    },
+    {
+      "case": "R1",
+      "label": "The profile save action remains fully reachable after the native theme action: dark"
+    },
+    {
+      "case": "R1",
+      "label": "The nickname editor retains its current value after the native theme action: light"
+    },
+    {
+      "case": "N2",
+      "label": "The profile passport shows authoritative nickname, level, EXP, rank code and next-level text"
+    },
+    {
+      "case": "R1",
+      "label": "The profile save action remains fully reachable after the native theme action: light"
+    },
+    {
+      "case": "R1",
+      "label": "Light and dark theme actions preserve the profile without business writes"
+    },
+    {
+      "case": "P1",
+      "label": "A fresh authoritative me read confirms that the supplement changed neither nickname nor password state"
+    },
+    {
+      "case": "R1",
+      "label": "Final logout, Back and Ability relaunch remain at empty login with no profile content"
+    }
+  ],
+  "observations": [
+    {
+      "case": "N1",
+      "check": "Account menu accessibility selection",
+      "status": "not_observable",
+      "observed": {
+        "menu-profile": {
+          "field": null,
+          "value": null
+        },
+        "menu-home": {
+          "field": null,
+          "value": null
+        }
+      },
+      "reason": "Official visible-node dump did not expose a boolean selection value for both controls"
+    },
+    {
+      "case": "N1",
+      "check": "Account menu accessibility selection",
+      "status": "not_observable",
+      "observed": {
+        "menu-home": {
+          "field": null,
+          "value": null
+        },
+        "menu-profile": {
+          "field": null,
+          "value": null
+        }
+      },
+      "reason": "Official visible-node dump did not expose a boolean selection value for both controls"
+    },
+    {
+      "case": "P1",
+      "check": "Unsaved draft after returning to the profile",
+      "retainedOnlyInMemory": true,
+      "authoritativeNameUnchanged": true,
+      "scope": "No assertion that route changes must retain or discard the unsaved text"
+    },
+    {
+      "case": "R1",
+      "check": "Theme accessibility selection: dark",
+      "status": "not_observable",
+      "scope": "Theme click, no error and profile structure are still checked"
+    },
+    {
+      "case": "R1",
+      "check": "Theme accessibility selection: light",
+      "status": "not_observable",
+      "scope": "Theme click, no error and profile structure are still checked"
+    }
+  ],
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+    "installationEvidence": "Separate official scripts/hm.sh run log is required"
+  },
+  "prerequisites": {
+    "runtime": {
+      "file": "artifacts/validation/profile/runtime-09.json",
+      "sha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a"
+    },
+    "core": {
+      "file": "artifacts/validation/profile/device-profile-acceptance.json",
+      "sha256": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1"
+    },
+    "s2": {
+      "file": "artifacts/validation/profile/device-profile-password-uncertain.json",
+      "sha256": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407"
+    }
+  },
+  "requestLedger": [
+    {
+      "phase": "authoritative-identity-and-menu",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "nickname-length-and-unsaved-route",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "password-fields-on-section-and-route-exit",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "history-current-and-official-refresh",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "light-dark-profile-structure",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    },
+    {
+      "phase": "final-cleanup",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/files/token",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/files/game_players/[owner]/[avatar]",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false,
+          "fileTokenProvided": true
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/profile-facts.png",
+      "sha256": "32d922e3e5900565ef3228f3b8d687d5c363aeddc0bf1a0e8707a7bba15cdbd9",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/menu-profile.png",
+      "sha256": "9af706969ef38f07425bce901c41b161e2e7b18e5a58abe199bc02bd825e305d",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/history-empty.png",
+      "sha256": "eb0fec9d70c77325dbdbb7b6e86c9c23eac30036f658dd239bdef6d8b1814921",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/profile-dark-passport.png",
+      "sha256": "d98e28cd26a03fc007b0a9659e201fbca5204a5483d056b798d19ee24563cd4b",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/profile-dark.png",
+      "sha256": "b259d5df79eee31e991ca5a47d3c55226701c5d13ed8d781f5f5442aeb24fdb7",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/profile-light-passport.png",
+      "sha256": "06f5da83eb0c1d4e2747cffe70e861ede7b7f3e8d443294b3a566ca4e55e0fc2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/profile-light.png",
+      "sha256": "e5758d74fe49395448a7f98062c07f605321ceb80eb9ae02f12b18d131804ab8",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateUiTrees": [
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-profile-facts.json",
+      "sha256": "bf2a628c558df89fe446e70fdf1e50151db6af005b80d897fbff9f774cb40e79",
+      "scope": "Private sanitised original UI tree"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-menu-profile.json",
+      "sha256": "8d0253196c23b4471d5853d2006fd67ea2104fbadecb5fb479888d780eeade7c",
+      "scope": "Private sanitised original UI tree"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-history-empty.json",
+      "sha256": "4c428ca46c4939d4c88eaa95cddfec0846fe72c5b288a633a95a7389b1928eeb",
+      "scope": "Private sanitised original UI tree"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-profile-dark-passport.json",
+      "sha256": "bf2a628c558df89fe446e70fdf1e50151db6af005b80d897fbff9f774cb40e79",
+      "scope": "Private sanitised original UI tree"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-profile-dark.json",
+      "sha256": "aa2df92a5aea700bc8bce5fe06859bb0652ed9d9644e28a6edd89a214c6c0a18",
+      "scope": "Private sanitised original UI tree"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-profile-light-passport.json",
+      "sha256": "bf2a628c558df89fe446e70fdf1e50151db6af005b80d897fbff9f774cb40e79",
+      "scope": "Private sanitised original UI tree"
+    },
+    {
+      "file": "artifacts/private/profile-device/supplement/20261029T053311554253Z/ui-supplement-profile-light.json",
+      "sha256": "aa2df92a5aea700bc8bce5fe06859bb0652ed9d9644e28a6edd89a214c6c0a18",
+      "scope": "Private sanitised original UI tree"
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "themeRestoredToSystem": true,
+    "noProfileOrPasswordWrites": true
+  },
+  "finalPasswordKey": "newPassword",
+  "notExecuted": [
+    "Live non-empty extraDisplay fixture values are outside this supplement and need separate actual evidence",
+    "Manual visual judgement of the private light/dark screenshots is separate from these structural checks",
+    "Avatar/Picker/crop and deferred foldable/hover/split-window scopes are outside this run",
+    "Account menu accessibility selection is not fully observable in this CLI dump"
+  ],
+  "limitations": [
+    "CLI/UiTest checks are not Hypium instrument tests",
+    "Only this dedicated player is authenticated; no reset or profile/password write is submitted",
+    "Missing native accessibility selection properties are not inferred from colours",
+    "No production, start, answer, reward or notification-read write"
+  ]
+}

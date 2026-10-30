@@ -1,0 +1,197 @@
+{
+  "status": "passed",
+  "scope": "Task1 mobile Web layout/copy reference only",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "sourceCheckoutCleanBefore": true,
+  "viewport": {
+    "width": 391,
+    "height": 844,
+    "deviceScaleFactor": 1,
+    "nativeWidthReferenceVp": 391.111111,
+    "rounding": "Browser width rounds the measured native width to391 CSSpx",
+    "nativeSafeAreaApplied": false,
+    "note": "Native status/gesture avoid areas remain separate runtime evidence; browser does not emulate them"
+  },
+  "snapshot": {
+    "sha256": "dbe1f32b1b88af9d67dbf654338c51f4bdeeb8de93912acbbccab16a79a6cdd0",
+    "archiveFile": "artifacts/private/web-profile-inputs/dbe1f32b1b88af9d67dbf654338c51f4bdeeb8de93912acbbccab16a79a6cdd0.json",
+    "assignmentCount": 4
+  },
+  "browserUsesRealBackend": false,
+  "apiInterception": "All /api/* fulfilled in Playwright, including unknown routes; no API request continued",
+  "renderDrivers": "Login, optional mandatory-password reply and file tokens are synthetic rendering drivers; no browser backend write",
+  "auxiliaryAPIs": "Notification/reward replies, if requested, are fixed empty fixtures outside Task1",
+  "fontControl": {
+    "enabled": false,
+    "sha256": null,
+    "method": "Same optional controlled serif override as first-slice capture; Web source unchanged"
+  },
+  "avatarReplay": {
+    "provided": false,
+    "sha256": null,
+    "source": "Caller-provided private readback bytes; browser serves only the replay fixture"
+  },
+  "servedFrozenSourceChecks": [
+    {
+      "theme": "dark",
+      "source": "src/api/game.schema.ts",
+      "sha256": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/config/ui-copy.ts",
+      "sha256": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/pages/GameProfilePage.tsx",
+      "sha256": "35525e9ebbf42809d76b5a3162612e9d97845c0cf02957768ca29c4e699f8b11",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "source": "src/features/game/GameSidebar.tsx",
+      "sha256": "8d0e957fb74ae9ad98516b8e7a661abe21dbc05c79b56962a33f892b2c389d5f",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/api/game.schema.ts",
+      "sha256": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/config/ui-copy.ts",
+      "sha256": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/pages/GameProfilePage.tsx",
+      "sha256": "35525e9ebbf42809d76b5a3162612e9d97845c0cf02957768ca29c4e699f8b11",
+      "matches": true
+    },
+    {
+      "theme": "light",
+      "source": "src/features/game/GameSidebar.tsx",
+      "sha256": "8d0e957fb74ae9ad98516b8e7a661abe21dbc05c79b56962a33f892b2c389d5f",
+      "matches": true
+    }
+  ],
+  "schemaChecks": [
+    {
+      "name": "player",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "dark"
+    },
+    {
+      "name": "assignment",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "dark"
+    },
+    {
+      "name": "assignments",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "dark"
+    },
+    {
+      "name": "player",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "light"
+    },
+    {
+      "name": "assignment",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "light"
+    },
+    {
+      "name": "assignments",
+      "success": true,
+      "issueCount": 0,
+      "issueCodes": [],
+      "theme": "light"
+    }
+  ],
+  "states": [
+    {
+      "state": "profile-identity",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/profile-identity-dark.png",
+      "screenshotSha256": "22313610b0707105ca49d0e5481e46d51ecdc923ba7bb73c7fdf4fb4e0d8d2dd",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-security",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/profile-security-dark.png",
+      "screenshotSha256": "11c0ef8a57fa1ff6ecbc607a7282621cd0f3a2ea6e8e753d252833056c524220",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-menu",
+      "theme": "dark",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/profile-menu-dark.png",
+      "screenshotSha256": "6b3ab5bbdd401f4a01fb9ea7dd8606ec93fa8b2c291139783438a61ad77150e9",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-identity",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/profile-identity-light.png",
+      "screenshotSha256": "936ddb618f2e39c2cd66f538c463f31e8b69d32f0da7780dc1bcc5eba89e3d43",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-security",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/profile-security-light.png",
+      "screenshotSha256": "794d910e37ee8380f814d72effa7da5cd1035eb3b48d8397f888db09c26aa056",
+      "documentFitsWidth": true
+    },
+    {
+      "state": "profile-menu",
+      "theme": "light",
+      "route": "/profile",
+      "screenshot": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/profile-menu-light.png",
+      "screenshotSha256": "39a922c8091a5372bec825fc654fec6d8a45b77a47dbc0d99b9cf68ae5b9c9ce",
+      "documentFitsWidth": true
+    }
+  ],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0,
+  "unexpectedApiCount": 0,
+  "externalRequestsAllowed": 0,
+  "blockedExternalRequestCount": 0,
+  "browser": {
+    "name": "Google Chrome headless",
+    "version": "156.0.8078.49"
+  },
+  "sourceCheckoutCleanAfter": true,
+  "responseSourceCounts": {
+    "synthetic_login_render_driver": 2,
+    "actual_readonly_player_snapshot": 10,
+    "actual_readonly_assignments_snapshot": 4
+  },
+  "privateRawEvidence": {
+    "file": "artifacts/private/web-profile-visual/capture-20261029T025250947235Z/browser-raw.json",
+    "sha256": "efbe88fca0ea2084dc9a98f4540979798dca2521f2d6d8a189c3934e8fc0df23"
+  }
+}

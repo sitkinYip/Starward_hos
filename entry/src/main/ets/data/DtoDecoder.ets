@@ -1,4 +1,4 @@
-import { AssignmentDetail, AssignmentSummary, GameFailure, Player, Rank } from '../business/models';
+import { AssignmentDetail, AssignmentSummary, ExtraDisplay, GameFailure, Player, Rank } from '../business/models';
 
 export class LoginResult {
   token: string = '';
@@ -73,6 +73,38 @@ function decodeRank(value: Object): Rank {
   return rank;
 }
 
+function decodeExtraDisplay(value: Object): ExtraDisplay[] {
+  // Match the formal Web extra.schema.ts optional-namespace compatibility:
+  // isolate malformed historical extensions while keeping core player strict.
+  const result: ExtraDisplay[] = [];
+  if (!Array.isArray(value)) {
+    return result;
+  }
+  const values: Object[] = value as Object[];
+  const seen: string[] = [];
+  for (let i: number = 0; i < Math.min(values.length, 100); i++) {
+    const item: Object = values[i];
+    if (item === null || typeof item !== 'object' || Array.isArray(item)) {
+      continue;
+    }
+    const source: Record<string, Object> = item as Record<string, Object>;
+    const key: Object = source['key'];
+    const label: Object = source['label'];
+    const text: Object = source['text'];
+    if (typeof key !== 'string' || key.length > 60 || typeof label !== 'string' || label.length > 100 ||
+      typeof text !== 'string' || text.length > 4000 || seen.indexOf(key as string) !== -1) {
+      continue;
+    }
+    const display: ExtraDisplay = new ExtraDisplay();
+    display.key = key as string;
+    display.label = label as string;
+    display.text = text as string;
+    result.push(display);
+    seen.push(display.key);
+  }
+  return result;
+}
+
 function playerFrom(value: Object): Player {
   const source: Record<string, Object> = record(value);
   const player: Player = new Player();
@@ -85,6 +117,7 @@ function playerFrom(value: Object): Player {
   player.level = decodeRank(source['level']);
   const next: Object = source['nextLevel'];
   player.nextLevel = next === null ? null : decodeRank(next);
+  player.extraDisplay = decodeExtraDisplay(source['extraDisplay']);
   return player;
 }
 
@@ -132,6 +165,10 @@ export function decodePassword(body: string): PasswordResult {
   result.token = stringField(source, 'token', true);
   result.player = playerFrom(source['player']);
   return result;
+}
+
+export function decodeFileToken(body: string): string {
+  return stringField(parse(body), 'token', true);
 }
 
 export function decodeAssignments(body: string): AssignmentSummary[] {

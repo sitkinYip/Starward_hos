@@ -1,0 +1,96 @@
+{
+  "status": "not_observable",
+  "scope": "Actual owned-fixture system Picker filename/filter observations only",
+  "startedAt": "2026-10-29T06:12:02.024462+00:00",
+  "updatedAt": "2026-10-29T06:18:08.142029+00:00",
+  "hap": {
+    "packagedSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb"
+  },
+  "inputSha256": {
+    "runtime": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+    "core": "ef049839ce0c0def220e901ebcdb0fb07aba5d7f63ec2a3ac4d03fd7d61ca8d1",
+    "s2": "5dceb457c4e475f0c20075978d01f9dd29fcfa811ab3613a760b88320ac07407",
+    "avatar": "5f410842bbc7953e9ca3be9ca113c25f52becac726ed751f7499adebe349c18b",
+    "positiveReceipt": "c3fb8d7d69af6f975648370b1db3221b2f70927863b570b537e76ea80d149a5f",
+    "negativeReceipts": "306e04a5f4e0860e3007f56ae0e5de59a25b39b63e74e433bd621225fdb634bb",
+    "fixtureManifest": "ccd10293e81fa4e84c3b47a465daaed1dd1f5dba1abe050c9844aef25eb62166",
+    "driver": "032c70614d1863cabf4ee79a65adb6521608afaebf3aac2ce4dd60f2e7c5c231",
+    "uiHelper": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeHelper": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "snapshotHelper": "8408f9435a748ac384f4dd6e4d858e475dd6427b9f54864c7e9dce7602630cc0",
+    "state": "c4917ea6902d73fbbac1d839240e3eb4a352c9de178fda6fe01378d51ff56c4a",
+    "config": "c377e093b3dc46e9d55af484d0e5104272a76a6e045c3957875e33a0db4f23c3"
+  },
+  "stage": "finished",
+  "cases": [
+    {
+      "case": "positive-before",
+      "status": "reviewed",
+      "fixtureSha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+      "originalFileBytes": 4244,
+      "querySha256": "a09bcf0b9fa7205312c0e01296abccf637f4dd30b73228d4cd7e56a955d3726e",
+      "rawFileSha256": [
+        "edbc66895e7e517bd7f05632d5b4538a6c115e416ad5c181791d40a0dfdbaa7c",
+        "a853bdbc1df93a0e9673bbc28cf1d08ee07e7f146bc2bf22d12e0d649a4a13af",
+        "4746b4085a6752ba5bb0e516f1f5f0f7bd7a6765960a7ff668f853b6c168cbee",
+        "e618ad328595c5e7cc5166945c4a88f5600a49acf2f80cc6034b6e95840f01be",
+        "5008121877a1494764a3f886a5de070fb1cb39dd832a5398267abaf4708d60ba",
+        "604d53f22eec2dd97b01da42b51bbc428a967ac39558e9b36f67df00dfae3e0d",
+        "30e5df0fdd9461ea7faad57ab4992fc8bed95623c6aa568887d1ec880753af84",
+        "8317e21d585c6ec0432491f0fd94c118ffd94809e876911863ff186bf453ebef",
+        "c9a845fa30b1d64d78960dfb1022bcef3bbed0435e61e72f4aef69d8b1cc0ead",
+        "49a9077be4e0d0843c769f08720f5bed072aa4e253bae5e84f6a87cf65f39dfe"
+      ],
+      "reviewReceiptSha256": "bd9242d6e8567d27dba35b48bf0bc39e0a2c4f27f632c44ba478d2fe62d8ac2d",
+      "resultStructureCounts": {
+        "visibleMediaResults": 1,
+        "exactOwnedResults": 1,
+        "explicitEmptyIndicator": false,
+        "fullQueryObserved": true,
+        "queryCompletionAndScopeReviewed": true
+      },
+      "notObservableReason": null
+    },
+    {
+      "case": "oversize-png",
+      "status": "not_observable",
+      "fixtureSha256": "b52f7eab739f47dcb1389b191125f0b93e66222c9588f90949d818535ee9afd7",
+      "originalFileBytes": 52428801,
+      "querySha256": "07e7f2662167c4409b26c66354af96ca9be8a105e4f2e7b97affcd3d9bc99831",
+      "rawFileSha256": [
+        "34cf82d11f44e7b9d4f1f37c6a7f54da2324f09cdf9298835cd64ab0e59b1612",
+        "d4c1acb3b8822cdbe110b50bdc0bfd670d709d406b99c0fe582840a12ff0cc14",
+        "3caa94cbbca64173ec963fe489868e4bd0e68bcd0e0ebdf8f07dbe4fc9388950",
+        "dda8833ff0dfafe5369fe9125c899c647c5c7fcf9e39f56d2eb169c123195102",
+        "9a97c6e9685aff2cc20b861c087b8cb3c06641aeb6f03cfd4e9084e9b14fcd4a",
+        "26826890e4d2d405a3aa8f3ebe6aec32d0fbd52b9cc711485163fb9288ac8f68",
+        "883ffcaf0358d3ab4e62f300b8cc4359ae95babb3744af876aae36a4dc75d40c",
+        "94ddffe38fe7547677a4dbcb160835d2a97547be89952680a15185952ff930f2",
+        "3de014dc900c558371a4b200602124bb170de8e93e7898d94029bf8d7b935208",
+        "fb3a3df38c4b3a455b364c23e09a981789dc7b76b97f1adfb4b48db33a0026b5"
+      ],
+      "reviewReceiptSha256": null,
+      "resultStructureCounts": null,
+      "notObservableReason": null
+    }
+  ],
+  "cleanup": {
+    "pickerCancelled": true,
+    "profileUnchanged": true,
+    "noNewProfilePatch": true,
+    "noNewPasswordWrite": true,
+    "loggedOut": true,
+    "emptyLoginInputs": true
+  },
+  "notObservableReason": "full_filename_search_or_explicit_empty_result_not_proven",
+  "privateOriginals": "artifacts/private/picker-filter-device/run-20261029T061202024395Z",
+  "libraryTraversed": false,
+  "thumbnailsExported": false,
+  "mediaSelected": false,
+  "nativeUploadClaimed": false,
+  "notExecuted": [
+    "No automatic assumption about semantic-search or media indexing",
+    "No entire-library enumeration or acceptance based on one screen lacking a fixture",
+    "No profile save, protected-file write, image crop or format normalization in this filter-only scope"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "scope": "Formal management configuration and strict HTTPS player read; phone rendering is separate",
+  "environment": "non-production owned disposable PocketBase",
+  "intendedRecipientCount": 1,
+  "verifiedRecipientCount": 1,
+  "startedAt": "2026-10-29T04:48:31.134889+00:00",
+  "updatedAt": "2026-10-29T04:48:33.179758+00:00",
+  "driver": {
+    "file": "scripts/seed-isolated-profile-extra.py",
+    "sha256": "4c040859cdc083ca376c90c1180d8bdcf5b706402cd118cebde3ccd870c42170"
+  },
+  "hapSha256": "30de19566545126979d3cfa2a779f2a258d17ace101bfa9be5e5f7296af58683",
+  "prerequisites": {
+    "passwordReport": "artifacts/validation/profile/device-profile-password-uncertain.json",
+    "passwordReportSha256": "a578628c26ec6ced5d7dee3388993463f8210930855ee144d9e8aa835c5c9395",
+    "runtimeSha256": "4491c7ed12ccf85af38444318831b198758c164a9eb575c8d67961e515281d2f",
+    "coreSha256": "9a6b2059c62e5231947d5137c4b6dd1b28ad58768a0c956c7397c93c75dc6e4b"
+  },
+  "fixture": {
+    "label": "原生资料验收标记",
+    "text": "专用隔离玩家 · 扩展资料已回源"
+  },
+  "checks": [
+    "One exact owned running container and its loopback-only frozen runtime were verified",
+    "The final verified player password authenticates through strict HTTPS without a forced-change gate",
+    "A fresh active game administrator authenticates through the formal management API",
+    "The formal definition API confirms the exact player-visible profile text schema",
+    "The authoritative preview targets exactly the one dedicated player with no prior binding",
+    "One formal dispatch confirms exactly one new active binding using the preview version",
+    "The formal management resolver confirms the exact profile display tuple",
+    "A fresh real player strict-HTTPS me response contains the exact server-resolved nonempty extension",
+    "Adding the extension changes no player identity, password gate, avatar, rank or experience facts"
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/collections/game_players/auth-with-password",
+      "status": 200,
+      "channel": "player strict HTTPS"
+    },
+    {
+      "method": "GET",
+      "path": "/api/questions/v1/me",
+      "status": 200,
+      "channel": "player strict HTTPS"
+    },
+    {
+      "method": "POST",
+      "path": "/api/collections/_superusers/auth-with-password",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/collections/game_admins/records",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/collections/game_admins/auth-with-password",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "GET",
+      "path": "/api/questions/v1/admin/me",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "GET",
+      "path": "/api/questions/v1/admin/extra-definitions",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/questions/v1/admin/extra-definitions",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/questions/v1/admin/extra-configs/preview",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/questions/v1/admin/extra-configs/dispatch",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/questions/v1/admin/extra-configs/inspect",
+      "status": 200,
+      "channel": "management loopback"
+    },
+    {
+      "method": "POST",
+      "path": "/api/collections/game_players/auth-with-password",
+      "status": 200,
+      "channel": "player strict HTTPS"
+    },
+    {
+      "method": "GET",
+      "path": "/api/questions/v1/me",
+      "status": 200,
+      "channel": "player strict HTTPS"
+    }
+  ],
+  "privateReceipt": {
+    "file": "artifacts/private/https-isolation/profile-extra-seed-receipt-20261029T044831135133Z-e047e9ad.json",
+    "sha256": "93686d2a0b78e208f09fe40c2742d38c3bd99e7b73951fe533e3ac49feebef78"
+  }
+}

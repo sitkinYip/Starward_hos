@@ -1,0 +1,16 @@
+{
+  "status": "incomplete",
+  "scope": "Actual native TabBar source and avatar retry regression; prior S2 used only to identify current dedicated password",
+  "hapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "runtimeSha256": "5779a9f5b375deafd4792a0059f3fc5d19b2bd3f61cb48f40f417b1ebfd1931a",
+  "checks": [
+    "Native profile tab opens while avatar error is present"
+  ],
+  "count": 1,
+  "cleanup": {
+    "loggedOut": true,
+    "faultNeutralised": true
+  },
+  "error": "No new owned-avatar request completed",
+  "privateScreenshotScope": "Actual owned App only"
+}

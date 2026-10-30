@@ -1,0 +1,25 @@
+{
+  "status": "observed_not_filtered_in_search",
+  "hapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "filterReportSha256": "a4f70632f034ce5bd897ee36f54144d91136f14043e221e8e3307a49f71d3e64",
+  "case": "oversize-png",
+  "rawSha256": "fb3a3df38c4b3a455b364c23e09a981789dc7b76b97f1adfb4b48db33a0026b5",
+  "querySha256": "07e7f2662167c4409b26c66354af96ca9be8a105e4f2e7b97affcd3d9bc99831",
+  "sourceBytes": 52428801,
+  "result": {
+    "completedFullFilenameQuery": true,
+    "exactOwnedOversizeResultCount": 1,
+    "visible": true,
+    "enabled": true,
+    "selected": false
+  },
+  "meaning": "The completed search exposed the exact owned oversize image. It does not establish a successful system filter or prove selection/completion acceptance. Client and Picker completion rejection require independent observation.",
+  "cleanup": {
+    "pickerCancelled": true,
+    "profileUnchanged": true,
+    "noNewProfilePatch": true,
+    "noNewPasswordWrite": true,
+    "loggedOut": true,
+    "emptyLoginInputs": true
+  }
+}

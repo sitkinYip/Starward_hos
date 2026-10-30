@@ -1,0 +1,60 @@
+{
+  "status": "incomplete",
+  "scope": "Task1 core navigation, nickname and ordinary password change",
+  "environment": "real isolated PocketBase over strict USB HTTPS",
+  "deviceApi": 26,
+  "startedAt": "2026-10-29T04:04:50.259658+00:00",
+  "updatedAt": "2026-10-29T04:05:31.711713+00:00",
+  "count": 1,
+  "checks": [
+    {
+      "case": "R1",
+      "label": "The phone is explicitly using the dedicated HTTPS environment",
+      "injectedResilience": false
+    }
+  ],
+  "observations": [],
+  "hap": {
+    "packagedSha256": "30de19566545126979d3cfa2a779f2a258d17ace101bfa9be5e5f7296af58683",
+    "installationEvidence": "Separate official scripts/hm.sh run log is required"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-08.json",
+    "sha256": "4491c7ed12ccf85af38444318831b198758c164a9eb575c8d67961e515281d2f"
+  },
+  "requestLedger": [
+    {
+      "phase": "final-cleanup",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false
+  },
+  "finalPasswordKey": "initialPassword",
+  "bootstrapMode": "fresh_disposable_player_reset",
+  "forcedPasswordPerformedThisRun": true,
+  "forcedGatePrerequisite": null,
+  "privateScreenshots": [],
+  "notExecuted": [
+    "A1/A2/A3/A4 system picker, crop, upload and protected-avatar handling",
+    "S2 ordinary-password response-loss recovery",
+    "Foldable/hover/split-window work is deferred by user instruction"
+  ],
+  "limitations": [
+    "CLI/UiTest core checks are not Hypium instrument tests",
+    "Injected failures are labelled, not observed production failures",
+    "No production, start, answer, reward or notification-read write"
+  ],
+  "error": "Expected test App is not foreground; other apps were not touched"
+}

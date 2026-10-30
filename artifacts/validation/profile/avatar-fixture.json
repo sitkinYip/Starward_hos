@@ -1,0 +1,103 @@
+{
+  "kind": "deterministic non-private avatar QA fixture",
+  "file": "artifacts/validation/profile/avatar-fixture.png",
+  "sha256": "6a75ad14dc001b7d36d03edc5297ad27606e4019a54760f30e2aa32c40264459",
+  "width": 1024,
+  "height": 640,
+  "mode": "RGB",
+  "mimeType": "image/png",
+  "source": "Code-drawn solid quadrants, integer grid and bitmap A/B/C/D labels; no personal media or external fonts",
+  "quadrants": {
+    "A": [
+      210,
+      62,
+      69
+    ],
+    "B": [
+      36,
+      112,
+      198
+    ],
+    "C": [
+      224,
+      166,
+      43
+    ],
+    "D": [
+      118,
+      76,
+      177
+    ]
+  },
+  "grid": 64,
+  "cases": [
+    {
+      "name": "center-default",
+      "zoom": 1,
+      "horizontal": 50,
+      "vertical": 50,
+      "sourceRegion": {
+        "x": 192,
+        "y": 0,
+        "width": 640,
+        "height": 640
+      },
+      "outputEdge": 512,
+      "gridPitchInOutput": 51.2
+    },
+    {
+      "name": "top-left-zoom2",
+      "zoom": 2,
+      "horizontal": 0,
+      "vertical": 0,
+      "sourceRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 320
+      },
+      "outputEdge": 320,
+      "gridPitchInOutput": 64.0
+    },
+    {
+      "name": "bottom-right-zoom2",
+      "zoom": 2,
+      "horizontal": 100,
+      "vertical": 100,
+      "sourceRegion": {
+        "x": 704,
+        "y": 320,
+        "width": 320,
+        "height": 320
+      },
+      "outputEdge": 320,
+      "gridPitchInOutput": 64.0
+    },
+    {
+      "name": "bottom-left-zoom4",
+      "zoom": 4,
+      "horizontal": 0,
+      "vertical": 100,
+      "sourceRegion": {
+        "x": 0,
+        "y": 480,
+        "width": 160,
+        "height": 160
+      },
+      "outputEdge": 160,
+      "gridPitchInOutput": 64.0
+    }
+  ],
+  "limits": {
+    "originalMaxBytes": 52428800,
+    "outputMaxBytes": 204800,
+    "outputMaxEdge": 512,
+    "outputFormat": "image/jpeg"
+  },
+  "notes": [
+    "At zoom1 the full 640px source height is used, so the vertical slider has no remaining range.",
+    "Use zoom2 to verify both horizontal and vertical movement.",
+    "Output sizes below512 stay at the crop size; the implementation does not upscale.",
+    "Compare JPEG solid patches away from grid, text and borders with a small compression tolerance."
+  ]
+}

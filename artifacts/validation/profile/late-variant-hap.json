@@ -1,0 +1,65 @@
+{
+  "scope": "Actual signed15s build/install/runtime and frozen source provenance; not late-response UI acceptance",
+  "hapSha256": "d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4",
+  "baseHapSha256": "1a40c0caffc46d64e0b81e9ccb92f2c7d6b69830bb73bf1f2ed5f02651a761cb",
+  "privateArchive": "artifacts/private/profile-haps/late-15s-d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4.hap",
+  "officialInstallLog": {
+    "privateFile": "artifacts/private/profile-validation/install-late-15s-20261030.log",
+    "sha256": "5c10b6816c1d91a3acd5a25e9570e82a12e05b5a04ef21b935a216df6112ac9e",
+    "exit": 0
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime-late-15s.json",
+    "sha256": "cb2265144332ff4b99f72759983599b0f0ca3a651f07138f529280c1c981bdc6",
+    "status": "passed",
+    "actualChecks": {
+      "actualWindowReported": true,
+      "actualImmersiveWindow": true,
+      "transparentSystemBars": true,
+      "requestedFontScaleReported": true,
+      "threeIndependentTlsCases": true,
+      "actualLightAndDarkBarContent": true
+    }
+  },
+  "allBaseSourceFilesUnchanged": true,
+  "bytecodeSha256": "b9732311faac3cb25aaeed76097c04238e0e8e03ad05fd943772611539439466",
+  "actualZipEntryDifferences": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration.json"
+  ],
+  "symbolMap": {
+    "baseSha256": "7ce0364b7a18d2c514330ca42692f52f64d9aa6d40382cd0fd20ff3352b7dbfa",
+    "variantSha256": "fd97481eb1cf6f9b52ffa82e9c20a573e84610dfa29c7095bcfa3f143697999d",
+    "utf8RecordCount": 1173,
+    "completeRecordMultisetEqual": true,
+    "rawBytesEqual": false,
+    "strictValidator": "Passed23/23 actual tooling checks; strict original records, unique keys and order-only difference. No ignored map or HAP repackaging."
+  },
+  "configurationChange": {
+    "timeoutMs": [
+      2000,
+      15000
+    ]
+  },
+  "gateActivated": true,
+  "lateUiExecuted": true,
+  "toolingValidation": {
+    "file": "artifacts/validation/profile/hap-timeout-variant-host.json",
+    "sha256": "81c96c7b31787aac356714020376ec27b8a7199388744cf8e8c4834c552a329f",
+    "status": "passed"
+  },
+  "gateTransition": {
+    "file": "artifacts/validation/profile/isolated-tls-gate-transition.json",
+    "sha256": "30fd9aa5b00d4f136d607cf17224c7bf5915fd324b5d92b8dcec310addd0770b",
+    "status": "passed",
+    "nativeUiAccepted": false
+  },
+  "lateUiReport": {
+    "file": "artifacts/validation/profile/device-profile-avatar-late.json",
+    "sha256": "44f27226a1cb1804251b355b212148e410ee2dfe085ed772d312480855655ec9",
+    "status": "passed",
+    "count": 6,
+    "scope": "Independent actual late protected-avatar response after native logout on the15000ms private integration variant",
+    "base2000msLateResponseAccepted": false
+  }
+}

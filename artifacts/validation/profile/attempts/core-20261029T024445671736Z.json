@@ -1,0 +1,138 @@
+{
+  "status": "incomplete",
+  "scope": "Task1 core navigation, nickname and ordinary password change",
+  "environment": "real isolated PocketBase over strict USB HTTPS",
+  "deviceApi": 26,
+  "startedAt": "2026-10-29T02:38:16.672751+00:00",
+  "updatedAt": "2026-10-29T02:41:25.712773+00:00",
+  "count": 8,
+  "checks": [
+    {
+      "case": "R1",
+      "label": "The phone is explicitly using the dedicated HTTPS environment",
+      "injectedResilience": false
+    },
+    {
+      "case": "R1",
+      "label": "One real forced password change reaches the authenticated home",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "Account menu exposes the four formal destinations and logout",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "System Back dismisses the menu while preserving the profile page",
+      "injectedResilience": false
+    },
+    {
+      "case": "R1",
+      "label": "The home tab still reaches the real assignment list",
+      "injectedResilience": false
+    },
+    {
+      "case": "N1",
+      "label": "The account menu opens the same usable profile destination as the bottom tab",
+      "injectedResilience": false
+    },
+    {
+      "case": "N2",
+      "label": "The real account is displayed as read-only text",
+      "injectedResilience": false
+    },
+    {
+      "case": "N2",
+      "label": "The real profile exposes its avatar-selection action",
+      "injectedResilience": false
+    }
+  ],
+  "observations": [],
+  "hap": {
+    "packagedSha256": "090f75d0ba7fac9e80d0c6ad14d8242c08672070342ebe7f988d6ff117eac889",
+    "installationEvidence": "Separate official scripts/hm.sh run log is required"
+  },
+  "runtime": {
+    "file": "artifacts/validation/profile/runtime.json",
+    "sha256": "975db6b3397558762d0c878dd5c59f2b00c73f411d65d6ae7fe81910b9d696f9"
+  },
+  "requestLedger": [
+    {
+      "phase": "final-cleanup",
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/collections/game_players/auth-with-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": false,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "POST",
+          "path": "/api/questions/v1/me/change-password",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/me",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/questions/v1/assignments",
+          "status": 200,
+          "fault": false,
+          "authenticated": true,
+          "bearer": false
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false
+  },
+  "finalPasswordKey": "newPassword",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-device/profile-identity.png",
+      "sha256": "0b500735c5962db338ba39f485b5a633d752640433cbdc78e4534086c8055e0a",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "notExecuted": [
+    "A1/A2/A3/A4 system picker, crop, upload and protected-avatar handling",
+    "S2 ordinary-password response-loss recovery",
+    "Foldable/hover/split-window work is deferred by user instruction"
+  ],
+  "limitations": [
+    "CLI/UiTest core checks are not Hypium instrument tests",
+    "Injected failures are labelled, not observed production failures",
+    "No production, start, answer, reward or notification-read write"
+  ],
+  "error": "UI expectation timed out: deferred bottom destination preserves profile"
+}

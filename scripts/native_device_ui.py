@@ -115,9 +115,10 @@ class DeviceUI:
         except Exception:
             raise SafeFailure('Official UI dump was not valid JSON') from None
         self.flat = flatten(self.tree)
-        known = {'environment-badge', 'account', 'old-password', 'new-password', 'confirm-password',
+        known = {'environment-badge', 'account', 'password', 'old-password', 'new-password', 'confirm-password',
                  'primary-action', 'account-menu', 'start-assignment', 'return-home',
-                 'forced-logout', 'logout', 'error-return-home'}
+                 'forced-logout', 'logout', 'error-return-home', 'profile-scroll', 'profile-name',
+                 'security-old-password', 'security-new-password', 'security-confirm-password'}
         if not any(node.get('id') in known or node.get('text') == 'QUEST SESSION' for node in self.flat):
             raise SafeFailure('Expected test App is not foreground; other apps were not touched')
         roots = self.tree if isinstance(self.tree, list) else [self.tree]
@@ -261,6 +262,11 @@ class DeviceUI:
     def hide_keyboard(self):
         if self.keyboard_visible():
             self.back()
+            deadline = time.monotonic() + 8
+            while self.keyboard_visible():
+                if time.monotonic() >= deadline:
+                    raise SafeFailure('The native keyboard did not finish dismissing')
+                time.sleep(.1)
 
     def fill(self, node_id, value):
         self.hide_keyboard()
@@ -278,7 +284,7 @@ class DeviceUI:
         # this CLI build otherwise splits the decoded text argument.
         if value:
             self.run('hdc', 'shell', 'uitest uiInput text ' + shlex.quote(value))
-        self.back()
+        self.hide_keyboard()
         self.capture()
         node = self.find(node_id)
         observed = node.get('text', '') if node else ''
