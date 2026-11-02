@@ -1,0 +1,82 @@
+{
+  "status": "verified_scoped",
+  "date": "2026-11-02",
+  "scope": "Official native bottom-bar touch light theme color only; selected SVG icon glow deliberately omitted because standard icon API has no applicable entry",
+  "installedHapSha256": "ec325357a97501222147b6063056574d8384018376ee7eef12d4209e47a76cb1",
+  "productSourceFiles": [
+    {
+      "file": "entry/src/main/ets/ui/StarwardMaterial.ets",
+      "sha256": "3050233754bb76cfb8ce8f33e43e20cad7524db05d04d2bb2ba4f51ad4e84fb0"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardTabs.ets",
+      "sha256": "ba76c342f18221ed02f70c7a5ef6d30098402ad74e84083af40f9f291ab34ff6"
+    }
+  ],
+  "themeResource": {
+    "name": "app.color.accent",
+    "light": "#187B69",
+    "dark": "#D4BC7D",
+    "kind": "Resource reference passed to uiMaterial.LightEffectOptions.color; not resolved once into a fixed number"
+  },
+  "buildSignInstallLaunch": {
+    "officialRunExit": 0,
+    "privateLog": "artifacts/private/bottom-bar-theme-light-20261102/official-run.log",
+    "logSha256": "ef77854e61e3c991e4a9dec4908db698b063e22ce602379f0b996d83726caa87"
+  },
+  "lint": {
+    "exit": 0,
+    "issueCount": 0,
+    "report": "artifacts/validation/bottom-bar-theme-light-20261102/lint.json",
+    "reportSha256": "4bb19d121cf82a737fb846f1ccaacbed51889cb869a858cc20eb8fc88246062d"
+  },
+  "localNavigation": {
+    "report": "artifacts/validation/bottom-bar-theme-light-20261102/local-ui-2.json",
+    "reportSha256": "f4ad6b4bc6b9d7b32ec4055eeee15837b0d235b26dd7d2a8f694704803264ee1",
+    "checks": 7,
+    "touchReleased": true,
+    "businessRegressionRun": false
+  },
+  "nightVisual": {
+    "status": "root_observed_gold_touch_light",
+    "method": "Root personally viewed original dark idle/pressed PNGs in the same App process after light→dark theme switch",
+    "privateOriginals": [
+      {
+        "file": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/dark-idle.png",
+        "sha256": "13615ca71f6589fbbf3c6f04d3589307524f6301d0856e06c25cd50e9850fc7f"
+      },
+      {
+        "file": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/dark-pressed.png",
+        "sha256": "05a1087f9f4c7937673b8ab583627e1cdc63a096aa9433335bd7d409ebd1c971"
+      }
+    ],
+    "exactScreenshotRgbMeasured": false
+  },
+  "dayVisual": {
+    "status": "user_confirmed_green_touch_light",
+    "evidenceType": "Explicit manual reply in this conversation after automation stopped",
+    "questionItemId": "[\"request_user_input_async\",\"call_1d877f5cb8dc4a55955de686e7de3681\",0]",
+    "question": "新版本已留在手机日间首页，自动操作已停止。请用手指触碰或轻拖底栏：你看到的是绿色光晕、仍是白色光晕，还是没有明显光晕？夜间金色已通过截图确认。",
+    "answer": "能看到绿色光晕",
+    "automatedDayImagesClaimedAsColorProof": false
+  },
+  "attemptBoundaries": [
+    "First local-ui.json remains incomplete at preview login with2 checks; actual device18443 preview mapping was absent and only the exact existing preview mapping was reattached. No account or database reset.",
+    "Second local-ui-2.json has7 completed local checks and4 original images; its visual-review-pending state remains unchanged, with night review and user day confirmation supplied here.",
+    "Day retakes remain separate captured/incomplete evidence. The split-process day images were inconclusive; direct snapshot transfer attempt failed with touch released and its exact temporary file removed. No day screenshot was promoted to color success."
+  ],
+  "unchangedBehavior": [
+    "Native BottomTabBarStyle, routing/input transaction, layout, regular/fill SVGs and brand palette are unchanged.",
+    "Material capability fallback and reduced-motion lightEffect=null branch are unchanged."
+  ],
+  "testedScopeExclusions": [
+    "No full business regression, profile/password writes, gameplay, production or cross-device tests were run.",
+    "This does not extend the previous user gesture confirmation to every theme, device, cancellation/interruption or reduced-motion setting."
+  ],
+  "finalState": {
+    "phoneAutomationStopped": true,
+    "leftAuthenticatedHome": true,
+    "theme": "light",
+    "persistentPreviewEnvironmentKept": true
+  }
+}

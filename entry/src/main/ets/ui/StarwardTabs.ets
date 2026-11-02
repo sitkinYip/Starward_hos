@@ -63,7 +63,8 @@ export struct StarwardBottomTabs {
   }
 
   private updateMaterial(): void {
-    this.material = StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN, this.materialInteractionEnabled);
+    this.material = StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN,
+      this.materialInteractionEnabled, $r('app.color.accent'));
   }
 
   private requestSelection(index: number): void {

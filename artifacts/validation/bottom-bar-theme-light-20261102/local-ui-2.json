@@ -1,0 +1,75 @@
+{
+  "status": "captured_visual_review_pending",
+  "createdAt": "2026-11-02T02:08:10.276151+00:00",
+  "scope": "Only themed native bottom-bar press/release and one home/passport round trip; no business regression",
+  "hapSha256": "ec325357a97501222147b6063056574d8384018376ee7eef12d4209e47a76cb1",
+  "checks": [
+    "Own empty native login observed",
+    "Fresh own-process window metric observed after theme request",
+    "Ordinary preview login reaches home",
+    "light press/release retains home",
+    "dark press/release retains home",
+    "One native home/passport round trip remains correct",
+    "Installed package file unchanged during local check"
+  ],
+  "checkCount": 7,
+  "presses": [
+    {
+      "theme": "light",
+      "nativeBarBoundsPx": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "pointPx": [
+        274,
+        2626
+      ],
+      "officialDownUpCompleted": true,
+      "expectedResource": "app.color.accent",
+      "expectedResourceValue": "#187B69"
+    },
+    {
+      "theme": "dark",
+      "nativeBarBoundsPx": [
+        106,
+        2531,
+        1214,
+        2721
+      ],
+      "pointPx": [
+        274,
+        2626
+      ],
+      "officialDownUpCompleted": true,
+      "expectedResource": "app.color.accent",
+      "expectedResourceValue": "#D4BC7D"
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/light-idle.png",
+      "sha256": "65e45c290e7e00d4845515de5f69fdc82ac74dd6959ac8537084bfaa72320231"
+    },
+    {
+      "file": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/light-pressed.png",
+      "sha256": "d9bedaf6e51aa019e787c18294403794a40abffe29ebaab92a8da95b3edd1a5b"
+    },
+    {
+      "file": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/dark-idle.png",
+      "sha256": "13615ca71f6589fbbf3c6f04d3589307524f6301d0856e06c25cd50e9850fc7f"
+    },
+    {
+      "file": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/dark-pressed.png",
+      "sha256": "05a1087f9f4c7937673b8ab583627e1cdc63a096aa9433335bd7d409ebd1c971"
+    }
+  ],
+  "touchReleased": true,
+  "rawMetricsPrivate": "artifacts/private/bottom-bar-theme-light-20261102/attempt-2/local-metrics.log",
+  "newBusinessWritesInvoked": false,
+  "writeScope": "Authentication/read/theme/navigation only; no profile/password save or admin/fault calls",
+  "followSystemRequested": true,
+  "leftAuthenticatedAtHome": true,
+  "visualEffectVerified": false
+}

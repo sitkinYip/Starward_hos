@@ -1,0 +1,20 @@
+{
+  "status": "captured_visual_review_pending",
+  "scope": "Only retake ambiguous light-theme held image; no business write or regression",
+  "hapSha256": "ec325357a97501222147b6063056574d8384018376ee7eef12d4209e47a76cb1",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/bottom-bar-theme-light-20261102/light-recheck/light-idle.png",
+      "sha256": "3c82ed7275d6ac371b63e21b885fe3e4142276ffda12c73b820d80386124f190"
+    },
+    {
+      "file": "artifacts/private/bottom-bar-theme-light-20261102/light-recheck/light-pressed.png",
+      "sha256": "72e3ac3eb45bfa6759538fcf3e5effb4e6b3391825345beb8618b0daaf3d1ac3"
+    }
+  ],
+  "touchReleased": true,
+  "failure": null,
+  "sameProcessThemeSequence": "previous local check light\u2192dark\u2192follow-system, now explicit light",
+  "leftAuthenticatedAtHome": true,
+  "visualEffectVerified": false
+}

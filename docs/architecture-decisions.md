@@ -224,6 +224,8 @@
 
 **固定工具链lint的证据含义：** `profile/lint-native-evidence.json`（SHA `df12779b2c2214c13ae78e5918d2454513d0ed9982164bcddba53bb7df534ca2`）解释原11:31固定工具链执行，不是新lint或新增验收：原 `lint.json` 仍0 issues/filesChecked=0。Studio先过滤无缺陷文件，CLI统计剩余报告路径，因此该字段不是输入扫描数；原ArkPerf FileCount35及HPAuditor的35条唯一路径与当前35文件集合一致，独立证明当时处理这些输入路径。报告中的当前源码SHA仅绑定本次说明时的字节，不作当时逐文件SHA的回溯证明。原日志“文件不存在”定位为扫描后临时规则文件unlink ENOENT，具体缺哪一个未记；默认配置按官方分流跳过ESLint，HPA的12项安全规则flag启用，而ArkPerf独立registry的InvalidRule不等于全局规则失效。零缺陷不作安全认证或逐规则覆盖证明；未改配置、旧日志或原结果，也未重跑。
 
+2026-11-02局部补充：底栏通过官方 `LightEffectOptions.color` 使用现有 `app.color.accent` 日夜资源，仅扩展 `StarwardMaterial.create` 的可选光感颜色参数；保持材质能力与减少动画门控。标准SVG `BottomTabBarStyle.iconStyle` 没有独立发光入口，本轮不改图标实现。接口依据及局部验证状态见[底栏主题色光晕](bottom-bar-theme-light-2026-11-02.md)。
+
 ## ADR-019：人工预览与故障验收分别持有隔离环境
 
 2026-10-30用户要求固定专用账号直接登录预览。**选择（已采纳；静态审阅完成，实际状态修复及Host已完成，预览新包runtime六项及直接登录13项/3原图已验）：** 另建本机持久PB和HTTPS预览，固定starward_preview账号通过真实初始化改密后进入普通登录状态；不在App绕过服务端强改密门禁。预览与一次性故障/改密验收不共用DB、玩家、状态、CA或控制入口，预览玩家代理不提供故障与重置API。原生会话仍仅内存，不声称支持记住登录。

@@ -1,0 +1,21 @@
+{
+  "status": "incomplete",
+  "createdAt": "2026-11-02T02:05:47.366225+00:00",
+  "scope": "Only themed native bottom-bar press/release and one home/passport round trip; no business regression",
+  "hapSha256": "ec325357a97501222147b6063056574d8384018376ee7eef12d4209e47a76cb1",
+  "checks": [
+    "Own empty native login observed",
+    "Fresh own-process window metric observed after theme request"
+  ],
+  "checkCount": 2,
+  "presses": [],
+  "privateScreenshots": [],
+  "touchReleased": true,
+  "rawMetricsPrivate": "artifacts/private/bottom-bar-theme-light-20261102/local-metrics.log",
+  "newBusinessWritesInvoked": false,
+  "writeScope": "Authentication/read/theme/navigation only; no profile/password save or admin/fault calls",
+  "followSystemRequested": false,
+  "leftAuthenticatedAtHome": false,
+  "visualEffectVerified": false,
+  "failure": "UI expectation timed out: fixed preview home"
+}

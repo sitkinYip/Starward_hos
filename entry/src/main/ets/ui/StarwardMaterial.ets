@@ -3,7 +3,8 @@ import { uiMaterial } from '@kit.ArkUI';
 /** API 26 ArkUI system material; no blur/shadow imitation or HDS enums. */
 export class StarwardMaterial {
   static create(style: uiMaterial.ImmersiveStyle,
-    interactionEnabled: boolean | undefined = undefined): uiMaterial.ImmersiveMaterial | undefined {
+    interactionEnabled: boolean | undefined = undefined,
+    lightEffectColor: ResourceColor | undefined = undefined): uiMaterial.ImmersiveMaterial | undefined {
     try {
       if (!uiMaterial.isImmersiveMaterialSupported() ||
         uiMaterial.getMaterialInfo().state === uiMaterial.MaterialState.DISABLE) {
@@ -13,7 +14,7 @@ export class StarwardMaterial {
       if (interactionEnabled !== undefined) {
         options.interactive = interactionEnabled;
         if (interactionEnabled) {
-          options.lightEffect = {};
+          options.lightEffect = lightEffectColor === undefined ? {} : { color: lightEffectColor };
         } else {
           options.lightEffect = null;
         }
