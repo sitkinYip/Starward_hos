@@ -1,0 +1,78 @@
+{
+  "status": "built_installed_native_launch_blocked",
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "officialRunToolExit": 0,
+  "officialBuildSuccessObserved": true,
+  "officialInstallSuccessObserved": true,
+  "nativeLaunchFailureCode": 10106102,
+  "nativeLaunchSucceeded": false,
+  "nativeRuntimeAndImageAcceptance": "pending_user_unlock",
+  "sourceBindings": [
+    {
+      "file": "entry/src/main/ets/platform/QuestionImageLoader.ets",
+      "sha256": "36f80ac0a72d4ee8afabd8157610349b8cf1831e23f2edb9ca0c045fd4d05fef"
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardQuestionImages.ets",
+      "sha256": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7"
+    },
+    {
+      "file": "entry/src/main/ets/features/GameplayPage.ets",
+      "sha256": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112"
+    },
+    {
+      "file": "entry/src/main/ets/features/GameplayViewModel.ets",
+      "sha256": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5"
+    },
+    {
+      "file": "entry/src/main/ets/pages/Index.ets",
+      "sha256": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a"
+    },
+    {
+      "file": "scripts/isolated-backend.mjs",
+      "sha256": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9"
+    },
+    {
+      "file": "scripts/ui-content-case.mjs",
+      "sha256": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6"
+    },
+    {
+      "file": "scripts/ui-image-failure-case.mjs",
+      "sha256": "36907d8facb2059264c10fc3f7b6346170deb7d88fdbaeecdccac1056f7d3701"
+    },
+    {
+      "file": "scripts/device-question-images.py",
+      "sha256": "831cbbb368d7621a02e8164632f23d7208f9bf333735c73871f76d8f80001ea7"
+    },
+    {
+      "file": "scripts/device-question-image-failure.py",
+      "sha256": "f11d43cd2de4ae5a0e57d742a6e704931991685e9a6022d88ca95d8cdf909229"
+    }
+  ],
+  "relatedUnitTests": {
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "lintSummary": {
+    "filesChecked": 0,
+    "issues": 0,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 0
+  },
+  "strictHostTlsCases": 3,
+  "newFixtureReceipt": {
+    "file": "artifacts/validation/ui-question-images-20261104/fixture-creation.json",
+    "sha256": "1d3859b939d7ebcfda4270bdf74cdc4e5c8650e46a94fbb66a69b9e5da52beaf"
+  },
+  "sourceFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "derivationSha256": "707f2c0ab8748f8b08d0ff7df355be86f2b7636bf31e0851d481ae2860793362",
+  "bodyImageHelperRootSourceReviewed": true,
+  "failureImageHelperRootSourceReviewed": true,
+  "fixedPreviewPreserved": true,
+  "temporaryImageEnvironmentStillRunning": true,
+  "createdAt": "2026-11-04T14:23:45.794404+00:00"
+}

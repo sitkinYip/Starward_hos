@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "stage": "late-complete",
+  "recoveryKind": "late",
+  "scope": "Native entry recovery only with controlled disposable faults; no answer acceptance credit",
+  "hapSha256": "11e7e4a3d49bbde2a4e7cb891c8da407dc9ef24297b93b5fea8b924fc737c062",
+  "bindingSha256": {
+    "hap": "11e7e4a3d49bbde2a4e7cb891c8da407dc9ef24297b93b5fea8b924fc737c062",
+    "runtime": "8d50e546b3aca5755f31cdb681ed5c612f7662f931382007db7d4f1f6a8f3146",
+    "caseReference": "4b34eac6c63f92d7ca33a9e6876d7414dc2605c275ef91a87954b8ddc22b3ac3",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "f51c8456c99cf522c93aa6e0d4baac2c5f2f3ead7217cdb8b8d5111952c78c45",
+    "recoveryDriver": "e300f096a671a468064263b6271c0e63b4abe65655112d1028c919d9ff1f3930",
+    "lateDriver": "d55ea4704d0730ded60479ba51a8c6db8ac7901c2c44d2e77b8fc7ebc0226325",
+    "clientBoundarySource": "0d51555d16aa9c9e77175e94ffecaf65dee9339855d491b84a7a055115039d8f"
+  },
+  "checksPassed": 8,
+  "checks": [
+    "Fresh explicit recovery case has hidden questions and no prior entry facts",
+    "Ordinary recovery account reaches its exact native assignment",
+    "The real entry is committed while its native response is still delayed",
+    "Direct avatar-menu logout reaches empty authentication before the delayed reply is released",
+    "The proxy finished its response delay after the upstream entry200",
+    "Authentication stays empty with no private page, route restoration or new player request in the observation window",
+    "The disposed player still has exactly its one committed entry and no answer or XP facts",
+    "The same cold App process received the complete entry200 after logout and rejected its stale session before decode"
+  ],
+  "observations": {
+    "late": {
+      "upstreamCommitted200": true,
+      "logoutObservedBeforeDelayEnded": true,
+      "elapsedFromPendingObservationToLogoutMs": 10256,
+      "configuredResponseDelayMs": 12000,
+      "proxyDelayFinished": true,
+      "privateOrNavigationRestoreObserved": false,
+      "newPlayerRequestsAfterLogout": 0,
+      "clientBodyDeliveryObserved": true,
+      "staleSessionRejectedBeforeDecode": true,
+      "sameColdAppProcessConfirmed": true,
+      "matchingClientReceiptCount": 1,
+      "deliveryMeaning": "An exact current-process probe line proves transport.send returned200 after logout; the bound next statement rejects the stale generation before decode",
+      "acceptanceLimit": null
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "ownClientCaptureStopped": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T032227790129Z/entry-late-empty-login.png",
+      "sha256": "3d2381043c9cfeee87729fd2006cf09f6df8566040cec96ab0371f17a989d04c",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native entry attempts only, or GET-only read-retry; Host auth/read and exact fault control. No player creation/reset/answer/profile/password write."
+}

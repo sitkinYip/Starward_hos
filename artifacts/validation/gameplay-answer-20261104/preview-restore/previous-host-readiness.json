@@ -1,0 +1,29 @@
+{
+  "status": "host_ready_native_pending",
+  "mode": "persistent isolated player preview",
+  "account": "starward_preview",
+  "credentialStorage": "Ignored local mode600 login.json; credentials and app sessions never embedded in HAP",
+  "sourceCommit": "c28f488d6b682ae213713ccdd2d992595a941ae3",
+  "sourceSnapshotSha256": "79eb5fdc2de9ac87eb97e9bfd529f318a311e8e67d57d87af316817b76ea6af2",
+  "version": "0.40.1",
+  "initializedOnce": true,
+  "directLoginValidation": "verified_direct_login",
+  "transport": "https://127.0.0.1:18443",
+  "tlsChecks": {
+    "positive200": true,
+    "untrustedRejected": true,
+    "untrustedError": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+    "wrongHostnameRejected": true,
+    "wrongHostnameError": "ERR_TLS_CERT_ALTNAME_INVALID",
+    "systemTrustChanged": false
+  },
+  "caSha256": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+  "caDays": 365,
+  "leafDays": 14,
+  "serverLeafRenewalPreservesCa": true,
+  "faultOrResetApiExposedToPlayer": false,
+  "playerOnlyProxy": true,
+  "databasePersistsAcrossStop": true,
+  "acceptance": "Host preparation/readiness only; root must separately build/install and verify native login and preview",
+  "startedAt": "2026-10-30T06:17:57.744Z"
+}

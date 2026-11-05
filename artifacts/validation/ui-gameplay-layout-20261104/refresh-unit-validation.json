@@ -1,0 +1,211 @@
+{
+  "status": "related_business_unit_tests_passed",
+  "scope": "Gameplay GET refresh ViewModel and related entry/answer concurrency; no UI or real-backend acceptance",
+  "changes": [
+    "Add independent refresh/canRefresh with non-destructive temporary failure handling",
+    "Clear private facts on fatal read or contract failure and preserve account/page generation checks",
+    "Keep editing and current level identity while blocking conflicting submission/movement/reads",
+    "Keep legacy reload and unknown-write recovery semantics"
+  ],
+  "source": [
+    {
+      "file": "entry/src/main/ets/features/GameplayViewModel.ets",
+      "sha256": "1e7b38dcc98620b2e8657a04960554081141fc25fb98922bcaab6301a739fe00"
+    },
+    {
+      "file": "entry/src/test/GameplayRefreshViewModel.test.ets",
+      "sha256": "21b7e206202ed9f4b3480ad2602f9e0f83570e4764e0f6c948c2c031b383a05c"
+    },
+    {
+      "file": "entry/src/test/GameplayAnswerViewModel.test.ets",
+      "sha256": "bf2ef47048327b2e830370b5b73e5aef528e147653e6630fd31b8e68c8317a5f"
+    },
+    {
+      "file": "entry/src/test/List.test.ets",
+      "sha256": "ad2b9c98d761acb9ca9b0ad6f44ebfd7cdb28d9c104a21526660b10802882a7b"
+    }
+  ],
+  "runtime": {
+    "studioVersion": "26.0.0.851",
+    "sdkVersion": "26.0.0.105",
+    "apiVersion": "26",
+    "node": "v24.14.1",
+    "entrypoint": "bash scripts/hm.sh test <SuiteName>",
+    "fixedStudioRoot": "/Applications/DevEco-Studio.app/Contents"
+  },
+  "independentStaticReview": "No high-confidence blockers reported by gameplay_data_entry",
+  "uniqueRelatedTestsPassed": 29,
+  "uniqueRelatedTestsFailed": 0,
+  "uniqueRelatedTestsIgnored": 0,
+  "restoredRefreshRepeat": {
+    "passed": 7,
+    "failed": 0,
+    "ignored": 0
+  },
+  "controlledMutation": {
+    "status": "expected_failure_detected",
+    "tests": 1,
+    "failed": 1,
+    "guard": "refresh error epoch/revision/assignmentId",
+    "exactSourceRestored": true,
+    "includedInPassingCounts": false
+  },
+  "runs": [
+    {
+      "run": "refresh-vm-01",
+      "status": "passed",
+      "exitCode": 0,
+      "actual": {
+        "tests": 7,
+        "passed": 7,
+        "failed": 0,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-01/execution.json",
+          "sha256": "5b9911eaef99aeb1e3f82b540fd2f35cd64fb634c6c2ba1565604d945f5551a9"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-01/local-test-summary.json",
+          "sha256": "ddec73b716032f1a2c2df69ababb6364bedc4c20b1fd575182f1aef3dc794de4"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-01/test_result.txt",
+          "sha256": "21b30d7d83a12ef5f64c417539f84fecb6c77f1307e86f613a0e0f14f0f7f9b2"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-01/test.log",
+          "sha256": "b654344e0bd14b8d6e90d652dd87205302b51f5b940f9a45d7980504d4a66018"
+        }
+      ]
+    },
+    {
+      "run": "gameplay-vm-01",
+      "status": "passed",
+      "exitCode": 0,
+      "actual": {
+        "tests": 10,
+        "passed": 10,
+        "failed": 0,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/gameplay-vm-01/execution.json",
+          "sha256": "996b23001f128e280b4fe8e9f87e46f89af9731b3e132f5c3fd744abf1ef848f"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/gameplay-vm-01/local-test-summary.json",
+          "sha256": "7db3a1622a9c718c5a65d8e326958fd415530cf7ea437b1ea235c3d6947c0b41"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/gameplay-vm-01/test_result.txt",
+          "sha256": "4a6fcbe3f71bd4fc58879be19274b60ac67bd9eaa42324e4414f954cb51fbd55"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/gameplay-vm-01/test.log",
+          "sha256": "e1b4f70d879c8a97cad515d0ceb3665ce07afda2d378f10b030a1417feb9afb5"
+        }
+      ]
+    },
+    {
+      "run": "answer-vm-01",
+      "status": "passed",
+      "exitCode": 0,
+      "actual": {
+        "tests": 12,
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-01/execution.json",
+          "sha256": "02b48a95018e87b523bbce90fddd25af82c6d3f53d7119eeff75ac9c3c2e5be1"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-01/local-test-summary.json",
+          "sha256": "b4d62fc4605f2dfd863fdfe84596e1ef3a6dc2519eaf14cb54e111278c6bd636"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-01/test_result.txt",
+          "sha256": "94476d7443db81f3349a44dfcbda887f79be053f38a8c8e0e8a4a878600bb3d7"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-01/test.log",
+          "sha256": "27f780dc144e64634bc576e0b00a13fb132e0dda0971a639206ce2c5e5d4854f"
+        }
+      ]
+    },
+    {
+      "run": "refresh-mutation-01",
+      "status": "expected_test_failure",
+      "exitCode": 1,
+      "actual": {
+        "tests": 1,
+        "passed": 0,
+        "failed": 1,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-mutation-01/execution.json",
+          "sha256": "08e37eb3529cb099dc23c5ab53943965f9bc036af6b2ca16a005fc51955398dc"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-mutation-01/local-test-summary.json",
+          "sha256": "ca265cf7412b349ed716ad713db3b2843dacb9d0ee8e45007eee39b6d9484789"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-mutation-01/test_result.txt",
+          "sha256": "b3bb8e658a13bd0d0be25e0fb8f47ff29e2fadb3f04202a4d9e2486194d079aa"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-mutation-01/test.log",
+          "sha256": "cb69773a3f9cadfafc0083d212c6f2ad33167fc4a7f40cfec4d1d839d52bb5e8"
+        }
+      ]
+    },
+    {
+      "run": "refresh-vm-02-restored",
+      "status": "passed",
+      "exitCode": 0,
+      "actual": {
+        "tests": 7,
+        "passed": 7,
+        "failed": 0,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-02-restored/execution.json",
+          "sha256": "6a4fbbfa3da1bdc962ac2803870179f38c23c46b05ce095955207bc2273175c8"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-02-restored/local-test-summary.json",
+          "sha256": "ddec73b716032f1a2c2df69ababb6364bedc4c20b1fd575182f1aef3dc794de4"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-02-restored/test_result.txt",
+          "sha256": "21b30d7d83a12ef5f64c417539f84fecb6c77f1307e86f613a0e0f14f0f7f9b2"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-02-restored/test.log",
+          "sha256": "54968b358e0b2761908db166b010d01bc0e4015fe6dfac7d794d81d15480dc2c"
+        }
+      ]
+    }
+  ],
+  "deviceRun": false,
+  "realHttpsRun": false,
+  "visualAcceptance": false,
+  "lintRunByThisAgent": false,
+  "productHapInstallRunByThisAgent": false,
+  "commitCreated": false
+}

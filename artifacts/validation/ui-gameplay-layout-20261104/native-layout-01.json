@@ -1,0 +1,232 @@
+{
+  "status": "passed",
+  "stage": "logout-before-late-get",
+  "scope": "Active case0 layout/Refresh/IME/Back/logout only",
+  "hapSha256": "499bbf605fc1124fb567bf115f9f75bd20824d08bcf5e3eaff6fd94fe77bf5eb",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "7b69b0b062ea3c6aa45dcc1d7c3e711b475b4cbeefd363956f64abd302fe6956",
+    "runtime": "1fdd2d4a40fd65f87af6e6747e580197a7dd1f633e4314d53e5c3aa17b23f0d1",
+    "hap": "499bbf605fc1124fb567bf115f9f75bd20824d08bcf5e3eaff6fd94fe77bf5eb",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "2085bf8a535006e5bbb2adc42a8002858c9c91c696cc917701141de035eb45b8",
+    "runner": "bcd96036312af2c9869e08d3cd75e579cea9d3c83f0da24fab44210269e4b664",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "22a0e6ca394f303cde717bcc32d81ee180f6dc3b249e6456e096f614f4f924ad",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "layoutDriver": "05a13a2f2084048ec5fbf65b7a31ee1df36b121dfc460880f05919923ea597fd",
+    "viewModel": "1e7b38dcc98620b2e8657a04960554081141fc25fb98922bcaab6301a739fe00",
+    "index": "ccb7c3618248b2402167b00b295882f73dc20738f521a31e0bbebc988440028c",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393"
+  },
+  "checks": [
+    "Natural-top layout has16vp card separation and no duplicate or permanent controls",
+    "Natural-top layout has16vp card separation and no duplicate or permanent controls",
+    "One pull GET retains the exact raw input instance and its real unsubmitted draft",
+    "503 and explicit retry preserve the same raw input instance and draft",
+    "Fatal404 removes stale facts/input and reload restores facts with a cleared draft",
+    "Actual IME and sidebar Back preserve the unsubmitted same-page draft",
+    "A real delayed GET completes after logout without restoring the private page"
+  ],
+  "checksPassed": 7,
+  "states": [
+    {
+      "themeRequested": "light",
+      "titleBarBoundsPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardBoundsPx": [
+        42,
+        551,
+        1274,
+        1888
+      ],
+      "titleBarToCardVp": 16.285714285714285,
+      "rawSha256": "1e14d63ceca6db73585a75a108c70cc9bf3436b72795ab48f5c5cd95d95bc59f"
+    },
+    {
+      "themeRequested": "dark",
+      "titleBarBoundsPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardBoundsPx": [
+        42,
+        551,
+        1274,
+        1888
+      ],
+      "titleBarToCardVp": 16.285714285714285,
+      "rawSha256": "9953c6ff566106c2a06c57d8f577325cd004e7b11fe3ab258dd0d1cec6750b08"
+    }
+  ],
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "sourceCaseIndex": 0,
+  "fixedPreviewTouched": false,
+  "draftInstanceChecks": {
+    "refresh-initial": true,
+    "quantitativeTopNoExtraGet-before-success": true,
+    "after-success": true,
+    "after-503": true,
+    "after-retry": true,
+    "quantitativeTopNoExtraGet-before-fatal": true,
+    "before-fatal": true,
+    "cleared-after-fatal": true,
+    "ime-initial": true,
+    "after-sidebar": true
+  },
+  "lateGet": {
+    "delayMs": 12000,
+    "awaitingBeforeMenu": true,
+    "awaitingWithPanel": true,
+    "awaitingAfterEmptyLogin": true,
+    "logoutElapsedMsFromAwaitingObservation": 6949
+  },
+  "unusedFaultClearPayload": "JSON null",
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "faultNeutralised": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/layout-light.png",
+      "sha256": "2c51c98835536cd3cf7edf1881f98f4c63c0ca375bb4a35d52ddc16f939cc02c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/layout-dark.png",
+      "sha256": "659b72c2295b216c5c45e33a70d2fe01c527aa51a8dcc16768daea967b620c92",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/refresh-503.png",
+      "sha256": "efecbae676f0369414a4029c6d8842af6b09657056db29fed08798a6bba6f563",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/refresh-404.png",
+      "sha256": "80af7e99197a14da5a399eb890c5d6f58a47557bc7b41da11a17be3fa780d33a",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/layout-ime.png",
+      "sha256": "e296cc83134cd35a3edc1546651f71fb75d62be8ba2b8f5253c088be358ab509",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "layout-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-layout-light-f716f645e45749f6a94f8bc9b7d58b09.json",
+      "remoteRemoved": true,
+      "sha256": "1e14d63ceca6db73585a75a108c70cc9bf3436b72795ab48f5c5cd95d95bc59f"
+    },
+    {
+      "label": "layout-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-layout-dark-9e76f96420d44cb7b92c379b32b0b46e.json",
+      "remoteRemoved": true,
+      "sha256": "9953c6ff566106c2a06c57d8f577325cd004e7b11fe3ab258dd0d1cec6750b08"
+    },
+    {
+      "label": "input-refresh-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-refresh-initial-b7c5081dfc254fe5bcca61d23d3c9828.json",
+      "remoteRemoved": true,
+      "sha256": "fbd6cdd14bf09ab89d7328ee37f1368156518d82cd55815b1fb072b53e8ae039"
+    },
+    {
+      "label": "top-before-success-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-top-before-success-0-71dfee752b614c378d2726de57eced66.json",
+      "remoteRemoved": true,
+      "sha256": "fa850bc9a470f8cd16730842ebcae962718e88ea79f3919ef9dd1c700e21df50"
+    },
+    {
+      "label": "input-after-success",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-after-success-e80dd2c2be97445dbda1afffd54ebb9e.json",
+      "remoteRemoved": true,
+      "sha256": "5bd21b711154b6862c61a015de7675fa360f4241174fb1bc569baf04d152f045"
+    },
+    {
+      "label": "input-after-503",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-after-503-089bdaad0bfe445c9c636c11d6af6b1b.json",
+      "remoteRemoved": true,
+      "sha256": "4c4e8ce616b337160a4f8a5b68770c22009ae547c0000417c788aa8dd6986a1a"
+    },
+    {
+      "label": "input-after-retry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-after-retry-5c8c518374424a0ebf7831e8838079bb.json",
+      "remoteRemoved": true,
+      "sha256": "dbf08d135e4673dfa683d74c01a7d3fe30e16485b8a5b551070855e2648dc694"
+    },
+    {
+      "label": "top-before-fatal-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-top-before-fatal-0-ed7122a377e143b29ed6f7f2ab2a660f.json",
+      "remoteRemoved": true,
+      "sha256": "dbf08d135e4673dfa683d74c01a7d3fe30e16485b8a5b551070855e2648dc694"
+    },
+    {
+      "label": "input-before-fatal",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-before-fatal-78d8905d52c24c848be4259a5fa06eea.json",
+      "remoteRemoved": true,
+      "sha256": "dbf08d135e4673dfa683d74c01a7d3fe30e16485b8a5b551070855e2648dc694"
+    },
+    {
+      "label": "input-cleared-after-fatal",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-cleared-after-fatal-c4fdceb8fb2747e1b11b41f555bbdef1.json",
+      "remoteRemoved": true,
+      "sha256": "85a156b68924662863cb2b735a15354841d3e4c67cc14eade47919af373cb9d0"
+    },
+    {
+      "label": "input-ime-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-ime-initial-5bb7508a4ed74838a2ede52788faa5cf.json",
+      "remoteRemoved": true,
+      "sha256": "84e20aa41bae359fb842c817dae8fa62542514ed3ad142b9a9b504db08a6841d"
+    },
+    {
+      "label": "input-after-sidebar",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/raw-input-after-sidebar-1bb0b69e2a4e4f5996fd93e694aaec94.json",
+      "remoteRemoved": true,
+      "sha256": "2cf6beb95a6b0272170686afa031c5f6348aad6b2e364c0f656205e53e592e23"
+    }
+  ],
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/gameplay-layout-native-01/web-dtos.json",
+    "sha256": "610c3f6cb79264bb02cf09110255939d12d2d7901af4ace93a79b1eba0769657"
+  },
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/gameplay-layout-native-01/request-ledger.json",
+    "sha256": "37a13d45f7f1ddfef1781781a82e34b1b4311ae8244eb9c7b1d92502d904496d"
+  },
+  "failure": null,
+  "visualReview": "pending_root_original_review",
+  "startAnswerOrProfileWritesPermitted": false,
+  "UiRefreshingDirectlyObserved": false,
+  "writeScope": "Host authentication/read; exact own detail-GET faults503/404/12000ms only; JSON null clears an unused own fault",
+  "createdAt": "2026-11-04T13:10:35.685041+00:00"
+}

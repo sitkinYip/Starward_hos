@@ -1,0 +1,90 @@
+{
+  "status": "related_unit_tests_passed",
+  "scope": "Existing accept(snapshot) clears a temporary GET error after authoritative answer settlement",
+  "productionChangeRequired": false,
+  "productionSourceUnchanged": true,
+  "testChange": "Existing manual-next success case now creates a real controlled 503 read failure then checks refreshError is empty after answer settlement",
+  "source": [
+    {
+      "file": "entry/src/main/ets/features/GameplayViewModel.ets",
+      "sha256": "1e7b38dcc98620b2e8657a04960554081141fc25fb98922bcaab6301a739fe00"
+    },
+    {
+      "file": "entry/src/test/GameplayAnswerViewModel.test.ets",
+      "sha256": "4b54dea01075807e46f82cea8e0a8eac4d5480636023d18fefbd672daee0d6d5"
+    },
+    {
+      "file": "entry/src/test/GameplayRefreshViewModel.test.ets",
+      "sha256": "21b7e206202ed9f4b3480ad2602f9e0f83570e4764e0f6c948c2c031b383a05c"
+    },
+    {
+      "file": "entry/src/test/List.test.ets",
+      "sha256": "ad2b9c98d761acb9ca9b0ad6f44ebfd7cdb28d9c104a21526660b10802882a7b"
+    }
+  ],
+  "passed": 19,
+  "failed": 0,
+  "ignored": 0,
+  "runs": [
+    {
+      "run": "answer-vm-refresh-error-01",
+      "actual": {
+        "tests": 12,
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-refresh-error-01/execution.json",
+          "sha256": "b4b09d9186c6372cbdc9e8314ba310b7eaa0b997147a3ddb3b9be0f7282a2785"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-refresh-error-01/local-test-summary.json",
+          "sha256": "b4d62fc4605f2dfd863fdfe84596e1ef3a6dc2519eaf14cb54e111278c6bd636"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-refresh-error-01/test_result.txt",
+          "sha256": "94476d7443db81f3349a44dfcbda887f79be053f38a8c8e0e8a4a878600bb3d7"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/answer-vm-refresh-error-01/test.log",
+          "sha256": "a5e682bd93f35363c663a6b126e32b3d844112b7fcc283586b7946e56168ade9"
+        }
+      ]
+    },
+    {
+      "run": "refresh-vm-error-clear-01",
+      "actual": {
+        "tests": 7,
+        "passed": 7,
+        "failed": 0,
+        "ignored": 0,
+        "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+      },
+      "artifacts": [
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-error-clear-01/execution.json",
+          "sha256": "83eaba87195603916d476c6386ad01d36c7b33ddc7816cab0023021d2414153e"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-error-clear-01/local-test-summary.json",
+          "sha256": "ddec73b716032f1a2c2df69ababb6364bedc4c20b1fd575182f1aef3dc794de4"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-error-clear-01/test_result.txt",
+          "sha256": "21b30d7d83a12ef5f64c417539f84fecb6c77f1307e86f613a0e0f14f0f7f9b2"
+        },
+        {
+          "file": "artifacts/validation/ui-gameplay-layout-20261104/refresh-vm-error-clear-01/test.log",
+          "sha256": "efb9139da09bef3010182d949b1d3899c28c53662a1c669596a9da35114f1ec2"
+        }
+      ]
+    }
+  ],
+  "mutationExecutedThisRound": false,
+  "deviceRun": false,
+  "httpRun": false,
+  "visualAcceptance": false
+}

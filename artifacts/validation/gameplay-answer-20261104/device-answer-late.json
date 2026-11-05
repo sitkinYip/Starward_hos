@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "stage": "answer-late-complete",
+  "answerRecoveryKind": "late",
+  "scope": "Native first text-answer recovery only on a separate disposable manual case",
+  "hapSha256": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+  "bindingSha256": {
+    "hap": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+    "runtime": "b0ce303ebb085ce108c010d99445c7b42872e0dac5eadedf861a90eae6923e24",
+    "caseReference": "6e61161fabc0320376d04d093f863b514faf1cd23999e4f9b9b959aed72b0cbc",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b79fddd9df14aa6480a353ba50ea0044da4fda46a02e673632c8a53bed0e5c75",
+    "gameplayViewModel": "84ac518775477a3ba6865de9bb2bc33bee4dec563ed128148e2e863ea7812ee7",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "answerRecoveryDriver": "cf4ac07e38960ca4a77acbc8a3be9a6f64422d1b7633743411dcd36b2d2826e5"
+  },
+  "checksPassed": 8,
+  "checks": [
+    "The native first text answer retains both leading and trailing spaces before submission",
+    "The real text answer commits while its native200 response is still delayed",
+    "Direct top-bar avatar logout reaches empty authentication before the delayed answer reply is released",
+    "The proxy finishes the answer response delay after a real upstream200",
+    "The same cold App process receives the complete answer200 after logout and rejects its stale session before decode",
+    "No private gameplay, navigation, credentials or player requests return after the complete stale answer reply",
+    "The disposed account retains exactly one real submission, one receipt and one XP50 award without retry",
+    "Finally cleanup confirms empty login inputs and no private gameplay"
+  ],
+  "observations": {
+    "writePointers": [
+      {
+        "control": "gameplay-submit",
+        "rawEvidenceSha256": "35094821a31457cf1255798379e57dd9dcab3fff4f1387f7b13ad05c30976a3a",
+        "baselineAnswerCount": 0,
+        "observedAnswerCount": 1,
+        "pointerCount": 1,
+        "fallbackClickPermitted": false
+      }
+    ],
+    "late": {
+      "upstreamCommitted200": true,
+      "configuredResponseDelayMs": 12000,
+      "logoutObservedBeforeDelayEnded": true,
+      "elapsedFromPendingObservationToLogoutMs": 9873,
+      "elapsedFromMeasuredPointerToLogoutMs": 10278,
+      "proxyDelayFinished": true,
+      "sameColdAppProcessConfirmed": true,
+      "matchingClientReceiptCount": 1,
+      "clientBodyDeliveryObserved": true,
+      "staleSessionRejectedBeforeDecode": true,
+      "deliveryMeaning": "An exact current-process operation=answer line proves transport.send returned200 after logout; its bound next statement rejects the stale generation before decode",
+      "acceptanceLimit": null,
+      "privateOrNavigationRestoreObserved": false,
+      "newPlayerRequestsAfterLogout": 0,
+      "nativeAnswerRequests": 1,
+      "answerSubmissionCount": 1,
+      "answerReceiptCount": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "ownClientCaptureStopped": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053505949883Z/answer-late-empty-login.png",
+      "sha256": "629ed23fa0f781afa2b82f2450c97f8eec3ed8f57959cc3a0704eb630a2ade0d",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "answer-late-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053505949883Z/raw-answer-late-ready-submit-d7723f584e394f6aa098408be578a886.json",
+      "remoteRemoved": true,
+      "sha256": "35094821a31457cf1255798379e57dd9dcab3fff4f1387f7b13ad05c30976a3a"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/text-answer only; Host authentication/read and exact disposable fault control. No creation/reset/choice/profile/password/reward/admin write."
+}

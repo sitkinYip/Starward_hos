@@ -1,0 +1,142 @@
+{
+  "status": "accepted_frame_and_phone_typography_only",
+  "reviewedAt": "2026-11-04T12:23:01.565070+00:00",
+  "reviewer": "Root, actual originals",
+  "hapSha256": "108affda88c0c26634860095c467dee3d132135db530c8c14e9910d8580bf3b9",
+  "nativeReports": [
+    {
+      "file": "artifacts/validation/ui-question-frame-20261104/native-case0-03.json",
+      "sha256": "cae4278d3819df0c3bb73bd9476e2e085fb4124eca7feac8d6f63e492dd281d9",
+      "checksPassed": 5,
+      "hapSha256": "108affda88c0c26634860095c467dee3d132135db530c8c14e9910d8580bf3b9"
+    },
+    {
+      "file": "artifacts/validation/ui-question-frame-20261104/native-case1-03.json",
+      "sha256": "4db19839d09a9cc2f049a2ddcebe1ca65ed4c9ed0bf42b67c85f52c285b509b8",
+      "checksPassed": 3,
+      "hapSha256": "108affda88c0c26634860095c467dee3d132135db530c8c14e9910d8580bf3b9"
+    },
+    {
+      "file": "artifacts/validation/ui-question-frame-20261104/native-case2-03.json",
+      "sha256": "cb8ae056934018c2bf7f660aec00133f26a17f8c951e952094b962ad0ebe05e4",
+      "checksPassed": 3,
+      "hapSha256": "108affda88c0c26634860095c467dee3d132135db530c8c14e9910d8580bf3b9"
+    }
+  ],
+  "sameDataPairs": [
+    {
+      "sourceCaseIndex": 0,
+      "nativeDtoSha256": "e25d30b939a19f4cdbf83c6fa4d35242dffa4f174966ff7346e6bbf97c0b9519",
+      "webDtoSha256": "7c86d5bbe468dc9f7ebdcbc1cec53cccf032be0eb193df1334eeb188e5158b76",
+      "equalIgnoringOnlyServerTime": true,
+      "nativeReportSha256": "cae4278d3819df0c3bb73bd9476e2e085fb4124eca7feac8d6f63e492dd281d9",
+      "webReportSha256": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7"
+    },
+    {
+      "sourceCaseIndex": 1,
+      "nativeDtoSha256": "361f54c217ca4382e6f7fb1ee6e4e511f9847c2ca4c375e55fc3e790d3e405a0",
+      "webDtoSha256": "b6d21014a95d45af2c17536898bb3f1914f02aa8d8c94e39ec1ae310ac764152",
+      "equalIgnoringOnlyServerTime": true,
+      "nativeReportSha256": "4db19839d09a9cc2f049a2ddcebe1ca65ed4c9ed0bf42b67c85f52c285b509b8",
+      "webReportSha256": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f"
+    },
+    {
+      "sourceCaseIndex": 2,
+      "nativeDtoSha256": "5e1427c71ab755b2a5ea9bc42ca2197b93fe6c9ca1b656eec883e3ac13a9e7a4",
+      "webDtoSha256": "2a7c1d95b21d9ccdea8f8ccf99d56466bfda4da48690337fe63964aa4e06eb58",
+      "equalIgnoringOnlyServerTime": true,
+      "nativeReportSha256": "cb8ae056934018c2bf7f660aec00133f26a17f8c951e952094b962ad0ebe05e4",
+      "webReportSha256": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82"
+    }
+  ],
+  "originalsReviewed": [
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-03/frame-top-light.png",
+      "sha256": "028905d88f56a995208d95acf95a17084bf5e29bf4b01b1b8faf4356a9d1d6fe"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-03/frame-top-dark.png",
+      "sha256": "49034379e9f32d0331545844d011ca4b74bf984675c7b3fc5d5aabc67893b8fe"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case0-02/question-frame-light-top.png",
+      "sha256": "178201d0dd7a7f8e54a92f23fc7485b912dde16bd62561a708a518f3dbbb23ed"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case0-02/question-frame-dark-top.png",
+      "sha256": "f490fc8b65385af73589afe019cfabba04335fa71e90f4125a6c1694fc2f1b0d"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-03/frame-top-light.png",
+      "sha256": "bdd5ffd1df24fefb1476cb007fded992adef0d7cf493c4dd75a60bda691ce09d"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-03/frame-top-dark.png",
+      "sha256": "1d9ccdf74b61738d677d08fd078dc1521ebeacacb024f6251b3cebaac1d5cf11"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case1-01/question-frame-light-top.png",
+      "sha256": "ae159c15c733c14a5da0bee6274521851a2645b3e30a5f1a4305519e91016ea8"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case1-01/question-frame-light-bottom.png",
+      "sha256": "0999fc6aaaa5be8a1ea8176c2859881032f06f0ff4e6f883cdf97972322d2560"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case1-01/question-frame-dark-top.png",
+      "sha256": "282789d3a80a69bb204faabbbae817f0c5a04e05c051f6795c280f058e43c8b6"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case1-01/question-frame-dark-bottom.png",
+      "sha256": "f38f8cdbccb3d3bbe6abeef4c5d0ae0333c68a4a2cff1ad707fb87b0f2d07042"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case2-03/frame-top-light.png",
+      "sha256": "4b8af237a2cf460fb797f93ecab82d77d69aea9e46c9256177ed5259f28fbc24"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case2-03/frame-top-dark.png",
+      "sha256": "bcd2c21c04d7c70b5ab5a6ab78380afee32451460fb066ef8f4c4862c9326bca"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case2-01/question-frame-light-top.png",
+      "sha256": "c0680c1c8b2a9436c90b1655be029c1682c9e55d506ee3006eb991498687baf4"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case2-01/question-frame-dark-top.png",
+      "sha256": "418b35a9ee16f0539108adccc5f0a1ccdde3372f973b858587eaf5dfe2b0f194"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-03/hint-0-light.png",
+      "sha256": "c61ecb707e7298fe98322bd568cb729b45ef2c5c9bce737f831cf9d1da5b6a39"
+    }
+  ],
+  "originalsReviewedCount": 15,
+  "fontBytesEqualInHap": true,
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "sourceCommitWeb": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "observations": [
+    "Both themes show the measured 352vp card and 314vp content at the actual 376vp viewport. Corner paint is 13vp from outside and 28vp long; inner outline paint is 6vp, with one physical pixel rounding.",
+    "Meta, short title, absent title, balanced two-line title and body wraps have been compared to same-data Web originals.",
+    "The hint expansion changes frame height; frame decoration does not intercept input or enter accessibility.",
+    "Actual text font size fields were not exposed by UiTest; size evidence combines bound compiled styles, source font bytes, measured line boxes and direct original review."
+  ],
+  "explicitlyPending": [
+    "images and image viewing",
+    "input and choices",
+    "hint styles",
+    "feedback and retry",
+    "page hierarchy and refresh",
+    "question navigation",
+    "header hide",
+    "page backgrounds and material refinement"
+  ],
+  "businessAcceptanceClaimed": false,
+  "wholePageVisualParityAccepted": false,
+  "userApprovalRequiredForThisPoint": false,
+  "earlierKnownInvalidReferences": [
+    "native-case0-01 incomplete geometry",
+    "native-case2-01 and 70a21 title wrapping mismatch",
+    "web-case0-01 browser BGM overlay obscured card"
+  ]
+}

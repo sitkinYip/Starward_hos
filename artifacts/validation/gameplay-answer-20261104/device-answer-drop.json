@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "stage": "answer-drop-complete",
+  "answerRecoveryKind": "drop",
+  "scope": "Native first text-answer recovery only on a separate disposable manual case",
+  "hapSha256": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+  "bindingSha256": {
+    "hap": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+    "runtime": "b0ce303ebb085ce108c010d99445c7b42872e0dac5eadedf861a90eae6923e24",
+    "caseReference": "1951b1aaa07197d0464f6fd4be8d557f87f8cc8043eb50f253fb5ed4bf6a985c",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b79fddd9df14aa6480a353ba50ea0044da4fda46a02e673632c8a53bed0e5c75",
+    "gameplayViewModel": "84ac518775477a3ba6865de9bb2bc33bee4dec563ed128148e2e863ea7812ee7",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "answerRecoveryDriver": "cf4ac07e38960ca4a77acbc8a3be9a6f64422d1b7633743411dcd36b2d2826e5"
+  },
+  "checksPassed": 9,
+  "checks": [
+    "The native first text answer retains both leading and trailing spaces before submission",
+    "Native uncertainty displays its real error, explicit reconnect and unchanged spaced answer without claiming completion",
+    "Dropped client reply follows one real committed correct text submission, receipt and XP50 award",
+    "Explicit retry settles the current real snapshot with one submission, one receipt and one XP50 award without duplication",
+    "Actual explicit retry preserves request ID, exact raw body, account and session-level hashes with raw Authorization",
+    "Recovered native first question shows the normalized authoritative last answer read-only",
+    "Recovery keeps the manual first question until the explicit next action",
+    "Native answer logout clears login inputs and private gameplay",
+    "Finally cleanup confirms empty login inputs and no private gameplay"
+  ],
+  "observations": {
+    "writePointers": [
+      {
+        "control": "gameplay-submit",
+        "rawEvidenceSha256": "1e714246cb9b800c824e69116aa419b5ec9d3b0062de4f251ea13db14670bfcb",
+        "baselineAnswerCount": 0,
+        "observedAnswerCount": 1,
+        "pointerCount": 1,
+        "fallbackClickPermitted": false
+      },
+      {
+        "control": "gameplay-answer-retry",
+        "rawEvidenceSha256": "76b951f743e1a6203bfd52bd3962a53d55bcb03d4eb4e59d62b5a6e3283ed7c3",
+        "baselineAnswerCount": 1,
+        "observedAnswerCount": 2,
+        "pointerCount": 1,
+        "fallbackClickPermitted": false
+      }
+    ],
+    "retry": {
+      "nativeAnswerRequests": 2,
+      "sameRequestIdBodyActorAndSessionLevel": true,
+      "leadingAndTrailingSpacesRetainedUntilAuthoritativeResponse": true,
+      "firstResponseDroppedAfterCommit": true,
+      "firstAttemptForwarded": true,
+      "answerSubmissionCount": 1,
+      "answerReceiptCount": 1,
+      "completedProgressRows": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "rawErrorEvidenceSha256": "76b951f743e1a6203bfd52bd3962a53d55bcb03d4eb4e59d62b5a6e3283ed7c3",
+      "choiceAnswerSubmitted": false
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053232828257Z/answer-drop-error.png",
+      "sha256": "7128a3399fad21ec0b2b57937bf7c72d1ae2dc5f091d07b7e699789d2021e846",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053232828257Z/answer-drop-recovered.png",
+      "sha256": "52518cb053de48fdebad49efc24ea01ef3454c64afd91aa6de2bd510b45c279a",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "answer-drop-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053232828257Z/raw-answer-drop-ready-submit-232235b03238414791e11be260afb14b.json",
+      "remoteRemoved": true,
+      "sha256": "1e714246cb9b800c824e69116aa419b5ec9d3b0062de4f251ea13db14670bfcb"
+    },
+    {
+      "label": "answer-drop-error",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053232828257Z/raw-answer-drop-error-704d22d80acd474ab2f083ba3defcd32.json",
+      "remoteRemoved": true,
+      "sha256": "76b951f743e1a6203bfd52bd3962a53d55bcb03d4eb4e59d62b5a6e3283ed7c3"
+    },
+    {
+      "label": "answer-drop-ready-retry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053232828257Z/raw-answer-drop-ready-retry-9c7fcc8a1dfe456dae45db26fcd619b2.json",
+      "remoteRemoved": true,
+      "sha256": "76b951f743e1a6203bfd52bd3962a53d55bcb03d4eb4e59d62b5a6e3283ed7c3"
+    },
+    {
+      "label": "answer-drop-recovered",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T053232828257Z/raw-answer-drop-recovered-c43a9cd7ce0541d4905e342864760a13.json",
+      "remoteRemoved": true,
+      "sha256": "034391d3c51555e47140229ad507348caeed2e5b26f13a473da5691e6b482b88"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/text-answer only; Host authentication/read and exact disposable fault control. No creation/reset/choice/profile/password/reward/admin write."
+}

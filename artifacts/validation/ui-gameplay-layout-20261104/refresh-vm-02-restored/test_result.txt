@@ -1,0 +1,16 @@
+class=GameplayRefreshViewModel
+test=singleRefreshKeepsTheSnapshotAndLatestRawDraftWithoutWritingOrRemountIdentityChange
+result=Success
+test=temporaryReadFailureKeepsTrustedFactsAndAllowsAnExplicitGetRetry
+result=Success
+test=fatalReadErrorsClearPrivateFactsAndDraftCacheBeforeReporting
+result=Success
+test=foreignSuccessfulReadIsRejectedBeforePublishingAnySnapshot
+result=Success
+test=refreshKeepsManualQuestionAndNextAvailabilityWhileBlockingMovement
+result=Success
+test=entryPendingAndUnconfirmedEntryCannotStartARefreshGet
+result=Success
+test=leftOrReplacedAccountsIgnoreLateRefreshSuccessErrorAndFinally
+result=Success
+Tests run: 7, Failure: 0, Error: 0, Pass: 7, Ignore: 0

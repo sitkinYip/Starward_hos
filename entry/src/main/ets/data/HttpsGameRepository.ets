@@ -1,4 +1,7 @@
 import { GameRepository } from '../business/GameRepository';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { GameplayAnswerResult, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
+import { decodeGameplay, decodeGameplayAnswer } from './GameplayDecoder';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, avatarMimeType, GameFailure, Player,
   validateAvatarUpload, validateDisplayName, validatePasswordChange } from '../business/models';
 import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, TransportResponse } from '../platform/HttpTransport';
@@ -35,10 +38,31 @@ class ProfileCommand {
   }
 }
 
+class StartCommand {
+  requestId: string;
+
+  constructor(requestId: string) {
+    this.requestId = requestId;
+  }
+}
+
+class AnswerCommand {
+  sessionLevelId: string;
+  answer: string;
+  requestId: string;
+
+  constructor(sessionLevelId: string, rawAnswer: string, requestId: string) {
+    this.sessionLevelId = sessionLevelId;
+    this.answer = rawAnswer;
+    this.requestId = requestId;
+  }
+}
+
 export class HttpsGameRepository implements GameRepository {
   readonly mode: string = 'https';
   private readonly baseUrl: string;
   private readonly transport: HttpTransport;
+  private readonly probeBoundary: boolean;
   private generation: number = 0;
   private token: string = '';
   private playerId: string = '';
@@ -48,13 +72,14 @@ export class HttpsGameRepository implements GameRepository {
   private fileToken: string = '';
   private fileTokenExpires: number = 0;
 
-  constructor(baseUrl: string, transport: HttpTransport = new NativeHttpTransport()) {
+  constructor(baseUrl: string, transport: HttpTransport = new NativeHttpTransport(), probeBoundary: boolean = false) {
     const normalized: string = baseUrl.replace(/\/+$/, '');
     if (!/^https:\/\/[^\s/?#@]+(?::\d+)?$/.test(normalized)) {
       throw new GameFailure('CONFIG_ERROR', '请配置隔离环境的 HTTPS 服务地址。');
     }
     this.baseUrl = normalized;
     this.transport = transport;
+    this.probeBoundary = probeBoundary;
   }
 
   private assertCurrent(generation: number): void {
@@ -93,6 +118,14 @@ export class HttpsGameRepository implements GameRepository {
   private async send(request: TransportRequest, generation: number): Promise<TransportResponse> {
     this.assertCurrent(generation);
     const response: TransportResponse = await this.transport.send(request);
+    if (this.probeBoundary && request.method === 'POST' && request.url.endsWith('/start')) {
+      // Isolated-build evidence only: no URL, record ID, answer, body or credential is logged.
+      hilog.info(0x0000, 'StarwardGameBoundary', 'operation=start received=%{public}d sessionCurrent=%{public}s',
+        response.status, (generation === this.generation).toString());
+    } else if (this.probeBoundary && request.method === 'POST' && request.url.endsWith('/answers')) {
+      hilog.info(0x0000, 'StarwardGameBoundary', 'operation=answer received=%{public}d sessionCurrent=%{public}s',
+        response.status, (generation === this.generation).toString());
+    }
     this.assertCurrent(generation);
     return response;
   }
@@ -290,6 +323,68 @@ export class HttpsGameRepository implements GameRepository {
       throw new GameFailure('CONTRACT_ERROR', '服务返回的场次身份不一致。');
     }
     return detail;
+  }
+
+  private acceptGameplay(body: string, id: string, generation: number): GameplaySnapshot {
+    const snapshot: GameplaySnapshot = decodeGameplay(body);
+    this.assertCurrent(generation);
+    if (snapshot.detail.id !== id || snapshot.detail.player !== this.playerId) {
+      throw new GameFailure('CONTRACT_ERROR', '服务返回的场次身份不一致。');
+    }
+    return snapshot;
+  }
+
+  async startAssignment(id: string, requestId: string): Promise<GameplaySnapshot> {
+    const generation: number = this.requireSession();
+    if (id.length === 0 || requestId.trim().length === 0 || requestId.length > 100) {
+      throw new GameFailure('VALIDATION_ERROR', '无法确认本次入场请求，请返回后重试。');
+    }
+    const command: StartCommand = new StartCommand(requestId);
+    // The caller owns one account-bound command identity, including explicit retries.
+    // A network error does not generate another ID or automatically replay this write.
+    const body: string = await this.request('/api/questions/v1/assignments/' + encodeURIComponent(id) +
+      '/start', 'POST', JSON.stringify(command), this.token, generation);
+    const snapshot: GameplaySnapshot = this.acceptGameplay(body, id, generation);
+    if (snapshot.detail.startedAt.length === 0 ||
+      (snapshot.detail.status !== 'active' && snapshot.detail.status !== 'completed' &&
+        snapshot.detail.status !== 'cancelled')) {
+      throw new GameFailure('CONTRACT_ERROR', '服务尚未确认本次入场，请重试确认结果。');
+    }
+    return snapshot;
+  }
+
+  async gameplay(id: string): Promise<GameplaySnapshot> {
+    const generation: number = this.requireSession();
+    if (id.length === 0) {
+      throw new GameFailure('VALIDATION_ERROR', '缺少场次，请返回后重试。');
+    }
+    const body: string = await this.request('/api/questions/v1/assignments/' + encodeURIComponent(id),
+      'GET', '', this.token, generation);
+    return this.acceptGameplay(body, id, generation);
+  }
+
+  async answerAssignment(id: string, sessionLevelId: string, rawAnswer: string,
+    requestId: string): Promise<GameplayAnswerResult> {
+    const generation: number = this.requireSession();
+    if (id.length === 0 || sessionLevelId.trim().length === 0 || sessionLevelId.trim().length > 30 ||
+      requestId.trim().length === 0 || requestId.trim().length > 100 ||
+      rawAnswer.trim().length === 0 || rawAnswer.trim().length > 4000) {
+      throw new GameFailure('VALIDATION_ERROR', '请填写有效答案后再提交。');
+    }
+    const command: AnswerCommand = new AnswerCommand(sessionLevelId, rawAnswer, requestId);
+    const body: string = await this.request('/api/questions/v1/assignments/' + encodeURIComponent(id) +
+      '/answers', 'POST', JSON.stringify(command), this.token, generation);
+    const result: GameplayAnswerResult = decodeGameplayAnswer(body);
+    this.assertCurrent(generation);
+    if (result.assignment.detail.id !== id || result.assignment.detail.player !== this.playerId ||
+      result.player.id !== this.playerId ||
+      !result.assignment.levels.some((level: GameplayLevel) => level.id === sessionLevelId.trim())) {
+      throw new GameFailure('CONTRACT_ERROR', '服务返回的答题身份或关卡不一致。');
+    }
+    // The answer's complete player snapshot supersedes older profile/XP reads.
+    this.profileRevision++;
+    this.rememberAvatar(result.player);
+    return result;
   }
 
   logout(): void {

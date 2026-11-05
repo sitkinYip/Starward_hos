@@ -1,0 +1,8 @@
+{
+  "status": "override_command_accepted",
+  "scope": "Temporary device UI validation only",
+  "requestedScreenOffTimeoutMs": 300000,
+  "restoreRequired": true,
+  "restoreCommand": "hdc shell power-shell timeout -r",
+  "deviceIdentifierPersisted": false
+}

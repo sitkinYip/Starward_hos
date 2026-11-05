@@ -1,0 +1,241 @@
+{
+  "status": "complete",
+  "sourceSha256": "49cc20a1bcf88530361f5a2fbbab6e37d7c7da1098c6946e798f86b70aa85275",
+  "snapshotSha256": "0941afd3094c3702f1725c040b7eb50c48c7c7ed2ce83490387a2a28d5b400e7",
+  "capturedAt": "2026-11-04T10:08:42.453940+00:00",
+  "coverage": {
+    "expectedContentTables": [
+      "game_questions",
+      "game_answer_keys",
+      "game_question_settings",
+      "game_question_clues",
+      "game_sessions",
+      "game_session_levels",
+      "game_clues",
+      "game_narratives",
+      "game_level_definitions",
+      "game_rewards",
+      "game_reward_rules",
+      "game_extra_definitions"
+    ],
+    "capturedTableCount": 12,
+    "missingContentTables": [],
+    "blockedContentTables": [],
+    "tableCounts": {
+      "game_questions": 28,
+      "game_answer_keys": 28,
+      "game_question_settings": 25,
+      "game_question_clues": 15,
+      "game_sessions": 41,
+      "game_session_levels": 121,
+      "game_clues": 107,
+      "game_narratives": 5,
+      "game_level_definitions": 5,
+      "game_rewards": 1,
+      "game_reward_rules": 0,
+      "game_extra_definitions": 0
+    },
+    "rowCount": 376,
+    "issueCount": 0,
+    "scope": "Declared content-core capture only; no authentication, player runtime or personalized extra configs",
+    "excludedByDesign": [
+      "auth collections",
+      "game_players",
+      "game_admins",
+      "game_player_stats",
+      "game_assignments",
+      "game_level_progress",
+      "game_answer_submissions",
+      "game_xp_ledger",
+      "game_player_rewards",
+      "game_clue_unlocks",
+      "game_notifications",
+      "game_notification_receipts",
+      "game_admin_audit_logs",
+      "game_command_receipts",
+      "game_player_level_titles",
+      "game_extra_configs"
+    ],
+    "statusIsBusinessAcceptance": false,
+    "consistencyValidationScope": [
+      "required tables and declared column allowlist/schema drift",
+      "JSON storage decoding",
+      "record identity uniqueness",
+      "existing content relation targets",
+      "completion narrative targets"
+    ],
+    "consistencyNotValidated": [
+      "every question has an answer key or explicit settings row",
+      "sessionLevel belongs to the same session as a clue or reward rule",
+      "answer semantics, publishing invariants, media availability or effective presentation"
+    ],
+    "rawJsonPreserved": true,
+    "rowSelectionFiltersApplied": false,
+    "allRevisionsAndArchivedRowsIncluded": true,
+    "mediaBytesDownloaded": false
+  },
+  "readAudit": {
+    "uriMode": "ro",
+    "queryOnly": true,
+    "readTransactionCount": 1,
+    "readTables": [
+      "game_answer_keys",
+      "game_clues",
+      "game_extra_definitions",
+      "game_level_definitions",
+      "game_narratives",
+      "game_question_clues",
+      "game_question_settings",
+      "game_questions",
+      "game_reward_rules",
+      "game_rewards",
+      "game_session_levels",
+      "game_sessions",
+      "sqlite_master"
+    ],
+    "readColumns": {
+      "sqlite_master": [
+        "name",
+        "type"
+      ],
+      "game_questions": [
+        "content",
+        "created",
+        "id",
+        "kind",
+        "options",
+        "placeholder",
+        "revision",
+        "seriesKey",
+        "status",
+        "title",
+        "updated"
+      ],
+      "game_answer_keys": [
+        "acceptedAnswers",
+        "created",
+        "id",
+        "normalizationVersion",
+        "question",
+        "updated"
+      ],
+      "game_question_settings": [
+        "answerMatchMode",
+        "created",
+        "groupName",
+        "id",
+        "question",
+        "updated"
+      ],
+      "game_question_clues": [
+        "autoPlay",
+        "content",
+        "created",
+        "id",
+        "kind",
+        "position",
+        "question",
+        "status",
+        "updated"
+      ],
+      "game_sessions": [
+        "completionTarget",
+        "created",
+        "description",
+        "id",
+        "maxLevel",
+        "minLevel",
+        "presentation",
+        "revision",
+        "seriesKey",
+        "status",
+        "title",
+        "updated"
+      ],
+      "game_session_levels": [
+        "autoNext",
+        "created",
+        "id",
+        "penaltyPolicy",
+        "position",
+        "presentationOverride",
+        "question",
+        "session",
+        "updated",
+        "xp"
+      ],
+      "game_clues": [
+        "autoPlay",
+        "content",
+        "created",
+        "id",
+        "kind",
+        "narrative",
+        "position",
+        "session",
+        "sessionLevel",
+        "trigger",
+        "updated"
+      ],
+      "game_narratives": [
+        "created",
+        "id",
+        "kind",
+        "payload",
+        "revision",
+        "seriesKey",
+        "status",
+        "title",
+        "updated"
+      ],
+      "game_level_definitions": [
+        "created",
+        "id",
+        "minTotalXp",
+        "name",
+        "order",
+        "updated",
+        "visualConfig"
+      ],
+      "game_rewards": [
+        "active",
+        "claimMethod",
+        "created",
+        "description",
+        "id",
+        "image",
+        "name",
+        "publicInstructions",
+        "updated"
+      ],
+      "game_reward_rules": [
+        "created",
+        "id",
+        "quantity",
+        "reward",
+        "session",
+        "sessionLevel",
+        "trigger",
+        "updated"
+      ],
+      "game_extra_definitions": [
+        "created",
+        "id",
+        "key",
+        "label",
+        "revision",
+        "schema",
+        "status",
+        "updated"
+      ]
+    },
+    "maintenanceOrSourceCopyPerformed": false,
+    "sqliteVersion": "3.26.0",
+    "userVersion": 0,
+    "schemaVersion": 362
+  },
+  "businessAcceptance": false,
+  "productionWrites": false,
+  "remoteFilesCreated": false,
+  "issueCodes": []
+}

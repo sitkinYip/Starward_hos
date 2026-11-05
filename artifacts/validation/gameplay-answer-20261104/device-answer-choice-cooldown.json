@@ -1,0 +1,129 @@
+{
+  "status": "passed",
+  "stage": "main-complete",
+  "answerKind": "choice-cooldown",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+  "bindingSha256": {
+    "hap": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+    "runtime": "b0ce303ebb085ce108c010d99445c7b42872e0dac5eadedf861a90eae6923e24",
+    "caseReference": "10b29e7030ce1d7883c821e1c6538c1e5e667621b2d5d9a115f7fb5d019baa40",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b79fddd9df14aa6480a353ba50ea0044da4fda46a02e673632c8a53bed0e5c75",
+    "gameplayViewModel": "84ac518775477a3ba6865de9bb2bc33bee4dec563ed128148e2e863ea7812ee7",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "followupDriver": "31d8aa7ab35450502c8a160ecfaea7b7c75292954a36dc6b9494afa43902ec13"
+  },
+  "checksPassed": 11,
+  "checks": [
+    "An unselected native choice explains validation locally with zero answer POSTs or changed business facts",
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "Before real server expiry the native countdown is visible and both choice and submit are disabled",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Touching the measured disabled submit creates no additional answer request or business fact",
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Strict real backend reads confirm completion and the full authoritative player XP",
+    "Answer request ledger retains exact-case level and backend-confirmed account binding with raw Authorization",
+    "No new multi-question completion dialog appears for this state",
+    "Native answer logout clears login inputs and private gameplay"
+  ],
+  "observations": {
+    "unselectedChoice": {
+      "nativeSubmitTouches": 1,
+      "answerRequests": 0,
+      "businessFactsUnchanged": true,
+      "rawEvidenceSha256": "b4b0f56aaf36af9d6de98814c92febdbe6b96973f7802e53039b180b0a93699e"
+    },
+    "cooldown": {
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "progressRows": 1,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 1,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 2,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerRequestIdSha256": [
+        "9d48030a60dd6de2d51c4b661cadde934dc7a176c4cde4e3e448e2de4e6e56c4",
+        "fc1aed72c2c82fe460c0e959974b86363494fa935308f049692e741b66b742f2"
+      ],
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 1,
+        "manual": 0
+      },
+      "countdownAndDisabledObservedBeforeExpiry": true,
+      "disabledSubmitExtraPosts": 0,
+      "realServerExpiryObserved": true,
+      "nativeAnswerRequests": 2,
+      "rawDisabledEvidenceSha256": "1246434f9290a1ba43fdcf96f4b54281a4141c3e8db6ea2f109d7fc9a412592a",
+      "directHostAnswerPosts": 0
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052535020180Z/choice-cooldown-countdown.png",
+      "sha256": "c848d933ad1a41562874f97cc28eeb93af63999c6fe4b2d40c2e119ba20278b2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052535020180Z/choice-after-cooldown-completed.png",
+      "sha256": "ef3c871122f26f61de301c5ec71b04dbacd60dc6747d6017e1377a55aa82642b",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "choice-unselected-before-touch",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052535020180Z/raw-choice-unselected-before-touch-ed872393fbbe4cfdbd2b546bb42569cd.json",
+      "remoteRemoved": true,
+      "sha256": "b4b0f56aaf36af9d6de98814c92febdbe6b96973f7802e53039b180b0a93699e"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052535020180Z/raw-followup-ready-submit-cb3b3917a31a4013ba2ecfb9cc51fb44.json",
+      "remoteRemoved": true,
+      "sha256": "ef4a250279ad849c70eb1035e3be5d943ad52f5ad65d4c3de76fbf5044480191"
+    },
+    {
+      "label": "choice-cooldown-disabled",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052535020180Z/raw-choice-cooldown-disabled-6e2ca2c7c76640198d5b832eb5a0cf8c.json",
+      "remoteRemoved": true,
+      "sha256": "1246434f9290a1ba43fdcf96f4b54281a4141c3e8db6ea2f109d7fc9a412592a"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052535020180Z/raw-followup-ready-submit-97a9e9a802ce4551a9b7c935cd5cbd51.json",
+      "remoteRemoved": true,
+      "sha256": "b17164963ed4d1db879ca1e1fcc675baaccf9d721ce10aaea778b2131cd82efa"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write."
+}

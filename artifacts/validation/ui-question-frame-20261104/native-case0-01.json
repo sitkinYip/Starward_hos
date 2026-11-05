@@ -1,0 +1,98 @@
+{
+  "status": "incomplete",
+  "stage": "native-entry-and-frame",
+  "scope": "Question card frame and typography evidence only",
+  "visualReview": "pending_root_original_review",
+  "businessAcceptanceClaimed": false,
+  "imageInputChoiceProgressRefreshHeaderHideParityClaimed": false,
+  "hapSha256": "e29b73b85cd96b12adec3f8f935aea238ddfa4cb38f62f8f18e36ccb65d9c09c",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "sourceCaseIndex": 0,
+  "bindingSha256": {
+    "driver": "2ef85689d6d75d638172470b332234ad68132d2a0ce1a17d44d1a079108b44e4",
+    "caseReference": "7b69b0b062ea3c6aa45dcc1d7c3e711b475b4cbeefd363956f64abd302fe6956",
+    "runtime": "b799ce500a217cfb89b8c040018fea8c18885ff0679dab847d6ada830fc749d7",
+    "hap": "e29b73b85cd96b12adec3f8f935aea238ddfa4cb38f62f8f18e36ccb65d9c09c",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "2085bf8a535006e5bbb2adc42a8002858c9c91c696cc917701141de035eb45b8",
+    "runner": "bcd96036312af2c9869e08d3cd75e579cea9d3c83f0da24fab44210269e4b664",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "22c389da6d3600ef6a4edbf150feee74872be6bb2d8aec2fa73c20a25f93fc33",
+    "questionFrame": "605e664615c77dd135e06c0a2895dde6d1c07aac46473b8f15a1662fb3e7bcca"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "The real hint expands and closes without submitting"
+  ],
+  "states": [],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/frame-top-light.png",
+      "sha256": "8c93517d5a6483d63b429ffd57ec8fda24c2ef56e254d8d96cbaa672108f67f0",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/body-0-light.png",
+      "sha256": "8c93517d5a6483d63b429ffd57ec8fda24c2ef56e254d8d96cbaa672108f67f0",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/hint-0-light.png",
+      "sha256": "d6dbda677197e85f812f6bc4c9074821ee76ce1f2f63595034e102b7ecffbd65",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/frame-bottom-light.png",
+      "sha256": "69044eab062f2b00693de28f2f8619f276f7b3ef7b6458a5e8d8a43c47818928",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "frame-top-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/raw-frame-top-light-3f44cb3dc5f94a28bc39622f6191f256.json",
+      "remoteRemoved": true,
+      "sha256": "0a6e049f05425515d70c3faeeb33399ecc127af085cb020b06d49117362d2081"
+    },
+    {
+      "label": "body-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/raw-body-0-light-bb542e346c5748b2a0e3ff5726fb94c9.json",
+      "remoteRemoved": true,
+      "sha256": "0a6e049f05425515d70c3faeeb33399ecc127af085cb020b06d49117362d2081"
+    },
+    {
+      "label": "frame-bottom-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case0-01/raw-frame-bottom-light-900410b5ffec4e28a1f0cb6c2c9975e5.json",
+      "remoteRemoved": true,
+      "sha256": "0a6e049f05425515d70c3faeeb33399ecc127af085cb020b06d49117362d2081"
+    }
+  ],
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/question-frame-native-case0-01/web-dtos.json",
+    "sha256": "7c86d5bbe468dc9f7ebdcbc1cec53cccf032be0eb193df1334eeb188e5158b76"
+  },
+  "fixedPreviewTouched": false,
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-frame-native-case0-01/request-ledger.json",
+    "sha256": "013a78f27c7fe511c99b6b71d28c38be874b5f2b2f5da382cf58e3715a1ff0fe"
+  },
+  "writeScope": "Host auth/read and optional single native start only; no answer/profile/password/reset/fault/service operation",
+  "createdAt": "2026-11-04T11:25:01.007103+00:00",
+  "failure": "The narrow frame/type sample stopped; raw diagnostics are private and no parity pass is claimed"
+}

@@ -1,0 +1,101 @@
+{
+  "status": "accepted_active_single_question_layout_and_refresh",
+  "reviewedAt": "2026-11-04T13:11:55.741997+00:00",
+  "reviewer": "Root actual five original PNGs; independent source review by gameplay_data_entry",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-gameplay-layout-20261104/native-layout-01.json",
+    "sha256": "b58d22454b59340f70f883feeba3b2334ac5272591a32068ee6061f0e637b787"
+  },
+  "hapSha256": "499bbf605fc1124fb567bf115f9f75bd20824d08bcf5e3eaff6fd94fe77bf5eb",
+  "states": [
+    {
+      "themeRequested": "light",
+      "titleBarBoundsPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardBoundsPx": [
+        42,
+        551,
+        1274,
+        1888
+      ],
+      "titleBarToCardVp": 16.285714285714285,
+      "rawSha256": "1e14d63ceca6db73585a75a108c70cc9bf3436b72795ab48f5c5cd95d95bc59f"
+    },
+    {
+      "themeRequested": "dark",
+      "titleBarBoundsPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardBoundsPx": [
+        42,
+        551,
+        1274,
+        1888
+      ],
+      "titleBarToCardVp": 16.285714285714285,
+      "rawSha256": "9953c6ff566106c2a06c57d8f577325cd004e7b11fe3ab258dd0d1cec6750b08"
+    }
+  ],
+  "sameDataWebReference": {
+    "report": "artifacts/validation/ui-question-frame-20261104/web-case0-02.json",
+    "sha256": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+    "equalIgnoringOnlyServerTime": true,
+    "nativeDtoSha256": "610c3f6cb79264bb02cf09110255939d12d2d7901af4ace93a79b1eba0769657",
+    "webDtoSha256": "7c86d5bbe468dc9f7ebdcbc1cec53cccf032be0eb193df1334eeb188e5158b76"
+  },
+  "originalsReviewed": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/layout-light.png",
+      "sha256": "2c51c98835536cd3cf7edf1881f98f4c63c0ca375bb4a35d52ddc16f939cc02c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/layout-dark.png",
+      "sha256": "659b72c2295b216c5c45e33a70d2fe01c527aa51a8dcc16768daea967b620c92",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/refresh-503.png",
+      "sha256": "efecbae676f0369414a4029c6d8842af6b09657056db29fed08798a6bba6f563",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/refresh-404.png",
+      "sha256": "80af7e99197a14da5a399eb890c5d6f58a47557bc7b41da11a17be3fa780d33a",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-layout-native-01/layout-ime.png",
+      "sha256": "e296cc83134cd35a3edc1546651f71fb75d62be8ba2b8f5253c088be358ab509",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "observations": [
+    "Normal light/dark single-question structure starts16vp below the official title bar; no duplicate session summary or permanent sync/home controls.",
+    "Transient503 keeps the visible question and valid header; explicit retry is reachable. Fatal404 removes question/input/counts and offers retry/home.",
+    "The real IME available viewport contains input and untouched submit. Keyboard/sidebar Back keeps the actual input node and draft.",
+    "Success/503/retry retain identical nonempty accessibilityId and hashcode from original UiTest trees, stored private only.",
+    "The12000ms successful upstream response remains pending after empty login; logout took6949ms after awaiting observation and late completion did not restore private UI."
+  ],
+  "relatedUniqueUnitTestsPassed": 29,
+  "relatedUnitTestsFailed": 0,
+  "mutationExperimentCountedAsPass": false,
+  "counterFactPolicy": "Only valid current Gameplay snapshot; no fallback to stale brief counts while gameplay is active",
+  "wholePageParityAccepted": false,
+  "explicitlyPending": [
+    "question image rendering/viewing",
+    "input/choice/hint/feedback styles",
+    "multi-question navigation and horizontal interaction",
+    "header hide",
+    "automatic5-second refetch",
+    "page background treatment"
+  ],
+  "fixedPreviewTouched": false
+}

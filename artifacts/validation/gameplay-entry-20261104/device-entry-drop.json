@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "stage": "main-complete",
+  "recoveryKind": "drop",
+  "scope": "Native entry recovery only with controlled disposable faults; no answer acceptance credit",
+  "hapSha256": "27be3fe9964cb61de7a3884d21838dd6102a6637c97358b17d4911ac14a53773",
+  "bindingSha256": {
+    "hap": "27be3fe9964cb61de7a3884d21838dd6102a6637c97358b17d4911ac14a53773",
+    "runtime": "e6aa839a91990d63cfdc594184ce6ccf677eae85c36d57a8c5125d8e86d451c4",
+    "caseReference": "9302024a1976dc50628d2ad3a26be657729dbd3a7e7ae9f962977a4c9161ed9e",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "f51c8456c99cf522c93aa6e0d4baac2c5f2f3ead7217cdb8b8d5111952c78c45",
+    "recoveryDriver": "e300f096a671a468064263b6271c0e63b4abe65655112d1028c919d9ff1f3930"
+  },
+  "checksPassed": 7,
+  "checks": [
+    "Fresh explicit recovery case has hidden questions and no prior entry facts",
+    "Ordinary recovery account reaches its exact native assignment",
+    "Native entry failure displays a real error and an explicit retry without a private question",
+    "Dropped client response follows a real committed entry with two progress rows and one receipt",
+    "Explicit frozen retry restores the real current question without duplicate entry facts",
+    "Real native retry preserves the exact request ID, body and account identity with raw Authorization",
+    "Recovery logout leaves empty login inputs and no private gameplay"
+  ],
+  "observations": {
+    "retry": {
+      "requestCount": 2,
+      "sameRequestIdBodyActor": true,
+      "progressRows": 2,
+      "startReceiptCount": 1,
+      "answerSubmissionCount": 0,
+      "xpLedgerCount": 0,
+      "firstResponseDroppedAfterCommit": true,
+      "rawErrorEvidenceSha256": "db5017bc0ed174851f439d66ca410f6fbb94dc09a74cfb728d928f365d68b7eb"
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T031231591142Z/entry-drop-error.png",
+      "sha256": "2bbd716ffc9d4ec2c370753f8553dc214ecf604adba6d130ee4c605cea4fb71f",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T031231591142Z/entry-drop-recovered.png",
+      "sha256": "b6825e6147cb4bd453e9c5101846160e6da4da280300ed80a33b195d038836b1",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "entry-drop-error",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T031231591142Z/raw-entry-drop-error-d46dadffb7894a06bc03f9cb14b863d8.json",
+      "remoteRemoved": true,
+      "sha256": "db5017bc0ed174851f439d66ca410f6fbb94dc09a74cfb728d928f365d68b7eb"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native entry attempts only, or GET-only read-retry; Host auth/read and exact fault control. No player creation/reset/answer/profile/password write."
+}

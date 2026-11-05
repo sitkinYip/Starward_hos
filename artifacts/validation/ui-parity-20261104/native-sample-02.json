@@ -1,0 +1,434 @@
+{
+  "status": "captured_native_sample",
+  "stage": "sample-complete-visual-review-pending",
+  "scope": "Native first UI sample only; no Web fidelity or unchanged business-flow regression claim",
+  "hapSha256": "334ab6dd75ce07b4b4eeac78390811e506dc4549362a0a9bd47c066c5eff649b",
+  "bindingSha256": {
+    "hap": "334ab6dd75ce07b4b4eeac78390811e506dc4549362a0a9bd47c066c5eff649b",
+    "runtime": "0b9088273badc279ead75588c668e679f2acd204a9d422eeb5581da69f544450",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "76e2b0435d537470a6dd3e2922f32cd55cf7d9f661c872d75b10e3700f03882f",
+    "hostReadiness": "2c40fe50d9a0df1976c9b790281edce56606f7cacbfd4cc0c6ef9b0141f522dc",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e",
+    "sampleDriver": "6b0d8a7cd3fb7c58f5b124df47927cecab4652fd8daf8878c62d3b7ba1236866",
+    "previewRun": "a3bddd7afd2fd9f4b50d9ee241e085cbf3dd7f22c013fbcb69129a6b38706b81",
+    "previewLogin": "c782b085794c1796d7d1c0ab61902dd16edaadc36c212a38ce8f227461ae8e4e",
+    "sidePanel": "d1626be28e48600e8bae67d4c784f5b2725f0ca72595855f554a23b9cc3783ef",
+    "passport": "6e1860490c55181378eb3ed280937a6d4ce7f600239550d45bf74724115f8e38",
+    "index": "fcf524d1ffdd2047390ea1b2e670a083efc56365ea66637ca5889d49946b493d",
+    "titleMaterial": "3050233754bb76cfb8ce8f33e43e20cad7524db05d04d2bb2ba4f51ad4e84fb0",
+    "lightColors": "a213084e4b3951cb9563e551b241534a5d1ccb4c1b7f75ddb15e2b8a4e0c6cc9",
+    "darkColors": "5f7e254e33670fdea57e4210345fbd0c8893a8410b121e3735375657c94c17db",
+    "referenceFixture": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516"
+  },
+  "checksPassed": 29,
+  "checks": [
+    "Strict Host reads confirm the ordinary fixed-preview identity and its exact assignment list",
+    "The existing waiting scene is still assigned and keeps every unentered question hidden",
+    "Fresh strict Host DTOs exactly match the private Web reference except serverTime",
+    "The sample starts at an empty real isolated native login",
+    "The fixed-preview sample reaches authenticated home without first-password setup",
+    "The actual native viewport is376vp at normal font scale",
+    "One leading-star passport heading and trailing close replace the duplicate visible menu title",
+    "The measured small header and complete native close target are44vp inside the actual panel",
+    "Normal-font logout is fully visible before any panel scroll and retains its44vp target",
+    "The measured close action or official Back dismisses only its own native account panel",
+    "The current-player Rank text has10vp measured clearance within one physical pixel of rounding",
+    "The assigned scene remains a GET-only detail without entering gameplay",
+    "One leading-star passport heading and trailing close replace the duplicate visible menu title",
+    "The measured small header and complete native close target are44vp inside the actual panel",
+    "Normal-font logout is fully visible before any panel scroll and retains its44vp target",
+    "The measured close action or official Back dismisses only its own native account panel",
+    "Back from the session panel retains the same read-only detail",
+    "One leading-star passport heading and trailing close replace the duplicate visible menu title",
+    "The measured small header and complete native close target are44vp inside the actual panel",
+    "Normal-font logout is fully visible before any panel scroll and retains its44vp target",
+    "The measured close action or official Back dismisses only its own native account panel",
+    "The current-player Rank text has10vp measured clearance within one physical pixel of rounding",
+    "The assigned scene remains a GET-only detail without entering gameplay",
+    "One leading-star passport heading and trailing close replace the duplicate visible menu title",
+    "The measured small header and complete native close target are44vp inside the actual panel",
+    "Normal-font logout is fully visible before any panel scroll and retains its44vp target",
+    "The measured close action or official Back dismisses only its own native account panel",
+    "Back from the session panel retains the same read-only detail",
+    "The reviewed fixed-preview session is left on authenticated home with its panel closed"
+  ],
+  "pickedAssignedState": "waiting",
+  "privateFixture": {
+    "file": "artifacts/private/ui-reference/ui-sample-real-preview-dto-20261104.json",
+    "sha256": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516",
+    "normalizedDtoSha256": "abb861c85cfca82572b85e3fa440366d561a70d328fa5d19c01df08c833fb3ec",
+    "comparisonIgnoresOnlyServerTime": true
+  },
+  "states": [
+    {
+      "state": "sidebar-home",
+      "theme": "light",
+      "geometry": {
+        "boundsPx": {
+          "panel": [
+            168,
+            182,
+            1316,
+            2650
+          ],
+          "header": [
+            168,
+            224,
+            1316,
+            378
+          ],
+          "label": [
+            350,
+            270,
+            1092,
+            333
+          ],
+          "mark": [
+            252,
+            266,
+            322,
+            336
+          ],
+          "close": [
+            1120,
+            224,
+            1274,
+            378
+          ],
+          "logout": [
+            252,
+            2430,
+            1232,
+            2584
+          ]
+        },
+        "bodyAvailablePx": [
+          168,
+          378,
+          1316,
+          2650
+        ],
+        "headerHeightVp": 44.0,
+        "closeWidthVp": 44.0,
+        "closeHeightVp": 44.0,
+        "logoutInitiallyFullyVisible": true
+      },
+      "rawEvidenceSha256": "9af483d5af2f3bc37ea4b7f33044321e8af0b739ba68ea6d48aae801d5abdcc8"
+    },
+    {
+      "state": "session-header",
+      "theme": "light",
+      "geometry": {
+        "rankBoundsPx": [
+          238,
+          413,
+          651,
+          460
+        ],
+        "actualTitleBarObserved": true,
+        "measurementMeaning": "Rank text bottom to the measured native title-bar lower boundary; divider pixels require Root original review",
+        "titleBarBoundsPx": [
+          0,
+          137,
+          1316,
+          494
+        ],
+        "rankToTitleBarBottomVp": 9.714285714285714
+      },
+      "rawEvidenceSha256": "8e7a840fb755c47d100baba8cd76490ef1be8413e0e68c49196bb1f7aa06a26c"
+    },
+    {
+      "state": "sidebar-session",
+      "theme": "light",
+      "geometry": {
+        "boundsPx": {
+          "panel": [
+            0,
+            182,
+            1148,
+            2650
+          ],
+          "header": [
+            0,
+            224,
+            1148,
+            378
+          ],
+          "label": [
+            182,
+            270,
+            924,
+            333
+          ],
+          "mark": [
+            84,
+            266,
+            154,
+            336
+          ],
+          "close": [
+            952,
+            224,
+            1106,
+            378
+          ],
+          "logout": [
+            84,
+            2430,
+            1064,
+            2584
+          ]
+        },
+        "bodyAvailablePx": [
+          0,
+          378,
+          1148,
+          2650
+        ],
+        "headerHeightVp": 44.0,
+        "closeWidthVp": 44.0,
+        "closeHeightVp": 44.0,
+        "logoutInitiallyFullyVisible": true
+      },
+      "rawEvidenceSha256": "210a5ed52dbbc478d41b634e1b18e3f51496c26cea48326f5b26cd5da4f4b14b"
+    },
+    {
+      "state": "sidebar-home",
+      "theme": "dark",
+      "geometry": {
+        "boundsPx": {
+          "panel": [
+            168,
+            182,
+            1316,
+            2650
+          ],
+          "header": [
+            168,
+            224,
+            1316,
+            378
+          ],
+          "label": [
+            350,
+            270,
+            1092,
+            333
+          ],
+          "mark": [
+            252,
+            266,
+            322,
+            336
+          ],
+          "close": [
+            1120,
+            224,
+            1274,
+            378
+          ],
+          "logout": [
+            252,
+            2430,
+            1232,
+            2584
+          ]
+        },
+        "bodyAvailablePx": [
+          168,
+          378,
+          1316,
+          2650
+        ],
+        "headerHeightVp": 44.0,
+        "closeWidthVp": 44.0,
+        "closeHeightVp": 44.0,
+        "logoutInitiallyFullyVisible": true
+      },
+      "rawEvidenceSha256": "c05b7af622c66a3ec777814def894a9dd2bc030651f0a77a88387531a77585be"
+    },
+    {
+      "state": "session-header",
+      "theme": "dark",
+      "geometry": {
+        "rankBoundsPx": [
+          238,
+          413,
+          651,
+          460
+        ],
+        "actualTitleBarObserved": true,
+        "measurementMeaning": "Rank text bottom to the measured native title-bar lower boundary; divider pixels require Root original review",
+        "titleBarBoundsPx": [
+          0,
+          137,
+          1316,
+          494
+        ],
+        "rankToTitleBarBottomVp": 9.714285714285714
+      },
+      "rawEvidenceSha256": "d883e80ca5c6c08293bd2c5760a77a0adad61cc51fc12b0d9522fcf27deb62a0"
+    },
+    {
+      "state": "sidebar-session",
+      "theme": "dark",
+      "geometry": {
+        "boundsPx": {
+          "panel": [
+            0,
+            182,
+            1148,
+            2650
+          ],
+          "header": [
+            0,
+            224,
+            1148,
+            378
+          ],
+          "label": [
+            182,
+            270,
+            924,
+            333
+          ],
+          "mark": [
+            84,
+            266,
+            154,
+            336
+          ],
+          "close": [
+            952,
+            224,
+            1106,
+            378
+          ],
+          "logout": [
+            84,
+            2430,
+            1064,
+            2584
+          ]
+        },
+        "bodyAvailablePx": [
+          0,
+          378,
+          1148,
+          2650
+        ],
+        "headerHeightVp": 44.0,
+        "closeWidthVp": 44.0,
+        "closeHeightVp": 44.0,
+        "logoutInitiallyFullyVisible": true
+      },
+      "rawEvidenceSha256": "fc9c040fdaf965a562b047cf430f8b195796c15acd96ea04ff70778dee59b086"
+    }
+  ],
+  "themeActions": [
+    {
+      "requested": "light",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_original_review"
+    },
+    {
+      "requested": "dark",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_original_review"
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/sidebar-home-light.png",
+      "sha256": "df1f52d892e73d6a1fe307707768e3315bea1be911fb33d02500f06e69035c48",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/session-header-light.png",
+      "sha256": "810f87ab9405a5618a078450f4ecf32a36914e40872a4cff82f7c27ee9f24556",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/sidebar-session-light.png",
+      "sha256": "2368f16db30c9b95c1d33128fcce16671d31c1ab3410ccc0552970e2dd7acf59",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/sidebar-home-dark.png",
+      "sha256": "7b79492d2272a7f2432de619be8a3fcf3a362fc02178adbb35b0b9043751c2a1",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/session-header-dark.png",
+      "sha256": "f4a0255ef3077b22e2759937b2c3897d50560ebe5f9f45f577ca0048f6691a33",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/sidebar-session-dark.png",
+      "sha256": "9d33566ed94387a6e7f361c12d5e056b74cd5b0b528269a3822d475cc6e0dc49",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "sidebar-home-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/raw-sidebar-home-light-57bad658373f4a1a8ba32f2e9d8aeec8.json",
+      "remoteRemoved": true,
+      "sha256": "9af483d5af2f3bc37ea4b7f33044321e8af0b739ba68ea6d48aae801d5abdcc8"
+    },
+    {
+      "label": "session-header-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/raw-session-header-light-98fa4a6624444ed7ac3931917a384170.json",
+      "remoteRemoved": true,
+      "sha256": "8e7a840fb755c47d100baba8cd76490ef1be8413e0e68c49196bb1f7aa06a26c"
+    },
+    {
+      "label": "sidebar-session-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/raw-sidebar-session-light-71f01c4aacb6469b96ab84610474475f.json",
+      "remoteRemoved": true,
+      "sha256": "210a5ed52dbbc478d41b634e1b18e3f51496c26cea48326f5b26cd5da4f4b14b"
+    },
+    {
+      "label": "sidebar-home-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/raw-sidebar-home-dark-d612425bfaf041338624e516d5d4eac3.json",
+      "remoteRemoved": true,
+      "sha256": "c05b7af622c66a3ec777814def894a9dd2bc030651f0a77a88387531a77585be"
+    },
+    {
+      "label": "session-header-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/raw-session-header-dark-eb2e0d33ee0545b1b22afc5643a6295b.json",
+      "remoteRemoved": true,
+      "sha256": "d883e80ca5c6c08293bd2c5760a77a0adad61cc51fc12b0d9522fcf27deb62a0"
+    },
+    {
+      "label": "sidebar-session-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-02/capture-20261104T102516526970Z/raw-sidebar-session-dark-f83e4d29fc13428c89e99257af53f5fc.json",
+      "remoteRemoved": true,
+      "sha256": "fc9c040fdaf965a562b047cf430f8b195796c15acd96ea04ff70778dee59b086"
+    }
+  ],
+  "cleanup": {
+    "authenticatedHomeRetained": true,
+    "panelClosed": true,
+    "remoteRawFilesRemoved": true
+  },
+  "visualReview": "pending_root_same_data_original_review",
+  "businessWriteLedgerObserved": false,
+  "writeScope": "Host authentication/me/list/exact assigned GET; native authentication, local theme selection and menu/navigation only. No start/answer/profile/password/reset/fault/service command.",
+  "appCredentialsPersisted": false,
+  "privateCredentialsOrRecordIdsPersisted": false
+}

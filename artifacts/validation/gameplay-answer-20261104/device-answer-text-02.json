@@ -1,0 +1,121 @@
+{
+  "status": "passed",
+  "stage": "main-complete",
+  "answerKind": "text",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+  "bindingSha256": {
+    "hap": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+    "runtime": "b0ce303ebb085ce108c010d99445c7b42872e0dac5eadedf861a90eae6923e24",
+    "caseReference": "f0436d0402be98207bb0f29c62a8b0f1e2b5233b2531562d90be4e490511d63b",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b79fddd9df14aa6480a353ba50ea0044da4fda46a02e673632c8a53bed0e5c75",
+    "gameplayViewModel": "84ac518775477a3ba6865de9bb2bc33bee4dec563ed128148e2e863ea7812ee7",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f"
+  },
+  "checksPassed": 12,
+  "checks": [
+    "Empty or whitespace native validation explains the missing answer without a POST or business write",
+    "Empty or whitespace native validation explains the missing answer without a POST or business write",
+    "Actual observed IME leaves the answer input and scroll-reachable submit within its measured available App viewport",
+    "Incorrect text returns real200 and retains the editable original input",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Raw actual pending input and submit are disabled while preserving the original spaced answer",
+    "Completed first question displays the authoritative normalized last answer as read-only",
+    "Manual completion stays on the first question with an explicit next action",
+    "Native progress displays exactly one of the two authoritative completions",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Strict backend reads confirm active1/2, two answer receipts, one XP award and the unlocked next question",
+    "Native answer logout clears login inputs and private gameplay"
+  ],
+  "observations": {
+    "ime": {
+      "measurementMode": "actual_resized_app_viewport",
+      "availableViewportHeightVp": 456.0,
+      "imeWindowHeightVp": null,
+      "appViewportReductionPx": 1099,
+      "appViewportReductionVp": 314.0,
+      "rootClassifications": [
+        "rejected_full_screen_or_ambiguous_root",
+        "rejected_full_screen_or_ambiguous_root"
+      ]
+    },
+    "text": {
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "progressRows": 2,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 2,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerRequestIdSha256": [
+        "65137e2b78f370fd1e27f3b2ebd743392b3b762a91464f986d10c74904fd9c0e",
+        "d72623de4fb61a0cb5cfa7d33896373ca374dab8af50aa74c2acc7e4219bfeb7"
+      ],
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 1,
+        "manual": 0
+      },
+      "emptyAndWhitespacePosts": 0,
+      "manualRemainsOnFirst": true,
+      "readonlyAuthoritativeLastAnswer": true,
+      "nextQuestionUnlocked": true,
+      "nativeAnswerRequests": 2,
+      "wrongTextHasNoPenalty": true,
+      "rawAuthorizationNoBearer": true
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T042754263689Z/answer-text-ime.png",
+      "sha256": "ab05b5670e855abc2ff2a32d44ce039022fcecd2f46d6e4ee87c4749ac581fb8",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T042754263689Z/answer-text-one-of-two.png",
+      "sha256": "f435b5df86b490535c1c544b9de73c30fa39851ad9d0962aa92ca163a80d8f96",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "answer-text-pending",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T042754263689Z/raw-answer-text-pending-9687915de9e54fb0b73584be01455db2.json",
+      "remoteRemoved": true,
+      "sha256": "3dcebe80c783c5533af7c99e068e50d73d21bcba6024ba1ac461f787cc93bc77"
+    },
+    {
+      "label": "answer-text-completed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T042754263689Z/raw-answer-text-completed-1518c891ffab405aa4d3b8ace743f715.json",
+      "remoteRemoved": true,
+      "sha256": "df5017981a8a0797e4039f5597dde5c18a2b6b37334c330e41c280f91cbb2720"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write."
+}

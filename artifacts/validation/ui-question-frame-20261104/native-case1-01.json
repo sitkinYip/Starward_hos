@@ -1,0 +1,415 @@
+{
+  "status": "passed",
+  "stage": "frame-sample-complete",
+  "scope": "Question card frame and typography evidence only",
+  "visualReview": "pending_root_original_review",
+  "businessAcceptanceClaimed": false,
+  "imageInputChoiceProgressRefreshHeaderHideParityClaimed": false,
+  "hapSha256": "70a21fa6f1990a0a55fe7565783284d4e585539362b5075553e7fb0429930cf7",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "sourceCaseIndex": 1,
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "12d171acaf900da998d49e53f5b69868b2929e5f4606d1cee66251fd3138c42c",
+    "runtime": "a931ea2316cb5b8610055da25d2b81a3cc22e555c59a1f6d2ebfb5663e927231",
+    "hap": "70a21fa6f1990a0a55fe7565783284d4e585539362b5075553e7fb0429930cf7",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "2085bf8a535006e5bbb2adc42a8002858c9c91c696cc917701141de035eb45b8",
+    "runner": "bcd96036312af2c9869e08d3cd75e579cea9d3c83f0da24fab44210269e4b664",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "22c389da6d3600ef6a4edbf150feee74872be6bb2d8aec2fa73c20a25f93fc33",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c"
+  },
+  "checksPassed": 3,
+  "checks": [
+    "The requested theme frame geometry and same-data typography evidence are captured",
+    "The requested theme frame geometry and same-data typography evidence are captured",
+    "Back and same active re-entry use GET without another start or any answer"
+  ],
+  "states": [
+    {
+      "themeRequested": "light",
+      "themePixelReview": "pending_root_original_review",
+      "viewportVp": 376.0,
+      "cardBoundsPx": [
+        42,
+        936,
+        1274,
+        2832
+      ],
+      "innerBoundsPx": [
+        108,
+        1329,
+        1208,
+        1521
+      ],
+      "cardWidthVp": 352.0,
+      "innerWidthVp": 314.2857142857143,
+      "corners": {
+        "top-left": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 13.142857142857142,
+          "verticalOffsetVp": 13.142857142857142,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        },
+        "top-right": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 12.857142857142858,
+          "verticalOffsetVp": 13.142857142857142,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        },
+        "bottom-left": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 13.142857142857142,
+          "verticalOffsetVp": 12.857142857142858,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        },
+        "bottom-right": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 12.857142857142858,
+          "verticalOffsetVp": 12.857142857142858,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        }
+      },
+      "innerTop": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 6.285714285714286
+      },
+      "innerBottom": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 5.714285714285714
+      },
+      "innerLeft": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 6.285714285714286
+      },
+      "innerRight": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 5.714285714285714
+      },
+      "typography": {
+        "number": {
+          "boundsPx": [
+            108,
+            1016,
+            268,
+            1067
+          ],
+          "widthVp": 45.714285714285715,
+          "heightVp": 14.571428571428571,
+          "textLength": 5,
+          "platformTypographyFields": {},
+          "fontFieldsExposed": false,
+          "lineBoxReferenceVp": 14.4,
+          "lineBoxRatio": 1.0119047619047619,
+          "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+        },
+        "kind": {
+          "boundsPx": [
+            1081,
+            1017,
+            1208,
+            1067
+          ],
+          "widthVp": 36.285714285714285,
+          "heightVp": 14.285714285714286,
+          "textLength": 3,
+          "platformTypographyFields": {},
+          "fontFieldsExposed": false,
+          "lineBoxReferenceVp": 14.4,
+          "lineBoxRatio": 0.9920634920634921,
+          "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+        },
+        "titleShown": true,
+        "title": {
+          "boundsPx": [
+            108,
+            1130,
+            1208,
+            1259
+          ],
+          "widthVp": 314.2857142857143,
+          "heightVp": 36.857142857142854,
+          "textLength": 6,
+          "platformTypographyFields": {},
+          "fontFieldsExposed": false,
+          "lineBoxReferenceVp": 36.848,
+          "lineBoxRatio": 1.0002481235655356,
+          "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+        },
+        "referenceFontSizesFp": {
+          "meta": 12,
+          "titleAt376": 37.6,
+          "body": 16
+        },
+        "body": [
+          {
+            "boundsPx": [
+              108,
+              1329,
+              1208,
+              1521
+            ],
+            "widthVp": 314.2857142857143,
+            "heightVp": 54.857142857142854,
+            "textLength": 36,
+            "platformTypographyFields": {},
+            "fontFieldsExposed": false,
+            "lineBoxReferenceVp": 27.52,
+            "lineBoxRatio": 1.9933554817275747,
+            "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+          }
+        ]
+      },
+      "hintCountExercised": 0,
+      "topRawSha256": "4c0aabeec18808ab067b6e6a98099193aadd7a02e733ae839e42e024fe0918b3",
+      "bottomRawSha256": "670fa4ee076eeb48678060ed016003afa7b8a80dd4ccb8ac35903f3a79927a53"
+    },
+    {
+      "themeRequested": "dark",
+      "themePixelReview": "pending_root_original_review",
+      "viewportVp": 376.0,
+      "cardBoundsPx": [
+        42,
+        936,
+        1274,
+        2832
+      ],
+      "innerBoundsPx": [
+        108,
+        1329,
+        1208,
+        1521
+      ],
+      "cardWidthVp": 352.0,
+      "innerWidthVp": 314.2857142857143,
+      "corners": {
+        "top-left": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 13.142857142857142,
+          "verticalOffsetVp": 13.142857142857142,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        },
+        "top-right": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 12.857142857142858,
+          "verticalOffsetVp": 13.142857142857142,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        },
+        "bottom-left": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 13.142857142857142,
+          "verticalOffsetVp": 12.857142857142858,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        },
+        "bottom-right": {
+          "method": "original_png_perpendicular_painted_runs",
+          "horizontalOffsetVp": 12.857142857142858,
+          "verticalOffsetVp": 12.857142857142858,
+          "horizontalLengthVp": 28.0,
+          "verticalLengthVp": 28.0
+        }
+      },
+      "innerTop": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 6.285714285714286
+      },
+      "innerBottom": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 5.714285714285714
+      },
+      "innerLeft": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 6.285714285714286
+      },
+      "innerRight": {
+        "method": "original_png_flat_inset_line",
+        "edgeOffsetVp": 5.714285714285714
+      },
+      "typography": {
+        "number": {
+          "boundsPx": [
+            108,
+            1016,
+            268,
+            1067
+          ],
+          "widthVp": 45.714285714285715,
+          "heightVp": 14.571428571428571,
+          "textLength": 5,
+          "platformTypographyFields": {},
+          "fontFieldsExposed": false,
+          "lineBoxReferenceVp": 14.4,
+          "lineBoxRatio": 1.0119047619047619,
+          "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+        },
+        "kind": {
+          "boundsPx": [
+            1081,
+            1017,
+            1208,
+            1067
+          ],
+          "widthVp": 36.285714285714285,
+          "heightVp": 14.285714285714286,
+          "textLength": 3,
+          "platformTypographyFields": {},
+          "fontFieldsExposed": false,
+          "lineBoxReferenceVp": 14.4,
+          "lineBoxRatio": 0.9920634920634921,
+          "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+        },
+        "titleShown": true,
+        "title": {
+          "boundsPx": [
+            108,
+            1130,
+            1208,
+            1259
+          ],
+          "widthVp": 314.2857142857143,
+          "heightVp": 36.857142857142854,
+          "textLength": 6,
+          "platformTypographyFields": {},
+          "fontFieldsExposed": false,
+          "lineBoxReferenceVp": 36.848,
+          "lineBoxRatio": 1.0002481235655356,
+          "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+        },
+        "referenceFontSizesFp": {
+          "meta": 12,
+          "titleAt376": 37.6,
+          "body": 16
+        },
+        "body": [
+          {
+            "boundsPx": [
+              108,
+              1329,
+              1208,
+              1521
+            ],
+            "widthVp": 314.2857142857143,
+            "heightVp": 54.857142857142854,
+            "textLength": 36,
+            "platformTypographyFields": {},
+            "fontFieldsExposed": false,
+            "lineBoxReferenceVp": 27.52,
+            "lineBoxRatio": 1.9933554817275747,
+            "lineWrapReview": "pending_root_original_review; ratio is not an authoritative line count"
+          }
+        ]
+      },
+      "hintCountExercised": 0,
+      "topRawSha256": "14ce746cd41f31545babc90ea038b4a7e8ed6f1dc79dc452c5973217c170cffa",
+      "bottomRawSha256": "731fcffb03b2aefa1398663519e93debac14c857b7e1ed9d05fa1585dd8344eb"
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/frame-top-light.png",
+      "sha256": "94de5e29dbe735ef229f89ec783a2544b7544b6d8365d9d9024c83fd7eb334af",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/body-0-light.png",
+      "sha256": "1c4e314cfde5a3db72b6d443e2bcaf2222bbb78cf2b23750992ff8d1f9d661a5",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/frame-bottom-light.png",
+      "sha256": "90d73cd1862157ca50c6da20ac3ea93b5f50a9ed596ff50cd3973d6ca761c2cc",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/frame-top-dark.png",
+      "sha256": "e1011451b48b4dfc276a7d231f7d82288dec8ec47903cf5daeb8d371a04c4e9f",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/body-0-dark.png",
+      "sha256": "f6213449dddcb42fa92568d2290f2663e4ebeff467570507627dd60bed376ec4",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/frame-bottom-dark.png",
+      "sha256": "e2227df9b55afd7a259b65b9e31e11091693ca947e16e51d1b2e8e7b84290d71",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "frame-top-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/raw-frame-top-light-bf61420b5bc14cc3b7398f7e08e30161.json",
+      "remoteRemoved": true,
+      "sha256": "4c0aabeec18808ab067b6e6a98099193aadd7a02e733ae839e42e024fe0918b3"
+    },
+    {
+      "label": "body-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/raw-body-0-light-cf147ff671d6446eb4fa8fbdca982b73.json",
+      "remoteRemoved": true,
+      "sha256": "4c0aabeec18808ab067b6e6a98099193aadd7a02e733ae839e42e024fe0918b3"
+    },
+    {
+      "label": "frame-bottom-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/raw-frame-bottom-light-4c29e263eb7445079322cbd42c73dc02.json",
+      "remoteRemoved": true,
+      "sha256": "670fa4ee076eeb48678060ed016003afa7b8a80dd4ccb8ac35903f3a79927a53"
+    },
+    {
+      "label": "frame-top-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/raw-frame-top-dark-b7fd679beb6c4742b4a2a8e235abd5f5.json",
+      "remoteRemoved": true,
+      "sha256": "14ce746cd41f31545babc90ea038b4a7e8ed6f1dc79dc452c5973217c170cffa"
+    },
+    {
+      "label": "body-0-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/raw-body-0-dark-87cb7d44196047a4a898da4509336472.json",
+      "remoteRemoved": true,
+      "sha256": "14ce746cd41f31545babc90ea038b4a7e8ed6f1dc79dc452c5973217c170cffa"
+    },
+    {
+      "label": "frame-bottom-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-frame-native-case1-01/raw-frame-bottom-dark-c6db470127b441c68915185627716b99.json",
+      "remoteRemoved": true,
+      "sha256": "731fcffb03b2aefa1398663519e93debac14c857b7e1ed9d05fa1585dd8344eb"
+    }
+  ],
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/question-frame-native-case1-01/web-dtos.json",
+    "sha256": "b6d21014a95d45af2c17536898bb3f1914f02aa8d8c94e39ec1ae310ac764152"
+  },
+  "fixedPreviewTouched": false,
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-frame-native-case1-01/request-ledger.json",
+    "sha256": "5de38ac89b0abff73761950f7bf4dae986dd6cdee7276920039fee7cfd1bda1a"
+  },
+  "writeScope": "Host auth/read and optional single native start only; no answer/profile/password/reset/fault/service operation",
+  "createdAt": "2026-11-04T11:49:44.895763+00:00"
+}

@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "scope": "Retire only the completed frame/layout disposable environment before the new image fixture runner",
+  "checks": {
+    "ownersVerified": true,
+    "exactOwnedContainerAndMountVerified": true,
+    "allThreeCasesZeroAnswersXp": true,
+    "historicalRunnerSourceHashVerified": true,
+    "oldPidsGone": true,
+    "oldDbAndStateRemoved": true,
+    "oldTlsMaterialsRemoved": true,
+    "oldContainerRemoved": true,
+    "otherContainersUnchanged": true,
+    "otherForwardsUnchanged": true,
+    "oldListenersGone": true
+  },
+  "fixedPreviewDbAccountAndServicePreserved": true,
+  "previewUsbRestoreReceiptPreserved": true,
+  "createdAt": "2026-11-04T13:43:37.027351+00:00"
+}

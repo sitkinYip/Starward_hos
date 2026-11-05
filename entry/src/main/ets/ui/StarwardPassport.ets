@@ -52,12 +52,14 @@ export struct StarwardPassport {
 
   build() {
     Column({ space: 16 }) {
-      Row() {
-        Text('冒险者护照').fontSize(12).fontColor($r('app.color.muted'))
-        Blank()
-        Image($r('app.media.icon_star_four')).width(18).height(18)
-          .fillColor($r('app.color.accent_text')).accessibilityLevel('no')
-      }.width('100%')
+      if (!this.menu) {
+        Row() {
+          Text('冒险者护照').fontSize(12).fontColor($r('app.color.muted'))
+          Blank()
+          Image($r('app.media.icon_star_four')).width(18).height(18)
+            .fillColor($r('app.color.accent_text')).accessibilityLevel('no')
+        }.width('100%')
+      }
       Row({ space: 16 }) {
         if (this.menu) {
           Stack() {

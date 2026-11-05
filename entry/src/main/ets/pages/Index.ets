@@ -1,6 +1,7 @@
 import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
+import { GameplayPage } from '../features/GameplayPage';
 import { createSliceViewModel } from '../features/createSliceViewModel';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
@@ -65,7 +66,11 @@ struct Index {
       if (this.vm.gate === 'home') {
         this.vm.refresh();
         if (this.paths.size() > 0 && this.selectedId.length > 0) {
-          this.vm.openAssignment(this.selectedId);
+          if (this.vm.play.visible) {
+            this.vm.play.reload();
+          } else {
+            this.vm.openAssignment(this.selectedId);
+          }
         }
       }
     } else {
@@ -108,6 +113,7 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.vm.play.leave();
     this.showAccount = false;
     this.motion.stop();
     AppLifecycle.unsubscribe(this.lifecycle);
@@ -161,6 +167,9 @@ struct Index {
       this.goMain(0);
       return true;
     }
+    if (this.paths.size() > 0) {
+      this.leaveGameplay(false);
+    }
     return false;
   }
 
@@ -207,6 +216,7 @@ struct Index {
     if (this.vm.gate !== 'home') {
       return;
     }
+    const gameplayVisible: boolean = this.vm.play.visible;
     if (index === 1 || index === 2) {
       StarwardFeedback.toast(this.getUIContext(), index === 1 ? '收藏暂未开放' : '来信暂未开放');
       return;
@@ -215,17 +225,32 @@ struct Index {
       this.returnAssignmentId = this.selectedId;
     }
     this.showAccount = false;
+    this.vm.play.leave();
     this.paths.clear();
     this.mainIndex = index;
     if (index === 3) {
       this.vm.openProfile();
+    }
+    if (gameplayVisible) {
+      this.vm.refresh();
+    }
+  }
+
+  private leaveGameplay(popPath: boolean = true): void {
+    const gameplayVisible: boolean = this.vm.play.visible;
+    this.vm.play.leave();
+    if (popPath) {
+      this.paths.pop();
+    }
+    if (gameplayVisible) {
+      this.vm.refresh();
     }
   }
 
   private startClock(): void {
     this.stopClock();
     this.vm.tick();
-    this.timer = setInterval(() => this.vm.tick(), 5000);
+    this.timer = setInterval(() => this.vm.tick(), 1000);
   }
 
   private stopClock(): void {
@@ -319,7 +344,7 @@ struct Index {
     return `${label}，旅程开放后就能出发。`;
   }
 
-  private openAssignment(id: string): void {
+  private async openAssignment(id: string): Promise<void> {
     if (this.vm.gate !== 'home') {
       return;
     }
@@ -329,8 +354,14 @@ struct Index {
     }
     this.mainIndex = 0;
     this.selectedId = id;
-    this.vm.openAssignment(id);
+    this.vm.play.leave();
     this.paths.pushPath({ name: 'assignment' });
+    await this.vm.openAssignment(id);
+    if (this.vm.gate === 'home' && this.selectedId === id && this.paths.size() > 0 &&
+      this.vm.detail.id === id && this.vm.detail.startedAt.length > 0 &&
+      (this.vm.detail.status === 'active' || this.vm.detail.status === 'completed')) {
+      await this.vm.play.open(id);
+    }
   }
 
   @Builder
@@ -754,14 +785,18 @@ struct Index {
           .fontSize(11).lineHeight('13.2fp').letterSpacing(0.88).fontColor($r('app.color.accent_muted')).margin({ top: 5 })
           .maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis })
       }.alignItems(HorizontalAlign.Start).layoutWeight(1)
-      if (this.vm.detail.id.length > 0) {
+      if (this.vm.play.visible ? this.vm.play.snapshot !== null && this.vm.play.error.length === 0 :
+        this.vm.detail.id.length > 0) {
         Column({ space: 6 }) {
-        Text(`${this.vm.detail.completedLevels}/${this.vm.detail.totalLevels}`).fontFamily('monospace').fontSize(27)
+        Text(`${this.vm.play.visible ? this.vm.play.snapshot?.detail.completedLevels : this.vm.detail.completedLevels}/${
+          this.vm.play.visible ? this.vm.play.snapshot?.detail.totalLevels : this.vm.detail.totalLevels}`)
+          .fontFamily('monospace').fontSize(27)
           .fontWeight(FontWeight.Medium).lineHeight('27fp').fontColor($r('app.color.strong'))
         Text('已完成').fontSize(11).lineHeight('17fp').fontColor($r('app.color.subtle'))
         }.id('detail-progress').alignItems(HorizontalAlign.End)
       }
-    }.width('100%').constraintSize({ minHeight: 68.6 }).alignItems(VerticalAlign.Center)
+    }.width('100%').constraintSize({ minHeight: this.detailTitleHeight() }).padding({ bottom: 10 })
+      .alignItems(VerticalAlign.Center)
   }
 
   @Builder
@@ -798,12 +833,19 @@ struct Index {
         }
         Button({ type: ButtonType.Normal }) {
           Row({ space: 16 }) {
-            Text('开始本场冒险').fontSize(16).fontWeight(600).letterSpacing(0.96)
+            Text(this.vm.play.starting ? '正在进入…' : this.vm.play.retryEntry ? '重试入场' : '开始本场冒险')
+              .fontSize(16).fontWeight(600).letterSpacing(0.96)
             this.icon($r('app.media.icon_arrow_right'), 20, $r('app.color.on_accent'))
           }.width('100%').justifyContent(FlexAlign.Center)
-        }.id('start-assignment').enabled(false).height(52).width('100%').borderRadius(10)
-          .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent')).opacity(0.45)
-          .accessibilityText('开始本场冒险，此切片仅查看场次，暂不支持开始')
+        }.id('start-assignment').enabled(!this.vm.play.starting && !this.vm.detailBusy &&
+          assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'ready')
+          .height(52).width('100%').borderRadius(10)
+          .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
+          .opacity(assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'ready' ? 1 : 0.45)
+          .accessibilityText(this.vm.play.starting ? '正在进入本场冒险' : '开始本场冒险')
+          .onClick(() => this.vm.play.enter(this.selectedId))
+        ErrorNotice({ message: this.vm.play.error, retryable: this.vm.play.retryEntry && !this.vm.play.starting,
+          retry: () => this.vm.play.enter(this.selectedId), returnHome: () => { this.vm.play.leave(); this.paths.clear(); } })
         if (assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'expired') {
           Button({ type: ButtonType.Normal }) {
             Row({ space: 12 }) {
@@ -819,8 +861,6 @@ struct Index {
         }
         Text('解谜进度会自动保存，随时可以回来继续。').fontSize(11).lineHeight('19.8fp')
           .fontColor($r('app.color.muted')).width('100%').margin({ top: 11 })
-        Text('此切片仅查看场次，暂不支持开始冒险。').fontSize(10).lineHeight('18fp')
-          .fontColor($r('app.color.subtle')).width('100%').margin({ top: 4 })
       }.width('100%').alignItems(HorizontalAlign.Start).padding(24)
     }.width('100%').backgroundColor($r('app.color.surface'))
       .border({ width: 1, color: $r('app.color.accent_border'), radius: 18 }).clip(true)
@@ -836,6 +876,12 @@ struct Index {
   destination(name: string) {
     if (name === 'assignment') {
       NavDestination() {
+        if (this.vm.play.visible) {
+          GameplayPage({ play: this.vm.play, autoNextDelay: this.motion.duration(1500),
+            displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
+            reducedMotion: this.motion.reduced,
+            leave: () => this.leaveGameplay() })
+        } else {
         Scroll() {
           Column({ space: 16 }) {
             if (this.vm.gate === 'home') {
@@ -857,11 +903,14 @@ struct Index {
                   this.icon($r('app.media.icon_arrow_left'), 18, $r('app.color.accent_text'))
                   Text('回到首页').fontSize(13).fontColor($r('app.color.accent_text'))
                 }
-              }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => this.paths.pop())
+              }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => {
+                this.vm.play.leave(); this.paths.pop();
+              })
             }
           }.width('100%').constraintSize({ maxWidth: 720 }).alignItems(HorizontalAlign.Start)
             .padding({ left: 12, right: 12, top: 16, bottom: 24 })
         }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
+        }
       }.title({ builder: this.detailTitle, height: this.detailTitleHeight() + 24 + this.safeTop() }, StarwardMaterial.titleOptions())
         .hideTitleBar(false).hideBackButton(true).backgroundColor($r('app.color.canvas'))
     }
@@ -889,10 +938,11 @@ struct Index {
   private detailTitleHeight(): number {
     // Track the actual window font environment, including runtime changes.
     if (!Number.isFinite(this.fontScale) || this.fontScale <= 0) {
-      return 68.6;
+      return 78.6;
     }
     const context = this.getUIContext();
-    return Math.max(68.6, context.px2vp(context.fp2px(57.6)) + 11);
+    // The rank's real bottom padding is part of both the content and native title budget.
+    return Math.max(68.6, context.px2vp(context.fp2px(57.6)) + 11) + 10;
   }
 
   @Builder
@@ -967,13 +1017,14 @@ struct Index {
           .fontSize(11).fontColor($r('app.color.subtle'))
         Button('退出登录', { type: ButtonType.Normal }).id('logout').width('100%').height(44)
           .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent).onClick(() => this.logout())
-      }.width('100%').alignItems(HorizontalAlign.Start).padding(24)
+      }.width('100%').alignItems(HorizontalAlign.Start).padding({ left: 24, right: 24, top: 12, bottom: 24 })
     }.id('account-menu-scroll').width('100%').height('100%').scrollBar(BarState.Off)
   }
 
   @Builder
   accountOverlay() {
     StarwardSidePanel({ visible: this.showAccount!!, title: '冒险者菜单', ownerActive: this.vm.gate === 'home',
+      headerTitle: '冒险者护照', displayFont: this.displayFont,
       ownerKey: this.vm.player.id, anchorWindowX: this.accountAnchorWindowX, reducedMotion: this.motion.reduced,
       failed: () => StarwardFeedback.toast(this.getUIContext(), '菜单暂时无法打开，请重试。'),
       anchor: () => { this.rootNavigation() }, content: () => { this.accountSheet() } })

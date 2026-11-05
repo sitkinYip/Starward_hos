@@ -31,7 +31,9 @@ export struct StarwardSidePanel {
   @Param ownerKey: string = '';
   @Param anchorWindowX: number = -1;
   @Param reducedMotion: boolean = true;
-  @Param title: ResourceStr = '冒险者菜单';
+  @Param title: string = '冒险者菜单';
+  @Param headerTitle: ResourceStr = '冒险者护照';
+  @Param displayFont: string = 'serif';
   @Event failed: () => void = () => {};
   @BuilderParam anchor: () => void;
   @BuilderParam content: () => void;
@@ -100,7 +102,7 @@ export struct StarwardSidePanel {
     const top: number = Math.max(0, this.avoidArea.statusBar.topRect.height, this.avoidArea.cutout.topRect.height);
     const bottom: number = Math.max(0, this.avoidArea.statusBar.bottomRect.height,
       this.avoidArea.cutout.bottomRect.height, this.avoidArea.navigationIndicator.bottomRect.height);
-    return Math.max(0, (this.windowSize.height - top - bottom) * 0.9);
+    return Math.max(0, (this.windowSize.height - top - bottom) * 0.95);
   }
 
   private isCurrent(request: SidePanelRequest): boolean {
@@ -263,19 +265,24 @@ export struct StarwardSidePanel {
   private panelBody() {
     Column() {
       if (this.contentAllowed && this.ownerActive && this.renderOwner === this.ownerKey) {
-        Row({ space: 12 }) {
-          Text(this.title).id('account-panel-title').fontSize(20).fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.strong')).layoutWeight(1)
-          Button({ type: ButtonType.Circle }) {
-            Image($r('app.media.icon_close')).width(22).height(22).fillColor($r('app.color.text'))
-          }.id('account-close').width(44).height(44).backgroundColor(Color.Transparent)
+        Row({ space: 8 }) {
+          Image($r('app.media.icon_star_four')).id('account-panel-mark').width(20).height(20)
+            .fillColor($r('app.color.accent_text')).accessibilityLevel('no')
+          Text(this.headerTitle).id('account-panel-title').fontFamily(this.displayFont).fontSize(12)
+            .lineHeight('18fp').letterSpacing(2.16).fontColor($r('app.color.accent_text')).layoutWeight(1)
+          Button({ type: ButtonType.Normal }) {
+            Image($r('app.media.icon_close')).width(24).height(24).fillColor($r('app.color.muted'))
+          }.id('account-close').width(44).height(44).padding(0).borderRadius(10)
+            .backgroundColor($r('app.color.surface_hover'))
             .accessibilityText('关闭冒险者菜单').onClick(() => this.dismiss())
-        }.width('100%').height(64).padding({ left: 24, right: 12 })
+        }.id('account-panel-header').width('100%').height(44).padding({ left: 24, right: 12 })
         Column() {
           this.content()
         }.width('100%').layoutWeight(1)
       }
-    }.id('account-side-panel').width('100%').height('100%').alignItems(HorizontalAlign.Start)
+    }.id('account-side-panel').width('100%').height('100%').padding({ top: 12 })
+      .alignItems(HorizontalAlign.Start)
+      .accessibilityText(this.title)
   }
 
   build() {

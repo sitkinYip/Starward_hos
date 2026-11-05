@@ -1,0 +1,84 @@
+{
+  "status": "incomplete",
+  "scope": "Four local replay render references only; no real authentication, business or native acceptance",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "viewport": {
+    "width": 376,
+    "height": 742,
+    "deviceScaleFactor": 1,
+    "nativeSafeAreaApplied": false
+  },
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "fixtureSha256": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516",
+  "nativeFontSourceSameBytes": true,
+  "installedNativeFontIndependentlyVerified": false,
+  "browserBackendRequestsContinued": 0,
+  "externalPageRequestsContinued": 0,
+  "syntheticAuthentication": true,
+  "auxiliaryRepliesAreSynthetic": true,
+  "assetsReplayedExceptFont": false,
+  "sources": [
+    {
+      "path": "src/app/App.tsx",
+      "sha256": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16"
+    },
+    {
+      "path": "src/api/game.schema.ts",
+      "sha256": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835"
+    },
+    {
+      "path": "src/config/ui-copy.ts",
+      "sha256": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b"
+    },
+    {
+      "path": "src/features/game/GameSidebar.tsx",
+      "sha256": "8d0e957fb74ae9ad98516b8e7a661abe21dbc05c79b56962a33f892b2c389d5f"
+    },
+    {
+      "path": "src/features/game/components/GameSidebarIdentity.tsx",
+      "sha256": "f3c30e4b11ae5be372b84c0be1b1101304a042b07f91544e3503f25cdea38132"
+    },
+    {
+      "path": "src/features/game/components/GameHeaderView.tsx",
+      "sha256": "aabc88df9d00b6cd7dba3b378e6027510e20defb17bb55d5d7654d2496634fa2"
+    },
+    {
+      "path": "src/features/game/components/AssignmentBrief.tsx",
+      "sha256": "503c80924a8c29785eb81ef0b13bd780c1c64a51681a1dd3d2076174dfd5d4bf"
+    },
+    {
+      "path": "src/components/ui/Sheet.tsx",
+      "sha256": "bed3694fb86d78ab18d1f9572c16dc9c1fef37f8105da54fcfbba47550d99413"
+    },
+    {
+      "path": "src/styles/features/game-sidebar.css",
+      "sha256": "bc27d6132c43bc3bfda7c2a3e35b4a505500395d1453cee51b90d4790601cc25"
+    },
+    {
+      "path": "src/styles/features/quest.css",
+      "sha256": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd"
+    },
+    {
+      "path": "src/styles/effects/quest-lighting.css",
+      "sha256": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9"
+    }
+  ],
+  "states": [],
+  "counts": {
+    "states": 0,
+    "schemaChecksExecuted": 0,
+    "schemaChecksPassed": 0,
+    "servedSourceChecksExecuted": 0,
+    "servedSourceChecksPassed": 0,
+    "apiRequestsReplayedOrBlocked": 0,
+    "unexpectedApis": 0,
+    "assetsAndExternalRequestsBlocked": 0,
+    "webSocketsBlocked": 1,
+    "consoleErrorsPrivate": 0,
+    "pageErrors": 0
+  },
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/ui-reference/web-ui-sample-20261104/browser-private.json",
+    "sha256": "2b79a710466f9b6eec96b10067b1f3b43409bb37f1d38e7ba4eef220faeb7f31"
+  }
+}

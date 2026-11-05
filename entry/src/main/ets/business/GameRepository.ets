@@ -1,4 +1,5 @@
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, Player } from './models';
+import { GameplayAnswerResult, GameplaySnapshot } from './GameplayModels';
 
 export interface GameRepository {
   readonly mode: string;
@@ -9,5 +10,8 @@ export interface GameRepository {
   avatar(forceRefresh?: boolean): Promise<AvatarImage | null>;
   assignments(): Promise<AssignmentSummary[]>;
   assignment(id: string): Promise<AssignmentDetail>;
+  startAssignment(id: string, requestId: string): Promise<GameplaySnapshot>;
+  gameplay(id: string): Promise<GameplaySnapshot>;
+  answerAssignment(id: string, sessionLevelId: string, rawAnswer: string, requestId: string): Promise<GameplayAnswerResult>;
   logout(): void;
 }

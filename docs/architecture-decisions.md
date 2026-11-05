@@ -232,6 +232,29 @@
 
 用户要求的固定口令仅保存在忽略的本机600权限登录文件；不进入代码、样例或公开报告。停止预览保留DB/CA/登录信息，启动核验原进程、容器、监听及官方USB映射归属；用户改密后不静默重置。证书续期和恢复步骤见[隔离预览说明](isolated-preview-environment.md)。最终可为用户保留预览服务，但必须完成旧一次性环境的凭据、DB、CA及映射清理，不能误用同一套清理命令销毁预览。 固定预览已完成真实seed、正式首次改密及显式状态修复，后续直接登录实测已通过，账号已可供审查。首次因Docker stdin缺少`-i`失败，经业务写入0核验后显式恢复prepared；第二次seed和改密成功后，PB0.40.1拒绝删除唯一superuser，保留initializing而未重放。随后 `profile/preview-initialization-reconcile.json` 实际passed，SHA `75ba302cacd5bf9fa5fca9764b92542bd8afdb961efdf12d57db9228724df5c3`：官方CLI对同一bootstrap身份换成不保留的随机密码，password hash/tokenKey均已变化，27个game表逐值与SHA一致、玩家口令/CA不变、seedReplayed=false，核验后才标complete并补回原IDs。最终runner `61059c59de2ec4fc964ee01566557dca7e31fc1535d19ae0559529f6897b0460` 的唯一记录退役及镜像immutableID/逻辑tag/arm64校验已静态复核。`profile/preview-environment.json` 已取得host_ready_native_pending（SHA `87b37b96a5f15571577b21c6d4edcd33cd26acd9f3161a205233c6bf6d7b517c`）：正式玩家直接登录verified_direct_login，独立CA可信200、不可信及错误主机名均拒绝，不开放玩家故障/重置接口；该原报告保持Host范围。新预览HAP `c2fdc34356a6176953fac806157b7c82ac513345575f8368f95524cea8b7408b` 已经官方run构建签名安装，`profile/runtime-preview-final.json` 六项实际passed（SHA `77f6f84e2894cc376594a62afc02dc43af54559bc739fd2584eb0c08612d9527`），包括真机API可信CA接受及不可信/错误主机名TLS_ERROR、系统区透明和深浅内容色。独立 `profile/runtime-preview-freshness.json` passed（SHA `eff6a1351013ebb908bebabbb8062318a0acfa7b3c48fe702d3732143c6860a2`），以当前自有进程的7条原始记录核window/material/TLS/双主题与原报告相同，不保存设备/进程标识，不改原runtime。新预览包的 `profile/preview-native-smoke.json` 已实际passed/13项（SHA `c63aed805a9c218a0589366a623fe91a8d0bfd5b9acb2da16315978307054751`）：固定普通账号从空登录直接进首页，真实四类场次、权威资料/只读账号、菜单Back、显式退出空输入及第二次直接登录均已核；四项收尾全true，第二次会话有意留在已认证首页供用户审查。独立 `profile/preview-native-root-review.json` 为reviewed_static（SHA `467dcc5b64f2a1b70b14900dfc96638e75742330adece9dcb7d29ef068d36cff`），Root逐SHA亲看3张原图，已停止手机自动化。此13项只认证/读取/导航/退出，不重跑资料、头像或密码写链，也没有服务端写台账计数结论。固定账号直接预览现已可交付，服务收口时仍运行且Host直接登录再次验证；需电脑保持唤醒、Docker运行、手机USB连接。独立 `profile/preview-package-source-binding.json` 为offline_binding_verified（SHA `19cf9511b823b3e4d19e1327dadef825ed068eda74ab7443cd3da3cade8bede8`）：35份源、8个导航SVG和包内ABC与6a逐字节相同；48个ZIP成员集合相同，45个内容字节相同，实际仅独立CA、完整1226条symbolMap记录重排及integration JSON空白/fontScale `1.0`→`1` 序列化变化，JSON值/顺序相同且timeout均15000。新signed HAP独立600归档，旧包/报告未改；不解析或归因ZIP之外的签名块。它只作离线来源绑定，不继承6a主轮39项为新包通过。停止/重启持久保留及用户改密后的行为也未因此完成实测。 临时superuser优先删除确切自有记录；PB0.40.1禁止删除唯一记录时，核验sole记录与当次认证完全一致，再在归属核验后的容器内使用官方superuser update轮换为不保留的随机密码，不新增管理员或绕过核心删除限制。`profile/public-artifact-scan-pre-ui-resume.json`本轮实际passed，973个公开候选文件、0发现、0读取错误，SHA `85f9d649242febf9c5b01a3bacd24b684a29e292ec4eb9c4803b07a5ed977744`；本次未提供known-device，不扩大为已覆盖特定设备标识的扫描，也不代替最终环境清理。
 
+## ADR-020：玩法快照与账号绑定的写操作
+
+2026-11-04，已采纳，按小切片实施验证。保留原只读详情投影，新增平台无关GameplaySnapshot及完整关卡/题目解码，Repository承接同一认证会话的start与snapshot请求。玩法状态与草稿由专属V2 ViewModel持有，页面不拼URL或判题；登录门禁、账号代次、Navigation返回仍由根页面协作管理。
+
+入场和答题各自保存一次逻辑意图：requestId、原始请求体、发起玩家和账号代次。并发点击单飞；暂时失败的显式重试沿用同一意图，不能因答案trim或编辑而悄悄改变重试体。未确认的写结果先回源或重试原命令；账号变化和退出使旧回调失效。进程重启重新登录并GET权威快照，不从本地答案自动重放。资料改密重试策略不改。
+
+后端完整快照决定题目解锁、进度、惩罚和完成，答题结果中的player替换经验事实，不本地累加xpDelta。非autoNext答对后保留已完成题并显式下一题；已完成回访与already_completed不产生新的完成反馈。线索/媒体演出与写入结果分开，未迁移能力不使用假实现。逐点验证见[玩法切片](slice-03-gameplay-validation.md)。
+
+隔离包可通过既有`probeTls`开关启用写响应边界日志，仅记录固定操作名、HTTP状态和会话代次是否有效；默认关闭，不记录URL、玩家/关卡ID、请求体、答案或凭据。接收位置在平台transport返回完整响应之后、账号代次检查之前，用于区分上游已提交与客户端实际收包；日志不改变拒绝旧会话的顺序，也不作为业务状态来源。
+
+## ADR-021：题图下载、解码与查看独立于判题和头像认证
+
+2026-11-04，已采纳，分显示与查看小点实施，尚未据此宣称图片功能通过。实际题图CDN需要正式Web来源Referer，且存在HTTP MIME与原始JPEG不符的资源；不能直接假设`Image(url)`或严格头像MIME规则适用。
+
+- `platform/QuestionImageLoader`使用官方NetworkKit/ImageKit，固定公开来源`https://sitkin.top/`，不附玩家Authorization/Cookie，不沿用头像file token或隔离后端CA；外部HTTPS采用系统信任，下载不持久化。相对图片地址按Web站点解析，禁止凭据、危险scheme和字面本地地址URL；不把后端API origin当媒体origin。普通主机名交给系统DNS/TLS，SDK没有解析地址pin接口，不增加无法保证实际连接目标的二次DNS探测，也不声称抗DNS重绑定。
+- 下载字节、原始尺寸、解码尺寸分别有界；以实际图片magic与ImageSource确认格式，容忍已知HTTP MIME误标。自然尺寸来自原图，解码可降采样；布局不把源像素除density，也不用缩略分辨率替代自然大小。
+- 每个挂载图片有独立请求代次。取消关闭自己的HttpRequest；解码不能强停时，迟到结果释放。ImageSource操作完成后释放，已交付PixelMap由UI单一持有并在替换/离开时清理；不建立跨账号磁盘/全局图片缓存。
+- 页面/账号失效时立即清图片与查看数据；同题只读Refresh保持图片所有者，不重挂输入或以图片回调驱动判题。图片403是局部媒体错误，不触发玩家登出或答题重试。
+- `ui/`内V2组件封装官方Image和加载/失败重试反馈，保留Web图片顺序、自然比例、手机340高度上限、图集min150/gap10及选择图130高Cover。查看后续以官方bindContentCover/Pinch/Pan组合原有索引、缩放、滑动与关闭；不自制触摸识别器或声称有完整系统图库组件。
+- 状态栏/手势栏保持可见；查看器如用固定深色背景，必须由现有窗口策略统一确保图标对比度并恢复，不能默认容器会替业务处理。视频、BGM和线索演出不接入本决策的图片成功状态。
+
+每点实际加载、错误重试、取消/账号边界与原图对照分别验证。真实题目和明确标注的失败/富文本合成夹具分开记录，不把本地图片字节重放或源码检查写成Native真实加载通过。
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

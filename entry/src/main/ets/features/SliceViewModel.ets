@@ -2,6 +2,9 @@ import { GameRepository } from '../business/GameRepository';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player,
   validateDisplayName, validatePasswordChange } from '../business/models';
 import { MockGameRepository } from '../data/MockGameRepository';
+import { GameplaySnapshot } from '../business/GameplayModels';
+import { GameplayViewModel } from './GameplayViewModel';
+import { createRequestIdentity } from '../platform/RequestIdentity';
 
 @ObservedV2
 export class SliceViewModel {
@@ -32,6 +35,7 @@ export class SliceViewModel {
   @Trace securitySuccessRevision: number = 0;
   @Trace now: number = Date.now();
   readonly mode: string;
+  readonly play: GameplayViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
   private detailRequest: number = 0;
@@ -44,6 +48,27 @@ export class SliceViewModel {
   constructor(repository: GameRepository = new MockGameRepository()) {
     this.repository = repository;
     this.mode = repository.mode;
+    this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
+      if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
+        this.detail = snapshot.detail;
+        this.items = this.items.map((item: AssignmentSummary) =>
+          item.id === snapshot.detail.id ? snapshot.detail : item);
+        const serverTime: number = Date.parse(snapshot.detail.serverTime);
+        if (Number.isFinite(serverTime)) {
+          this.serverOffset = serverTime - Date.now();
+        }
+        this.tick();
+      }
+    }, (message: string) => {
+      this.logout();
+      this.error = message;
+    }, createRequestIdentity, (player: Player) => {
+      if (this.gate === 'home' && player.id === this.player.id) {
+        // A full answer settlement supersedes an older in-flight player read.
+        this.profileRevision++;
+        this.acceptPlayer(player);
+      }
+    });
   }
 
   private message(error: Object): string {
@@ -83,6 +108,7 @@ export class SliceViewModel {
       this.profileName = player.displayName;
     }
     this.gate = player.mustChangePassword ? 'password' : 'home';
+    this.play.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
       this.avatarImage = null;
@@ -273,6 +299,7 @@ export class SliceViewModel {
         return;
       }
       generation = ++this.generation;
+      this.play.reset();
       this.detailRequest++;
       this.listBusy = false;
       this.detailBusy = false;
@@ -468,9 +495,11 @@ export class SliceViewModel {
 
   tick(): void {
     this.now = Date.now() + this.serverOffset;
+    this.play.tick();
   }
 
   logout(): void {
+    this.play.reset();
     this.generation++;
     this.detailRequest++;
     this.profileRevision++;

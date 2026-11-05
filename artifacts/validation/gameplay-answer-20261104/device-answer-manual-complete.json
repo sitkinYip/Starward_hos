@@ -1,0 +1,44 @@
+{
+  "status": "incomplete",
+  "stage": "manual-authoritative-reentry",
+  "answerKind": "manual-complete",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+  "bindingSha256": {
+    "hap": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+    "runtime": "b0ce303ebb085ce108c010d99445c7b42872e0dac5eadedf861a90eae6923e24",
+    "caseReference": "f0436d0402be98207bb0f29c62a8b0f1e2b5233b2531562d90be4e490511d63b",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b79fddd9df14aa6480a353ba50ea0044da4fda46a02e673632c8a53bed0e5c75",
+    "gameplayViewModel": "84ac518775477a3ba6865de9bb2bc33bee4dec563ed128148e2e863ea7812ee7",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "followupDriver": "6773e2cec316c2529f4955d2db9707e24529bde73eb2a16292c622ca6668f08f"
+  },
+  "checksPassed": 2,
+  "checks": [
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "GET reentry opens the server current choice without submitting another answer"
+  ],
+  "observations": {},
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write.",
+  "failure": "Expected test control is not reachable: gameplay-level-0"
+}

@@ -1,0 +1,176 @@
+{
+  "status": "incomplete",
+  "stage": "sample-light",
+  "scope": "Native first UI sample only; no Web fidelity or unchanged business-flow regression claim",
+  "hapSha256": "c28fd0e8fe9d843385af73f1d8243be3e40eb2a17a28eef54ed66ab500aa9b01",
+  "bindingSha256": {
+    "hap": "c28fd0e8fe9d843385af73f1d8243be3e40eb2a17a28eef54ed66ab500aa9b01",
+    "runtime": "3a106bbb161bdecce684ea0c8347b6b00c0cd9dbcaebbddc630eddffa9aea2c2",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "76e2b0435d537470a6dd3e2922f32cd55cf7d9f661c872d75b10e3700f03882f",
+    "hostReadiness": "2c40fe50d9a0df1976c9b790281edce56606f7cacbfd4cc0c6ef9b0141f522dc",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e",
+    "sampleDriver": "fe60dce8e183aace7c0c850c72f79be7836cc049eb04f3c90863c6a623c993e6",
+    "previewRun": "a3bddd7afd2fd9f4b50d9ee241e085cbf3dd7f22c013fbcb69129a6b38706b81",
+    "previewLogin": "c782b085794c1796d7d1c0ab61902dd16edaadc36c212a38ce8f227461ae8e4e",
+    "sidePanel": "89ea95d541e701f2c2802ad375aefd3815b8f9be4532564fce3e3913821318f5",
+    "passport": "6e1860490c55181378eb3ed280937a6d4ce7f600239550d45bf74724115f8e38",
+    "index": "3817fac83c8eb646edc0817d0a7f107340c90c4f0ac23171ec3dc94f691974b3",
+    "titleMaterial": "3050233754bb76cfb8ce8f33e43e20cad7524db05d04d2bb2ba4f51ad4e84fb0",
+    "lightColors": "a213084e4b3951cb9563e551b241534a5d1ccb4c1b7f75ddb15e2b8a4e0c6cc9",
+    "darkColors": "5f7e254e33670fdea57e4210345fbd0c8893a8410b121e3735375657c94c17db",
+    "referenceFixture": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516"
+  },
+  "checksPassed": 10,
+  "checks": [
+    "Strict Host reads confirm the ordinary fixed-preview identity and its exact assignment list",
+    "The existing waiting scene is still assigned and keeps every unentered question hidden",
+    "Fresh strict Host DTOs exactly match the private Web reference except serverTime",
+    "The sample starts at an empty real isolated native login",
+    "The fixed-preview sample reaches authenticated home without first-password setup",
+    "The actual native viewport is376vp at normal font scale",
+    "One leading-star passport heading and trailing close replace the duplicate visible menu title",
+    "The measured small header and complete native close target are44vp inside the actual panel",
+    "Normal-font logout is fully visible before any panel scroll and retains its44vp target",
+    "The measured close action or official Back dismisses only its own native account panel"
+  ],
+  "pickedAssignedState": "waiting",
+  "privateFixture": {
+    "file": "artifacts/private/ui-reference/ui-sample-real-preview-dto-20261104.json",
+    "sha256": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516",
+    "normalizedDtoSha256": "abb861c85cfca82572b85e3fa440366d561a70d328fa5d19c01df08c833fb3ec",
+    "comparisonIgnoresOnlyServerTime": true
+  },
+  "states": [
+    {
+      "state": "sidebar-home",
+      "theme": "light",
+      "geometry": {
+        "boundsPx": {
+          "panel": [
+            168,
+            182,
+            1316,
+            2650
+          ],
+          "header": [
+            168,
+            182,
+            1316,
+            336
+          ],
+          "label": [
+            350,
+            228,
+            1092,
+            291
+          ],
+          "mark": [
+            252,
+            224,
+            322,
+            294
+          ],
+          "close": [
+            1120,
+            182,
+            1274,
+            336
+          ],
+          "logout": [
+            252,
+            2430,
+            1232,
+            2584
+          ]
+        },
+        "bodyAvailablePx": [
+          168,
+          336,
+          1316,
+          2650
+        ],
+        "headerHeightVp": 44.0,
+        "closeWidthVp": 44.0,
+        "closeHeightVp": 44.0,
+        "logoutInitiallyFullyVisible": true
+      },
+      "rawEvidenceSha256": "e7234d2d905298f1798992d3c617fadb3c12b0bde01d3f925cf1783d899785a4"
+    },
+    {
+      "state": "session-header",
+      "theme": "light",
+      "geometry": {
+        "rankBoundsPx": [
+          238,
+          413,
+          651,
+          460
+        ],
+        "actualTitleBarObserved": true,
+        "measurementMeaning": "Rank text bottom to the measured native title-bar lower boundary; divider pixels require Root original review",
+        "titleBarBoundsPx": [
+          0,
+          137,
+          1316,
+          494
+        ],
+        "rankToTitleBarBottomVp": 9.714285714285714
+      },
+      "rawEvidenceSha256": "3e1d1141411aede01a1179d687d91fc76cdf509d0594587b500c75a2998f9680"
+    }
+  ],
+  "themeActions": [
+    {
+      "requested": "light",
+      "selectedFlagsObservable": false,
+      "selectedFlags": {},
+      "actualPixels": "pending_root_original_review"
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/native-sample-01/capture-20261104T101927029742Z/sidebar-home-light.png",
+      "sha256": "453c56597d8e4b6f3e04110f87838fca23a3e9992f7c55ddb56022865dd3818d",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/native-sample-01/capture-20261104T101927029742Z/session-header-light.png",
+      "sha256": "4b429d5f3ad00c20135a2baf9cb5c8c6a8d0159081a5caca21a1ddc6e89dd64b",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "sidebar-home-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-01/capture-20261104T101927029742Z/raw-sidebar-home-light-ad6d6f90fb904fe5a892da2cdf364333.json",
+      "remoteRemoved": true,
+      "sha256": "e7234d2d905298f1798992d3c617fadb3c12b0bde01d3f925cf1783d899785a4"
+    },
+    {
+      "label": "session-header-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/native-sample-01/capture-20261104T101927029742Z/raw-session-header-light-6a1a0a6b38be4db5b49c2653b002eb8d.json",
+      "remoteRemoved": true,
+      "sha256": "3e1d1141411aede01a1179d687d91fc76cdf509d0594587b500c75a2998f9680"
+    }
+  ],
+  "cleanup": {
+    "authenticatedHomeRetained": false,
+    "panelClosed": false,
+    "remoteRawFilesRemoved": true
+  },
+  "visualReview": "pending_root_same_data_original_review",
+  "businessWriteLedgerObserved": false,
+  "writeScope": "Host authentication/me/list/exact assigned GET; native authentication, local theme selection and menu/navigation only. No start/answer/profile/password/reset/fault/service command.",
+  "appCredentialsPersisted": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "failure": "The current-player Rank text has at least10vp measured clearance to its native title boundary",
+  "cleanupMeaning": "Only completed observations are recorded; Root must inspect the actual foreground before further action"
+}

@@ -1,5 +1,6 @@
 import { HttpsGameRepository } from '../data/HttpsGameRepository';
 import { GameRepository } from '../business/GameRepository';
+import { GameplayAnswerResult, GameplaySnapshot } from '../business/GameplayModels';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player } from '../business/models';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { NativeHttpTransport } from '../platform/HttpTransport';
@@ -35,6 +36,19 @@ class UnavailableRepository implements GameRepository {
     throw new GameFailure('CONFIG_ERROR', this.reason);
   }
 
+  async startAssignment(id: string, requestId: string): Promise<GameplaySnapshot> {
+    throw new GameFailure('CONFIG_ERROR', this.reason);
+  }
+
+  async gameplay(id: string): Promise<GameplaySnapshot> {
+    throw new GameFailure('CONFIG_ERROR', this.reason);
+  }
+
+  async answerAssignment(id: string, sessionLevelId: string, rawAnswer: string,
+    requestId: string): Promise<GameplayAnswerResult> {
+    throw new GameFailure('CONFIG_ERROR', this.reason);
+  }
+
   async updateProfile(displayName: string, avatar: AvatarUpload | null = null): Promise<Player> {
     throw new GameFailure('CONFIG_ERROR', this.reason);
   }
@@ -56,6 +70,8 @@ export function createSliceViewModel(): SliceViewModel {
     return unavailable;
   }
   const model: SliceViewModel = AppEnvironment.endpoint.length > 0 ?
-    new SliceViewModel(new HttpsGameRepository(AppEnvironment.endpoint, new NativeHttpTransport(AppEnvironment.caData, AppEnvironment.timeoutMs))) : new SliceViewModel();
+    new SliceViewModel(new HttpsGameRepository(AppEnvironment.endpoint,
+      new NativeHttpTransport(AppEnvironment.caData, AppEnvironment.timeoutMs),
+      AppEnvironment.probeTls)) : new SliceViewModel();
   return model;
 }

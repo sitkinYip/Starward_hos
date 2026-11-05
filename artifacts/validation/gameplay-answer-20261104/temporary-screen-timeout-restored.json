@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "scope": "Restore only the temporary screen-off timeout override used for this phone verification",
+  "command": "hdc shell power-shell timeout -r",
+  "officialCommandExitCode": 0,
+  "temporaryOverrideRestored": true,
+  "restoreRequired": false,
+  "phoneUiAutomationStopped": true,
+  "leftOnFixedPreviewAuthenticatedHome": true
+}

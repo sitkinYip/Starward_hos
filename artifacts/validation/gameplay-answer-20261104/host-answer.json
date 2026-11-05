@@ -1,0 +1,382 @@
+{
+  "status": "passed",
+  "scope": "Host strict HTTPS answer protocol only; no native UI acceptance credit",
+  "backendCommit": "c28f488d6b682ae213713ccdd2d992595a941ae3",
+  "sourceSha256": {
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "helper": "33fe06c30d89e8801da27716d05b153c59dd019a3b2daa67e3c66c7afba7ac76",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "entryBindingHelper": "2478c5740cc8b3141080964f49990c45be2a008db92cc21ccc3b168421a1a78d"
+  },
+  "checksPassed": 60,
+  "checks": [
+    "manual: fresh ordinary own-session case has zero answer/progress/XP facts",
+    "manual: authoritative answer rejection NOT_STARTED",
+    "Answer before entry creates no business facts",
+    "manual: authoritative answer rejection PREVIOUS_LEVEL_REQUIRED",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: real owned answer result incorrect",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: real owned answer result correct",
+    "Manual text completion normalizes input and reveals the next question with server XP",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: real owned answer result correct",
+    "manual: rejected or replayed command creates no extra answer or XP facts",
+    "manual: authoritative answer rejection IDEMPOTENCY_CONFLICT",
+    "manual: rejected or replayed command creates no extra answer or XP facts",
+    "manual: real owned answer result already_completed",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: real owned answer result incorrect",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: real owned answer result correct",
+    "The final answer itself returns completed assignment and authoritative player XP",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "No separate finish endpoint is needed or exposed",
+    "manual: rejected or replayed command creates no extra answer or XP facts",
+    "Fresh player read independently agrees with final authoritative XP",
+    "auto-next: fresh ordinary own-session case has zero answer/progress/XP facts",
+    "Another dedicated host player cannot answer the other own-session assignment",
+    "auto-next: authoritative receipt/submission/completion/penalty/XP counts match",
+    "auto-next: real owned answer result correct",
+    "Auto-next is an authoritative per-step flag with currentIndex advanced; no native animation credit",
+    "auto-next: authoritative receipt/submission/completion/penalty/XP counts match",
+    "choice-cooldown: fresh ordinary own-session case has zero answer/progress/XP facts",
+    "choice-cooldown: real owned answer result incorrect",
+    "Incorrect choice receives real server cooldown and wrong count",
+    "choice-cooldown: authoritative receipt/submission/completion/penalty/XP counts match",
+    "choice-cooldown: real owned answer result incorrect",
+    "choice-cooldown: rejected or replayed command creates no extra answer or XP facts",
+    "choice-cooldown: authoritative answer rejection COOLDOWN",
+    "choice-cooldown: rejected or replayed command creates no extra answer or XP facts",
+    "choice-cooldown: real owned answer result correct",
+    "choice-cooldown: authoritative receipt/submission/completion/penalty/XP counts match",
+    "choice-lock: fresh ordinary own-session case has zero answer/progress/XP facts",
+    "choice-lock: real owned answer result incorrect",
+    "choice-lock: authoritative receipt/submission/completion/penalty/XP counts match",
+    "choice-lock: authoritative answer rejection LOCKED",
+    "choice-lock: rejected or replayed command creates no extra answer or XP facts",
+    "single-normal: fresh ordinary own-session case has zero answer/progress/XP facts",
+    "single-normal: real owned answer result correct",
+    "A single normal scene completes directly from its answer without a narrative or finish write",
+    "single-normal: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: fresh ordinary own-session case has zero answer/progress/XP facts",
+    "manual: real owned answer result correct",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "manual: real owned answer result correct",
+    "A cancelled scene exact replay preserves historical result and returns current cancelled facts",
+    "manual: authoritative receipt/submission/completion/penalty/XP counts match",
+    "Official cancellation and historical replay preserve settled answer and XP facts",
+    "manual: authoritative answer rejection ASSIGNMENT_CANCELLED",
+    "manual: rejected or replayed command creates no extra answer or XP facts",
+    "Exact retry and semantic-but-body-different conflict are distinguished by all original request hashes",
+    "Every expected answer request uses raw Authorization and backend-confirmed actors on success"
+  ],
+  "observed": {
+    "manual": {
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "progressRows": 2,
+      "completedProgressRows": 2,
+      "wrongCountTotal": 1,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 4,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "startReceiptCount": 1,
+      "startRequestIdSha256": [
+        "f9c272ef2339ec2c0e79ff612517267209f54d12b2ff7eee0242a33ac5dd55e8"
+      ],
+      "answerReceiptCount": 5,
+      "answerRequestIdSha256": [
+        "7b56423d9d4528ec4d7684a1e709abe42af83e1275307540d85c625ed4503b92",
+        "1cd9bbd21182cb08450dd2d2e6aec592ce0bd115fbfa7af7bb7da5a74150ca2d",
+        "ae7603b4362d1e8a185a1351a82d67f1a591867d9a19102318a2657b3e60c74f",
+        "0decf6b4819c048ece77c5540c6c7cd146147eb1e16e7be1c62bc6f39d7752eb",
+        "d54fb5a420fb9f5a49b714e71e34f29a6bdd3f73b69fcba508134f25d51f7678"
+      ],
+      "submissionResults": {
+        "correct": 2,
+        "incorrect": 2,
+        "manual": 0
+      },
+      "playerTotalXp": 100,
+      "steps": [
+        {
+          "position": 1,
+          "sessionLevelIdSha256": "0439c73ca1707cab5b8efed553f8881190c97e41c7abf3724d76b296156a4bd5",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": true,
+          "wrongCount": 0,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 2,
+          "xpLedgerCount": 1,
+          "xpDeltaSum": 50
+        },
+        {
+          "position": 2,
+          "sessionLevelIdSha256": "afcf38762acd3aadf41e49d4e755e6cd702683ea2410c88e3a9dd3c8c574f7e6",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": true,
+          "wrongCount": 1,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 2,
+          "xpLedgerCount": 1,
+          "xpDeltaSum": 50
+        }
+      ]
+    },
+    "autoNext": {
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "progressRows": 2,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "startReceiptCount": 1,
+      "startRequestIdSha256": [
+        "83db4f5253ecd92beacb5f974f346e3b89c05399a338b17bf8af5d3d410e0196"
+      ],
+      "answerReceiptCount": 1,
+      "answerRequestIdSha256": [
+        "8bac7fe0e29016cdd7c9d2a7db42f1dc69c1e2415bfcb6345be6f153d1f07f0a"
+      ],
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 0,
+        "manual": 0
+      },
+      "playerTotalXp": 50,
+      "steps": [
+        {
+          "position": 1,
+          "sessionLevelIdSha256": "14c0542fa1737a4987e1595136675b70d8517d2b2f215a11963e30d66fd1d8d1",
+          "autoNext": true,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": true,
+          "wrongCount": 0,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 1,
+          "xpLedgerCount": 1,
+          "xpDeltaSum": 50
+        },
+        {
+          "position": 2,
+          "sessionLevelIdSha256": "69989f8a4064fae4e68f7ad81d4db92947d732780f7ac56a5e0af81b85beb387",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": false,
+          "wrongCount": 0,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 0,
+          "xpLedgerCount": 0,
+          "xpDeltaSum": 0
+        }
+      ]
+    },
+    "cooldown": {
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "progressRows": 1,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 1,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 2,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "startReceiptCount": 1,
+      "startRequestIdSha256": [
+        "24a7a05fe1451f401e8d50ac64f78baf8353366610343818c48b87c6192d558e"
+      ],
+      "answerReceiptCount": 2,
+      "answerRequestIdSha256": [
+        "d4650c57b9188b651f58e10302857506e8524ee66f5ebd78131774083ccf9455",
+        "778931dd504b38502437e17a3d2a5cc6c1212eac2edd26dba98e50ab717e36df"
+      ],
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 1,
+        "manual": 0
+      },
+      "playerTotalXp": 50,
+      "steps": [
+        {
+          "position": 1,
+          "sessionLevelIdSha256": "12e6cbf10e862e005eb3ed9802c2430940e2c291c6d323b15871ed73c9f16702",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": true,
+          "wrongCount": 1,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 2,
+          "xpLedgerCount": 1,
+          "xpDeltaSum": 50
+        }
+      ]
+    },
+    "lock": {
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "progressRows": 1,
+      "completedProgressRows": 0,
+      "wrongCountTotal": 1,
+      "lockedProgressRows": 1,
+      "answerSubmissionCount": 1,
+      "xpLedgerCount": 0,
+      "xpDeltaSum": 0,
+      "startReceiptCount": 1,
+      "startRequestIdSha256": [
+        "a834e09cc1d8ee6d73c9edc0078abd8b03f5558a31d993b1399e77ef89cb0b1e"
+      ],
+      "answerReceiptCount": 1,
+      "answerRequestIdSha256": [
+        "3cc7939983d17eeecba213f178ceec132163a90f7b50d8022074f90fb7c18dd3"
+      ],
+      "submissionResults": {
+        "correct": 0,
+        "incorrect": 1,
+        "manual": 0
+      },
+      "playerTotalXp": 0,
+      "steps": [
+        {
+          "position": 1,
+          "sessionLevelIdSha256": "107297eae85050917b6b1c1c708a51ece924b6ab151247138f52a679b27b259a",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": false,
+          "wrongCount": 1,
+          "locked": true,
+          "cooldownActive": false,
+          "submissionCount": 1,
+          "xpLedgerCount": 0,
+          "xpDeltaSum": 0
+        }
+      ]
+    },
+    "single": {
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "progressRows": 1,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "startReceiptCount": 1,
+      "startRequestIdSha256": [
+        "f3be8aec914a9f8f0c24fd5fac339f914b391dc6d98138992927c2cc3edef5ae"
+      ],
+      "answerReceiptCount": 1,
+      "answerRequestIdSha256": [
+        "4ec76b989c0f333dc6b10050d029c57b1de5d1bbd908d463039e219e393b4ff1"
+      ],
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 0,
+        "manual": 0
+      },
+      "playerTotalXp": 50,
+      "steps": [
+        {
+          "position": 1,
+          "sessionLevelIdSha256": "28cc8daa80a5f2d20a337763c5c87ffa1cc20a4c5bedca989dc01f65d9c434f2",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": true,
+          "wrongCount": 0,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 1,
+          "xpLedgerCount": 1,
+          "xpDeltaSum": 50
+        }
+      ]
+    },
+    "cancel": {
+      "assignmentStatus": "cancelled",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "progressRows": 2,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "startReceiptCount": 1,
+      "startRequestIdSha256": [
+        "38666de6801d8093f7c66c822b6694a1a34a673c383d4730ba906c05fd22530b"
+      ],
+      "answerReceiptCount": 1,
+      "answerRequestIdSha256": [
+        "63e73e0a27f5f3b7ef12ab522f4ede1a6577755790d2d00baf70ca26d090d36a"
+      ],
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 0,
+        "manual": 0
+      },
+      "playerTotalXp": 50,
+      "steps": [
+        {
+          "position": 1,
+          "sessionLevelIdSha256": "a1d27e23d4a2e8a80cd269125ef0fdaf8bd8ff12db75aa2faf5709962eb2d0c4",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": true,
+          "wrongCount": 0,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 1,
+          "xpLedgerCount": 1,
+          "xpDeltaSum": 50
+        },
+        {
+          "position": 2,
+          "sessionLevelIdSha256": "26a231b50aa62fa4954ca68b3401bde1d41d36e7b54ccc852aaaeb865adbdd26",
+          "autoNext": false,
+          "xp": 50,
+          "progressPresent": true,
+          "completedAtPresent": false,
+          "wrongCount": 0,
+          "locked": false,
+          "cooldownActive": false,
+          "submissionCount": 0,
+          "xpLedgerCount": 0,
+          "xpDeltaSum": 0
+        }
+      ]
+    },
+    "answerIdentityChecks": 20,
+    "newDedicatedCases": 6
+  },
+  "fixedPreviewTouched": false,
+  "phoneOperations": 0,
+  "productionRequests": 0,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Fresh own players/sessions/first-password setup; start/answer and one official own-case cancel. No reset, shared fixture mutation, profile or reward write."
+}

@@ -1,0 +1,29 @@
+{
+  "suite": "GameplayAnswerViewModel",
+  "status": "passed",
+  "exitCode": 0,
+  "expectedTests": 12,
+  "actual": {
+    "tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "sourceSha256": {
+    "entry/src/main/ets/features/GameplayViewModel.ets": "1e7b38dcc98620b2e8657a04960554081141fc25fb98922bcaab6301a739fe00",
+    "entry/src/test/GameplayAnswerViewModel.test.ets": "4b54dea01075807e46f82cea8e0a8eac4d5480636023d18fefbd672daee0d6d5",
+    "entry/src/test/GameplayRefreshViewModel.test.ets": "21b7e206202ed9f4b3480ad2602f9e0f83570e4764e0f6c948c2c031b383a05c",
+    "entry/src/test/List.test.ets": "ad2b9c98d761acb9ca9b0ad6f44ebfd7cdb28d9c104a21526660b10802882a7b"
+  },
+  "startedAt": "2026-11-04T12:46:03.765754+00:00",
+  "finishedAt": "2026-11-04T12:46:09.700674+00:00",
+  "command": [
+    "bash",
+    "scripts/hm.sh",
+    "test",
+    "GameplayAnswerViewModel"
+  ],
+  "deviceRun": false,
+  "httpRun": false
+}

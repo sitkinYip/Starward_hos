@@ -1,0 +1,821 @@
+{
+  "status": "captured_render_reference",
+  "scope": "Four local replay render references only; no real authentication, business or native acceptance",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "viewport": {
+    "width": 376,
+    "height": 742,
+    "deviceScaleFactor": 1,
+    "nativeSafeAreaApplied": false
+  },
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "fixtureSha256": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516",
+  "nativeFontSourceSameBytes": true,
+  "installedNativeFontIndependentlyVerified": false,
+  "browserBackendRequestsContinued": 0,
+  "externalPageRequestsContinued": 0,
+  "syntheticAuthentication": true,
+  "auxiliaryRepliesAreSynthetic": true,
+  "assetsReplayedExceptFont": false,
+  "sources": [
+    {
+      "path": "src/app/App.tsx",
+      "sha256": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16"
+    },
+    {
+      "path": "src/api/game.schema.ts",
+      "sha256": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835"
+    },
+    {
+      "path": "src/config/ui-copy.ts",
+      "sha256": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b"
+    },
+    {
+      "path": "src/features/game/GameSidebar.tsx",
+      "sha256": "8d0e957fb74ae9ad98516b8e7a661abe21dbc05c79b56962a33f892b2c389d5f"
+    },
+    {
+      "path": "src/features/game/components/GameSidebarIdentity.tsx",
+      "sha256": "f3c30e4b11ae5be372b84c0be1b1101304a042b07f91544e3503f25cdea38132"
+    },
+    {
+      "path": "src/features/game/components/GameHeaderView.tsx",
+      "sha256": "aabc88df9d00b6cd7dba3b378e6027510e20defb17bb55d5d7654d2496634fa2"
+    },
+    {
+      "path": "src/features/game/components/AssignmentBrief.tsx",
+      "sha256": "503c80924a8c29785eb81ef0b13bd780c1c64a51681a1dd3d2076174dfd5d4bf"
+    },
+    {
+      "path": "src/components/ui/Sheet.tsx",
+      "sha256": "bed3694fb86d78ab18d1f9572c16dc9c1fef37f8105da54fcfbba47550d99413"
+    },
+    {
+      "path": "src/styles/features/game-sidebar.css",
+      "sha256": "bc27d6132c43bc3bfda7c2a3e35b4a505500395d1453cee51b90d4790601cc25"
+    },
+    {
+      "path": "src/styles/features/quest.css",
+      "sha256": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd"
+    },
+    {
+      "path": "src/styles/effects/quest-lighting.css",
+      "sha256": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9"
+    }
+  ],
+  "states": [
+    {
+      "state": "sidebar-home",
+      "theme": "light",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/sidebar-home-light.png",
+        "sha256": "bf2d8a64dba486e76f26f760e787303ba684831a03e4f828908c745c6a9d4ead"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/sidebar-home-light.json",
+        "sha256": "1fe88db2521cbcf1d18d2272d720eecd9c548149ec4ca90a31c3fd03fcca817e"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/sidebar-home-light.html",
+        "sha256": "1fdfda35c4461668485908e7ae68b89fc626ca19d8d9f93ea846126f27f43933"
+      },
+      "geometry": {
+        "sidebar": {
+          "present": true,
+          "x": 24,
+          "y": 0,
+          "width": 352,
+          "height": 742,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 742,
+          "scrollHeight": 742,
+          "paddingTop": 18.55,
+          "paddingBottom": 18.55,
+          "borderBottomWidth": 0
+        },
+        "header": {
+          "present": true,
+          "x": 43.546875,
+          "y": 18.546875,
+          "width": 313.90625,
+          "height": 197.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 197,
+          "scrollHeight": 197,
+          "paddingTop": 0,
+          "paddingBottom": 16,
+          "borderBottomWidth": 1
+        },
+        "stamp": {
+          "present": true,
+          "x": 43.546875,
+          "y": 18.546875,
+          "width": 313.90625,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 44,
+          "scrollHeight": 44,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "close": {
+          "present": true,
+          "x": 313.453125,
+          "y": 18.546875,
+          "width": 44,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 1
+        },
+        "identity": {
+          "present": true,
+          "x": 43.546875,
+          "y": 18.546875,
+          "width": 313.90625,
+          "height": 180.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 181,
+          "scrollHeight": 181,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identityPlayer": {
+          "present": true,
+          "x": 43.546875,
+          "y": 62.546875,
+          "width": 313.90625,
+          "height": 96,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 96,
+          "scrollHeight": 96,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identityName": {
+          "present": true,
+          "x": 155.546875,
+          "y": 84.046875,
+          "width": 120,
+          "height": 33.59375,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 34,
+          "scrollHeight": 34,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identityRank": {
+          "present": true,
+          "x": 155.546875,
+          "y": 121.640625,
+          "width": 120,
+          "height": 15.390625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 15,
+          "scrollHeight": 15,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "navigation": {
+          "present": true,
+          "x": 43.546875,
+          "y": 232.046875,
+          "width": 313.90625,
+          "height": 342.90625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 343,
+          "scrollHeight": 343,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "footer": {
+          "present": true,
+          "x": 43.546875,
+          "y": 590.953125,
+          "width": 313.90625,
+          "height": 132.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 133,
+          "scrollHeight": 133,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "settings": {
+          "present": true,
+          "x": 43.546875,
+          "y": 590.953125,
+          "width": 313.90625,
+          "height": 80.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 81,
+          "scrollHeight": 81,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "logout": {
+          "present": true,
+          "x": 43.546875,
+          "y": 679.453125,
+          "width": 313.90625,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 1
+        },
+        "::before": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        },
+        "::after": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        }
+      },
+      "viewport": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "clientWidth": 376,
+        "scrollWidth": 376,
+        "scrollY": 0,
+        "mainScrollTop": 0
+      }
+    },
+    {
+      "state": "session-header",
+      "theme": "light",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/session-header-light.png",
+        "sha256": "c81ee7a9d5d3178f95ac395e2b9547b866e2e60aefaf2c5c79de297c5503cab2"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/session-header-light.json",
+        "sha256": "6286b9e376df4cd8ece434a52e81026b2e53dd61a5d3464025d5ef8752eead2d"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/session-header-light.html",
+        "sha256": "c5601836dc37aab82a7434bc36398b0fb70b174558ef68704aa7bf4f426a93b4"
+      },
+      "geometry": {
+        "header": {
+          "present": true,
+          "x": 12,
+          "y": 24,
+          "width": 352,
+          "height": 69.578125,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 70,
+          "scrollHeight": 70,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identity": {
+          "present": true,
+          "x": 12,
+          "y": 24,
+          "width": 174.171875,
+          "height": 69.578125,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 70,
+          "scrollHeight": 70,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "eyebrow": {
+          "present": true,
+          "x": 68,
+          "y": 24,
+          "width": 118.171875,
+          "height": 14.390625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 14,
+          "scrollHeight": 14,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "name": {
+          "present": true,
+          "x": 68,
+          "y": 44.390625,
+          "width": 118.171875,
+          "height": 31,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 31,
+          "scrollHeight": 31,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "rank": {
+          "present": true,
+          "x": 68,
+          "y": 80.390625,
+          "width": 118.171875,
+          "height": 13.1875,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 13,
+          "scrollHeight": 13,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "progress": {
+          "present": true,
+          "x": 315.203125,
+          "y": 33.78125,
+          "width": 48.796875,
+          "height": 50,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 50,
+          "scrollHeight": 50,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "menuTrigger": {
+          "present": true,
+          "x": 12,
+          "y": 36.78125,
+          "width": 44,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 44,
+          "scrollHeight": 46,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "brief": {
+          "present": true,
+          "x": 12,
+          "y": 109.578125,
+          "width": 352,
+          "height": 455.765625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 454,
+          "scrollHeight": 454,
+          "paddingTop": 24,
+          "paddingBottom": 24,
+          "borderBottomWidth": 1
+        },
+        "rankToHeaderBottom": {
+          "distance": 0
+        },
+        "headerToBrief": {
+          "distance": 16
+        },
+        "::before": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        },
+        "::after": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        }
+      },
+      "viewport": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "clientWidth": 376,
+        "scrollWidth": 376,
+        "scrollY": 0,
+        "mainScrollTop": 0
+      }
+    },
+    {
+      "state": "sidebar-home",
+      "theme": "dark",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/sidebar-home-dark.png",
+        "sha256": "3aa38faa370fb4ad580963380afbff0fe1202e85e12afa39ebdf1c88fffd0018"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/sidebar-home-dark.json",
+        "sha256": "2424b1bdc47a2908f005d6d4f48dd2cf21e98f6bdf492f93a54c8d5aef47c65f"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/sidebar-home-dark.html",
+        "sha256": "8871a306c45f5c41506c0cf97bb186f72d01cb6d5f5a07d1c65731e48a415518"
+      },
+      "geometry": {
+        "sidebar": {
+          "present": true,
+          "x": 24,
+          "y": 0,
+          "width": 352,
+          "height": 742,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 742,
+          "scrollHeight": 742,
+          "paddingTop": 18.55,
+          "paddingBottom": 18.55,
+          "borderBottomWidth": 0
+        },
+        "header": {
+          "present": true,
+          "x": 43.546875,
+          "y": 18.546875,
+          "width": 313.90625,
+          "height": 197.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 197,
+          "scrollHeight": 197,
+          "paddingTop": 0,
+          "paddingBottom": 16,
+          "borderBottomWidth": 1
+        },
+        "stamp": {
+          "present": true,
+          "x": 43.546875,
+          "y": 18.546875,
+          "width": 313.90625,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 44,
+          "scrollHeight": 44,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "close": {
+          "present": true,
+          "x": 313.453125,
+          "y": 18.546875,
+          "width": 44,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 1
+        },
+        "identity": {
+          "present": true,
+          "x": 43.546875,
+          "y": 18.546875,
+          "width": 313.90625,
+          "height": 180.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 181,
+          "scrollHeight": 181,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identityPlayer": {
+          "present": true,
+          "x": 43.546875,
+          "y": 62.546875,
+          "width": 313.90625,
+          "height": 96,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 96,
+          "scrollHeight": 96,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identityName": {
+          "present": true,
+          "x": 155.546875,
+          "y": 84.046875,
+          "width": 120,
+          "height": 33.59375,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 34,
+          "scrollHeight": 34,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identityRank": {
+          "present": true,
+          "x": 155.546875,
+          "y": 121.640625,
+          "width": 120,
+          "height": 15.390625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 15,
+          "scrollHeight": 15,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "navigation": {
+          "present": true,
+          "x": 43.546875,
+          "y": 232.046875,
+          "width": 313.90625,
+          "height": 342.90625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 343,
+          "scrollHeight": 343,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "footer": {
+          "present": true,
+          "x": 43.546875,
+          "y": 590.953125,
+          "width": 313.90625,
+          "height": 132.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 133,
+          "scrollHeight": 133,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "settings": {
+          "present": true,
+          "x": 43.546875,
+          "y": 590.953125,
+          "width": 313.90625,
+          "height": 80.5,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 81,
+          "scrollHeight": 81,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "logout": {
+          "present": true,
+          "x": 43.546875,
+          "y": 679.453125,
+          "width": 313.90625,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 42,
+          "scrollHeight": 42,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 1
+        },
+        "::before": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        },
+        "::after": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        }
+      },
+      "viewport": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "clientWidth": 376,
+        "scrollWidth": 376,
+        "scrollY": 0,
+        "mainScrollTop": 0
+      }
+    },
+    {
+      "state": "session-header",
+      "theme": "dark",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/session-header-dark.png",
+        "sha256": "f3eaa2f899df0447d6c3c441b9ec544242c4d737d08a84d9ff97779abd41932a"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/session-header-dark.json",
+        "sha256": "907a43e003c198a8495b8413c173d03f1dcfda2965fdeee81142dbfb581a424b"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/session-header-dark.html",
+        "sha256": "340ec8e8314ea02724a5bc2e353cc394c5b7ac4308a5bae9549b79ac7fb8ed4a"
+      },
+      "geometry": {
+        "header": {
+          "present": true,
+          "x": 12,
+          "y": 24,
+          "width": 352,
+          "height": 69.578125,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 70,
+          "scrollHeight": 70,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "identity": {
+          "present": true,
+          "x": 12,
+          "y": 24,
+          "width": 174.171875,
+          "height": 69.578125,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 70,
+          "scrollHeight": 70,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "eyebrow": {
+          "present": true,
+          "x": 68,
+          "y": 24,
+          "width": 118.171875,
+          "height": 14.390625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 14,
+          "scrollHeight": 14,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "name": {
+          "present": true,
+          "x": 68,
+          "y": 44.390625,
+          "width": 118.171875,
+          "height": 31,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 31,
+          "scrollHeight": 31,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "rank": {
+          "present": true,
+          "x": 68,
+          "y": 80.390625,
+          "width": 118.171875,
+          "height": 13.1875,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 13,
+          "scrollHeight": 13,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "progress": {
+          "present": true,
+          "x": 315.203125,
+          "y": 33.78125,
+          "width": 48.796875,
+          "height": 50,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 50,
+          "scrollHeight": 50,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "menuTrigger": {
+          "present": true,
+          "x": 12,
+          "y": 36.78125,
+          "width": 44,
+          "height": 44,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 44,
+          "scrollHeight": 46,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "borderBottomWidth": 0
+        },
+        "brief": {
+          "present": true,
+          "x": 12,
+          "y": 109.578125,
+          "width": 352,
+          "height": 455.765625,
+          "visible": true,
+          "fullyInsideViewport": true,
+          "clientHeight": 454,
+          "scrollHeight": 454,
+          "paddingTop": 24,
+          "paddingBottom": 24,
+          "borderBottomWidth": 1
+        },
+        "rankToHeaderBottom": {
+          "distance": 0
+        },
+        "headerToBrief": {
+          "distance": 16
+        },
+        "::before": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        },
+        "::after": {
+          "present": false,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "borderBottomWidth": 0
+        }
+      },
+      "viewport": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "clientWidth": 376,
+        "scrollWidth": 376,
+        "scrollY": 0,
+        "mainScrollTop": 0
+      }
+    }
+  ],
+  "counts": {
+    "states": 4,
+    "schemaChecksExecuted": 6,
+    "schemaChecksPassed": 6,
+    "servedSourceChecksExecuted": 22,
+    "servedSourceChecksPassed": 22,
+    "apiRequestsReplayedOrBlocked": 20,
+    "unexpectedApis": 0,
+    "assetsAndExternalRequestsBlocked": 10,
+    "webSocketsBlocked": 4,
+    "consoleErrorsPrivate": 10,
+    "pageErrors": 0
+  },
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/ui-reference/web-ui-sample-02-20261104/browser-private.json",
+    "sha256": "4880b87b03efea4f73a4813826a60decedacc2aba3d0ea82b48246ac43d71974"
+  }
+}

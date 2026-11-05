@@ -1,0 +1,17 @@
+{
+  "status": "expected_test_failure",
+  "mutation": "Remove refresh-error epoch/revision/id guard",
+  "scope": "GameplayRefreshViewModel#leftOrReplacedAccountsIgnoreLateRefreshSuccessErrorAndFinally",
+  "exitCode": 1,
+  "actual": {
+    "tests": 1,
+    "passed": 0,
+    "failed": 1,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "originalSourceSha256": "1e7b38dcc98620b2e8657a04960554081141fc25fb98922bcaab6301a739fe00",
+  "mutatedSourceSha256": "f0eca11a43ad6de978b9d57056583c1af477860e7a66e7a3a7cc0a6362867afb",
+  "deviceRun": false,
+  "httpRun": false
+}

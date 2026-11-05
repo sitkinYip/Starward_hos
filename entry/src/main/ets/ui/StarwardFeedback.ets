@@ -27,6 +27,24 @@ export class StarwardFeedback {
     }
   }
 
+  /** Informational completion only; dismissal never performs a business write. */
+  static notice(context: UIContext, title: string, message: string): void {
+    if (!StarwardFeedback.isAvailable(context)) {
+      return;
+    }
+    try {
+      context.showAlertDialog({
+        title: title,
+        message: message,
+        primaryButton: { value: '知晓了', action: () => {} },
+        systemMaterial: StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THICK)
+      });
+    } catch {
+      // The page still displays the server-confirmed completion.
+      return;
+    }
+  }
+
   static confirm(context: UIContext, title: string, message: string, accepted: () => void): void {
     if (!StarwardFeedback.isAvailable(context)) {
       return;

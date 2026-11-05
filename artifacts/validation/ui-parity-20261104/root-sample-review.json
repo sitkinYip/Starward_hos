@@ -1,0 +1,90 @@
+{
+  "status": "root_and_user_confirmed_sample",
+  "createdAt": "2026-11-04T10:36:01.361924+00:00",
+  "scope": "First sidebar header/height and native Rank bottom-clearance sample only",
+  "hapSha256": "334ab6dd75ce07b4b4eeac78390811e506dc4549362a0a9bd47c066c5eff649b",
+  "build": "official hm.sh run: build/install/start succeeded; signed HAP observed",
+  "nativeReportSha256": "fe6484340cf798193d430451db8c78be3fb01675b54bddb6bce9e70fbdc403e6",
+  "webReportSha256": "020657344b66e92ff2adc92ea7e7e50c3472bbfec37728e2b44a8abedeef64a9",
+  "runtimeSha256": "0b9088273badc279ead75588c668e679f2acd204a9d422eeb5581da69f544450",
+  "sourceSha256": {
+    "entry/src/main/ets/pages/Index.ets": "fcf524d1ffdd2047390ea1b2e670a083efc56365ea66637ca5889d49946b493d",
+    "entry/src/main/ets/ui/StarwardSidePanel.ets": "d1626be28e48600e8bae67d4c784f5b2725f0ca72595855f554a23b9cc3783ef",
+    "entry/src/main/ets/ui/StarwardPassport.ets": "6e1860490c55181378eb3ed280937a6d4ce7f600239550d45bf74724115f8e38",
+    "entry/src/main/resources/base/element/color.json": "a213084e4b3951cb9563e551b241534a5d1ccb4c1b7f75ddb15e2b8a4e0c6cc9",
+    "entry/src/main/resources/dark/element/color.json": "5f7e254e33670fdea57e4210345fbd0c8893a8410b121e3735375657c94c17db",
+    "scripts/device-ui-parity-sample.py": "6b0d8a7cd3fb7c58f5b124df47927cecab4652fd8daf8878c62d3b7ba1236866",
+    "scripts/capture-web-ui-sample.py": "4f293d01bf98e7e4a355493d8572a1a1e1b24566571a872bab7baf0860b0da8f",
+    "scripts/serve-ui-parity-sample.py": "e92b67a432859030d0f63575e4e6192025d8e94e67e2e526b7f7b33b14a1ccd7"
+  },
+  "nativeChecksPassed": 29,
+  "originalsReviewed": {
+    "web": 4,
+    "native": 6,
+    "sameDataPairs": 4,
+    "additionalSideOriginAndBackOriginals": 2
+  },
+  "fixtureSha256": "fd765af0202d06323ab25c90bf723c8d57ddd04be890e9b6fb3b9f17dd982516",
+  "actualDisplay": {
+    "widthVp": 376,
+    "density": 3.5,
+    "fontScale": 1,
+    "webContentHeightCssPx": 742
+  },
+  "installedDisplayFontMatchesReferenceBytes": true,
+  "rankActualClearancePx": 34,
+  "rankActualClearanceVp": 9.714285714285714,
+  "headerCloseSizeVp": 44,
+  "headerInsetVp": 12,
+  "logoutInitiallyVisibleBothThemesAndOrigins": true,
+  "rootReview": {
+    "onePassportHeading": true,
+    "closeNotFlushWithRoundCorner": true,
+    "nativeMaterialAndBrandPreserved": true,
+    "logoutVisible": true,
+    "rankSpacingReadable": true,
+    "bothThemesObserved": true
+  },
+  "deferred": [
+    "user fidelity-scale confirmation",
+    "gameplay page structure and typography",
+    "question images",
+    "confirmed scroll/header visibility",
+    "short window and large font recheck",
+    "foldables",
+    "media playback and performances"
+  ],
+  "lint": {
+    "filesChecked": 0,
+    "issues": 0,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 0
+  },
+  "unchangedBusinessTestsRerun": false,
+  "productionBusinessWrites": 0,
+  "sshContentRead": {
+    "status": "complete",
+    "contentTableCount": 12,
+    "rowCount": 376,
+    "questionCount": 28,
+    "taskConnectionClosed": true
+  },
+  "cleanup": {
+    "authenticatedHomeRetained": true,
+    "panelClosed": true,
+    "remoteRawFilesRemoved": true
+  },
+  "viewerUrl": "http://127.0.0.1:5181/",
+  "viewerOnlyServesOriginalComparisonDocument": true,
+  "priorIncompleteReportsNotInherited": [
+    "native-sample-01.json",
+    "web-ui-sample.json"
+  ],
+  "userConfirmation": {
+    "source": "user reply to the actual four-pair viewer and phone sample",
+    "answer": "符合，后续按此规范推进",
+    "receivedAt": "2026-11-04T10:51:33.703341+00:00",
+    "scope": "sidebar header/default height and Rank bottom clearance; not full gameplay UI"
+  }
+}

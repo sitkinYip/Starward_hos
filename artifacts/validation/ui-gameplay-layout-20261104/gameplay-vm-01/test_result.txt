@@ -1,0 +1,22 @@
+class=GameplayViewModel
+test=duplicateEntryWhileCurrentPageIsBusySendsOnlyOneCommand
+result=Success
+test=unknownEntryOutcomeRetriesTheSameIdentityUntilConfirmed
+result=Success
+test=definiteAdmissionRejectionAllowsANewExplicitCommand
+result=Success
+test=leavingAndReenteringKeepsTheCurrentRetryIdentityAfterAnOlderSuccess
+result=Success
+test=anOlderTerminalResponseDoesNotRetireTheReenteredPagesPendingCommand
+result=Success
+test=logoutOrOwnerReplacementRejectsLateEntryEvenWhenThePlayerIdIsReused
+result=Success
+test=reopeningAfterAnUnknownWriteUsesTheFreshReadWithoutStartingAgain
+result=Success
+test=wrongIdentityAndUnconfirmedSuccessKeepTheOriginalEntryCommand
+result=Success
+test=authenticationFailuresAreReportedToTheOwningSession
+result=Success
+test=aLateReadCannotReopenAPageThatTheUserHasLeft
+result=Success
+Tests run: 10, Failure: 0, Error: 0, Pass: 10, Ignore: 0

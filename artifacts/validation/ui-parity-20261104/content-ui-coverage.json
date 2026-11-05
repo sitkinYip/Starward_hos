@@ -1,0 +1,607 @@
+{
+  "formatVersion": 1,
+  "status": "offline_aggregate_complete",
+  "scope": "Content inventory and visual-case planning only; not UI restoration, gameplay, media availability or production write acceptance",
+  "sourceSnapshotSha256": "0941afd3094c3702f1725c040b7eb50c48c7c7ed2ce83490387a2a28d5b400e7",
+  "collectorSourceSha256": "49cc20a1bcf88530361f5a2fbbab6e37d7c7da1098c6946e798f86b70aa85275",
+  "sourceIssueCount": 0,
+  "aggregationIssueCounts": {},
+  "sourceTableCounts": {
+    "game_questions": 28,
+    "game_answer_keys": 28,
+    "game_question_settings": 25,
+    "game_question_clues": 15,
+    "game_sessions": 41,
+    "game_session_levels": 121,
+    "game_clues": 107,
+    "game_narratives": 5,
+    "game_level_definitions": 5,
+    "game_rewards": 1,
+    "game_reward_rules": 0,
+    "game_extra_definitions": 0
+  },
+  "methodology": {
+    "questionUnit": "unique question record/revision",
+    "caseUnit": "session + session_level + referenced question; includes every status/revision",
+    "longBodyThresholdVisibleCodePoints": 200,
+    "additionalLongBodyThresholds": [
+      500,
+      1000
+    ],
+    "longOptionThresholdCodePoints": 40,
+    "textMeasurement": "Exact frozen Web parseLegacyContent; visible text/highlight/link Unicode code points, excluding media URLs and token syntax",
+    "questionImages": "Web uniqueImages per block: imageUrl then imageUrls deduplicated; video block uses poster instead of gallery. Rich body media counted separately; hint media remain in collapsed hint until expanded.",
+    "effectiveTitle": "level.hideTitle ?? session.hideTitle; unset is shown, explicit false overrides true",
+    "effectiveBackgroundAndBgm": "Exact resolveLevelPresentation precedence; no merge-by-truthiness for hideTitle",
+    "webSourceSha256": {
+      "src/domain/content/parser.ts": "4908c745e0c8202a6944f851b1a8f230289926f0c0eeaf955e09eb44d67b9f94",
+      "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+      "src/features/media/QuestContent.tsx": "6afaa260366137195fde9b7cba6c08b8222cb1a4f9877082e678d4c48ba17198",
+      "src/features/media/ChoiceOptions.tsx": "c3ae135e8bf9e6f596efb62b64d037555cd34a34f4784ee1faca573e8b87de95"
+    },
+    "longTextScope": "Visible code points are measured separately for question body/hint, clue definitions and narrative body; a short question body does not imply short clues or narratives."
+  },
+  "questions": {
+    "count": 28,
+    "kindCounts": {
+      "text": 25,
+      "choice": 3,
+      "other": 0
+    },
+    "statusCounts": {
+      "draft": 0,
+      "published": 27,
+      "archived": 1,
+      "other": 0
+    },
+    "kindByStatus": {
+      "draft": {
+        "text": 0,
+        "choice": 0,
+        "other": 0
+      },
+      "published": {
+        "text": 24,
+        "choice": 3,
+        "other": 0
+      },
+      "archived": {
+        "text": 1,
+        "choice": 0,
+        "other": 0
+      }
+    },
+    "featureCounts": {
+      "body_text": 28,
+      "question_image": 28,
+      "question_video": 0,
+      "image_only_initial_body": 0,
+      "image_with_body_text": 28,
+      "structured_question_image": 28,
+      "inline_body_image": 0,
+      "gallery": 1,
+      "multiple_question_images": 2,
+      "hint": 10,
+      "hint_image": 0,
+      "hint_video": 0,
+      "multiple_content_blocks": 7,
+      "empty_content_array": 0,
+      "rich_highlight": 0,
+      "rich_link": 0,
+      "explicit_line_break": 1,
+      "long_body_200": 0,
+      "long_body_500": 0,
+      "long_body_1000": 0,
+      "long_hint_200": 0,
+      "choice_option_image": 1,
+      "choice_option_video": 0,
+      "choice_long_option_40": 0,
+      "choice_fallback_label": 0,
+      "custom_placeholder": 20,
+      "long_title_24": 0
+    },
+    "contentBlockCountHistogram": {
+      "1": 21,
+      "2": 7
+    },
+    "optionCountHistogram": {
+      "0": 25,
+      "4": 3
+    },
+    "bodyVisibleCharacterHistogram": {
+      "1-199": 28
+    },
+    "maxBodyVisibleCodePoints": 96,
+    "maxHintVisibleCodePoints": 16,
+    "maxOptionCodePoints": 19,
+    "questionsWithoutExplicitSettingsRecord": 3,
+    "titlePresentCount": 28,
+    "maxTitleCodePoints": 18
+  },
+  "sessions": {
+    "count": 41,
+    "statusCounts": {
+      "draft": 0,
+      "published": 3,
+      "archived": 38,
+      "other": 0
+    },
+    "levelCountHistogram": {
+      "1": 28,
+      "5": 1,
+      "6": 4,
+      "8": 8
+    },
+    "rawPresentationModeCounts": {
+      "backgroundMode": {
+        "custom": 8,
+        "inherit": 31,
+        "none": 2
+      },
+      "bgmMode": {
+        "custom": 19,
+        "silent": 22
+      },
+      "completionStyle": {
+        "finale": 1,
+        "normal": 40
+      }
+    },
+    "completionTargetKindCounts": {
+      "narrative": 1,
+      "unset": 40
+    },
+    "maxTitleCodePoints": 23,
+    "maxDescriptionCodePoints": 27
+  },
+  "sessionLevelCases": {
+    "count": 121,
+    "bySessionStatus": {
+      "archived": 101,
+      "published": 20
+    },
+    "questionKindCounts": {
+      "choice": 13,
+      "text": 108
+    },
+    "hideTitleSourceCounts": {
+      "level_true": 12,
+      "level_false": 40,
+      "unset": 56,
+      "session_true": 12,
+      "session_false": 1
+    },
+    "effectivePresentationCounts": {
+      "hiddenTitle": 24,
+      "withBgm": 99,
+      "withoutBackground": 58,
+      "shownTitle": 97,
+      "withoutBgm": 22,
+      "withBackground": 63
+    },
+    "hiddenTitleDistinctQuestions": 6,
+    "shownTitleDistinctQuestions": 21,
+    "questionsReferencedWithBothTitleModes": 0,
+    "titleCombinations": [
+      {
+        "sessionStatus": "archived",
+        "questionKind": "choice",
+        "sessionKind": "multi",
+        "titleMode": "shown",
+        "count": 9
+      },
+      {
+        "sessionStatus": "archived",
+        "questionKind": "choice",
+        "sessionKind": "single",
+        "titleMode": "shown",
+        "count": 3
+      },
+      {
+        "sessionStatus": "archived",
+        "questionKind": "text",
+        "sessionKind": "multi",
+        "titleMode": "hidden",
+        "count": 6
+      },
+      {
+        "sessionStatus": "archived",
+        "questionKind": "text",
+        "sessionKind": "multi",
+        "titleMode": "shown",
+        "count": 58
+      },
+      {
+        "sessionStatus": "archived",
+        "questionKind": "text",
+        "sessionKind": "single",
+        "titleMode": "hidden",
+        "count": 6
+      },
+      {
+        "sessionStatus": "archived",
+        "questionKind": "text",
+        "sessionKind": "single",
+        "titleMode": "shown",
+        "count": 19
+      },
+      {
+        "sessionStatus": "published",
+        "questionKind": "choice",
+        "sessionKind": "multi",
+        "titleMode": "shown",
+        "count": 1
+      },
+      {
+        "sessionStatus": "published",
+        "questionKind": "text",
+        "sessionKind": "multi",
+        "titleMode": "hidden",
+        "count": 12
+      },
+      {
+        "sessionStatus": "published",
+        "questionKind": "text",
+        "sessionKind": "multi",
+        "titleMode": "shown",
+        "count": 7
+      }
+    ],
+    "featureCounts": {
+      "body_text": 121,
+      "question_image": 121,
+      "question_video": 0,
+      "image_only_initial_body": 0,
+      "image_with_body_text": 121,
+      "structured_question_image": 121,
+      "inline_body_image": 0,
+      "gallery": 2,
+      "multiple_question_images": 3,
+      "hint": 46,
+      "hint_image": 0,
+      "hint_video": 0,
+      "multiple_content_blocks": 12,
+      "empty_content_array": 0,
+      "rich_highlight": 0,
+      "rich_link": 0,
+      "explicit_line_break": 1,
+      "long_body_200": 0,
+      "long_body_500": 0,
+      "long_body_1000": 0,
+      "long_hint_200": 0,
+      "choice_option_image": 2,
+      "choice_option_video": 0,
+      "choice_long_option_40": 0,
+      "choice_fallback_label": 0,
+      "custom_placeholder": 72,
+      "long_title_24": 0,
+      "hidden_title": 24,
+      "visible_title": 97,
+      "single_session": 28,
+      "multi_session": 93,
+      "empty_session": 0,
+      "effective_bgm": 99,
+      "effective_background": 63,
+      "auto_next": 84,
+      "cooldown_policy": 6,
+      "lock_policy": 6
+    },
+    "publishedSessionFeatureCounts": {
+      "body_text": 20,
+      "question_image": 20,
+      "question_video": 0,
+      "image_only_initial_body": 0,
+      "image_with_body_text": 20,
+      "structured_question_image": 20,
+      "inline_body_image": 0,
+      "gallery": 0,
+      "multiple_question_images": 0,
+      "hint": 14,
+      "hint_image": 0,
+      "hint_video": 0,
+      "multiple_content_blocks": 0,
+      "empty_content_array": 0,
+      "rich_highlight": 0,
+      "rich_link": 0,
+      "explicit_line_break": 0,
+      "long_body_200": 0,
+      "long_body_500": 0,
+      "long_body_1000": 0,
+      "long_hint_200": 0,
+      "choice_option_image": 0,
+      "choice_option_video": 0,
+      "choice_long_option_40": 0,
+      "choice_fallback_label": 0,
+      "custom_placeholder": 15,
+      "long_title_24": 0,
+      "hidden_title": 12,
+      "visible_title": 8,
+      "single_session": 0,
+      "multi_session": 20,
+      "empty_session": 0,
+      "effective_bgm": 20,
+      "effective_background": 8,
+      "auto_next": 17,
+      "cooldown_policy": 0,
+      "lock_policy": 0
+    },
+    "rawLevelModeCounts": {
+      "backgroundMode": {
+        "none": 46,
+        "inherit": 69,
+        "custom": 6
+      },
+      "bgmMode": {
+        "inherit": 121
+      }
+    },
+    "penaltyPolicyCounts": {
+      "levelsWithCooldown": 6,
+      "levelsWithLock": 6,
+      "levelsWithBoth": 6
+    },
+    "uniqueReferencedQuestionCount": 27,
+    "unreferencedQuestionCount": 1,
+    "unreferencedQuestionStatusCounts": {
+      "draft": 0,
+      "published": 0,
+      "archived": 1
+    }
+  },
+  "richContentMediaCountsByScope": {
+    "question_body": {
+      "images": 0,
+      "videos": 0
+    },
+    "question_hint": {
+      "images": 0,
+      "videos": 0
+    },
+    "session_clue": {
+      "images": 15,
+      "videos": 0
+    },
+    "question_clue": {
+      "images": 12,
+      "videos": 0
+    }
+  },
+  "clues": {
+    "questionDefinitions": {
+      "definitionCount": 15,
+      "kindCounts": {
+        "text": 9,
+        "image": 0,
+        "video": 6,
+        "link": 0,
+        "letter": 0,
+        "bless": 0,
+        "other": 0
+      },
+      "autoPlayTrue": 15,
+      "withText": 9,
+      "withImageArray": 0,
+      "withMediaOrLinkUrl": 6,
+      "withDescription": 0,
+      "withTips": 4,
+      "statusCounts": {
+        "active": 15,
+        "archived": 0,
+        "other": 0
+      },
+      "textLayout": {
+        "definitionCount": 15,
+        "withVisibleText": 9,
+        "maxVisibleCodePoints": 617,
+        "longTextCounts": {
+          "200": 9,
+          "500": 5,
+          "1000": 0
+        },
+        "visibleCharacterHistogram": {
+          "500-999": 5,
+          "0": 6,
+          "200-499": 4
+        },
+        "richSegmentCounts": {
+          "text": 71,
+          "highlight": 8,
+          "break": 64,
+          "link": 0,
+          "image": 13,
+          "video": 0
+        },
+        "withImageGallery": 0,
+        "maxImageArrayEntries": 0
+      }
+    },
+    "sessionDefinitions": {
+      "definitionCount": 107,
+      "kindCounts": {
+        "text": 26,
+        "image": 13,
+        "video": 43,
+        "link": 11,
+        "letter": 13,
+        "bless": 1,
+        "other": 0
+      },
+      "autoPlayTrue": 69,
+      "withText": 94,
+      "withImageArray": 61,
+      "withMediaOrLinkUrl": 64,
+      "withDescription": 3,
+      "withTips": 2,
+      "triggerCounts": {
+        "level_completed": 82,
+        "session_completed": 25
+      },
+      "levelBound": 88,
+      "combinationCompletionTextDefinitions": 9,
+      "textLayout": {
+        "definitionCount": 107,
+        "withVisibleText": 94,
+        "maxVisibleCodePoints": 618,
+        "longTextCounts": {
+          "200": 16,
+          "500": 6,
+          "1000": 0
+        },
+        "visibleCharacterHistogram": {
+          "1-199": 78,
+          "0": 13,
+          "200-499": 10,
+          "500-999": 6
+        },
+        "richSegmentCounts": {
+          "text": 296,
+          "highlight": 67,
+          "break": 229,
+          "link": 10,
+          "image": 39,
+          "video": 0
+        },
+        "withImageGallery": 11,
+        "maxImageArrayEntries": 4
+      },
+      "owningSessionStatusCounts": {
+        "draft": 0,
+        "published": 7,
+        "archived": 100
+      }
+    }
+  },
+  "narratives": {
+    "count": 5,
+    "kindCounts": {
+      "letter": 4,
+      "bless": 1,
+      "other": 0
+    },
+    "statusCounts": {
+      "draft": 1,
+      "published": 4,
+      "archived": 0,
+      "other": 0
+    },
+    "textLayout": {
+      "definitionCount": 5,
+      "withVisibleText": 5,
+      "maxVisibleCodePoints": 659,
+      "longTextCounts": {
+        "200": 4,
+        "500": 3,
+        "1000": 0
+      },
+      "visibleCharacterHistogram": {
+        "500-999": 3,
+        "200-499": 1,
+        "1-199": 1
+      },
+      "richSegmentCounts": {
+        "text": 76,
+        "highlight": 0,
+        "break": 18,
+        "link": 0,
+        "image": 0,
+        "video": 0
+      },
+      "withImageGallery": 0,
+      "maxImageArrayEntries": 0
+    },
+    "paragraphCountHistogram": {
+      "11": 1,
+      "12": 2,
+      "14": 1,
+      "9": 1
+    }
+  },
+  "necessaryVisualStates": [
+    {
+      "state": "页顶与滚入题目区、回到页顶",
+      "reason": "顶栏仅页顶展示；配对时必须固定滚动位置"
+    },
+    {
+      "state": "同内容宽度、正常字号、日/夜两主题",
+      "reason": "主题是客户端渲染状态，不能当数据库内容已覆盖"
+    },
+    {
+      "state": "未答/已选、输入焦点/键盘、pending、错误、处罚、只读完成",
+      "reason": "内容快照没有玩家运行状态，须另用隔离状态夹具做同状态对照"
+    },
+    {
+      "state": "无标题题：题号/图片/正文/答案线层级",
+      "matchingSessionLevelCases": 24,
+      "publishedSessionCases": 12
+    },
+    {
+      "state": "有标题题：标题换行与题号层级",
+      "matchingSessionLevelCases": 97,
+      "publishedSessionCases": 8
+    },
+    {
+      "state": "题图与正文组合",
+      "matchingSessionLevelCases": 121,
+      "publishedSessionCases": 20
+    },
+    {
+      "state": "多图/图集布局",
+      "matchingSessionLevelCases": 3,
+      "publishedSessionCases": 0
+    },
+    {
+      "state": "带图选择项及选中/未选中",
+      "matchingSessionLevelCases": 2,
+      "publishedSessionCases": 0
+    },
+    {
+      "state": "提示折叠/展开",
+      "matchingSessionLevelCases": 46,
+      "publishedSessionCases": 14
+    },
+    {
+      "state": "显式换行/段落",
+      "matchingSessionLevelCases": 1,
+      "publishedSessionCases": 0
+    },
+    {
+      "state": "自定义背景及内容可读性",
+      "matchingSessionLevelCases": 63,
+      "publishedSessionCases": 8
+    },
+    {
+      "state": "存在BGM的媒体生命周期边界",
+      "matchingSessionLevelCases": 99,
+      "publishedSessionCases": 20
+    },
+    {
+      "state": "题目通用/场次线索及组合完成线索",
+      "reason": "按实际kind分别验入口、展开及正文；不从主链通过推定媒体/叙事已迁移"
+    },
+    {
+      "state": "长场次线索：展开层正文、滚动及关闭动作",
+      "matchingDefinitions": 16
+    },
+    {
+      "state": "长题目通用线索：展开层正文与滚动",
+      "matchingDefinitions": 9
+    },
+    {
+      "state": "长叙事正文：分页/滚动及富内容；能力仍需单独迁移验收",
+      "matchingDefinitions": 4
+    }
+  ],
+  "mediaBytesReadOrDownloaded": false,
+  "actualPlayerProgressIncluded": false,
+  "privateCaseIndex": {
+    "file": "artifacts/private/ui-reference/production-content-20261104/ui-case-index.json",
+    "caseCount": 121,
+    "sha256": "1a060daa1998bb227988f194f42f1fb8a524d7de2c55cecc57d1a96b80d3168c"
+  },
+  "uiRestorationAcceptance": false,
+  "privateAdditionalLibraryIndex": {
+    "file": "artifacts/private/ui-reference/production-content-20261104/ui-library-extra-index.json",
+    "sha256": "ca6c0a3bf7904e6d12b131e428ce0d8d2f94a8e4969b828f93f896735c7938a5",
+    "definitionCount": 127
+  }
+}

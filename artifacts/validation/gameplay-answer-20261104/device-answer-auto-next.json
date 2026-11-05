@@ -1,0 +1,89 @@
+{
+  "status": "passed",
+  "stage": "main-complete",
+  "answerKind": "auto-next",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+  "bindingSha256": {
+    "hap": "8cd8d5ceb97018db8fcfc9a7f0bce2cdc7f905e1504986d29cc175f89f8e3ea3",
+    "runtime": "b0ce303ebb085ce108c010d99445c7b42872e0dac5eadedf861a90eae6923e24",
+    "caseReference": "1256f4bfe00a8aaec7507d7568d82cf133b92c84a6594f1e5cdff487552359a0",
+    "ca": "b3ac49e8ee143df363407d9fea4056ff54a698effb865e03497a530cdd1006f0",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3d50d3769b146297435e6df559e2eb0fd169a18d344c8e761f325e18cd87cbdf",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b79fddd9df14aa6480a353ba50ea0044da4fda46a02e673632c8a53bed0e5c75",
+    "gameplayViewModel": "84ac518775477a3ba6865de9bb2bc33bee4dec563ed128148e2e863ea7812ee7",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "followupDriver": "9a698a1a09a18bccdcd65bf0700a2a1dd1d63baec768f7d258087a627270257e"
+  },
+  "checksPassed": 6,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "One real text answer automatically advances the visible question without a manual next click or another write",
+    "Answer request ledger retains exact-case level and backend-confirmed account binding with raw Authorization",
+    "No new multi-question completion dialog appears for this state",
+    "Native answer logout clears login inputs and private gameplay"
+  ],
+  "observations": {
+    "autoNext": {
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "progressRows": 2,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 1,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 1,
+      "answerRequestIdSha256": [
+        "8f9adfe538000e0f6b569abeabb7bf10e30ec64751a6bf5c23c679f61c05539d"
+      ],
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 0,
+        "manual": 0
+      },
+      "automaticVisibleAdvance": true,
+      "manualNextClicks": 0,
+      "nativeAnswerRequests": 1,
+      "nextChoiceAnswered": false
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052041635003Z/auto-next-current-choice.png",
+      "sha256": "c4f14d255a1530e47c4b46f2199e0d6e82702bfadd76023442085cc00150f340",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261104T052041635003Z/raw-followup-ready-submit-49221475d1474842988563cd9cca6a99.json",
+      "remoteRemoved": true,
+      "sha256": "f67873afaa7355bc78436f25f3414efa58cbb41a588c91f8892d6d56d05e6ec9"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write."
+}
