@@ -1,0 +1,230 @@
+{
+  "status": "captured_native_choice_cooldown",
+  "stage": "choice-cooldown-complete",
+  "scope": "One scoped wrong choice, actual pending, persistent countdown and expiry on one disposable case1",
+  "hapSha256": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+  "sourceCaseIndex": 1,
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "bcf10ef95db38d130bcf890ae592689d45366c003e6b3a958a8dd75089dd0abe",
+    "runtime": "5f04cc6d64a875bf9c4ba121b5d145053d1856aa550ca73aca099b8cfd8705b6",
+    "hap": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "e7e4bc8763a3b72148ee2672db55373cfb5f619133d5eef9efdbbdcc31a96ed1",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "choiceUI": "ed7320dba5f7a7cccd717b87e156f94c47e42d6aa98b69b3531cf8e596844dba",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "viewModel": "e3b78f9629bd455dd5cf2ad077f831ab18aa31258ff5a698a52a2476704db5e4",
+    "lightColors": "3f0deceabe58d5dc31695dbf2cadf63072b4f2ed2e983a3e91dc70b32a0fe2cf",
+    "darkColors": "09176d714a461c85acedfb1ab986a19f88defeda7a64bdfbd6d71309c0325170",
+    "cooldownDriver": "24eeb216cefde94dee5ee6ed223f48b38bca4bff90533170785405021ec9859b",
+    "sourceFixture": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "choiceDriver": "38956ed52c65c1eb3c6b947c8383721adaf97f12d9fe27fd6644af63ecac79d0",
+    "feedbackComponent": "ab0f7f36786b49cc5164d2ae0d2fbef8e989aed771c950bc0070da60ca81bebc",
+    "priorResumeReport": "25cddf8945c90f735494c611acc401cfe1923605b3706148e8468ff4105a6a92",
+    "priorResumeLedger": "a634b50ef427b623532a019dd68fbfd05fe53a4d0d4d01c0381665d26177c021",
+    "priorResumeDriverArchive": "bd1e0b3b1ca97bd47255ed9b108a188f80b8e58c30cd91aac36c5497938d0a09"
+  },
+  "checksPassed": 4,
+  "checks": [
+    "Isolated choice entry has one authoritative start and zero answer or XP facts",
+    "Real pending disables the actual visible Radio and capsule submit before the held reply arrives",
+    "The independently authoritative cooldown persists between choice field and submit after the transient feedback window",
+    "Backend expiry restores actual choice and capsule interaction without a second write or XP"
+  ],
+  "states": [
+    {
+      "position": "choice-ready-light",
+      "themeRequested": "light",
+      "submitBoundsPx": [
+        108,
+        2395,
+        472,
+        2556
+      ],
+      "visibleRadioCount": 3,
+      "rawSha256": "f28bd610a5a0ba18141b8a7d05b35173580e26a8b1d905a557a16f4dbd6e525a",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-ready-light.png",
+        "sha256": "d3b3f1157af1f876eda8672c8e41273bfa40b058af8dc96fb019f700a33c7516",
+        "scope": "Private original on own dedicated choice case"
+      }
+    },
+    {
+      "position": "choice-pending-light",
+      "themeRequested": "light",
+      "submitBoundsPx": [
+        108,
+        2395,
+        472,
+        2556
+      ],
+      "visibleRadioCount": 3,
+      "rawSha256": "a79acdec6788bc2c65583a11c8c1eb35021ca2acd21013e02ba853a9aaf2aad4",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-pending-light.png",
+        "sha256": "6a26980fb854e347fe60900a7a1ef9ba123616eef817c66bea2edb98975d9ee0",
+        "scope": "Private original on own dedicated choice case"
+      }
+    },
+    {
+      "position": "choice-cooldown-persistent-light",
+      "themeRequested": "light",
+      "submitBoundsPx": [
+        108,
+        2395,
+        472,
+        2556
+      ],
+      "visibleRadioCount": 3,
+      "rawSha256": "c2d551b49830c21d7af328c8649819f9f0622e71f650e28fa5d258dfebaa8570",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-cooldown-persistent-light.png",
+        "sha256": "861c8c282ed9debae5fc6cf7db72afb318cbbb2051bad22eb35ba4caf620286f",
+        "scope": "Private original on own dedicated choice case"
+      },
+      "penaltyBoundsPx": [
+        108,
+        2146,
+        1208,
+        2332
+      ]
+    },
+    {
+      "position": "choice-cooldown-expired-light",
+      "themeRequested": "light",
+      "submitBoundsPx": [
+        108,
+        2395,
+        472,
+        2556
+      ],
+      "visibleRadioCount": 3,
+      "rawSha256": "fb69a34c0edb74d9e7b8d64b70812795020abc70b205d77e63e2ffa6ffd3129a",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-cooldown-expired-light.png",
+        "sha256": "4d7ef6979cd9eed8c6c5798ce338b8f5e9b93e9cc62868af5c9460bb51dc5786",
+        "scope": "Private original on own dedicated choice case"
+      }
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "faultCleared": true
+  },
+  "sameDataWebFixtures": {
+    "active": {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/active-web-dtos.json",
+      "sha256": "e1be28464e8b2c21cdd464cec75f1cda2ca242c53b367921ae7b185bac4b1fc4"
+    },
+    "incorrect": {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/incorrect-web-dtos.json",
+      "sha256": "411913ca450963f8029803ff39496ad769ba45e03927a2b6af0e2e663f211ede"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-ready-light.png",
+      "sha256": "d3b3f1157af1f876eda8672c8e41273bfa40b058af8dc96fb019f700a33c7516",
+      "scope": "Private original on own dedicated choice case"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-pending-light.png",
+      "sha256": "6a26980fb854e347fe60900a7a1ef9ba123616eef817c66bea2edb98975d9ee0",
+      "scope": "Private original on own dedicated choice case"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-cooldown-persistent-light.png",
+      "sha256": "861c8c282ed9debae5fc6cf7db72afb318cbbb2051bad22eb35ba4caf620286f",
+      "scope": "Private original on own dedicated choice case"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/choice-cooldown-expired-light.png",
+      "sha256": "4d7ef6979cd9eed8c6c5798ce338b8f5e9b93e9cc62868af5c9460bb51dc5786",
+      "scope": "Private original on own dedicated choice case"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "choice-ready",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/raw-choice-ready-3e30274365f942d3a30ade63db1fcefe.json",
+      "remoteRemoved": true,
+      "sha256": "f28bd610a5a0ba18141b8a7d05b35173580e26a8b1d905a557a16f4dbd6e525a"
+    },
+    {
+      "label": "choice-pending",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/raw-choice-pending-e82a5d0bc888458b9bdf3034058e15be.json",
+      "remoteRemoved": true,
+      "sha256": "a79acdec6788bc2c65583a11c8c1eb35021ca2acd21013e02ba853a9aaf2aad4"
+    },
+    {
+      "label": "choice-cooldown-persistent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/raw-choice-cooldown-persistent-fcf47e821c32406fa8f8fd1da45d9d7c.json",
+      "remoteRemoved": true,
+      "sha256": "c2d551b49830c21d7af328c8649819f9f0622e71f650e28fa5d258dfebaa8570"
+    },
+    {
+      "label": "choice-cooldown-expired",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/raw-choice-cooldown-expired-fc0a93d2adb244d28e7e2b01e4f6f49d.json",
+      "remoteRemoved": true,
+      "sha256": "fb69a34c0edb74d9e7b8d64b70812795020abc70b205d77e63e2ffa6ffd3129a"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-02/request-ledger.json",
+    "sha256": "a40ab03443a8f173050556196e74b8ca257fb00477d47a937aa84ef69f7600cb"
+  },
+  "observedReadOnlyFacts": {
+    "assignmentStatus": "active",
+    "startedAtPresent": true,
+    "completedAtPresent": false,
+    "startReceiptCount": 1,
+    "progressRows": 1,
+    "answerSubmissionCount": 1,
+    "answerReceiptCount": 1,
+    "wrongCountTotal": 1,
+    "completedProgressRows": 0,
+    "lockedProgressRows": 0,
+    "xpLedgerCount": 0,
+    "xpDeltaSum": 0,
+    "playerTotalXp": 0,
+    "submissionResults": {
+      "correct": 0,
+      "incorrect": 1,
+      "manual": 0
+    }
+  },
+  "resumedFrom": {
+    "priorReport": "artifacts/validation/ui-gameplay-feedback-20261106/native-choice-cooldown-01.json",
+    "priorReportSha256": "25cddf8945c90f735494c611acc401cfe1923605b3706148e8468ff4105a6a92",
+    "priorDriverArchivedAndMatched": true,
+    "currentRealStartReceiptMatches": true
+  },
+  "newStartRequests": 0,
+  "transientChoiceFeedbackActuallyObserved": false,
+  "allRadiosInferredFromViewport": false,
+  "fixedPreviewTouched": false,
+  "failure": null,
+  "createdAt": "2026-11-06T05:43:13.054778+00:00"
+}

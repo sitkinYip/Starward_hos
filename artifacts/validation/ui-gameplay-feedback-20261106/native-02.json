@@ -1,0 +1,439 @@
+{
+  "status": "captured_native_gameplay_feedback",
+  "stage": "feedback-complete",
+  "scope": "Hint disclosure, text answer feedback, and exact reconnect on one disposable text case",
+  "hapSha256": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+  "sourceCaseIndex": 0,
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "05d146b802ed2b85caa13dd309c030c7bf5cdbe8ff368e591f8151c89f017a9d",
+    "runtime": "5f04cc6d64a875bf9c4ba121b5d145053d1856aa550ca73aca099b8cfd8705b6",
+    "hap": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "e7e4bc8763a3b72148ee2672db55373cfb5f619133d5eef9efdbbdcc31a96ed1",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "textFieldDriver": "a60a7262170b3f9521c02709434db36391c28394c06a41a0090ba5ad766d6977",
+    "sourceFixture": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "gameplayViewModel": "e3b78f9629bd455dd5cf2ad077f831ab18aa31258ff5a698a52a2476704db5e4",
+    "textFieldUI": "fdc50fe0750b28828c27677faed030b31455eb90a7b6deb2cc0bb9c2a2282dff",
+    "feedbackDriver": "d07365739302e57fd55151ffc2bff229f7a1532e54d436623cd26a1b407363a8",
+    "questHintUI": "3ee76f0a64818f9ce0a24d75fc1ca47861bf9c53023a9abba7811a07a2113a45",
+    "questFeedbackUI": "ab0f7f36786b49cc5164d2ae0d2fbef8e989aed771c950bc0070da60ca81bebc",
+    "answerRecoveryUI": "c761e646a130d60e2bdf5464f85d92209ed1e04b82d76f13d0d23b4897948c62",
+    "dayColors": "3f0deceabe58d5dc31695dbf2cadf63072b4f2ed2e983a3e91dc70b32a0fe2cf",
+    "nightColors": "09176d714a461c85acedfb1ab986a19f88defeda7a64bdfbd6d71309c0325170",
+    "resumeReport": "4fea2c75af4c11e9eb698ba362e2ccf95ae11e4a6a78bd42133f6107deee9b50",
+    "resumeLedger": "5930c1575f6494cdcff9963394084d1ec20ff4549f2015fa52d8b23fc8cb3d8a"
+  },
+  "checksPassed": 8,
+  "checks": [
+    "Exact original text question opens with its authorized entry count and zero answer or XP",
+    "Empty validation shows the transient feedback card and issues zero answer POSTs",
+    "A real incorrect response keeps the draft editable and changes neither progress nor XP",
+    "Actual native submit and unchanged answer are disabled while the real reply is pending",
+    "Client reply was dropped after the real correct submission committed exactly one 50 XP award",
+    "Stay preserves the blocked original answer and does not automatically retry",
+    "Both real modal actions are disabled while the explicit reconnect is pending",
+    "Identical request ID, request body, actor and question replay the same receipt with only one correct answer and 50 XP"
+  ],
+  "states": [
+    {
+      "position": "feedback-empty-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-feedback": [
+          108,
+          2264,
+          1208,
+          2529
+        ],
+        "gameplay-feedback-title": [
+          373,
+          2332,
+          577,
+          2374
+        ],
+        "gameplay-answer-error": [
+          373,
+          2388,
+          1153,
+          2461
+        ]
+      },
+      "layoutSource": "Official devecocli UI layout paired with the native screenshot",
+      "layoutEvidence": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/cli-layout-feedback-empty-light.json",
+        "sha256": "f438db4b38694e5529f70bfd2d587039adcf9d16a88296f6e731565d33c5d505"
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-empty-light.png",
+        "sha256": "805df1f4f66745d5dbf530bfad5f600f0fda0c6a36bfff9b08381118a3253997",
+        "scope": "Private original on the exact dedicated feedback case"
+      }
+    },
+    {
+      "position": "feedback-incorrect-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-feedback": [
+          108,
+          2264,
+          1208,
+          2529
+        ],
+        "gameplay-feedback-title": [
+          373,
+          2332,
+          577,
+          2374
+        ],
+        "gameplay-feedback-message": [
+          373,
+          2388,
+          1153,
+          2461
+        ]
+      },
+      "layoutSource": "Official devecocli UI layout paired with the native screenshot",
+      "layoutEvidence": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/cli-layout-feedback-incorrect-light.json",
+        "sha256": "eb226bcdcd00903260277534350ef118d07499dfa329ed3eef8b22ae61bdaabb"
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-incorrect-light.png",
+        "sha256": "7a0296adb00b1cf71b4f39b7867065cd8ebd7c5c0b3fd0a4f97d911849b6ddc0",
+        "scope": "Private original on the exact dedicated feedback case"
+      }
+    },
+    {
+      "position": "answer-pending-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-answer-input": [
+          108,
+          1780,
+          1208,
+          1984
+        ],
+        "gameplay-submit": [
+          108,
+          2047,
+          472,
+          2208
+        ]
+      },
+      "rawSha256": "e0ee91e796a08f35adf939985907deabac72dd36c278656d93b87c42eea7fa75",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/answer-pending-light.png",
+        "sha256": "ce0d60e38b40e774bb01c2a1f2d79320273b097d9a525cd73cf0cdaa7d826e3d",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "retry-dialog-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-answer-retry-dialog": [
+          70,
+          669,
+          1246,
+          2202
+        ],
+        "gameplay-answer-retry": [
+          157,
+          1758,
+          1159,
+          1919
+        ],
+        "gameplay-answer-retry-stay": [
+          157,
+          1954,
+          1159,
+          2115
+        ]
+      },
+      "rawSha256": "24902e8cf7b8b5333c3cc5659bd45ab25c081416b2b166c68edf7ec5a59f66b0",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-dialog-light.png",
+        "sha256": "46f7bf646d4c9f78d1a9dc7cc8ff2bc136e56739af92ab46dd7e13414a9ac700",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "retry-stayed-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-answer-input": [
+          108,
+          1780,
+          1208,
+          1984
+        ],
+        "gameplay-answer-retry-inline": [
+          108,
+          2047,
+          472,
+          2208
+        ]
+      },
+      "rawSha256": "394637d807cfe52237e9270838415c0fc9a6ba2125e20dc093d02f1075bcad1b",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-stayed-light.png",
+        "sha256": "d6b2ca8adcc5a475193d1bb2363f99ad1b85920fa4d6a761145e86026566ca81",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "retry-pending-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-answer-retry-dialog": [
+          70,
+          669,
+          1246,
+          2202
+        ],
+        "gameplay-answer-retry": [
+          157,
+          1758,
+          1159,
+          1919
+        ],
+        "gameplay-answer-retry-stay": [
+          157,
+          1954,
+          1159,
+          2115
+        ]
+      },
+      "rawSha256": "3b79fbaacc7eacf444bcf64ea6d7d6ecd5876d662fbc9ac165c42249a3b5bade",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-pending-light.png",
+        "sha256": "bf641197fa5b96d80adca1b2f29e769be6477d0dcd7f551b33b83c432dda43b6",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "feedback-correct-light",
+      "themeRequested": "light",
+      "boundsPx": {
+        "gameplay-feedback": [
+          108,
+          2040,
+          1208,
+          2305
+        ],
+        "gameplay-feedback-title": [
+          373,
+          2108,
+          536,
+          2150
+        ],
+        "gameplay-feedback-message": [
+          373,
+          2164,
+          1153,
+          2237
+        ]
+      },
+      "layoutSource": "Official devecocli UI layout paired with the native screenshot",
+      "layoutEvidence": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/cli-layout-feedback-correct-light.json",
+        "sha256": "7be35295810fa88ed3b9fc6457a494ab509bb49e1ec3376593086bf02e77da6f"
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-correct-light.png",
+        "sha256": "91b637d8b64e6ebb1c1b36de0fb01743a72af1326e3dad955ccaa1e1b2ce7f7d",
+        "scope": "Private original on the exact dedicated feedback case"
+      }
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "faultCleared": true
+  },
+  "sameDataWebFixtures": {
+    "active": {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/active-web-dtos.json",
+      "sha256": "4c01b6f7016cb947d30e27ef2b7fea473d1c34247865fd3001c3fbb08b9a5fa7"
+    },
+    "incorrect": {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/incorrect-web-dtos.json",
+      "sha256": "79a4bd000b3b1da4af77dbabfee8619cb9af5c5b4c2867ac253b36c3b8ab34fe"
+    },
+    "completed": {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/completed-web-dtos.json",
+      "sha256": "842e1e9db36cfc359787c48ee1ae8640cfeda634dd3b7329211f225ae4feea95"
+    }
+  },
+  "draftProbe": {
+    "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/draft-probe.json",
+    "sha256": "1cdb3eb0d3a27deb6a49d7b312d459477f737b97ad92f8aca407e3144f6f194d"
+  },
+  "hintEvidenceFrom": {
+    "file": "artifacts/validation/ui-gameplay-feedback-20261106/native-01.json",
+    "sha256": "4fea2c75af4c11e9eb698ba362e2ccf95ae11e4a6a78bd42133f6107deee9b50",
+    "scope": "Previous app package actually verified hint disclosure only; earlier checks not counted"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-empty-light.png",
+      "sha256": "805df1f4f66745d5dbf530bfad5f600f0fda0c6a36bfff9b08381118a3253997",
+      "scope": "Private original on the exact dedicated feedback case"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-incorrect-light.png",
+      "sha256": "7a0296adb00b1cf71b4f39b7867065cd8ebd7c5c0b3fd0a4f97d911849b6ddc0",
+      "scope": "Private original on the exact dedicated feedback case"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/answer-pending-light.png",
+      "sha256": "ce0d60e38b40e774bb01c2a1f2d79320273b097d9a525cd73cf0cdaa7d826e3d",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-dialog-light.png",
+      "sha256": "46f7bf646d4c9f78d1a9dc7cc8ff2bc136e56739af92ab46dd7e13414a9ac700",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-stayed-light.png",
+      "sha256": "d6b2ca8adcc5a475193d1bb2363f99ad1b85920fa4d6a761145e86026566ca81",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-pending-light.png",
+      "sha256": "bf641197fa5b96d80adca1b2f29e769be6477d0dcd7f551b33b83c432dda43b6",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-correct-light.png",
+      "sha256": "91b637d8b64e6ebb1c1b36de0fb01743a72af1326e3dad955ccaa1e1b2ce7f7d",
+      "scope": "Private original on the exact dedicated feedback case"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "ready-gameplay-submit-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-ready-gameplay-submit-0-186ded4f9fa54849a61e3595414a9543.json",
+      "remoteRemoved": true,
+      "sha256": "e820f408d550b3ba0d78f2fa9ed330df19451f3ca8a5a14fec828a44a2fad578"
+    },
+    {
+      "label": "ready-gameplay-submit-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-ready-gameplay-submit-0-4d00c37fe369445c9977f434eb256991.json",
+      "remoteRemoved": true,
+      "sha256": "823f7193614a36277fcbd214205d16857f83eb5e26db6e11a9c9c1f8866693d2"
+    },
+    {
+      "label": "feedback-incorrect-expired",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-feedback-incorrect-expired-759abee4a99948a5bd767df443c8cea7.json",
+      "remoteRemoved": true,
+      "sha256": "823f7193614a36277fcbd214205d16857f83eb5e26db6e11a9c9c1f8866693d2"
+    },
+    {
+      "label": "ready-gameplay-submit-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-ready-gameplay-submit-1-c56727232cd74128a5d2d49740bdf252.json",
+      "remoteRemoved": true,
+      "sha256": "55de05904afa2e7b1237d8e0c0238646e7f412ad112338e94c778787e6ba22ac"
+    },
+    {
+      "label": "answer-pending-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-answer-pending-light-660d1e8320f5447598df804e967f2f3d.json",
+      "remoteRemoved": true,
+      "sha256": "e0ee91e796a08f35adf939985907deabac72dd36c278656d93b87c42eea7fa75"
+    },
+    {
+      "label": "retry-dialog-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-retry-dialog-light-c6128b50c6624ba38aa61cd88a8aec6f.json",
+      "remoteRemoved": true,
+      "sha256": "24902e8cf7b8b5333c3cc5659bd45ab25c081416b2b166c68edf7ec5a59f66b0"
+    },
+    {
+      "label": "retry-stayed-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-retry-stayed-light-e8f0a27f148543f3b5040ad916c12cc7.json",
+      "remoteRemoved": true,
+      "sha256": "394637d807cfe52237e9270838415c0fc9a6ba2125e20dc093d02f1075bcad1b"
+    },
+    {
+      "label": "retry-after-system-back-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-retry-after-system-back-light-eec381cbfdfd4de494bf2d7543f12f49.json",
+      "remoteRemoved": true,
+      "sha256": "394637d807cfe52237e9270838415c0fc9a6ba2125e20dc093d02f1075bcad1b"
+    },
+    {
+      "label": "ready-gameplay-answer-retry-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-ready-gameplay-answer-retry-2-fde84fe92cbc483dbf936d67361cfa62.json",
+      "remoteRemoved": true,
+      "sha256": "daf88207b0e733918060e9cf69bd7d18d381e8efb4ab6aa58a7c5f1704d4d331"
+    },
+    {
+      "label": "retry-pending-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-retry-pending-light-2954f94aa8344ebeacad921ce50db78a.json",
+      "remoteRemoved": true,
+      "sha256": "3b79fbaacc7eacf444bcf64ea6d7d6ecd5876d662fbc9ac165c42249a3b5bade"
+    },
+    {
+      "label": "feedback-settled-readonly-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/raw-feedback-settled-readonly-light-551cead516fe4ebeb9044b49662999fd.json",
+      "remoteRemoved": true,
+      "sha256": "af92f11e34fbfc437746b1a1f807dfe2f500eed2a82832f8054965923d6e34eb"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/request-ledger.json",
+    "sha256": "2fdc1fa94733a8259c44bc682307e953f1da9688d3f34016447f3c338c0969d1"
+  },
+  "observedReadOnlyFacts": {
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "progressRows": 1,
+    "completedProgressRows": 1,
+    "wrongCountTotal": 0,
+    "lockedProgressRows": 0,
+    "startReceiptCount": 1,
+    "answerSubmissionCount": 2,
+    "answerReceiptCount": 2,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 50,
+    "playerTotalXp": 50,
+    "submissionResults": {
+      "correct": 1,
+      "incorrect": 1,
+      "manual": 0
+    }
+  },
+  "pendingDisabledActuallyObserved": true,
+  "retryPendingDisabledActuallyObserved": true,
+  "identicalCommandReplayVerified": true,
+  "fixedPreviewTouched": false,
+  "visualReview": "pending_root_original_review",
+  "failure": null,
+  "createdAt": "2026-11-06T05:29:54.922485+00:00"
+}

@@ -42,6 +42,7 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 - 长容器raw bounds可能被窗口裁剪；题卡top等于顶栏bottom时不能据此推算真实滚动偏移或距页顶只有几像素。需要页顶几何时须实际露出顶部锚点并测量；验证Refresh时可明确记录“滚回顶部并下拉”的官方手势序列，以首个新真实GET、唯一请求和前后控件实例核验，不伪称单次手势或天然页顶已测。
 - 在本项目选择图中，官方Button禁用时会连子Image一起压暗。Web只禁用交互而保留图片原色时，将不接收点击的Image与覆盖其上的原生Button分层，并保留真实disabled；改后分别实测已完成态的原色及禁用、可编辑态的命中和答案保留。
 - 填空的官方TextInput已自带禁用字色。保留真实disabled和同一输入实例，避免复制Web整控件的半透明导致文字二次变淡。独立处理自定义底线颜色，在两主题完成原图核对可读性和实触无IME。
+- 滚动题卡里的反馈装饰避免纵向百分比高度。实机上即使设为绝对位置，高100%的左线也曾撑大Stack。用分边框画左线，以原始树量卡高并看原图；选项选中态带位移，用稳定选项组左缘衡量提交按钮对齐。
 
 首组工具：`scripts/device-ui-parity-sample.py`、`capture-web-ui-sample.py`和`serve-ui-parity-sample.py`。它们是侧栏/Rank窄样板，不是玩法全链通用验收器。先看`--help`，新小点按实际页面适配，不静默放宽守卫或假设旧预览场次仍未入场。
 

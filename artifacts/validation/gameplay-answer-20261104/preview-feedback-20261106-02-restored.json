@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "stage": "preview-login-list-complete",
+  "scope": "Restored fixed isolated preview: direct login and read-only native assignment list only",
+  "hapSha256": "13b66a27c4e9296103f78f243aeb9e2f426cc62f7a394385e091ad4df1ac3391",
+  "bindingSha256": {
+    "hap": "13b66a27c4e9296103f78f243aeb9e2f426cc62f7a394385e091ad4df1ac3391",
+    "runtime": "5965d685a215d49c0a38eae01c0622ca084f1dbc5d1c1bae598a4dff7ba9bde6",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "76e2b0435d537470a6dd3e2922f32cd55cf7d9f661c872d75b10e3700f03882f",
+    "hostReadiness": "d55749cf7e457bcec12c0de3f157325bdc0e0a4a0bf3310faf7a2901323df571",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e",
+    "gameplayPreviewDriver": "846a35d2fdc3fdaa92a4d20748f0f7bc86bbe52e7d4383d71f2e1970cf3bc437"
+  },
+  "checksPassed": 6,
+  "checks": [
+    "The cold restored preview starts with empty login inputs and its real isolated-environment label",
+    "Fresh strict Host authentication and me confirm the same ordinary fixed-preview player",
+    "The fresh strict Host list exactly matches the fixed-preview assignment identities",
+    "The fixed preview login reaches home without the first-password gate",
+    "All dedicated real preview assignment identities are reachable in native home",
+    "The verified fixed-preview session remains on authenticated home for review"
+  ],
+  "assignmentCount": 4,
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/profile-preview-native/capture-20261106T054408989515Z/gameplay-fixed-preview-home.png",
+      "sha256": "0366358cb622a3521e476d727560d0140666056f77c7dadaf55369173c5ade07",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "visualReview": "pending_root_original_review",
+  "cleanup": {
+    "coldEmptyLoginObserved": true,
+    "directHomeObserved": true,
+    "finalHomeObserved": true,
+    "remoteRawFilesRemoved": true
+  },
+  "leftLoggedInForReview": true,
+  "businessWriteLedgerObserved": false,
+  "writeScope": "Host authentication/me/list and native login/list scroll only, with inherited read-only runner status guard; no start, answer, profile, password, reset, seed, fault control or service change. No business write-ledger claim.",
+  "appCredentialsPersisted": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "createdAt": "2026-11-06T05:46:47.101881+00:00"
+}

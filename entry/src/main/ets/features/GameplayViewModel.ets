@@ -56,6 +56,8 @@ export class GameplayViewModel {
   @Trace answerError: string = '';
   @Trace feedback: string = '';
   @Trace feedbackDanger: boolean = false;
+  @Trace feedbackVersion: number = 0;
+  @Trace feedbackTransient: boolean = false;
   @Trace completionRevision: number = 0;
   @Trace advancing: boolean = false;
   @Trace now: number = Date.now();
@@ -446,15 +448,22 @@ export class GameplayViewModel {
     }
     if (this.draftAnswer.trim().length === 0) {
       this.answerError = '请先输入或选择答案。';
+      this.announceFeedback(true);
       return;
     }
     if (this.draftAnswer.trim().length > 4000) {
       this.answerError = '答案不能超过4000字。';
+      this.announceFeedback(true);
       return;
     }
     const intent: AnswerIntent = new AnswerIntent(this.assignmentId, level.id, this.draftAnswer, this.requestIdentity());
     this.answers.push(intent);
     await this.performAnswer(intent, autoNextDelay);
+  }
+
+  private announceFeedback(transient: boolean): void {
+    this.feedbackTransient = transient;
+    this.feedbackVersion++;
   }
 
   async retrySubmission(autoNextDelay: number = 0): Promise<void> {
@@ -554,6 +563,9 @@ export class GameplayViewModel {
           }
         }
       }
+      if (this.feedback.length > 0) {
+        this.announceFeedback(result.result === 'incorrect' && result.assignment.detail.status !== 'cancelled');
+      }
     } catch (error) {
       if (this.current(epoch, revision, id)) {
         const failure: Object = error as Object;
@@ -561,6 +573,7 @@ export class GameplayViewModel {
         this.retryAnswer = retry;
         this.answerError = error instanceof Error ? error.message : '提交失败，请稍后重试。';
         if (!retry) {
+          this.announceFeedback(false);
           this.answers = this.answers.filter((item: AnswerIntent) => item !== intent);
           if (error instanceof GameFailure && (error.status === 401 || error.code === 'ACCOUNT_DISABLED' ||
             error.code === 'PASSWORD_CHANGE_REQUIRED')) {

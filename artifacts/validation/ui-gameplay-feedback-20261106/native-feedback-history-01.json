@@ -1,0 +1,27 @@
+{
+  "status": "captured_native_feedback_history_readonly",
+  "hapSha256": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+  "nativeFeedbackReportSha256": "4b15a02b412c7bdd468f8778e3041b4e14aeebb717f78d700936867ee27df0f2",
+  "nativeDetailGetStatuses": [
+    200,
+    200
+  ],
+  "settlementUnchanged": true,
+  "readonlyInputObserved": true,
+  "noFeedbackOrRecoveryReplayed": true,
+  "privateRawEvidence": {
+    "label": "completed-without-replayed-feedback",
+    "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+    "file": "artifacts/private/ui-reference/gameplay-feedback-history-20261106-01/raw-completed-without-replayed-feedback-2b77ac918aea4d09bf7a2253e7f2496a.json",
+    "remoteRemoved": true,
+    "sha256": "1caf83c7c452ef51c3d3317c0b880d4805e4d679fe475a580d8c1bc98065deb0"
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "scope": "Dedicated completed text case, read-only return from history"
+}

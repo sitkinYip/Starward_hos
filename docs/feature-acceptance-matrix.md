@@ -384,3 +384,37 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 固定预览已换装修正版并直接登录停在首页，沿用原账号、证书及数据库。预览包与修正隔离包的应用代码成员相同，环境与验收账号分开，见[固定预览交还](../artifacts/validation/ui-gameplay-text-20261106/fixed-preview-restored-text-20261106-02.json)。
 
 后续为提示、判题反馈与重连。填空提交瞬态和其他输入规格继续保留各自验收边界。
+
+### 2026-11-06 题内提示、判题反馈与重连实施前
+
+以冻结 Web `4b7d1a0…` 的 `QuestContent`、`QuestAnswerForm`、`AnswerFeedback` 和 `GameRetryDialog` 为参照。应用仍用服务端判题与原答题请求重试，展示的自动消退和弹窗关闭属于界面行为。
+
+| 状态 | 本片实施与验收目标 |
+| --- | --- |
+| 题内提示 | 内容块内保留透明左线、三角和「查看提示」。展开显示正文，收起仍用原文案，方向和无障碍状态随展开变化。两次真实点击后原答题实例及草稿保持，台账零答题。 |
+| 提交与处罚 | 手机操作区在输入后留18vp，用左对齐胶囊按钮。提交中仍显示「提交答案」，输入和动作实际禁用；真实冷却及锁定由既有门控展示。 |
+| 判题反馈 | 表单后有状态徽章、标题和服务端语义正文。空答/错答显示「验证未通过」，约3秒后消退；真实正确显示「验证通过」。反馈消退只影响界面，处罚和草稿独立，历史重进不重放成功。 |
+| 响应不确定 | 官方模态保留题面和输入。展示「答案还在，等待回音」「重新连接」「留在当前页面」。留在页面或系统返回关闭模态，保留原命令及显式恢复入口；提交中和重连中拦重复操作，重连中按钮禁用。 |
+| 隔离链路 | 新一轮隔离环境使用同一审核真题。真实错答零经验；对真实正确答题注入响应延迟及丢失，先观察提交中，再显式恢复，核同请求 ID、请求体、账号和关卡，服务端只结算一次。日夜 Web 原图来自同 DTO 本地回放。 |
+
+题号导航、滚动顶栏、场次解锁线索及答对演出另切片。以下状态均须按实际证据回填。
+
+### 题内提示、判题反馈与重连实际验收
+
+提示用 ArkUI Button 保留44vp触达和原题展开内容。提交区为左对齐胶囊，输入至动作留18vp。状态卡放在动作之后，使用独立3秒展示时钟。重连由官方 `bindContentCover` 承载居中弹层，用户关闭后可从原提交位置重新打开。请求身份、草稿、进度及冷却仍由原 ViewModel 与后端管理。
+
+| 范围 | 实际结果 |
+| --- | --- |
+| 隔离环境 | 旧一次性库先经 SQLite 只读归档及完整性检查。首次新库启动因重启凭据在隔离目录外被拒，保留[失败回执](../artifacts/validation/ui-gameplay-feedback-20261106/disposable-epoch-01/setup.json)。将同一凭据移入其允许目录后[续跑通过](../artifacts/validation/ui-gameplay-feedback-20261106/disposable-epoch-02/setup.json)，同一审核内容19条，三组专用场次均从零入场、零答题和零经验开始。 |
+| 构建与质量 | 首包 `4fed2eb3…` 和修正包 `1381b523…` 经官方 `scripts/hm.sh run` 构建、签名、安装和启动。修正包[运行时](../artifacts/validation/ui-gameplay-feedback-20261106/runtime-02.json)5项通过，[lint](../artifacts/validation/ui-gameplay-feedback-20261106/lint-02/lint.json)归一化0项。相同答题 ViewModel 的 `scripts/hm.sh test GameplayAnswerViewModel` [12项全过](../artifacts/validation/ui-gameplay-feedback-20261106/answer-view-model-01/local-test-summary.json)。 |
+| 提示与反馈 | [首轮](../artifacts/validation/ui-gameplay-feedback-20261106/native-01.json)在日夜实测收展，保持同一输入节点和草稿，零答题。首轮整体incomplete，因为左线的百分比高度把反馈卡撑出屏幕，保留该结果。改用分边框后，[续跑](../artifacts/validation/ui-gameplay-feedback-20261106/native-02.json)沿用同一个入场凭证，8项检查及6项清理通过。空答零POST，错答保持草稿且零EXP，两种红卡均实际消退，正答显示绿卡。 |
+| 提交和响应恢复 | 原生填空在真实上游答复延迟期间观察到输入和提交动作实际禁用。故意丢失真实正确答题的回复后，「留在当前页面」和系统返回均保持原草稿及恢复入口。用户显式重连中两个动作均禁用，系统返回不能关闭。请求ID、请求体、账号和关卡的四项匹配，服务端只有一错一对及一次50 EXP结算。原生三次答题请求包含一条同命令回放，回放未新增提交或经验记录。 |
+| 同数据视觉 | [Web十六态](../artifacts/validation/ui-gameplay-feedback-20261106/web-reference-01.json)以同题活跃、错答及完成DTO本地重放，真实后端和外部请求放行0。[原图复核](../artifacts/validation/ui-gameplay-feedback-20261106/delegated-original-visual-review-01.json)逐图看16张Web和11张原生。反馈实测314.29×75.71vp，重连弹层336×438vp，两者无可见裁切。原生提示触达高度44vp，重连用系统全模态纯色遮罩并保留显式恢复入口。非提示的原生原图为日间。 |
+
+设备采集使用 `scripts/device-gameplay-feedback.py run --resume-report`，浏览器使用 `scripts/capture-web-gameplay-feedback.py run`。报告分别绑定首轮与修正包、原始节点和同数据私有图，构建与视觉状态分别记录。
+
+[历史重进](../artifacts/validation/ui-gameplay-feedback-20261106/native-feedback-history-01.json)在同一修正包与已结算隔离场次上实测。两次详情GET 200 后输入只读，成功状态卡和重连弹层均不重放。原入场、答题凭证与经验保持，退出清理通过。
+
+[选择题冷却](../artifacts/validation/ui-gameplay-feedback-20261106/native-choice-cooldown-02.json)使用另一个专用玩家及相同修正包。首轮误用选中态会平移的卡片坐标作按钮对齐参照，止于提交前，原[未完成报告](../artifacts/validation/ui-gameplay-feedback-20261106/native-choice-cooldown-01.json)保留。改以稳定的选项组左缘核对后，沿用原入场凭证续验，4项检查通过。上游回复延迟期间实见可见 Radio 和46vp提交按钮禁用，唯一错答进入真实30秒冷却。倒计时在选项后、按钮前持续展示，期满恢复交互，服务端零经验和零新增入场。选择题短错答卡未采到，永久锁定和夜间非提示原生图仍按各自状态分开记录。
+
+[固定预览交还](../artifacts/validation/ui-gameplay-feedback-20261106/fixed-preview-restored-feedback-20261106-02.json)通过。精确清除一次性故障并确认无待发响应后切换回固定预览，修正版应用代码与隔离包相同。原预览账号、数据库及CA保留，实际直接登录读取列表并留在首页。

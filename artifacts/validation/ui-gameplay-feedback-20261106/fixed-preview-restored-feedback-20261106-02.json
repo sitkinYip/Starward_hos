@@ -1,0 +1,63 @@
+{
+  "status": "fixed_preview_restored_and_logged_in",
+  "hintEvidenceFrom": {
+    "file": "artifacts/validation/ui-gameplay-feedback-20261106/native-01.json",
+    "sha256": "4fea2c75af4c11e9eb698ba362e2ccf95ae11e4a6a78bd42133f6107deee9b50"
+  },
+  "disposableFaultClearedAndNoPendingResponse": true,
+  "isolatedHapSha256": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+  "nativeAcceptanceComplete": true,
+  "nativeReportStatus": "captured_native_gameplay_feedback",
+  "nativeReportSha256": "4b15a02b412c7bdd468f8778e3041b4e14aeebb717f78d700936867ee27df0f2",
+  "isolatedRuntimeSha256": "5f04cc6d64a875bf9c4ba121b5d145053d1856aa550ca73aca099b8cfd8705b6",
+  "privateArchive": "artifacts/private/ui-reference/gameplay-feedback-handoff-20261106/feedback-20261106-02",
+  "testUsbDetached": true,
+  "previewUsbAttached": true,
+  "previewHapSha256": "13b66a27c4e9296103f78f243aeb9e2f426cc62f7a394385e091ad4df1ac3391",
+  "steps": [
+    {
+      "step": "verify-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "detach-exact-disposable-usb",
+      "exitCode": 0
+    },
+    {
+      "step": "attach-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "clear-owned-test-package-config",
+      "exitCode": 0
+    },
+    {
+      "step": "configure-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "official-run",
+      "exitCode": 0
+    },
+    {
+      "step": "runtime",
+      "exitCode": 0
+    },
+    {
+      "step": "direct-login-list",
+      "exitCode": 0
+    }
+  ],
+  "differentZipMembers": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration-ca.pem",
+    "resources/rawfile/integration.json"
+  ],
+  "applicationCodeMembersIdentical": true,
+  "fixedLoginCaAndManifestUnchanged": true,
+  "persistentDatabaseInodePreserved": true,
+  "existingPreviewRunnerPreserved": true,
+  "disposableDatabaseAndTlsKeptWithUsbDetached": true,
+  "runtime": "artifacts/validation/profile/runtime-feedback-20261106-02-preview-restored.json",
+  "directLoginListReport": "artifacts/validation/gameplay-answer-20261104/preview-feedback-20261106-02-restored.json"
+}

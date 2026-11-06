@@ -11,28 +11,9 @@ import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardQuestionImages } from '../ui/StarwardQuestionImages';
 import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
 import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
-
-/** A hint is disclosed by the player, like the formal Web question details. */
-@ComponentV2
-struct GameplayHint {
-  @Param text: string = '';
-  @Param contentIndex: number = 0;
-  @Local expanded: boolean = false;
-
-  build() {
-    Column({ space: 10 }) {
-      Button(this.expanded ? '收起提示' : '查看提示', { type: ButtonType.Normal })
-        .id(`question-hint-${this.contentIndex}`).constraintSize({ minHeight: 44 })
-        .padding({ left: 12, right: 12 }).fontSize(13)
-        .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-        .borderRadius(10).onClick(() => { this.expanded = !this.expanded; })
-      if (this.expanded) {
-        Text(this.text).id(`question-hint-content-${this.contentIndex}`).width('100%')
-          .fontSize(14).lineHeight('25.9fp').fontColor($r('app.color.muted'))
-      }
-    }.width('100%').alignItems(HorizontalAlign.Start)
-  }
-}
+import { StarwardQuestHint } from '../ui/StarwardQuestHint';
+import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
+import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
 
 /** Native presentation only: the account-bound ViewModel owns drafts and writes. */
 @ComponentV2
@@ -44,13 +25,15 @@ export struct GameplayPage {
   @Param reducedMotion: boolean = true;
   @Event leave: () => void = () => {};
   @Local seenCompletionRevision: number = 0;
-  @Local reconnecting: boolean = false;
+  @Local private recoveryVisible: boolean = false;
+  @Local private recoveryDismissed: boolean = false;
   @Local viewportWidth: number = 0;
   @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState();
 
   aboutToAppear(): void {
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
+    this.recoveryChanged();
   }
 
   aboutToDisappear(): void { this.viewer.close(this.viewer.sessionId, true); }
@@ -97,11 +80,50 @@ export struct GameplayPage {
       close: this.viewerCloseAction() })
   }
 
-  @Monitor('play.retryAnswer')
-  retryChanged(): void {
-    if (!this.play.retryAnswer) {
-      this.reconnecting = false;
+  @Monitor('play.retryAnswer', 'play.submitting', 'play.loading', 'play.visible', 'play.snapshot',
+    'viewer.visible', 'viewer.closing')
+  recoveryChanged(): void {
+    if (!this.play.retryAnswer || !this.play.visible || this.play.snapshot === null) {
+      this.recoveryVisible = false;
+      this.recoveryDismissed = false;
+    } else if (!this.recoveryDismissed && !this.play.submitting && !this.play.loading &&
+      !this.viewer.visible && !this.viewer.closing) {
+      this.recoveryVisible = true;
     }
+  }
+
+  private showRecovery(): void {
+    if (this.play.retryAnswer && this.interactionReady() && !this.viewer.visible && !this.viewer.closing) {
+      this.recoveryDismissed = false;
+      this.recoveryVisible = true;
+    }
+  }
+
+  private stayOnQuestion(): void {
+    if (!this.play.submitting) {
+      this.recoveryDismissed = true;
+      this.recoveryVisible = false;
+    }
+  }
+
+  private recoveryOptions(): ContentCoverOptions {
+    return {
+      backgroundColor: $r('app.color.answer_recovery_mask'),
+      enableSafeArea: true,
+      modalTransition: this.reducedMotion ? ModalTransition.NONE : ModalTransition.ALPHA,
+      onWillDismiss: (action: DismissContentCoverAction) => {
+        if (!this.play.submitting && action.reason === DismissReason.PRESS_BACK) {
+          this.stayOnQuestion();
+          action.dismiss();
+        }
+      }
+    };
+  }
+
+  @Builder
+  answerRecovery() {
+    StarwardAnswerRecovery({ pending: this.play.submitting, displayFont: this.displayFont,
+      retry: () => this.retryAnswer(), stay: () => this.stayOnQuestion() })
   }
 
   @Monitor('play.completionRevision')
@@ -209,7 +231,6 @@ export struct GameplayPage {
   }
 
   private retryAnswer(): void {
-    this.reconnecting = true;
     StarwardKeyboard.dismiss(this.getUIContext());
     this.play.retrySubmission(this.autoNextDelay);
   }
@@ -261,7 +282,7 @@ export struct GameplayPage {
 
   @Builder
   answerForm() {
-    Column({ space: 16 }) {
+    Column() {
       if (this.play.currentLevel()?.question?.kind === 'choice') {
         this.choiceAnswer()
       } else {
@@ -270,45 +291,43 @@ export struct GameplayPage {
           editable: this.play.answerEditable(), reducedMotion: this.reducedMotion,
           changed: (value: string) => this.play.editAnswer(value) })
       }
-      if (this.currentCompleted()) {
-        Text('当前题目已完成。').id('gameplay-answer-completed').width('100%').fontSize(13).lineHeight('22.1fp')
-          .fontColor($r('app.color.accent_text'))
-      } else if (this.play.blockedReason().length > 0) {
-        Text(this.play.blockedReason()).id('gameplay-penalty').width('100%').fontSize(13).lineHeight('22.1fp')
-          .fontColor($r('app.color.danger')).accessibilityText(this.play.blockedReason())
+      if (!this.currentCompleted() && this.play.blockedReason().length > 0) {
+        Text(this.play.blockedReason()).id('gameplay-penalty').width('100%')
+          .fontSize(16).lineHeight('25.6fp').fontColor($r('app.color.accent_text'))
+          .padding({ top: 13, bottom: 13, left: 15, right: 15 }).margin({ top: 16 })
+          .backgroundColor($r('app.color.accent_faint')).border({ width: 1, color: $r('app.color.accent_border') })
       }
-      if (this.play.retryAnswer && (!this.play.submitting || this.reconnecting)) {
-        Column({ space: 12 }) {
-          Text('答案还在，等待回音').fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
-          Text('暂时未能确认提交结果。你的输入仍在，重试会确认同一次提交，不会重复计次。')
-            .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted')).width('100%')
-          InlineError({ message: this.play.answerError, fieldId: 'gameplay-answer-error' })
-          Button(this.play.submitting ? '正在重新连接…' : '重新连接', { type: ButtonType.Normal })
-            .id('gameplay-answer-retry').height(48).width('100%').borderRadius(10).fontSize(15)
-            .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-            .enabled(this.interactionReady()).onClick(() => this.retryAnswer())
-        }.width('100%').alignItems(HorizontalAlign.Start).padding(16)
-          .backgroundColor($r('app.color.accent_faint')).borderRadius(12)
-      } else {
-        InlineError({ message: this.play.answerError, fieldId: 'gameplay-answer-error' })
-        if (!this.currentCompleted()) {
-          Button(this.play.submitting ? '正在提交…' : '提交答案', { type: ButtonType.Normal })
-            .id('gameplay-submit').height(52).width('100%').borderRadius(10).fontSize(16).fontWeight(600)
-            .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-            .enabled(this.play.answerAllowed()).onClick(() => this.submit())
+      if (!this.currentCompleted()) {
+        if (this.play.retryAnswer && !this.play.submitting) {
+          Button('重新连接', { type: ButtonType.Capsule }).id('gameplay-answer-retry-inline')
+            .constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).margin({ top: 18 })
+            .fontSize(16).fontWeight(600).fontColor($r('app.color.on_accent'))
+            .backgroundColor($r('app.color.accent')).enabled(this.interactionReady())
+            .onClick(() => this.showRecovery())
+        } else {
+          Button('提交答案', { type: ButtonType.Capsule }).id('gameplay-submit')
+            .constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).margin({ top: 18 })
+            .fontSize(16).fontWeight(600).fontColor($r('app.color.on_accent'))
+            .backgroundColor($r('app.color.accent')).enabled(this.play.answerAllowed()).onClick(() => this.submit())
         }
       }
-      if (this.play.feedback.length > 0) {
-        Text(this.play.feedback).id('gameplay-feedback').width('100%').fontSize(14).lineHeight('23.8fp')
-          .fontColor(this.play.feedbackDanger ? $r('app.color.danger') : $r('app.color.accent_text'))
-          .accessibilityText(this.play.feedback)
-      }
       if (this.currentCompleted() && this.play.canMoveTo(this.play.activeIndex + 1)) {
-        Button(this.play.advancing ? '即将前往下一题…' : '前往下一题', { type: ButtonType.Normal })
-          .id('gameplay-next').height(48).width('100%').borderRadius(10).fontSize(15)
+        Button(this.play.advancing ? '即将前往下一题…' : '前往下一题', { type: ButtonType.Capsule })
+          .id('gameplay-next').constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).margin({ top: 18 })
+          .fontSize(16).fontWeight(600)
           .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
           .border({ width: 1, color: $r('app.color.accent_border') })
           .enabled(this.interactionReady()).onClick(() => this.play.nextQuestion())
+      }
+      if (!this.play.retryAnswer && (this.play.answerError.length > 0 || this.play.feedback.length > 0)) {
+        ForEach([this.play.feedbackVersion], (_version: number) => {
+          StarwardQuestFeedback({
+            message: this.play.answerError.length > 0 ? this.play.answerError : this.play.feedback,
+            messageId: this.play.answerError.length > 0 ? 'gameplay-answer-error' : 'gameplay-feedback-message',
+            danger: this.play.answerError.length > 0 || this.play.feedbackDanger,
+            transient: this.play.feedbackTransient, reducedMotion: this.reducedMotion
+          })
+        }, (version: number) => version.toString())
       }
     }.id('gameplay-answer-form').width('100%').alignItems(HorizontalAlign.Start)
   }
@@ -345,7 +364,7 @@ export struct GameplayPage {
                   .fontSize(16).lineHeight('27.52fp').fontColor($r('app.color.text'))
               }
               if (block.hint.length > 0) {
-                GameplayHint({ text: block.hint, contentIndex: index })
+                StarwardQuestHint({ text: block.hint, contentIndex: index, reducedMotion: this.reducedMotion })
               }
             }.width('100%').alignItems(HorizontalAlign.Start)
           }, (block: GameplayContentBlock, index: number) => `${index}:${JSON.stringify(block)}`)
@@ -425,9 +444,12 @@ export struct GameplayPage {
   }
 
   build() {
-    StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
-      request: async () => { await this.play.refresh(); },
-      content: () => { this.gameplayScroll() } })
-      .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
+    Stack() {
+      StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
+        request: async () => { await this.play.refresh(); },
+        content: () => { this.gameplayScroll() } })
+        .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
+    }.width('100%').height('100%')
+      .bindContentCover(!!this.recoveryVisible, this.answerRecovery(), this.recoveryOptions())
   }
 }

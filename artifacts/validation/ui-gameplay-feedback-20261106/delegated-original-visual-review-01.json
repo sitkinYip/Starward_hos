@@ -1,0 +1,348 @@
+{
+  "status": "reviewed_originals_with_scoped_native_differences",
+  "scope": "Same-content and same-state narrow phone feedback visual comparison. Browser timing, API and authentication are replay. No device action performed by the visual reviewer.",
+  "createdAt": "2026-11-06T05:36:56.938860+00:00",
+  "reportBindings": {
+    "native-01": {
+      "file": "artifacts/validation/ui-gameplay-feedback-20261106/native-01.json",
+      "sha256": "4fea2c75af4c11e9eb698ba362e2ccf95ae11e4a6a78bd42133f6107deee9b50"
+    },
+    "native-02": {
+      "file": "artifacts/validation/ui-gameplay-feedback-20261106/native-02.json",
+      "sha256": "4b15a02b412c7bdd468f8778e3041b4e14aeebb717f78d700936867ee27df0f2"
+    },
+    "web-reference-01": {
+      "file": "artifacts/validation/ui-gameplay-feedback-20261106/web-reference-01.json",
+      "sha256": "3a3b789a8a7576c2199d6270bcc7f50e9412ef493e1d6eaf9bb8f8b4ad5c301e"
+    }
+  },
+  "originalsReviewed": {
+    "nativeHint": [
+      {
+        "theme": "dark",
+        "state": "hint-collapsed-dark",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-01/hint-collapsed-dark.png",
+        "sha256": "1aa3ba7ddace38b5af64a6cf3eb0d89dd87510752e913adb3aa5c270f34b4b4c"
+      },
+      {
+        "theme": "dark",
+        "state": "hint-expanded-dark",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-01/hint-expanded-dark.png",
+        "sha256": "533586a072fc9fdbe85f1baebf6023a6360b26f43bfdd97c8c76817af5287c2f"
+      },
+      {
+        "theme": "light",
+        "state": "hint-collapsed-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-01/hint-collapsed-light.png",
+        "sha256": "fff60356b0e7e59b354d2bbab5ef1328a68ab060e397cdfc781ff9bb697d7b73"
+      },
+      {
+        "theme": "light",
+        "state": "hint-expanded-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-01/hint-expanded-light.png",
+        "sha256": "6dcd2254fbac3fe57dfbd64598beb0fbb9731d91d022e52d5a6e907c12308c7d"
+      }
+    ],
+    "nativeCurrent": [
+      {
+        "theme": "light",
+        "state": "feedback-empty-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-empty-light.png",
+        "sha256": "805df1f4f66745d5dbf530bfad5f600f0fda0c6a36bfff9b08381118a3253997"
+      },
+      {
+        "theme": "light",
+        "state": "feedback-incorrect-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-incorrect-light.png",
+        "sha256": "7a0296adb00b1cf71b4f39b7867065cd8ebd7c5c0b3fd0a4f97d911849b6ddc0"
+      },
+      {
+        "theme": "light",
+        "state": "answer-pending-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/answer-pending-light.png",
+        "sha256": "ce0d60e38b40e774bb01c2a1f2d79320273b097d9a525cd73cf0cdaa7d826e3d"
+      },
+      {
+        "theme": "light",
+        "state": "retry-dialog-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-dialog-light.png",
+        "sha256": "46f7bf646d4c9f78d1a9dc7cc8ff2bc136e56739af92ab46dd7e13414a9ac700"
+      },
+      {
+        "theme": "light",
+        "state": "retry-stayed-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-stayed-light.png",
+        "sha256": "d6b2ca8adcc5a475193d1bb2363f99ad1b85920fa4d6a761145e86026566ca81"
+      },
+      {
+        "theme": "light",
+        "state": "retry-pending-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/retry-pending-light.png",
+        "sha256": "bf641197fa5b96d80adca1b2f29e769be6477d0dcd7f551b33b83c432dda43b6"
+      },
+      {
+        "theme": "light",
+        "state": "feedback-correct-light",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-native-20261106-02/feedback-correct-light.png",
+        "sha256": "91b637d8b64e6ebb1c1b36de0fb01743a72af1326e3dad955ccaa1e1b2ce7f7d"
+      }
+    ],
+    "web": [
+      {
+        "theme": "light",
+        "state": "hint-closed",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-hint-closed.png",
+        "sha256": "ec1baa0833fec15072fb6cb31275aac51964c63e5113f447592cdea32a3f7eb4"
+      },
+      {
+        "theme": "light",
+        "state": "hint-open",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-hint-open.png",
+        "sha256": "5d1b7e82d6c54ac138ecd74735b48a34c8b0217cb6965d3c3446ecc9e62e3ca6"
+      },
+      {
+        "theme": "light",
+        "state": "empty",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-empty.png",
+        "sha256": "10c46b695f863898d96fcacfd9c99631a6f24ec285dcac28714566db01e61edc"
+      },
+      {
+        "theme": "light",
+        "state": "wrong",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-wrong.png",
+        "sha256": "00d503e9de9ae761a6dae0793693f2298297e3cf401a4714028d285cdc90c147"
+      },
+      {
+        "theme": "light",
+        "state": "pending",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-pending.png",
+        "sha256": "9a6c39560e7983901a7b4687775a1630e4ac4aefd4963f9098ef8ef065f6fd48"
+      },
+      {
+        "theme": "light",
+        "state": "reconnect",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-reconnect.png",
+        "sha256": "04b4ba859277a48fdff12d88393b9809b03388be053c03112991320c071b301c"
+      },
+      {
+        "theme": "light",
+        "state": "reconnecting",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-reconnecting.png",
+        "sha256": "4a1e453ceed9786b92a07172df189563e869634617d00978f87313b015914e80"
+      },
+      {
+        "theme": "light",
+        "state": "correct",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/light-correct.png",
+        "sha256": "01ecf6e746fbf4e05b920114877b80a6ecbac345e12aefc31f1d31644e31cb28"
+      },
+      {
+        "theme": "dark",
+        "state": "hint-closed",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-hint-closed.png",
+        "sha256": "c29d8c4452345e6119245039b7f3612840f5183d8140ad78e9baaddbf4bc7f5c"
+      },
+      {
+        "theme": "dark",
+        "state": "hint-open",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-hint-open.png",
+        "sha256": "d9ce98c45cf2592131c9e5d7aa60689399dc0bae16b4cf78f055d94d97fc1b7f"
+      },
+      {
+        "theme": "dark",
+        "state": "empty",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-empty.png",
+        "sha256": "cf38783581c345ff1b687fd0598d467ac72de103b083522962ebe663e6c61d15"
+      },
+      {
+        "theme": "dark",
+        "state": "wrong",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-wrong.png",
+        "sha256": "8136d33b93977c1b6fef392e033924d625ab25e62ecad4b4aabb97e070d98b35"
+      },
+      {
+        "theme": "dark",
+        "state": "pending",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-pending.png",
+        "sha256": "893f12129e9d936bcbf86da5e5cecfcf400013ba857851a232b09d1210f898fd"
+      },
+      {
+        "theme": "dark",
+        "state": "reconnect",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-reconnect.png",
+        "sha256": "c60f9a412bf039d3d218c98e379a0cfc1f47e3cf391476391d9f527821b92af3"
+      },
+      {
+        "theme": "dark",
+        "state": "reconnecting",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-reconnecting.png",
+        "sha256": "91f58323635c82c6b77274306edf467d143861bd6756b87bf7f2c5927e841f0e"
+      },
+      {
+        "theme": "dark",
+        "state": "correct",
+        "file": "artifacts/private/ui-reference/gameplay-feedback-web-20261106-01/dark-correct.png",
+        "sha256": "8bb4141f5b83a7760214c24a15b02199b3ad6df2b52d64f0259926594e254f55"
+      }
+    ]
+  },
+  "matchedVisualPairs": [
+    {
+      "theme": "light",
+      "native": "hint-collapsed-light",
+      "web": "hint-closed",
+      "nativeOrigin": "native-01"
+    },
+    {
+      "theme": "light",
+      "native": "hint-expanded-light",
+      "web": "hint-open",
+      "nativeOrigin": "native-01"
+    },
+    {
+      "theme": "dark",
+      "native": "hint-collapsed-dark",
+      "web": "hint-closed",
+      "nativeOrigin": "native-01"
+    },
+    {
+      "theme": "dark",
+      "native": "hint-expanded-dark",
+      "web": "hint-open",
+      "nativeOrigin": "native-01"
+    },
+    {
+      "theme": "light",
+      "native": "feedback-empty-light",
+      "web": "empty",
+      "nativeOrigin": "native-02"
+    },
+    {
+      "theme": "light",
+      "native": "feedback-incorrect-light",
+      "web": "wrong",
+      "nativeOrigin": "native-02"
+    },
+    {
+      "theme": "light",
+      "native": "answer-pending-light",
+      "web": "pending",
+      "nativeOrigin": "native-02"
+    },
+    {
+      "theme": "light",
+      "native": "retry-dialog-light",
+      "web": "reconnect",
+      "nativeOrigin": "native-02"
+    },
+    {
+      "theme": "light",
+      "native": "retry-pending-light",
+      "web": "reconnecting",
+      "nativeOrigin": "native-02"
+    },
+    {
+      "theme": "light",
+      "native": "feedback-correct-light",
+      "web": "correct",
+      "nativeOrigin": "native-02"
+    }
+  ],
+  "nativeHintComponentSha256Unchanged": true,
+  "nativeFirstPackageIncompletePreserved": true,
+  "nativeDarkNonHintPictures": false,
+  "webDarkNonHintOnly": [
+    "empty",
+    "wrong",
+    "pending",
+    "reconnect",
+    "reconnecting",
+    "correct"
+  ],
+  "nativeOnlyState": [
+    "retry-stayed-light"
+  ],
+  "observedDimensions": {
+    "hintTapTarget": {
+      "nativeVp": [
+        298.286,
+        44.0
+      ],
+      "webCssPx": [
+        298,
+        23
+      ]
+    },
+    "hintExpandedBody": {
+      "nativeVp": [
+        298.286,
+        27.143
+      ],
+      "webCssPx": [
+        298,
+        27.188
+      ]
+    },
+    "emptyFeedback": {
+      "nativeVp": [
+        314.286,
+        75.714
+      ],
+      "webCssPx": [
+        314,
+        76
+      ]
+    },
+    "correctFeedback": {
+      "nativeVp": [
+        314.286,
+        75.714
+      ],
+      "webCssPx": [
+        314,
+        76
+      ]
+    },
+    "recoveryDialog": {
+      "nativeVp": [
+        336.0,
+        438.0
+      ],
+      "webCssPx": [
+        336,
+        438.578
+      ]
+    },
+    "recoveryAction": {
+      "nativeVp": [
+        286.286,
+        46.0
+      ],
+      "webCssPx": [
+        286,
+        46
+      ]
+    },
+    "submitAction": {
+      "nativePendingVp": [
+        104.0,
+        46.0
+      ],
+      "webOrdinaryCssPx": [
+        106,
+        46
+      ]
+    }
+  },
+  "observations": [
+    "All original Native and Web pictures listed above were opened. Hint label, triangle direction, left rule, and revealed body match. The 44 vp Native hit target is taller than the Web 23 px summary.",
+    "Native danger/success feedback stays after the action area, with readable label and full body and with no clipping. Native uses an unembellished badge and its own progress rendering. A static frame cannot compare the lifetime phase.",
+    "The ordinary capsule is left-aligned. Pending maintains the same label while the input and button become muted. Original captures show the retained draft.",
+    "Both recovery pictures show the centered signal, eyebrow, title, two-line detail, outlined action and ghost action. The two pending actions are visibly muted.",
+    "The Native content-cover mask is uniform and hides the underlying scene while Web uses its blurred backdrop and a diagonal glint. Native keeps a visible recovery entry beside the still-locked draft after Stay. No corresponding Web Stay frame was captured.",
+    "Web retains an extra empty action margin before the success card. The ordinary Native completed field is followed by feedback after its own 16 vp margin. Story clues and whole-page chrome are outside this review."
+  ],
+  "blockingVisualIssueObservedWithinReviewedStates": false,
+  "wholePageParityAccepted": false,
+  "answerOrPrivateDraftPublished": false
+}

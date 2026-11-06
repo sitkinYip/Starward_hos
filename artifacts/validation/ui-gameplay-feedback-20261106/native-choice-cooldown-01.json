@@ -1,0 +1,95 @@
+{
+  "status": "incomplete",
+  "stage": "one-wrong-choice-and-actual-pending",
+  "scope": "One scoped wrong choice, actual pending, persistent countdown and expiry on one disposable case1",
+  "hapSha256": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+  "sourceCaseIndex": 1,
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "bcf10ef95db38d130bcf890ae592689d45366c003e6b3a958a8dd75089dd0abe",
+    "runtime": "5f04cc6d64a875bf9c4ba121b5d145053d1856aa550ca73aca099b8cfd8705b6",
+    "hap": "1381b5231b14546227d4e78e91e72f0f2be90666ca67b4f656527087d3cf345a",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "e7e4bc8763a3b72148ee2672db55373cfb5f619133d5eef9efdbbdcc31a96ed1",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "choiceUI": "ed7320dba5f7a7cccd717b87e156f94c47e42d6aa98b69b3531cf8e596844dba",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "viewModel": "e3b78f9629bd455dd5cf2ad077f831ab18aa31258ff5a698a52a2476704db5e4",
+    "lightColors": "3f0deceabe58d5dc31695dbf2cadf63072b4f2ed2e983a3e91dc70b32a0fe2cf",
+    "darkColors": "09176d714a461c85acedfb1ab986a19f88defeda7a64bdfbd6d71309c0325170",
+    "cooldownDriver": "bd1e0b3b1ca97bd47255ed9b108a188f80b8e58c30cd91aac36c5497938d0a09",
+    "sourceFixture": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "choiceDriver": "38956ed52c65c1eb3c6b947c8383721adaf97f12d9fe27fd6644af63ecac79d0",
+    "feedbackComponent": "ab0f7f36786b49cc5164d2ae0d2fbef8e989aed771c950bc0070da60ca81bebc"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Fresh isolated choice case enters once and starts with zero answers and XP"
+  ],
+  "states": [],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "faultCleared": true
+  },
+  "sameDataWebFixtures": {
+    "active": {
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-01/active-web-dtos.json",
+      "sha256": "0413994e3c75def0c74c30a8f6596a753a0d4574d35f94c09ef9960602d5c456"
+    }
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [
+    {
+      "label": "choice-ready",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-01/raw-choice-ready-89f9699446f7476f9889ce21d5c95568.json",
+      "remoteRemoved": true,
+      "sha256": "79056f5c4fb07321f7ab64af76f99b175adb3a376db0ab21817d469e52cd7af5"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/gameplay-feedback-choice-cooldown-20261106-01/request-ledger.json",
+    "sha256": "a634b50ef427b623532a019dd68fbfd05fe53a4d0d4d01c0381665d26177c021"
+  },
+  "observedReadOnlyFacts": {
+    "assignmentStatus": "active",
+    "startedAtPresent": true,
+    "completedAtPresent": false,
+    "startReceiptCount": 1,
+    "progressRows": 1,
+    "answerSubmissionCount": 0,
+    "answerReceiptCount": 0,
+    "wrongCountTotal": 0,
+    "completedProgressRows": 0,
+    "lockedProgressRows": 0,
+    "xpLedgerCount": 0,
+    "xpDeltaSum": 0,
+    "playerTotalXp": 0,
+    "submissionResults": {
+      "correct": 0,
+      "incorrect": 0,
+      "manual": 0
+    }
+  },
+  "allRadiosInferredFromViewport": false,
+  "fixedPreviewTouched": false,
+  "failure": "The narrow native choice cooldown check is incomplete",
+  "createdAt": "2026-11-06T05:33:37.998731+00:00"
+}
