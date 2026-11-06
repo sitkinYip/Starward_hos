@@ -1,0 +1,135 @@
+{
+  "status": "incomplete",
+  "scope": "Official real case2 Pinch/zoomed Pan/Reset/clamp supplement only",
+  "viewerAcceptanceComplete": false,
+  "sourceCaseIndex": 2,
+  "hapSha256": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "122c9ac7ae9dcda4d918e818f83dfd82b687ccf4faafebb74d511c648c41c282",
+    "runtime": "99859934decfda8f5f2f42d22fa29452a39bbc2d44d167c1406605bc1311965f",
+    "hap": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "gameplay_page": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "window": "78be29e73efb74f97bca0ba6839602c36fe9f561b54fbe05d97422e07c4cae50",
+    "surfaces": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70",
+    "viewerDriver": "a1d5d608f76647760246139ffd4ab95cbb1a386eb9ac60880f57f460531388fd",
+    "imagesHelper": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "webViewerReference": "aabc3d7725e73bb26a0e0117446d6015982f5fc61912b495168bb0f7152cbd62",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "30ddd0faddc00732cb9fa3ca23b61fa36e86bf21e5b642da97917103bb551b11",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a",
+    "failureSetup": "36907d8facb2059264c10fc3f7b6346170deb7d88fdbaeecdccac1056f7d3701",
+    "webViewerHelper": "ef714a3ac3ea797958a6f9872f369ed501fb95918f4de1c1294fb53e50404566",
+    "normalViewerPrerequisite": "c5dc711968b0f878b19d08b8702e5126a0ffd746eb2b43b7d557a87dccf9a3b9",
+    "multiTouchHelper": "db92ae4cc9b46c15907ee51920b4e57f4efe4f94fc29e130cc8a2063dc50ccdc"
+  },
+  "sdkSourceSha256": {
+    "hypium/__init__.py": "80f1302f89f8fa324982cbb139bcbb8af6b681fef8cc1eefe3c4386a3e6c9f66",
+    "hypium/version.py": "83d1efe63d590e653f8a5001cb7d2aa99d98ee6ccfc51e630dbb5d7c8e70ab24",
+    "hypium/action/device/uidriver.py": "c00e13c080b7a60dbf9ffdaa0249af52463cd194fefee53de90ba8a2218c851a",
+    "hypium/uidriver/device_connector.py": "ca625e907ac92013d04c81b7cf99cfcc1db1c318d54574cb54c97f75aead49b0",
+    "hypium/uidriver/ohos/uidriver.py": "b46925156470e43661bc7c5e030de558923ba0174c811032f2147d801971a1af",
+    "hypium/uidriver/arkuidriver.py": "dfb0d4f142c97debfa22fc544131dfc0870987b38452275e62ede54d3c3a13a4",
+    "hypium/uidriver/gesture.py": "187585f39a24f3ae4e94f1d5a177db1872c700a513524b06196960726467befe",
+    "hypium/uidriver/pointer_matrix.py": "f493fac33bc982a63478885265bf28357af4377358b2570e3637655c7327e805",
+    "hypium/dfx/init_status_manager.py": "19abb010d452e38307c086643c0e2ecb38d003154e46504995950be175672f05",
+    "hypium/dfx/tracker.py": "ee33b7d1b19c4b9f75f88873ff46fc8ffb4f35a6adb0f5b309a5408dd36c4cf1",
+    "hypium/model/basic_data_type.py": "235915582100bbc2007b175c95c61bcdbc02e096862f3eb3112a49c669278eb3",
+    "hypium/utils/utils.py": "f08a32783d1acdcbbaddd818350aa385cb4878892e3a714e7829b166a9affd87",
+    "xdevice/__init__.py": "04a31dedcb21b9ad33eedc52ee822a48d580c8202383f4b117f79cdc298ff37c",
+    "xdevice/_core/variables.py": "30331c69a6955ab1dc45f9f02dfdf33a67709ca2ccb2e6a1ceaeff078851753e",
+    "xdevice/_core/utils.py": "277dc2f35a349ea3862df8f577ba2f002369a2dbb43a9e69f2fee8ec2f989bf3",
+    "xdevice/_core/config/config_manager.py": "3291803327aeee020d1e61f3992a67cb8fbd8b12c4ab499112d592a2c6c18ce2",
+    "xdevice/_core/analysis/tracker.py": "e23fc2029016981eecb87bdbd04ceabd7702e2bc1e6ed78ba347837784a0b3db",
+    "xdevice/_core/analysis/db.py": "6417ab826ae533ab2529efe15f126458685b2e6a4fd04603f7362846e63c6e5e",
+    "xdevice/_core/environment/env_pool.py": "999956b832502e589ea2fa5fdbf1baebcb08e27521c3e8333c55f116d73c0885",
+    "ohos/proxy/ui_proxy.py": "1c76631c25c70f082083c2baef336ad3bf2b327e154754f01a4fe0ee9201daf7",
+    "ohos/proxy/proxy_base.py": "62185539994ffcdb1757b80a45a79fe31fd1fe22670cccd91e691f42ab7b968e",
+    "ohos/environment/device.py": "4ca3d74d3dab0d36b9179bf712aa17da4dfd895e473193b457f39cb5950091ef",
+    "ohos/environment/dmlib.py": "08b1fb47f522a75d9a2a1f6b2a4e91b970fa9e055d9ec360444333ee883c408d",
+    "devicetest/utils/util.py": "303910ceb57801e91c10cd019a37b000aba21e27505fa5d0e4db44c9e4c369d5",
+    "devicetest/core/test_case.py": "620d7ed1eee0de86e65e91cafb8c72d0f494a29b2fca5019a2d76fe21e9a51e2"
+  },
+  "sdkVersion": "6.1.0.210",
+  "sdkNotes": {
+    "baseline": {
+      "file": "artifacts/private/ui-reference/image-viewer-multitouch-05/sdk-baseline.json",
+      "sha256": "7ecf1d06219a46344feab26b9dd16353b91446dc0ca6af066dde77ee50804cc6"
+    },
+    "cacheOwnership": {
+      "file": "artifacts/private/ui-reference/image-viewer-multitouch-05/sdk-cache-roots.json",
+      "sha256": "71b770a07b40eebbd19a87dccdccdad72add8eb423b7c3aaeaa6403070e6b440"
+    },
+    "publicConfigVerified": {
+      "uploadtrack": false,
+      "analysisUploadEnable": false,
+      "killUitest": false
+    },
+    "incompleteObservation": {
+      "file": "artifacts/private/ui-reference/image-viewer-multitouch-05/sdk-incomplete-observation.json",
+      "sha256": "34c4786977342068640d6aecd96099b1c7e58ee7eeccfd3f3104a5c0abe86f34"
+    }
+  },
+  "checksPassed": 0,
+  "checks": [],
+  "gestures": [],
+  "states": [],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "sdkRemoteCleanup": {
+    "sdkClosed": false,
+    "existingPoolShutdown": false,
+    "ownedDaemonRemoved": false,
+    "ownedAgentFilesRemoved": false,
+    "ownedSdkForwardRemoved": false,
+    "ownTlsReversePreserved": false,
+    "foreignRemoteNamesPreserved": false,
+    "existingHdcServerPreserved": false
+  },
+  "postProcessCacheCleanupPending": true,
+  "privateExitCacheInventory": "artifacts/private/ui-reference/image-viewer-multitouch-05/sdk-cache-exit-inventory.json",
+  "outerCleanupRule": "Wait for Python exit; verify fresh exit inventory roots/inodes/hashes/source and absence baseline before precise removal",
+  "auditDeniedEvents": [
+    "socket.gethostbyaddr"
+  ],
+  "expectedBlockedLocalLookup": [],
+  "privateScreenshots": [],
+  "privateRawEvidence": [],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/image-viewer-multitouch-05/request-ledger.json",
+    "sha256": "9f903a40d0cb2ea2900885aeea0ca537f1139377e12fca09db4a80f4981f06dc"
+  },
+  "realMultiPointerInjected": false,
+  "publicInjectionReturnMeaning": "Reviewed SDK returnsNone; raw pose/PNG is the evidence",
+  "otherTestCountsInherited": false,
+  "fixedPreviewTouched": false,
+  "failure": "The narrow multi-pointer supplement is incomplete",
+  "pendingAcceptance": [
+    "Root post-process exact cache cleanup closure",
+    "Remaining-finger and cancellation isolation",
+    "Root full-original visual review"
+  ],
+  "writeScope": "Host auth/read; zero start/answer/profile/password/fault/reset; owned SDK initialization/cleanup only",
+  "createdAt": "2026-11-05T05:21:52.517760+00:00"
+}

@@ -1,0 +1,17 @@
+class=ImmersiveSurfacesTests
+test=overlappingDarkSurfacesRequireTheLastLeaseAndIgnoreRepeatedRelease
+Error in overlappingDarkSurfacesRequireTheLastLeaseAndIgnoreRepeatedRelease, expect 3 equals 2
+    at AssertException (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:75:9)
+    at anonymous (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:1149:37)
+    at anonymous (entry/src/test/ImmersiveSurfaces.test.ets:22:31)
+    at anonymous (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:90:19)
+    at getFuncWithArgsZero (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:82:12)
+    at processedFunc (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:161:24)
+    at asyncRun (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:1030:24)
+    at asyncRunSpecs (oh_modules/.ohpm/@ohos+hypium@1.0.25/oh_modules/@ohos/hypium/src/main/service.js:729:32)
+result=Failure
+test=windowResetInvalidatesOldIdsWithoutReusingThemOrReleasingTheNewSurface
+result=Success
+test=newSubscriberImmediatelyObservesTheActiveSurfaceAndUnsubscribeIsIdempotent
+result=Success
+Tests run: 3, Failure: 1, Error: 0, Pass: 2, Ignore: 0

@@ -1,0 +1,63 @@
+{
+  "status": "services_restored_native_gestures_pending",
+  "date": "2026-11-05",
+  "temporaryEnvironment": "fresh_disposable_database_not_resumed",
+  "import": {
+    "realContentCases": 3,
+    "verifiedSourceRows": 19,
+    "separateBodyFailureCases": 1,
+    "separateDerivedRows": 7
+  },
+  "entryPreparation": {
+    "actor": "dedicated_new_case2",
+    "officialHostStartReceipts": 1,
+    "progressRows": 1,
+    "answerSubmissions": 0,
+    "totalXp": 0,
+    "nativeEntryAcceptanceClaimed": false
+  },
+  "fixedPreviewPreserved": {
+    "manifest.json": true,
+    "login.json": true,
+    "pb_data/data.db": true,
+    "tls/ca.pem": true
+  },
+  "officialRunLogSignals": {
+    "buildCompleted": true,
+    "installed": true,
+    "launched": true
+  },
+  "officialRunExitCodeCaptured": false,
+  "hapSha256": "8220a2ecc82b9e7f1236073316f9aace0245a08e6096526af3011c1c620b95d1",
+  "packageComparison": "artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/package-comparison.json",
+  "symbolMapJsonValuesEqual": null,
+  "configurationJsonValuesEqual": true,
+  "runtime": {
+    "file": "artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/runtime.json",
+    "sha256": "88887ff364527428e0e25a02cd333c7a04dc1eb9df929b650e29f8e4a773a7b4",
+    "status": "passed",
+    "checks": {
+      "actualWindowReported": true,
+      "actualImmersiveWindow": true,
+      "transparentSystemBars": true,
+      "requestedFontScaleReported": true,
+      "threeIndependentTlsCases": true
+    }
+  },
+  "oldNormalAcceptanceInherited": false,
+  "gestureAcceptanceClaimed": false,
+  "services": [
+    "DevEco Studio",
+    "HDC",
+    "Docker",
+    "disposable PocketBase",
+    "isolated TLS with own USB reverse",
+    "frozen Web reference"
+  ],
+  "deferredServicesNotStarted": [
+    "SDK multi-pointer driver",
+    "synthetic media server",
+    "public tunnel"
+  ],
+  "createdAt": "2026-11-05T11:03:26.934913+00:00"
+}

@@ -114,3 +114,5 @@ python3 scripts/device-preview-smoke.py run --runtime-report <该预览HAP的run
 ```
 
 运行后的主机报告是 `artifacts/validation/profile/preview-environment.json`，只记录模式、来源摘要、实际 TLS 正反校验和直接登录状态。它不包含口令、token、受保护文件地址或设备标识。原生构建、签名、安装、登录和视觉检查另记当前 HAP/runtime 证据；固定预览的准备和启动不得替换此前一次性验收报告的归属。
+
+2026-11-06选择题小点收尾：沿用原固定预览数据库、CA和账号，未重置凭据或重新导入数据。USB入口改回固定预览，官方CLI重建、安装并启动，直板机直接登录读列表并保留首页。见[恢复回执](../artifacts/validation/ui-choice-options-20261105/fixed-preview-restored-01.json)、[运行时](../artifacts/validation/profile/runtime-choice-preview-restored-20261106-01.json)及[真机直接登录](../artifacts/validation/gameplay-answer-20261104/preview-choice-restored-20261106-01.json)。恢复前的[主机报告](../artifacts/validation/profile/preview-environment-before-choice-20261106-01.json)独立归档；一次性验收使用的原HAP与台账也保留各自绑定。

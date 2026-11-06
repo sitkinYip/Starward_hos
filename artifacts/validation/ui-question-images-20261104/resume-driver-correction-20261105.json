@@ -1,0 +1,17 @@
+{
+  "status": "image_driver_resume_correction",
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "runtime": "artifacts/validation/ui-question-images-20261104/runtime-01.json",
+  "preservedIncomplete": "artifacts/validation/ui-question-images-20261104/native-case0-01.json",
+  "reason": "Existing active re-entry sequentially reads the detail projection and the full gameplay snapshot. New helpers now require both GET200 reads; no product code changed.",
+  "sourceEvidence": [
+    "entry/src/main/ets/pages/Index.ets:359",
+    "entry/src/main/ets/pages/Index.ets:363",
+    "entry/src/main/ets/data/HttpsGameRepository.ets:320",
+    "entry/src/main/ets/data/HttpsGameRepository.ets:361"
+  ],
+  "driverSha256": {
+    "device-question-images.py": "7ac15abcb8123f4ba5b9547943bc42f3cce6e75e6ff74843026478cbc39f128d",
+    "device-question-image-failure.py": "3a7a29b81a948fd8f5479169d9a70d9461b08f722759ae931f08edc3b1091c21"
+  }
+}

@@ -9,6 +9,8 @@ import { StarwardKeyboard } from '../ui/StarwardKeyboard';
 import { StarwardQuestionFrame } from '../ui/StarwardQuestionFrame';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardQuestionImages } from '../ui/StarwardQuestionImages';
+import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
+import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
 
 /** A hint is disclosed by the player, like the formal Web question details. */
 @ComponentV2
@@ -44,10 +46,55 @@ export struct GameplayPage {
   @Local seenCompletionRevision: number = 0;
   @Local reconnecting: boolean = false;
   @Local viewportWidth: number = 0;
+  @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState();
 
   aboutToAppear(): void {
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
+  }
+
+  aboutToDisappear(): void { this.viewer.close(this.viewer.sessionId, true); }
+
+  @Monitor('play.visible', 'play.snapshot', 'play.activeIndex')
+  imageOwnerChanged(): void { this.viewer.validateOwner(); }
+
+  @Monitor('viewer.visible')
+  coverVisibilityChanged(): void {
+    if (!this.viewer.visible && !this.viewer.closing) { this.viewer.close(this.viewer.sessionId); }
+  }
+
+  private openImages(blockIndex: number, index: number): void {
+    const block: GameplayContentBlock | undefined = this.play.currentLevel()?.question?.content[blockIndex];
+    if (!this.play.visible || this.play.snapshot === null || block === undefined || block.videoUrl.length > 0) { return; }
+    const sources: string[] = this.blockImages(block);
+    const owner: string = this.imageOwner();
+    StarwardKeyboard.dismiss(this.getUIContext());
+    this.viewer.open(sources, index, () => {
+      const current: GameplayContentBlock | undefined = this.play.currentLevel()?.question?.content[blockIndex];
+      if (!this.play.visible || this.play.snapshot === null || owner !== this.imageOwner() || current === undefined ||
+        current.videoUrl.length > 0) { return false; }
+      const actual: string[] = this.blockImages(current);
+      return actual.length === sources.length && actual.every((source: string, position: number) => source === sources[position]);
+    });
+  }
+
+  private viewerOptions(): ContentCoverOptions {
+    const sessionId: number = this.viewer.sessionId;
+    return { backgroundColor: '#050605', enableSafeArea: false,
+      modalTransition: this.reducedMotion ? ModalTransition.NONE : ModalTransition.ALPHA,
+      onWillDismiss: (action: DismissContentCoverAction) => { this.viewer.close(sessionId); action.dismiss(); },
+      onDisappear: () => this.viewer.disappeared(sessionId) };
+  }
+
+  private viewerCloseAction(): () => void {
+    const sessionId: number = this.viewer.sessionId;
+    return () => this.viewer.close(sessionId);
+  }
+
+  @Builder
+  imageViewer() {
+    StarwardImageViewer({ model: this.viewer, sessionId: this.viewer.sessionId, reducedMotion: this.reducedMotion,
+      close: this.viewerCloseAction() })
   }
 
   @Monitor('play.retryAnswer')
@@ -117,6 +164,24 @@ export struct GameplayPage {
     return option?.text || `选项 ${key}`;
   }
 
+  private optionImage(key: string): string {
+    const option: GameplayOption | undefined = this.play.currentLevel()?.question?.options.find(
+      (item: GameplayOption) => item.key === key);
+    // A video poster must not become a fake image-only playback path.
+    return option !== undefined && option.videoUrl.length === 0 ? option.imageUrl : '';
+  }
+
+  private optionOwner(key: string): string { return `${this.imageOwner()}:option:${key}`; }
+
+  private openOptionImage(key: string): void {
+    const source: string = this.optionImage(key);
+    const owner: string = this.optionOwner(key);
+    if (!this.play.visible || this.play.snapshot === null || !this.play.answerEditable() || source.length === 0) { return; }
+    StarwardKeyboard.dismiss(this.getUIContext());
+    this.viewer.open([source], 0, () => this.play.visible && this.play.snapshot !== null && this.play.answerEditable() &&
+      this.optionOwner(key) === owner && this.optionImage(key) === source);
+  }
+
   private currentCompleted(): boolean {
     return (this.play.currentLevel()?.completedAt || '').length > 0;
   }
@@ -181,28 +246,15 @@ export struct GameplayPage {
 
   @Builder
   choiceAnswer() {
-    Column({ space: 12 }) {
+    Column({ space: 10 }) {
       ForEach(this.optionKeys(), (key: string, index: number) => {
-        Row({ space: 12 }) {
-          Radio({ value: key, group: `gameplay-${this.play.currentLevel()?.id || ''}` })
-            .id(`gameplay-option-${index}`).checked(this.shownAnswer() === key)
-            .radioStyle({ checkedBackgroundColor: $r('app.color.accent'),
-              uncheckedBorderColor: $r('app.color.border_strong'), indicatorColor: $r('app.color.on_accent') })
-            .enabled(this.play.answerEditable()).accessibilityText(`${key} ${this.optionText(key)}`)
-            .onChange((checked: boolean) => {
-              if (checked && this.play.answerEditable()) {
-                this.play.editAnswer(key);
-              }
-            })
-          Text(key).fontSize(15).fontWeight(FontWeight.Medium).fontColor($r('app.color.accent_text'))
-          Text(this.optionText(key)).layoutWeight(1).fontSize(15).lineHeight('25.5fp')
-            .fontColor($r('app.color.text'))
-        }.width('100%').constraintSize({ minHeight: 56 }).alignItems(VerticalAlign.Center).padding(12)
-          .backgroundColor(this.shownAnswer() === key ? $r('app.color.accent_faint') : $r('app.color.canvas'))
-          .border({ width: 1,
-            color: this.shownAnswer() === key ? $r('app.color.accent_border') : $r('app.color.border'),
-            radius: 10 })
-          .enabled(this.play.answerEditable()).onClick(() => this.play.editAnswer(key))
+        StarwardChoiceOption({ optionKey: key, text: this.optionText(key),
+          group: `gameplay-${this.play.currentLevel()?.id || ''}`, radioId: `gameplay-option-${index}`,
+          cardId: `gameplay-choice-${index}`, imageId: `gameplay-option-image-${index}`,
+          selected: this.shownAnswer() === key, editable: this.play.answerEditable(),
+          imageSource: this.optionImage(key), ownerKey: this.optionOwner(key),
+          ownerIsCurrent: (owner: string) => this.play.visible && this.play.snapshot !== null && owner === this.optionOwner(key),
+          reducedMotion: this.reducedMotion, chosen: () => this.play.editAnswer(key), opened: () => this.openOptionImage(key) })
       }, (key: string) => key)
     }.id('gameplay-choice-options').width('100%')
   }
@@ -285,7 +337,7 @@ export struct GameplayPage {
                 StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.imageOwner(),
                   ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null && key === this.imageOwner(),
                   groupId: `question-images-${index}`, maxHeight: this.viewportWidth <= 620 ? 340 : 420,
-                  reducedMotion: this.reducedMotion })
+                  reducedMotion: this.reducedMotion, opened: (imageIndex: number) => this.openImages(index, imageIndex) })
               }
               if (block.text.length > 0) {
                 Text(block.text).id(`question-content-text-${index}`).width('100%')
@@ -375,5 +427,6 @@ export struct GameplayPage {
     StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
       request: async () => { await this.play.refresh(); },
       content: () => { this.gameplayScroll() } })
+      .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
   }
 }

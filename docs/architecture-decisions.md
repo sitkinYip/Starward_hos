@@ -249,6 +249,7 @@
 - `platform/QuestionImageLoader`使用官方NetworkKit/ImageKit，固定公开来源`https://sitkin.top/`，不附玩家Authorization/Cookie，不沿用头像file token或隔离后端CA；外部HTTPS采用系统信任，下载不持久化。相对图片地址按Web站点解析，禁止凭据、危险scheme和字面本地地址URL；不把后端API origin当媒体origin。普通主机名交给系统DNS/TLS，SDK没有解析地址pin接口，不增加无法保证实际连接目标的二次DNS探测，也不声称抗DNS重绑定。
 - 下载字节、原始尺寸、解码尺寸分别有界；以实际图片magic与ImageSource确认格式，容忍已知HTTP MIME误标。自然尺寸来自原图，解码可降采样；布局不把源像素除density，也不用缩略分辨率替代自然大小。
 - 每个挂载图片有独立请求代次。取消关闭自己的HttpRequest；解码不能强停时，迟到结果释放。ImageSource操作完成后释放，已交付PixelMap由UI单一持有并在替换/离开时清理；不建立跨账号磁盘/全局图片缓存。
+- 2026-11-05补充：平台层以每实例的窄`QuestionImageIO`封装HTTP、ImageSource和PixelMap句柄，默认实现仍只调用固定SDK；不全局替换Kit，也不在发行配置加入测试延迟。受控Promise用于验证HTTP迟到、decode迟到、旧请求清理与新请求隔离、source释放期间取消四种资源交付竞态。测试句柄不伪造可绘制PixelMap；受控时序通过不等于实际SDK解码/TLS/释放行为通过，真实加载与绘制继续用真机验证。
 - 页面/账号失效时立即清图片与查看数据；同题只读Refresh保持图片所有者，不重挂输入或以图片回调驱动判题。图片403是局部媒体错误，不触发玩家登出或答题重试。
 - `ui/`内V2组件封装官方Image和加载/失败重试反馈，保留Web图片顺序、自然比例、手机340高度上限、图集min150/gap10及选择图130高Cover。查看后续以官方bindContentCover/Pinch/Pan组合原有索引、缩放、滑动与关闭；不自制触摸识别器或声称有完整系统图库组件。
 - 状态栏/手势栏保持可见；查看器如用固定深色背景，必须由现有窗口策略统一确保图标对比度并恢复，不能默认容器会替业务处理。视频、BGM和线索演出不接入本决策的图片成功状态。

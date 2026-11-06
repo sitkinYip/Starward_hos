@@ -1,0 +1,297 @@
+{
+  "status": "captured_web_completed_choice_reference",
+  "plan": {
+    "scope": "Real completed case1 DTO, readonly single choice question and disabled thumbnails",
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "width": 376,
+    "height": 742,
+    "fontScale": 1,
+    "hasTouch": true,
+    "statesPerTheme": [
+      "completed-answer",
+      "completed-tail"
+    ],
+    "publicSelectionAndGeometryOmitted": true,
+    "syntheticAuthentication": true,
+    "syntheticCompletion": false,
+    "businessAcceptance": false,
+    "limitations": [
+      "Real post-submit DTO replay only; no new completion or backend request",
+      "No selecting, submit, image opening, gesture, playback, Native UI or disabled-touch interaction"
+    ]
+  },
+  "helperSha256": "6824383b7ac30415645500eb98692d40d22735acbf219a8bb8dacb3286fa56b4",
+  "normalHelperSha256": "c4f59152ba5aca19a97e45e47caa8a502af9974756d13f8e363a98e522f8e3e9",
+  "frameHelperSha256": "12f9b6563ebb95cc141043e966c009375873de0b8de764df9a0308ecf4ae520f",
+  "boundaryHelperSha256": "4f293d01bf98e7e4a355493d8572a1a1e1b24566571a872bab7baf0860b0da8f",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "dtoSha256": "70a5e719ce313fb2faef20a392a03a94bb1efab9dba4585e78285f190df36488",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "sourceSha256": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/quest/QuestCard.tsx": "02d106ad6b419225c212a0ce24ce57d2096fb559fa2db508be3dee9649d228d3",
+    "src/features/quest/QuestAnswerForm.tsx": "6b1210fdb87a8103281dfa9fec85fabda0634e9610ffcb45303ad2d0f55cf0e5",
+    "src/features/media/QuestContent.tsx": "6afaa260366137195fde9b7cba6c08b8222cb1a4f9877082e678d4c48ba17198",
+    "src/features/media/ChoiceOptions.tsx": "c3ae135e8bf9e6f596efb62b64d037555cd34a34f4784ee1faca573e8b87de95",
+    "src/features/content/RichContent.tsx": "3eb037ff18774f186fe77286f60df8c624c905edcc57466ab65dade8f46de8d8",
+    "src/domain/content/parser.ts": "4908c745e0c8202a6944f851b1a8f230289926f0c0eeaf955e09eb44d67b9f94",
+    "src/styles/foundation/base.css": "3ca98dedb2518df3086e60ec6be9f9bacc04d41bef76e61e28f33f7d3cdd7b84",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+    "src/styles/layout/shell.css": "2dd77a6370f4b77641251c15e830cb2f635d4d637b220d9f786b026ec2c674a7",
+    "src/styles/features/quest.css": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd",
+    "src/styles/features/question-images.css": "e50b3dabb7413ad14906f445919b8c9a43def546874e35be1affff773bcaf996",
+    "src/styles/effects/quest-lighting.css": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9",
+    "src/styles/effects/answer-feedback.css": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "src/styles/components/controls-and-overlays.css": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+    "src/features/media/MediaViewer.tsx": "d37ef115da63e7954f202ae6adfe7881504ca4b7d843dbbcaed364e57a498f4e",
+    "src/features/media/ZoomableImage.tsx": "76f0a402abb78ecdc3c8aeef09d72c9033a7088bd1b6510f1c9a1c4f57d20e3a",
+    "src/features/game/useGamePresentation.ts": "e48cef4eca361a40aefa4d326ef033ccc4310ace74a5c9f35ef0d4b0d7e33367",
+    "src/styles/components/media-viewer.css": "0b693cb0333ebae58cf3cb0da70b07ee13bb2e1ae8ae1365534d40d374c497a3",
+    "src/styles/components/media-backdrop.css": "e5f56b3d64c86f15f4a070112f5df421a8fe9800dccbcb0a169b26067fc3afc9"
+  },
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "registeredImageSha256": [
+    "811be38184e65fe63ac4ac78628c30ff21d29508e7bf531e426c8cf2593f11ca",
+    "ac46862b81d288b74dcd631abcd206fd7e77c72a4215bd243771e07560bb840a",
+    "ad3ad48234ea59926eaf85009fa77505d6f2ce34f902a04a6101b28b6b905759",
+    "b9bd0451630a0441727155b5462c95b1a5c61b6ba4107bc8fc0b7e2b79f9584e",
+    "ca85d3b4395e90c83c6b3c9e13175929a2626d6bb82de6223d529067194dc4ff",
+    "d1f38ec9b72bdf6778ea0670e1ad7b68bf3f23a19c06abf4a9016c3683a095f0",
+    "e6fa6239e325c2838c43836b1ae27f783231ec9933b68fac7deb9f04137d0365",
+    "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0"
+  ],
+  "registeredMimeReplay": [
+    {
+      "sourceSha256": "811be38184e65fe63ac4ac78628c30ff21d29508e7bf531e426c8cf2593f11ca",
+      "originalHttpMime": "image/jpeg",
+      "replayedDetectedMime": "image/jpeg"
+    },
+    {
+      "sourceSha256": "ad3ad48234ea59926eaf85009fa77505d6f2ce34f902a04a6101b28b6b905759",
+      "originalHttpMime": "image/png",
+      "replayedDetectedMime": "image/jpeg"
+    },
+    {
+      "sourceSha256": "e6fa6239e325c2838c43836b1ae27f783231ec9933b68fac7deb9f04137d0365",
+      "originalHttpMime": "image/png",
+      "replayedDetectedMime": "image/jpeg"
+    },
+    {
+      "sourceSha256": "ac46862b81d288b74dcd631abcd206fd7e77c72a4215bd243771e07560bb840a",
+      "originalHttpMime": "image/png",
+      "replayedDetectedMime": "image/jpeg"
+    },
+    {
+      "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+      "originalHttpMime": "image/png",
+      "replayedDetectedMime": "image/png"
+    },
+    {
+      "sourceSha256": "ca85d3b4395e90c83c6b3c9e13175929a2626d6bb82de6223d529067194dc4ff",
+      "originalHttpMime": "image/jpeg",
+      "replayedDetectedMime": "image/jpeg"
+    },
+    {
+      "sourceSha256": "b9bd0451630a0441727155b5462c95b1a5c61b6ba4107bc8fc0b7e2b79f9584e",
+      "originalHttpMime": "image/jpeg",
+      "replayedDetectedMime": "image/jpeg"
+    },
+    {
+      "sourceSha256": "d1f38ec9b72bdf6778ea0670e1ad7b68bf3f23a19c06abf4a9016c3683a095f0",
+      "originalHttpMime": "image/jpeg",
+      "replayedDetectedMime": "image/jpeg"
+    }
+  ],
+  "realCompletedDto": true,
+  "syntheticAuthentication": true,
+  "syntheticCompletion": false,
+  "backendRequestsContinued": 0,
+  "externalRequestsContinued": 0,
+  "businessAcceptance": false,
+  "nativeAcceptance": false,
+  "correctAnswerOrSelectionPublished": false,
+  "visualReview": "pending_root_original_review",
+  "states": [
+    {
+      "theme": "light",
+      "position": "completed-answer",
+      "conditions": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "coarsePointer": true,
+        "hasTouch": true,
+        "theme": "light",
+        "scrollWidth": 376,
+        "documentInlineZoom": "1",
+        "visualViewportScale": 1,
+        "mediaPlaying": false
+      },
+      "radioCount": 4,
+      "disabledRadioCount": 4,
+      "disabledThumbnailCount": 3,
+      "oneSelectionMatchesAuthoritativeLastAnswer": true,
+      "allOptionGeometryMatched": true,
+      "viewerAbsent": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.png",
+        "sha256": "6d20fd3bbfa26c4616d254434abcd26824756a33f1c823fbe47b084126ea3bfe"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.json",
+        "sha256": "1ca675d722ec57cb20f8f192a54728ba4082c753197e61c4c9b035bf6f918595"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.html",
+        "sha256": "1331e085f2905a50e179fb6fe9034332e881bf3236e2cd64661a05f20f90165c"
+      }
+    },
+    {
+      "theme": "light",
+      "position": "completed-tail",
+      "conditions": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "coarsePointer": true,
+        "hasTouch": true,
+        "theme": "light",
+        "scrollWidth": 376,
+        "documentInlineZoom": "1",
+        "visualViewportScale": 1,
+        "mediaPlaying": false
+      },
+      "radioCount": 4,
+      "disabledRadioCount": 4,
+      "disabledThumbnailCount": 3,
+      "oneSelectionMatchesAuthoritativeLastAnswer": true,
+      "allOptionGeometryMatched": true,
+      "viewerAbsent": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-tail.png",
+        "sha256": "6d20fd3bbfa26c4616d254434abcd26824756a33f1c823fbe47b084126ea3bfe"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-tail.json",
+        "sha256": "1ca675d722ec57cb20f8f192a54728ba4082c753197e61c4c9b035bf6f918595"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-tail.html",
+        "sha256": "1331e085f2905a50e179fb6fe9034332e881bf3236e2cd64661a05f20f90165c"
+      }
+    },
+    {
+      "theme": "dark",
+      "position": "completed-answer",
+      "conditions": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "coarsePointer": true,
+        "hasTouch": true,
+        "theme": "dark",
+        "scrollWidth": 376,
+        "documentInlineZoom": "1",
+        "visualViewportScale": 1,
+        "mediaPlaying": false
+      },
+      "radioCount": 4,
+      "disabledRadioCount": 4,
+      "disabledThumbnailCount": 3,
+      "oneSelectionMatchesAuthoritativeLastAnswer": true,
+      "allOptionGeometryMatched": true,
+      "viewerAbsent": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.png",
+        "sha256": "59bf5743be2fb6d29a7fa690776d6329145fa51cb032079526c69311e2ae760a"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.json",
+        "sha256": "d2d13453636c3af18377d6056bc43e5bc5519d101d72beb005f32ee26a68dd1a"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.html",
+        "sha256": "2672394c1a90605e6b84aae175000205b8e7a1a0340de7686dfa8ba8abd92bef"
+      }
+    },
+    {
+      "theme": "dark",
+      "position": "completed-tail",
+      "conditions": {
+        "width": 376,
+        "height": 742,
+        "dpr": 1,
+        "coarsePointer": true,
+        "hasTouch": true,
+        "theme": "dark",
+        "scrollWidth": 376,
+        "documentInlineZoom": "1",
+        "visualViewportScale": 1,
+        "mediaPlaying": false
+      },
+      "radioCount": 4,
+      "disabledRadioCount": 4,
+      "disabledThumbnailCount": 3,
+      "oneSelectionMatchesAuthoritativeLastAnswer": true,
+      "allOptionGeometryMatched": true,
+      "viewerAbsent": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-tail.png",
+        "sha256": "59bf5743be2fb6d29a7fa690776d6329145fa51cb032079526c69311e2ae760a"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-tail.json",
+        "sha256": "d2d13453636c3af18377d6056bc43e5bc5519d101d72beb005f32ee26a68dd1a"
+      },
+      "privateDom": {
+        "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-tail.html",
+        "sha256": "2672394c1a90605e6b84aae175000205b8e7a1a0340de7686dfa8ba8abd92bef"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "fourRadiosAndThreeThumbnailsEffectivelyDisabled": true,
+      "oneReadonlySelectionMatchesAuthoritativeLastAnswer": true,
+      "noSelectOpenOrSubmitAttempted": true,
+      "noAdditionalApiRequest": true
+    },
+    {
+      "theme": "dark",
+      "fourRadiosAndThreeThumbnailsEffectivelyDisabled": true,
+      "oneReadonlySelectionMatchesAuthoritativeLastAnswer": true,
+      "noSelectOpenOrSubmitAttempted": true,
+      "noAdditionalApiRequest": true
+    }
+  ],
+  "createdAt": "2026-11-05T15:20:26.236620+00:00",
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/browser-private.json",
+    "sha256": "31e2de3f583043d5027adaa1c9c3cdf81a52ead36171c21f893b3468f4a32836"
+  },
+  "counts": {
+    "apis": 20,
+    "blocked": 9,
+    "imagesReplayed": 8,
+    "unexpectedApis": 0,
+    "routeFailures": 0,
+    "pageErrors": 0,
+    "consoleErrors": 9,
+    "webSocketsBlocked": 4,
+    "states": 4,
+    "checks": 2,
+    "schemaChecks": 6,
+    "servedSourceChecks": 50,
+    "fontRequestsReplayed": 2
+  }
+}

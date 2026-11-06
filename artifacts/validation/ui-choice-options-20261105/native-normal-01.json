@@ -1,0 +1,111 @@
+{
+  "status": "incomplete",
+  "stage": "native-entry-and-frame",
+  "scope": "Own real-content case1 four choice options and three option thumbnails",
+  "plan": {
+    "scope": "Own real-content case1 four choice options and three option thumbnails",
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "states": [
+      "initial-four-options",
+      "A-B-A-mutual-selection",
+      "B-selected-open-A-singleton",
+      "close-preserves-four-radio-instances",
+      "one-light-theme-Refresh-preserves-selection-and-image-instances"
+    ],
+    "writes": "Optional exact one native start; no answer or settlement",
+    "excluded": [
+      "completed/locked/cooldown UI",
+      "image failures or cancellation",
+      "multi-pointer viewer gestures",
+      "whole-page parity",
+      "video/BGM"
+    ]
+  },
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "5c07ee0c0e2f27a6104b2b0a0119e0b57e8346eb1345030309c276e32bdc1f69",
+    "runtime": "d5c19006e2cb98b375ecb78523f5ddefa0d29c1613e669ef4d447678d6d813c2",
+    "hap": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "715d7147c6d414961c7a3c1d90bfaa7c8c8e456b9ff4cc7b7aaaf38a0039dff9",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "choiceUI": "b77f07b02da98e62352c78cf268a3735f0c860a0562fa9b0ded133fe0728d58f",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "lightColors": "17a815a56403293f5362274f2a1ed4e7d1c76a7c5785d8b05a96f052d09b48cf",
+    "darkColors": "2b6c87cae66e6b846d480f9ff28380cc67ea35a1957f089bc05638e325dd80fa",
+    "choiceDriver": "dddf4e260c4b793194ec2eb0621ca7ca7b120e87315eed134f129fa829c6ffec",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "quantitativeTopHelper": "05a13a2f2084048ec5fbf65b7a31ee1df36b121dfc460880f05919923ea597fd",
+    "frozenWebSource0": "c3ae135e8bf9e6f596efb62b64d037555cd34a34f4784ee1faca573e8b87de95",
+    "frozenWebSource1": "6b1210fdb87a8103281dfa9fec85fabda0634e9610ffcb45303ad2d0f55cf0e5",
+    "frozenWebSource2": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd",
+    "frozenWebSource3": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9",
+    "frozenWebSource4": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "frozenWebSource5": "3ca98dedb2518df3086e60ec6be9f9bacc04d41bef76e61e28f33f7d3cdd7b84"
+  },
+  "hapSha256": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "sourceCaseIndex": 1,
+  "checksPassed": 0,
+  "checks": [],
+  "states": [],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [
+    {
+      "label": "initial-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-01/raw-initial-0-light-2a6ef92c3d9b46e8a35fda8a0c0e86b6.json",
+      "remoteRemoved": true,
+      "sha256": "c6bce2fc5d0199f30ff2e04f005f018c5dbd0c4f52683ca1e8a9c3095f642355"
+    }
+  ],
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/choice-native-20261105-01/web-dtos.json",
+    "sha256": "e37beac4fd5068ccd675e3457073c7d3f30c1aa6e2b1a47fbeb1f359cf22f87d"
+  },
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/choice-native-20261105-01/request-ledger.json",
+    "sha256": "56b93971656f732ac30658b7b06ff97a9ae20323e92bc9b1cd17bc9decc9f37e"
+  },
+  "observedReadOnlyFacts": {
+    "answerSubmissionCount": 0,
+    "answerReceiptCount": 0,
+    "xpLedgerCount": 0,
+    "xpDeltaSum": 0,
+    "startReceiptCount": 1,
+    "progressRows": 1,
+    "playerTotalXp": 0
+  },
+  "nativeDownloadSha256Observed": false,
+  "referenceImagesDownloadedByHelper": false,
+  "visualReview": "pending_root_original_review_and_same_data_Web_capture",
+  "wholePageParityAccepted": false,
+  "completedChoiceAcceptanceClaimed": false,
+  "fixedPreviewTouched": false,
+  "failure": "The narrow choice sample is incomplete; private diagnostic originals retained",
+  "createdAt": "2026-11-05T11:18:19.005269+00:00"
+}

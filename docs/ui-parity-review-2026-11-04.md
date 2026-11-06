@@ -169,16 +169,52 @@ Root已实际核本轮5张原图，并与同数据Web参照核结构，DTO只忽
 
 离线使用正式Web解析器核完整28题、35个content块、12个option条目，正文/提示/选项中四类富文本标记均0；三个已选真实case亦0。不能虚构“真实富文本正例通过”，后续正例用独立合成夹具。选择项Web本来是plain text；完成/禁用时其fieldset也禁图片按钮，原生默认保留该既定语义，不擅自增加“完成后仍能点选择图”的差异。
 
-### 显示子点实现与当前阻塞
+### 显示子点实现与分阶段验证
 
 已实现独立`QuestionImageLoader`及V2 `StarwardQuestionImages`：官方HTTP/系统TLS/禁自动Cookie/固定Referer，真实格式与自然/解码尺寸分离、显式取消/释放；单图和图集保留品牌边框与顺序，小图居中且不放大、最小44高度；官方加载反馈遵守减少动画设置。Page图片先于正文/提示，移除已失真的“当前仅显示文字”实现提示，内容到答案区恢复24间距。VM只增加图片owner key，账号/离页代次失效，同题GET保持key；不改变判题或写请求。独立源码审查无高置信阻塞，但不能替代实际Image绘制和资源生命周期验收。
 
 旧Frame/Layout一次性环境已精确退役，11项归属/DB/容器/监听/映射及其它容器保持检查通过，旧runner字节已按原hash恢复归档；固定预览服务/DB/CA/账号保留。新runner独立新增合成图片失败入口，不放宽原3case/19条守卫。真实原包重建3组专用普通账号并读回19条；单独派生case只覆盖原case0的首imageUrl，原包/8张参考图片字节不变，另7条目标记录完整读回。派生候选尚未实际确认404，不能从“随机缺失文件名”推断请求结果；见`ui-question-images-20261104/fixture-creation.json`。
 
-初次编译发现`scale()`与ArkUI CustomComponent通用属性同名，已更名`imageScale()`后通过真实编译。最终ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f包已构建/生成signed产物并安装；`hm.sh run`整体exit0，但启动阶段日志明确返回官方10106102（屏幕锁定且自动解锁失败），因此**启动、当前包原生运行时、图片网络/绘制与视觉均仍待验**。用户解锁请求已发出；不反复尝试绕过锁屏。
+初次编译发现`scale()`与ArkUI CustomComponent通用属性同名，已更名`imageScale()`后通过真实编译。最终ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f包已构建/生成signed产物并安装；`hm.sh run`整体exit0，但首次启动阶段日志明确返回官方10106102（屏幕锁定且自动解锁失败）。当时启动、当前包原生运行时及图片均未验，已请求用户解锁，没有反复尝试绕过锁屏；解锁后的实际结果追加如下。
 
 相关刷新VM7项复验通过，失败/忽略0；lint实际零issue、filesChecked=0；新Host严格TLS三项通过。源、包、夹具及两个独立设备采集器已绑定到[待设备回执](../artifacts/validation/ui-question-images-20261104/build-and-device-pending.json)。公开候选1186文件扫描0敏感发现/0读取错误，Web和后端源仓均0改动。该回执不是Native图片验收报告。
 
-解锁后的执行顺序：先`capture-window-evidence.py --output artifacts/validation/ui-question-images-20261104/runtime-01.json --font-scale 1 --require-tls`，确认已安装包与五项真实运行时；再对`question-images-case-{0,1,2}.json`分别运行`device-question-images.py`，输入原包SHA、manifest-sniffed SHA及既有三份Web参照，报告和private目录每次fresh。独立`device-question-image-failure.py`使用`question-images-failure-case.json`与derivation SHA707f2c0a…；它不借旧3case守卫冒充合成案例，必须从当前App PID官方hilog看到首次/重试/GET回访各一组loading→404，核同输入实例与草稿、零答题/XP及退出清图。尚未执行任何一份Native图片报告。图片查看和选择图仍在显示子点之后推进。
+显示子点先运行`capture-window-evidence.py --output artifacts/validation/ui-question-images-20261104/runtime-01.json --font-scale 1 --require-tls`，确认已安装包与五项真实运行时；再对`question-images-case-{0,1,2}.json`分别运行`device-question-images.py`，输入原包SHA、manifest-sniffed SHA及既有三份Web参照，报告和private目录每次fresh。独立`device-question-image-failure.py`使用`question-images-failure-case.json`与derivation SHA707f2c0a…；它不借旧3case守卫冒充合成案例，必须从当前App PID官方hilog看到首次/重试/GET回访各一组loading→404，核同输入实例与草稿、零答题/XP及退出清图。图片查看和选择图仍在显示子点之后推进。
 
-当前一次性图片服务仍运行等待手机，USB18443用于该测试；固定预览的原映射恢复回执继续保留，任务收尾须精确清该一次性环境并恢复固定预览。不得把旧预览账号拿来登录当前新测试DB或重置其口令。
+当前一次性图片服务和USB18443用于本轮手机验证；固定预览的原映射恢复回执继续保留，任务收尾须精确清该一次性环境并恢复固定预览。不得把旧预览账号拿来登录当前新测试DB或重置其口令。
+
+### 2026-11-05：解锁、运行时与首轮采集器修正
+
+手机解锁后，同一ddc149ba…包的[运行时回执](../artifacts/validation/ui-question-images-20261104/runtime-01.json)实际5项全部passed：窗口、沉浸、透明系统栏、fontScale1及三项独立TLS。首次10106102仍保留为历史启动失败，不再作为当前阻塞。
+
+[native-case0-01](../artifacts/validation/ui-question-images-20261104/native-case0-01.json)仅日间真实图片解码/绘制及自然比例、几何检查通过1项；dark重进停在采集器“恰一次GET”断言，整轮incomplete，cleanup全部true。源码确认`Index.openAssignment`依次调用详情投影`repository.assignment`和完整快照`play.open → repository.gameplay`，现有重进路径本来会对同一detail顺序GET两次，账本实际均200；旧Frame只要求GET-only，并无恰一次假设。
+
+原incomplete报告和原图保留，不继承其检查计数。仅两个新图片采集器已改为核新增恰两次同detail GET200，Failure的公开回访计数也改为实际观察数；无额外start/answer/XP等约束保留。修正记录见`ui-question-images-20261104/resume-driver-correction-20261105.json`。
+
+随后fresh正常轮次`native-case0-02.json`、`native-case1-01.json`、`native-case2-01.json`各3项passed，cleanup全部true：两张正文单图及三张图集图均在日夜两主题真实加载/绘制，实际314vp内容宽、152vp两列、10vp行列距和末张左对齐通过；Back重进没有重复start、answer或XP。`native-failure-01.json`另3项passed，当前App PID的官方hilog实际确认首次/一次显式重试/GET回访各loading→HTTP404；重试保持同一真实输入实例和草稿，媒体重试零业务请求，退出后图与草稿清除。
+
+Root实际核6张正常原生、6张对应Web及2张失败原图；三组新环境题目与Web输入仅映射question.id不同，题面其余字段、session presentation和level override逐值相同，不能声称跨环境完整DTO相同。正文图几何/顺序和已批准的小型原生失败重试已窄范围复核，见[root-body-display-review](../artifacts/validation/ui-question-images-20261104/root-body-display-review.json)。该报告仍只承接这14张原图，不扩大为Refresh或整页还原结论。Native下载字节未抓包，不声称与参考文件独立逐字节核对；小原图不放大/高度上限分支未由这5张宽图触发。同题Refresh实例的独立结果见下方；加载中取消及迟到解码释放仍待受控时序验证，不把加载完后的退出清图当作该竞态通过。图片查看、选择图及整页还原仍未完成。
+
+### 同题Refresh实例与USB重接补验
+
+[native-refresh-01](../artifacts/validation/ui-question-images-20261104/native-refresh-01.json)在手势前incomplete，0项通过、七项cleanup全true。采集器误将devecocli树的enabled字段当作原始UiTest字符串；Root核当时原始树实际为`enabled='true'`，按钮也可见。仅采集器改为经`FRAME.own`读取原始Button明确的`'true'/'false'`，缺失或其它类型直接拒绝，应用源码未改；旧报告及原图不覆盖。
+
+[native-refresh-02](../artifacts/validation/ui-question-images-20261104/native-refresh-02.json)在登录阶段因USB映射缺失、连接中断而incomplete，没有执行Refresh；当次空输入、图片/草稿清除及零写入等cleanup为false的原始结果保留。核验自有backend/TLS进程与监听后，只恢复精确自有USB reverse，state及证书未变，见[恢复回执](../artifacts/validation/ui-question-images-20261104/usb-reverse-restored-20261105.json)。重接后另采[runtime-02](../artifacts/validation/ui-question-images-20261104/runtime-02.json)，五项真实运行时全部passed；这不是固定预览恢复或环境收尾通过。
+
+同一ddc149ba…包与冻结采集器`3769aece…`的fresh [native-refresh-03](../artifacts/validation/ui-question-images-20261104/native-refresh-03.json)实际2项passed、七项cleanup全true：从冷启动空登录进入同一已入场case0，手动一次原生下拉只产生一次未注入故障的detail GET200；图片cell/frame/pixels和答案输入共四个节点的真实accessibilityId/hashcode前后均相同，未提交草稿保留。同一App PID仅初始一组loading→ready，Refresh新增图片加载0；新增start/answer均0、玩家XP仍0。最终退出后登录输入为空，私密题面、图片和草稿均消失，当前清理事实已恢复；不反写02的失败cleanup。
+
+本次GET过快，`pendingUiDirectlyObserved=false`且未注入延迟；只确认成功回源前后保留实例，不声称直接看到了pending期间保留，也不证明实际加载中取消、迟到PixelMap释放或CDN下载字节SHA。Refresh报告本身明确不作视觉还原结论，原14图的正文显示窄复核保持原范围。
+
+资源竞态补验仍待完成：每实例窄IO适配保留默认官方HTTP/ImageKit，四组显式Promise屏障测试正在实现，尚未运行或验收；目标为取消后HTTP迟到不创建source、decode迟到只释放不交付、旧清理不影响新请求、source释放等待期间取消仍释放旧像素，不加产品延迟或全局Kit mock。改动后重新构建/lint/相关测试，并以新包复验单图、404/草稿重试及Refresh；已验图集几何保留ddc包归属，不继承为新包重执行。
+
+### 2026-11-05：正文显示与资源协议收尾
+
+上述资源补验计划为当时阶段状态，现已完成当前覆盖的正文显示子点，结论见[8b包收尾复核](../artifacts/validation/ui-question-images-20261105-races/root-body-loader-closure.json)。每实例窄IO仍默认调用官方NetworkKit/ImageKit；[资源竞态报告](../artifacts/validation/ui-question-images-20261105-races/race-validation.json)中的唯一4个受控Promise测试实际4/4通过、0失败/忽略。唯一一次移除最终代次门控的mutation实际3通过/1失败，失败恰为第4例source释放等待期间替换；逐字节恢复后fresh四例再次全过，不把复跑计作8个唯一测试。初期零用例编译失败和最初计数解析错误回执均保留，由更正回执承接真实官方结果。
+
+新HAP `8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227`已官方构建、生成signed产物、安装启动，lint零issue（filesChecked=0），新运行时五项实际passed。该包三轮独立真机复验分别为[正常单图3项](../artifacts/validation/ui-question-images-20261104/native-races-normal-01.json)、[404失败/显式重试3项](../artifacts/validation/ui-question-images-20261104/native-races-failure-01.json)、[同题Refresh实例2项](../artifacts/validation/ui-question-images-20261104/native-races-refresh-01.json)，各自cleanup全true、零答题/XP。默认SDK路径真实加载/绘制，失败重试保留输入实例与草稿，Refresh只有一次成功GET且图片不重载；pending仍未直接观察。
+
+Root已实际核4张新原图，确认默认原生加载、小型失败重试及Refresh后草稿。8b验收时图片UI、Page、VM和Index源码字节与已验ddc版本相同；原三图图集几何仍归属ddc149ba包，未在8b重跑或重复计数，原14图正文窄复核和所有incomplete历史保持原样。当前完成范围是已覆盖的正文单图/图集显示、局部失败重试、同题Refresh及受控资源协议，不是整页或全部图片能力完成。
+
+`controlledIoRaceProtocolVerified=true`；`actualPhoneInFlightCancelOrLatePixelReleaseTimingVerified=false`。受控IO测试不证明真机实际加载中取消/迟到PixelMap释放时序，退出清图也不代替该证明；Native下载字节SHA、小原图不放大和340高度上限触发分支仍未实测。
+
+下一点已转入[题图点击查看](ui-image-viewer-2026-11-05.md)实施。现有[Web两主题12状态参照](../artifacts/validation/ui-image-viewer-20261105/web-reference-01.json)为正式源码、同题DTO与图片字节的只读本地重放，不是Native查看验收。用户已批准缩放百分比在日夜主题统一清晰浅色，并登记项目skill与查看实施前表；查看、索引/缩放/关闭、选择图及整页还原仍分别待验。

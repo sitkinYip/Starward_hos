@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "scope": "Three pure dark-surface lease tests, one detected last-lease mutation, exact restoration and one source lint run",
+  "stage": "complete",
+  "suite": "ImmersiveSurfacesTests",
+  "observations": {
+    "baseline": {
+      "commandExitCode": 0,
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "failedCases": [],
+      "rawReport": "artifacts/validation/ui-image-viewer-20261105/lease-unit-01/test-result.txt",
+      "rawReportSha256": "1a948ffc196e3fbe429143519a86ac2c63b4ec073ea857b2b66e53e94c903ea3",
+      "officialSummary": "artifacts/validation/ui-image-viewer-20261105/lease-unit-01/local-test-summary.json"
+    },
+    "mutation": {
+      "commandExitCode": 1,
+      "tests": 3,
+      "passed": 2,
+      "failed": 1,
+      "ignored": 0,
+      "failedCases": [
+        "overlappingDarkSurfacesRequireTheLastLeaseAndIgnoreRepeatedRelease"
+      ],
+      "rawReport": "artifacts/validation/ui-image-viewer-20261105/lease-unit-mutation-01/test-result.txt",
+      "rawReportSha256": "0bbc5f47b70d4906f846c0a65b97c488a115a50bf98de7b802e3c713242956b4",
+      "officialSummary": "artifacts/validation/ui-image-viewer-20261105/lease-unit-mutation-01/local-test-summary.json",
+      "scope": "Remove only the last-lease condition in releaseDark",
+      "mutatedSourceSha256": "e5fd387cb2d601416641b371ed331416a5ab7216915ee2d0ade749270bbb1d7a",
+      "restoredSourceSha256": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70"
+    },
+    "restored": {
+      "commandExitCode": 0,
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "failedCases": [],
+      "rawReport": "artifacts/validation/ui-image-viewer-20261105/lease-unit-restored/test-result.txt",
+      "rawReportSha256": "1a948ffc196e3fbe429143519a86ac2c63b4ec073ea857b2b66e53e94c903ea3",
+      "officialSummary": "artifacts/validation/ui-image-viewer-20261105/lease-unit-restored/local-test-summary.json"
+    },
+    "lint": {
+      "commandExitCode": 0,
+      "report": "artifacts/validation/ui-image-viewer-20261105/lint-01/lint.json",
+      "sha256": "4bb19d121cf82a737fb846f1ccaacbed51889cb869a858cc20eb8fc88246062d",
+      "summary": {
+        "filesChecked": 0,
+        "issues": 0,
+        "errors": 0,
+        "warnings": 0,
+        "suggestions": 0
+      },
+      "issueEntries": 0
+    }
+  },
+  "sourceSha256": {
+    "entry/src/main/ets/platform/ImmersiveSurfaces.ets": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70",
+    "entry/src/main/ets/platform/ImmersiveWindow.ets": "78be29e73efb74f97bca0ba6839602c36fe9f561b54fbe05d97422e07c4cae50",
+    "entry/src/main/ets/entryability/EntryAbility.ets": "1da3a10b0fd7f0cc8afbd9dbe7d34b532df14fa1918eb8955334e5b84ca0f6db",
+    "entry/src/test/ImmersiveSurfaces.test.ets": "5853dbd52e3c0df345d24365ff45e9143a4b849359ba4867966c11980f0f736d",
+    "entry/src/test/List.test.ets": "2f058874d805791c022de9b22d9afb61639269aa50f7e3d56a328e9c48638538",
+    "entry/src/main/ets/ui/StarwardImageViewer.ets": "1ba875ec087a60650c0d79a97644a50abd0c179fe64c1360abeaa598ab240e0b",
+    "entry/src/main/ets/ui/StarwardQuestionImages.ets": "30ddd0faddc00732cb9fa3ca23b61fa36e86bf21e5b642da97917103bb551b11",
+    "entry/src/main/ets/features/GameplayPage.ets": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252"
+  },
+  "sourceSha256Before": {
+    "entry/src/main/ets/platform/ImmersiveSurfaces.ets": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70",
+    "entry/src/main/ets/platform/ImmersiveWindow.ets": "78be29e73efb74f97bca0ba6839602c36fe9f561b54fbe05d97422e07c4cae50",
+    "entry/src/main/ets/entryability/EntryAbility.ets": "1da3a10b0fd7f0cc8afbd9dbe7d34b532df14fa1918eb8955334e5b84ca0f6db",
+    "entry/src/test/ImmersiveSurfaces.test.ets": "5853dbd52e3c0df345d24365ff45e9143a4b849359ba4867966c11980f0f736d",
+    "entry/src/test/List.test.ets": "2f058874d805791c022de9b22d9afb61639269aa50f7e3d56a328e9c48638538",
+    "entry/src/main/ets/ui/StarwardImageViewer.ets": "1ba875ec087a60650c0d79a97644a50abd0c179fe64c1360abeaa598ab240e0b",
+    "entry/src/main/ets/ui/StarwardQuestionImages.ets": "30ddd0faddc00732cb9fa3ca23b61fa36e86bf21e5b642da97917103bb551b11",
+    "entry/src/main/ets/features/GameplayPage.ets": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252"
+  },
+  "signedHapBeforeSha256": "49c6e5649b76886af6ab3fa61c1f80a6a305130546735d6a3dd54ebaa18df6c9",
+  "signedHapAfterSha256": "49c6e5649b76886af6ab3fa61c1f80a6a305130546735d6a3dd54ebaa18df6c9",
+  "signedHapUnchanged": true,
+  "exactSurfaceBaselineBytesRestored": true,
+  "privateLogs": [
+    {
+      "phase": "lease-unit-01",
+      "file": "artifacts/private/image-viewer-lease-20261105-toolchain-01/lease-unit-01.log",
+      "sha256": "3080e57b58c938abe6a264e3aaf77d36691bd565ff4f8163293bd970c3cf06bd",
+      "mode": "0600"
+    },
+    {
+      "phase": "lease-unit-mutation-01",
+      "file": "artifacts/private/image-viewer-lease-20261105-toolchain-01/lease-unit-mutation-01.log",
+      "sha256": "f91012a070c3966366a79e7046d1a7a0d9aedc8357233bc79fd426c50a8ae156",
+      "mode": "0600"
+    },
+    {
+      "phase": "lease-unit-restored",
+      "file": "artifacts/private/image-viewer-lease-20261105-toolchain-01/lease-unit-restored.log",
+      "sha256": "b62e7c93ce52c73449f8157cfd942222932a9f1f7ec30defeae9a2eeb0d63c9c",
+      "mode": "0600"
+    },
+    {
+      "phase": "lint-01",
+      "file": "artifacts/private/image-viewer-lease-20261105-toolchain-01/lint-01.log",
+      "sha256": "21b95ae85c135ee13869c3f5a8918b05d7100409d31e14d438ae9281e81572d3",
+      "mode": "0600"
+    }
+  ],
+  "deviceOrNetworkOperated": false,
+  "hapBuildOrInstallPerformed": false,
+  "nativeViewerAcceptanceClaimed": false,
+  "failure": null
+}

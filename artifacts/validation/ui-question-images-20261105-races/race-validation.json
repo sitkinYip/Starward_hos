@@ -1,0 +1,89 @@
+{
+  "status": "passed",
+  "scope": "QuestionImageLoaderTests deterministic controlled per-instance resource lifecycle only",
+  "suite": "QuestionImageLoaderTests",
+  "baseline": {
+    "file": "unit-03/local-test-summary.json",
+    "tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "ignored": 0,
+    "rawReport": "unit-03/test-result.txt",
+    "rawReportSha256": "b8c6436ce44540c80f5c949b122d443a0c24aeb338baba880887bf374d4d090f"
+  },
+  "mutation": {
+    "file": "unit-mutation-01/mutation-result-corrected.json",
+    "tests": 4,
+    "passed": 3,
+    "failed": 1,
+    "ignored": 0,
+    "expectedFailure": [
+      "replacementDuringSourceCleanupRejectsOldPixelsAndLeavesTheNewReadIndependent"
+    ],
+    "initialDerivedCountReceiptPreserved": "unit-mutation-01/mutation-result.json"
+  },
+  "restored": {
+    "file": "unit-restored/local-test-summary.json",
+    "tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "ignored": 0,
+    "rawReport": "unit-restored/test-result.txt",
+    "rawReportSha256": "b8c6436ce44540c80f5c949b122d443a0c24aeb338baba880887bf374d4d090f"
+  },
+  "initialCompileFailures": [
+    {
+      "file": "unit-01/compile-failure.json",
+      "testCasesExecuted": 0
+    },
+    {
+      "file": "unit-02/compile-failure.json",
+      "testCasesExecuted": 0
+    }
+  ],
+  "sourceSha256": {
+    "entry/src/main/ets/platform/QuestionImageIO.ets": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "entry/src/main/ets/platform/QuestionImageLoader.ets": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "entry/src/test/QuestionImageLoader.test.ets": "f238c5d10367f561c152b6feda27bcc547709bf16eda09bd16d96fdde15f20e6",
+    "entry/src/test/List.test.ets": "d16835b607a7ed7ca1b93c7b47ea4a01a21f118c89587801853a38420989d378"
+  },
+  "exactBaselineBytesRestored": true,
+  "restoredLoaderSha256": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+  "privateLogs": [
+    {
+      "phase": "unit-01",
+      "file": "artifacts/private/question-image-races-20261105-unit-01/local-test.log",
+      "sha256": "35381d9dbc581fa92267a090ac43008671f03df6343a972ebcf4195e9c405146",
+      "mode": "0600"
+    },
+    {
+      "phase": "unit-02",
+      "file": "artifacts/private/question-image-races-20261105-unit-02/local-test.log",
+      "sha256": "91dc6c47e1a4df1f6da2e371b680e8efc5abaf9b5c0dc29f209f357629bc1271",
+      "mode": "0600"
+    },
+    {
+      "phase": "unit-03",
+      "file": "artifacts/private/question-image-races-20261105-unit-03/local-test.log",
+      "sha256": "5319e20509ebf8e37382b691ddb8acc9b0baf00f3f704c023e248a49bf4424cf",
+      "mode": "0600"
+    },
+    {
+      "phase": "unit-mutation-01",
+      "file": "artifacts/private/question-image-races-20261105-unit-mutation-01/local-test.log",
+      "sha256": "83c0c549de8ccf2f4e975a936d806462d4435e6b40fbbbc47bd6e79a6ea289eb",
+      "mode": "0600"
+    },
+    {
+      "phase": "unit-restored",
+      "file": "artifacts/private/question-image-races-20261105-unit-restored/local-test.log",
+      "sha256": "82c53b9ac20310effa731f529d96efe6f55b9a565429b534633ecf38b8f3c0bf",
+      "mode": "0600"
+    }
+  ],
+  "nativeSdkNetworkDecodeOrPixelAllocationValidationClaimed": false,
+  "urlParserOrTlsValidationClaimed": false,
+  "appEnvironmentOrGlobalKitPatchAdded": false,
+  "hapBuiltInstalledOrDeviceOperated": false,
+  "unchangedSignedHapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f"
+}

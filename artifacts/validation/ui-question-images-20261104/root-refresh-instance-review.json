@@ -1,0 +1,38 @@
+{
+  "status": "accepted_loaded_image_and_input_instances_after_one_same_question_refresh",
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-question-images-20261104/native-refresh-03.json",
+    "sha256": "fdb709d7f218130cc5181911c306d9311f982fe12ec7f94e8f1fbdae5cc508e3"
+  },
+  "runtime": {
+    "file": "artifacts/validation/ui-question-images-20261104/runtime-02.json",
+    "sha256": "2811de386d669640b5f7c586ca5366f3856848b4664efe113e24d2d074957eaf"
+  },
+  "observed": {
+    "imageAndInputInstanceIdentitiesEqual": true,
+    "actualDraftRetained": true,
+    "initialAppImageLoadingReadyPairs": 1,
+    "newImageLoadAttemptsAcrossRefresh": 0,
+    "refreshGet200": 1,
+    "pendingUiDirectlyObserved": false,
+    "startCommands": 0,
+    "answerCommands": 0,
+    "playerXp": 0,
+    "logoutAndEmptyLoginCleanupVerified": true
+  },
+  "preservedIncomplete": [
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-refresh-01.json",
+      "sha256": "45b284ad701d850125d0eb73e380137191ab7020a2ee61bb6638e79f8d157a6e"
+    },
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-refresh-02.json",
+      "sha256": "fc4120fca24d585409371120819d7cbb5cf8e85864fba2c4f29f6672e51f3e9d"
+    }
+  ],
+  "cleanupRecovery": "Run03 independently verifies cold empty login before use and empty login/image/draft absence after logout. Run02 cleanup false flags remain unchanged.",
+  "inFlightCancellationOrLateResourceReleaseAccepted": false,
+  "visualParityClaimed": false,
+  "createdAt": "2026-11-05T02:14:35.304123+00:00"
+}

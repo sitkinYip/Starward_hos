@@ -1,0 +1,206 @@
+{
+  "status": "prepared_awaiting_manual",
+  "scope": "Real case2 manual image-viewer handoff and observed pose/Reset/close/input/logout only",
+  "action": "prepare",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "bab514265c699f305c10a45a02e879587a52638862be6e128b0bd4e387419b5c",
+    "runtime": "88887ff364527428e0e25a02cd333c7a04dc1eb9df929b650e29f8e4a773a7b4",
+    "hap": "8220a2ecc82b9e7f1236073316f9aace0245a08e6096526af3011c1c620b95d1",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "gameplay_page": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "window": "78be29e73efb74f97bca0ba6839602c36fe9f561b54fbe05d97422e07c4cae50",
+    "surfaces": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70",
+    "viewerDriver": "a1d5d608f76647760246139ffd4ab95cbb1a386eb9ac60880f57f460531388fd",
+    "imagesHelper": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "webViewerReference": "aabc3d7725e73bb26a0e0117446d6015982f5fc61912b495168bb0f7152cbd62",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "30ddd0faddc00732cb9fa3ca23b61fa36e86bf21e5b642da97917103bb551b11",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a",
+    "failureSetup": "36907d8facb2059264c10fc3f7b6346170deb7d88fdbaeecdccac1056f7d3701",
+    "webViewerHelper": "ef714a3ac3ea797958a6f9872f369ed501fb95918f4de1c1294fb53e50404566",
+    "manualDriver": "7dc1a9bbb3335bf6530528a71a7c4939462f8ad0eb69920cf3b5dda70d80f44a",
+    "manualNormalReference": "c5dc711968b0f878b19d08b8702e5126a0ffd746eb2b43b7d557a87dccf9a3b9",
+    "manualDeviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22"
+  },
+  "hapSha256": "8220a2ecc82b9e7f1236073316f9aace0245a08e6096526af3011c1c620b95d1",
+  "normalSha256": "c5dc711968b0f878b19d08b8702e5126a0ffd746eb2b43b7d557a87dccf9a3b9",
+  "historicalNormalHapSha256": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+  "historicalNormalAcceptanceInherited": false,
+  "changedRecoveryBindings": [
+    "ca",
+    "caseReference",
+    "config",
+    "hap",
+    "runtime"
+  ],
+  "unchangedHistoricalSourceAndReferenceBindingCount": 26,
+  "states": [
+    {
+      "themeRequested": "light",
+      "position": "manual-initial-100",
+      "imageIndex": 2,
+      "imageCount": 3,
+      "pose": {
+        "percent": 100,
+        "xVp": 0.0,
+        "yVp": 0.0
+      },
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-mask": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-panel": [
+          49,
+          367,
+          1267,
+          2502
+        ],
+        "image-viewer-stage": [
+          49,
+          367,
+          1267,
+          2056
+        ],
+        "image-viewer-pixels": [
+          49,
+          869,
+          1267,
+          1554
+        ],
+        "image-viewer-close": [
+          1106,
+          367,
+          1267,
+          528
+        ],
+        "image-viewer-percent": [
+          210,
+          2144,
+          350,
+          2221
+        ],
+        "image-viewer-reset": [
+          392,
+          2112,
+          595,
+          2252
+        ],
+        "image-viewer-help": [
+          637,
+          2149,
+          1106,
+          2215
+        ]
+      },
+      "sourceSha256": "b9bd0451630a0441727155b5462c95b1a5c61b6ba4107bc8fc0b7e2b79f9584e",
+      "rawSha256": "b9a6cb2bbe6af1e9fbafe270b434600f9d36cb066ce0053a043712a2bbb23f15",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-prepare/manual-initial-100.png",
+        "sha256": "cf4f0e525a9700582dd89ea128a5853da21e24b92211db434954488a182feaf1",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 9270,
+        "backgroundMedianLuma": 5.7152,
+        "lightContrastPixels": 8261,
+        "darkContrastPixels": 208,
+        "lightFraction": 0.8911542610571737,
+        "darkFraction": 0.02243797195253506
+      },
+      "percentPixelProbe": {
+        "sampledPixels": 10780,
+        "neutralContrastPixels": 1917,
+        "backgroundMedianLuma": 5.7152,
+        "lightContrastPixels": 1469,
+        "darkContrastPixels": 57,
+        "lightFraction": 0.766301512780386,
+        "darkFraction": 0.0297339593114241
+      },
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    }
+  ],
+  "cleanup": {
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateContextSha256": "151abd18c8b07df834ec383e9ca5917f077df7b7d4295dc4b20e53f990b1785a",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-prepare/manual-initial-100.png",
+      "sha256": "cf4f0e525a9700582dd89ea128a5853da21e24b92211db434954488a182feaf1",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "viewer-input-manual-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-prepare/raw-viewer-input-manual-initial-939168fdb8b04ab9806bb4f3bcaace40.json",
+      "remoteRemoved": true,
+      "sha256": "432f203a65b7f9ef0fb1f01308c1509eebdca73a04272cb25a7897f59dc4ed65"
+    },
+    {
+      "label": "manual-initial-100",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-prepare/raw-manual-initial-100-4d80d5e873674593a36e7cffa2876f60.json",
+      "remoteRemoved": true,
+      "sha256": "b9a6cb2bbe6af1e9fbafe270b434600f9d36cb066ce0053a043712a2bbb23f15"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-prepare/request-ledger.json",
+    "sha256": "f5c8c05ac35f106f1994de1e55bae5188b3a067791f97ec8d629504db5034dce"
+  },
+  "failure": null,
+  "userReportedCapsAndRemainingFinger": false,
+  "instrumentedCapsOrRemainingFingerClaimed": false,
+  "realMultiPointerInjectedByAutomation": false,
+  "observedReadOnlyFacts": {
+    "answerSubmissionCount": 0,
+    "answerReceiptCount": 0,
+    "xpLedgerCount": 0,
+    "xpDeltaSum": 0,
+    "wrongCountTotal": 0,
+    "lockedProgressRows": 0,
+    "completedProgressRows": 0,
+    "startReceiptCount": 1,
+    "progressRows": 1,
+    "playerTotalXp": 0
+  },
+  "viewerAcceptanceComplete": false,
+  "handoffViewerIntentionallyOpen": true,
+  "pendingAcceptance": [
+    "Root original-image visual review",
+    "Viewer media failure/retry and cancellation"
+  ],
+  "createdAt": "2026-11-05T11:03:55.730103+00:00"
+}

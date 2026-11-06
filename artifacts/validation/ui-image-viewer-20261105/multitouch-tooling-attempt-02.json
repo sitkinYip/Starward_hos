@@ -1,0 +1,43 @@
+{
+  "status": "tooling_attempt_failed_before_sdk_import",
+  "attempt": 2,
+  "scope": "Native image-viewer multi-pointer tooling only",
+  "failure": {
+    "stage": "launcher os.execve",
+    "exceptionType": "PermissionError",
+    "validatedBy": "Root"
+  },
+  "launcherSha256": "a12721267ff7e7f76a3f8250f938f96651ce473839148f5af265be5db84658f2",
+  "helperSha256AtAttempt": "ac88612df9b30e574ad53733d06966d5ffb914a65e06006f5c8d329219c8e394",
+  "normalViewerPrerequisite": "native-case2-03.json",
+  "normalPrerequisiteSha256": "c5dc711968b0f878b19d08b8702e5126a0ffd746eb2b43b7d557a87dccf9a3b9",
+  "requestedInterpreter": {
+    "path": "/Applications/DevEco_Testing_for_App.app/Contents/Python/bin/python3.12",
+    "mode": "0644",
+    "executablePermissionPresent": false,
+    "sha256": "1869e08fcc503bbe15575168ecfa31468d14c2bc9921652a446f95427e6aeae6"
+  },
+  "approvedSuccessorInterpreter": {
+    "path": "/Applications/DevEco_Testing_for_App.app/Contents/Python/bin/python3",
+    "mode": "0755",
+    "sha256": "966874f43ad38b6f9d04981f71dad1b7d40b5420fc0a68f3cebcb6e8b51668a4",
+    "pythonVersionObservedByRoot": "3.12.10",
+    "sameInstalledPythonPrefixObservedByRoot": true
+  },
+  "rootValidatedFacts": {
+    "sdkImported": false,
+    "sdkCacheCreated": false,
+    "helperEvidenceDirectoryCreated": false,
+    "helperBodyExecuted": false
+  },
+  "deviceCommandsIssued": 0,
+  "networkCommandsIssued": 0,
+  "sdkConfigurationPatched": false,
+  "sdkFileModesModified": false,
+  "businessAcceptance": false,
+  "visualAcceptance": false,
+  "viewerAcceptanceComplete": false,
+  "toolingAttemptOnly": true,
+  "verificationBasis": "Root-confirmed failed execution, launcher prerequisite marker, and read-only installed binary metadata; this preparation did not run SDK",
+  "createdAt": "2026-11-05T04:46:36.781761+00:00"
+}

@@ -1,0 +1,239 @@
+{
+  "status": "passed",
+  "scope": "Normal decoded body-photo/gallery display only",
+  "stage": "normal-body-image-sample-complete",
+  "sourceCaseIndex": 0,
+  "bodyImageCount": 1,
+  "hapSha256": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "19a22f52c3d9de95e32282a61a03b714e2cb78d738b7de97a153d8b3f185537b",
+    "runtime": "e15f6d96766d8900ffc926c8ad7c2b7ce1168482c987813dde79bd2bc9cda98b",
+    "hap": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "webCase0": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+    "webCase1": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f",
+    "webCase2": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82",
+    "imageDriver": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a"
+  },
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "checksPassed": 3,
+  "checks": [
+    "All expected normal body images decode before originals and retain natural-size gallery/order geometry",
+    "All expected normal body images decode before originals and retain natural-size gallery/order geometry",
+    "Back and same active re-entry use GET without another start or any answer"
+  ],
+  "states": [
+    {
+      "themeRequested": "light",
+      "readyBodyImageCount": 1,
+      "images": [
+        {
+          "block": 0,
+          "image": 0,
+          "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+          "referenceNaturalWidthPx": 917,
+          "referenceNaturalHeightPx": 500,
+          "groupWidthVp": 314.2857142857143,
+          "columns": 1,
+          "expectedVp": {
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0,
+            "rowY": 0,
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 172.2757438853404,
+            "frameX": 0.0
+          },
+          "measuredVp": {
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 172.28571428571428,
+            "frameX": 0.0,
+            "rowY": 0.0,
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0
+          },
+          "frameBoundsPx": [
+            108,
+            752,
+            1208,
+            1355
+          ],
+          "pixelsBoundsPx": [
+            112,
+            756,
+            1205,
+            1352
+          ],
+          "rawSha256": "bec6fc0608eb45c65a4cfb3b485061b08e78493b12ea5ae3f4333e74c239346b"
+        }
+      ],
+      "blockOrder": [
+        {
+          "block": 0,
+          "elementOrder": [
+            "images",
+            "text",
+            "hint"
+          ],
+          "withinBlockGapsVp": [
+            12.857142857142858,
+            13.142857142857142
+          ],
+          "previousBlockGapVp": null
+        }
+      ],
+      "normalDisplayOnly": true
+    },
+    {
+      "themeRequested": "dark",
+      "readyBodyImageCount": 1,
+      "images": [
+        {
+          "block": 0,
+          "image": 0,
+          "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+          "referenceNaturalWidthPx": 917,
+          "referenceNaturalHeightPx": 500,
+          "groupWidthVp": 314.2857142857143,
+          "columns": 1,
+          "expectedVp": {
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0,
+            "rowY": 0,
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 172.2757438853404,
+            "frameX": 0.0
+          },
+          "measuredVp": {
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 172.28571428571428,
+            "frameX": 0.0,
+            "rowY": 0.0,
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0
+          },
+          "frameBoundsPx": [
+            108,
+            752,
+            1208,
+            1355
+          ],
+          "pixelsBoundsPx": [
+            112,
+            756,
+            1205,
+            1352
+          ],
+          "rawSha256": "6f31d4ea71c47399d1ace6eb276679dc7505262ec4f8436c9435ddaa243b0781"
+        }
+      ],
+      "blockOrder": [
+        {
+          "block": 0,
+          "elementOrder": [
+            "images",
+            "text",
+            "hint"
+          ],
+          "withinBlockGapsVp": [
+            12.857142857142858,
+            13.142857142857142
+          ],
+          "previousBlockGapVp": null
+        }
+      ],
+      "normalDisplayOnly": true
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/body-image-0-0-light.png",
+      "sha256": "274bc2d42765cb45635e8f6a47441b900d7a3d72deb6f92637badf512b8949ec",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/body-image-0-0-dark.png",
+      "sha256": "7814acb268212bf23db6eccd58818beb4e8a18f09a291fb672d5cd911d0cefd6",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "body-image-0-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/raw-body-image-0-0-light-c967eb7c52c04f2e90270110c9c87ecd.json",
+      "remoteRemoved": true,
+      "sha256": "bec6fc0608eb45c65a4cfb3b485061b08e78493b12ea5ae3f4333e74c239346b"
+    },
+    {
+      "label": "body-order-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/raw-body-order-0-light-7c276ece52e24f868271edee5ac91fdb.json",
+      "remoteRemoved": true,
+      "sha256": "bec6fc0608eb45c65a4cfb3b485061b08e78493b12ea5ae3f4333e74c239346b"
+    },
+    {
+      "label": "body-image-0-0-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/raw-body-image-0-0-dark-11c2e7f39d0e466ca3259d50c75f1067.json",
+      "remoteRemoved": true,
+      "sha256": "6f31d4ea71c47399d1ace6eb276679dc7505262ec4f8436c9435ddaa243b0781"
+    },
+    {
+      "label": "body-order-0-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/raw-body-order-0-dark-6ceb60b219e3406ab2ae5e1703c6b77b.json",
+      "remoteRemoved": true,
+      "sha256": "6f31d4ea71c47399d1ace6eb276679dc7505262ec4f8436c9435ddaa243b0781"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-images-races-normal-01/request-ledger.json",
+    "sha256": "3b0cbfd37754f2fa4c04ced4ef14e5d23fbb55f811dd46a4494bc6998936f825"
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/question-images-races-normal-01/web-dtos.json",
+    "sha256": "ca88acac2de28cf5ff1d6819f36da02632f65a1ddd7e67c488026ea1d324b32b"
+  },
+  "failure": null,
+  "visualReview": "pending_root_original_review",
+  "naturalDimensionSource": "Registered source-byte SHA in the approved Web geometry.images",
+  "nativeDownloadSha256Observed": false,
+  "referenceImagesDownloadedByHelper": false,
+  "fixedPreviewTouched": false,
+  "excludedAcceptance": [
+    "image failure/retry",
+    "cancellation/late image",
+    "choice images",
+    "image viewing",
+    "video/BGM",
+    "whole page"
+  ],
+  "writeScope": "Host authentication/read and the optional exact single native start only; no answer/profile/password/fault/reset",
+  "createdAt": "2026-11-05T02:29:58.568463+00:00"
+}

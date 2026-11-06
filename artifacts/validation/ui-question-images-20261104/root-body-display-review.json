@@ -1,0 +1,139 @@
+{
+  "status": "accepted_normal_body_image_geometry_and_small_native_failure_retry_only",
+  "reviewedAt": "2026-11-05T01:39:45.469783+00:00",
+  "reviewer": "Root actual original PNG review",
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "reports": [
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-case0-02.json",
+      "sha256": "ae2fc98442110351ea3698cfd81c19b7a5245bd246752cd194407d17ded15e6f"
+    },
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-case1-01.json",
+      "sha256": "70f0fe0ec1316177e4b07437191177cb4f1e483dbb89c8dd8d92e9182fd1fe57"
+    },
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-case2-01.json",
+      "sha256": "bd94aacca9e3ab25ab519dc921f4e4abab8ded5f39f05ad4500af7e5a3a945a5"
+    },
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-failure-01.json",
+      "sha256": "c966dd3819999fd86c88f61639a7a370200622c313ad50629671803582619e29"
+    }
+  ],
+  "sameContentComparisons": [
+    {
+      "sourceCaseIndex": 0,
+      "webReport": "artifacts/validation/ui-question-frame-20261104/web-case0-02.json",
+      "webReportSha256": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+      "nativeDtoSha256": "74537ce5f839cef2fe83abef469fe4af42703f0c2394628914ac2768621e7a48",
+      "webDtoSha256": "7c86d5bbe468dc9f7ebdcbc1cec53cccf032be0eb193df1334eeb188e5158b76",
+      "questionEqualExceptRemappedQuestionId": true,
+      "sessionPresentationEqual": true,
+      "levelPresentationOverrideEqual": true,
+      "fullCrossEnvironmentDtoEqualClaimed": false
+    },
+    {
+      "sourceCaseIndex": 1,
+      "webReport": "artifacts/validation/ui-question-frame-20261104/web-case1-01.json",
+      "webReportSha256": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f",
+      "nativeDtoSha256": "bb47fdc131f113d7769de1d9fce4fbe2570a0bdfde38f8d49d16596efda00816",
+      "webDtoSha256": "b6d21014a95d45af2c17536898bb3f1914f02aa8d8c94e39ec1ae310ac764152",
+      "questionEqualExceptRemappedQuestionId": true,
+      "sessionPresentationEqual": true,
+      "levelPresentationOverrideEqual": true,
+      "fullCrossEnvironmentDtoEqualClaimed": false
+    },
+    {
+      "sourceCaseIndex": 2,
+      "webReport": "artifacts/validation/ui-question-frame-20261104/web-case2-01.json",
+      "webReportSha256": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82",
+      "nativeDtoSha256": "f6e9c51a78963d5a25835b5b3706ae858d23d28e306e218a64b0843e8d50a4bc",
+      "webDtoSha256": "2a7c1d95b21d9ccdea8f8ccf99d56466bfda4da48690337fe63964aa4e06eb58",
+      "questionEqualExceptRemappedQuestionId": true,
+      "sessionPresentationEqual": true,
+      "levelPresentationOverrideEqual": true,
+      "fullCrossEnvironmentDtoEqualClaimed": false
+    }
+  ],
+  "originalsReviewed": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case0-02/body-image-0-0-light.png",
+      "sha256": "62018c7fbce5c361902fa3f8300a991f87acac9dd1af8fd57964c4f5e3cfdb0f"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case0-02/question-frame-light-top.png",
+      "sha256": "178201d0dd7a7f8e54a92f23fc7485b912dde16bd62561a708a518f3dbbb23ed"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case0-02/body-image-0-0-dark.png",
+      "sha256": "1fed996f7e614ecf769984c8ac11c9dca4370ce9882c77b5dfd439875902e191"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case0-02/question-frame-dark-top.png",
+      "sha256": "f490fc8b65385af73589afe019cfabba04335fa71e90f4125a6c1694fc2f1b0d"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/body-image-0-0-light.png",
+      "sha256": "d4eff2925251d0a18c4646619e000c45fbe8403cdf670194835f0c1471375629"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case1-01/question-frame-light-top.png",
+      "sha256": "ae159c15c733c14a5da0bee6274521851a2645b3e30a5f1a4305519e91016ea8"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/body-image-0-0-dark.png",
+      "sha256": "d2034b8dd9249fcb0472962414e4218eb0b51b060e84b938b1ca6e93f9f993b8"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case1-01/question-frame-dark-top.png",
+      "sha256": "282789d3a80a69bb204faabbbae817f0c5a04e05c051f6795c280f058e43c8b6"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case2-01/body-image-1-0-light.png",
+      "sha256": "2a4bacafaa83dea399ccc9a89f2f15c3e6aa100f86c0eaa5e52b04d691a611bb"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case2-01/question-frame-light-top.png",
+      "sha256": "c0680c1c8b2a9436c90b1655be029c1682c9e55d506ee3006eb991498687baf4"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case2-01/body-image-1-0-dark.png",
+      "sha256": "b70d749384e53d7a8ccda82da28c05b71c5dab02f8331c9915176d14a6ea5dc5"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-frame-web-case2-01/question-frame-dark-top.png",
+      "sha256": "418b35a9ee16f0539108adccc5f0a1ccdde3372f973b858587eaf5dfe2b0f194"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-failure-native-01/initial-image404.png",
+      "sha256": "9c6160507128e224ebfbd836389edd2c052f1a58e6d770721c292b8578c616d8"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-failure-native-01/explicit-retry-image404.png",
+      "sha256": "7a4ff4dfe4a66c813d778e475bc142df0357db2716590cd380aab432e1b0d7ad"
+    }
+  ],
+  "observations": [
+    "Both normal body photos and all three gallery photos are visibly drawn in both themes, with matching content, natural proportions, framing and ordering.",
+    "Measured314vp content lane, two152vp gallery columns,10vp row/column gaps and left-aligned last image match the frozen Web reference within physical-pixel rounding.",
+    "Independent derived404 case shows the approved small native failure/retry action without a large media placeholder; actual unsubmitted draft survives one explicit retry with the same input instance and no business request.",
+    "Normal re-entry and failed-image re-entry use the existing detail/gameplay GET200 pair, never another start or answer.",
+    "Existing input, option, hint, feedback and page-background differences remain outside this narrow visual review. The case0 light hint happened to be expanded; no hint-state parity is claimed."
+  ],
+  "wholePageParityAccepted": false,
+  "nativeDownloadSha256Observed": false,
+  "cancellationVerified": false,
+  "sameQuestionRefreshInstanceVerified": false,
+  "explicitlyPending": [
+    "same-question Refresh image instance retention",
+    "in-flight cancellation and late decode resource handoff",
+    "small original images/no enlargement and max-height cap branch not exercised by the five real body photos",
+    "image viewing/index/zoom/pan/close",
+    "choice images and Radio styles",
+    "rich inline image positive fixture",
+    "video/BGM/clue performance",
+    "remaining page form/hint/feedback/navigation/background/header fidelity"
+  ],
+  "fixedPreviewTouched": false
+}

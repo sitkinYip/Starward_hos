@@ -1,0 +1,75 @@
+{
+  "status": "manual_normal_gestures_and_instrumented_finish_verified",
+  "hapSha256": "8220a2ecc82b9e7f1236073316f9aace0245a08e6096526af3011c1c620b95d1",
+  "prepareReportSha256": "f1d40e083aa9828d034cb83fada1ef0bae3f8385487dcf652d26e1e7452ac7ba",
+  "finishReportSha256": "42588856996df1867e4b057313a69c29a0fb4c2dc50be9136985b981a0197418",
+  "userReported": {
+    "pinchUpper400Percent": true,
+    "pinchLower100Percent": true,
+    "remainingFingerDoesNotSwitch": true,
+    "zoomedSingleFingerPan": true,
+    "source": "Explicit reply to manual gesture question; all normal and left zoomed/panned"
+  },
+  "instrumented": {
+    "actualFinalPose": {
+      "percent": 400,
+      "xVp": -60.2,
+      "yVp": 195.7
+    },
+    "imageIndex": 2,
+    "imageCount": 3,
+    "officialResetPose": {
+      "percent": 100,
+      "xVp": 0.0,
+      "yVp": 0.0
+    },
+    "sameAnswerInputAndDraftPreserved": true,
+    "zeroExtraBusinessWrites": true,
+    "cleanup": {
+      "loggedOut": true,
+      "loginInputsEmpty": true,
+      "privateGameplayAbsent": true,
+      "remoteRawFilesRemoved": true,
+      "zeroForbiddenWrites": true
+    },
+    "observedReadOnlyFacts": {
+      "answerSubmissionCount": 0,
+      "answerReceiptCount": 0,
+      "xpLedgerCount": 0,
+      "xpDeltaSum": 0,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "completedProgressRows": 0,
+      "startReceiptCount": 1,
+      "progressRows": 1,
+      "playerTotalXp": 0
+    }
+  },
+  "rootOriginalsViewed": [
+    {
+      "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-finish/manual-final-zoomed.png",
+      "sha256": "45007aa31cf103974e9363f2ae50322187c2c5e4d66ab1cc1fe13b1d123ab604",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-finish/manual-reset-100.png",
+      "sha256": "fe3726fe73ac1ba697360d7c7dff8af5d638788f8c5ba9b322301ab1aef89cb5",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/reboot-recovery-20261105-01/manual-finish/viewer-closed-light-x.png",
+      "sha256": "b94da9f7b49370356f98d2578b22265ddbc7b6c411edf214fb7ed7b8fc81bc26",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "visualReview": "Root viewed all three unedited originals: zoomed clipped image within stage, reset Contain image, X restoring light status icons and unchanged draft; no blocker in this narrow scope",
+  "automatedMultiPointerInjectionClaimed": false,
+  "touchCancelOrPendingNetworkCancellationClaimed": false,
+  "fullViewerAcceptanceClaimed": false,
+  "pending": [
+    "Viewer-specific failure/retry",
+    "Cancellation while image loading",
+    "TouchCancel and account-late-response device boundaries"
+  ],
+  "createdAt": "2026-11-05T11:07:53.704313+00:00"
+}

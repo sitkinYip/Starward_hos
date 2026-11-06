@@ -199,6 +199,7 @@ class ImageFailure(FRAME.FrameSample):
             'refinementUI': ROOT / 'scripts/device-native-ui-refinements.py', 'nativeUI': ROOT / 'scripts/native_device_ui.py',
             'imageUI': ROOT / 'entry/src/main/ets/ui/StarwardQuestionImages.ets',
             'imageLoader': ROOT / 'entry/src/main/ets/platform/QuestionImageLoader.ets',
+            'imageIO': ROOT / 'entry/src/main/ets/platform/QuestionImageIO.ets',
             'gameplayPage': ROOT / 'entry/src/main/ets/features/GameplayPage.ets',
             'viewModel': ROOT / 'entry/src/main/ets/features/GameplayViewModel.ets', 'index': ROOT / 'entry/src/main/ets/pages/Index.ets'}
         self.bound, self.binding = files, {name: sha(path) for name, path in files.items()}
@@ -454,11 +455,12 @@ class ImageFailure(FRAME.FrameSample):
                      ui.find('gameplay-loading') is None, 'GET-only image revisit')
         self.wait_404(3)
         self.draft('get-revisit-empty', empty=True)
-        require(sum(row.get('method') == 'GET' and row.get('path') == self.detail for row in self.ledger()) == reads + 1,
-                'Revisit did not use exactly one assignment GET')
+        revisit_reads = [row for row in self.ledger() if row.get('method') == 'GET' and row.get('path') == self.detail][reads:]
+        require(len(revisit_reads) == 2 and all(row.get('status') == 200 for row in revisit_reads),
+                'Revisit did not use the detail projection and gameplay snapshot GET200 pair')
         self.verify_ledger(); self.immutable()
-        self.check(True, 'Back clears image/input nodes and same active re-entry uses one GET with an empty draft, a fresh HTTP404 and no repeated start/answer/XP')
-        self.observations['revisit'] = {'appReportedHttp404Count': 3, 'assignmentGets': 1, 'draftEmpty': True,
+        self.check(True, 'Back clears image/input nodes and same active re-entry uses the two GET200 projections with an empty draft, a fresh HTTP404 and no repeated start/answer/XP')
+        self.observations['revisit'] = {'appReportedHttp404Count': 3, 'assignmentGets': len(revisit_reads), 'draftEmpty': True,
             'progressRows': 1, 'startReceiptCount': 1, 'answerSubmissionCount': 0, 'xpDelta': 0}
         self.stage = 'image-failure-sample-complete'
 

@@ -1,0 +1,108 @@
+{
+  "status": "incomplete",
+  "stage": "one-native-refresh-retains-instances",
+  "scope": "Loaded real-case0 body image and input instance retention across one successful native Refresh GET only",
+  "sourceCaseIndex": 0,
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "19a22f52c3d9de95e32282a61a03b714e2cb78d738b7de97a153d8b3f185537b",
+    "runtime": "2811de386d669640b5f7c586ca5366f3856848b4664efe113e24d2d074957eaf",
+    "hap": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "webCase0": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+    "webCase1": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f",
+    "webCase2": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82",
+    "imageDriver": "7ac15abcb8123f4ba5b9547943bc42f3cce6e75e6ff74843026478cbc39f128d",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "imageLoader": "36f80ac0a72d4ee8afabd8157610349b8cf1831e23f2edb9ca0c045fd4d05fef",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a",
+    "imageRefreshDriver": "a68f80c90ac4161724bac3b610ad79f9f1d2cb015eb14917561e9b5f081cb2ad",
+    "normalImageGuard": "7ac15abcb8123f4ba5b9547943bc42f3cce6e75e6ff74843026478cbc39f128d",
+    "quantitativeTopGuard": "05a13a2f2084048ec5fbf65b7a31ee1df36b121dfc460880f05919923ea597fd",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393"
+  },
+  "checksPassed": 0,
+  "checks": [],
+  "observations": {},
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "ownLogCaptureStopped": true,
+    "imageAndDraftAbsentAfterLogout": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-refresh-native-01/image-refresh-before.png",
+      "sha256": "dce179eb6d40964c7384d581d9819717edbd938cf34cc0a2f3b51149243a8685",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "top-image-before-refresh-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-refresh-native-01/raw-top-image-before-refresh-0-6ec0889c3940444e8c0ff99f66dc2cda.json",
+      "remoteRemoved": true,
+      "sha256": "5ea1a8fe0d9ad58b47b62df99c72f941bad0bd2db1216152da5de6306ecc38ce"
+    },
+    {
+      "label": "image-refresh-before",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-refresh-native-01/raw-image-refresh-before-3aff47a202c54dcba914f5db036f822e.json",
+      "remoteRemoved": true,
+      "sha256": "5ea1a8fe0d9ad58b47b62df99c72f941bad0bd2db1216152da5de6306ecc38ce"
+    },
+    {
+      "label": "image-refresh-logout-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-refresh-native-01/raw-image-refresh-logout-absent-6594f0ec99f04504956dee1e62ae05ab.json",
+      "remoteRemoved": true,
+      "sha256": "e0adb6683ed5aed8b0cc0525dc6a5ce94f8be0357ca5b7840911db8e61202028"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-images-refresh-native-01/request-ledger.json",
+    "sha256": "0889b79a9a7076befc2d2925a848756449b4b8d51a62892e3b2d56e5c3c89728"
+  },
+  "privateOwnAppLog": {
+    "file": "artifacts/private/ui-reference/question-images-refresh-native-01/own-app-image-refresh.log",
+    "sha256": "bcaae4b10e5a9879e2c082447ad9a25db982f5abe3c09da2dcecc500aab61bc4"
+  },
+  "fixedPreviewTouched": false,
+  "backendFaultInjected": false,
+  "nativeDownloadSha256Observed": false,
+  "cdnWireRequestsObserved": false,
+  "cancellationVerified": false,
+  "lateResultDiscardVerified": false,
+  "visualReview": "not_claimed_instance_probe_only",
+  "httpEvidenceSource": "Current own-App image state events and the owned assignment-GET ledger; no CDN-wire capture",
+  "writeScope": "Host auth/read and one native pull GET; no start/answer/profile/password/fault/admin/service write",
+  "excludedAcceptance": [
+    "in-flight cancellation",
+    "late image/decode release",
+    "CDN wire/hash",
+    "image viewing",
+    "choice images",
+    "whole page"
+  ],
+  "createdAt": "2026-11-05T01:42:32.672920+00:00"
+}

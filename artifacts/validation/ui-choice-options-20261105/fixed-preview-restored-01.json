@@ -1,0 +1,51 @@
+{
+  "status": "fixed_preview_restored_and_logged_in",
+  "steps": [
+    {
+      "step": "detach-own-test-usb",
+      "exitCode": 0
+    },
+    {
+      "step": "start-existing-fixed-database",
+      "exitCode": 0
+    },
+    {
+      "step": "status",
+      "exitCode": 0
+    },
+    {
+      "step": "clear-owned-test-package-config",
+      "exitCode": 0
+    },
+    {
+      "step": "configure",
+      "exitCode": 0
+    },
+    {
+      "step": "official-run",
+      "exitCode": 0
+    },
+    {
+      "step": "runtime",
+      "exitCode": 0
+    },
+    {
+      "step": "direct-login-list",
+      "exitCode": 0
+    }
+  ],
+  "previewHapSha256": "9186650bb389f5bc2464f6d6ac37ea99737b7b92c19a55677f88c34dfe1577a9",
+  "testedIsolationHapSha256": "872a3a8e81463ded0948790edbcbe9aa325762827df855d8bc51edbbff2ed214",
+  "differentZipMembers": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration-ca.pem",
+    "resources/rawfile/integration.json"
+  ],
+  "applicationCodeMembersIdentical": true,
+  "fixedLoginAndCaUnchanged": true,
+  "persistentDatabaseInodePreserved": true,
+  "disposableDatabaseAndTlsKeptWithUsbDetached": true,
+  "runtime": "artifacts/validation/profile/runtime-choice-preview-restored-20261106-01.json",
+  "directLoginListReport": "artifacts/validation/gameplay-answer-20261104/preview-choice-restored-20261106-01.json",
+  "previousHostReadinessArchive": "artifacts/validation/profile/preview-environment-before-choice-20261106-01.json"
+}

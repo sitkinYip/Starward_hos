@@ -1,0 +1,159 @@
+{
+  "status": "passed",
+  "stage": "image-failure-sample-complete",
+  "scope": "Explicit isolated synthetic first-body-image404, retry, retained draft, Back/GET re-entry and logout only",
+  "hapSha256": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "expectedDerivationSha256": "707f2c0ab8748f8b08d0ff7df355be86f2b7636bf31e0851d481ae2860793362",
+  "bindingSha256": {
+    "driver": "826b99d9a95d28f5d7aea3952eccd44b98d7f09ebd973bc299eb1742acb6300e",
+    "caseReference": "565fbdae36acad1d090a9d113afd928245cd5e22843c0d90d0555103149932b2",
+    "runtime": "e15f6d96766d8900ffc926c8ad7c2b7ce1168482c987813dde79bd2bc9cda98b",
+    "hap": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "derivation": "707f2c0ab8748f8b08d0ff7df355be86f2b7636bf31e0851d481ae2860793362",
+    "sourceFixture": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "frameGuard": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "failureSetup": "36907d8facb2059264c10fc3f7b6346170deb7d88fdbaeecdccac1056f7d3701",
+    "contentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "imageUI": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "gameplayPage": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a"
+  },
+  "checksPassed": 3,
+  "checks": [
+    "The exact derived active question reports loading then real HTTP404 and exposes native retry without pixels",
+    "One measured explicit image retry reports a second HTTP404 while the actual draft and input instance remain unchanged and no business request occurs",
+    "Back clears image/input nodes and same active re-entry uses the two GET200 projections with an empty draft, a fresh HTTP404 and no repeated start/answer/XP"
+  ],
+  "observations": {
+    "retry": {
+      "appReportedHttp404Count": 2,
+      "actualDraftRetained": true,
+      "sameAccessibilityIdAndHashcode": true,
+      "beforeInputRawSha256": "597572f2484fca6db8b507824748ad56103b239b4e1bf9193ce7dbd803ff156c",
+      "afterInputRawSha256": "2114bbf5001b783f3fe9b0195b53f3cd7864181ac1c2080bf1fe0aec7aa8b937",
+      "pixelsObserved": false,
+      "nativeStartCommandsInThisRun": 0,
+      "answerRequests": 0,
+      "xpDelta": 0
+    },
+    "revisit": {
+      "appReportedHttp404Count": 3,
+      "assignmentGets": 2,
+      "draftEmpty": true,
+      "progressRows": 1,
+      "startReceiptCount": 1,
+      "answerSubmissionCount": 0,
+      "xpDelta": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "ownLogCaptureStopped": true,
+    "imageAndDraftAbsentAfterLogout": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/initial-image404.png",
+      "sha256": "86ece483ed96a340480bc56f7a47aece108fa3eb9ec862e856c84e7e785640d2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/explicit-retry-image404.png",
+      "sha256": "3e828474ebbe1b6b038cab88f8490c284f0af01b4b22b154c89d9862baa0b119",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "draft-before-retry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-draft-before-retry-e52db3f526994404a86c2656a6642771.json",
+      "remoteRemoved": true,
+      "sha256": "597572f2484fca6db8b507824748ad56103b239b4e1bf9193ce7dbd803ff156c"
+    },
+    {
+      "label": "ready-image-retry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-ready-image-retry-266ba88185a140ad971f5dac56bc4e68.json",
+      "remoteRemoved": true,
+      "sha256": "597572f2484fca6db8b507824748ad56103b239b4e1bf9193ce7dbd803ff156c"
+    },
+    {
+      "label": "draft-after-retry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-draft-after-retry-f6e84c721beb40f1abcc6c26b4667901.json",
+      "remoteRemoved": true,
+      "sha256": "2114bbf5001b783f3fe9b0195b53f3cd7864181ac1c2080bf1fe0aec7aa8b937"
+    },
+    {
+      "label": "draft-before-navigation",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-draft-before-navigation-3b47985d5ac94300ae93d4a51916bdb6.json",
+      "remoteRemoved": true,
+      "sha256": "2114bbf5001b783f3fe9b0195b53f3cd7864181ac1c2080bf1fe0aec7aa8b937"
+    },
+    {
+      "label": "home-image-draft-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-home-image-draft-absent-a80664ec2b5a47c28268d45c666b901a.json",
+      "remoteRemoved": true,
+      "sha256": "0767fe58b081cfb8279d1d5d3ecd9a934691c83d131203d7e80c30c9dd7a79bb"
+    },
+    {
+      "label": "draft-get-revisit-empty",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-draft-get-revisit-empty-da85b30db1994cbb973058750dfd9aa5.json",
+      "remoteRemoved": true,
+      "sha256": "4ee95bae2a784d4816681e44684d924efadc4ab3b410cf961d5b22b5a15d8185"
+    },
+    {
+      "label": "logout-image-draft-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/raw-logout-image-draft-absent-e9d9e8250d1c41cbae79c76e71334fe3.json",
+      "remoteRemoved": true,
+      "sha256": "4f5d9bc7c32ddfa7ffc4cc4de652e288fc40d74d1da293817ba9dec53eed7116"
+    }
+  ],
+  "privateOwnAppLog": {
+    "file": "artifacts/private/ui-reference/question-images-races-failure-01/own-app-image-events.log",
+    "sha256": "8405a3b645826cdc25ab18e5f6a54ef4e1bfae0e913e080382494553d2484d28"
+  },
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-images-races-failure-01/request-ledger.json",
+    "sha256": "3c5a8e6477254233de410c86aa5af2ff584949129d643905a6b1f74038d05742"
+  },
+  "failure": null,
+  "setupImageFailureVerifiedRemainsFalse": true,
+  "fixedPreviewTouched": false,
+  "imageUrlFetchedByHost": false,
+  "cdnWireRequestsObserved": false,
+  "httpEvidenceSource": "Official current own-App PID-scoped StarwardQuestionImage HTTP-result events",
+  "visualReview": "pending_root_original_review",
+  "excludedAcceptance": [
+    "normal image success",
+    "image viewing",
+    "choice images",
+    "cancellation/late decode",
+    "video/BGM",
+    "whole page"
+  ],
+  "writeScope": "Host auth/read and optional one exact native start; no answer/profile/password/reset/fault/admin/service write",
+  "createdAt": "2026-11-05T02:32:11.490188+00:00"
+}

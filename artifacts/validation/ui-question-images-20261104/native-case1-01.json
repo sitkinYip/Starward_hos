@@ -1,0 +1,234 @@
+{
+  "status": "passed",
+  "scope": "Normal decoded body-photo/gallery display only",
+  "stage": "normal-body-image-sample-complete",
+  "sourceCaseIndex": 1,
+  "bodyImageCount": 1,
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "74806dffe89f305079b6d1d93cd3ff0e12733e7ca23b1973d802ac73e666a8b6",
+    "runtime": "2811de386d669640b5f7c586ca5366f3856848b4664efe113e24d2d074957eaf",
+    "hap": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "webCase0": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+    "webCase1": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f",
+    "webCase2": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82",
+    "imageDriver": "7ac15abcb8123f4ba5b9547943bc42f3cce6e75e6ff74843026478cbc39f128d",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "imageLoader": "36f80ac0a72d4ee8afabd8157610349b8cf1831e23f2edb9ca0c045fd4d05fef",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a"
+  },
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "checksPassed": 3,
+  "checks": [
+    "All expected normal body images decode before originals and retain natural-size gallery/order geometry",
+    "All expected normal body images decode before originals and retain natural-size gallery/order geometry",
+    "Back and same active re-entry use GET without another start or any answer"
+  ],
+  "states": [
+    {
+      "themeRequested": "light",
+      "readyBodyImageCount": 1,
+      "images": [
+        {
+          "block": 0,
+          "image": 0,
+          "sourceSha256": "811be38184e65fe63ac4ac78628c30ff21d29508e7bf531e426c8cf2593f11ca",
+          "referenceNaturalWidthPx": 1000,
+          "referenceNaturalHeightPx": 562,
+          "groupWidthVp": 314.2857142857143,
+          "columns": 1,
+          "expectedVp": {
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0,
+            "rowY": 0,
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 177.5045714285714,
+            "frameX": 0.0
+          },
+          "measuredVp": {
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 177.42857142857142,
+            "frameX": 0.0,
+            "rowY": 0.0,
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0
+          },
+          "frameBoundsPx": [
+            108,
+            944,
+            1208,
+            1565
+          ],
+          "pixelsBoundsPx": [
+            112,
+            948,
+            1205,
+            1562
+          ],
+          "rawSha256": "03b09d7da39b97e32b221e98056859a9dc2832cd36d389a9eedf8972b69b3c04"
+        }
+      ],
+      "blockOrder": [
+        {
+          "block": 0,
+          "elementOrder": [
+            "images",
+            "text"
+          ],
+          "withinBlockGapsVp": [
+            13.142857142857142
+          ],
+          "previousBlockGapVp": null
+        }
+      ],
+      "normalDisplayOnly": true
+    },
+    {
+      "themeRequested": "dark",
+      "readyBodyImageCount": 1,
+      "images": [
+        {
+          "block": 0,
+          "image": 0,
+          "sourceSha256": "811be38184e65fe63ac4ac78628c30ff21d29508e7bf531e426c8cf2593f11ca",
+          "referenceNaturalWidthPx": 1000,
+          "referenceNaturalHeightPx": 562,
+          "groupWidthVp": 314.2857142857143,
+          "columns": 1,
+          "expectedVp": {
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0,
+            "rowY": 0,
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 177.5045714285714,
+            "frameX": 0.0
+          },
+          "measuredVp": {
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 177.42857142857142,
+            "frameX": 0.0,
+            "rowY": 0.0,
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0
+          },
+          "frameBoundsPx": [
+            108,
+            981,
+            1208,
+            1602
+          ],
+          "pixelsBoundsPx": [
+            112,
+            985,
+            1205,
+            1599
+          ],
+          "rawSha256": "e57397aafeacd52b3414c061f8763645fb0e8737b213afc28be33fe71fd92f29"
+        }
+      ],
+      "blockOrder": [
+        {
+          "block": 0,
+          "elementOrder": [
+            "images",
+            "text"
+          ],
+          "withinBlockGapsVp": [
+            13.142857142857142
+          ],
+          "previousBlockGapVp": null
+        }
+      ],
+      "normalDisplayOnly": true
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/body-image-0-0-light.png",
+      "sha256": "d4eff2925251d0a18c4646619e000c45fbe8403cdf670194835f0c1471375629",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/body-image-0-0-dark.png",
+      "sha256": "d2034b8dd9249fcb0472962414e4218eb0b51b060e84b938b1ca6e93f9f993b8",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "body-image-0-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/raw-body-image-0-0-light-e599773763b54fa98cb8ac6fc06cf44c.json",
+      "remoteRemoved": true,
+      "sha256": "03b09d7da39b97e32b221e98056859a9dc2832cd36d389a9eedf8972b69b3c04"
+    },
+    {
+      "label": "body-order-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/raw-body-order-0-light-6274bf8003734e4f83be7beb35ff1839.json",
+      "remoteRemoved": true,
+      "sha256": "03b09d7da39b97e32b221e98056859a9dc2832cd36d389a9eedf8972b69b3c04"
+    },
+    {
+      "label": "body-image-0-0-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/raw-body-image-0-0-dark-1a83479ff2a54fc2afbf575b59f1f994.json",
+      "remoteRemoved": true,
+      "sha256": "e57397aafeacd52b3414c061f8763645fb0e8737b213afc28be33fe71fd92f29"
+    },
+    {
+      "label": "body-order-0-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-native-case1-01/raw-body-order-0-dark-021ca6433ea94e61b464e95212e0e3ae.json",
+      "remoteRemoved": true,
+      "sha256": "7ce6518331927e3b3837eed4e77a0c94eb8550aeb020beeba5c7f299cdb7ed9e"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-images-native-case1-01/request-ledger.json",
+    "sha256": "f56223a93a7359a366b32ba03eb0ad88735430b450f55ae7dd37b408b46fbf4d"
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/question-images-native-case1-01/web-dtos.json",
+    "sha256": "bb47fdc131f113d7769de1d9fce4fbe2570a0bdfde38f8d49d16596efda00816"
+  },
+  "failure": null,
+  "visualReview": "pending_root_original_review",
+  "naturalDimensionSource": "Registered source-byte SHA in the approved Web geometry.images",
+  "nativeDownloadSha256Observed": false,
+  "referenceImagesDownloadedByHelper": false,
+  "fixedPreviewTouched": false,
+  "excludedAcceptance": [
+    "image failure/retry",
+    "cancellation/late image",
+    "choice images",
+    "image viewing",
+    "video/BGM",
+    "whole page"
+  ],
+  "writeScope": "Host authentication/read and the optional exact single native start only; no answer/profile/password/fault/reset",
+  "createdAt": "2026-11-05T01:27:41.282793+00:00"
+}

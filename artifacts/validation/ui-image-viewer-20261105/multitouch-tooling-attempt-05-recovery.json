@@ -1,0 +1,39 @@
+{
+  "status": "failed_sdk_attempt_owned_resources_recovered",
+  "phase": "exact-owned-sdk05-resources-recovered",
+  "counts": {
+    "ownedForwardsRemoved": 1,
+    "ownedAgentFilesRemoved": 1,
+    "ownedCacheFilesRemoved": 2,
+    "ownedCacheRootsRemoved": 2
+  },
+  "pythonExitedBeforeCleanup": true,
+  "mainEmptyLogoutObservedByAttempt": true,
+  "sdkDaemonAlreadyAbsent": true,
+  "exactOwnedForwardRemoved": true,
+  "exactOwnedAgentRemoved": true,
+  "existingHdcServerAndOwnTlsReversePreserved": true,
+  "foreignDeviceNamesPreserved": true,
+  "previouslyAbsentHomeCachesAbsentAgain": true,
+  "sourceAndSdkBytesUnchanged": true,
+  "originalFailureAndAuditDenialPreserved": true,
+  "helperSha256": "db92ae4cc9b46c15907ee51920b4e57f4efe4f94fc29e130cc8a2063dc50ccdc",
+  "normalPrerequisiteSha256": "c5dc711968b0f878b19d08b8702e5126a0ffd746eb2b43b7d557a87dccf9a3b9",
+  "sourceReportSha256": "0e288107546b019a807ab53ef17065443270c7ff29112a0b7a1457c2c13c573f",
+  "exitInventorySha256": "b381c2d4ed8514c633a0c885e488a8649fd3d57858acbabef19ae657e82a3bc4",
+  "privateOwnershipReceipt": {
+    "file": "artifacts/private/ui-reference/image-viewer-multitouch-05-recovery-owned.json",
+    "sha256": "7110f429d5a8e9484db6faa3f82d0ab9265534fd8e5a2803f9bb3360f9e3babb"
+  },
+  "sdkAuditDeniedEvents": [
+    "socket.gethostbyaddr"
+  ],
+  "expectedBlockedLocalLookup": [],
+  "sdkOriginalCleanupBooleansRewritten": false,
+  "gesturesVerified": false,
+  "viewerAcceptanceComplete": false,
+  "deviceUiOrAuthBusinessOperationsPerformed": false,
+  "hdcServerKilledOrRestarted": false,
+  "recursiveOrGlobDeletionPerformed": false,
+  "createdAt": "2026-11-05T05:29:30.927259+00:00"
+}

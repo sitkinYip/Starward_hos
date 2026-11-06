@@ -1,0 +1,80 @@
+{
+  "status": "accepted_body_image_loader_resource_protocol_and_narrow_native_revalidation",
+  "createdAt": "2026-11-05T02:39:03.397419+00:00",
+  "hapSha256": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+  "sourceSha256": {
+    "entry/src/main/ets/platform/QuestionImageIO.ets": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "entry/src/main/ets/platform/QuestionImageLoader.ets": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "entry/src/test/QuestionImageLoader.test.ets": "f238c5d10367f561c152b6feda27bcc547709bf16eda09bd16d96fdde15f20e6",
+    "entry/src/test/List.test.ets": "d16835b607a7ed7ca1b93c7b47ea4a01a21f118c89587801853a38420989d378"
+  },
+  "unchangedUiSourcesComparedWithAcceptedDdcBytes": {
+    "ui/StarwardQuestionImages.ets": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "features/GameplayPage.ets": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "features/GameplayViewModel.ets": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "pages/Index.ets": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a"
+  },
+  "officialBuildExit": 0,
+  "signedArtifactGenerated": true,
+  "officialInstallSuccessMarkerObserved": true,
+  "officialLaunchSuccessMarkerObserved": true,
+  "runtime": {
+    "file": "artifacts/validation/ui-question-images-20261105-races/runtime-image-races-20261105-01.json",
+    "sha256": "e15f6d96766d8900ffc926c8ad7c2b7ce1168482c987813dde79bd2bc9cda98b"
+  },
+  "lintSummary": {
+    "filesChecked": 0,
+    "issues": 0,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 0
+  },
+  "uniqueControlledRaceTestsPassed": 4,
+  "mutationCaughtByFourthCaseAndExactRestoreVerified": true,
+  "raceReport": {
+    "file": "artifacts/validation/ui-question-images-20261105-races/race-validation.json",
+    "sha256": "da3882b868d969e66dfdc436a197e5b150722b86a3876d9b9cf41e972189213f"
+  },
+  "nativeReports": [
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-races-normal-01.json",
+      "sha256": "6092bf0d54f42ff2ae4b9ec20ae2132b6921ee5f4e7e9096aa2bebca228a2b07",
+      "checksPassed": 3
+    },
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-races-failure-01.json",
+      "sha256": "109fe7c4b672e0bbdd209995b07fea0528058fb80a0e182b05d96e9fb88a0dc1",
+      "checksPassed": 3
+    },
+    {
+      "file": "artifacts/validation/ui-question-images-20261104/native-races-refresh-01.json",
+      "sha256": "70cd0e823d570a77f851f26c247380b545943cd2c83f99f93ff6a310007b903f",
+      "checksPassed": 2
+    }
+  ],
+  "rootOriginalsReviewed": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/body-image-0-0-light.png",
+      "sha256": "274bc2d42765cb45635e8f6a47441b900d7a3d72deb6f92637badf512b8949ec"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-normal-01/body-image-0-0-dark.png",
+      "sha256": "7814acb268212bf23db6eccd58818beb4e8a18f09a291fb672d5cd911d0cefd6"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-failure-01/explicit-retry-image404.png",
+      "sha256": "3e828474ebbe1b6b038cab88f8490c284f0af01b4b22b154c89d9862baa0b119"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/image-refresh-after.png",
+      "sha256": "28b268ee09460dae975c50c3cac079e76d933f6fcd6f1b3d58eb93a577049a2d"
+    }
+  ],
+  "rootReview": "No high-confidence issue after complete tests-first source review and an independent five-axis review. Four new originals visibly confirm the default native path, small retry and retained draft after Refresh.",
+  "actualPhoneInFlightCancelOrLatePixelReleaseTimingVerified": false,
+  "controlledIoRaceProtocolVerified": true,
+  "nativeWireImageSha256Observed": false,
+  "wholePageParityAccepted": false,
+  "priorGalleryGeometryEvidence": "Remains bound to ddc149ba; not rerun or counted as new-HAP execution. UI bytes are identical.",
+  "fixedPreviewTouched": false
+}

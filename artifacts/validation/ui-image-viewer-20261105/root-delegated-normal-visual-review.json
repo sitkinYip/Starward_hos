@@ -1,0 +1,376 @@
+{
+  "formatVersion": 1,
+  "status": "reviewed_current_normal_viewer_narrow",
+  "createdAt": "2026-11-05T05:02:36.203434+00:00",
+  "reviewerAgent": "/root/gameplay_data_entry",
+  "delegatedBy": "/root",
+  "reviewMethod": "Direct view_image of unchanged uncropped original PNG files; same-data/index/theme Web comparison",
+  "hapSha256": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+  "viewerSourceSha256": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+  "webCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "sourceReports": [
+    {
+      "file": "artifacts/validation/ui-image-viewer-20261105/native-case0-02.json",
+      "sha256": "1118bb36795b41bac3b025f067745af5e11b48698c7d47f46b28f0bcdfc1c17f"
+    },
+    {
+      "file": "artifacts/validation/ui-image-viewer-20261105/native-case2-03.json",
+      "sha256": "c5dc711968b0f878b19d08b8702e5126a0ffd746eb2b43b7d557a87dccf9a3b9"
+    },
+    {
+      "file": "artifacts/validation/ui-image-viewer-20261105/web-reference-01.json",
+      "sha256": "aabc3d7725e73bb26a0e0117446d6015982f5fc61912b495168bb0f7152cbd62"
+    },
+    {
+      "file": "artifacts/validation/ui-image-viewer-20261105/runtime-image-viewer-20261105-02.json",
+      "sha256": "99859934decfda8f5f2f42d22fa29452a39bbc2d44d167c1406605bc1311965f"
+    }
+  ],
+  "sourceReportBytesModified": false,
+  "old49cResultsInherited": false,
+  "counts": {
+    "nativeCapturedOriginalFiles": 21,
+    "nativeActuallyViewedDistinctOriginals": 17,
+    "webActuallyViewedOriginals": 12,
+    "directOriginalViewCount": 29,
+    "byteEqualNotViewedNativeOriginals": 4
+  },
+  "actuallyViewedOriginals": [
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-dark.png",
+      "sha256": "227a190dcfcaa7a686511fd6552765f0035b582bcf23f8d0d0038bea9b3e2b89",
+      "surface": "native",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-x.png",
+      "sha256": "31b397c7b11a68c59ff2b9fa065733b8cebb848478a2e3ef46232bec202c1209",
+      "surface": "native",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-light.png",
+      "sha256": "5c020ad70fc83fc563146c0c7ae61eb835f1a1729c1e168a346c62d01e84fd88",
+      "surface": "native",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-dark-x.png",
+      "sha256": "fc2d196e53904b512b80455689d888cdcb469a74f5574a931f8dd75dd71b7480",
+      "surface": "native",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-mask.png",
+      "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72",
+      "surface": "native",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-open-light.png",
+      "sha256": "1e81c2e4334deeb34ea2e5f494054b79038038a8ac8adc0aa44ae72f44cbe907",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-previous-2-light.png",
+      "sha256": "9f0b26382c460249d55871066911308b2d108ed9c1b10fe0a0ed3412c0a2b477",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-previous-1-light.png",
+      "sha256": "7bfcf9486ea0669fd2729d859aba4c17cb57f2ba0da7a32c6365226d40b4b2ee",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-single-swipe-light.png",
+      "sha256": "dac6ecc7d665b0afe5b951eb35ab961f85daf5bf85aac08cee1a1436280b96ab",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-before-light.png",
+      "sha256": "de88e4038dc669e50d68686c0f745100d5fa2c83ee547765b3c9b078986f5c84",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-closed-light-x.png",
+      "sha256": "178bea1690b7b779f72cd20f0770b02faee58571d76e946b7604a75140e3413b",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-closed-light-back.png",
+      "sha256": "ed71ddf170e1e1284b3a782d916f695902cd281ceca5222813622432bcc1ce70",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-open-dark.png",
+      "sha256": "f6e7881184dc12350976d86228940e2642c238556027cb81c064e1919b81b0ff",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-previous-2-dark.png",
+      "sha256": "53b41dd0c5410711539ec8077b98c1dfc9b55867d48030e3e07f69a546e64ab0",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-previous-1-dark.png",
+      "sha256": "73074cf7772f37fb6410de44764c2ab5488d14a84a093c4756c71882bc57af80",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-before-dark.png",
+      "sha256": "058d07c5c2ca8862fcf157eb4b046dee7dcf36c70be8ae17679389f83991590b",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-closed-dark-x.png",
+      "sha256": "516189efccbdb40cb78fd064ee577e4ab4f44c06ce98af5814ad915f7c74527e",
+      "surface": "native",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case0-dark-open1of1.png",
+      "sha256": "8dc8b879caa7928e94f87e9bf097a06677a63541d64bcef103aa0a37da44a6f3",
+      "surface": "web",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case0-light-closedAfterEscape.png",
+      "sha256": "ebbbb8ae4bc9c44fdf93bcb47e9d5b16211c222f6b65d80116c73b8602f282c5",
+      "surface": "web",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case0-light-open1of1.png",
+      "sha256": "9520fb4fc1e7bea856298e0906cff2e8b39bb0467efd4a34a0b76fe3c77242af",
+      "surface": "web",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case0-dark-closedAfterEscape.png",
+      "sha256": "b6a77cee691ee79463090081ae26ec113d92ed7f38edef773746337ab8f942a1",
+      "surface": "web",
+      "sourceCaseIndex": 0,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-light-open3of3.png",
+      "sha256": "5b217fdf5f943593933716bd43fc7f787c45bccea2c33e075db7247b4124b945",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-light-previous2of3.png",
+      "sha256": "0d99a22e9e6a9255866de2e13a5a579d78d4d2981441c05ca592b37c8b2b6535",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-light-previous1of3.png",
+      "sha256": "e2a41b582dd941a0bb2c0719d79aa435ae987186da21f6b3cedee2d942bc9734",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-light-closedAfterEscape.png",
+      "sha256": "60a954fb8ab47f79c92666515964ec4ec18df370bea50051162f74bc1edd7478",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-dark-open3of3.png",
+      "sha256": "a39080d100c9c6c94c2b93b66aab2aa06392eff8b350e6cab35c9ec1cd33ed54",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-dark-previous2of3.png",
+      "sha256": "f1f324492ae9bfdb1e33a8505acabf40da4a1d768de3c84a101ab7f48ec635e1",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-dark-previous1of3.png",
+      "sha256": "bad8b38541fe90b0759ddfa2e127a0df64f07f87800129f1e6ba1884cd67803c",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-web-reference-01/case2-dark-closedAfterEscape.png",
+      "sha256": "cba19b6560824ff81296f04ac11003d9ccea51d68be58fc2cd72df67c229f637",
+      "surface": "web",
+      "sourceCaseIndex": 2,
+      "method": "view_image_original",
+      "editedOrCropped": false
+    }
+  ],
+  "byteEqualNotViewed": [
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-before-light.png",
+      "sha256": "31b397c7b11a68c59ff2b9fa065733b8cebb848478a2e3ef46232bec202c1209",
+      "disposition": "byteEqualNotViewed",
+      "byteEqualToActuallyViewed": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-x.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-before-dark.png",
+      "sha256": "fc2d196e53904b512b80455689d888cdcb469a74f5574a931f8dd75dd71b7480",
+      "disposition": "byteEqualNotViewed",
+      "byteEqualToActuallyViewed": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-dark-x.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-back.png",
+      "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72",
+      "disposition": "byteEqualNotViewed",
+      "byteEqualToActuallyViewed": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-mask.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-closed-light-mask.png",
+      "sha256": "178bea1690b7b779f72cd20f0770b02faee58571d76e946b7604a75140e3413b",
+      "disposition": "byteEqualNotViewed",
+      "byteEqualToActuallyViewed": "artifacts/private/ui-reference/image-viewer-native-case2-03/viewer-closed-light-x.png"
+    }
+  ],
+  "rootSeparateReportedOriginalViews": {
+    "basis": "Parent explicitly reported direct original viewing; separate from this agent count",
+    "reviewer": "/root",
+    "includedInAgentDirectViewCount": false,
+    "originals": [
+      {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-light.png",
+        "sha256": "5c020ad70fc83fc563146c0c7ae61eb835f1a1729c1e168a346c62d01e84fd88"
+      },
+      {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-back.png",
+        "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72"
+      }
+    ]
+  },
+  "scope": {
+    "sourceCaseIndices": [
+      0,
+      2
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "normalSingleImageAndThreeImageGallery": true,
+    "sourceOrderAndContainedProportion": true,
+    "closeResetNavigationControlsAndDisabledEnds": true,
+    "textLegibilityAndSpacing": true,
+    "visibleSystemSafeAreasAndThemeRestoration": true,
+    "underlyingDraftVisibleAfterClose": true,
+    "wholePageParity": false,
+    "pixelIdentityClaimed": false,
+    "gestureAcceptanceFromScreenshots": false,
+    "fullViewerAcceptanceComplete": false
+  },
+  "observations": [
+    "The single-image and gallery images match the same-data Web originals at their displayed indices; no crop or image-order discrepancy was observed.",
+    "The normal gallery opens at 3/3 and displays matching 2/3 and 1/3 images; first/last disabled controls and the 100% reset/help row are visible without clipping.",
+    "Viewer stage, close control and footer spacing correspond at 376 logical width after the actual native system-area offset; controls do not overlap the status area or bottom gesture region.",
+    "Normal close screenshots retain the underlying draft and show the expected page theme; instance identity and zero business writes are separate source-report checks."
+  ],
+  "observedDifferences": [
+    {
+      "item": "Daytime percentage remains light on the dark viewer",
+      "classification": "explicit_user_approved_difference",
+      "blocking": false
+    },
+    {
+      "item": "Native keeps visible system status/navigation areas and official native controls",
+      "classification": "approved_native_platform_difference",
+      "blocking": false
+    },
+    {
+      "item": "Native viewer background is near solid black; faint underlying decorative texture remains visible in the Web reference",
+      "classification": "observed_visual_difference_not_pixel_identity",
+      "blocking": false,
+      "wholePageBackgroundAcceptedByThisReceipt": false
+    }
+  ],
+  "blockingVisualFindingsInReviewedNormalScope": [],
+  "limits": [
+    "No real multi-pointer Pinch, zoomed Pan, 4x clamp or reset-from-zoom was verified by this visual review.",
+    "No Viewer-specific failed load/retry, in-flight cancellation, remaining-finger or TouchCancel acceptance is claimed.",
+    "Native downloaded-byte SHA and whole-page form/header/navigation parity are outside this receipt.",
+    "The Web reference uses local same-content replay rather than a real authenticated browser backend."
+  ],
+  "retainedFailures": [
+    {
+      "file": "artifacts/validation/ui-image-viewer-20261105/native-case2-01.json",
+      "status": "incomplete",
+      "meaning": "49c child hit-test failure; not inherited as a c789 pass"
+    },
+    {
+      "file": "artifacts/validation/ui-image-viewer-20261105/native-case2-02.json",
+      "status": "incomplete",
+      "meaning": "Root observed no image-viewer IDs in the actual dump despite preceding CLI pixel wait; transition/disappearance versus dump inconsistency unresolved; not classified as a network failure"
+    }
+  ]
+}

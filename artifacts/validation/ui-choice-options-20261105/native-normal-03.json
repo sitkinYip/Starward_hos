@@ -1,0 +1,802 @@
+{
+  "status": "incomplete",
+  "stage": "native-entry-and-frame",
+  "scope": "Own real-content case1 four choice options and three option thumbnails",
+  "plan": {
+    "scope": "Own real-content case1 four choice options and three option thumbnails",
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "states": [
+      "initial-four-options",
+      "A-B-A-mutual-selection",
+      "B-selected-open-A-singleton",
+      "close-preserves-four-radio-instances",
+      "one-light-theme-Refresh-preserves-selection-and-image-instances"
+    ],
+    "writes": "Optional exact one native start; no answer or settlement",
+    "excluded": [
+      "completed/locked/cooldown UI",
+      "image failures or cancellation",
+      "multi-pointer viewer gestures",
+      "whole-page parity",
+      "video/BGM"
+    ]
+  },
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "5c07ee0c0e2f27a6104b2b0a0119e0b57e8346eb1345030309c276e32bdc1f69",
+    "runtime": "d5c19006e2cb98b375ecb78523f5ddefa0d29c1613e669ef4d447678d6d813c2",
+    "hap": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "715d7147c6d414961c7a3c1d90bfaa7c8c8e456b9ff4cc7b7aaaf38a0039dff9",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "choiceUI": "b77f07b02da98e62352c78cf268a3735f0c860a0562fa9b0ded133fe0728d58f",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "lightColors": "17a815a56403293f5362274f2a1ed4e7d1c76a7c5785d8b05a96f052d09b48cf",
+    "darkColors": "2b6c87cae66e6b846d480f9ff28380cc67ea35a1957f089bc05638e325dd80fa",
+    "choiceDriver": "2bede98c72662bba7f5ac4edd313074f72db431808dcea8c4f3ccba410731123",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "quantitativeTopHelper": "05a13a2f2084048ec5fbf65b7a31ee1df36b121dfc460880f05919923ea597fd",
+    "frozenWebSource0": "c3ae135e8bf9e6f596efb62b64d037555cd34a34f4784ee1faca573e8b87de95",
+    "frozenWebSource1": "6b1210fdb87a8103281dfa9fec85fabda0634e9610ffcb45303ad2d0f55cf0e5",
+    "frozenWebSource2": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd",
+    "frozenWebSource3": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9",
+    "frozenWebSource4": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "frozenWebSource5": "3ca98dedb2518df3086e60ec6be9f9bacc04d41bef76e61e28f33f7d3cdd7b84"
+  },
+  "hapSha256": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "sourceCaseIndex": 1,
+  "checksPassed": 3,
+  "checks": [
+    "Four options retain same copy, measured314/312 widths and three130vp photos with no empty D image",
+    "A-B-A uses one actual checked Radio each time without recreating its instances",
+    "Opening A while B is checked opens one image and closes without API traffic, selection or Radio replacement"
+  ],
+  "states": [
+    {
+      "position": "initial-0-light",
+      "themeRequested": "light",
+      "selected": "",
+      "rawSha256": "72e7f39767b8f5182abdf82b852c9774fee4d534147847b231bb49ea00b77e63",
+      "option": 0,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "b85306a8ca475176a7212bcb18c0175faeb5419a9158ba8fc6c955f069fa230b",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "b85306a8ca475176a7212bcb18c0175faeb5419a9158ba8fc6c955f069fa230b",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-0-light.png",
+        "sha256": "fae253f3ff7640b63e884ae524949d5cc398aecfb4c31b1f7feee2b4d7838565",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryVp": {
+        "cardWidthVp": 314.2857142857143,
+        "cardHeightVp": 189.71428571428572,
+        "headerWidthVp": 312.57142857142856,
+        "headerHeightVp": 58.0,
+        "imageFrameWidthVp": 312.57142857142856,
+        "imageFrameHeightVp": 130.0,
+        "imagePixelsWidthVp": 312.57142857142856,
+        "imagePixelsHeightVp": 129.14285714285714
+      },
+      "registeredReferenceImageSha256": "ad3ad48234ea59926eaf85009fa77505d6f2ce34f902a04a6101b28b6b905759"
+    },
+    {
+      "position": "initial-1-light",
+      "themeRequested": "light",
+      "selected": "",
+      "rawSha256": "72e7f39767b8f5182abdf82b852c9774fee4d534147847b231bb49ea00b77e63",
+      "option": 1,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "72e7f39767b8f5182abdf82b852c9774fee4d534147847b231bb49ea00b77e63",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": false,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-1-light.png",
+        "sha256": "fae253f3ff7640b63e884ae524949d5cc398aecfb4c31b1f7feee2b4d7838565",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryVp": {
+        "cardWidthVp": 314.2857142857143,
+        "cardHeightVp": 189.71428571428572,
+        "headerWidthVp": 312.57142857142856,
+        "headerHeightVp": 58.0,
+        "imageFrameWidthVp": 312.57142857142856,
+        "imageFrameHeightVp": 130.0,
+        "imagePixelsWidthVp": 312.57142857142856,
+        "imagePixelsHeightVp": 129.14285714285714
+      },
+      "registeredReferenceImageSha256": "e6fa6239e325c2838c43836b1ae27f783231ec9933b68fac7deb9f04137d0365"
+    },
+    {
+      "position": "initial-2-light",
+      "themeRequested": "light",
+      "selected": "",
+      "rawSha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758",
+      "option": 2,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": false,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-2-light.png",
+        "sha256": "2f3def140649fbb53b5ffd7af0be297dd66d1bd5ff81403152a456d10dda6c98",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryVp": {
+        "cardWidthVp": 314.2857142857143,
+        "cardHeightVp": 189.71428571428572,
+        "headerWidthVp": 312.57142857142856,
+        "headerHeightVp": 58.0,
+        "imageFrameWidthVp": 312.57142857142856,
+        "imageFrameHeightVp": 130.0,
+        "imagePixelsWidthVp": 312.57142857142856,
+        "imagePixelsHeightVp": 129.14285714285714
+      },
+      "registeredReferenceImageSha256": "ac46862b81d288b74dcd631abcd206fd7e77c72a4215bd243771e07560bb840a"
+    },
+    {
+      "position": "initial-3-light",
+      "themeRequested": "light",
+      "selected": "",
+      "rawSha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758",
+      "option": 3,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": false,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-3-light.png",
+        "sha256": "2f3def140649fbb53b5ffd7af0be297dd66d1bd5ff81403152a456d10dda6c98",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryVp": {
+        "cardWidthVp": 314.2857142857143,
+        "cardHeightVp": 59.714285714285715,
+        "headerWidthVp": 312.57142857142856,
+        "headerHeightVp": 58.0
+      },
+      "registeredReferenceImageSha256": null
+    },
+    {
+      "position": "selected-A-1-light",
+      "themeRequested": "light",
+      "selected": "A",
+      "rawSha256": "66e95db9e2743c03b1de0bdfb73ba76637e90e456a2b6ce5259be63af8fe9d42",
+      "option": 0,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "7c75464ef5e82d0ff70003d91c1013ca28d29928b40fdef00e98281fa0838f96",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "7c75464ef5e82d0ff70003d91c1013ca28d29928b40fdef00e98281fa0838f96",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "d405b554e48c7034e18187a60572f21f5f98831d4c2f13b131f2a25eeb388952",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-A-1-light.png",
+        "sha256": "b35fe08761deb8310e85d56a3ed69e98db3169bc45c506489e987cb8618e50a0",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "selected-B-2-light",
+      "themeRequested": "light",
+      "selected": "B",
+      "rawSha256": "cf20b135fa13b47da0214c44d63e707407b76ed9a0a5a1ff79438b853fa76b0c",
+      "option": 1,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "e7b26b7d0ee04fcf834a841a9b67fbdc4e82599c0d8aaf926cbc97cd0581cd07",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "e7b26b7d0ee04fcf834a841a9b67fbdc4e82599c0d8aaf926cbc97cd0581cd07",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "cf20b135fa13b47da0214c44d63e707407b76ed9a0a5a1ff79438b853fa76b0c",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-B-2-light.png",
+        "sha256": "670d984511d8fb5720f9ad3a0aea0bb43052275bfab2cfe40aeba393475bb890",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "selected-A-3-light",
+      "themeRequested": "light",
+      "selected": "A",
+      "rawSha256": "e6a84e9d5165dc03ddfc6e564f433eb0e067fbcaacd3d1ebc9bf97bdcbef9813",
+      "option": 0,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "2728cc415778b7fa60851456eba800181b3a01813888988a1328eac45d69a80b",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "2728cc415778b7fa60851456eba800181b3a01813888988a1328eac45d69a80b",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "99f40a6679f4280e85dbe83d0f93c6e30eaf0c39b206b1ab28940265444c7da5",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-A-3-light.png",
+        "sha256": "4801a87223bc0018206f9b3c3a3bf6c4b1a94c4ef8b22a694e01e8a86107119e",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "selected-B-4-light",
+      "themeRequested": "light",
+      "selected": "B",
+      "rawSha256": "fcf515679a1fcb693e1eb47b246b7dc0b3d909a8ba4d14091b5e8f046cf794c1",
+      "option": 1,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "fcd824772af30a429e8b899d948e6878cb7649a004d6240cd846c7ecdb5180e2",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "fcd824772af30a429e8b899d948e6878cb7649a004d6240cd846c7ecdb5180e2",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "fcf515679a1fcb693e1eb47b246b7dc0b3d909a8ba4d14091b5e8f046cf794c1",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-B-4-light.png",
+        "sha256": "ada09ac2b7459aaa634b3fd86f0530936c47a3d553161dcc1d77fc902ee848c2",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "position": "viewer-A-light",
+      "themeRequested": "light",
+      "selected": "B",
+      "imageCount": 1,
+      "rawSha256": "fb360edc527b6a3da5d754a721ade60a1f15b8cd9b976a35bf2634a4833c52a7",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/choice-native-20261105-03/viewer-A-light.png",
+        "sha256": "279d79bd83588f93495fe4891ae2d2ff3ea42fadce8a88676b824b7cea3191fe",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "underlyingRadiosActuallyObserved": 3,
+      "allUnderlyingRadiosWhileCoverClaimed": false,
+      "registeredReferenceImageSha256": "ad3ad48234ea59926eaf85009fa77505d6f2ce34f902a04a6101b28b6b905759"
+    },
+    {
+      "position": "closed-A-light",
+      "themeRequested": "light",
+      "selected": "B",
+      "rawSha256": "ee5ace93573b10ea181dac422dc26a2b9b220c0e2779a433ba294d69c4ba1ed9",
+      "option": 1,
+      "radioIdentityObservations": [
+        {
+          "rawSha256": "57f5b595e9ca5bc771761a11fc08d7a1f8e33f4626ce450559caaf4c9fcf15db",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "57f5b595e9ca5bc771761a11fc08d7a1f8e33f4626ce450559caaf4c9fcf15db",
+          "observedNodeIds": [
+            "gameplay-option-0",
+            "gameplay-option-1",
+            "gameplay-option-2"
+          ]
+        },
+        {
+          "rawSha256": "ee5ace93573b10ea181dac422dc26a2b9b220c0e2779a433ba294d69c4ba1ed9",
+          "observedNodeIds": [
+            "gameplay-option-1",
+            "gameplay-option-2",
+            "gameplay-option-3"
+          ]
+        }
+      ],
+      "allFourRadiosActuallyObservedThisState": true
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-0-light.png",
+      "sha256": "fae253f3ff7640b63e884ae524949d5cc398aecfb4c31b1f7feee2b4d7838565",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-1-light.png",
+      "sha256": "fae253f3ff7640b63e884ae524949d5cc398aecfb4c31b1f7feee2b4d7838565",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-2-light.png",
+      "sha256": "2f3def140649fbb53b5ffd7af0be297dd66d1bd5ff81403152a456d10dda6c98",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/initial-3-light.png",
+      "sha256": "2f3def140649fbb53b5ffd7af0be297dd66d1bd5ff81403152a456d10dda6c98",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-A-1-light.png",
+      "sha256": "b35fe08761deb8310e85d56a3ed69e98db3169bc45c506489e987cb8618e50a0",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-B-2-light.png",
+      "sha256": "670d984511d8fb5720f9ad3a0aea0bb43052275bfab2cfe40aeba393475bb890",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-A-3-light.png",
+      "sha256": "4801a87223bc0018206f9b3c3a3bf6c4b1a94c4ef8b22a694e01e8a86107119e",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/selected-B-4-light.png",
+      "sha256": "ada09ac2b7459aaa634b3fd86f0530936c47a3d553161dcc1d77fc902ee848c2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/viewer-A-light.png",
+      "sha256": "279d79bd83588f93495fe4891ae2d2ff3ea42fadce8a88676b824b7cea3191fe",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "initial-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-0-light-211fc97bb30c42aa81078f7029f60f16.json",
+      "remoteRemoved": true,
+      "sha256": "b85306a8ca475176a7212bcb18c0175faeb5419a9158ba8fc6c955f069fa230b"
+    },
+    {
+      "label": "initial-0-light-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-0-light-anchor-0-eaf32136608e4f52918119fc1e6c08c8.json",
+      "remoteRemoved": true,
+      "sha256": "b85306a8ca475176a7212bcb18c0175faeb5419a9158ba8fc6c955f069fa230b"
+    },
+    {
+      "label": "initial-0-light-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-0-light-anchor-3-92ef56e1551d44d492ed9a384adbb135.json",
+      "remoteRemoved": true,
+      "sha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758"
+    },
+    {
+      "label": "initial-0-light-restored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-0-light-restored-9d07b06c5ddb4958a1125185df8bc5ea.json",
+      "remoteRemoved": true,
+      "sha256": "72e7f39767b8f5182abdf82b852c9774fee4d534147847b231bb49ea00b77e63"
+    },
+    {
+      "label": "initial-1-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-1-light-246a411a4a3f4b2287fc6566154b80f8.json",
+      "remoteRemoved": true,
+      "sha256": "72e7f39767b8f5182abdf82b852c9774fee4d534147847b231bb49ea00b77e63"
+    },
+    {
+      "label": "initial-2-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-2-light-b72313a4fb52422990c806410d029392.json",
+      "remoteRemoved": true,
+      "sha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758"
+    },
+    {
+      "label": "initial-3-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-initial-3-light-f31c25d198c14cc9a0d86c5fd485c373.json",
+      "remoteRemoved": true,
+      "sha256": "f1182debb81768941c3deff82c2914b6e179420ab18e336dc266226b30bb6758"
+    },
+    {
+      "label": "selected-A-1-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-1-light-34ac8a1793f344fd8820d10efaab139d.json",
+      "remoteRemoved": true,
+      "sha256": "7c75464ef5e82d0ff70003d91c1013ca28d29928b40fdef00e98281fa0838f96"
+    },
+    {
+      "label": "selected-A-1-light-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-1-light-anchor-0-6e65b2797cfa452e8ef134fc1423480a.json",
+      "remoteRemoved": true,
+      "sha256": "7c75464ef5e82d0ff70003d91c1013ca28d29928b40fdef00e98281fa0838f96"
+    },
+    {
+      "label": "selected-A-1-light-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-1-light-anchor-3-9ae7e8f21b7a4075acebc100bb5df389.json",
+      "remoteRemoved": true,
+      "sha256": "d405b554e48c7034e18187a60572f21f5f98831d4c2f13b131f2a25eeb388952"
+    },
+    {
+      "label": "selected-A-1-light-restored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-1-light-restored-6f7ae1df05014b7f9d0af7b0fd97ae3b.json",
+      "remoteRemoved": true,
+      "sha256": "66e95db9e2743c03b1de0bdfb73ba76637e90e456a2b6ce5259be63af8fe9d42"
+    },
+    {
+      "label": "selected-B-2-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-2-light-8e767fa1a15940118f401eb7eacfd186.json",
+      "remoteRemoved": true,
+      "sha256": "e7b26b7d0ee04fcf834a841a9b67fbdc4e82599c0d8aaf926cbc97cd0581cd07"
+    },
+    {
+      "label": "selected-B-2-light-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-2-light-anchor-0-82d6d6822adc49139cebee1500ee1914.json",
+      "remoteRemoved": true,
+      "sha256": "e7b26b7d0ee04fcf834a841a9b67fbdc4e82599c0d8aaf926cbc97cd0581cd07"
+    },
+    {
+      "label": "selected-B-2-light-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-2-light-anchor-3-3edfe6b173b349b3a341e219fc095875.json",
+      "remoteRemoved": true,
+      "sha256": "cf20b135fa13b47da0214c44d63e707407b76ed9a0a5a1ff79438b853fa76b0c"
+    },
+    {
+      "label": "selected-B-2-light-restored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-2-light-restored-299e3f44c89947b79659c3cac9566b2c.json",
+      "remoteRemoved": true,
+      "sha256": "cf20b135fa13b47da0214c44d63e707407b76ed9a0a5a1ff79438b853fa76b0c"
+    },
+    {
+      "label": "selected-A-3-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-3-light-0bbadff5a9974a03908fd0d0276d0684.json",
+      "remoteRemoved": true,
+      "sha256": "2728cc415778b7fa60851456eba800181b3a01813888988a1328eac45d69a80b"
+    },
+    {
+      "label": "selected-A-3-light-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-3-light-anchor-0-a9ec4542f9244bc2a8ac2beb8b22b813.json",
+      "remoteRemoved": true,
+      "sha256": "2728cc415778b7fa60851456eba800181b3a01813888988a1328eac45d69a80b"
+    },
+    {
+      "label": "selected-A-3-light-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-3-light-anchor-3-a9da52355e0a4aa6a3188b97646fda3e.json",
+      "remoteRemoved": true,
+      "sha256": "99f40a6679f4280e85dbe83d0f93c6e30eaf0c39b206b1ab28940265444c7da5"
+    },
+    {
+      "label": "selected-A-3-light-restored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-A-3-light-restored-6ab3e40af3a149f2ba8703fd5dd9382f.json",
+      "remoteRemoved": true,
+      "sha256": "e6a84e9d5165dc03ddfc6e564f433eb0e067fbcaacd3d1ebc9bf97bdcbef9813"
+    },
+    {
+      "label": "selected-B-4-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-4-light-8b7b7ada9449409993fafb31b8c2d9cb.json",
+      "remoteRemoved": true,
+      "sha256": "fcd824772af30a429e8b899d948e6878cb7649a004d6240cd846c7ecdb5180e2"
+    },
+    {
+      "label": "selected-B-4-light-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-4-light-anchor-0-94279be765044871b09cae8678657930.json",
+      "remoteRemoved": true,
+      "sha256": "fcd824772af30a429e8b899d948e6878cb7649a004d6240cd846c7ecdb5180e2"
+    },
+    {
+      "label": "selected-B-4-light-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-4-light-anchor-3-af5b7067bd5b4a0dac2cfb4acf5cb867.json",
+      "remoteRemoved": true,
+      "sha256": "fcf515679a1fcb693e1eb47b246b7dc0b3d909a8ba4d14091b5e8f046cf794c1"
+    },
+    {
+      "label": "selected-B-4-light-restored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-selected-B-4-light-restored-eefb1692d71f4318aed3e0318db3da6a.json",
+      "remoteRemoved": true,
+      "sha256": "fcf515679a1fcb693e1eb47b246b7dc0b3d909a8ba4d14091b5e8f046cf794c1"
+    },
+    {
+      "label": "viewer-A-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-viewer-A-light-9d4b18b1256f4bb98b711a156a7fa5c8.json",
+      "remoteRemoved": true,
+      "sha256": "fb360edc527b6a3da5d754a721ade60a1f15b8cd9b976a35bf2634a4833c52a7"
+    },
+    {
+      "label": "closed-A-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-closed-A-light-c75a94da2222454696accf8291681c91.json",
+      "remoteRemoved": true,
+      "sha256": "57f5b595e9ca5bc771761a11fc08d7a1f8e33f4626ce450559caaf4c9fcf15db"
+    },
+    {
+      "label": "closed-A-light-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-closed-A-light-anchor-0-a6d4767991924988aac499719dae85b0.json",
+      "remoteRemoved": true,
+      "sha256": "57f5b595e9ca5bc771761a11fc08d7a1f8e33f4626ce450559caaf4c9fcf15db"
+    },
+    {
+      "label": "closed-A-light-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-closed-A-light-anchor-3-e0553750cde9426e92bba17f703ac1ad.json",
+      "remoteRemoved": true,
+      "sha256": "ee5ace93573b10ea181dac422dc26a2b9b220c0e2779a433ba294d69c4ba1ed9"
+    },
+    {
+      "label": "closed-A-light-restored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-closed-A-light-restored-fb2fffe7fe1a4e2d8dc640d8906e4d7e.json",
+      "remoteRemoved": true,
+      "sha256": "ee5ace93573b10ea181dac422dc26a2b9b220c0e2779a433ba294d69c4ba1ed9"
+    },
+    {
+      "label": "refresh-before-anchor-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-refresh-before-anchor-0-d1e5bdf357064fa290318c7009d0fb0c.json",
+      "remoteRemoved": true,
+      "sha256": "8b2e2c68da30ededea492509f5ddf32d058f1d7ac5ad6f996b2f27bda22b58ef"
+    },
+    {
+      "label": "refresh-before-anchor-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-refresh-before-anchor-3-855729fe9b674e96b00e961b9ce2f804.json",
+      "remoteRemoved": true,
+      "sha256": "a41f8603bec100ead8a7c07f4a3da3319d5e5e6d0cd813e0e31182b5736f2d64"
+    },
+    {
+      "label": "top-choice-before-refresh-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-0-7816a2b615a54054b27425d33d2a1a3b.json",
+      "remoteRemoved": true,
+      "sha256": "a41f8603bec100ead8a7c07f4a3da3319d5e5e6d0cd813e0e31182b5736f2d64"
+    },
+    {
+      "label": "top-choice-before-refresh-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-1-6a56ddedbfab4769bf6d0519d15c76d1.json",
+      "remoteRemoved": true,
+      "sha256": "9905e34d689ed2e59b2b34f82f3f633f544f698914c8d908e23d0c62d08f850e"
+    },
+    {
+      "label": "top-choice-before-refresh-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-2-3593bf1f940543e7b28328b114a5a6f7.json",
+      "remoteRemoved": true,
+      "sha256": "3a0ec9f36ed0c252941fde4bd12a1b4f4f717155c99e4918d3b57bc09abccdf2"
+    },
+    {
+      "label": "top-choice-before-refresh-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-3-733cebe070544cbf88f9220273844621.json",
+      "remoteRemoved": true,
+      "sha256": "6ffabc7ca44268267ae8e6370deaff5ed627edfec7331f0ca6bffebff1953060"
+    },
+    {
+      "label": "top-choice-before-refresh-4",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-4-47fdc17ca5144881b7711eaece4da0ce.json",
+      "remoteRemoved": true,
+      "sha256": "1ef5c57d5003e8281597ecc38f8c6d096354a3d709a44a24311f6350151010a1"
+    },
+    {
+      "label": "top-choice-before-refresh-5",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-5-cc0b43daf76545ad8aa27a732db9b868.json",
+      "remoteRemoved": true,
+      "sha256": "7e80d03d1956f87647db3d905a806c5014edaeff64511b15d60fffee3af4da20"
+    },
+    {
+      "label": "top-choice-before-refresh-6",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-6-c16aa010c06f4d6786a8b6a685558221.json",
+      "remoteRemoved": true,
+      "sha256": "e02c0f8836b662495c209f850b9d1c1a8b931214a15f649a856686b8088fb7f9"
+    },
+    {
+      "label": "top-choice-before-refresh-7",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-7-171ccf56c03e44d695d8533565038337.json",
+      "remoteRemoved": true,
+      "sha256": "92784b166cc896f789f40a058c908d9be502e7c75b614d95ad6bf2d79d0cc833"
+    },
+    {
+      "label": "top-choice-before-refresh-8",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-8-ceb02c5bbdd84baea38cda4965603ce2.json",
+      "remoteRemoved": true,
+      "sha256": "8472bbc6a006eb1a9aa40eda2abf1787b899d58ca5c2c3e9454c1513f7b283ac"
+    },
+    {
+      "label": "top-choice-before-refresh-9",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-9-1c52206575fd431da7390cddedac0bd7.json",
+      "remoteRemoved": true,
+      "sha256": "2f7e3bee31aa7d7ef64f08ff3e697a8389b108f6e1e92bf1bbe303beadb55491"
+    },
+    {
+      "label": "top-choice-before-refresh-10",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-10-46fef56c79eb4b979f59919dc2e56f07.json",
+      "remoteRemoved": true,
+      "sha256": "146bc7e94ea4e08001c5ecc1870adc94e991e33da460b80fdb11aaaabc1eae04"
+    },
+    {
+      "label": "top-choice-before-refresh-11",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/choice-native-20261105-03/raw-top-choice-before-refresh-11-2bdc856f61d4488ab0a5203e368e1c42.json",
+      "remoteRemoved": true,
+      "sha256": "648415f1c2b633cf92837ce314dc0f386c248d34314d6aa24e412abfbea5fea1"
+    }
+  ],
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/choice-native-20261105-03/web-dtos.json",
+    "sha256": "0249fcf460de6ed8c243c003cb5606c6fcc33946a0e9339bd750c18340a78a8a"
+  },
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/choice-native-20261105-03/request-ledger.json",
+    "sha256": "66c1f658b01d0f72576c37d9a285c28c85df7f8d25bf6e6ac690c91425544696"
+  },
+  "observedReadOnlyFacts": {
+    "answerSubmissionCount": 0,
+    "answerReceiptCount": 0,
+    "xpLedgerCount": 0,
+    "xpDeltaSum": 0,
+    "startReceiptCount": 1,
+    "progressRows": 1,
+    "playerTotalXp": 0
+  },
+  "nativeDownloadSha256Observed": false,
+  "referenceImagesDownloadedByHelper": false,
+  "visualReview": "pending_root_original_review_and_same_data_Web_capture",
+  "wholePageParityAccepted": false,
+  "completedChoiceAcceptanceClaimed": false,
+  "fixedPreviewTouched": false,
+  "failure": "The narrow choice sample is incomplete; private diagnostic originals retained",
+  "createdAt": "2026-11-05T14:56:43.283456+00:00"
+}

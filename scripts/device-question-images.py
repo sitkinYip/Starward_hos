@@ -97,6 +97,7 @@ class Images(FRAME.FrameSample):
         for name, filename in {'imageDriver': Path(__file__), 'imageManifest': manifest_path,
                 'imageUI': ROOT / 'entry/src/main/ets/ui/StarwardQuestionImages.ets',
                 'imageLoader': ROOT / 'entry/src/main/ets/platform/QuestionImageLoader.ets',
+                'imageIO': ROOT / 'entry/src/main/ets/platform/QuestionImageIO.ets',
                 'viewModel': ROOT / 'entry/src/main/ets/features/GameplayViewModel.ets',
                 'index': ROOT / 'entry/src/main/ets/pages/Index.ets'}.items():
             self.bound[name], self.binding[name] = filename, FRAME.sha(filename)
@@ -118,8 +119,9 @@ class Images(FRAME.FrameSample):
         self.ui.wait(lambda ui: ui.find('current-tab') is not None, 'same-case home before image GET resume')
         self.ui.tap('assignment-' + self.assignment_id)
         self.ui.wait(lambda ui: ui.find('gameplay-question-card') is not None and ui.find('gameplay-loading') is None, 'active image page resumes by GET')
-        require(len([row for row in self.ledger() if row.get('method') == 'GET' and row.get('path') == self.detail]) == before + 1,
-                'Natural-top image resume must issue one exact GET')
+        reads = [row for row in self.ledger() if row.get('method') == 'GET' and row.get('path') == self.detail][before:]
+        require(len(reads) == 2 and all(row.get('status') == 200 for row in reads),
+                'Natural-top image resume must issue the detail projection and gameplay snapshot GET200 pair')
         self.verify_ledger()
 
     def ready_images(self, specs):

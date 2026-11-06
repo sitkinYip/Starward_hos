@@ -1,6 +1,8 @@
 import { url } from '@kit.ArkTS';
 import { image } from '@kit.ImageKit';
 import { http } from '@kit.NetworkKit';
+import { QuestionImageIO, QuestionImageMetadata, QuestionImagePixelsHandle, QuestionImageRequestHandle,
+  QuestionImageResponse, QuestionImageSourceHandle } from './QuestionImageIO';
 
 const WEB_ORIGIN: string = 'https://sitkin.top/';
 const MAX_BYTES: number = 5 * 1024 * 1024;
@@ -41,8 +43,10 @@ export class QuestionImageFailure extends Error {
 
 /** One native request; both cancellation and final cleanup may reach destroy(). */
 class QuestionImageRequest {
-  readonly task: http.HttpRequest = http.createHttp();
+  readonly task: QuestionImageRequestHandle;
   private destroyed: boolean = false;
+
+  constructor(task: QuestionImageRequestHandle) { this.task = task; }
 
   destroy(): void {
     if (this.destroyed) {
@@ -115,6 +119,7 @@ function publicAddress(address: string): boolean {
     !(first === 0x2001 && (second < 0x0200 || second === 0x0db8));
 }
 
+/** @throws {Error} Invalid URLs are handled by the owning load operation. */
 function imageTarget(source: string): url.URL {
   if (source.length === 0 || source.length > 8192 || /[\s\\\u0000-\u001f\u007f]/.test(source) ||
     (!/^https:\/\//i.test(source) && (!source.startsWith('/') || source.startsWith('//')))) {
@@ -167,7 +172,77 @@ function validSize(width: number, height: number, edge: number, pixels: number):
     width <= edge && height <= edge && width * height <= pixels;
 }
 
-async function releaseSource(source: image.ImageSource): Promise<void> {
+class NativeQuestionImageRequest implements QuestionImageRequestHandle {
+  private readonly task: http.HttpRequest = http.createHttp();
+
+  /** @throws {Error} The loader normalizes HTTP failures after its resource cleanup. */
+  async read(target: string): Promise<QuestionImageResponse> {
+    this.task.enableAutoCookie(false);
+    const response: http.HttpResponse = await this.task.request(target, {
+      method: http.RequestMethod.GET,
+      header: { 'Accept': 'image/jpeg,image/png,image/webp', 'Referer': WEB_ORIGIN },
+      expectDataType: http.HttpDataType.ARRAY_BUFFER,
+      usingCache: false,
+      usingProxy: false,
+      connectTimeout: 15000,
+      readTimeout: 15000,
+      maxLimit: MAX_BYTES,
+      maxRedirects: 0,
+      remoteValidation: 'system',
+      enablePartialChain: false
+    });
+    return { status: response.responseCode,
+      bytes: response.result instanceof ArrayBuffer ? response.result : undefined };
+  }
+
+  destroy(): void { this.task.destroy(); }
+}
+
+function metadata(info: image.ImageInfo): QuestionImageMetadata {
+  return { widthPx: info.size.width, heightPx: info.size.height, mimeType: info.mimeType };
+}
+
+class NativeQuestionImagePixels implements QuestionImagePixelsHandle {
+  private readonly pixels: image.PixelMap;
+
+  constructor(pixels: image.PixelMap) { this.pixels = pixels; }
+
+  async metadata(): Promise<QuestionImageMetadata> { return metadata(await this.pixels.getImageInfo()); }
+  async flip(horizontal: boolean, vertical: boolean): Promise<void> { await this.pixels.flip(horizontal, vertical); }
+  async rotate(degrees: number): Promise<void> { await this.pixels.rotate(degrees); }
+  async release(): Promise<void> { await this.pixels.release(); }
+  nativeValue(): image.PixelMap { return this.pixels; }
+}
+
+class NativeQuestionImageSource implements QuestionImageSourceHandle {
+  private readonly source: image.ImageSource;
+
+  /** @throws {Error} Invalid source bytes are handled by the owning load operation. */
+  constructor(bytes: ArrayBuffer) { this.source = image.createImageSource(bytes); }
+
+  async metadata(): Promise<QuestionImageMetadata> { return metadata(await this.source.getImageInfo()); }
+  /** @throws {Error} Missing EXIF is handled as an unrotated image by the loader. */
+  async orientation(): Promise<string> { return await this.source.getImageProperty(image.PropertyKey.ORIENTATION); }
+  async decode(widthPx: number, heightPx: number): Promise<QuestionImagePixelsHandle> {
+    const pixels: image.PixelMap = await this.source.createPixelMap({
+      desiredSize: { width: widthPx, height: heightPx },
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+      editable: true
+    });
+    return new NativeQuestionImagePixels(pixels);
+  }
+  async release(): Promise<void> { await this.source.release(); }
+}
+
+class NativeQuestionImageIO implements QuestionImageIO {
+  /** @throws {Error} The loader maps source policy failures to its fixed product message. */
+  resolveSource(source: string): string { return imageTarget(source).href; }
+  createRequest(): QuestionImageRequestHandle { return new NativeQuestionImageRequest(); }
+  /** @throws {Error} Source allocation failures are handled by the owning load operation. */
+  createSource(bytes: ArrayBuffer): QuestionImageSourceHandle { return new NativeQuestionImageSource(bytes); }
+}
+
+async function releaseSource(source: QuestionImageSourceHandle): Promise<void> {
   try {
     await source.release();
   } catch {
@@ -175,7 +250,7 @@ async function releaseSource(source: image.ImageSource): Promise<void> {
   }
 }
 
-async function releasePixels(pixels: image.PixelMap): Promise<void> {
+async function releasePixels(pixels: QuestionImagePixelsHandle): Promise<void> {
   try {
     await pixels.release();
   } catch {
@@ -185,8 +260,11 @@ async function releasePixels(pixels: image.PixelMap): Promise<void> {
 
 /** Per-mounted-image owner. No account state, disk cache, backend CA, or shared request/cache. */
 export class QuestionImageLoader {
+  private readonly io: QuestionImageIO;
   private generation: number = 0;
   private request: QuestionImageRequest | undefined = undefined;
+
+  constructor(io: QuestionImageIO = new NativeQuestionImageIO()) { this.io = io; }
 
   cancel(): void {
     this.generation++;
@@ -203,7 +281,7 @@ export class QuestionImageLoader {
     }
   }
 
-  private async orient(pixels: image.PixelMap, orientation: string, generation: number): Promise<void> {
+  private async orient(pixels: QuestionImagePixelsHandle, orientation: string, generation: number): Promise<void> {
     if (orientation === 'Top-right' || orientation === '2') {
       await pixels.flip(true, false);
     } else if (orientation === 'Bottom-right' || orientation === '3') {
@@ -230,9 +308,12 @@ export class QuestionImageLoader {
     this.cancel();
     const generation: number = this.generation;
     let request: QuestionImageRequest | undefined = undefined;
-    let imageSource: image.ImageSource | undefined = undefined;
-    let pixels: image.PixelMap | undefined = undefined;
-    let result: QuestionImageResult | undefined = undefined;
+    let imageSource: QuestionImageSourceHandle | undefined = undefined;
+    let pixels: QuestionImagePixelsHandle | undefined = undefined;
+    let original: QuestionImageMetadata | undefined = undefined;
+    let decoded: QuestionImageMetadata | undefined = undefined;
+    let mime: string = '';
+    let swapped: boolean = false;
     let failed: boolean = false;
     let status: number = 0;
     try {
@@ -240,72 +321,49 @@ export class QuestionImageLoader {
         throw new QuestionImageFailure();
       }
       const edge: number = Math.min(MAX_DECODED_EDGE, Math.floor(maxEdgePx));
-      const target: url.URL = imageTarget(source);
+      const target: string = this.io.resolveSource(source);
       // Hostnames use system DNS/TLS. URL-local-address rejection is not DNS-rebinding protection.
-      request = new QuestionImageRequest();
+      request = new QuestionImageRequest(this.io.createRequest());
       this.request = request;
-      request.task.enableAutoCookie(false);
-      const response: http.HttpResponse = await request.task.request(target.href, {
-        method: http.RequestMethod.GET,
-        header: { 'Accept': 'image/jpeg,image/png,image/webp', 'Referer': WEB_ORIGIN },
-        expectDataType: http.HttpDataType.ARRAY_BUFFER,
-        usingCache: false,
-        usingProxy: false,
-        connectTimeout: 15000,
-        readTimeout: 15000,
-        maxLimit: MAX_BYTES,
-        maxRedirects: 0,
-        remoteValidation: 'system',
-        enablePartialChain: false
-      });
-      status = response.responseCode;
+      const response: QuestionImageResponse = await request.task.read(target);
+      status = response.status;
       this.assertCurrent(generation);
       request.destroy();
       if (this.request === request) {
         this.request = undefined;
       }
-      if (response.responseCode !== 200 || !(response.result instanceof ArrayBuffer) ||
-        response.result.byteLength === 0 || response.result.byteLength > MAX_BYTES) {
+      if (response.status !== 200 || response.bytes === undefined ||
+        response.bytes.byteLength === 0 || response.bytes.byteLength > MAX_BYTES) {
         throw new QuestionImageFailure();
       }
-      const mime: string = detectedMime(new Uint8Array(response.result));
-      imageSource = image.createImageSource(response.result);
-      const original: image.ImageInfo = await imageSource.getImageInfo();
+      mime = detectedMime(new Uint8Array(response.bytes));
+      imageSource = this.io.createSource(response.bytes);
+      original = await imageSource.metadata();
       this.assertCurrent(generation);
-      if (original.mimeType !== mime || !validSize(original.size.width, original.size.height,
+      if (original.mimeType !== mime || !validSize(original.widthPx, original.heightPx,
         MAX_ORIGINAL_EDGE, MAX_ORIGINAL_PIXELS)) {
         throw new QuestionImageFailure();
       }
       let orientation: string = '';
       try {
-        orientation = await imageSource.getImageProperty(image.PropertyKey.ORIENTATION);
+        orientation = await imageSource.orientation();
       } catch {
         // Images without EXIF orientation are valid. No location metadata is requested.
       }
       this.assertCurrent(generation);
-      const scale: number = Math.min(1, edge / Math.max(original.size.width, original.size.height));
-      pixels = await imageSource.createPixelMap({
-        desiredSize: {
-          width: Math.max(1, Math.floor(original.size.width * scale)),
-          height: Math.max(1, Math.floor(original.size.height * scale))
-        },
-        desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-        editable: true
-      });
+      const scale: number = Math.min(1, edge / Math.max(original.widthPx, original.heightPx));
+      pixels = await imageSource.decode(Math.max(1, Math.floor(original.widthPx * scale)),
+        Math.max(1, Math.floor(original.heightPx * scale)));
       this.assertCurrent(generation);
       await this.orient(pixels, orientation, generation);
       this.assertCurrent(generation);
-      const decoded: image.ImageInfo = await pixels.getImageInfo();
+      decoded = await pixels.metadata();
       this.assertCurrent(generation);
-      if (!validSize(decoded.size.width, decoded.size.height, edge, edge * edge)) {
+      if (!validSize(decoded.widthPx, decoded.heightPx, edge, edge * edge)) {
         throw new QuestionImageFailure();
       }
-      const swapped: boolean = ['Left-top', 'Right-top', 'Right-bottom', 'Left-bottom', '5', '6', '7', '8']
+      swapped = ['Left-top', 'Right-top', 'Right-bottom', 'Left-bottom', '5', '6', '7', '8']
         .includes(orientation);
-      result = new QuestionImageResult(pixels,
-        swapped ? original.size.height : original.size.width,
-        swapped ? original.size.width : original.size.height,
-        decoded.size.width, decoded.size.height, mime);
     } catch {
       failed = true;
     } finally {
@@ -320,13 +378,14 @@ export class QuestionImageLoader {
         await releaseSource(imageSource);
       }
     }
-    if (failed || result === undefined || generation !== this.generation) {
+    if (failed || pixels === undefined || original === undefined || decoded === undefined || generation !== this.generation) {
       if (pixels !== undefined) {
         await releasePixels(pixels);
       }
       throw new QuestionImageFailure(generation !== this.generation, status);
     }
     // No await after this check: ownership transfers exactly once, after source cleanup.
-    return result;
+    return new QuestionImageResult(pixels.nativeValue(), swapped ? original.heightPx : original.widthPx,
+      swapped ? original.widthPx : original.heightPx, decoded.widthPx, decoded.heightPx, mime);
   }
 }

@@ -1,0 +1,158 @@
+{
+  "status": "passed",
+  "stage": "image-refresh-instance-probe-complete",
+  "scope": "Loaded real-case0 body image and input instance retention across one successful native Refresh GET only",
+  "sourceCaseIndex": 0,
+  "hapSha256": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "19a22f52c3d9de95e32282a61a03b714e2cb78d738b7de97a153d8b3f185537b",
+    "runtime": "e15f6d96766d8900ffc926c8ad7c2b7ce1168482c987813dde79bd2bc9cda98b",
+    "hap": "8b8d48699dcdb21bf4a77637c2a0bb593c0714375da8cd541e0229c90bb10227",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "webCase0": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+    "webCase1": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f",
+    "webCase2": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82",
+    "imageDriver": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a",
+    "imageRefreshDriver": "3769aece70b8a6a5d98df84291b6b82b4332d10d80d6e0de2e85eb0620901c00",
+    "normalImageGuard": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "quantitativeTopGuard": "05a13a2f2084048ec5fbf65b7a31ee1df36b121dfc460880f05919923ea597fd",
+    "refreshWrapper": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393"
+  },
+  "checksPassed": 2,
+  "checks": [
+    "One successful native pull GET retains actual image cell/frame/pixels and input accessibilityId/hashcode plus the unsubmitted draft",
+    "The same own-App PID reports one initial loading/ready pair and no image reload across draft/top positioning or Refresh"
+  ],
+  "observations": {
+    "imageCellFramePixelsAndInputInstancesRetained": true,
+    "actualDraftRetained": true,
+    "initialAppImageLoadAttempts": 1,
+    "refreshAppImageLoadAttempts": 0,
+    "assignmentGetsDuringRefresh": 1,
+    "nativeStartCommands": 0,
+    "answerRequests": 0,
+    "playerTotalXp": 0,
+    "pendingUiDirectlyObserved": false,
+    "pendingRaw": null,
+    "before": {
+      "rawSha256": "6dd58edf2788c089e39d0f007dd89a97f172cd417e364a5653d03245fc303a9d",
+      "privateInstanceEvidence": {
+        "file": "artifacts/private/ui-reference/question-images-races-refresh-01/instances-before.json",
+        "sha256": "d18b2557bedddf41110db076bce0caddc9201e5b894648f4f796508cca362105"
+      },
+      "submitEnabled": true
+    },
+    "after": {
+      "rawSha256": "9290491dfaaf3801991a427b55acfb85c56b2f6f9ae31167920bab1f05890b3a",
+      "privateInstanceEvidence": {
+        "file": "artifacts/private/ui-reference/question-images-races-refresh-01/instances-after.json",
+        "sha256": "d18b2557bedddf41110db076bce0caddc9201e5b894648f4f796508cca362105"
+      },
+      "submitEnabled": true
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "ownLogCaptureStopped": true,
+    "imageAndDraftAbsentAfterLogout": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/image-refresh-before.png",
+      "sha256": "bfbc4d8f513b829c33d73757534a68954d73240007be846d41c35cb6b7dbdc3d",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/image-refresh-after.png",
+      "sha256": "28b268ee09460dae975c50c3cac079e76d933f6fcd6f1b3d58eb93a577049a2d",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "top-image-before-refresh-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/raw-top-image-before-refresh-0-08ff2005c44f4a3f9a1b0632fb30ba7d.json",
+      "remoteRemoved": true,
+      "sha256": "6dd58edf2788c089e39d0f007dd89a97f172cd417e364a5653d03245fc303a9d"
+    },
+    {
+      "label": "image-refresh-before",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/raw-image-refresh-before-f713e673d7ac4c6fa2e4130f98d31f12.json",
+      "remoteRemoved": true,
+      "sha256": "6dd58edf2788c089e39d0f007dd89a97f172cd417e364a5653d03245fc303a9d"
+    },
+    {
+      "label": "image-refresh-pending",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/raw-image-refresh-pending-cfb5776e612c49c392c4c658138d63d6.json",
+      "remoteRemoved": true,
+      "sha256": "9290491dfaaf3801991a427b55acfb85c56b2f6f9ae31167920bab1f05890b3a"
+    },
+    {
+      "label": "image-refresh-complete",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/raw-image-refresh-complete-4003666c28c64c4eb0664f24671e7bc3.json",
+      "remoteRemoved": true,
+      "sha256": "9290491dfaaf3801991a427b55acfb85c56b2f6f9ae31167920bab1f05890b3a"
+    },
+    {
+      "label": "image-refresh-logout-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-races-refresh-01/raw-image-refresh-logout-absent-f1c541e25e67438bb6b42505cf4212ea.json",
+      "remoteRemoved": true,
+      "sha256": "24036fe3e7ec7791c83caf69b554f5c3095caf6303543c188d7b87c103fb3fa5"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-images-races-refresh-01/request-ledger.json",
+    "sha256": "873f558d8bbc2d02f5af7618d32686a13086e019d033a80ab920632688a3ed38"
+  },
+  "privateOwnAppLog": {
+    "file": "artifacts/private/ui-reference/question-images-races-refresh-01/own-app-image-refresh.log",
+    "sha256": "23d83e0aa712de9c0b10573d162a535d0cb5947d4d85592c63ac97af624fd860"
+  },
+  "fixedPreviewTouched": false,
+  "backendFaultInjected": false,
+  "nativeDownloadSha256Observed": false,
+  "cdnWireRequestsObserved": false,
+  "cancellationVerified": false,
+  "lateResultDiscardVerified": false,
+  "visualReview": "not_claimed_instance_probe_only",
+  "httpEvidenceSource": "Current own-App image state events and the owned assignment-GET ledger; no CDN-wire capture",
+  "writeScope": "Host auth/read and one native pull GET; no start/answer/profile/password/fault/admin/service write",
+  "excludedAcceptance": [
+    "in-flight cancellation",
+    "late image/decode release",
+    "CDN wire/hash",
+    "image viewing",
+    "choice images",
+    "whole page"
+  ],
+  "createdAt": "2026-11-05T02:34:09.427556+00:00"
+}

@@ -1,0 +1,99 @@
+{
+  "status": "reviewed_completed_choice_originals_thumbnail_dimming_differs",
+  "scope": "Independent static visual review of two captured Native completed-state originals and the corresponding same-data Web originals",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/native-completed-01.json",
+    "sha256": "85bfa38ee6000aa9717e609c7888ae384d8e84574991de75392bfe512e7d9a5b",
+    "status": "incomplete",
+    "stage": "completed-get-only-reentry",
+    "checksPassed": 2,
+    "stateCount": 2,
+    "cleanup": {
+      "loggedOut": true,
+      "loginInputsEmpty": true,
+      "privateGameplayAbsent": true,
+      "remoteRawFilesRemoved": true,
+      "zeroForbiddenWrites": true
+    }
+  },
+  "webReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/web-completed-reference-01.json",
+    "sha256": "65347b9d006171b210c6c58d10e9d7e3635edde77ac6936725d13773100447df",
+    "status": "captured_web_completed_choice_reference",
+    "stateCount": 4,
+    "backendRequestsContinued": 0,
+    "externalRequestsContinued": 0
+  },
+  "exactSameDataCompletedDtoSha256": "70a5e719ce313fb2faef20a392a03a94bb1efab9dba4585e78285f190df36488",
+  "hapSha256": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+  "originalsActuallyViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-completed-20261105-01/completed-light.png",
+      "sha256": "31accdac2fbb34a7181d0f6532e79914eb37a03cb9a9ff05d46fd0c5ee151732",
+      "platform": "Native",
+      "theme": "light",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-completed-20261105-01/completed-dark.png",
+      "sha256": "e848eea4646f78b8b2ca4fb95e048f0ae2af3d05ae452ee8faba9f0714a47986",
+      "platform": "Native",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.png",
+      "sha256": "6d20fd3bbfa26c4616d254434abcd26824756a33f1c823fbe47b084126ea3bfe",
+      "platform": "Web",
+      "theme": "light",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.png",
+      "sha256": "59bf5743be2fb6d29a7fa690776d6329145fa51cb032079526c69311e2ae760a",
+      "platform": "Web",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    }
+  ],
+  "webByteEqualNotViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-tail.png",
+      "sha256": "6d20fd3bbfa26c4616d254434abcd26824756a33f1c823fbe47b084126ea3bfe",
+      "platform": "Web",
+      "theme": "light",
+      "viewedOriginal": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-tail.png",
+      "sha256": "59bf5743be2fb6d29a7fa690776d6329145fa51cb032079526c69311e2ae760a",
+      "platform": "Web",
+      "theme": "dark",
+      "viewedOriginal": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.png"
+    }
+  ],
+  "observations": [
+    "In both themes the visible option headings retain the square letter treatment, readable text, and visible authoritative prior selection. The visible thumbnails preserve the expected source-specific Cover framing.",
+    "Completed Native thumbnails are visibly faded in the light theme and darkened in the dark theme. Completed Web thumbnails remain at normal brightness and saturation even with the actual fieldset controls disabled. This is a concrete completed-state visual difference.",
+    "The fourth option is below the viewport in both captured Native completed PNGs. Its disabled control was instrumented by the Native collector. This review covers only the content visible in the originals.",
+    "The Native collector separately observed four disabled Radio controls and three disabled image Buttons per theme. Still images show styling. The disabled semantic and touch evidence belongs to the collector report."
+  ],
+  "visualDiscrepancies": [
+    "Native disabled image Button appearance substantially dims the retained thumbnail compared with the same completed Web state. The exact rendering cause was outside this original-image review."
+  ],
+  "completedReentryAccepted": false,
+  "fullCompletedVisualParityAccepted": false,
+  "correctAnswerOrSelectionPublished": false,
+  "deviceOrNetworkOperationsPerformed": false,
+  "createdAt": "2026-11-06T01:44:08.366424+00:00"
+}

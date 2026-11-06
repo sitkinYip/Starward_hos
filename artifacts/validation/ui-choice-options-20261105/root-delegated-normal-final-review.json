@@ -1,0 +1,369 @@
+{
+  "status": "reviewed_normal_choice_originals_no_visual_blockers",
+  "scope": "Independent same-data static visual review of available Native04 and Web04 originals for normal choice cards, three Cover thumbnails, A single-image viewing, and light Refresh appearance",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/native-normal-04.json",
+    "sha256": "4afb46c87681e2b1bdff4d85f8eeb97e769c2b5cb8b4b9a250855baf1df88ab9",
+    "status": "captured_native_choice_options",
+    "checksPassed": 8,
+    "stateCount": 21,
+    "pngCount": 19,
+    "cleanup": {
+      "loggedOut": true,
+      "loginInputsEmpty": true,
+      "privateGameplayAbsent": true,
+      "remoteRawFilesRemoved": true,
+      "zeroForbiddenWrites": true
+    }
+  },
+  "webReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/web-reference-04.json",
+    "sha256": "ab4452f755f45bdfcdff2b78f342e8eda61c53b9550e3317411ad5a313dfd07f",
+    "status": "captured_web_choice_reference",
+    "stateCount": 14,
+    "checks": 2,
+    "backendRequestsContinued": 0,
+    "externalRequestsContinued": 0
+  },
+  "exactSameDataDtoSha256": "05e24ed89b017bbf37fb120ea6c4c8447111d9c2e4dce37423b35e2792db5d48",
+  "bindingSha256": {
+    "hap": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+    "choiceUI": "b77f07b02da98e62352c78cf268a3735f0c860a0562fa9b0ded133fe0728d58f",
+    "gameplayPage": "715d7147c6d414961c7a3c1d90bfaa7c8c8e456b9ff4cc7b7aaaf38a0039dff9",
+    "choiceDriver": "38956ed52c65c1eb3c6b947c8383721adaf97f12d9fe27fd6644af63ecac79d0",
+    "runtime": "d5c19006e2cb98b375ecb78523f5ddefa0d29c1613e669ef4d447678d6d813c2"
+  },
+  "webCaptureHelperSha256": "c4f59152ba5aca19a97e45e47caa8a502af9974756d13f8e363a98e522f8e3e9",
+  "priorActuallyViewedWebReceipt": {
+    "file": "artifacts/validation/ui-choice-options-20261105/root-delegated-initial-visual-review.json",
+    "sha256": "ef094fd32b7790c399423db9cfee8a97a9fc9f60154cf1f23bc398f1d7e40d49"
+  },
+  "nativeOriginalsActuallyViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-0-light.png",
+      "sha256": "f768d4943088a810ea1a8b7b8303b1885c9bd5a1b6e94dc43e64515b84cb5bb7",
+      "position": "initial-0-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-2-light.png",
+      "sha256": "8867456de73ebd81a97d81ff5dcb678e4f72e6d315a1aa9fb63ad61876077b25",
+      "position": "initial-2-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-3-light.png",
+      "sha256": "c3856dac7532b90fca39c153dc6efd3ea1cb1084e6fed45c6f97f4fad5466a46",
+      "position": "initial-3-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-A-1-light.png",
+      "sha256": "90592922d0076f9ef63c365b62381799cc8ec99f97e3c2b03510a038bf91d4f2",
+      "position": "selected-A-1-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-B-2-light.png",
+      "sha256": "cda3b98b7504f80b4014abff9fbfabe965a60bde730d86b0580365bc7c236ad1",
+      "position": "selected-B-2-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-A-3-light.png",
+      "sha256": "46da3367279a2fa81191cab3055c7894e92a67a2693b94ebcca9038fa1f42171",
+      "position": "selected-A-3-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-B-4-light.png",
+      "sha256": "e72d88610ced9ffeb15bb51a1fe17d941b5273b12e6d464f004046520326d4f3",
+      "position": "selected-B-4-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/viewer-A-light.png",
+      "sha256": "79e8166e7f4fe4cfb810c34001bbc1f996ccdcc8c3d9ba1bb17b401e9f5be201",
+      "position": "viewer-A-light",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/choice-after-refresh.png",
+      "sha256": "ffe4028b191e847196ce54b657fb9534cee918f5a3a40ee1cb82dea800044327",
+      "position": "after-refresh",
+      "theme": "light",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-0-dark.png",
+      "sha256": "c08006fad74f3d8570edf01dc537b55e89d0ef80adb93de929cc4cbf1649cb3c",
+      "position": "initial-0-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-1-dark.png",
+      "sha256": "f310ddabca9a08309885ffc0d926203cfb6d516e32fe0dc2f37ab926289ca296",
+      "position": "initial-1-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-2-dark.png",
+      "sha256": "8d3cc09f088487a3c971476f4aaf31abc9b42565131955ef50e3fe36a1743c2b",
+      "position": "initial-2-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-A-5-dark.png",
+      "sha256": "965b8382e53ee5b5d100b239c58820b5ed7cd77ece64f85f02f18a47cb22735d",
+      "position": "selected-A-5-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-B-6-dark.png",
+      "sha256": "45f8af60052b315b105c12a50448880d2c46960e16c5b988ed305f8a0df67116",
+      "position": "selected-B-6-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-A-7-dark.png",
+      "sha256": "9a3342c42479d26e5cd5fec2f0ab09db482565c62b0ea465ebf5b6ba409c58ff",
+      "position": "selected-A-7-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/selected-B-8-dark.png",
+      "sha256": "b241d407b3628e9d22121bdbffb1812dec21fda36700d28d7ab9695f8da2b92c",
+      "position": "selected-B-8-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/viewer-A-dark.png",
+      "sha256": "64a8d48d5887173f425f677eda8358d5813fc467c19c4d8e1dbf0b4d0b908c3f",
+      "position": "viewer-A-dark",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    }
+  ],
+  "nativeByteEqualNotViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-1-light.png",
+      "sha256": "f768d4943088a810ea1a8b7b8303b1885c9bd5a1b6e94dc43e64515b84cb5bb7",
+      "position": "initial-1-light",
+      "theme": "light",
+      "viewedOriginal": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-native-20261105-04/initial-0-light.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-04/initial-3-dark.png",
+      "sha256": "8d3cc09f088487a3c971476f4aaf31abc9b42565131955ef50e3fe36a1743c2b",
+      "position": "initial-3-dark",
+      "theme": "dark",
+      "viewedOriginal": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-native-20261105-04/initial-2-dark.png"
+    }
+  ],
+  "webByteEqualNotViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-unselected-A.png",
+      "sha256": "cf96d237d248ca4f41ca6e2051de51cbe59ca4eb2ad15994c8651e564e2d2578",
+      "position": "unselected-A",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-unselected-C.png",
+      "sha256": "cf96d237d248ca4f41ca6e2051de51cbe59ca4eb2ad15994c8651e564e2d2578",
+      "position": "unselected-C",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-unselected-D.png",
+      "sha256": "cf96d237d248ca4f41ca6e2051de51cbe59ca4eb2ad15994c8651e564e2d2578",
+      "position": "unselected-D",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-selected-A.png",
+      "sha256": "8975f4239f86cb80eb77c8701403f5c38352b754454b937c2d4fdaad83157033",
+      "position": "selected-A",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-selected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-selected-B.png",
+      "sha256": "99c1dae7bebd61befd85ebad3492ed3ceafacf49b1c4e7a9a3880133304b3747",
+      "position": "selected-B",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-selected-B.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-B-selected-A-image-open.png",
+      "sha256": "efdffe8bb0ee5ca0b3f2bd3795fc7860c935cd547509a704eb698a1c7774a0f2",
+      "position": "B-selected-A-image-open",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-B-selected-A-image-open.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/light-B-selected-A-image-closed.png",
+      "sha256": "de5c8a88becafffddcbb04a71573b2ab39f83b12ca38853ec319713e4500422b",
+      "position": "B-selected-A-image-closed",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/light-B-selected-A-image-closed.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-unselected-A.png",
+      "sha256": "fc68c01d28ef8e62eb85f69cba35141510896f230be51646cce90cd049da5de6",
+      "position": "unselected-A",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-unselected-C.png",
+      "sha256": "fc68c01d28ef8e62eb85f69cba35141510896f230be51646cce90cd049da5de6",
+      "position": "unselected-C",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-unselected-D.png",
+      "sha256": "fc68c01d28ef8e62eb85f69cba35141510896f230be51646cce90cd049da5de6",
+      "position": "unselected-D",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-selected-A.png",
+      "sha256": "4004c7c4617a211aca96b19b6e433c659dfdfc6d630162acacc0a5aa95081038",
+      "position": "selected-A",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-selected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-selected-B.png",
+      "sha256": "0f575a5163cb997816ef022fcadd022206cc5bc060f869372a35142873da2480",
+      "position": "selected-B",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-selected-B.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-B-selected-A-image-open.png",
+      "sha256": "5a44411f994756cb0527c3d9be6ce3e8bcfaec3d6dfb43f14fa2a702ca7b1bf3",
+      "position": "B-selected-A-image-open",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-B-selected-A-image-open.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-04/dark-B-selected-A-image-closed.png",
+      "sha256": "de403d6affddfc37ca4b68bf3aba28b89b41122215c1a8a195b6512e656a7ecd",
+      "position": "B-selected-A-image-closed",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-20261105-02/dark-B-selected-A-image-closed.png"
+    }
+  ],
+  "nativeRawOnlyStates": [
+    {
+      "position": "closed-A-light",
+      "theme": "light",
+      "rawSha256": "8f9821b0e70d86075bf993e5ffbd3e5fea0c8104a7f89102e993ba92dc004817",
+      "independentOriginalPngCaptured": false
+    },
+    {
+      "position": "closed-A-dark",
+      "theme": "dark",
+      "rawSha256": "4e9239404556e5fda076b17db386ad78a43c7b84cf6f81c2a8f531593f08557a",
+      "independentOriginalPngCaptured": false
+    }
+  ],
+  "counts": {
+    "native04FilesActuallyViewed": 17,
+    "native04ByteEqualNotViewed": 2,
+    "web04FilesActuallyViewedThisPass": 0,
+    "web04ByteEqualNotViewed": 14,
+    "underlyingDistinctPreviouslyViewedWebOriginals": 10,
+    "native04RawOnlyStates": 2
+  },
+  "findings": [
+    "Both themes retain the same option order, square letter boxes, legible text and spacing at the measured314 outer and312 media content widths. A/B/C show the expected Cover slices. D has no media frame or empty placeholder.",
+    "Each settled A/B selected view has a filled, slightly rotated letter, accent rail and border, and a restrained themed header glow. The other visible letters remain outlined. The light post-Refresh original visibly retains the B selection and rendered photos.",
+    "Both A viewer originals show the full portrait at initial100% with readable reset, help and close controls and no gallery navigation. The Native day percentage uses the user-approved light color."
+  ],
+  "visibleDifferences": [
+    "Native paints the inset selection rail over the left thumbnail edge as well as the header. The Web image covers that part of the inset effect, so its thick rail is mainly visible in the header. The accent border and selected letter remain easy to distinguish on both.",
+    "Native and Web render the selected header gradient and shadow with slightly different falloff. The closed Web reference also shows a pointer hover tint on A while B remains selected.",
+    "Native originals include the system safe areas and the existing persistent gameplay header. Scroll framing, surrounding question decoration and the larger Native submit button are outside this choice component review."
+  ],
+  "highConfidenceVisualBlockersWithinScope": [],
+  "allReportedScreenshotFilesCovered": true,
+  "allRawStatesVisuallyInspected": false,
+  "wholePageParityAccepted": false,
+  "dynamicAnimationAccepted": false,
+  "completedOrFailureStatesAccepted": false,
+  "businessAndInteractionEvidenceSource": "Native04 collector report; separate from these static PNG observations",
+  "deviceOrNetworkOperationsPerformed": false,
+  "createdAt": "2026-11-06T01:24:21.780534+00:00"
+}

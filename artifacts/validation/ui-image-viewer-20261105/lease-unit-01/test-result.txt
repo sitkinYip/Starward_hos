@@ -1,0 +1,8 @@
+class=ImmersiveSurfacesTests
+test=overlappingDarkSurfacesRequireTheLastLeaseAndIgnoreRepeatedRelease
+result=Success
+test=windowResetInvalidatesOldIdsWithoutReusingThemOrReleasingTheNewSurface
+result=Success
+test=newSubscriberImmediatelyObservesTheActiveSurfaceAndUnsubscribeIsIdempotent
+result=Success
+Tests run: 3, Failure: 0, Error: 0, Pass: 3, Ignore: 0

@@ -1,0 +1,19 @@
+{
+  "status": "mutation_not_confirmed",
+  "commandExitCode": 1,
+  "baselineLoaderSha256": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+  "mutatedLoaderSha256": "6183068468b58e05a68b94c312a9475337737503a3a5390147feece6dab9609c",
+  "restoredLoaderSha256": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+  "exactRestore": true,
+  "tests": 3,
+  "passed": 3,
+  "failed": 0,
+  "ignored": 0,
+  "failedCases": [],
+  "mutation": "Remove only the final generation comparison after ImageSource cleanup",
+  "privateLog": {
+    "file": "artifacts/private/question-image-races-20261105-unit-mutation-01/local-test.log",
+    "sha256": "83c0c549de8ccf2f4e975a936d806462d4435e6b40fbbbc47bd6e79a6ea289eb"
+  },
+  "testResultSha256": "4ffd8b827054a8a11cc1ea06184d7546e84694b83430bd938d2be3e49185127f"
+}

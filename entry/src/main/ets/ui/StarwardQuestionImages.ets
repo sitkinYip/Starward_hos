@@ -19,6 +19,7 @@ struct QuestionImageCell {
   @Param imageId: string = '';
   @Param imageLabel: string = '题图';
   @Param reducedMotion: boolean = true;
+  @Event opened: () => void = () => {};
   @Local private value: QuestionImageResult | undefined = undefined;
   @Local private state: string = 'idle';
   private readonly loader: QuestionImageLoader = new QuestionImageLoader();
@@ -101,12 +102,18 @@ struct QuestionImageCell {
   build() {
     Column() {
       if (this.value !== undefined && this.state === 'ready') {
-        Stack() {
-          Image(this.value.pixels).id(this.imageId + '-pixels')
-            .width(this.frameWidth() - 2).height(this.frameHeight() - 2).objectFit(ImageFit.Contain)
-            .draggable(false).accessibilityText(this.imageLabel)
-        }.id(this.imageId + '-frame').width(this.frameWidth()).height(this.frameHeight())
-          .border({ width: 1, color: $r('app.color.border_strong') })
+        Button({ type: ButtonType.Normal }) {
+          Stack() {
+            Image(this.value.pixels).id(this.imageId + '-pixels')
+              .width(this.frameWidth() - 2).height(this.frameHeight() - 2).objectFit(ImageFit.Contain)
+              .draggable(false).accessibilityText(this.imageLabel)
+          }.id(this.imageId + '-frame').width(this.frameWidth()).height(this.frameHeight())
+            .border({ width: 1, color: $r('app.color.border_strong') })
+        }.id(this.imageId + '-open').padding(0).borderRadius(0).backgroundColor(Color.Transparent)
+          .width(Math.max(44, this.frameWidth())).height(Math.max(44, this.frameHeight()))
+          .accessibilityText(`打开${this.imageLabel}`).onClick(() => {
+            if (this.state === 'ready' && this.value !== undefined && this.ownerIsCurrent(this.ownerKey)) { this.opened(); }
+          })
       } else if (this.state === 'loading') {
         LoadingProgress().id(this.imageId + '-loading').width(24).height(24)
           .color($r('app.color.accent')).enableLoading(!this.reducedMotion).accessibilityText('正在载入题图')
@@ -125,7 +132,7 @@ struct QuestionImageCell {
   }
 }
 
-/** Native static image layout, matching the Web natural-size gallery. Viewing follows separately. */
+/** Native image layout and ready-image triggers, matching the Web natural-size gallery. */
 @ComponentV2
 export struct StarwardQuestionImages {
   @Require @Param sources: string[];
@@ -134,6 +141,7 @@ export struct StarwardQuestionImages {
   @Param groupId: string = 'question-images';
   @Param maxHeight: number = 340;
   @Param reducedMotion: boolean = true;
+  @Event opened: (index: number) => void = () => {};
   @Local private contentWidth: number = 0;
 
   private columns(): number {
@@ -160,7 +168,8 @@ export struct StarwardQuestionImages {
             ForEach(this.rowSources(start), (source: string, index: number) => {
               QuestionImageCell({ source: source, ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent,
                 cellWidth: this.cellWidth(), maxHeight: this.maxHeight, imageId: `${this.groupId}-${start + index}`,
-                imageLabel: `题图 ${start + index + 1}，共 ${this.sources.length} 张`, reducedMotion: this.reducedMotion })
+                imageLabel: `题图 ${start + index + 1}，共 ${this.sources.length} 张`, reducedMotion: this.reducedMotion,
+                opened: () => this.opened(start + index) })
             }, (source: string) => `${this.ownerKey}:${source}`)
           }.width('100%').alignItems(VerticalAlign.Top)
         }, (start: number) => `${this.columns()}:${start}`)

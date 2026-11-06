@@ -12,7 +12,53 @@
 
 题卡框架/手机字级与均衡换行已在108affda…包完成三组真实题面、两主题直板机/隔离HTTPS及同数据Web原图对照；Root复核范围仅边框、宽度、字级/行高、长短及隐藏题名换行，详见[窄范围报告](../artifacts/validation/ui-question-frame-20261104/root-frame-review.json)。后续499bbf…包已清理正文重复摘要/常驻大按钮并接官方Refresh，活跃单题两主题、保留真实输入实例/草稿、503重试、404清旧进度/草稿、真实IME与Back及退出后完整迟到GET均已直板机/隔离HTTPS验证。Root核5张原图，见[本点窄复核](../artifacts/validation/ui-gameplay-layout-20261104/root-layout-review.json)。多题导航、题图及其他玩法版式仍另点，不从本点推定通过。
 
-正文结构化题图显示的实施前计划及[ADR-021](architecture-decisions.md#adr-021题图下载解码与查看独立于判题和头像认证)已登记，现已实现并完成构建/signed产物/安装、相关7测试及lint；真实/派生隔离夹具已19+7条读回，新Host TLS通过。最终ddc149ba…包启动被官方10106102锁屏错误阻断；当前包运行时、题图真实加载/绘制、重试及视觉均未验，不能以CLI整体exit0替代启动成功。待用户解锁后按独立采集器复验，见[当前回执](../artifacts/validation/ui-question-images-20261104/build-and-device-pending.json)。点击查看、选择图/Radio及富文本正例另点；8张参考字节和Web重放不算Native加载。
+正文结构化题图显示的实施前计划及[ADR-021](architecture-decisions.md#adr-021题图下载解码与查看独立于判题和头像认证)已登记，现已实现并完成构建/signed产物/安装、相关7测试及lint；真实/派生隔离夹具已19+7条读回，新Host TLS通过。最终ddc149ba…包首次启动曾被官方10106102锁屏错误阻断，不能以CLI整体exit0替代启动成功；当时的[待设备回执](../artifacts/validation/ui-question-images-20261104/build-and-device-pending.json)保留，解锁后的实际结果见下方追加。点击查看、选择图/Radio及富文本正例另点；8张参考字节和Web重放不算Native加载。
+
+## 2026-11-05：题图显示分阶段回填
+
+手机已解锁，同一ddc149ba…包的[runtime-01](../artifacts/validation/ui-question-images-20261104/runtime-01.json)真实5项全部passed。[native-case0-01](../artifacts/validation/ui-question-images-20261104/native-case0-01.json)仅日间真实解码/绘制与图片几何通过1项；dark重进因新采集器错误要求恰一次detail GET而incomplete，cleanup全部true。已独立确认现有`Index → 详情投影 → 完整玩法快照`路径顺序发两次同detail GET200；旧Frame仅要求GET-only。
+
+首轮报告及原图保留，不继承计数。两个新采集器修正为恰两次GET200后，fresh正常三组各3项、独立404失败/重试3项实际passed，cleanup全true，零答题/XP。Root核14张原生/Web原图，同题内容与presentation对应，正文单图/三图图集及小尺寸原生失败重试已窄范围复核，见[root-body-display-review](../artifacts/validation/ui-question-images-20261104/root-body-display-review.json)；该原报告不扩大为Refresh或整页还原结论。
+
+同一ddc149ba…包的[native-refresh-03](../artifacts/validation/ui-question-images-20261104/native-refresh-03.json)独立2项passed、七项cleanup全true。冷启动空登录后，一次原生下拉仅发一次无故障detail GET200，图片cell/frame/pixels及输入四个节点的真实accessibilityId/hashcode与未提交草稿保留；同一PID初始图片loading→ready一组、Refresh重载0，新增start/answer均0、XP仍0，退出后登录空输入和私密内容清理均确认。GET过快，pending未直接观察，不能据此前后结果标pending保留、实际取消或迟到解码释放通过。
+
+[Refresh01](../artifacts/validation/ui-question-images-20261104/native-refresh-01.json)仍为手势前incomplete：采集器误读CLI enabled字段，原始UiTest实际`'true'`，cleanup全true；[Refresh02](../artifacts/validation/ui-question-images-20261104/native-refresh-02.json)在登录时USB映射缺失、连接中断，未刷新，原cleanup false如实保留。仅精确自有映射经[恢复回执](../artifacts/validation/ui-question-images-20261104/usb-reverse-restored-20261105.json)恢复，另有[runtime-02](../artifacts/validation/ui-question-images-20261104/runtime-02.json)真实五项passed；03新轮已恢复空登录/退出清理事实，不重写旧失败，不记环境收尾或固定预览恢复通过。
+
+加载中取消/迟到解码释放的四组资源IO竞态测试正在实现，尚待运行与验收；小原图/高度上限分支、图片查看、选择图、富文本正例及整页还原尚未通过。Native媒体网络与参考图片字节重放分开记录，未抓包核下载SHA。详见[图片分阶段记录](ui-parity-review-2026-11-04.md#2026-11-05解锁运行时与首轮采集器修正)及[Refresh独立记录](ui-parity-review-2026-11-04.md#同题refresh实例与usb重接补验)。
+
+### 2026-11-05：正文显示当前覆盖子点完成
+
+前述资源补验计划为阶段历史；当前结论见[8b包正文收尾](../artifacts/validation/ui-question-images-20261105-races/root-body-loader-closure.json)。唯一4项受控IO竞态测试实际全过；唯一mutation只使第4项失败，原字节恢复后fresh四项全过，不叠加唯一用例数。新8b8d4869…包已构建/signed/安装启动、lint零issue（filesChecked=0）及真实运行时五项通过；默认SDK路径另有正常单图3、404失败/重试3、Refresh2项实际passed，各轮cleanup全true、零答题/XP。
+
+Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版相同；三图图集几何仍使用ddc原报告，不写成8b重执行。旧incomplete及原14图窄视觉复核保持归属。正文已覆盖的显示/失败重试/同题Refresh及受控IO资源协议子点完成；真机实际加载中取消/迟到PixelMap释放时序仍false，pending未直接观察，下载字节SHA、小原图及340上限触发分支仍未验，不推定整页通过。
+
+点击查看进入独立[实施与验收表](ui-image-viewer-2026-11-05.md)，[Web12状态参照](../artifacts/validation/ui-image-viewer-20261105/web-reference-01.json)只是同内容只读重放，无Native查看通过结论。用户已批准缩放百分比日夜统一浅色，项目skill与新表已登记；选择图、富文本正例、视频/BGM及线索演出仍后续拆点。
+
+### 2026-11-05：查看器已实现，单图窄采集完成
+
+查看器与沉浸lease在49c首轮已实现，该轮历史HAP `49c6e5649b76886af6ab3fa61c1f80a6a305130546735d6a3dd54ebaa18df6c9`已由官方Run01构建、生成signed产物、安装启动；[该轮真实运行时五项](../artifacts/validation/ui-image-viewer-20261105/runtime-image-viewer-20261105-01.json)全部passed。[lease与lint](../artifacts/validation/ui-image-viewer-20261105/lease-and-lint-validation.json)实际3个唯一测试全过，唯一mutation使最后lease门控用例失败1项、原字节恢复后三项全过；lint零issue、filesChecked=0。源码/HAP绑定详见[本轮实现记录](ui-image-viewer-2026-11-05.md#2026-11-0549c包实现与单图首轮采集)，不改变8b正文收尾归属。
+
+[case0单图报告](../artifacts/validation/ui-image-viewer-20261105/native-case0-01.json)仅`captured_native_viewer_narrow`：3项检查、10状态、cleanup全true，两主题打开和日间X/Back/蒙层、夜间X关闭保真实输入实例/草稿，查看开关零业务请求，页面重进GET无重复start/answer。Root已核日间打开一张原图的布局与批准的浅色百分比，尚未完成整组原图复核，不标全视觉/全功能通过；case2运行中轮次不提前回填通过。
+
+官方Pinch/Pan绑定已实现，但真实捏合、放大拖动、4倍上限、放大后复位、取消/余指及Viewer专属失败重试/加载中取消仍待实测；查看期间主题变化和前后台亦不从普通开关推定。官方Python SDK受控helper尚在准备、未导入/安装或连接，未创建ohosTest文件。Web12状态仍只作本地同内容只读重放参照，正文失败报告和纯lease测试不代替查看器这些边界。
+
+查看器图集首轮已由运行中转为[incomplete/0检查](../artifacts/validation/ui-image-viewer-20261105/native-case2-01.json)，cleanup全true；只打开第三张3/3，“上一张”enabled虽为true却未响应。Root核固定API26与官方说明，旧panel的`HitTestMode.Block`会阻断子节点；49c及旧Viewer1ba源码/失败证据均保留，case0窄采集不推定图集通过。仅修为允许子节点命中并阻断低层目标的`BLOCK_HIERARCHY`，新Viewer源码d4073696…及官方Run02/lint02为待复验候选，本次不标新包构建/运行时/UI通过。详见[失败与修正记录](ui-image-viewer-2026-11-05.md#2026-11-05图集首次失败与命中测试修正候选)；8b正文收尾归属不变。
+
+### 2026-11-05：c789正常查看窄范围回填
+
+前述候选待验及SDK准备状态为阶段历史。当前HAP `c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641`已由官方Run02实际exit0完成构建/signed产物/安装启动；lint02实际exit0、[零issue且filesChecked=0](../artifacts/validation/ui-image-viewer-20261105/lint-02/lint.json)，[runtime02五项](../artifacts/validation/ui-image-viewer-20261105/runtime-image-viewer-20261105-02.json)passed。Viewer d4073696…与相关源码绑定见新报告，不把旧49c执行迁移到新包。
+
+[case0-02](../artifacts/validation/ui-image-viewer-20261105/native-case0-02.json)为`captured_native_viewer_narrow`，3检查/10状态/8原图；[case2-03](../artifacts/validation/ui-image-viewer-20261105/native-case2-03.json)同状态，3检查/15状态/13原图，cleanup各五项全true。两主题单图及图集精确打开3/3、上一张2/3→1/3/首尾禁用、普通关闭和原输入实例/草稿保留已取证；日间单指小位移/斜向不切图，合格横向仅切一次。查看开关零业务请求，页面重进仅GET，无重复start/answer或资料/改密写入。
+
+[独立原图复核](../artifacts/validation/ui-image-viewer-20261105/root-delegated-normal-visual-review.json)保存实际路径/SHA：reviewer逐张查看17张Native独有原图+12张同数据Web原图；另外4张Native仅逐字节相同、明确未重复目视。Root另亲看当前case0两图单列。正常查看范围未见来源/顺序、比例、控件可读性/间距或可见系统安全区阻塞；批准的日间浅色百分比及Native遮罩更实黑的差异单列，原采集报告不改写，不声称整页、逐像素或完整Viewer通过。正文8b及ddc原证据归属保持。
+
+[case2-02](../artifacts/validation/ui-image-viewer-20261105/native-case2-02.json)仍incomplete/0检查且cleanup全true：Root实际dump无Viewer节点、只有底层玩法页，与此前CLI等待见pixels不一致；原因未定，不写成网络故障，49c case2-01亦保留。真实多指[工具尝试02](../artifacts/validation/ui-image-viewer-20261105/multitouch-tooling-attempt-02.json)在SDK导入前因官方解释器路径执行权限失败；仅改本仓helper使用同前缀可执行`python3`，不改SDK。[03尝试](../artifacts/validation/ui-image-viewer-20261105/native-multitouch-03.json)因旧设备ref不匹配在导入前阻断，0手势/0检查及cleanup false保留；[独立恢复](../artifacts/validation/ui-image-viewer-20261105/multitouch-tooling-attempt-03-recovery.json)只确认当前手机空登录、自有TLS映射和0 daemon/缓存等事实，不代替SDK验收。
+
+用户确认暂无公网入口，本轮先正常查看与手势；Viewer专属失败/重试和网络加载中取消待验。[合成媒体尝试](../artifacts/validation/ui-image-viewer-20261105/media-tunnel-attempt-01.json)只完成离线准备/本地health，tunnel -9无输出、自有server已停，无公网媒体/Native加载或后端派生写入。真实Pinch、放大Pan、4倍上限、放大复位、取消/余指仍无通过证据，`viewerAcceptanceComplete=false`；未创建ohosTest文件。
+
+2026-11-05重启恢复另立新代次：[服务恢复](../artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/service-recovery.json)确认固定预览数据库/账号/CA四份材料逐SHA未变，临时环境则为重新导入同一19条真实内容及7条独立正文失败派生记录的新库。新HAP `8220a2ecc82b9e7f1236073316f9aace0245a08e6096526af3011c1c620b95d1`已取得官方构建/安装/启动日志和[五项真机runtime](../artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/runtime.json)；[包对照](../artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/package-comparison.json)48个ZIP成员中仅CA、配置序列化和symbolMap变化，ABC字节相同，不继承旧c789正常查看或视觉验收。隔离Host仅对新case2正式入场一次作准备，0答题/XP；不是Native入场复验。
+
+[人工手势准备](../artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/manual-prepare.json)实际为`prepared_awaiting_manual`：新账号直接登录、该题两次GET200、正文真图及第2/3张100%原图已采，26项源码/参照绑定与历史正常采集相同，5项环境绑定显式更新。Root已亲看准备原图；查看器有意留在前台，退出/空输入等cleanup为false，不标成已清理。人工上下限、放大拖动和余指不误切问题已发出、尚待回答及终态采集；真实多指仍不标通过。SDK05/06失败与各自独立精确收尾、lint扫描覆盖数未证明的说明见[查看器记录](ui-image-viewer-2026-11-05.md)。
 
 ## 2026-11-04：入场与答题主链
 
@@ -267,3 +313,36 @@ GameAssignmentSummary 的字段为 id、player、session、status、order、star
 环境收尾已passed：先核自有runner的UID/argv/工作目录，再停止自有TLS和一次性后端；专用USB映射、临时CA/私钥目录、数据库、1个自有容器、实时状态与扫描后的3份私有检查点已移除，四个自有loopback监听及Web基线服务已关闭，未改无关容器/映射。冻结无凭据DTO与安全视觉viewer保留，viewer仍在本机响应200。`public-artifact-scan.json` 最终扫描814个公开候选文件，敏感命中0、读取错误0；覆盖旧/新隔离凭据、仅内存传入的设备标识、解码JWT形状、PEM私钥头和签名扩展名，两处PRIVATE KEY拒绝校验引用另列。原Web和后端工作树改动均0，清理证据为 `isolated-environment-cleanup.json`。
 
 Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4图保留，旧主页18项捕获仅incomplete/count5且键盘图主题校验失败，归档为未完成证据。首次改密Web参考只消费真实改密前/me快照，未请求场次或执行浏览器真实改密；其余本地回放同样仅作视觉输入。原生实际网络由TLS及请求台账证明。生产release commit仍因403未确认，公网/生产联调未执行。
+
+2026-11-05人工手势续验：[manual-finish](../artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/manual-finish.json)已为`captured_manual_finish`、五项cleanup均true。用户手动确认100%～400%上下限、放大拖动及余指不误切正常；仪器实际终态为第2/3张、400%、水平−60.2vp/垂直195.7vp，随后官方单指复位到100%/零偏移，关闭后保留同一真实输入实例/草稿，零答题/XP。Root亲看准备、放大和复位三张原图，见[root-manual-review](../artifacts/validation/ui-image-viewer-20261105/reboot-recovery-01/root-manual-review.json)。上下限/余指全过程属于用户手验，终态、复位、关闭及退出属于采集证据，不改写为自动多指注入；Viewer专属失败/重试和加载中取消仍待验，完整查看器仍未标全通过。
+
+## 2026-11-05：下一小点——选择选项与选项题图（实施前）
+
+本点按已确认UI尺度还原冻结Web `4b7d1a0a00051ac630e459b0fd6c074f821d7455` 的 `ChoiceOptions.tsx`、`QuestAnswerForm.tsx`、`quest.css` 和手机媒体查询；不调整判题、处罚或提交命令协议。当前原生仍有额外Radio圆点、圆角和字级/间距偏差，尚未显示 `option.imageUrl`。以下为实施和验收目标，全部待新产物验证，不继承旧选择主链或正文图片的视觉结论。
+
+| 状态/范围 | 实施目标与实际验证要求 | 当前结论 |
+| --- | --- | --- |
+| 未选与选中 | 官方Radio完整内容定制，移除额外圆点；手机竖列间距10，方角1边框，文字头部最小58、内距上下8/左右14、字母列40与28方框，UI正文16；选中为accent边框/淡底、左3内线、字母反色，保留Web微位移和反馈并服从减少动画 | 仅源码/官方API核对，待实现、构建、真机与日夜原图对照 |
+| 同数据选项图 | 使用同一真实case1：A/B/C各一张已登记原图，D无图；手机选项头下方全宽130高、Cover裁切、顶部1分界，不套正文Contain及340上限；无图选项不留空图框 | 参考fixture和字段已核，Native加载、几何及视觉均待验 |
+| 单选与图片命中 | A→B→A实际只选一个，字母和边框即时随V2事实变化；图片是Radio的兄弟原生Button，选B后点A图只打开A自己的单图查看器，不改选中答案，不组成A/B/C图集；关闭保原选择与真实节点实例 | 待直板机操作、原始树/PNG与隔离台账验证 |
+| 禁用/已完成 | Web的fieldset同时禁用Radio和图片Button：提交pending、永久锁定、冷却、已完成均不得选答或打开选项图；完成态展示服务端lastAnswer。原生沿既有ViewModel权威门控，禁止用DOM式事件阻断代替正确兄弟结构 | 先核新切片实际覆盖状态；未覆盖冷却/锁定不能借历史业务测试写成本轮UI通过 |
+| 图片资源与账号 | 每张缩略图独立使用现有有界loader；源/关卡/账号变化取消，迟到释放，不恢复私密图；loading及失败用既定小尺寸原生反馈，retry与图片共同服从disabled；原始媒体URL/凭据仍仅private | 实现与本点实际失败/重试边界待验；正文404、Viewer待验项不代替新缩略图状态 |
+| Refresh与返回 | 同题真实Refresh后选择和已就绪缩略图/Radio实例保持；查看开关零start/answer/XP；本点退出后私密选项/查看器不存在 | 待新包直板机、隔离HTTPS与台账；不重复未改动的旧主链大回归 |
+| 对照范围 | 376vp、字号1、同真实题目和选中状态，分别保存Web重放与Native真实加载原图；复核文字换行、列宽、间距、边框、Cover来源及两主题选中可辨性。视频优先播放语义仅保留数据边界，播放继续后续切片 | 构建、lint、业务、原生交互与视觉分别登记；不声称折叠、全页或媒体播放通过 |
+
+
+### 2026-11-06：选择图完成态的颜色修正目标
+
+真实完成态同数据原图发现，官方禁用Button会同时压暗其子Image；Web仅禁用交互，三张缩略图保持原色。另有选中左线覆盖Native缩略图边缘、Web被缩略图盖住的差异。本次只调整照片与Button的绘制层、选中线绘制顺序：同一PixelMap的Cover图保持原色，原生Button仍实际disabled，完成后不能开图；可编辑时原生Button仍只打开自己的单图且保留答案；保持尺寸、字母、主题、账号边界和请求行为。新包的正常点击、只读原图及真实禁用状态仍待独立确认，不重提已完成的答案。
+
+### 2026-11-06：选择选项与选项题图实际验收
+
+| 范围 | 结果与证据 |
+| --- | --- |
+| 直板机正常/选中、选择图 | [Native04](../artifacts/validation/ui-choice-options-20261105/native-normal-04.json)的8项检查通过：深浅主题中A/B/C有图、D无图框，四个原生Radio互斥；选B后点A只开单图，关闭和返回保留原选择。滚回顶部再下拉只产生一次新GET 200，控件/图节点保持；退出清理、零答案及XP。 |
+| 真实答题/完成/历史重进 | [完成01](../artifacts/validation/ui-choice-options-20261105/native-completed-01.json)仅提交一次，服务端结算一条完成记录及50 EXP，四个Radio与三个图Button禁用。报告仍为incomplete；随后独立[历史重进](../artifacts/validation/ui-choice-options-20261105/native-completed-reentry-01.json)从「旅途回响」验证两次GET 200、原凭证/经验保持，未再写入。 |
+| 同数据深浅对照 | [正常原图复核](../artifacts/validation/ui-choice-options-20261105/root-delegated-normal-final-review.json)已逐图检查本点布局、裁切与选中可读性。完成态对照发现原生Button连子图变暗；新包将图和点击层分开，选中线只露在文字头。 |
+| 新包定向复验 | 官方构建、签名安装启动与lint通过。新包在原已结算账号上[检查两主题三图](../artifacts/validation/ui-choice-options-20261105/native-photo-color-completed-01.json)，颜色保留、按钮仍禁用、两次GET无新结算；用另一隔离玩家[确认可编辑图仍能打开](../artifacts/validation/ui-choice-options-20261105/native-photo-color-active-01.json)，关闭保留同一选择，零答题/XP。 |
+| 待验/后续 | 本点未捕获提交中状态；冷却、永久锁定、缩略图失败/重试/取消无本点真机结论。查看器失败/重试/加载中取消、填空输入、提示/反馈、答题顶栏显隐、媒体播放和折叠屏不在本点通过范围。 |
+
+构建与报告归属详见[选择选项小点](ui-choice-options-2026-11-05.md)。固定预览恢复只做直接登录和读列表，单列[恢复回执](../artifacts/validation/ui-choice-options-20261105/fixed-preview-restored-01.json)，不计隔离答题写入验收。

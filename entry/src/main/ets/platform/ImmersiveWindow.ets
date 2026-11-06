@@ -1,6 +1,7 @@
 import { ConfigurationConstant } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { ImmersiveSurfaces } from './ImmersiveSurfaces';
 
 /** Main-window edge-to-edge policy. System bars stay visible above the app. */
 export class ImmersiveWindow {
@@ -8,20 +9,36 @@ export class ImmersiveWindow {
   private generation: number = 0;
   private revision: number = 0;
   private colorMode: ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+  private surfaceDark: boolean = false;
+  private unsubscribeSurfaces: () => void = () => {};
   private updates: Promise<void> = Promise.resolve();
 
   attach(target: window.Window, colorMode: ConfigurationConstant.ColorMode | undefined): Promise<void> {
     this.detach();
     this.target = target;
     const generation: number = this.generation;
-    this.updates = this.enableLayout(target, generation);
+    this.updates = this.updates.then(() => this.enableLayout(target, generation));
+    this.unsubscribeSurfaces = ImmersiveSurfaces.subscribe((dark: boolean): void => {
+      if (target !== this.target || generation !== this.generation) {
+        return;
+      }
+      this.surfaceDark = dark;
+      this.updateAppearance();
+    });
     return this.updateColorMode(colorMode);
   }
 
   detach(): void {
+    const hadTarget: boolean = this.target !== null;
     this.generation++;
     this.revision++;
+    this.unsubscribeSurfaces();
+    this.unsubscribeSurfaces = () => {};
     this.target = null;
+    this.surfaceDark = false;
+    if (hadTarget) {
+      ImmersiveSurfaces.reset();
+    }
   }
 
   updateColorMode(colorMode: ConfigurationConstant.ColorMode | undefined): Promise<void> {
@@ -29,11 +46,15 @@ export class ImmersiveWindow {
       colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
       this.colorMode = colorMode;
     }
+    return this.updateAppearance();
+  }
+
+  private updateAppearance(): Promise<void> {
     const target: window.Window | null = this.target;
     const generation: number = this.generation;
     const revision: number = ++this.revision;
-    const dark: boolean = this.colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK;
-    // Serialize this window's changes and skip stale rapid theme selections.
+    const dark: boolean = this.surfaceDark || this.colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK;
+    // Keep the latest theme even under a dark surface; all writes share this queue.
     this.updates = this.updates.then(async () => {
       if (target === null || target !== this.target || generation !== this.generation || revision !== this.revision) {
         return;

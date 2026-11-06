@@ -1,0 +1,157 @@
+{
+  "status": "incomplete",
+  "scope": "Normal decoded body-photo/gallery display only",
+  "stage": "native-entry-and-frame",
+  "sourceCaseIndex": 0,
+  "bodyImageCount": 1,
+  "hapSha256": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "19a22f52c3d9de95e32282a61a03b714e2cb78d738b7de97a153d8b3f185537b",
+    "runtime": "2811de386d669640b5f7c586ca5366f3856848b4664efe113e24d2d074957eaf",
+    "hap": "ddc149ba768ba9781a0f3e46911c210f967300849c503085e9ac6c73e96c943f",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "4cf7beaa6ce6baf8fc2caf74e1107c71545c49af3513b7bd27fb3600986a6112",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "webCase0": "f306f65e1c6327ba58d4b63fd7ebcf87477b2309d9385737e6c8230b967e74e7",
+    "webCase1": "1dab1ff5dd031bb8110f2a1362e2f09ee392fc9cc0b392fbd83ec95cc1076d1f",
+    "webCase2": "6e8238c054df2e8f6e99ad8cee5568d96289d497dfa8e52f252f5b00b107bd82",
+    "imageDriver": "831cbbb368d7621a02e8164632f23d7208f9bf333735c73871f76d8f80001ea7",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "93c14416ebb5bd9e6cbb7ee84b06698bf763f509f10339b5f9ef8a5ced6b7ad7",
+    "imageLoader": "36f80ac0a72d4ee8afabd8157610349b8cf1831e23f2edb9ca0c045fd4d05fef",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a"
+  },
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "imagesManifestSha256": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+  "checksPassed": 1,
+  "checks": [
+    "All expected normal body images decode before originals and retain natural-size gallery/order geometry"
+  ],
+  "states": [
+    {
+      "themeRequested": "light",
+      "readyBodyImageCount": 1,
+      "images": [
+        {
+          "block": 0,
+          "image": 0,
+          "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+          "referenceNaturalWidthPx": 917,
+          "referenceNaturalHeightPx": 500,
+          "groupWidthVp": 314.2857142857143,
+          "columns": 1,
+          "expectedVp": {
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0,
+            "rowY": 0,
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 172.2757438853404,
+            "frameX": 0.0
+          },
+          "measuredVp": {
+            "frameWidth": 314.2857142857143,
+            "frameHeight": 172.28571428571428,
+            "frameX": 0.0,
+            "rowY": 0.0,
+            "cellWidth": 314.2857142857143,
+            "cellX": 0.0
+          },
+          "frameBoundsPx": [
+            108,
+            752,
+            1208,
+            1355
+          ],
+          "pixelsBoundsPx": [
+            112,
+            756,
+            1205,
+            1352
+          ],
+          "rawSha256": "defacebadf50fa6cdff1754681a165d8d26d9a5704d08d71bde9d5f314fb2a61"
+        }
+      ],
+      "blockOrder": [
+        {
+          "block": 0,
+          "elementOrder": [
+            "images",
+            "text",
+            "hint"
+          ],
+          "withinBlockGapsVp": [
+            12.857142857142858,
+            13.142857142857142
+          ],
+          "previousBlockGapVp": null
+        }
+      ],
+      "normalDisplayOnly": true
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/question-images-native-case0-01/body-image-0-0-light.png",
+      "sha256": "65c138856717ff09af43315c24ac8b9cc62052ec36d1c521210154a67d498e2c",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "body-image-0-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-native-case0-01/raw-body-image-0-0-light-611b963e1fa84a288f372e265461962b.json",
+      "remoteRemoved": true,
+      "sha256": "defacebadf50fa6cdff1754681a165d8d26d9a5704d08d71bde9d5f314fb2a61"
+    },
+    {
+      "label": "body-order-0-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/question-images-native-case0-01/raw-body-order-0-light-cc7c8f04d2314568883b9f8f23d2329b.json",
+      "remoteRemoved": true,
+      "sha256": "defacebadf50fa6cdff1754681a165d8d26d9a5704d08d71bde9d5f314fb2a61"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/question-images-native-case0-01/request-ledger.json",
+    "sha256": "b46bbea23676ba81b064daed8a5db8b40e50218ba267316f3dd2462023a78d50"
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/question-images-native-case0-01/web-dtos.json",
+    "sha256": "d144ff1ee24b5979e0113cbe9891d8163a5ebca356a944f19a97371dc74ac7e6"
+  },
+  "failure": "Normal body-image checks are incomplete; private diagnostics retained",
+  "visualReview": "pending_root_original_review",
+  "naturalDimensionSource": "Registered source-byte SHA in the approved Web geometry.images",
+  "nativeDownloadSha256Observed": false,
+  "referenceImagesDownloadedByHelper": false,
+  "fixedPreviewTouched": false,
+  "excludedAcceptance": [
+    "image failure/retry",
+    "cancellation/late image",
+    "choice images",
+    "image viewing",
+    "video/BGM",
+    "whole page"
+  ],
+  "writeScope": "Host authentication/read and the optional exact single native start only; no answer/profile/password/fault/reset",
+  "createdAt": "2026-11-05T01:13:45.650031+00:00"
+}

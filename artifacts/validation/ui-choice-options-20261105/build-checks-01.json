@@ -1,0 +1,46 @@
+{
+  "status": "commands_passed",
+  "sourceSha256": {
+    "entry/src/main/ets/ui/StarwardChoiceOption.ets": "b77f07b02da98e62352c78cf268a3735f0c860a0562fa9b0ded133fe0728d58f",
+    "entry/src/main/ets/features/GameplayPage.ets": "715d7147c6d414961c7a3c1d90bfaa7c8c8e456b9ff4cc7b7aaaf38a0039dff9"
+  },
+  "steps": [
+    {
+      "name": "official-run",
+      "exitCode": 0,
+      "command": [
+        "scripts/hm.sh",
+        "run"
+      ]
+    },
+    {
+      "name": "lint",
+      "exitCode": 0,
+      "command": [
+        "scripts/hm.sh",
+        "lint"
+      ]
+    },
+    {
+      "name": "answer-view-model",
+      "exitCode": 0,
+      "command": [
+        "scripts/hm.sh",
+        "test",
+        "GameplayAnswerViewModel"
+      ]
+    },
+    {
+      "name": "refresh-view-model",
+      "exitCode": 0,
+      "command": [
+        "scripts/hm.sh",
+        "test",
+        "GameplayRefreshViewModel"
+      ]
+    }
+  ],
+  "hapSha256": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+  "uiAcceptanceClaimed": false,
+  "createdAt": "2026-11-05T11:14:51.305713+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "status": "fixed_toolchain_checks_passed",
+  "hapSha256": "affea704d312f3505f983b1db37c52ed105de7bce5558dc3926ddd436b3ede2e",
+  "officialRunExitCode": 0,
+  "testSuites": [
+    {
+      "file": "artifacts/validation/ui-choice-options-20261105/answer-view-model-01/local-test-summary.json",
+      "sha256": "b4d62fc4605f2dfd863fdfe84596e1ef3a6dc2519eaf14cb54e111278c6bd636",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+    },
+    {
+      "file": "artifacts/validation/ui-choice-options-20261105/refresh-view-model-01/local-test-summary.json",
+      "sha256": "ddec73b716032f1a2c2df69ababb6364bedc4c20b1fd575182f1aef3dc794de4",
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "ignored": 0,
+      "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+    }
+  ],
+  "uniqueTests": 19,
+  "failed": 0,
+  "lint": {
+    "exitCode": 0,
+    "file": "artifacts/validation/ui-choice-options-20261105/lint-01/lint.json",
+    "sha256": "4bb19d121cf82a737fb846f1ccaacbed51889cb869a858cc20eb8fc88246062d",
+    "reportedIssues": 0,
+    "actualScannedFileCoverageProven": false,
+    "filesCheckedMeaning": "Normalized reported path-set count, not scanned-file count"
+  },
+  "uiAcceptanceClaimed": false,
+  "createdAt": "2026-11-05T11:18:24.017517+00:00"
+}

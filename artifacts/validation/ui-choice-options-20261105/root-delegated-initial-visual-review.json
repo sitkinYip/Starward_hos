@@ -1,0 +1,181 @@
+{
+  "status": "reviewed_initial_light_only_remaining_native_states_pending",
+  "scope": "Current choice Native02 initial unselected light options only, compared to same-data Web02 originals; Web selected/night/viewer images viewed as future references, not Native acceptance",
+  "reviewer": "Root-delegated independent reviewer",
+  "nativeSourceReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/native-normal-02.json",
+    "sha256": "98f27e173e6ade820bf64891b68f810366dde6f963c5a82c3687e8d489e879ce",
+    "status": "incomplete",
+    "checksPassed": 1,
+    "stateCount": 4,
+    "cleanup": {
+      "loggedOut": true,
+      "loginInputsEmpty": true,
+      "privateGameplayAbsent": true,
+      "remoteRawFilesRemoved": true,
+      "zeroForbiddenWrites": true
+    },
+    "originalReportRewritten": false
+  },
+  "webSourceReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/web-reference-02.json",
+    "sha256": "4cdbbeccaa45b8bceea3eba4d281a5ad39edcb44a4a5505d5c023637fd2dfb23",
+    "status": "captured_web_choice_reference",
+    "stateCount": 14,
+    "backendRequestsContinued": 0,
+    "externalRequestsContinued": 0
+  },
+  "viewedOriginals": [
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-02/initial-0-light.png",
+      "sha256": "ef1260addfa9274695af6b6952db4d9a32a53b11846f3d30fcf752cac94859c8",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-02/initial-1-light.png",
+      "sha256": "603516eeb6a5ef8783501f5c4582717b4b6a405c189636f4118349683038dc4b",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-02/initial-2-light.png",
+      "sha256": "edfb8b49fa325edd99ba9bb79935d7edab004ba33debd774d6a91eb203547f20",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-native-20261105-02/initial-3-light.png",
+      "sha256": "edfb8b49fa325edd99ba9bb79935d7edab004ba33debd774d6a91eb203547f20",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-A.png",
+      "sha256": "cf96d237d248ca4f41ca6e2051de51cbe59ca4eb2ad15994c8651e564e2d2578",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-selected-A.png",
+      "sha256": "8975f4239f86cb80eb77c8701403f5c38352b754454b937c2d4fdaad83157033",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-selected-B.png",
+      "sha256": "99c1dae7bebd61befd85ebad3492ed3ceafacf49b1c4e7a9a3880133304b3747",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-B-selected-A-image-open.png",
+      "sha256": "efdffe8bb0ee5ca0b3f2bd3795fc7860c935cd547509a704eb698a1c7774a0f2",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-B-selected-A-image-closed.png",
+      "sha256": "de5c8a88becafffddcbb04a71573b2ab39f83b12ca38853ec319713e4500422b",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-A.png",
+      "sha256": "fc68c01d28ef8e62eb85f69cba35141510896f230be51646cce90cd049da5de6",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-selected-A.png",
+      "sha256": "4004c7c4617a211aca96b19b6e433c659dfdfc6d630162acacc0a5aa95081038",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-selected-B.png",
+      "sha256": "0f575a5163cb997816ef022fcadd022206cc5bc060f869372a35142873da2480",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-B-selected-A-image-open.png",
+      "sha256": "5a44411f994756cb0527c3d9be6ce3e8bcfaec3d6dfb43f14fa2a702ca7b1bf3",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-B-selected-A-image-closed.png",
+      "sha256": "de403d6affddfc37ca4b68bf3aba28b89b41122215c1a8a195b6512e656a7ecd",
+      "viewedOriginal": true,
+      "method": "view_image",
+      "editedOrCropped": false
+    }
+  ],
+  "webByteEqualNotViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-C.png",
+      "sha256": "cf96d237d248ca4f41ca6e2051de51cbe59ca4eb2ad15994c8651e564e2d2578",
+      "viewedOriginal": false,
+      "byteEqualToViewed": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-D.png",
+      "sha256": "cf96d237d248ca4f41ca6e2051de51cbe59ca4eb2ad15994c8651e564e2d2578",
+      "viewedOriginal": false,
+      "byteEqualToViewed": "artifacts/private/ui-reference/choice-web-20261105-02/light-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-C.png",
+      "sha256": "fc68c01d28ef8e62eb85f69cba35141510896f230be51646cce90cd049da5de6",
+      "viewedOriginal": false,
+      "byteEqualToViewed": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-A.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-D.png",
+      "sha256": "fc68c01d28ef8e62eb85f69cba35141510896f230be51646cce90cd049da5de6",
+      "viewedOriginal": false,
+      "byteEqualToViewed": "artifacts/private/ui-reference/choice-web-20261105-02/dark-unselected-A.png"
+    }
+  ],
+  "counts": {
+    "nativeFilesActuallyViewed": 4,
+    "webFilesActuallyViewed": 10,
+    "allFilesActuallyViewed": 14,
+    "uniqueOriginalBytesActuallyViewed": 13,
+    "additionalWebByteEqualFilesNotViewed": 4
+  },
+  "observations": [
+    "Initial Native light A/B/C/D letter boxes and text hierarchy/spacing correspond to the frozen same-width Web option structure; no extra Radio dot is visible.",
+    "The observed A/B/C thumbnails use the same source-specific Cover framing as Web; D has only its text header and no empty media placeholder.",
+    "Native full system areas remain in original PNGs; Web originals contain browser content only. Option comparisons concern individual content at376vp/376CSSpx with314vp outer card and312vp media-content widths, not identical screen coordinates or whole-page parity.",
+    "Web selected light/night references visibly contain the filled letter, slight letter rotation, left inset rail and subdued header glow. No corresponding current Native selected/night or animation result has been reviewed here.",
+    "Web image-close references retain pointer hover styling on A while B remains selected; this is not treated as a second checked Native option."
+  ],
+  "highConfidenceVisualBlockersWithinObservedInitialScope": [],
+  "pendingNativeReview": [
+    "Fresh collector03 source/report and successful selection observations",
+    "Current Native selected A/B and night option originals",
+    "Current Native single-option viewer and close/Refresh preservation originals",
+    "Any disabled/completed or image-failure states require their own actual evidence"
+  ],
+  "nativeAllStatesAccepted": false,
+  "wholePageParityAccepted": false,
+  "dynamicAnimationAccepted": false,
+  "nativeGesturesOrBusinessAcceptedByThisReview": false,
+  "deviceOrNetworkOperationsPerformed": false,
+  "createdAt": "2026-11-05T14:49:14.787807+00:00"
+}

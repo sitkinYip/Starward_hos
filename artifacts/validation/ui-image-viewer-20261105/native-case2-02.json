@@ -1,0 +1,116 @@
+{
+  "status": "incomplete",
+  "scope": "Normal body-image viewer baseline/index/close/input/status-area sample",
+  "viewerAcceptanceComplete": false,
+  "pendingAcceptance": [
+    "Real multi-pointer Pinch/zoomed Pan/reset-from-zoom/remaining-finger isolation",
+    "Viewer-specific HTTP404/retry and pending-image cancellation; the body404 fixture cannot stand in for these",
+    "Root original-image visual review, including system areas; metadata and pixel probes alone are not full parity"
+  ],
+  "visualReview": "pending_root_original_review",
+  "sourceCaseIndex": 2,
+  "hapSha256": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "122c9ac7ae9dcda4d918e818f83dfd82b687ccf4faafebb74d511c648c41c282",
+    "runtime": "99859934decfda8f5f2f42d22fa29452a39bbc2d44d167c1406605bc1311965f",
+    "hap": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "gameplay_page": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "window": "78be29e73efb74f97bca0ba6839602c36fe9f561b54fbe05d97422e07c4cae50",
+    "surfaces": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70",
+    "viewerDriver": "a1d5d608f76647760246139ffd4ab95cbb1a386eb9ac60880f57f460531388fd",
+    "imagesHelper": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "webViewerReference": "aabc3d7725e73bb26a0e0117446d6015982f5fc61912b495168bb0f7152cbd62",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "30ddd0faddc00732cb9fa3ca23b61fa36e86bf21e5b642da97917103bb551b11",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a",
+    "failureSetup": "36907d8facb2059264c10fc3f7b6346170deb7d88fdbaeecdccac1056f7d3701",
+    "webViewerHelper": "ef714a3ac3ea797958a6f9872f369ed501fb95918f4de1c1294fb53e50404566"
+  },
+  "checksPassed": 0,
+  "checks": [],
+  "viewerChecks": [],
+  "states": [
+    {
+      "themeRequested": "light",
+      "position": "before-open",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case2-02/viewer-before-light.png",
+        "sha256": "2b6a8bbb6c06b5e60179c4d5819c1fa43d42623f269342ad795f5ce103881ef3",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 8334,
+        "backgroundMedianLuma": 245.85960000000003,
+        "lightContrastPixels": 0,
+        "darkContrastPixels": 7474,
+        "lightFraction": 0.0,
+        "darkFraction": 0.8968082553395729
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "failure": "The narrow native viewer checks are incomplete; private originals/diagnostics retained",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-02/viewer-before-light.png",
+      "sha256": "2b6a8bbb6c06b5e60179c4d5819c1fa43d42623f269342ad795f5ce103881ef3",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "viewer-input-light-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-02/raw-viewer-input-light-initial-3d7e209331f04bb0b54023b78d8590cb.json",
+      "remoteRemoved": true,
+      "sha256": "b4d1f45baa7e3e349e3194a7b9b9b8fdfb13f6fb0c1c97f0ca3940b6d75cbfea"
+    },
+    {
+      "label": "viewer-open-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case2-02/raw-viewer-open-light-10d11e7adc8b4b7889183972ac0f2bfe.json",
+      "remoteRemoved": true,
+      "sha256": "b4d1f45baa7e3e349e3194a7b9b9b8fdfb13f6fb0c1c97f0ca3940b6d75cbfea"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/image-viewer-native-case2-02/request-ledger.json",
+    "sha256": "00cc472e3a27a5279258902fde9b2d49178616908372818fc7e39b5be89a3070"
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/image-viewer-native-case2-02/web-dtos.json",
+    "sha256": "9e2d007c669306715a76cb0b321b2474b75af3335e4ae24120685ed9ae47daaf"
+  },
+  "realPinchOrZoomedPanInjected": false,
+  "nativeDownloadSha256Observed": false,
+  "otherTestCountsInherited": false,
+  "fixedPreviewTouched": false,
+  "writeScope": "Host auth/read only; zero start/answer/profile/password/fault/reset",
+  "createdAt": "2026-11-05T04:32:48.273476+00:00"
+}

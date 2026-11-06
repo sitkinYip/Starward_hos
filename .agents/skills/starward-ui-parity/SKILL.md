@@ -17,6 +17,7 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 - 沿用品牌令牌和已登记的NotoSerifSC展示字体。通用设计skill仅用于审查层级、换行、留白、对比度与可达性，不据其换字体、重配色或新增装饰。
 - 字号和行数相同仍可能换行不对。题卡标题的Web `text-wrap: balance`已用官方Text `lineBreakStrategy(BALANCED)`对应；保留默认BREAK_WORD，不插入换行或调小字体掩盖末字孤行，长短及隐藏题名均看实际原图。
 - 官方能力不适配业务时可组合基础ArkUI组件。先核API26 SDK和官方文档；需要改变已定交互、布局或材质时，带具体差异询问用户，不凭猜测替代。
+- 弹层面板的命中模式要核SDK语义并实点子控件。`HitTestMode.Block`会阻断子节点；需要保留子按钮和手势、隔离下层蒙层时，可采用API20起的`BLOCK_HIERARCHY`。查看器须分别验证内部导航/复位、图片手势与外部蒙层关闭，不能仅凭关闭按钮可点就判整个面板可用。
 
 ## 每个小点如何推进
 
@@ -36,6 +37,10 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 - 本地独立headless浏览器可重放同一真实DTO，所有API/外部资源默认拦截；题图用显式登记且核对哈希的同一图片字节重放，分别记录Web重放与Native真实加载。无图截图不能证明图片还原。不要占用用户个人浏览器逐题抄文字。Web源码与后端仓库仍只读，Vite缓存留本仓private。
 - 保留产物、runtime、源码/采集器、输入DTO、PNG和报告的哈希绑定。运行中不改已冻结采集器；失败保留incomplete，后续用新报告/目录，不拼接旧计数。
 - 几何断言按实际density处理物理像素舍入，公开保留原始测量值，不用代码中的目标尺寸冒充实测。
+- 不假设bundle限定的原始UiTest树含有离屏节点。本机选择题采集中，第四个Radio离屏时未出现在raw dump；跨滚动控件须分次实际定位、采集并保存原图/树的来源，不能以缺节点判产品失败，也不能用ViewModel摘要代替控件实态。弹出查看器时不滚动其后方页面；关闭后再核完整实例与选择。采集文件名须按操作轮次唯一，A→B→A不能复用首次A的文件名。
+- 区分官方CLI归一化布局与原始UiTest属性。固定CLI的布局转换只保留部分交互字段，不能从其缺失的`checked/enabled`判断Radio状态；选择及禁用断言读取真实raw值（含字符串布尔），CLI只用于存在性、定位和操作。新增采集器先核实际字段，避免重现选择题前两轮的工具错误。
+- 长容器raw bounds可能被窗口裁剪；题卡top等于顶栏bottom时不能据此推算真实滚动偏移或距页顶只有几像素。需要页顶几何时须实际露出顶部锚点并测量；验证Refresh时可明确记录“滚回顶部并下拉”的官方手势序列，以首个新真实GET、唯一请求和前后控件实例核验，不伪称单次手势或天然页顶已测。
+- 在本项目选择图中，官方Button禁用时会连子Image一起压暗。Web只禁用交互而保留图片原色时，将不接收点击的Image与覆盖其上的原生Button分层，并保留真实disabled；改后分别实测已完成态的原色及禁用、可编辑态的命中和答案保留。
 
 首组工具：`scripts/device-ui-parity-sample.py`、`capture-web-ui-sample.py`和`serve-ui-parity-sample.py`。它们是侧栏/Rank窄样板，不是玩法全链通用验收器。先看`--help`，新小点按实际页面适配，不静默放宽守卫或假设旧预览场次仍未入场。
 
@@ -46,6 +51,7 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 - 答题顶栏：题卡上缘到顶栏下缘时收起；隐藏后仅回到页顶恢复。小幅反向滚动、触底不展示，系统状态栏始终保留。不要直接采用行为不同的`bindToScrollable`。
 - 题面：本轮图片范围包括结构化题图、选择图与正文内嵌图的显示、点击查看、同组多图索引及关闭/返回；图片缩放等官方能力若无法保留既有交互，完成能力核验后再提出具体差异，不静默省略。视频、BGM及线索演出后续拆片。`hideTitle`按level override优先于session，保留false/缺失区别；不显示无题名占位。
 - 图片失败：用户于2026-11-05明确选择小尺寸原生“图片加载失败，重新加载”动作，保留答案，不增加大占位；这是已批准的Web差异，后续无需重复询问。
+- 大图查看：用户于2026-11-05确认暗色查看器的缩放百分比在日夜主题统一用清晰浅色，修正Web日间深绿色文字对比不足；其余布局与文案保留。这是已确认的颜色差异，不扩为重设计。
 - 已发现的玩法偏差：重复场次标题/进度，手机字级/间距，题卡内双线/四角，整框登录式答题输入，额外Radio圆点，反馈与重连层级。各自逐点还原并验证，不能因列入清单就标已完成。
 
 完整题库统计见`artifacts/validation/ui-parity-20261104/content-ui-coverage.json`；原始快照和真实案例索引仅private。答案、受保护媒体URL、玩家关系与口令不进入skill、公开样例或报告。生产内容只读授权不等于生产入场/答题授权。

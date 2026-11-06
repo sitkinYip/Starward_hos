@@ -1,0 +1,10 @@
+class=QuestionImageLoaderTests
+test=cancelPendingHttpDestroysOnceAndRejectsItsLateResponseBeforeCreatingSource
+result=Success
+test=cancelPendingDecodeReleasesTheLatePixelsOnlyAfterTheSourceOperationCompletes
+result=Success
+test=oldHttpFinallyCannotDestroyOrDetachTheReplacementRequest
+result=Success
+test=replacementDuringSourceCleanupRejectsOldPixelsAndLeavesTheNewReadIndependent
+result=Success
+Tests run: 4, Failure: 0, Error: 0, Pass: 4, Ignore: 0

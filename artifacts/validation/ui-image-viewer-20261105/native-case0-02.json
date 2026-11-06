@@ -1,0 +1,643 @@
+{
+  "status": "captured_native_viewer_narrow",
+  "scope": "Normal body-image viewer baseline/index/close/input/status-area sample",
+  "viewerAcceptanceComplete": false,
+  "pendingAcceptance": [
+    "Real multi-pointer Pinch/zoomed Pan/reset-from-zoom/remaining-finger isolation",
+    "Viewer-specific HTTP404/retry and pending-image cancellation; the body404 fixture cannot stand in for these",
+    "Root original-image visual review, including system areas; metadata and pixel probes alone are not full parity"
+  ],
+  "visualReview": "pending_root_original_review",
+  "sourceCaseIndex": 0,
+  "hapSha256": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "19a22f52c3d9de95e32282a61a03b714e2cb78d738b7de97a153d8b3f185537b",
+    "runtime": "99859934decfda8f5f2f42d22fa29452a39bbc2d44d167c1406605bc1311965f",
+    "hap": "c7895c09a3b414e9237d18f08786fca6f5bcd4a5c8564b5ee6c606e587208641",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "56f8ccd5d43c8e12618a40702cc90e3b7cbde6807920fda31d62300cc357bc1e",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "viewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "gameplay_page": "a963230911d70fb8cb656b28ec03ea6575c3fac6d7b2e2980329af74025fa252",
+    "window": "78be29e73efb74f97bca0ba6839602c36fe9f561b54fbe05d97422e07c4cae50",
+    "surfaces": "2bf15ef66bdfd5eeaf4b2ec30332e36b4fda2547ce7ff2769fc36f2c74fb9d70",
+    "viewerDriver": "a1d5d608f76647760246139ffd4ab95cbb1a386eb9ac60880f57f460531388fd",
+    "imagesHelper": "1ce72cd18cc70083fe91fbc0af9e0bf6165565c3bf62d289007dc072651dc004",
+    "webViewerReference": "aabc3d7725e73bb26a0e0117446d6015982f5fc61912b495168bb0f7152cbd62",
+    "imageManifest": "f7f774b1e3f140db568e415502c7852457f0dcb7dc829f96a0475cc986d958d7",
+    "imageUI": "30ddd0faddc00732cb9fa3ca23b61fa36e86bf21e5b642da97917103bb551b11",
+    "imageLoader": "eb29161ff229dbe36edcbcb3df081ae1930fb3521d7bb9e3042e051f8716ecf6",
+    "imageIO": "c813505a524b5114280c033c3e998662c5927cd01c0614895d3affcfbd33070a",
+    "viewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "index": "565acf20a0882a175d0afda9655f66d146b3927a2c5ab9b70c2cd57615836d5a",
+    "failureSetup": "36907d8facb2059264c10fc3f7b6346170deb7d88fdbaeecdccac1056f7d3701",
+    "webViewerHelper": "ef714a3ac3ea797958a6f9872f369ed501fb95918f4de1c1294fb53e50404566"
+  },
+  "checksPassed": 3,
+  "checks": [
+    "The theme viewer/closing original pixels, exact gallery bounds and retained native input are recorded without business traffic",
+    "The theme viewer/closing original pixels, exact gallery bounds and retained native input are recorded without business traffic",
+    "Back and same active re-entry use GET without another start or any answer"
+  ],
+  "viewerChecks": [],
+  "states": [
+    {
+      "themeRequested": "light",
+      "position": "before-open",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-before-light.png",
+        "sha256": "31b397c7b11a68c59ff2b9fa065733b8cebb848478a2e3ef46232bec202c1209",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 8478,
+        "backgroundMedianLuma": 245.85960000000003,
+        "lightContrastPixels": 0,
+        "darkContrastPixels": 7591,
+        "lightFraction": 0.0,
+        "darkFraction": 0.895376267987733
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "light",
+      "position": "viewer-open-light",
+      "imageIndex": 1,
+      "imageCount": 1,
+      "pose": {
+        "percent": 100,
+        "xVp": 0.0,
+        "yVp": 0.0
+      },
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-mask": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-panel": [
+          49,
+          493,
+          1267,
+          2378
+        ],
+        "image-viewer-stage": [
+          49,
+          493,
+          1267,
+          2182
+        ],
+        "image-viewer-pixels": [
+          49,
+          1005,
+          1267,
+          1669
+        ],
+        "image-viewer-close": [
+          1106,
+          493,
+          1267,
+          654
+        ],
+        "image-viewer-percent": [
+          210,
+          2270,
+          350,
+          2347
+        ],
+        "image-viewer-reset": [
+          392,
+          2238,
+          595,
+          2378
+        ],
+        "image-viewer-help": [
+          637,
+          2275,
+          1106,
+          2341
+        ]
+      },
+      "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+      "rawSha256": "4ea01c744c1dbc318c1f5fa299c4d6849e8a802cf9af292e871ab9eb68eb7d23",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-light.png",
+        "sha256": "5c020ad70fc83fc563146c0c7ae61eb835f1a1729c1e168a346c62d01e84fd88",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 9467,
+        "backgroundMedianLuma": 5.7152,
+        "lightContrastPixels": 8393,
+        "darkContrastPixels": 257,
+        "lightFraction": 0.8865532903770994,
+        "darkFraction": 0.027146931446075842
+      },
+      "percentPixelProbe": {
+        "sampledPixels": 10780,
+        "neutralContrastPixels": 1917,
+        "backgroundMedianLuma": 5.7152,
+        "lightContrastPixels": 1469,
+        "darkContrastPixels": 57,
+        "lightFraction": 0.766301512780386,
+        "darkFraction": 0.0297339593114241
+      },
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "light",
+      "position": "closed-x",
+      "inputRawSha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565",
+      "sameInputIdentityAndDraft": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-x.png",
+        "sha256": "31b397c7b11a68c59ff2b9fa065733b8cebb848478a2e3ef46232bec202c1209",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 8478,
+        "backgroundMedianLuma": 245.85960000000003,
+        "lightContrastPixels": 0,
+        "darkContrastPixels": 7591,
+        "lightFraction": 0.0,
+        "darkFraction": 0.895376267987733
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "light",
+      "position": "viewer-reopen-back",
+      "imageIndex": 1,
+      "imageCount": 1,
+      "pose": {
+        "percent": 100,
+        "xVp": 0.0,
+        "yVp": 0.0
+      },
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-mask": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-panel": [
+          49,
+          493,
+          1267,
+          2378
+        ],
+        "image-viewer-stage": [
+          49,
+          493,
+          1267,
+          2182
+        ],
+        "image-viewer-pixels": [
+          49,
+          1005,
+          1267,
+          1669
+        ],
+        "image-viewer-close": [
+          1106,
+          493,
+          1267,
+          654
+        ],
+        "image-viewer-percent": [
+          210,
+          2270,
+          350,
+          2347
+        ],
+        "image-viewer-reset": [
+          392,
+          2238,
+          595,
+          2378
+        ],
+        "image-viewer-help": [
+          637,
+          2275,
+          1106,
+          2341
+        ]
+      },
+      "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+      "rawSha256": "276bc176a9ed3f03665af4252517fc55ee29a41a40c44d785578143fb443b6b8"
+    },
+    {
+      "themeRequested": "light",
+      "position": "closed-back",
+      "inputRawSha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565",
+      "sameInputIdentityAndDraft": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-back.png",
+        "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 8202,
+        "backgroundMedianLuma": 245.85960000000003,
+        "lightContrastPixels": 0,
+        "darkContrastPixels": 7350,
+        "lightFraction": 0.0,
+        "darkFraction": 0.8961228968544257
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "light",
+      "position": "viewer-reopen-mask",
+      "imageIndex": 1,
+      "imageCount": 1,
+      "pose": {
+        "percent": 100,
+        "xVp": 0.0,
+        "yVp": 0.0
+      },
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-mask": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-panel": [
+          49,
+          493,
+          1267,
+          2378
+        ],
+        "image-viewer-stage": [
+          49,
+          493,
+          1267,
+          2182
+        ],
+        "image-viewer-pixels": [
+          49,
+          1005,
+          1267,
+          1669
+        ],
+        "image-viewer-close": [
+          1106,
+          493,
+          1267,
+          654
+        ],
+        "image-viewer-percent": [
+          210,
+          2270,
+          350,
+          2347
+        ],
+        "image-viewer-reset": [
+          392,
+          2238,
+          595,
+          2378
+        ],
+        "image-viewer-help": [
+          637,
+          2275,
+          1106,
+          2341
+        ]
+      },
+      "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+      "rawSha256": "5dec640ce3e6b0ca162905ef0ef68b98defab04b76097aa74d188eb4507bb56d"
+    },
+    {
+      "themeRequested": "light",
+      "position": "closed-mask",
+      "inputRawSha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565",
+      "sameInputIdentityAndDraft": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-mask.png",
+        "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 8202,
+        "backgroundMedianLuma": 245.85960000000003,
+        "lightContrastPixels": 0,
+        "darkContrastPixels": 7350,
+        "lightFraction": 0.0,
+        "darkFraction": 0.8961228968544257
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "dark",
+      "position": "before-open",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-before-dark.png",
+        "sha256": "fc2d196e53904b512b80455689d888cdcb469a74f5574a931f8dd75dd71b7480",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 9313,
+        "backgroundMedianLuma": 19.0,
+        "lightContrastPixels": 8432,
+        "darkContrastPixels": 142,
+        "lightFraction": 0.9054010522924943,
+        "darkFraction": 0.015247503489745518
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "dark",
+      "position": "viewer-open-dark",
+      "imageIndex": 1,
+      "imageCount": 1,
+      "pose": {
+        "percent": 100,
+        "xVp": 0.0,
+        "yVp": 0.0
+      },
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-mask": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "image-viewer-panel": [
+          49,
+          493,
+          1267,
+          2378
+        ],
+        "image-viewer-stage": [
+          49,
+          493,
+          1267,
+          2182
+        ],
+        "image-viewer-pixels": [
+          49,
+          1005,
+          1267,
+          1669
+        ],
+        "image-viewer-close": [
+          1106,
+          493,
+          1267,
+          654
+        ],
+        "image-viewer-percent": [
+          210,
+          2270,
+          350,
+          2347
+        ],
+        "image-viewer-reset": [
+          392,
+          2238,
+          595,
+          2378
+        ],
+        "image-viewer-help": [
+          637,
+          2275,
+          1106,
+          2341
+        ]
+      },
+      "sourceSha256": "ef5102898a53d3195416ebf327791d0c75a39ba02c82ac0e2e040c0136c294b0",
+      "rawSha256": "415e4932c5e8467ade690860a2ea01bed35be4f9bae16b49cc9b3b60fbbec186",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-dark.png",
+        "sha256": "227a190dcfcaa7a686511fd6552765f0035b582bcf23f8d0d0038bea9b3e2b89",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 9364,
+        "backgroundMedianLuma": 5.7152,
+        "lightContrastPixels": 8335,
+        "darkContrastPixels": 252,
+        "lightFraction": 0.8901110636480136,
+        "darkFraction": 0.02691157624946604
+      },
+      "percentPixelProbe": {
+        "sampledPixels": 10780,
+        "neutralContrastPixels": 1917,
+        "backgroundMedianLuma": 5.7152,
+        "lightContrastPixels": 1469,
+        "darkContrastPixels": 57,
+        "lightFraction": 0.766301512780386,
+        "darkFraction": 0.0297339593114241
+      },
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    },
+    {
+      "themeRequested": "dark",
+      "position": "closed-x",
+      "inputRawSha256": "785f36fcdb355f9f2091c2b49bd8c5c4e4a4fc7dbbc2569a9491418edf45089b",
+      "sameInputIdentityAndDraft": true,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-dark-x.png",
+        "sha256": "fc2d196e53904b512b80455689d888cdcb469a74f5574a931f8dd75dd71b7480",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "statusBarPixelProbe": {
+        "sampledPixels": 56170,
+        "neutralContrastPixels": 9313,
+        "backgroundMedianLuma": 19.0,
+        "lightContrastPixels": 8432,
+        "darkContrastPixels": 142,
+        "lightFraction": 0.9054010522924943,
+        "darkFraction": 0.015247503489745518
+      },
+      "percentPixelProbe": null,
+      "pixelProbeMeaning": "Original local contrast/polarity observations; Root must review the complete original"
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "failure": null,
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-before-light.png",
+      "sha256": "31b397c7b11a68c59ff2b9fa065733b8cebb848478a2e3ef46232bec202c1209",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-light.png",
+      "sha256": "5c020ad70fc83fc563146c0c7ae61eb835f1a1729c1e168a346c62d01e84fd88",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-x.png",
+      "sha256": "31b397c7b11a68c59ff2b9fa065733b8cebb848478a2e3ef46232bec202c1209",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-back.png",
+      "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-light-mask.png",
+      "sha256": "766637b402b1b21f183f906836e6f4b93d2cd1e5b5ea5345d962df73555d6c72",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-before-dark.png",
+      "sha256": "fc2d196e53904b512b80455689d888cdcb469a74f5574a931f8dd75dd71b7480",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-open-dark.png",
+      "sha256": "227a190dcfcaa7a686511fd6552765f0035b582bcf23f8d0d0038bea9b3e2b89",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/viewer-closed-dark-x.png",
+      "sha256": "fc2d196e53904b512b80455689d888cdcb469a74f5574a931f8dd75dd71b7480",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "viewer-input-light-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-input-light-initial-5cf08a6bf90a4b91b5a8126e92612d62.json",
+      "remoteRemoved": true,
+      "sha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565"
+    },
+    {
+      "label": "viewer-open-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-open-light-d30c71bea16648c28adb227f74cbff19.json",
+      "remoteRemoved": true,
+      "sha256": "4ea01c744c1dbc318c1f5fa299c4d6849e8a802cf9af292e871ab9eb68eb7d23"
+    },
+    {
+      "label": "viewer-input-light-x",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-input-light-x-3b6cee1f326c4ba6885b1bdbf77e1dde.json",
+      "remoteRemoved": true,
+      "sha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565"
+    },
+    {
+      "label": "viewer-reopen-back",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-reopen-back-707761b5f60f4c1084702abd73e9fdd3.json",
+      "remoteRemoved": true,
+      "sha256": "276bc176a9ed3f03665af4252517fc55ee29a41a40c44d785578143fb443b6b8"
+    },
+    {
+      "label": "viewer-input-light-back",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-input-light-back-8c67953bb4334325bc772cd5242c6a66.json",
+      "remoteRemoved": true,
+      "sha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565"
+    },
+    {
+      "label": "viewer-reopen-mask",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-reopen-mask-99ce47f2ca6c47cb92e940075d30b700.json",
+      "remoteRemoved": true,
+      "sha256": "5dec640ce3e6b0ca162905ef0ef68b98defab04b76097aa74d188eb4507bb56d"
+    },
+    {
+      "label": "viewer-input-light-mask",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-input-light-mask-a9325b489b7e4823bb637ac310a6a1e1.json",
+      "remoteRemoved": true,
+      "sha256": "c45d5436622d81b9a12074749336520199bff8c3056aaf7c65de1e5a028bd565"
+    },
+    {
+      "label": "viewer-input-dark-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-input-dark-initial-71c5abc0974049069678ca71d0180502.json",
+      "remoteRemoved": true,
+      "sha256": "785f36fcdb355f9f2091c2b49bd8c5c4e4a4fc7dbbc2569a9491418edf45089b"
+    },
+    {
+      "label": "viewer-open-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-open-dark-c1520a1a35ef412aac08aacbfc9d1ab2.json",
+      "remoteRemoved": true,
+      "sha256": "415e4932c5e8467ade690860a2ea01bed35be4f9bae16b49cc9b3b60fbbec186"
+    },
+    {
+      "label": "viewer-input-dark-x",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/raw-viewer-input-dark-x-b02875b9786c44f18595b87f4e5d8bdb.json",
+      "remoteRemoved": true,
+      "sha256": "785f36fcdb355f9f2091c2b49bd8c5c4e4a4fc7dbbc2569a9491418edf45089b"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/request-ledger.json",
+    "sha256": "93b68770b7725e0018992bd0be7ede3b857500d2c815e14acaa20d043f8db857"
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/ui-reference/image-viewer-native-case0-02/web-dtos.json",
+    "sha256": "49f3962aec6c3b5229bc8f480d8912bf2238f5729106531416f3ef3d161c6783"
+  },
+  "realPinchOrZoomedPanInjected": false,
+  "nativeDownloadSha256Observed": false,
+  "otherTestCountsInherited": false,
+  "fixedPreviewTouched": false,
+  "writeScope": "Host auth/read only; zero start/answer/profile/password/fault/reset",
+  "createdAt": "2026-11-05T04:23:21.547318+00:00"
+}
