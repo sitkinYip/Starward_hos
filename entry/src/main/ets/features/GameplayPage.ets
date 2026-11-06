@@ -2,7 +2,7 @@ import { GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
 import { GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
-import { LabeledInput } from '../ui/LabeledInput';
+import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
 import { PrimaryAction } from '../ui/PrimaryAction';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
@@ -265,9 +265,10 @@ export struct GameplayPage {
       if (this.play.currentLevel()?.question?.kind === 'choice') {
         this.choiceAnswer()
       } else {
-        LabeledInput({ label: '答案', fieldId: 'gameplay-answer-input', value: this.shownAnswer(),
-          placeholder: this.play.currentLevel()?.question?.placeholder || '输入你的答案', fieldLimit: 4000,
-          disabled: !this.play.answerEditable(), changed: (value: string) => this.play.editAnswer(value) })
+        StarwardAnswerInput({ value: this.shownAnswer(),
+          placeholder: this.play.currentLevel()?.question?.placeholder || '输入你的答案',
+          editable: this.play.answerEditable(), reducedMotion: this.reducedMotion,
+          changed: (value: string) => this.play.editAnswer(value) })
       }
       if (this.currentCompleted()) {
         Text('当前题目已完成。').id('gameplay-answer-completed').width('100%').fontSize(13).lineHeight('22.1fp')

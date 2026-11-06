@@ -1,0 +1,58 @@
+{
+  "status": "fixed_preview_restored_and_logged_in",
+  "isolatedHapSha256": "2a036c323e5119e524fdf70e5e3be07805e77ca44baa113b2205f27d26100ba7",
+  "nativeAcceptanceComplete": true,
+  "nativeReportStatus": "captured_native_text_field",
+  "nativeReportSha256": "61a83d46f73776615f956490522cd0ebb074b0893cca455bac16161c20d5a1c9",
+  "isolatedRuntimeSha256": "3b5c81390ecfdd516382a71704a886c9ebc0ebdc603da7ab86b6c422b9601ce5",
+  "privateArchive": "artifacts/private/ui-reference/gameplay-text-handoff-20261106/text-20261106-01",
+  "testUsbDetached": true,
+  "previewUsbAttached": true,
+  "previewHapSha256": "44671b4765bd3da9ffd9da9be42f02b57fde9ed888385fd340f86a211200f118",
+  "steps": [
+    {
+      "step": "verify-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "detach-exact-disposable-usb",
+      "exitCode": 0
+    },
+    {
+      "step": "attach-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "clear-owned-test-package-config",
+      "exitCode": 0
+    },
+    {
+      "step": "configure-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "official-run",
+      "exitCode": 0
+    },
+    {
+      "step": "runtime",
+      "exitCode": 0
+    },
+    {
+      "step": "direct-login-list",
+      "exitCode": 0
+    }
+  ],
+  "differentZipMembers": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration-ca.pem",
+    "resources/rawfile/integration.json"
+  ],
+  "applicationCodeMembersIdentical": true,
+  "fixedLoginCaAndManifestUnchanged": true,
+  "persistentDatabaseInodePreserved": true,
+  "existingPreviewRunnerPreserved": true,
+  "disposableDatabaseAndTlsKeptWithUsbDetached": true,
+  "runtime": "artifacts/validation/profile/runtime-text-20261106-01-preview-restored.json",
+  "directLoginListReport": "artifacts/validation/gameplay-answer-20261104/preview-text-20261106-01-restored.json"
+}

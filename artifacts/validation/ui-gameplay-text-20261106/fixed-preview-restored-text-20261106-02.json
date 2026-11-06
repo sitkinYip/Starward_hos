@@ -1,0 +1,61 @@
+{
+  "status": "fixed_preview_restored_and_logged_in",
+  "isolatedHapSha256": "67cf8e74565de07095140e60beee65a429d5bbc58f91dafbf56937a6bbe239c4",
+  "targetedReadOnlyAcceptanceComplete": true,
+  "originalAcceptanceReportSha256": "61a83d46f73776615f956490522cd0ebb074b0893cca455bac16161c20d5a1c9",
+  "originalAcceptedHapSha256": "2a036c323e5119e524fdf70e5e3be07805e77ca44baa113b2205f27d26100ba7",
+  "nativeAcceptanceComplete": false,
+  "nativeReportStatus": "captured_native_text_readonly_visual",
+  "nativeReportSha256": "33d959e3a6190bcfb575ef165d0f981ee4ebe6d491a505e8005386f481322466",
+  "isolatedRuntimeSha256": "c5f169cd0dabcf10559fcb75a61f4e993eb1a76cf8738a32ec350038ffed4f92",
+  "privateArchive": "artifacts/private/ui-reference/gameplay-text-handoff-20261106/text-20261106-02",
+  "testUsbDetached": true,
+  "previewUsbAttached": true,
+  "previewHapSha256": "43098f6212c4cc9cb27fb24fb2585a9803b5fc7e13eb69079755c74a3ed5690c",
+  "steps": [
+    {
+      "step": "verify-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "detach-exact-disposable-usb",
+      "exitCode": 0
+    },
+    {
+      "step": "attach-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "clear-owned-test-package-config",
+      "exitCode": 0
+    },
+    {
+      "step": "configure-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "official-run",
+      "exitCode": 0
+    },
+    {
+      "step": "runtime",
+      "exitCode": 0
+    },
+    {
+      "step": "direct-login-list",
+      "exitCode": 0
+    }
+  ],
+  "differentZipMembers": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration-ca.pem",
+    "resources/rawfile/integration.json"
+  ],
+  "applicationCodeMembersIdentical": true,
+  "fixedLoginCaAndManifestUnchanged": true,
+  "persistentDatabaseInodePreserved": true,
+  "existingPreviewRunnerPreserved": true,
+  "disposableDatabaseAndTlsKeptWithUsbDetached": true,
+  "runtime": "artifacts/validation/profile/runtime-text-20261106-02-preview-restored.json",
+  "directLoginListReport": "artifacts/validation/gameplay-answer-20261104/preview-text-20261106-02-restored.json"
+}

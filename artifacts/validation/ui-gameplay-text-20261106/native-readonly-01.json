@@ -1,0 +1,167 @@
+{
+  "status": "captured_native_text_readonly_visual",
+  "stage": "targeted-completed-readonly-captured",
+  "scope": "Completed text field color verification and read-only interaction only",
+  "hapSha256": "67cf8e74565de07095140e60beee65a429d5bbc58f91dafbf56937a6bbe239c4",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "058d8b4ac6415ab6b927253a388910bda193332fd4c357fce645fd6e393f1833",
+    "runtime": "c5f169cd0dabcf10559fcb75a61f4e993eb1a76cf8738a32ec350038ffed4f92",
+    "hap": "67cf8e74565de07095140e60beee65a429d5bbc58f91dafbf56937a6bbe239c4",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "5a1cb67b8b81efab0fea564f5dc37129900191202bfba452edc352a277272b99",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "textFieldDriver": "a60a7262170b3f9521c02709434db36391c28394c06a41a0090ba5ad766d6977",
+    "sourceFixture": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "gameplayViewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "textFieldUI": "fdc50fe0750b28828c27677faed030b31455eb90a7b6deb2cc0bb9c2a2282dff",
+    "originalCompletedDto": "d5fda61ecd0e6bbc8bf945f525ad36e5a2b27c530d4a8d1962c09ab2e725e849",
+    "originalRequestLedger": "6d5e0f8c9bef60829f482abe210e30b924cba5250bd85dc1cac809c5e2436f81",
+    "readonlyDriver": "fa0a3ddb5fb69c8865a06d31bbb7de9da9470d9939395cbca3f6c682ab74d5d1",
+    "originalNativeReport": "61a83d46f73776615f956490522cd0ebb074b0893cca455bac16161c20d5a1c9",
+    "lightThemeColors": "8c21813307f84851b7bdd9e22381a1532e27c205ac7a6ac9407854abb61b4442",
+    "darkThemeColors": "108e772a206407b084cb322c9f88c5d2aaeabbe02d0db5d01b7758eb10046396"
+  },
+  "originalNativeReportSha256": "61a83d46f73776615f956490522cd0ebb074b0893cca455bac16161c20d5a1c9",
+  "checksPassed": 2,
+  "checks": [
+    "History opens the original settled scene through two authenticated detail reads",
+    "Both themes retain the authoritative disabled field; a measured touch cannot focus or open IME"
+  ],
+  "states": [
+    {
+      "position": "readonly-completed-light",
+      "themeRequested": "light",
+      "enabled": false,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": null,
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "5990c90d543ef0ee50ed16ccfad65cec714896afe6fb20a5edce6f22e26a88f1",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/readonly-completed-light.png",
+        "sha256": "fbb1443b9c0b99505aa868ee015da5adfb8eb9b86e95a77f02af116dcab7c772",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "readonly-completed-dark",
+      "themeRequested": "dark",
+      "enabled": false,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": null,
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "87b97380794f7fd964627197a7910f6f76805b71b50c2cb041e5d8fc1fa4c5a9",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/readonly-completed-dark.png",
+        "sha256": "672bea1c2c07b1843faecd02a58a0756c72b23952edab85b0f6fd5bc6f9f995a",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "nativeDetailGetStatuses": [
+    200,
+    200
+  ],
+  "originalSettlementUnchanged": true,
+  "observedReadOnlyFacts": {
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "progressRows": 1,
+    "completedProgressRows": 1,
+    "wrongCountTotal": 0,
+    "lockedProgressRows": 0,
+    "startReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "answerReceiptCount": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 50,
+    "playerTotalXp": 50,
+    "submissionResults": {
+      "correct": 1,
+      "incorrect": 0,
+      "manual": 0
+    }
+  },
+  "completedTouchActuallyObserved": true,
+  "nativeStartOrAnswerInvoked": false,
+  "sameDataCompletedWebFixture": {
+    "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-web-dtos.json",
+    "sha256": "d5fda61ecd0e6bbc8bf945f525ad36e5a2b27c530d4a8d1962c09ab2e725e849"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/readonly-completed-light.png",
+      "sha256": "fbb1443b9c0b99505aa868ee015da5adfb8eb9b86e95a77f02af116dcab7c772",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/readonly-completed-dark.png",
+      "sha256": "672bea1c2c07b1843faecd02a58a0756c72b23952edab85b0f6fd5bc6f9f995a",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "readonly-completed-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/raw-readonly-completed-light-7734733b99d946aca3ff4974abada3d3.json",
+      "remoteRemoved": true,
+      "sha256": "5990c90d543ef0ee50ed16ccfad65cec714896afe6fb20a5edce6f22e26a88f1"
+    },
+    {
+      "label": "readonly-disabled-touch",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/raw-readonly-disabled-touch-4a119a4e73fa4aa7931a2ec741ad3fd3.json",
+      "remoteRemoved": true,
+      "sha256": "5990c90d543ef0ee50ed16ccfad65cec714896afe6fb20a5edce6f22e26a88f1"
+    },
+    {
+      "label": "readonly-completed-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/raw-readonly-completed-dark-d6c276e5d59b4873b4a0dca07c970b3d.json",
+      "remoteRemoved": true,
+      "sha256": "87b97380794f7fd964627197a7910f6f76805b71b50c2cb041e5d8fc1fa4c5a9"
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/request-ledger.json",
+    "sha256": "366352aca30191d7d42085750ed9ff24a0e8f6fa737a194a999661d9c4653d19"
+  },
+  "visualReview": "pending_root_original_review",
+  "wholePageParityAccepted": false,
+  "fixedPreviewTouched": false,
+  "failure": null,
+  "createdAt": "2026-11-06T03:36:08.931580+00:00"
+}

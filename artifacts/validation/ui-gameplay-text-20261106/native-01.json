@@ -1,0 +1,645 @@
+{
+  "status": "captured_native_text_field",
+  "stage": "text-field-complete",
+  "scope": "Narrow native single text input, blank validation, actual IME, correct submission and read-only",
+  "hapSha256": "2a036c323e5119e524fdf70e5e3be07805e77ca44baa113b2205f27d26100ba7",
+  "expectedFixtureSha256": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+  "sourceCaseIndex": 0,
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "058d8b4ac6415ab6b927253a388910bda193332fd4c357fce645fd6e393f1833",
+    "runtime": "3b5c81390ecfdd516382a71704a886c9ebc0ebdc603da7ab86b6c422b9601ce5",
+    "hap": "2a036c323e5119e524fdf70e5e3be07805e77ca44baa113b2205f27d26100ba7",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "5a1cb67b8b81efab0fea564f5dc37129900191202bfba452edc352a277272b99",
+    "questionFrame": "caadead3c4e62c95141377b9d90fb1deecb7b2ce6d8dc63ad119c7ab9399a08c",
+    "textFieldDriver": "a60a7262170b3f9521c02709434db36391c28394c06a41a0090ba5ad766d6977",
+    "sourceFixture": "1ad7a59cc1f13e6dd7ec5550c8f5ab4a5906b90f9a9b56ac948143a4995e8745",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "gameplayViewModel": "0b8cfba7947f6b4e2338445b34646c8d4488509113c72d70d13a9085d0d7dad5",
+    "textFieldUI": "3a9a1fc07e89b2a202addce9acafaf5a8cbbe2b48177b43044240f62cc8ee94f"
+  },
+  "checksPassed": 7,
+  "checks": [
+    "Exact original text question opens with its authorized entry count and zero answer or XP",
+    "Empty and whitespace-only native validation create zero POST, answer receipts or XP",
+    "Observed light IME leaves submit reachable and Back preserves the same field and draft",
+    "Observed dark IME leaves submit reachable and Back preserves the same field and draft",
+    "Pre-submit exact own ledger has no answers",
+    "One correct native answer and receipt yields 50 XP and the same input becomes read-only",
+    "History reentry reads the same completed answer without another business write"
+  ],
+  "states": [
+    {
+      "position": "idle-dark",
+      "themeRequested": "dark",
+      "enabled": true,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": [
+        108,
+        2040,
+        1208,
+        2222
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "b11801ef5b88e4fc329af28171f1f11e17d7c8bfd6cc27fc34cf2fe6f0869bfd",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/idle-dark.png",
+        "sha256": "b391027746401a566968950da7d360983f46ccda4791f92592e7c88d5139a39e",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "idle-light",
+      "themeRequested": "light",
+      "enabled": true,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": [
+        108,
+        2040,
+        1208,
+        2222
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "69abde59f7c9f72f300290589a205533ceafded3ab0de7abfeb55aa41594cb1e",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/idle-light.png",
+        "sha256": "5b4b02b240280f258b0a77385a6e5b00c90dfda27ca9f8b90c37b9329a98e858",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "draft-focused-light",
+      "themeRequested": "light",
+      "enabled": true,
+      "focused": true,
+      "inputBoundsPx": [
+        108,
+        1011,
+        1208,
+        1215
+      ],
+      "submitBoundsPx": [
+        108,
+        1275,
+        1208,
+        1457
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "a9e7f3ecfd11eec9cadbdb88e430818ca3722b815a46b0b6f7e21b1dd7f633f8",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-focused-light.png",
+        "sha256": "1518359d93ccbb11abc2d60c0e5bd9d34bde65530712da399e3c2be41c8449e4",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": "actual_resized_app_viewport"
+    },
+    {
+      "position": "draft-after-ime-light",
+      "themeRequested": "light",
+      "enabled": true,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": [
+        108,
+        2040,
+        1208,
+        2222
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "e9fe6fcda0b4d479ea4071d58e71cadc3a4b3f05e472d29a9e7a69b7d12378b3",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-after-ime-light.png",
+        "sha256": "0a51895c0ed5943e7244edbdc73c87125fbab4332a524d9884191bc9f77b0d78",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "draft-blurred-dark",
+      "themeRequested": "dark",
+      "enabled": true,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": [
+        108,
+        2040,
+        1208,
+        2222
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "a7fbd1bd543db6dd99f7fb923ec8bc917def760613bb5e765f98b12c16a7e665",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-blurred-dark.png",
+        "sha256": "24bdc0cea961abd7a166dcd34a3df94c34cdb4c415a1c3d3bdb6a85401991611",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "draft-focused-dark",
+      "themeRequested": "dark",
+      "enabled": true,
+      "focused": true,
+      "inputBoundsPx": [
+        108,
+        1011,
+        1208,
+        1215
+      ],
+      "submitBoundsPx": [
+        108,
+        1275,
+        1208,
+        1457
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "0313f4fcbc56f68b3e96f1b63fc41a953d354913d6b036e9bc3436e39a546dfa",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-focused-dark.png",
+        "sha256": "1e6331a333f6a5ae50bc32d9c14532fa212c430373388b63388d47e3412fc3ff",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": "actual_resized_app_viewport"
+    },
+    {
+      "position": "draft-after-ime-dark",
+      "themeRequested": "dark",
+      "enabled": true,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": [
+        108,
+        2040,
+        1208,
+        2222
+      ],
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "a7fbd1bd543db6dd99f7fb923ec8bc917def760613bb5e765f98b12c16a7e665",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-after-ime-dark.png",
+        "sha256": "6ec98fbc725ec671d26bba088e2d46e25fcd423ead7745b8d54e01c6c2d77ed7",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "completed-dark",
+      "themeRequested": "dark",
+      "enabled": false,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": null,
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "e0fc85cb9f5ca8ad7564eb9d192ec6b56486abff283224eb0a4e6b85fc98aa22",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-dark.png",
+        "sha256": "3129648ab81e04940a1eafe32291f19d81c86ca0dc91bd748d1b9567a68feec5",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "completed-light",
+      "themeRequested": "light",
+      "enabled": false,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": null,
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "8d895cc8457c4cf1e9e16d9081048965cce382f8f3a7360da3ecef25ffeb1481",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-light.png",
+        "sha256": "4434b8047c1d9fa80f2731a373f68b710e14a338ef150a8e9f5ca00e7a306d4e",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    },
+    {
+      "position": "history-readonly-light",
+      "themeRequested": "light",
+      "enabled": false,
+      "focused": false,
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "submitBoundsPx": null,
+      "inputHeightVp": 58.285714285714285,
+      "rawSha256": "69adb873afd430150ff15f5a261e0f609d8fb072eee1fd9e2ff6aaf42807ab43",
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/history-readonly-light.png",
+        "sha256": "b55171d0d5c6e6156a943212dfda6f6a91a68284c3730a3793cc7d30ab250661",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "imeMeasurementMode": null
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true
+  },
+  "sameDataWebFixtures": {
+    "active": {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/active-web-dtos.json",
+      "sha256": "89a87dbd256241492cc98ffc188f970763cd3087c747b0ee2c4ccf52229d7c99"
+    },
+    "completed": {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-web-dtos.json",
+      "sha256": "d5fda61ecd0e6bbc8bf945f525ad36e5a2b27c530d4a8d1962c09ab2e725e849"
+    }
+  },
+  "draftProbe": {
+    "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-probe.json",
+    "sha256": "1cdb3eb0d3a27deb6a49d7b312d459477f737b97ad92f8aca407e3144f6f194d"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/idle-dark.png",
+      "sha256": "b391027746401a566968950da7d360983f46ccda4791f92592e7c88d5139a39e",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/idle-light.png",
+      "sha256": "5b4b02b240280f258b0a77385a6e5b00c90dfda27ca9f8b90c37b9329a98e858",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-focused-light.png",
+      "sha256": "1518359d93ccbb11abc2d60c0e5bd9d34bde65530712da399e3c2be41c8449e4",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-after-ime-light.png",
+      "sha256": "0a51895c0ed5943e7244edbdc73c87125fbab4332a524d9884191bc9f77b0d78",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-blurred-dark.png",
+      "sha256": "24bdc0cea961abd7a166dcd34a3df94c34cdb4c415a1c3d3bdb6a85401991611",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-focused-dark.png",
+      "sha256": "1e6331a333f6a5ae50bc32d9c14532fa212c430373388b63388d47e3412fc3ff",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-after-ime-dark.png",
+      "sha256": "6ec98fbc725ec671d26bba088e2d46e25fcd423ead7745b8d54e01c6c2d77ed7",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-dark.png",
+      "sha256": "3129648ab81e04940a1eafe32291f19d81c86ca0dc91bd748d1b9567a68feec5",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-light.png",
+      "sha256": "4434b8047c1d9fa80f2731a373f68b710e14a338ef150a8e9f5ca00e7a306d4e",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/history-readonly-light.png",
+      "sha256": "b55171d0d5c6e6156a943212dfda6f6a91a68284c3730a3793cc7d30ab250661",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "idle-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-idle-dark-c74a37c43e494fed8ea60aa673feb033.json",
+      "remoteRemoved": true,
+      "sha256": "b11801ef5b88e4fc329af28171f1f11e17d7c8bfd6cc27fc34cf2fe6f0869bfd"
+    },
+    {
+      "label": "idle-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-idle-light-f898f2b61970407697c3b88dfa183a54.json",
+      "remoteRemoved": true,
+      "sha256": "69abde59f7c9f72f300290589a205533ceafded3ab0de7abfeb55aa41594cb1e"
+    },
+    {
+      "label": "draft-focused-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-draft-focused-light-5c6c534d179e4bf3b68df6498732dee0.json",
+      "remoteRemoved": true,
+      "sha256": "a9e7f3ecfd11eec9cadbdb88e430818ca3722b815a46b0b6f7e21b1dd7f633f8"
+    },
+    {
+      "label": "draft-after-ime-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-draft-after-ime-light-fa1bc1d21c7e4d79936b942bdd4375ab.json",
+      "remoteRemoved": true,
+      "sha256": "e9fe6fcda0b4d479ea4071d58e71cadc3a4b3f05e472d29a9e7a69b7d12378b3"
+    },
+    {
+      "label": "draft-blurred-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-draft-blurred-dark-aeca003c1931445280b91441ac1621cf.json",
+      "remoteRemoved": true,
+      "sha256": "a7fbd1bd543db6dd99f7fb923ec8bc917def760613bb5e765f98b12c16a7e665"
+    },
+    {
+      "label": "draft-focused-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-draft-focused-dark-7ed864aacc79488391f050d6b7ae90df.json",
+      "remoteRemoved": true,
+      "sha256": "0313f4fcbc56f68b3e96f1b63fc41a953d354913d6b036e9bc3436e39a546dfa"
+    },
+    {
+      "label": "draft-after-ime-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-draft-after-ime-dark-5e52b137959e43d1b2f941d090a9ab6d.json",
+      "remoteRemoved": true,
+      "sha256": "a7fbd1bd543db6dd99f7fb923ec8bc917def760613bb5e765f98b12c16a7e665"
+    },
+    {
+      "label": "ready-one-text-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-ready-one-text-submit-cb47c13c9daa4ddf8d2e3616062b710d.json",
+      "remoteRemoved": true,
+      "sha256": "a7a194b1136c98d5bcfa333a57964424821ea4283d0dd40645c7de2702b7e238"
+    },
+    {
+      "label": "after-one-text-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-after-one-text-submit-26d065c070514644ae3d3fc619c63aa3.json",
+      "remoteRemoved": true,
+      "sha256": "e0fc85cb9f5ca8ad7564eb9d192ec6b56486abff283224eb0a4e6b85fc98aa22"
+    },
+    {
+      "label": "completed-dark",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-completed-dark-f4c6559de1d24080b6372f7a34b37973.json",
+      "remoteRemoved": true,
+      "sha256": "e0fc85cb9f5ca8ad7564eb9d192ec6b56486abff283224eb0a4e6b85fc98aa22"
+    },
+    {
+      "label": "completed-after-touch",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-completed-after-touch-8c77d8a1834444aab4f6dcd7d2fdc32b.json",
+      "remoteRemoved": true,
+      "sha256": "e0fc85cb9f5ca8ad7564eb9d192ec6b56486abff283224eb0a4e6b85fc98aa22"
+    },
+    {
+      "label": "completed-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-completed-light-76f7a47ff48b463c8e61fada7320438b.json",
+      "remoteRemoved": true,
+      "sha256": "8d895cc8457c4cf1e9e16d9081048965cce382f8f3a7360da3ecef25ffeb1481"
+    },
+    {
+      "label": "history-readonly-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/raw-history-readonly-light-8a2ffb2b17034fe2b44939167ac72da7.json",
+      "remoteRemoved": true,
+      "sha256": "69adb873afd430150ff15f5a261e0f609d8fb072eee1fd9e2ff6aaf42807ab43"
+    }
+  ],
+  "imeMeasurements": [
+    {
+      "label": "text-light",
+      "measurementMode": "actual_resized_app_viewport",
+      "observedImeCandidates": 2,
+      "privateInventory": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/windows-text-light-72912734d3684643aeb81e22222a30af.json",
+        "sha256": "19767b6678f1c4bb1ba3ddea39e18104a7b7c22a4bfd62616e1d8b3bc36dbfb3"
+      },
+      "currentAppRootPx": [
+        0,
+        137,
+        1316,
+        1733
+      ],
+      "windowRootMeasurements": [
+        {
+          "rootBoundsPx": [
+            0,
+            0,
+            1316,
+            2832
+          ],
+          "privateRoot": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/ime-root-text-light-96465afbac32401e82899a7451b6b138.json",
+            "sha256": "601c64038865474415c47a73e21addaadbd6824c590f3793cd1d579292d9d2b6"
+          }
+        },
+        {
+          "rootBoundsPx": [
+            0,
+            0,
+            1316,
+            2832
+          ],
+          "privateRoot": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/ime-root-text-light-6edbee8f87c14d6cbfbab89d9669cf06.json",
+            "sha256": "601c64038865474415c47a73e21addaadbd6824c590f3793cd1d579292d9d2b6"
+          }
+        }
+      ],
+      "source": "Own foreground/profile roots and observed official primary-display input-window metadata",
+      "imeWindowBoundsPx": null,
+      "imeWindowHeightVp": null,
+      "availableViewportPx": [
+        0,
+        137,
+        1316,
+        1733
+      ],
+      "availableViewportHeightVp": 456.0,
+      "noKeyboardAppRootPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "appViewportReductionPx": 1099,
+      "appViewportReductionVp": 314.0,
+      "rootClassifications": [
+        "rejected_full_screen_or_ambiguous_root",
+        "rejected_full_screen_or_ambiguous_root"
+      ],
+      "quantityMeaning": "Observed App-root RESIZE reduction; not a measured IME-window height",
+      "noKeyboardBaseline": {
+        "boundsPx": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "sourceRoot": {
+          "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/no-keyboard-gameplay-root-eaf537f4ef114c0b97d732b803c6ed96.json",
+          "sha256": "47a69a15791f08c94d94e1ec6140d8c6089371febacc8896e6adacad18126184"
+        },
+        "sourcePage": "gameplay",
+        "observedImeAbsent": true
+      }
+    },
+    {
+      "label": "text-dark",
+      "measurementMode": "actual_resized_app_viewport",
+      "observedImeCandidates": 2,
+      "privateInventory": {
+        "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/windows-text-dark-7a170a24499146c9a8f1f7b5d84159e4.json",
+        "sha256": "19767b6678f1c4bb1ba3ddea39e18104a7b7c22a4bfd62616e1d8b3bc36dbfb3"
+      },
+      "currentAppRootPx": [
+        0,
+        137,
+        1316,
+        1733
+      ],
+      "windowRootMeasurements": [
+        {
+          "rootBoundsPx": [
+            0,
+            0,
+            1316,
+            2832
+          ],
+          "privateRoot": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/ime-root-text-dark-e8aebf709d124062b0f522e3612e8254.json",
+            "sha256": "601c64038865474415c47a73e21addaadbd6824c590f3793cd1d579292d9d2b6"
+          }
+        },
+        {
+          "rootBoundsPx": [
+            0,
+            0,
+            1316,
+            2832
+          ],
+          "privateRoot": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/ime-root-text-dark-5666d8326e6e47dcae21d6cbaa145aed.json",
+            "sha256": "601c64038865474415c47a73e21addaadbd6824c590f3793cd1d579292d9d2b6"
+          }
+        }
+      ],
+      "source": "Own foreground/profile roots and observed official primary-display input-window metadata",
+      "imeWindowBoundsPx": null,
+      "imeWindowHeightVp": null,
+      "availableViewportPx": [
+        0,
+        137,
+        1316,
+        1733
+      ],
+      "availableViewportHeightVp": 456.0,
+      "noKeyboardAppRootPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "appViewportReductionPx": 1099,
+      "appViewportReductionVp": 314.0,
+      "rootClassifications": [
+        "rejected_full_screen_or_ambiguous_root",
+        "rejected_full_screen_or_ambiguous_root"
+      ],
+      "quantityMeaning": "Observed App-root RESIZE reduction; not a measured IME-window height",
+      "noKeyboardBaseline": {
+        "boundsPx": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "sourceRoot": {
+          "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/no-keyboard-gameplay-root-86c974dfad814e47abfc68a4829a0b92.json",
+          "sha256": "47a69a15791f08c94d94e1ec6140d8c6089371febacc8896e6adacad18126184"
+        },
+        "sourcePage": "gameplay",
+        "observedImeAbsent": true
+      }
+    }
+  ],
+  "privateReadOnlyLedger": {
+    "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/request-ledger.json",
+    "sha256": "6d5e0f8c9bef60829f482abe210e30b924cba5250bd85dc1cac809c5e2436f81"
+  },
+  "observedReadOnlyFacts": {
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "progressRows": 1,
+    "completedProgressRows": 1,
+    "wrongCountTotal": 0,
+    "lockedProgressRows": 0,
+    "startReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "answerReceiptCount": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 50,
+    "playerTotalXp": 50,
+    "submissionResults": {
+      "correct": 1,
+      "incorrect": 0,
+      "manual": 0
+    }
+  },
+  "singleNativeSubmitInvoked": true,
+  "submittedProbeMatchesAuthoritativeAnswerAndReceipt": true,
+  "pendingDisabledActuallyObserved": false,
+  "completedTouchActuallyObserved": true,
+  "visualReview": "pending_root_original_review",
+  "wholePageParityAccepted": false,
+  "fixedPreviewTouched": false,
+  "failure": null,
+  "createdAt": "2026-11-06T03:20:06.765318+00:00"
+}

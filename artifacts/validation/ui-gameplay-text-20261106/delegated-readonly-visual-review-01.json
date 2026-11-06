@@ -1,0 +1,149 @@
+{
+  "status": "reviewed_corrected_completed_answer_readability",
+  "scope": "New build targeted visual review of the completed and disabled single-line answer in both themes.",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-gameplay-text-20261106/native-readonly-01.json",
+    "sha256": "33d959e3a6190bcfb575ef165d0f981ee4ebe6d491a505e8005386f481322466"
+  },
+  "nativeHapSha256": "67cf8e74565de07095140e60beee65a429d5bbc58f91dafbf56937a6bbe239c4",
+  "webReport": {
+    "file": "artifacts/validation/ui-gameplay-text-20261106/web-reference-01.json",
+    "sha256": "209cd444f8fb8bb5fb2abb9f75bf51f32e60bfa80f588aef444e5019f2a8089a"
+  },
+  "priorVisualReview": {
+    "file": "artifacts/validation/ui-gameplay-text-20261106/delegated-original-visual-review-01.json",
+    "sha256": "0ffe6187c425c0a57d53b851b6b82fe5d088fb98d03d1b2e69a268980562ff48"
+  },
+  "sameCompletedDtoSha256": "d5fda61ecd0e6bbc8bf945f525ad36e5a2b27c530d4a8d1962c09ab2e725e849",
+  "viewedOriginals": {
+    "native": 2,
+    "web": 2
+  },
+  "measurementMethod": "Read-only original PNG samples within input bounds. Use strongest observed glyph RGB and median background RGB at right side. Ratios describe those pixels.",
+  "comparisons": [
+    {
+      "theme": "light",
+      "nativeOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/readonly-completed-light.png",
+        "sha256": "fbb1443b9c0b99505aa868ee015da5adfb8eb9b86e95a77f02af116dcab7c772"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/light-completed-disabled.png",
+        "sha256": "c800244934f3cf4a1f3766c84d7489f08f35f2699c156898f22766986216012e"
+      },
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "priorNativeSample": {
+        "glyphRgb": [
+          202,
+          208,
+          206
+        ],
+        "backgroundRgb": [
+          247,
+          249,
+          248
+        ],
+        "sampleRatio": 1.48
+      },
+      "correctedNativeSample": {
+        "glyphRgb": [
+          157,
+          168,
+          165
+        ],
+        "backgroundRgb": [
+          247,
+          249,
+          248
+        ],
+        "sampleRatio": 2.32
+      },
+      "sameWebSample": {
+        "glyphRgb": [
+          136,
+          149,
+          146
+        ],
+        "backgroundRgb": [
+          254,
+          255,
+          254
+        ],
+        "sampleRatio": 3.1
+      },
+      "answerVisibleInOneLine": true,
+      "noFocusRingOrSubmitVisible": true
+    },
+    {
+      "theme": "dark",
+      "nativeOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-text-readonly-20261106-01/readonly-completed-dark.png",
+        "sha256": "672bea1c2c07b1843faecd02a58a0756c72b23952edab85b0f6fd5bc6f9f995a"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/dark-completed-disabled.png",
+        "sha256": "4704559f1fe5ae4d17fa2ade79df22e3f9b5e7df5e34fc185f21e4f763815967"
+      },
+      "inputBoundsPx": [
+        108,
+        1780,
+        1208,
+        1984
+      ],
+      "priorNativeSample": {
+        "glyphRgb": [
+          65,
+          65,
+          59
+        ],
+        "backgroundRgb": [
+          21,
+          22,
+          18
+        ],
+        "sampleRatio": 1.77
+      },
+      "correctedNativeSample": {
+        "glyphRgb": [
+          109,
+          108,
+          100
+        ],
+        "backgroundRgb": [
+          21,
+          22,
+          18
+        ],
+        "sampleRatio": 3.44
+      },
+      "sameWebSample": {
+        "glyphRgb": [
+          133,
+          132,
+          123
+        ],
+        "backgroundRgb": [
+          24,
+          25,
+          21
+        ],
+        "sampleRatio": 4.7
+      },
+      "answerVisibleInOneLine": true,
+      "noFocusRingOrSubmitVisible": true
+    }
+  ],
+  "observations": [
+    "The already-settled answer is readable and fits within a single line in the two original native images. The subdued bottom line still signals the disabled presentation.",
+    "The corrected glyphs are stronger in both native themes. Native disabled text remains a little less contrasted than the replayed Web reference.",
+    "The new build evidence is limited to completed state. Active, focus, keyboard, and initial submission remain recorded against the earlier build."
+  ],
+  "completedAnswerReadabilityBlockingGap": false,
+  "pixelParityAccepted": false,
+  "wholePageParityAccepted": false
+}

@@ -1,0 +1,135 @@
+{
+  "status": "reviewed_completed_thumbnail_color_and_rail_restored",
+  "mode": "completed",
+  "scope": "Static visual verification of the corrected completed-state option thumbnail colors, Cover crop and selection rail in both themes",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/native-photo-color-completed-01.json",
+    "sha256": "1dc90b7658de3023e7dfbf32a36006cbf48abcef70b55eaa7140a21db111fa45",
+    "status": "captured_native_choice_photo_completed",
+    "cleanup": {
+      "loggedOut": true,
+      "loginInputsEmpty": true,
+      "privateGameplayAbsent": true,
+      "remoteRawFilesRemoved": true,
+      "zeroForbiddenWrites": true
+    }
+  },
+  "webReport": {
+    "file": "artifacts/validation/ui-choice-options-20261105/web-completed-reference-01.json",
+    "sha256": "65347b9d006171b210c6c58d10e9d7e3635edde77ac6936725d13773100447df",
+    "status": "captured_web_completed_choice_reference"
+  },
+  "priorCompletedVisualReview": {
+    "file": "artifacts/validation/ui-choice-options-20261105/root-delegated-completed-01-visual-review.json",
+    "sha256": "0fe648cdb8fc1a21910031f34492cee83ef60b4ed23099661d9db41a93502ec8"
+  },
+  "sameReviewedCompletedDtoSha256": "70a5e719ce313fb2faef20a392a03a94bb1efab9dba4585e78285f190df36488",
+  "bindingSha256": {
+    "hap": "872a3a8e81463ded0948790edbcbe9aa325762827df855d8bc51edbbff2ed214",
+    "choiceUI": "ed7320dba5f7a7cccd717b87e156f94c47e42d6aa98b69b3531cf8e596844dba",
+    "gameplayPage": "715d7147c6d414961c7a3c1d90bfaa7c8c8e456b9ff4cc7b7aaaf38a0039dff9",
+    "photoColorDriver": "1d3e62f762118e4a5aab240c8551c25a14cc91498a7c41bc989368b90a1b372d",
+    "runtime": "8b2b074518c36073f82e4c0fc6b1eec3a51ae25847e085e36951b076d7543507",
+    "priorCompletedDTO": "70a5e719ce313fb2faef20a392a03a94bb1efab9dba4585e78285f190df36488"
+  },
+  "nativeOriginalsActuallyViewed": [
+    {
+      "file": "artifacts/private/ui-reference/choice-photo-color-completed-20261106-01/completed-light-photo-0.png",
+      "sha256": "c742a2381f681450ef857f072b0af0c6129e181aa92f09333b5c25ffe642d9fb",
+      "theme": "light",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-photo-color-completed-20261106-01/completed-light-photo-1.png",
+      "sha256": "1436b68ac7b2d995ae688d4a801d293de5551557deb510632785fb00ee4754b7",
+      "theme": "light",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-photo-color-completed-20261106-01/completed-light-photo-2.png",
+      "sha256": "358019155a2271817144eb3a9552d15cff71cf6cde142c75178f02fa6fe7f13e",
+      "theme": "light",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-photo-color-completed-20261106-01/completed-dark-photo-0.png",
+      "sha256": "90695e0f5da26db4fa0d33003af25181c8cb1f6da88911381bcb7bb6c9e73d01",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-photo-color-completed-20261106-01/completed-dark-photo-1.png",
+      "sha256": "90695e0f5da26db4fa0d33003af25181c8cb1f6da88911381bcb7bb6c9e73d01",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-photo-color-completed-20261106-01/completed-dark-photo-2.png",
+      "sha256": "9f6c51309e179a87149022ef3342858c6955ec306465993bdbd6038e43f8e1bf",
+      "theme": "dark",
+      "viewedOriginal": true,
+      "editedOrCropped": false,
+      "method": "view_image"
+    }
+  ],
+  "counts": {
+    "nativeFilesActuallyViewed": 6,
+    "uniqueNativeOriginalBytesViewed": 5,
+    "webFilesActuallyViewedThisPass": 0,
+    "webFilesBoundByByteEquality": 4,
+    "uniquePreviouslyViewedWebBytes": 2
+  },
+  "findings": [
+    "All three completed thumbnails retain the original bright and saturated photo appearance in light and dark themes. The previous light washout and dark dimming are resolved in this sample.",
+    "The selected option rail ends at the top of the thumbnail in both themes, preserving the outer accent border. Cover framing, letter treatment and the text-only option layout correspond to the previously viewed Web originals.",
+    "The separate collector report verifies three disabled photo Buttons in each theme, one disabled coordinate touch with the viewer still absent, and unchanged completed actor facts. The visual observations concern the original screenshots."
+  ],
+  "priorCompletedThumbnailDimmingResolvedInObservedScope": true,
+  "priorRailOverlapResolvedInObservedScope": true,
+  "highConfidenceVisualBlockersWithinScope": [],
+  "wholePageParityAccepted": false,
+  "activeOverlayInteractionAcceptedByThisReview": false,
+  "correctAnswerOrSelectionPublished": false,
+  "deviceOrNetworkOperationsPerformed": false,
+  "createdAt": "2026-11-06T02:53:31.517922+00:00",
+  "webByteEqualToPreviouslyViewedOriginals": [
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.png",
+      "sha256": "6d20fd3bbfa26c4616d254434abcd26824756a33f1c823fbe47b084126ea3bfe",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-tail.png",
+      "sha256": "6d20fd3bbfa26c4616d254434abcd26824756a33f1c823fbe47b084126ea3bfe",
+      "theme": "light",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-completed-20261105-01/light-completed-answer.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.png",
+      "sha256": "59bf5743be2fb6d29a7fa690776d6329145fa51cb032079526c69311e2ae760a",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.png"
+    },
+    {
+      "file": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-tail.png",
+      "sha256": "59bf5743be2fb6d29a7fa690776d6329145fa51cb032079526c69311e2ae760a",
+      "theme": "dark",
+      "viewedOriginalThisPass": false,
+      "byteEqualToActuallyViewedOriginal": "artifacts/private/ui-reference/choice-web-completed-20261105-01/dark-completed-answer.png"
+    }
+  ]
+}

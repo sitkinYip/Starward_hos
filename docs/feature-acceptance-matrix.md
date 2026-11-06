@@ -346,3 +346,41 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 | 待验/后续 | 本点未捕获提交中状态；冷却、永久锁定、缩略图失败/重试/取消无本点真机结论。查看器失败/重试/加载中取消、填空输入、提示/反馈、答题顶栏显隐、媒体播放和折叠屏不在本点通过范围。 |
 
 构建与报告归属详见[选择选项小点](ui-choice-options-2026-11-05.md)。固定预览恢复只做直接登录和读列表，单列[恢复回执](../artifacts/validation/ui-choice-options-20261105/fixed-preview-restored-01.json)，不计隔离答题写入验收。
+
+### 2026-11-06 填空输入实施前
+
+冻结 Web `4b7d1a0…` 的 `QuestAnswerForm` 在手机上用单行、全宽、透明方角的 line 输入框。用同一真实填空题对照，预检 Web 内容宽314px、输入高58px、左右内距2px、字号18px、单行居中、仅1px底线，题面到表单24px。实触聚焦后底线变为主题色且上移1px，输入外圈出现2px主题色轮廓，外偏移3px。完成态禁用并保留服务端答案。提交区与反馈另按对应切片核对。
+
+| 状态 | 本片目标与验证 |
+| --- | --- |
+| 初始与编辑 | 官方 `TextInput` 保留无障碍“答案”名称和服务端占位文字。日夜核全宽、字级、透明背景、底线与输入焦点，保留系统键盘和文字编辑。 |
+| 键盘与草稿 | 实际 IME 出现时，可在应用真实可用区到达输入与完整提交按钮。系统返回收键盘，保留原输入节点和草稿。空值与纯空格给现有反馈，真实台账零 POST。 |
+| 提交与完成 | 专用隔离玩家只入场及提交一次，核真实服务端进度和经验。完成态仍用同一个字段展示权威答案，点击不唤起键盘。历史回访只读回源。提交中只按实际可观测证据记录。 |
+| 边界 | 输入复用既有 ViewModel 的编辑门控、草稿与提交命令。Native 在处罚状态仍沿用既有门控。提示、提交反馈、顶栏和图片故障继续独立验收。 |
+
+本表为目标。构建、直板机、隔离请求和同数据原图分别回填。
+
+### 填空完成态可读性修正目标
+
+首包真实交互通过。同数据完成原图显示官方 `TextInput` 已降低禁用文字的亮度，再给整个字段加0.5透明度使答案过淡。仅移除字段整体透明度，保留原生禁用文字和真实禁用属性。底线单独使用半透明主题色。用同一已完成场次重新采日夜原图，核对原答案、点触、原凭证及50 EXP，保持零新增入场和答题。
+
+### 填空输入实际验收
+
+原生 V2 `StarwardAnswerInput` 以单行 `TextInput` 复用现有草稿、服务端答案和提交门控。常态为透明方角和1vp主题底线，18fp正文和占位，聚焦用2vp官方描边及1vp位移，尊重减少动画。触控焦点时原生描边贴边，Web 外偏3px。原生普通态输入到提交按钮的间距为16vp，Web 为18px，按钮形态与反馈区留在下一片。原生的现有冷却及锁定编辑门控沿用。
+
+| 范围 | 实际结果 |
+| --- | --- |
+| 构建、质量和运行时 | 首包 `2a036c32…` 官方 `scripts/hm.sh run` 构建、签名、安装、启动均完成。[运行时](../artifacts/validation/ui-gameplay-text-20261106/runtime-01.json)的5项检查通过，`scripts/hm.sh lint` [归一化0项](../artifacts/validation/ui-gameplay-text-20261106/lint-01/lint.json)。定向 `scripts/hm.sh test GameplayAnswerViewModel` [12项全过](../artifacts/validation/ui-gameplay-text-20261106/answer-view-model-01/local-test-summary.json)。 |
+| 输入、键盘和草稿 | [首包真机](../artifacts/validation/ui-gameplay-text-20261106/native-01.json)共7项，5项清理均通过。376vp、字号1，输入实际1100×204px（约314.29×58.29vp）。两主题都实测了系统IME与应用实际缩小可用区，输入与完整提交按钮可达。Back收键盘，保留同一输入节点和草稿并实际失焦。空答案与纯空格均不发答题POST。 |
+| 真实结算与历史重进 | 同一专用隔离玩家在原生入场一次并正确答题一次，真实后端各记录一个入场凭证、答案、答题凭证、完成进度和经验流水，结算50 EXP。完成后同一输入实例展示服务端答案并禁用，实际点触不开键盘。历史回访只发两次详情GET 200，保持原凭证和经验。提交中的瞬态未采到。 |
+| 同数据原图 | [Web八态](../artifacts/validation/ui-gameplay-text-20261106/web-reference-01.json)为相同活跃/完成DTO及同草稿的深浅本地重放，真实后端和外部请求放行0。独立[首轮原图复核](../artifacts/validation/ui-gameplay-text-20261106/delegated-original-visual-review-01.json)核8张Web及10张Native，确认常态与焦点信息和布局，另定位完成文字被叠加压暗。Web焦点样张不模拟原生键盘。 |
+
+本片复用一次性隔离后端，不将真实题库的答案、凭据、受保护地址或设备标识写入公开报告。采集器入口为 `scripts/device-gameplay-text-field.py run` 和 `scripts/capture-web-text-answer.py run`。每轮使用新报告目录，并绑定对应 HAP、运行时、源码、同题DTO和私有原图。固定账号用于预览。
+
+完成态修正包 `67cf8e74…` 去除整字段透明度，底线使用单独的日夜半透明颜色资源，保留原生禁用字色及编辑状态。首个修正候选的内部方法与通用 `borderColor` 同名，ArkTS 编译拒绝，改为输入专用方法与主题资源后才完成官方构建、签名、安装和启动。[修正包运行时](../artifacts/validation/ui-gameplay-text-20261106/runtime-readonly-01.json)五项通过，[lint](../artifacts/validation/ui-gameplay-text-20261106/lint-readonly-01/lint.json)归一化0项。
+
+[完成态定向复验](../artifacts/validation/ui-gameplay-text-20261106/native-readonly-01.json)由 `scripts/device-gameplay-text-readonly.py run` 执行，2项检查及5项清理通过。同一已结算玩家从历史重进只发两次详情GET 200，点触禁用输入无焦点、无IME，台账零新增入场或答题，原答题凭证和50 EXP保持。[修正原图复核](../artifacts/validation/ui-gameplay-text-20261106/delegated-readonly-visual-review-01.json)逐张核两主题新原图及同数据Web，整句可读，底线仍弱化。字形对比样本由日间1.48升至2.32、夜间1.77升至3.44，原生禁用字色仍比Web偏淡。正常输入和键盘由首包结果覆盖，修正包验收范围为完成态。
+
+固定预览已换装修正版并直接登录停在首页，沿用原账号、证书及数据库。预览包与修正隔离包的应用代码成员相同，环境与验收账号分开，见[固定预览交还](../artifacts/validation/ui-gameplay-text-20261106/fixed-preview-restored-text-20261106-02.json)。
+
+后续为提示、判题反馈与重连。填空提交瞬态和其他输入规格继续保留各自验收边界。

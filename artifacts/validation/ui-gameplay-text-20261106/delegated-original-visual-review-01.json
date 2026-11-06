@@ -1,0 +1,257 @@
+{
+  "status": "reviewed_with_completed_answer_contrast_gap",
+  "scope": "Visual comparison limited to the single-line answer field on the same true active/completed text question.",
+  "nativeReport": {
+    "file": "artifacts/validation/ui-gameplay-text-20261106/native-01.json",
+    "sha256": "61a83d46f73776615f956490522cd0ebb074b0893cca455bac16161c20d5a1c9"
+  },
+  "webReport": {
+    "file": "artifacts/validation/ui-gameplay-text-20261106/web-reference-01.json",
+    "sha256": "209cd444f8fb8bb5fb2abb9f75bf51f32e60bfa80f588aef444e5019f2a8089a"
+  },
+  "viewedOriginals": {
+    "web": 8,
+    "native": 10
+  },
+  "pairs": [
+    {
+      "theme": "light",
+      "state": "idle",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/light-idle.png",
+        "sha256": "8c52f2f62694d64ef311bccee5ecb19ef21b619c70da1c310dd321d629f20441"
+      },
+      "native": [
+        {
+          "position": "idle-light",
+          "focused": false,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/idle-light.png",
+            "sha256": "5b4b02b240280f258b0a77385a6e5b00c90dfda27ca9f8b90c37b9329a98e858"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "state": "focused-draft",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/light-focused-draft.png",
+        "sha256": "54e29651bd1822fbf6c7c0ac1c64aa8b0ba9eed47192c63410aca9a909cc7c0d"
+      },
+      "native": [
+        {
+          "position": "draft-focused-light",
+          "focused": true,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-focused-light.png",
+            "sha256": "1518359d93ccbb11abc2d60c0e5bd9d34bde65530712da399e3c2be41c8449e4"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "state": "blurred-draft",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/light-blurred-draft.png",
+        "sha256": "ec1baa0833fec15072fb6cb31275aac51964c63e5113f447592cdea32a3f7eb4"
+      },
+      "native": [
+        {
+          "position": "draft-after-ime-light",
+          "focused": false,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-after-ime-light.png",
+            "sha256": "0a51895c0ed5943e7244edbdc73c87125fbab4332a524d9884191bc9f77b0d78"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "state": "completed-disabled",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/light-completed-disabled.png",
+        "sha256": "c800244934f3cf4a1f3766c84d7489f08f35f2699c156898f22766986216012e"
+      },
+      "native": [
+        {
+          "position": "completed-light",
+          "focused": false,
+          "enabled": false,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-light.png",
+            "sha256": "4434b8047c1d9fa80f2731a373f68b710e14a338ef150a8e9f5ca00e7a306d4e"
+          }
+        },
+        {
+          "position": "history-readonly-light",
+          "focused": false,
+          "enabled": false,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/history-readonly-light.png",
+            "sha256": "b55171d0d5c6e6156a943212dfda6f6a91a68284c3730a3793cc7d30ab250661"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "state": "idle",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/dark-idle.png",
+        "sha256": "16ef32bab5b285d564941b84763408b13e8dc1a2adca61479624c173843b8f8c"
+      },
+      "native": [
+        {
+          "position": "idle-dark",
+          "focused": false,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/idle-dark.png",
+            "sha256": "b391027746401a566968950da7d360983f46ccda4791f92592e7c88d5139a39e"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "state": "focused-draft",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/dark-focused-draft.png",
+        "sha256": "1131aa0a18466f86fb559f1799c1deab404cbe9def932d032141d4ece869c5b3"
+      },
+      "native": [
+        {
+          "position": "draft-focused-dark",
+          "focused": true,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-focused-dark.png",
+            "sha256": "1e6331a333f6a5ae50bc32d9c14532fa212c430373388b63388d47e3412fc3ff"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "state": "blurred-draft",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/dark-blurred-draft.png",
+        "sha256": "c29d8c4452345e6119245039b7f3612840f5183d8140ad78e9baaddbf4bc7f5c"
+      },
+      "native": [
+        {
+          "position": "draft-after-ime-dark",
+          "focused": false,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-after-ime-dark.png",
+            "sha256": "6ec98fbc725ec671d26bba088e2d46e25fcd423ead7745b8d54e01c6c2d77ed7"
+          }
+        },
+        {
+          "position": "draft-blurred-dark",
+          "focused": false,
+          "enabled": true,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/draft-blurred-dark.png",
+            "sha256": "24bdc0cea961abd7a166dcd34a3df94c34cdb4c415a1c3d3bdb6a85401991611"
+          }
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "state": "completed-disabled",
+      "web": {
+        "file": "artifacts/private/ui-reference/gameplay-text-web-20261106-01/dark-completed-disabled.png",
+        "sha256": "4704559f1fe5ae4d17fa2ade79df22e3f9b5e7df5e34fc185f21e4f763815967"
+      },
+      "native": [
+        {
+          "position": "completed-dark",
+          "focused": false,
+          "enabled": false,
+          "original": {
+            "file": "artifacts/private/ui-reference/gameplay-text-native-20261106-01/completed-dark.png",
+            "sha256": "3129648ab81e04940a1eafe32291f19d81c86ca0dc91bd748d1b9567a68feec5"
+          }
+        }
+      ]
+    }
+  ],
+  "observations": [
+    "Idle and blurred draft retain a transparent background, one underline, visible same placeholder/draft and vertically centered 18-unit text at matching content width.",
+    "Web input box measures 314 by 58 CSS pixels. Native accessibility bounds measure 1099 by 204 physical pixels at density 3.5, approximately 314.286 by 58.286 vp.",
+    "System Back leaves both native draft examples unfocused. The native after-IME screenshots therefore pair with blurred Web draft, while real-IME focused screenshots pair for the answer control only.",
+    "Web focus uses an offset accent ring and a distinct underline. The native official outline meets the input edge, and the underline and outline join along the lower edge.",
+    "Native submit is a full-width rounded rectangle and the Web submit is a compact pill. Input-to-submit gaps measure 16 vp at native rest and 17.14 vp at focus, against 18 and 19 CSS pixels on Web. Hint and completion feedback differ separately.",
+    "Both completed states show the matching disabled authoritative answer and no submit. Native rendered text is visibly paler than Web in both themes, before any follow-up fix."
+  ],
+  "completedOriginalContrastSamples": {
+    "method": "Read-only original PNG samples within input bounds. Use strongest observed glyph RGB and median background RGB at right side. Ratios describe those pixels.",
+    "light": {
+      "native": {
+        "glyphRgb": [
+          202,
+          208,
+          206
+        ],
+        "backgroundRgb": [
+          247,
+          249,
+          248
+        ],
+        "sampleRatio": 1.48
+      },
+      "web": {
+        "glyphRgb": [
+          136,
+          149,
+          146
+        ],
+        "backgroundRgb": [
+          254,
+          255,
+          254
+        ],
+        "sampleRatio": 3.1
+      }
+    },
+    "dark": {
+      "native": {
+        "glyphRgb": [
+          65,
+          65,
+          59
+        ],
+        "backgroundRgb": [
+          21,
+          22,
+          18
+        ],
+        "sampleRatio": 1.77
+      },
+      "web": {
+        "glyphRgb": [
+          133,
+          132,
+          123
+        ],
+        "backgroundRgb": [
+          24,
+          25,
+          21
+        ],
+        "sampleRatio": 4.7
+      }
+    }
+  },
+  "wholePageParityAccepted": false,
+  "completedAnswerVisualAccepted": false
+}
