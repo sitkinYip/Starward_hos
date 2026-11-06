@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "immersionVersion": "edge-to-edge-v1",
+  "source": "Official hilog capture began before cold launch of the owned Ability",
+  "installedHapSha256": "18b8cb47302cb69b650d86df62fbb30c4abdac6e0bb627280a87f634e49b4068",
+  "checks": {
+    "actualWindowReported": true,
+    "actualImmersiveWindow": true,
+    "transparentSystemBars": true,
+    "requestedFontScaleReported": true,
+    "threeIndependentTlsCases": true
+  },
+  "systemBarThemeRecords": {
+    "1": {
+      "widthPx": 1316,
+      "heightPx": 2832,
+      "density": 3.5,
+      "topInsetPx": 136,
+      "bottomInsetPx": 98,
+      "widthVp": 376,
+      "contentHeightVp": 742.2857142857143,
+      "fontScale": 1,
+      "appColorMode": 1,
+      "leftInsetPx": 0,
+      "rightInsetPx": 0,
+      "cutoutTopPx": 83,
+      "cutoutBottomPx": 0,
+      "immersiveLayout": "enabled",
+      "systemBarPropertiesObserved": true,
+      "statusBarColor": "#00FFFFFF",
+      "navigationBarColor": "#00FFFFFF",
+      "statusBarContentColor": "#FF000000",
+      "navigationBarContentColor": "#FF000000"
+    }
+  },
+  "window": {
+    "widthPx": 1316,
+    "heightPx": 2832,
+    "density": 3.5,
+    "topInsetPx": 136,
+    "bottomInsetPx": 98,
+    "widthVp": 376,
+    "contentHeightVp": 742.2857142857143,
+    "fontScale": 1,
+    "appColorMode": 1,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "cutoutTopPx": 83,
+    "cutoutBottomPx": 0,
+    "immersiveLayout": "enabled",
+    "systemBarPropertiesObserved": true,
+    "statusBarColor": "#00FFFFFF",
+    "navigationBarColor": "#00FFFFFF",
+    "statusBarContentColor": "#FF000000",
+    "navigationBarContentColor": "#FF000000"
+  },
+  "material": {
+    "supported": true,
+    "state": 1,
+    "type": 2,
+    "level": 0
+  },
+  "tls": {
+    "customCaAccepted": true,
+    "untrustedCaRejected": true,
+    "untrustedFailureCode": "TLS_ERROR",
+    "wrongHostnameRejected": true,
+    "wrongHostnameFailureCode": "TLS_ERROR"
+  },
+  "records": [
+    {
+      "widthPx": 1316,
+      "heightPx": 2832,
+      "density": 3.5,
+      "topInsetPx": 136,
+      "bottomInsetPx": 98,
+      "widthVp": 376,
+      "contentHeightVp": 742.2857142857143,
+      "fontScale": 1,
+      "appColorMode": 1,
+      "leftInsetPx": 0,
+      "rightInsetPx": 0,
+      "cutoutTopPx": 83,
+      "cutoutBottomPx": 0,
+      "immersiveLayout": "enabled",
+      "systemBarPropertiesObserved": true,
+      "statusBarColor": "#00FFFFFF",
+      "navigationBarColor": "#00FFFFFF",
+      "statusBarContentColor": "#FF000000",
+      "navigationBarContentColor": "#FF000000"
+    },
+    {
+      "supported": true,
+      "state": 1,
+      "type": 2,
+      "level": 0
+    },
+    {
+      "customCaAccepted": true,
+      "untrustedCaRejected": true,
+      "untrustedFailureCode": "TLS_ERROR",
+      "wrongHostnameRejected": true,
+      "wrongHostnameFailureCode": "TLS_ERROR"
+    }
+  ]
+}

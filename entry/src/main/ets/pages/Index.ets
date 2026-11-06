@@ -55,6 +55,7 @@ struct Index {
   @Local authAtlasHeight: number = 204.6;
   @Local lobbyAtlasWidth: number = 350;
   @Local detailAtlasWidth: number = 366;
+  @Local private gameplayTitleHidden: boolean = false;
   private motion: StarwardMotion = new StarwardMotion();
   private avatarEditor: AvatarEditor = new AvatarEditor();
   private avatarPickRevision: number = 0;
@@ -238,6 +239,7 @@ struct Index {
 
   private leaveGameplay(popPath: boolean = true): void {
     const gameplayVisible: boolean = this.vm.play.visible;
+    this.gameplayTitleHidden = false;
     this.vm.play.leave();
     if (popPath) {
       this.paths.pop();
@@ -879,7 +881,9 @@ struct Index {
         if (this.vm.play.visible) {
           GameplayPage({ play: this.vm.play, autoNextDelay: this.motion.duration(1500),
             displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
+            titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
             reducedMotion: this.motion.reduced,
+            titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
             leave: () => this.leaveGameplay() })
         } else {
         Scroll() {
@@ -911,8 +915,10 @@ struct Index {
             .padding({ left: 12, right: 12, top: 16, bottom: 24 })
         }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
         }
-      }.title({ builder: this.detailTitle, height: this.detailTitleHeight() + 24 + this.safeTop() }, StarwardMaterial.titleOptions())
-        .hideTitleBar(false).hideBackButton(true).backgroundColor($r('app.color.canvas'))
+      }.title({ builder: this.detailTitle, height: this.detailTitleHeight() + 24 + this.safeTop() },
+        StarwardMaterial.titleOptions(this.vm.play.visible ? BarStyle.STACK : BarStyle.STANDARD))
+        .hideTitleBar(this.vm.play.visible && this.gameplayTitleHidden, !this.motion.reduced)
+        .hideBackButton(true).backgroundColor($r('app.color.canvas'))
     }
   }
 

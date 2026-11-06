@@ -1,0 +1,72 @@
+{
+  "status": "fixed_preview_restored_and_logged_in",
+  "isolatedHapSha256": "18b8cb47302cb69b650d86df62fbb30c4abdac6e0bb627280a87f634e49b4068",
+  "boundNativeReports": [
+    {
+      "scope": "question-navigation-read-only-recheck",
+      "status": "captured_read_only_navigation_recheck",
+      "captureComplete": true,
+      "report": "artifacts/validation/ui-gameplay-question-nav-20261106/native-navigation-recheck-01.json",
+      "sha256": "7ce74a3f44dec21ccf1653ea45e03ca1b9d11c07ec5cd7c3d73b09cbc3193021"
+    },
+    {
+      "scope": "gameplay-header",
+      "status": "captured_native_gameplay_header",
+      "captureComplete": true,
+      "report": "artifacts/validation/ui-gameplay-question-nav-20261106/native-header-07.json",
+      "sha256": "fe5fc69bfe10c0a2dc0de70f75842971a298da54b60c6e2ac311235c62e6395c"
+    }
+  ],
+  "isolatedRuntimeSha256": "f826bac73f023a63a6b291351912942859b529118d0cbb16591727bfe28a45fa",
+  "activeEpochLaunchReceiptSha256": "8d9a316592f841c8e020b764d978d9abf64293ae22e6c70294027585b11015de",
+  "privateArchive": "artifacts/private/ui-reference/gameplay-question-nav-20261106/handoff/nav-20261106-02",
+  "testUsbDetached": true,
+  "previewUsbAttached": true,
+  "previewHapSha256": "55efd18161c51fb755acdaa22db526b84ecdbf87438b4e8bd63f73452bd31404",
+  "steps": [
+    {
+      "step": "verify-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "detach-exact-disposable-usb",
+      "exitCode": 0
+    },
+    {
+      "step": "attach-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "clear-owned-test-package-config",
+      "exitCode": 0
+    },
+    {
+      "step": "configure-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "official-run",
+      "exitCode": 0
+    },
+    {
+      "step": "runtime",
+      "exitCode": 0
+    },
+    {
+      "step": "direct-login-list",
+      "exitCode": 0
+    }
+  ],
+  "differentZipMembers": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration-ca.pem",
+    "resources/rawfile/integration.json"
+  ],
+  "applicationCodeMembersIdentical": true,
+  "fixedLoginCaAndManifestUnchanged": true,
+  "persistentDatabaseInodePreserved": true,
+  "existingPreviewRunnerPreserved": true,
+  "disposableDatabaseAndTlsKeptWithUsbDetached": true,
+  "runtime": "artifacts/validation/profile/runtime-nav-20261106-02-preview-restored.json",
+  "directLoginListReport": "artifacts/validation/gameplay-answer-20261104/preview-nav-20261106-02-restored.json"
+}

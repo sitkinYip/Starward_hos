@@ -1,0 +1,935 @@
+{
+  "status": "captured_web_gameplay_navigation_reference",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "helperSha256": "6bb9ad3daa6ff7a33cc5da3ddeb8f0a51e17f731ce2ef5dbb4a18bb20df3aa2a",
+  "frameHelperSha256": "12f9b6563ebb95cc141043e966c009375873de0b8de764df9a0308ecf4ae520f",
+  "boundaryHelperSha256": "4f293d01bf98e7e4a355493d8572a1a1e1b24566571a872bab7baf0860b0da8f",
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "snapshotSha256": [
+    "f275bdd740828e23f9b0f0b8f2646f39465b2a04670d919421751da9f3610a7f",
+    "9006404b911c6a47fd8df41eefbb7ece9dae2c16cb754054cfbf1ee5ee8ab140"
+  ],
+  "imagesManifestSha256": null,
+  "sources": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/quest/QuestCard.tsx": "02d106ad6b419225c212a0ce24ce57d2096fb559fa2db508be3dee9649d228d3",
+    "src/features/quest/QuestAnswerForm.tsx": "6b1210fdb87a8103281dfa9fec85fabda0634e9610ffcb45303ad2d0f55cf0e5",
+    "src/features/media/QuestContent.tsx": "6afaa260366137195fde9b7cba6c08b8222cb1a4f9877082e678d4c48ba17198",
+    "src/features/media/ChoiceOptions.tsx": "c3ae135e8bf9e6f596efb62b64d037555cd34a34f4784ee1faca573e8b87de95",
+    "src/features/content/RichContent.tsx": "3eb037ff18774f186fe77286f60df8c624c905edcc57466ab65dade8f46de8d8",
+    "src/domain/content/parser.ts": "4908c745e0c8202a6944f851b1a8f230289926f0c0eeaf955e09eb44d67b9f94",
+    "src/styles/foundation/base.css": "3ca98dedb2518df3086e60ec6be9f9bacc04d41bef76e61e28f33f7d3cdd7b84",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+    "src/styles/layout/shell.css": "2dd77a6370f4b77641251c15e830cb2f635d4d637b220d9f786b026ec2c674a7",
+    "src/styles/features/quest.css": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd",
+    "src/styles/features/question-images.css": "e50b3dabb7413ad14906f445919b8c9a43def546874e35be1affff773bcaf996",
+    "src/styles/effects/quest-lighting.css": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9",
+    "src/styles/effects/answer-feedback.css": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "src/styles/components/controls-and-overlays.css": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+    "src/features/quest/useQuestNavigationPosition.ts": "cade645b1b9befdf044ee2b3acea4d4040941ee7af2790bd39249d8f99c183c2"
+  },
+  "scope": "Mobile question navigation, no business or Native header acceptance",
+  "backendRequestsContinued": 0,
+  "externalRequestsContinued": 0,
+  "states": [
+    {
+      "snapshotOrdinal": 1,
+      "theme": "light",
+      "position": "initial",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(247, 249, 248)",
+          "color": "rgb(22, 46, 40)",
+          "border": "1px solid rgb(24, 123, 105)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": true,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(83, 107, 99)",
+          "border": "1px solid rgb(220, 229, 224)",
+          "opacity": "0.35",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 312.734375,
+        "focused": false
+      },
+      "landingBeforeRevealingNavigation": null,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-light-initial.png",
+        "sha256": "ac201917dc551ec9e061baa386bc7f96f9aedbd9a137d76506f4ca76c16b8b3e"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-light-initial.json",
+        "sha256": "1cf283db3b899561b96c07c0cee9d7c8165b3aecb9b521f6c43302155a026f13"
+      }
+    },
+    {
+      "snapshotOrdinal": 1,
+      "theme": "light",
+      "position": "future-touch",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(247, 249, 248)",
+          "color": "rgb(22, 46, 40)",
+          "border": "1px solid rgb(24, 123, 105)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": true,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(83, 107, 99)",
+          "border": "1px solid rgb(220, 229, 224)",
+          "opacity": "0.35",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 312.734375,
+        "focused": false
+      },
+      "landingBeforeRevealingNavigation": null,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-light-future-touch.png",
+        "sha256": "ac201917dc551ec9e061baa386bc7f96f9aedbd9a137d76506f4ca76c16b8b3e"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-light-future-touch.json",
+        "sha256": "1cf283db3b899561b96c07c0cee9d7c8165b3aecb9b521f6c43302155a026f13"
+      }
+    },
+    {
+      "snapshotOrdinal": 1,
+      "theme": "dark",
+      "position": "initial",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(21, 22, 18)",
+          "color": "rgb(240, 236, 223)",
+          "border": "1px solid rgb(212, 188, 125)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": true,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(170, 169, 159)",
+          "border": "1px solid rgb(48, 50, 44)",
+          "opacity": "0.35",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 312.734375,
+        "focused": false
+      },
+      "landingBeforeRevealingNavigation": null,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-dark-initial.png",
+        "sha256": "c565c182208b88df2677c7051f2b8af6e292115bf364c612216a7a4ab6a37371"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-dark-initial.json",
+        "sha256": "3d9bc4b792a574b94c62a03339cf0cbfab2d9ce0a8ff3be58e56ad85b8f95437"
+      }
+    },
+    {
+      "snapshotOrdinal": 1,
+      "theme": "dark",
+      "position": "future-touch",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(21, 22, 18)",
+          "color": "rgb(240, 236, 223)",
+          "border": "1px solid rgb(212, 188, 125)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": true,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(170, 169, 159)",
+          "border": "1px solid rgb(48, 50, 44)",
+          "opacity": "0.35",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 312.734375,
+        "focused": false
+      },
+      "landingBeforeRevealingNavigation": null,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-dark-future-touch.png",
+        "sha256": "c565c182208b88df2677c7051f2b8af6e292115bf364c612216a7a4ab6a37371"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-1-dark-future-touch.json",
+        "sha256": "3d9bc4b792a574b94c62a03339cf0cbfab2d9ce0a8ff3be58e56ad85b8f95437"
+      }
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "light",
+      "position": "initial",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(83, 107, 99)",
+          "border": "1px solid rgb(220, 229, 224)",
+          "opacity": "1",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(247, 249, 248)",
+          "color": "rgb(22, 46, 40)",
+          "border": "1px solid rgb(24, 123, 105)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 384.734375,
+        "focused": false
+      },
+      "landingBeforeRevealingNavigation": null,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-light-initial.png",
+        "sha256": "5cce47e9a9fc4f67570793a474a9f84531af86a01e3b20e19da8ed460af742cb"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-light-initial.json",
+        "sha256": "bdc76a2164bee3714fc4d88408df64da9e2ac3b10aacfe52ac5b2cd2e5e01781"
+      }
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "light",
+      "position": "other-readable",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(247, 249, 248)",
+          "color": "rgb(22, 46, 40)",
+          "border": "1px solid rgb(24, 123, 105)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(83, 107, 99)",
+          "border": "1px solid rgb(220, 229, 224)",
+          "opacity": "1",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 312.734375,
+        "focused": true
+      },
+      "landingBeforeRevealingNavigation": {
+        "card": {
+          "x": 16.399993896484375,
+          "y": 228.4873046875,
+          "width": 343.20001220703125,
+          "height": 304.916015625,
+          "focused": true
+        },
+        "scrollY": 0,
+        "documentHeight": 742,
+        "railScrollLeft": 0,
+        "expectedCenteredScrollLeft": 0
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-light-other-readable.png",
+        "sha256": "538d06279bd0b3779edb75e001f6e334d65d2a4e65c6de31f1e34f51d64f79cf"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-light-other-readable.json",
+        "sha256": "0f508b6f87f7fd8a35c2c63ee0e805776210edf95c18a3643881f1d78970c0c3"
+      }
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "light",
+      "position": "current-restored",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(83, 107, 99)",
+          "border": "1px solid rgb(220, 229, 224)",
+          "opacity": "1",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(247, 249, 248)",
+          "color": "rgb(22, 46, 40)",
+          "border": "1px solid rgb(24, 123, 105)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 384.734375,
+        "focused": true
+      },
+      "landingBeforeRevealingNavigation": {
+        "card": {
+          "x": 16.399993896484375,
+          "y": 229.38729858398438,
+          "width": 343.20001220703125,
+          "height": 375.1159973144531,
+          "focused": true
+        },
+        "scrollY": 0,
+        "documentHeight": 742,
+        "railScrollLeft": 0,
+        "expectedCenteredScrollLeft": 0
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-light-current-restored.png",
+        "sha256": "57eb18ce45dc95f31fde33ac8145f3971225d2bd76b1465e817a113af69cda06"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-light-current-restored.json",
+        "sha256": "24131a06886a286532fe8856f2deb9c64384d785aa7b7907297c1d9b99818d75"
+      }
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "dark",
+      "position": "initial",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(170, 169, 159)",
+          "border": "1px solid rgb(48, 50, 44)",
+          "opacity": "1",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(21, 22, 18)",
+          "color": "rgb(240, 236, 223)",
+          "border": "1px solid rgb(212, 188, 125)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 384.734375,
+        "focused": false
+      },
+      "landingBeforeRevealingNavigation": null,
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-dark-initial.png",
+        "sha256": "4af6177720332e82d7d1b774664ddea0d9e3d36026e2bf752f1e9d616ea99859"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-dark-initial.json",
+        "sha256": "37c543281650cc0a4a5331d21dd565da0f5714723a6a629adb43d4cc6e2c09e1"
+      }
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "dark",
+      "position": "other-readable",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(21, 22, 18)",
+          "color": "rgb(240, 236, 223)",
+          "border": "1px solid rgb(212, 188, 125)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(170, 169, 159)",
+          "border": "1px solid rgb(48, 50, 44)",
+          "opacity": "1",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 312.734375,
+        "focused": true
+      },
+      "landingBeforeRevealingNavigation": {
+        "card": {
+          "x": 16.399993896484375,
+          "y": 228.4873046875,
+          "width": 343.20001220703125,
+          "height": 304.916015625,
+          "focused": true
+        },
+        "scrollY": 0,
+        "documentHeight": 742,
+        "railScrollLeft": 0,
+        "expectedCenteredScrollLeft": 0
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-dark-other-readable.png",
+        "sha256": "e7ce80189c95c6f91b152ded18d56dc18c5c008a115f652eafea4445d8f378cb"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-dark-other-readable.json",
+        "sha256": "5ad18f2cbeec824e3e2bf567110779d939f18d19bed5728abffb8ce6cbd7be1f"
+      }
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "dark",
+      "position": "current-restored",
+      "navigation": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 352,
+        "height": 65,
+        "clientWidth": 352,
+        "scrollWidth": 352,
+        "scrollLeft": 0,
+        "gap": "6px",
+        "bottomPadding": "2px",
+        "snapType": "x",
+        "scrollbarWidth": "none"
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 109.578125,
+          "width": 94,
+          "height": 63,
+          "current": null,
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(170, 169, 159)",
+          "border": "1px solid rgb(48, 50, 44)",
+          "opacity": "1",
+          "translate": "none",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        },
+        {
+          "x": 112,
+          "y": 107.578125,
+          "width": 94,
+          "height": 63,
+          "current": "step",
+          "disabled": false,
+          "align": "left",
+          "gap": "5px",
+          "padding": "11px 12px",
+          "radius": "0px",
+          "background": "rgb(21, 22, 18)",
+          "color": "rgb(240, 236, 223)",
+          "border": "1px solid rgb(212, 188, 125)",
+          "opacity": "1",
+          "translate": "matrix(1, 0, 0, 1, 0, -2)",
+          "numberSize": "18px",
+          "numberLineHeight": "18px",
+          "labelSize": "11px",
+          "snapAlign": "center",
+          "expectedCenteredScrollLeft": 0
+        }
+      ],
+      "card": {
+        "x": 12,
+        "y": 190.578125,
+        "width": 352,
+        "height": 384.734375,
+        "focused": true
+      },
+      "landingBeforeRevealingNavigation": {
+        "card": {
+          "x": 16.399993896484375,
+          "y": 229.38729858398438,
+          "width": 343.20001220703125,
+          "height": 375.1159973144531,
+          "focused": true
+        },
+        "scrollY": 0,
+        "documentHeight": 742,
+        "railScrollLeft": 0,
+        "expectedCenteredScrollLeft": 0
+      },
+      "screenshot": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-dark-current-restored.png",
+        "sha256": "4589ef5db34586ab581cd59af3625496f983bffb002ff6fde777763f2c824e98"
+      },
+      "privateMeasurements": {
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/case-2-dark-current-restored.json",
+        "sha256": "1c8e39bbd065beaa31ff2a674acf924f188d1dd0e84c4264082482e0478057c5"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "snapshotOrdinal": 1,
+      "theme": "light",
+      "futureTouchKeptCurrent": true,
+      "switchAndReturnFocusedCard": false,
+      "navCenteredOnSwitch": false
+    },
+    {
+      "snapshotOrdinal": 1,
+      "theme": "dark",
+      "futureTouchKeptCurrent": true,
+      "switchAndReturnFocusedCard": false,
+      "navCenteredOnSwitch": false
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "light",
+      "futureTouchKeptCurrent": false,
+      "switchAndReturnFocusedCard": true,
+      "navCenteredOnSwitch": true
+    },
+    {
+      "snapshotOrdinal": 2,
+      "theme": "dark",
+      "futureTouchKeptCurrent": false,
+      "switchAndReturnFocusedCard": true,
+      "navCenteredOnSwitch": true
+    }
+  ],
+  "createdAt": "2026-11-06T06:26:58.528259+00:00",
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/web-01/browser-private.json",
+    "sha256": "a7d1fc6514f9c7619ccf07b856b781a90d5e696f6701d49479d72a96d9666416"
+  },
+  "counts": {
+    "apis": 39,
+    "blocked": 18,
+    "imagesReplayed": 0,
+    "unexpectedApis": 0,
+    "routeFailures": 0,
+    "pageErrors": 0,
+    "schemaChecks": 12,
+    "servedSourceChecks": 84,
+    "fontsReplayed": 4
+  }
+}

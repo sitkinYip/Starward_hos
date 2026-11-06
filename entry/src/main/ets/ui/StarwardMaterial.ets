@@ -26,9 +26,9 @@ export class StarwardMaterial {
     }
   }
 
-  static titleOptions(): NavigationTitleOptions {
+  static titleOptions(barStyle: BarStyle = BarStyle.STANDARD): NavigationTitleOptions {
     return {
-      barStyle: BarStyle.STANDARD,
+      barStyle: barStyle,
       systemMaterial: StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN),
       scrollEffectOptions: { scrollEffectType: ScrollEffectType.COMMON_BLUR }
     };

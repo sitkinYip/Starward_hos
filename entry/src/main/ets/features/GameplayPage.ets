@@ -1,3 +1,5 @@
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { RectShape } from '@kit.ArkUI';
 import { GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
 import { GameplayViewModel } from './GameplayViewModel';
@@ -14,6 +16,7 @@ import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
 import { StarwardQuestHint } from '../ui/StarwardQuestHint';
 import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
 import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
+import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
 
 /** Native presentation only: the account-bound ViewModel owns drafts and writes. */
 @ComponentV2
@@ -22,13 +25,21 @@ export struct GameplayPage {
   @Param autoNextDelay: number = 0;
   @Param displayFont: string = 'serif';
   @Param bottomClearance: number = 24;
+  @Param titleBottom: number = 0;
+  @Param statusInset: number = 0;
   @Param reducedMotion: boolean = true;
   @Event leave: () => void = () => {};
+  @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
   @Local seenCompletionRevision: number = 0;
   @Local private recoveryVisible: boolean = false;
   @Local private recoveryDismissed: boolean = false;
   @Local viewportWidth: number = 0;
+  @Local private viewportTop: number = 0;
+  @Local private viewportHeight: number = 0;
   @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState();
+  private readonly questionScroller: Scroller = new Scroller();
+  private cardContentTop: number = -1;
+  private titleHidden: boolean = false;
 
   aboutToAppear(): void {
     // A completed GET or remount is not a new successful answer.
@@ -36,10 +47,55 @@ export struct GameplayPage {
     this.recoveryChanged();
   }
 
-  aboutToDisappear(): void { this.viewer.close(this.viewer.sessionId, true); }
+  aboutToDisappear(): void {
+    this.viewer.close(this.viewer.sessionId, true);
+    this.titleVisibilityChanged(false);
+  }
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex')
-  imageOwnerChanged(): void { this.viewer.validateOwner(); }
+  imageOwnerChanged(): void {
+    this.viewer.validateOwner();
+    if (!this.play.currentLevel()?.question) {
+      this.cardContentTop = -1;
+      this.setTitleHidden(false, this.scrollOffset(), 0);
+    }
+  }
+
+  private scrollOffset(): number {
+    const offset: number = this.questionScroller.offset()?.yOffset ?? 0;
+    return Number.isFinite(offset) ? Math.max(0, offset) : 0;
+  }
+
+  private setTitleHidden(hidden: boolean, offset: number, threshold: number): void {
+    if (this.titleHidden === hidden) { return; }
+    this.titleHidden = hidden;
+    this.titleVisibilityChanged(hidden);
+    hilog.info(0x0000, 'StarwardQuestHeader', 'hidden=%{public}s offset=%{public}s threshold=%{public}s',
+      hidden.toString(), offset.toFixed(3), threshold.toFixed(3));
+  }
+
+  private syncTitle(): void {
+    const offset: number = this.scrollOffset();
+    const threshold: number = Math.max(0, this.cardContentTop - this.titleBottom);
+    if (offset <= 0.5) {
+      this.setTitleHidden(false, offset, threshold);
+    } else if (this.titleBottom > 0 && this.cardContentTop >= 0 && offset + 0.25 >= threshold) {
+      this.setTitleHidden(true, offset, threshold);
+    }
+  }
+
+  private measureCard(area: Area): void {
+    const top: number = Number(area.globalPosition.y);
+    if (!Number.isFinite(top) || Number(area.height) <= 0) { return; }
+    this.cardContentTop = top + this.scrollOffset();
+    this.syncTitle();
+  }
+
+  private foregroundClip(): RectShape | undefined {
+    if (this.viewportHeight <= 0) { return undefined; }
+    const top: number = Math.max(0, this.statusInset - this.viewportTop);
+    return new RectShape({ width: '100%', height: Math.max(0, this.viewportHeight - top) }).offset({ x: 0, y: top });
+  }
 
   @Monitor('viewer.visible')
   coverVisibilityChanged(): void {
@@ -151,12 +207,21 @@ export struct GameplayPage {
     return level !== null && level.question !== null ? [level.id] : [];
   }
 
-  private navigationLevelIds(): string[] {
-    return this.play.snapshot === null ? [] : this.play.snapshot.levels.map((level: GameplayLevel) => level.id);
+  private questionNavigationItems(): QuestionNavigationItem[] {
+    return (this.play.snapshot?.levels || []).map((level: GameplayLevel, index: number): QuestionNavigationItem => ({
+      id: level.id,
+      completed: level.completedAt.length > 0,
+      enabled: this.interactionReady() && this.play.canMoveTo(index),
+      locked: level.question === null
+    }));
   }
 
-  private navigationCompleted(index: number): boolean {
-    return (this.play.snapshot?.levels[index]?.completedAt || '').length > 0;
+  private selectQuestion(index: number): void {
+    if (!this.interactionReady() || !this.play.canMoveTo(index)) {
+      return;
+    }
+    StarwardKeyboard.dismiss(this.getUIContext());
+    this.play.moveTo(index);
   }
 
   private contentBlocks(): GameplayContentBlock[] {
@@ -239,30 +304,8 @@ export struct GameplayPage {
   // objects by value would freeze their first render across a settlement.
   @Builder
   questionNavigation() {
-    Scroll() {
-      Row({ space: 10 }) {
-        ForEach(this.navigationLevelIds(), (_levelId: string, index: number) => {
-          Button({ type: ButtonType.Normal }) {
-            Column({ space: 4 }) {
-              Text((index + 1).toString().padStart(2, '0')).fontFamily('monospace').fontSize(15)
-              Text(this.navigationCompleted(index) ? '已完成' : `第 ${index + 1} 题`).fontSize(11)
-            }.padding({ left: 16, right: 16, top: 10, bottom: 10 })
-          }.id(`gameplay-level-${index}`).constraintSize({ minHeight: 60, minWidth: 72 })
-            .borderRadius(12)
-            .fontColor(index === this.play.activeIndex ? $r('app.color.accent_text') : $r('app.color.muted'))
-            .backgroundColor(index === this.play.activeIndex ? $r('app.color.accent_faint') : $r('app.color.surface'))
-            .border({ width: 1,
-              color: index === this.play.activeIndex ? $r('app.color.accent_border') : $r('app.color.border') })
-            .enabled(this.interactionReady() && this.play.canMoveTo(index))
-            .accessibilityText(`第 ${index + 1} 题${this.navigationCompleted(index) ? '，已完成' : ''}${
-              index === this.play.activeIndex ? '，当前题目' : ''}`)
-            .onClick(() => {
-              StarwardKeyboard.dismiss(this.getUIContext());
-              this.play.moveTo(index);
-            })
-        }, (levelId: string) => levelId)
-      }
-    }.id('gameplay-level-navigation').width('100%').scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off)
+    StarwardQuestionNavigation({ items: this.questionNavigationItems(), activeIndex: this.play.activeIndex,
+      reducedMotion: this.reducedMotion, select: (index: number) => this.selectQuestion(index) })
   }
 
   @Builder
@@ -334,7 +377,7 @@ export struct GameplayPage {
 
   @Builder
   questionCard() {
-    StarwardQuestionFrame({ frameId: 'gameplay-question-card' }) {
+    StarwardQuestionFrame({ frameId: 'gameplay-question-card', measured: (area: Area) => this.measureCard(area) }) {
       Column() {
         Row() {
           Text(`第 ${this.play.currentLevel()?.position || 0} 题`).id('question-number')
@@ -379,7 +422,7 @@ export struct GameplayPage {
 
   @Builder
   gameplayScroll() {
-    Scroll() {
+    Scroll(this.questionScroller) {
       Column({ space: 16 }) {
         if (this.play.loading) {
           Text('正在展开你的旅程…').id('gameplay-loading').width('100%')
@@ -433,12 +476,22 @@ export struct GameplayPage {
           PrimaryAction({ label: '重新尝试', actionEnabled: this.interactionReady(), action: () => this.play.reload() })
         }
       }.width('100%').alignItems(HorizontalAlign.Start)
-        .padding({ left: 12, right: 12, top: 16, bottom: this.bottomClearance })
+        .padding({ left: 12, right: 12, top: 16 + Math.max(0, this.titleBottom - this.viewportTop),
+          bottom: this.bottomClearance })
     }.id('gameplay-page').width('100%').height('100%').align(Alignment.Top).scrollBar(BarState.Off)
+      .onDidScroll(() => this.syncTitle())
       .onAreaChange((_previous: Area, current: Area) => {
         const width: number = Number(current.width);
+        const top: number = Number(current.globalPosition.y);
+        const height: number = Number(current.height);
         if (Number.isFinite(width) && width > 0 && width !== this.viewportWidth) {
           this.viewportWidth = width;
+        }
+        if (Number.isFinite(top) && top >= 0 && top !== this.viewportTop) {
+          this.viewportTop = top;
+        }
+        if (Number.isFinite(height) && height > 0 && height !== this.viewportHeight) {
+          this.viewportHeight = height;
         }
       })
   }
@@ -450,6 +503,8 @@ export struct GameplayPage {
         content: () => { this.gameplayScroll() } })
         .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
     }.width('100%').height('100%')
+      // Keep the immersive page background outside the scrolling foreground's clip.
+      .clipShape(this.foregroundClip())
       .bindContentCover(!!this.recoveryVisible, this.answerRecovery(), this.recoveryOptions())
   }
 }

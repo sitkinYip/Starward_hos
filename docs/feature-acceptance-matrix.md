@@ -418,3 +418,37 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [选择题冷却](../artifacts/validation/ui-gameplay-feedback-20261106/native-choice-cooldown-02.json)使用另一个专用玩家及相同修正包。首轮误用选中态会平移的卡片坐标作按钮对齐参照，止于提交前，原[未完成报告](../artifacts/validation/ui-gameplay-feedback-20261106/native-choice-cooldown-01.json)保留。改以稳定的选项组左缘核对后，沿用原入场凭证续验，4项检查通过。上游回复延迟期间实见可见 Radio 和46vp提交按钮禁用，唯一错答进入真实30秒冷却。倒计时在选项后、按钮前持续展示，期满恢复交互，服务端零经验和零新增入场。选择题短错答卡未采到，永久锁定和夜间非提示原生图仍按各自状态分开记录。
 
 [固定预览交还](../artifacts/validation/ui-gameplay-feedback-20261106/fixed-preview-restored-feedback-20261106-02.json)通过。精确清除一次性故障并确认无待发响应后切换回固定预览，修正版应用代码与隔离包相同。原预览账号、数据库及CA保留，实际直接登录读取列表并留在首页。
+
+### 2026-11-06 多题导航和答题顶栏实施前
+
+题号沿用冻结 Web `4b7d1a0…` 的横轨与双行状态。顶栏使用原生 Navigation 标题，按用户确认的滚动阈值独立控制。
+
+| 范围 | 验收目标 |
+| --- | --- |
+| 题号和几何 | 多题显示横向题号轨，普通题、已完成题、当前题及未解锁题分别核对。手机参考94×63、间距6、左对齐、方角，当前上移2和主题底线。题号无障碍状态与按钮实际禁用分别记录。 |
+| 切题和草稿 | 真机进入真实隔离多题场次，未来题按钮实际禁用，完成第一题后由服务端解锁下一题。按题号来回切换和点击当前题，核对正确题面、完成题只读和同题草稿。切题清理旧判题反馈，回看和切换均零业务写入。 |
+| 纵向阈值 | 首屏原生顶栏与题面留白保持。题卡上缘滑至顶栏下缘时收起，轻微反向和触底仍收起，真正回到纵向零位才恢复。系统状态栏始终保留，题面不因显隐跳位。使用实际视口、题号或题卡锚点与绝对滚动量验证。 |
+| 状态与环境 | 短题滚不到阈值时保持顶栏，横向题号和纵向滚动分开。回到页顶后原下拉刷新仍可用。用两题隔离场次与真实长题验证交互，滚动超出一屏的题号需要独立场次证据。 |
+
+展示与交互逐项记录。题内媒体、折叠和玩法后续模块继续独立验收。
+
+### 2026-11-06 多题导航与顶栏真机验收
+
+| 范围 | 实际结果 |
+| --- | --- |
+| 构建和窗口 | `17422c36…` 通过官方 `scripts/hm.sh run` 构建、签名、安装及启动。[实际窗口与 TLS](../artifacts/validation/ui-gameplay-question-nav-20261106/runtime-02.json) 5 项通过。[答题 ViewModel](../artifacts/validation/ui-gameplay-question-nav-20261106/answer-view-model-02/local-test-summary.json) 12 项通过，失败和忽略均为 0。[codelinter](../artifacts/validation/ui-gameplay-question-nav-20261106/lint-02/lint.json) 退出 0，报告零问题，`filesChecked=0`。 |
+| 两题导航 | [直板机隔离 HTTPS](../artifacts/validation/ui-gameplay-question-nav-20261106/native-navigation-01.json) 5 项及清理均通过。未来题实际禁用，第一题答对后解锁第二题；点击当前题保留未提交选择，来回切题、完成题权威答案只读、返回重进读到服务端当前题均实测。11 个快照均在官方布局树观察到当前标记。测试准备总计一次入场、一次答题和 50 EXP，导航无额外写入。 |
+| 同数据视觉 | [冻结 Web 回放](../artifacts/validation/ui-gameplay-question-nav-20261106/web-01.json) 使用真机报告中的两份 DTO 在 376px 内容窗口生成日夜共 10 张原图，实际后端和外部网络放行均为 0。原生与 Web 日间的当前、未解锁、完成和普通状态已看原图。真机题号 94×63.14vp、间距 6vp、当前上移 2vp，轨道高约多 2.14vp 以完整显示选中描边；未解锁采用原生 Button 的禁用样式。 |
+| 顶栏首轮 | [长选择题原生交互](../artifacts/validation/ui-gameplay-question-nav-20261106/native-header-03.json) 5 项通过。卡片离顶栏下缘 57px，实测 16.0vp 收起，轻微回滑和触底保持收起，滚回页顶恢复到原始布局。仅显式下拉刷新发出一次详情 GET，场次进度、写入凭证及经验保持。原图复核发现触底时题面画到状态栏区域，另开修正。 |
+
+题号点击沿用原生页面的纵向位置。冻结 Web 切题时会聚焦并滚到题卡。题卡横滑未接入，横轨超出单屏和夜间真机题号视觉未实测。本轮覆盖 376vp 直板机，折叠和窗口变化按后续设备阶段验证。
+
+状态栏修正版 `18b8cb47…` 通过官方构建、签名、安装及启动。[窗口与 TLS](../artifacts/validation/ui-gameplay-question-nav-20261106/runtime-06.json) 5 项通过。[答题 ViewModel](../artifacts/validation/ui-gameplay-question-nav-20261106/answer-view-model-06/local-test-summary.json) 12 项通过，失败和忽略均为 0。[codelinter](../artifacts/validation/ui-gameplay-question-nav-20261106/lint-06/lint.json) 退出 0，报告零问题，`filesChecked=0`。
+
+[同包顶栏复验](../artifacts/validation/ui-gameplay-question-nav-20261106/native-header-07.json) 5 项及清理均通过，保持视口和首屏位置，16.0vp 收起，回到页顶原像素位置恢复。普通滚动不回源，显式下拉仅发一次真实详情 GET。前序包只通过显隐交互，原图仍有状态栏遮挡。最终包按系统避让距离裁剪答题前景，页面背景继续绘制到屏幕边缘。[同一长题的触底原图复核](../artifacts/validation/ui-gameplay-question-nav-20261106/status-bar-original-review-01.json) 验证前景从 136px 避让边界开始绘制，系统图标清楚，没有独立占位块。裁剪使用官方 `clipShape` 与 `RectShape`。[HarmonyOS 裁剪属性](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-universal-attributes-sharp-clipping/)
+
+[同包导航只读复验](../artifacts/validation/ui-gameplay-question-nav-20261106/native-navigation-recheck-01.json) 使用原两题场次，实测进到服务端当前题、双向点击题号、完成答案只读和干净登出。原有入场、答题凭证及 50 EXP 保持，新增业务写入为零。日间最终原图中的当前与完成题状态重新与同数据 Web 对照。
+
+复现入口为 `scripts/device-gameplay-question-nav.py run`、`scripts/device-gameplay-header.py run --refresh` 和 `scripts/capture-web-gameplay-navigation.py run`。两种原生采集需显式提供隔离场次引用、设备引用、签名 HAP 和匹配的运行时报告。
+
+[固定预览交还](../artifacts/validation/ui-gameplay-question-nav-20261106/fixed-preview-restored-nav-20261106-02.json) 已通过，绑定修正版的顶栏与只读导航报告。预览包应用代码与隔离测试包一致，固定预览数据库、CA 和账号保留，手机已用固定账号直接登录并读到首页列表。

@@ -1,0 +1,761 @@
+{
+  "status": "captured_native_gameplay_header",
+  "stage": "explicit-top-pull-refresh",
+  "failure": null,
+  "scope": "Existing long choice case, exact no-write title behavior",
+  "checks": [
+    "The real Scroll moves while the title remains visible before the edge, then hides at the measured question-card threshold",
+    "The question visibly moves back toward the top while the title stays hidden",
+    "The title remains hidden at the physically observed bottom of the question",
+    "Only the actual Scroll origin restores the original native title and card geometry",
+    "Explicit pull at the restored top performs one real detail GET without changing progress"
+  ],
+  "checksPassed": 5,
+  "states": [
+    {
+      "state": "natural-top",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        551,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        631,
+        268,
+        682
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "natural-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-natural-top-7ac7bc3e995445e18f293ab267f4f782.json",
+        "remoteRemoved": true,
+        "sha256": "85c23c99ef192c2281f0401e9141be7f3b02ff6eec84078fb237760186f5027a"
+      }
+    },
+    {
+      "state": "threshold-1",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        551,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        631,
+        268,
+        682
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "threshold-1",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-1-a2be7e3394b6443584f1d5fadec51b21.json",
+        "remoteRemoved": true,
+        "sha256": "85c23c99ef192c2281f0401e9141be7f3b02ff6eec84078fb237760186f5027a"
+      },
+      "offsetPx": 0,
+      "unclippedCardTopPx": 551
+    },
+    {
+      "state": "threshold-2",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        540,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        620,
+        268,
+        671
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "threshold-2",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-2-ea44c19b2032485e919231071943092c.json",
+        "remoteRemoved": true,
+        "sha256": "377bd5c4b7221bc66333257abe42569cc0a19964f8d46f66ff497ea215af4cc1"
+      },
+      "offsetPx": 11,
+      "unclippedCardTopPx": 540
+    },
+    {
+      "state": "threshold-3",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        519,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        599,
+        268,
+        650
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "threshold-3",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-3-747158dec7bf40a688c38fb9def90b4e.json",
+        "remoteRemoved": true,
+        "sha256": "e902f25b5e8bc30a8b6448d1f563be66da90a8bb8ee9bb857cea59888691e13b"
+      },
+      "offsetPx": 32,
+      "unclippedCardTopPx": 519
+    },
+    {
+      "state": "threshold-4",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        497,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        577,
+        268,
+        628
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "threshold-4",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-4-8d4061ac7b95472099febee9a20f5c17.json",
+        "remoteRemoved": true,
+        "sha256": "f6d5d840285614a1d31ece4a14ac96a72e8d84306f310e090567eb6028de42a3"
+      },
+      "offsetPx": 54,
+      "unclippedCardTopPx": 497
+    },
+    {
+      "state": "threshold-5",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        468,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        548,
+        268,
+        599
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "threshold-5",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-5-35793f64e33d451392dee0a68922cb76.json",
+        "remoteRemoved": true,
+        "sha256": "178bb5f2cc5f95d8c69d8b6dcfb3b4a941302cdf68ace56033168756dd4098f4"
+      },
+      "offsetPx": 83,
+      "unclippedCardTopPx": 468
+    },
+    {
+      "state": "reverse-1",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        472,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        552,
+        268,
+        603
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "reverse-1",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-reverse-1-26eb25be972f4da986c6a51aa066b595.json",
+        "remoteRemoved": true,
+        "sha256": "092c156c7b0e05cb8808d6e4726353be2e3c0d6158c9005ab75f852cbdff24d2"
+      },
+      "offsetPx": 79,
+      "unclippedCardTopPx": 472
+    },
+    {
+      "state": "near-bottom-1",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        137,
+        1274,
+        2832
+      ],
+      "numberPx": null,
+      "tailPx": {
+        "gameplay-option-2": [
+          111,
+          2324,
+          1205,
+          2527
+        ]
+      },
+      "rawEvidence": {
+        "label": "near-bottom-1",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-1-9fa3f9c792984782ad30f9dcfa8784b4.json",
+        "remoteRemoved": true,
+        "sha256": "cfd9773033449d6b098483180eb4c75f079828914afbfbb08445c83d87a02209"
+      }
+    },
+    {
+      "state": "near-bottom-2",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        137,
+        1274,
+        2651
+      ],
+      "numberPx": null,
+      "tailPx": {
+        "gameplay-option-2": [
+          111,
+          1428,
+          1205,
+          1631
+        ],
+        "gameplay-submit": [
+          108,
+          2396,
+          472,
+          2557
+        ]
+      },
+      "rawEvidence": {
+        "label": "near-bottom-2",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-2-9ca87b49e4b84fad88b603b0ab9aa48a.json",
+        "remoteRemoved": true,
+        "sha256": "455850e836476fa05526b5588b03d840444c7f3d5b30f6df82b9669e1dececcb"
+      }
+    },
+    {
+      "state": "near-bottom-3",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        137,
+        1274,
+        2650
+      ],
+      "numberPx": null,
+      "tailPx": {
+        "gameplay-option-2": [
+          111,
+          1427,
+          1205,
+          1630
+        ],
+        "gameplay-submit": [
+          108,
+          2395,
+          472,
+          2556
+        ]
+      },
+      "rawEvidence": {
+        "label": "near-bottom-3",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-3-906e2948a2bb4318a7208bd093a00b58.json",
+        "remoteRemoved": true,
+        "sha256": "da170c03374aa3b2e35314835fe9e90b2cfb2c78d3a41e1d7b77bb16c65eaca5"
+      }
+    },
+    {
+      "state": "near-bottom-4",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        137,
+        1274,
+        2650
+      ],
+      "numberPx": null,
+      "tailPx": {
+        "gameplay-option-2": [
+          111,
+          1427,
+          1205,
+          1630
+        ],
+        "gameplay-submit": [
+          108,
+          2395,
+          472,
+          2556
+        ]
+      },
+      "rawEvidence": {
+        "label": "near-bottom-4",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-4-3c4c0621d2724e6e96a8a57afc97cb65.json",
+        "remoteRemoved": true,
+        "sha256": "da170c03374aa3b2e35314835fe9e90b2cfb2c78d3a41e1d7b77bb16c65eaca5"
+      }
+    },
+    {
+      "state": "return-top-1",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        137,
+        1274,
+        2832
+      ],
+      "numberPx": null,
+      "tailPx": {
+        "gameplay-option-2": [
+          111,
+          2320,
+          1205,
+          2523
+        ]
+      },
+      "rawEvidence": {
+        "label": "return-top-1",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-return-top-1-b63a5b68895a4eaca51c0b8928161718.json",
+        "remoteRemoved": true,
+        "sha256": "63574cb09ad09613fe62662f4ae64e91be1481b4c418c8d0bd9163fc673991f8"
+      }
+    },
+    {
+      "state": "return-top-2",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": false,
+      "titleBarPx": null,
+      "cardPx": [
+        42,
+        465,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        545,
+        268,
+        596
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "return-top-2",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-return-top-2-3c5bd116f2ef4653b1181de52d586a42.json",
+        "remoteRemoved": true,
+        "sha256": "51a08b5f44b4f646502d846233cc4cc5d6b7db32832a1ab5f11b8d89e64a60eb"
+      },
+      "offsetPx": 86,
+      "unclippedCardTopPx": 465
+    },
+    {
+      "state": "return-top-3",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        551,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        631,
+        268,
+        682
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "return-top-3",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-return-top-3-345b9d27fe26450a98440da57788719a.json",
+        "remoteRemoved": true,
+        "sha256": "73159c38ad00d80409373a717433bd54361491ffc895b0dd029ed28bf50296dd"
+      },
+      "offsetPx": 0,
+      "unclippedCardTopPx": 551
+    },
+    {
+      "state": "top-title-after-real-refresh",
+      "viewportPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "titleVisible": true,
+      "titleBarPx": [
+        0,
+        137,
+        1316,
+        494
+      ],
+      "cardPx": [
+        42,
+        551,
+        1274,
+        2832
+      ],
+      "numberPx": [
+        108,
+        631,
+        268,
+        682
+      ],
+      "tailPx": {},
+      "rawEvidence": {
+        "label": "top-title-after-real-refresh",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-top-title-after-real-refresh-cbcdbf05730c41babde6bed45e84dd2d.json",
+        "remoteRemoved": true,
+        "sha256": "73159c38ad00d80409373a717433bd54361491ffc895b0dd029ed28bf50296dd"
+      },
+      "offsetPx": 0,
+      "unclippedCardTopPx": 551
+    }
+  ],
+  "headerTransitions": [
+    {
+      "hidden": true,
+      "offsetVp": 16.0,
+      "thresholdVp": 15.971
+    },
+    {
+      "hidden": false,
+      "offsetVp": 0.217,
+      "thresholdVp": 15.971
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroForbiddenWrites": true,
+    "ordinaryScrollReadOnly": true
+  },
+  "hapSha256": "14b4743d75adb4beeccf0c68dcc0bf5b8dc519e43a0c81e92a332b7a965c2b5d",
+  "bindingSha256": {
+    "driver": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "caseReference": "bcf10ef95db38d130bcf890ae592689d45366c003e6b3a958a8dd75089dd0abe",
+    "runtime": "44b7b100628906051bfa4e08a8f872456d415e97a24ffde41aad60ed0f6fe420",
+    "hap": "14b4743d75adb4beeccf0c68dcc0bf5b8dc519e43a0c81e92a332b7a965c2b5d",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "uiContentSetup": "798eff0ce78621c41a4f8d0f45cfeaac45a72983b2c54bc00b96f529b65024e6",
+    "tlsRunner": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "entryGuard": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "answerUI": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "pngDecoder": "00a050cc5c00dbef0e24ff8091901e236cb4b3ebab6ede9e1863d84421c97e2e",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "gameplayPage": "e61360e0986d66789d6c95e1ae00b0be92f657e18d2c4a3a857dcec6851ed800",
+    "questionFrame": "27ce6daa483bdd2d45e0d3877afb004f17e2b254fa157fff2711670c24c073b9",
+    "headerDriver": "00cb4ae084fd180c9488e682de2206155d09c51e99386976da57f92ec97904af",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "priorChoiceReceipt": "8998eb3e07a989627fdbb05421856493a6a2c8071f4edc1c5e7e60f98c9cdf78",
+    "indexPage": "9724a34079bc2708fe58dedf956b3d657f6c2bc26de9dca2f658b950a320fc70"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/natural-top.png",
+      "sha256": "d2305167aee4be1f2fdd36f079a6fa80584e8abbaf8396ab4b8f513461e6b275",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/before-threshold-2.png",
+      "sha256": "c6ddabec6d83799e8131994fa1202bd2f11798fe69090a946f7835f54b682dcd",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/before-threshold-3.png",
+      "sha256": "6b1d32ed127e929c2d09f808801e043dee02826d02656a7f94f30b5b59d90419",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/before-threshold-4.png",
+      "sha256": "e25e0d8ee4e7f4e6c2d3743305db05ceba4f01dbb25563d8b5a0eb22f6f4baa4",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/first-title-hidden.png",
+      "sha256": "609f4801ddfb7cfb6d85bac616ab6e8a6b1a922fff81661678e1b0774695b74c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/title-still-hidden-after-minor-reverse.png",
+      "sha256": "ab306f6393974280439c80680cc690d29b089c1fa1b2389bbbce5cc03783f5d9",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/title-still-hidden-at-bottom.png",
+      "sha256": "95713b6ead5783c489320e309cb309fab915fd1b40a4b7729848910468fc7234",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/title-restored-at-origin.png",
+      "sha256": "1539d9939e252dc9dd2bfd0797fd2e273ac821426ed08660ac30ffa8cd40e12d",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/top-title-after-real-refresh.png",
+      "sha256": "1539d9939e252dc9dd2bfd0797fd2e273ac821426ed08660ac30ffa8cd40e12d",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "natural-top",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-natural-top-7ac7bc3e995445e18f293ab267f4f782.json",
+      "remoteRemoved": true,
+      "sha256": "85c23c99ef192c2281f0401e9141be7f3b02ff6eec84078fb237760186f5027a"
+    },
+    {
+      "label": "threshold-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-1-a2be7e3394b6443584f1d5fadec51b21.json",
+      "remoteRemoved": true,
+      "sha256": "85c23c99ef192c2281f0401e9141be7f3b02ff6eec84078fb237760186f5027a"
+    },
+    {
+      "label": "threshold-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-2-ea44c19b2032485e919231071943092c.json",
+      "remoteRemoved": true,
+      "sha256": "377bd5c4b7221bc66333257abe42569cc0a19964f8d46f66ff497ea215af4cc1"
+    },
+    {
+      "label": "threshold-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-3-747158dec7bf40a688c38fb9def90b4e.json",
+      "remoteRemoved": true,
+      "sha256": "e902f25b5e8bc30a8b6448d1f563be66da90a8bb8ee9bb857cea59888691e13b"
+    },
+    {
+      "label": "threshold-4",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-4-8d4061ac7b95472099febee9a20f5c17.json",
+      "remoteRemoved": true,
+      "sha256": "f6d5d840285614a1d31ece4a14ac96a72e8d84306f310e090567eb6028de42a3"
+    },
+    {
+      "label": "threshold-5",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-threshold-5-35793f64e33d451392dee0a68922cb76.json",
+      "remoteRemoved": true,
+      "sha256": "178bb5f2cc5f95d8c69d8b6dcfb3b4a941302cdf68ace56033168756dd4098f4"
+    },
+    {
+      "label": "reverse-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-reverse-1-26eb25be972f4da986c6a51aa066b595.json",
+      "remoteRemoved": true,
+      "sha256": "092c156c7b0e05cb8808d6e4726353be2e3c0d6158c9005ab75f852cbdff24d2"
+    },
+    {
+      "label": "near-bottom-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-1-9fa3f9c792984782ad30f9dcfa8784b4.json",
+      "remoteRemoved": true,
+      "sha256": "cfd9773033449d6b098483180eb4c75f079828914afbfbb08445c83d87a02209"
+    },
+    {
+      "label": "near-bottom-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-2-9ca87b49e4b84fad88b603b0ab9aa48a.json",
+      "remoteRemoved": true,
+      "sha256": "455850e836476fa05526b5588b03d840444c7f3d5b30f6df82b9669e1dececcb"
+    },
+    {
+      "label": "near-bottom-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-3-906e2948a2bb4318a7208bd093a00b58.json",
+      "remoteRemoved": true,
+      "sha256": "da170c03374aa3b2e35314835fe9e90b2cfb2c78d3a41e1d7b77bb16c65eaca5"
+    },
+    {
+      "label": "near-bottom-4",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-near-bottom-4-3c4c0621d2724e6e96a8a57afc97cb65.json",
+      "remoteRemoved": true,
+      "sha256": "da170c03374aa3b2e35314835fe9e90b2cfb2c78d3a41e1d7b77bb16c65eaca5"
+    },
+    {
+      "label": "return-top-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-return-top-1-b63a5b68895a4eaca51c0b8928161718.json",
+      "remoteRemoved": true,
+      "sha256": "63574cb09ad09613fe62662f4ae64e91be1481b4c418c8d0bd9163fc673991f8"
+    },
+    {
+      "label": "return-top-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-return-top-2-3c5bd116f2ef4653b1181de52d586a42.json",
+      "remoteRemoved": true,
+      "sha256": "51a08b5f44b4f646502d846233cc4cc5d6b7db32832a1ab5f11b8d89e64a60eb"
+    },
+    {
+      "label": "return-top-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-return-top-3-345b9d27fe26450a98440da57788719a.json",
+      "remoteRemoved": true,
+      "sha256": "73159c38ad00d80409373a717433bd54361491ffc895b0dd029ed28bf50296dd"
+    },
+    {
+      "label": "top-title-after-real-refresh",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-05/raw-top-title-after-real-refresh-cbcdbf05730c41babde6bed45e84dd2d.json",
+      "remoteRemoved": true,
+      "sha256": "73159c38ad00d80409373a717433bd54361491ffc895b0dd029ed28bf50296dd"
+    }
+  ],
+  "statusBarVisualReview": "pending_original_review",
+  "fixedPreviewTouched": false
+}

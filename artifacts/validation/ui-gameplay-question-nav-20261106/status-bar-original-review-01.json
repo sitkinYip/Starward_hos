@@ -1,0 +1,133 @@
+{
+  "status": "reviewed_passed",
+  "scope": "Straight phone day theme, original long choice scrolled to bottom",
+  "before": {
+    "hapSha256": "824e8617849e255de88b27a57c07c9084ce694f44a6ae43463c3eb28271c29de",
+    "interactionReport": {
+      "file": "artifacts/validation/ui-gameplay-question-nav-20261106/native-header-06.json",
+      "sha256": "d297e8222e28ba1cc9c05f675c45b785897dcab5936c2fb60903362647008abe"
+    },
+    "original": {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-06/title-still-hidden-at-bottom.png",
+      "sha256": "ad25452d181da75582d824e329c18910bf260e679af2d380f65d85e9a01b6665"
+    }
+  },
+  "after": {
+    "hapSha256": "18b8cb47302cb69b650d86df62fbb30c4abdac6e0bb627280a87f634e49b4068",
+    "interactionReport": {
+      "file": "artifacts/validation/ui-gameplay-question-nav-20261106/native-header-07.json",
+      "sha256": "fe5fc69bfe10c0a2dc0de70f75842971a298da54b60c6e2ac311235c62e6395c"
+    },
+    "original": {
+      "file": "artifacts/private/ui-reference/gameplay-question-nav-20261106/header-07/title-still-hidden-at-bottom.png",
+      "sha256": "0f0100b3634064300aac299c822a8ce3706bfebf1217b86149ed35206980d625"
+    }
+  },
+  "runtime": {
+    "file": "artifacts/validation/ui-gameplay-question-nav-20261106/runtime-06.json",
+    "sha256": "f826bac73f023a63a6b291351912942859b529118d0cbb16591727bfe28a45fa"
+  },
+  "statusInsetPx": 136,
+  "pixelSamples": [
+    {
+      "x": 42,
+      "y": 15,
+      "beforeRgb": [
+        187,
+        207,
+        197
+      ],
+      "afterRgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "x": 42,
+      "y": 120,
+      "beforeRgb": [
+        187,
+        207,
+        197
+      ],
+      "afterRgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "x": 42,
+      "y": 135,
+      "beforeRgb": [
+        187,
+        207,
+        197
+      ],
+      "afterRgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "x": 42,
+      "y": 136,
+      "beforeRgb": [
+        187,
+        207,
+        197
+      ],
+      "afterRgb": [
+        187,
+        207,
+        197
+      ]
+    },
+    {
+      "x": 42,
+      "y": 155,
+      "beforeRgb": [
+        187,
+        207,
+        197
+      ],
+      "afterRgb": [
+        187,
+        207,
+        197
+      ]
+    },
+    {
+      "x": 30,
+      "y": 155,
+      "beforeRgb": [
+        255,
+        255,
+        255
+      ],
+      "afterRgb": [
+        255,
+        255,
+        255
+      ]
+    }
+  ],
+  "visualReview": {
+    "systemStatusIconsReadable": true,
+    "questionForegroundRespectsTopInset": true,
+    "continuousImmersiveCanvasPreserved": true,
+    "noSeparateStatusPlaceholder": true
+  },
+  "observedGeometry": {
+    "scrollViewportPx": [
+      0,
+      137,
+      1316,
+      2832
+    ],
+    "titleBottomPx": 494,
+    "initialCardTopPx": 551
+  }
+}

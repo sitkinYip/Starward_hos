@@ -1,0 +1,195 @@
+{
+  "status": "captured_read_only_navigation_recheck",
+  "scope": "New-package paint change, exact prior two-question actor, read-only phone recheck",
+  "stage": "complete",
+  "priorNavigationReportSha256": "f905a4d3fbf9206d7fe9bd500f8fa0cd5288ba02adf0a0363d2066dc0a9cf831",
+  "hapSha256": "18b8cb47302cb69b650d86df62fbb30c4abdac6e0bb627280a87f634e49b4068",
+  "bindingSha256": {
+    "hap": "18b8cb47302cb69b650d86df62fbb30c4abdac6e0bb627280a87f634e49b4068",
+    "runtime": "f826bac73f023a63a6b291351912942859b529118d0cbb16591727bfe28a45fa",
+    "caseReference": "5d44b9ce44ddfa91292a3e5f85eebb6a010fa1a58a61cbbdfd2ccae5e06e178b",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "b570a89fde062c6f208730d4858eaa6c441ace503298a15a9eb22c798aefe1bd",
+    "gameplayViewModel": "e3b78f9629bd455dd5cf2ad077f831ab18aa31258ff5a698a52a2476704db5e4",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "followupDriver": "31d8aa7ab35450502c8a160ecfaea7b7c75292954a36dc6b9494afa43902ec13",
+    "navDriver": "9ff3991129625a295e705b7312c4a8a740c81986a21b7905a0b34df60a462eae",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "frameGuard": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e",
+    "readOnlyRecheckDriver": "7b5fa1b52fd9461c25b82dcda460f0404c713c0fc8f8682818fa1ab6e24451e9",
+    "priorNavigationReceipt": "f905a4d3fbf9206d7fe9bd500f8fa0cd5288ba02adf0a0363d2066dc0a9cf831"
+  },
+  "checksPassed": 2,
+  "checks": [
+    "Two physical question-number taps switch both ways and retain the server-settled read-only first answer",
+    "Native navigation logout clears inputs and private gameplay"
+  ],
+  "states": [
+    {
+      "state": "recheck-resume-second",
+      "viewedQuestion": 2,
+      "buttonEnabled": [
+        true,
+        true
+      ],
+      "buttonLabels": [
+        "已完成",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "recheck-resume-second",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-resume-second-aa4b0bacc279449bb343a4b628fe9bba.json",
+        "remoteRemoved": true,
+        "sha256": "8f9dd451732d58264d07d0b4e1fe324d19b0de3160330676513cda05ebf114b0"
+      }
+    },
+    {
+      "state": "recheck-first-completed",
+      "viewedQuestion": 1,
+      "buttonEnabled": [
+        true,
+        true
+      ],
+      "buttonLabels": [
+        "已完成",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "recheck-first-completed",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-first-completed-09fba23851c14f2bb4bb947f4550e64c.json",
+        "remoteRemoved": true,
+        "sha256": "956d2ee6bdb235cf2fce3e68f90dc28b858d794278421010337363411022b073"
+      }
+    },
+    {
+      "state": "recheck-before-return-to-second",
+      "viewedQuestion": 1,
+      "buttonEnabled": [
+        true,
+        true
+      ],
+      "buttonLabels": [
+        "已完成",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "recheck-before-return-to-second",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-before-return-to-second-19b9d95a60f644cda7cc1d44b9a6e398.json",
+        "remoteRemoved": true,
+        "sha256": "956d2ee6bdb235cf2fce3e68f90dc28b858d794278421010337363411022b073"
+      }
+    },
+    {
+      "state": "recheck-returned-second",
+      "viewedQuestion": 2,
+      "buttonEnabled": [
+        true,
+        true
+      ],
+      "buttonLabels": [
+        "已完成",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "recheck-returned-second",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-returned-second-4b022fa501b34501a27ae8fcca415c7c.json",
+        "remoteRemoved": true,
+        "sha256": "28ff3c2788d4697d8d2bfe562741f2ef6d77a68c81b837f620805611949112cb"
+      }
+    }
+  ],
+  "observations": {
+    "settledReadOnlyFieldRaw": {
+      "label": "recheck-first-settled-read-only-field",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-first-settled-read-only-field-a5bac2bb8ac141d08e17759885e9a1ee.json",
+      "remoteRemoved": true,
+      "sha256": "956d2ee6bdb235cf2fce3e68f90dc28b858d794278421010337363411022b073"
+    },
+    "newBusinessWrites": 0,
+    "retainedExistingFacts": {
+      "starts": 1,
+      "answers": 1,
+      "xp": 50
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/recheck-resume-second.png",
+      "sha256": "797dafb4b9ca2bf626b9f36aa71ccf2a1e9ed79ff7bd7d2841e35e50b4061fac",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/recheck-first-completed.png",
+      "sha256": "a31c4bdfc3bea8f8620846534de67bfff16d7c8913ea8f22890356622e2dc490",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/recheck-returned-second.png",
+      "sha256": "a2d8baf952cafbb588e9eb1673dcabbe29ee74b8c79883f54f8cb073fe0d43a6",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "recheck-resume-second",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-resume-second-aa4b0bacc279449bb343a4b628fe9bba.json",
+      "remoteRemoved": true,
+      "sha256": "8f9dd451732d58264d07d0b4e1fe324d19b0de3160330676513cda05ebf114b0"
+    },
+    {
+      "label": "recheck-first-completed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-first-completed-09fba23851c14f2bb4bb947f4550e64c.json",
+      "remoteRemoved": true,
+      "sha256": "956d2ee6bdb235cf2fce3e68f90dc28b858d794278421010337363411022b073"
+    },
+    {
+      "label": "recheck-first-settled-read-only-field",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-first-settled-read-only-field-a5bac2bb8ac141d08e17759885e9a1ee.json",
+      "remoteRemoved": true,
+      "sha256": "956d2ee6bdb235cf2fce3e68f90dc28b858d794278421010337363411022b073"
+    },
+    {
+      "label": "recheck-before-return-to-second",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-before-return-to-second-19b9d95a60f644cda7cc1d44b9a6e398.json",
+      "remoteRemoved": true,
+      "sha256": "956d2ee6bdb235cf2fce3e68f90dc28b858d794278421010337363411022b073"
+    },
+    {
+      "label": "recheck-returned-second",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T071228790331Z/raw-recheck-returned-second-4b022fa501b34501a27ae8fcca415c7c.json",
+      "remoteRemoved": true,
+      "sha256": "28ff3c2788d4697d8d2bfe562741f2ef6d77a68c81b837f620805611949112cb"
+    }
+  ],
+  "fixedPreviewTouched": false,
+  "visualReview": "pending_original_review",
+  "failure": null
+}

@@ -3,6 +3,7 @@
 export struct StarwardQuestionFrame {
   @Param frameId: string = '';
   @BuilderParam content: () => void;
+  @Event measured: (area: Area) => void = () => {};
   @Local frameWidth: number = 0;
   @Local frameHeight: number = 0;
 
@@ -58,6 +59,7 @@ export struct StarwardQuestionFrame {
         if (Number.isFinite(height) && height > 0 && height !== this.frameHeight) {
           this.frameHeight = height;
         }
+        this.measured(current);
       })
   }
 }
