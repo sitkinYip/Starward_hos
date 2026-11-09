@@ -1,0 +1,288 @@
+{
+  "status": "captured_native_long_short_swiper_ime",
+  "stage": "verification-and-cleanup",
+  "failure": null,
+  "hapSha256": "410dfbab4d9b3618e80a1d39738ee1432dde81a999617286e8f5b1d4c23349bc",
+  "scope": "Host-seeded dedicated assignment, no native business writes",
+  "runtimeSha256": "1ade01542fa700dcbed2cc4aa76a228f0b599bcc0ac4ab5de15c8c39e17ab377",
+  "coreSha256": "d5462903f0ddba0ed644943404c0acb96b0de62390272aee1dfad420e79db4b8",
+  "fixtureSha256": "bd5a448502185545a6cff29c1f5a956639f0add8b686605a1fd27ef434b1bb7a",
+  "driverSha256": "0dc95bf6c236f3ec8fe85e0d441515f4249b073c40f0291b7fafa9787af575b1",
+  "checks": [
+    "Actual IME is open and the same horizontal swipe preserves the editable short card and draft",
+    "Both directions work between a scrolling long card and a short card; the short draft survives",
+    "Native navigation logout clears inputs and private gameplay"
+  ],
+  "checksPassed": 3,
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "zeroNewBusinessWrites": true,
+    "remoteRawFilesRemoved": true
+  },
+  "states": [
+    {
+      "state": "short-card-initial-focus",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "short-card-initial-focus",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-short-card-initial-focus-fd42bedf862a4d469a6b2b2e8900b7c2.json",
+        "remoteRemoved": true,
+        "sha256": "44768f3a8ebe6e297f39a06e0aff1fea4cdc3b0fae6ab289456941eb1f3e28a2"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "long-card-focused-after-swipe",
+      "viewedQuestion": 1,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "long-card-focused-after-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-long-card-focused-after-swipe-0d721581a47e4e7f9c8aeec3b08a2c1a.json",
+        "remoteRemoved": true,
+        "sha256": "42363b4e3c579c7f2cc5a084dbcf89918742f5397c19cd3fb9bb612c84b9c57c"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        2832
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        2832
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "short-card-focused-after-return-swipe",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "short-card-focused-after-return-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-short-card-focused-after-return-swipe-b9829f257e864e5eb99f786211efe062.json",
+        "remoteRemoved": true,
+        "sha256": "823bea52a386374e2903ab8c53dfe84e148f7a6fb63a13056c6eb6bf10900d36"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    }
+  ],
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/short-card-initial-focus.png",
+      "sha256": "b26d70846a6ad2258b8f084a92db4e08fa0cefeba743d55bbc28662864e37083",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/horizontal-while-ime-preserves-short-and-draft.png",
+      "sha256": "af0b5af3420f00f0a9ece67d7dfc60e48abb7aee32f50bb9b776b6f0aa2ffc7c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/long-card-focused-after-swipe.png",
+      "sha256": "5ca0982ecd7fc1f654cf7e9055a77e8d36393b8546a8a1a857a567260598412c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/long-card-read-only-answer-reached.png",
+      "sha256": "a993be9771b9b97caa385d694decd2dc372bbf2e94733c3fa17bf9277d5efc8c",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/short-card-focused-after-return-swipe.png",
+      "sha256": "a109c2f7fdc059af38f970d8595ce7b04a994d454f0682f8039bb7aef90e58d6",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "imeEvidence": [
+    {
+      "label": "short-card-verified-ime",
+      "measurementMode": "actual_resized_app_viewport",
+      "observedImeCandidates": 2,
+      "privateInventory": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/windows-short-card-verified-ime-996e9bbcee7b4f7b968602509ff6ca45.json",
+        "sha256": "85a829c86470db234207ef1184da2d529acc4568bf5db920044fc4bc71b68b33"
+      },
+      "currentAppRootPx": [
+        0,
+        137,
+        1316,
+        1733
+      ],
+      "windowRootMeasurements": [
+        {
+          "rootBoundsPx": [
+            0,
+            0,
+            1316,
+            2832
+          ],
+          "privateRoot": {
+            "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/ime-root-short-card-verified-ime-ff124685f8b14887b777bfac45140901.json",
+            "sha256": "601c64038865474415c47a73e21addaadbd6824c590f3793cd1d579292d9d2b6"
+          }
+        },
+        {
+          "rootBoundsPx": [
+            0,
+            0,
+            1316,
+            2832
+          ],
+          "privateRoot": {
+            "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/ime-root-short-card-verified-ime-785db0263e88493e8533cbab0df041e4.json",
+            "sha256": "601c64038865474415c47a73e21addaadbd6824c590f3793cd1d579292d9d2b6"
+          }
+        }
+      ],
+      "source": "Own foreground/profile roots and observed official primary-display input-window metadata",
+      "imeWindowBoundsPx": null,
+      "imeWindowHeightVp": null,
+      "availableViewportPx": [
+        0,
+        137,
+        1316,
+        1733
+      ],
+      "availableViewportHeightVp": 456.0,
+      "noKeyboardAppRootPx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "appViewportReductionPx": 1099,
+      "appViewportReductionVp": 314.0,
+      "rootClassifications": [
+        "rejected_full_screen_or_ambiguous_root",
+        "rejected_full_screen_or_ambiguous_root"
+      ],
+      "quantityMeaning": "Observed App-root RESIZE reduction; not a measured IME-window height",
+      "noKeyboardBaseline": {
+        "boundsPx": [
+          0,
+          137,
+          1316,
+          2832
+        ],
+        "sourceRoot": {
+          "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/no-keyboard-gameplay-root-be35adc245f94dd4862e1010ff82838f.json",
+          "sha256": "47a69a15791f08c94d94e1ec6140d8c6089371febacc8896e6adacad18126184"
+        },
+        "sourcePage": "gameplay",
+        "observedImeAbsent": true
+      }
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "short-card-initial-focus",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-short-card-initial-focus-fd42bedf862a4d469a6b2b2e8900b7c2.json",
+      "remoteRemoved": true,
+      "sha256": "44768f3a8ebe6e297f39a06e0aff1fea4cdc3b0fae6ab289456941eb1f3e28a2"
+    },
+    {
+      "label": "long-card-focused-after-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-long-card-focused-after-swipe-0d721581a47e4e7f9c8aeec3b08a2c1a.json",
+      "remoteRemoved": true,
+      "sha256": "42363b4e3c579c7f2cc5a084dbcf89918742f5397c19cd3fb9bb612c84b9c57c"
+    },
+    {
+      "label": "long-first-window-before-reading",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-long-first-window-before-reading-e738f50769ea4dfa9c870f80cea72dfd.json",
+      "remoteRemoved": true,
+      "sha256": "42363b4e3c579c7f2cc5a084dbcf89918742f5397c19cd3fb9bb612c84b9c57c"
+    },
+    {
+      "label": "swiped-first-readonly",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-swiped-first-readonly-a009e2324bdd4c5e9dfa9c87f8308285.json",
+      "remoteRemoved": true,
+      "sha256": "ed98824f457fe387bc411daeb1da188a675113d632dbd536a292cf020bed36a2"
+    },
+    {
+      "label": "short-card-focused-after-return-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-short-card-focused-after-return-swipe-b9829f257e864e5eb99f786211efe062.json",
+      "remoteRemoved": true,
+      "sha256": "823bea52a386374e2903ab8c53dfe84e148f7a6fb63a13056c6eb6bf10900d36"
+    },
+    {
+      "label": "short-text-draft-after-long-card",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/native-long-short-01/raw-short-text-draft-after-long-card-9e8c5a74544142c5b8c61b5c097dabc8.json",
+      "remoteRemoved": true,
+      "sha256": "823bea52a386374e2903ab8c53dfe84e148f7a6fb63a13056c6eb6bf10900d36"
+    }
+  ]
+}

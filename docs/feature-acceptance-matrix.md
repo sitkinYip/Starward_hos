@@ -452,3 +452,33 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 复现入口为 `scripts/device-gameplay-question-nav.py run`、`scripts/device-gameplay-header.py run --refresh` 和 `scripts/capture-web-gameplay-navigation.py run`。两种原生采集需显式提供隔离场次引用、设备引用、签名 HAP 和匹配的运行时报告。
 
 [固定预览交还](../artifacts/validation/ui-gameplay-question-nav-20261106/fixed-preview-restored-nav-20261106-02.json) 已通过，绑定修正版的顶栏与只读导航报告。预览包应用代码与隔离测试包一致，固定预览数据库、CA 和账号保留，手机已用固定账号直接登录并读到首页列表。
+
+### 题卡自动定位与原生左右滑动实施前
+
+| 范围 | 验收目标 |
+| --- | --- |
+| 初次进题与重进 | 首个服务端可读题布局完成后，自动滚到系统安全区下沿，实际越过已有顶栏收起阈值。滚回顶部能看到原布局，定位不抢输入焦点。冻结 Web 在首次挂载不主动定位，首次进题是用户本轮新增行为。 |
+| 题号与前进 | 点未解锁题不切题。点可读题或当前题，以及自动或手动下一题后，定位到对应题卡。检查短题、长题、草稿和完成题只读。普通同步和题图高度变化不重复定位。 |
+| 原生左右滑动 | 使用 ArkUI Swiper，实际只在相邻的服务端可读题之间切换。未解锁、首尾及提交恢复状态不切换。观察纵向阅读、键盘、题号横轨和弹层交互，滑动和定位零额外答题写入。 |
+
+验收使用独立隔离真实 HTTPS 账号及直板机。可用现有两场预览进行人工审查，自动验收使用独立数据。按同宽度核对题卡、题号和系统避让。
+
+#### 实现与主机侧准备
+
+首个有效题、点击题号、左右滑动及自动或手动下一题共用定位入口。短题的外层容器保留达到安全区所需的滚动范围，题卡本身用自然高度。普通刷新、同题图片尺寸变化和键盘避让不重新排队。顶栏仍由实测滚动阈值决定。ArkUI Swiper 只包含当前题所属的连续可读区段，只有落定的相邻手势可发起切题。当前题继续使用原答题表单，手势过渡中的相邻页只展示题面预览。[HarmonyOS Swiper API](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-container-swiper/)
+
+固定工具链构建通过并生成本地签名 HAP `4f43f9ce…`，未在本轮安装。Hypium 的[入场](../artifacts/validation/ui-gameplay-question-swipe-20261106/GameplayViewModel/local-test-summary.json)、[答题](../artifacts/validation/ui-gameplay-question-swipe-20261106/GameplayAnswerViewModel/local-test-summary.json)、[同步](../artifacts/validation/ui-gameplay-question-swipe-20261106/GameplayRefreshViewModel/local-test-summary.json)合计 29 项通过，0 失败、0 忽略。[codelinter](../artifacts/validation/ui-gameplay-question-swipe-20261106/lint-01/lint.json) 退出 0、报告零问题、`filesChecked=0`。
+
+冻结 Web `4b7d1a0…` 使用上一轮两份 DTO 做 376px 宽、742px 高的本地日夜回放。浏览器触摸验证锁题不切换，以及解锁后两向切换与聚焦。短题的 Web 页面没有可滚动距离，首次进题不聚焦。回放零真实后端与外部网络放行，20 张原图保留在私有目录。当前包尚待直板机交互与同数据原图复核。
+
+独立两题场次已准备，入场、答题及经验初始为零。真机驱动为 `scripts/device-gameplay-question-swipe.py run`，验证无辅助操作的进题定位、锁题、真实解锁、自动下一题、双向滑动、点题号、回访及零额外业务写入。手机暂未连接，直板模拟器启动因许可尚未接受而未执行。实际手势、键盘及短长题过渡待手机复验。
+
+#### 直板机隔离 HTTPS 验收
+
+手机重新连接后，通过 `scripts/hm.sh run` 为隔离环境生成并安装签名 HAP `410dfbab…`。[运行时](../artifacts/validation/ui-gameplay-question-swipe-20261106/runtime-01.json)五项通过。[真机两题主流程](../artifacts/validation/ui-gameplay-question-swipe-20261106/native-swipe-01.json)六项及退出清理通过。初次进题没有辅助滑动，题卡自动定位。滚回页顶后，实滑锁题保持原题。唯一一次正确答题解锁第二题并自动定位。两题可双向横滑，已完成题答案只读，未提交选择草稿保留。点击当前或另一题号均定位，退出重进经真实 GET 定位服务端当前题。服务端记录一次入场、一次答题和 50 EXP，导航没有新增写入。
+
+[同数据日间原图复核](../artifacts/validation/ui-gameplay-question-swipe-20261106/same-data-visual-review-01.json)绑定该包、两份 DTO、7 张原生和 20 张 Web 原图。原生各定位态题卡上缘为 137px，首行描边完整，系统图标清楚，题卡宽度 352vp。冻结 Web 同数据短题页面没有纵向滚动空间，只更新焦点。原生按本轮要求主动定位并收起顶栏。夜间真机图未纳入本轮。
+
+[同包长短题与键盘补验](../artifacts/validation/ui-gameplay-question-swipe-20261106/native-long-short-01.json)使用另一个专用隔离账号，主机先通过真实 HTTPS 为十段长填空结算一次，以便短填空可编辑且相邻长题已解锁。实际键盘出现时应用可用区域为 y=137–1733px，在题面同一位置横滑仍留在当前题，草稿保持。键盘收起后同手势切到长题，可以纵向滚到末尾的只读答案。滑回短题重新定位到 137px，题卡恢复其自然高度和原草稿。复核原图无状态栏遮挡，手机阶段新增业务写入为零。
+
+[固定预览交还](../artifacts/validation/ui-gameplay-question-swipe-20261106/fixed-preview-restored-swipe-20261106-02.json)通过。首轮交还已安装启动并通过运行时检查，逐卡遍历超时。随后保留同一安装包，通过固定预览 HTTPS 核对全部六场，在原生列表确认《清宫那点事》和《关于初见的故事》可见。预览包应用代码和隔离测试包一致。手机留在已登录的「待赴之约」。

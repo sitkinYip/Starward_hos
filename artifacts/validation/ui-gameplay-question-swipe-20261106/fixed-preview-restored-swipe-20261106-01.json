@@ -1,0 +1,51 @@
+{
+  "status": "fixed_preview_handoff_incomplete",
+  "isolatedHapSha256": "410dfbab4d9b3618e80a1d39738ee1432dde81a999617286e8f5b1d4c23349bc",
+  "boundNativeReports": [
+    {
+      "scope": "question-card-focus-and-swipe",
+      "status": "captured_native_question_swipe",
+      "captureComplete": true,
+      "report": "artifacts/validation/ui-gameplay-question-swipe-20261106/native-swipe-01.json",
+      "sha256": "d5462903f0ddba0ed644943404c0acb96b0de62390272aee1dfad420e79db4b8"
+    }
+  ],
+  "isolatedRuntimeSha256": "1ade01542fa700dcbed2cc4aa76a228f0b599bcc0ac4ab5de15c8c39e17ab377",
+  "activeEpochLaunchReceiptSha256": "8d9a316592f841c8e020b764d978d9abf64293ae22e6c70294027585b11015de",
+  "privateArchive": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/handoff/swipe-20261106-01",
+  "testUsbDetached": true,
+  "previewUsbAttached": true,
+  "previewHapSha256": "d937e50808b1b127aebc35b8a37b417400fe0412b75418af465f124641ed42a9",
+  "steps": [
+    {
+      "step": "verify-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "detach-exact-disposable-usb",
+      "exitCode": 0
+    },
+    {
+      "step": "attach-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "clear-owned-test-package-config",
+      "exitCode": 0
+    },
+    {
+      "step": "configure-existing-preview",
+      "exitCode": 0
+    },
+    {
+      "step": "official-run",
+      "exitCode": 0
+    },
+    {
+      "step": "runtime",
+      "exitCode": 0
+    }
+  ],
+  "errorType": "TimeoutExpired",
+  "reason": "A handoff guard or command did not complete. Private values omitted."
+}

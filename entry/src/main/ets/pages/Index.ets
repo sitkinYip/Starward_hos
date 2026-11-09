@@ -882,7 +882,7 @@ struct Index {
           GameplayPage({ play: this.vm.play, autoNextDelay: this.motion.duration(1500),
             displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
             titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
-            reducedMotion: this.motion.reduced,
+            keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
             titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
             leave: () => this.leaveGameplay() })
         } else {

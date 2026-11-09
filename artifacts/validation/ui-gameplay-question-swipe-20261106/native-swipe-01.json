@@ -1,0 +1,591 @@
+{
+  "status": "captured_native_question_swipe",
+  "stage": "question-number-focus-and-reentry",
+  "scope": "One fresh disposable auto-next two-question phone case",
+  "hapSha256": "410dfbab4d9b3618e80a1d39738ee1432dde81a999617286e8f5b1d4c23349bc",
+  "checksPassed": 6,
+  "checks": [
+    "Native first entry focuses without a gesture; at top a physical swipe cannot reach the locked future question",
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "The real first settlement unlocks the second question and native auto-next focuses it",
+    "Physical horizontal swipes switch both ways between unlocked cards and preserve settled and draft answers",
+    "Same-current and other-number taps refocus; reentry uses the fresh server current question",
+    "Native navigation logout clears inputs and private gameplay"
+  ],
+  "states": [
+    {
+      "state": "first-entry-focused",
+      "viewedQuestion": 1,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "first-entry-focused",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-first-entry-focused-e52f203757fd463ea88a97934bc80e01.json",
+        "remoteRemoved": true,
+        "sha256": "608c1b8b6f12c5dd1df9d8359924bde6456bd35500d388fc1ef9a5fe4c292538"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "before-locked-swipe",
+      "viewedQuestion": 1,
+      "buttonEnabled": [
+        true,
+        false
+      ],
+      "buttonLabels": [
+        "第 1 题",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "before-locked-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-before-locked-swipe-99e7309321f6462097ee197c5db27dcc.json",
+        "remoteRemoved": true,
+        "sha256": "6660294067432af859f7f01b687b22f548c39a03768bbc1154dbe0e33a5b1708"
+      }
+    },
+    {
+      "state": "after-locked-swipe",
+      "viewedQuestion": 1,
+      "buttonEnabled": [
+        true,
+        false
+      ],
+      "buttonLabels": [
+        "第 1 题",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "after-locked-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-after-locked-swipe-27f36e2581d24dc0bc82dc87760c524a.json",
+        "remoteRemoved": true,
+        "sha256": "6660294067432af859f7f01b687b22f548c39a03768bbc1154dbe0e33a5b1708"
+      }
+    },
+    {
+      "state": "second-auto-next-focused",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "second-auto-next-focused",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-auto-next-focused-ec52eb8f116849cb85c5cd1317130bbf.json",
+        "remoteRemoved": true,
+        "sha256": "bcc5abadef7ab9cf0664d417d28ea7eec1e00026f0dfaa7bac3b4dee4ac27701"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "second-with-draft-before-swipe",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "second-with-draft-before-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-with-draft-before-swipe-5550a4f0b06c4672b87da25b611ac240.json",
+        "remoteRemoved": true,
+        "sha256": "bc0bf0ae7a9131794a99934510d93fcf379da32e47b05aa2236a54fc28355855"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "first-focused-by-swipe",
+      "viewedQuestion": 1,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "first-focused-by-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-first-focused-by-swipe-ebb0f225ccad4b0f83ce8ed7594dd743.json",
+        "remoteRemoved": true,
+        "sha256": "9449a15e4c436796e65e16c4a7446b70794ab00956f68c0fef90ceb537e37b8b"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "second-focused-by-swipe",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "second-focused-by-swipe",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-focused-by-swipe-3a4804904dce4dcea04ec24414db1314.json",
+        "remoteRemoved": true,
+        "sha256": "d7400a66dd3f8a3e066de0a96b068c8ca55212477c36e84a6ca37c2f573c91a4"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "before-same-current-number",
+      "viewedQuestion": 2,
+      "buttonEnabled": [
+        true,
+        true
+      ],
+      "buttonLabels": [
+        "已完成",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "before-same-current-number",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-before-same-current-number-609ce0715c2a48ecb817fe59f2ea5035.json",
+        "remoteRemoved": true,
+        "sha256": "dc0bb6318b9ec72d5f322ba88a4b873439a88350e787d9caee9a0e92d2dc1047"
+      }
+    },
+    {
+      "state": "same-current-number-refocused",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "same-current-number-refocused",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-same-current-number-refocused-fcc430e290884c628adc24d9c285ad74.json",
+        "remoteRemoved": true,
+        "sha256": "d7400a66dd3f8a3e066de0a96b068c8ca55212477c36e84a6ca37c2f573c91a4"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "before-other-number",
+      "viewedQuestion": 2,
+      "buttonEnabled": [
+        true,
+        true
+      ],
+      "buttonLabels": [
+        "已完成",
+        "第 2 题"
+      ],
+      "rawCurrentStateObserved": true,
+      "rawEvidence": {
+        "label": "before-other-number",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-before-other-number-0689f47d75a84d7d8ab51f6c30bd6153.json",
+        "remoteRemoved": true,
+        "sha256": "86482f1a3c77e965446e8fa719660134e08f93b9f2547f13d45fb49d4b4604e4"
+      }
+    },
+    {
+      "state": "other-number-focused",
+      "viewedQuestion": 1,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "other-number-focused",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-other-number-focused-8a82742482e64072a0b2b701f32160ee.json",
+        "remoteRemoved": true,
+        "sha256": "9a2514b4b68a59ea7d4a76b16f5ce58393929833ef34ffb28446bb97035bb6a7"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1232
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    },
+    {
+      "state": "reentry-current-focused",
+      "viewedQuestion": 2,
+      "gapVp": 0.0,
+      "rawEvidence": {
+        "label": "reentry-current-focused",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-reentry-current-focused-a9b01b237d85469384c5988b45f272ee.json",
+        "remoteRemoved": true,
+        "sha256": "8e127e57c579d7e74ff6fca239df93b8ee1a854fb99ac837e3e0a763fa58a343"
+      },
+      "pagePx": [
+        0,
+        137,
+        1316,
+        2832
+      ],
+      "swiperPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "cardPx": [
+        42,
+        137,
+        1274,
+        1481
+      ],
+      "headingPx": [
+        108,
+        331,
+        1208,
+        460
+      ],
+      "titleVisible": false
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true
+  },
+  "bindingSha256": {
+    "hap": "410dfbab4d9b3618e80a1d39738ee1432dde81a999617286e8f5b1d4c23349bc",
+    "runtime": "1ade01542fa700dcbed2cc4aa76a228f0b599bcc0ac4ab5de15c8c39e17ab377",
+    "caseReference": "1bfb919cb4c333cac616591f093411842a27b0c62f9e43d7fcaacfaf0d48dc2f",
+    "ca": "c024aee77c592fbaba5ba99b6b3e151d0d30696f1a702f1a18a9517d1d1aaac3",
+    "config": "98c6575e58ee0a0c41db6a910294631c2552636e7572308315f41ea2c43e07fa",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "988b68c2255dbffa0f0c39a91a3645894d52530f5f691d48493b12b2dff239d2",
+    "gameplayViewModel": "e3b78f9629bd455dd5cf2ad077f831ab18aa31258ff5a698a52a2476704db5e4",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "d948327b3ca955334a817222759ce3f00c26c96b964d0811fa6604e012e4130f",
+    "followupDriver": "31d8aa7ab35450502c8a160ecfaea7b7c75292954a36dc6b9494afa43902ec13",
+    "swipeDriver": "8834de768b2a2dbbb203c5f346c58ac57bfb4aad6ebddda54751f3fe67c7f110",
+    "navDriver": "9ff3991129625a295e705b7312c4a8a740c81986a21b7905a0b34df60a462eae",
+    "deviceReference": "27aa661a7efe1be5c7a77c35ebf987d0d6ad83b8adb95c5bb82e99ee9496bf22",
+    "frameGuard": "f54881ab0cb72bf3478295639eb2c1728bc88a88c96782b4bde3bacc37ea945e"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/first-entry-focused.png",
+      "sha256": "a5073d53da7077dc0494a5739a9a88a0351eb6f8913f6f454ffa079df92fc526",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/second-auto-next-focused.png",
+      "sha256": "eed1140be4c3129db25717e703b7dd27c41839155b8e37c8115c36f9353948c7",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/first-focused-by-swipe.png",
+      "sha256": "926b73b242a3d6cac194d921ab254530b1333b4580996726da7a1943a4064512",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/second-focused-by-swipe.png",
+      "sha256": "0fd31cfdb3328720a6ad8ac7713366cced54c34555f68e8d38cf752bb1022f89",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/same-current-number-refocused.png",
+      "sha256": "d8f1ab147ea7d41dd4d8d1d0a0feebacdf6f7e46361d7e7eebc92d3b2aba2f42",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/other-number-focused.png",
+      "sha256": "278c439dad0f40a0742e40dac88aeac99a4576c0edf684f12b4ba2f05acfcbca",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/reentry-current-focused.png",
+      "sha256": "260ec8d0836661a1e8505c862f865fe5911fad453af6d5c95bc6245237c6e358",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "first-entry-focused",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-first-entry-focused-e52f203757fd463ea88a97934bc80e01.json",
+      "remoteRemoved": true,
+      "sha256": "608c1b8b6f12c5dd1df9d8359924bde6456bd35500d388fc1ef9a5fe4c292538"
+    },
+    {
+      "label": "before-locked-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-before-locked-swipe-99e7309321f6462097ee197c5db27dcc.json",
+      "remoteRemoved": true,
+      "sha256": "6660294067432af859f7f01b687b22f548c39a03768bbc1154dbe0e33a5b1708"
+    },
+    {
+      "label": "after-locked-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-after-locked-swipe-27f36e2581d24dc0bc82dc87760c524a.json",
+      "remoteRemoved": true,
+      "sha256": "6660294067432af859f7f01b687b22f548c39a03768bbc1154dbe0e33a5b1708"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-followup-ready-submit-97086fafe8b542129883dde1b8e44ae3.json",
+      "remoteRemoved": true,
+      "sha256": "eff504e6ec612a56908eca3bd4642b32388893c671d6560b8fa6626fd60c13e1"
+    },
+    {
+      "label": "second-auto-next-focused",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-auto-next-focused-ec52eb8f116849cb85c5cd1317130bbf.json",
+      "remoteRemoved": true,
+      "sha256": "bcc5abadef7ab9cf0664d417d28ea7eec1e00026f0dfaa7bac3b4dee4ac27701"
+    },
+    {
+      "label": "second-with-draft-before-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-with-draft-before-swipe-5550a4f0b06c4672b87da25b611ac240.json",
+      "remoteRemoved": true,
+      "sha256": "bc0bf0ae7a9131794a99934510d93fcf379da32e47b05aa2236a54fc28355855"
+    },
+    {
+      "label": "first-focused-by-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-first-focused-by-swipe-ebb0f225ccad4b0f83ce8ed7594dd743.json",
+      "remoteRemoved": true,
+      "sha256": "9449a15e4c436796e65e16c4a7446b70794ab00956f68c0fef90ceb537e37b8b"
+    },
+    {
+      "label": "swiped-first-readonly",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-swiped-first-readonly-cb743cbc4a4f4becbf67638d25898323.json",
+      "remoteRemoved": true,
+      "sha256": "9449a15e4c436796e65e16c4a7446b70794ab00956f68c0fef90ceb537e37b8b"
+    },
+    {
+      "label": "second-focused-by-swipe",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-focused-by-swipe-3a4804904dce4dcea04ec24414db1314.json",
+      "remoteRemoved": true,
+      "sha256": "d7400a66dd3f8a3e066de0a96b068c8ca55212477c36e84a6ca37c2f573c91a4"
+    },
+    {
+      "label": "second-draft-after-swiping-back",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-draft-after-swiping-back-33ebae93974a45f78e6d00cda00e5184.json",
+      "remoteRemoved": true,
+      "sha256": "d7400a66dd3f8a3e066de0a96b068c8ca55212477c36e84a6ca37c2f573c91a4"
+    },
+    {
+      "label": "before-same-current-number",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-before-same-current-number-609ce0715c2a48ecb817fe59f2ea5035.json",
+      "remoteRemoved": true,
+      "sha256": "dc0bb6318b9ec72d5f322ba88a4b873439a88350e787d9caee9a0e92d2dc1047"
+    },
+    {
+      "label": "same-current-number-refocused",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-same-current-number-refocused-fcc430e290884c628adc24d9c285ad74.json",
+      "remoteRemoved": true,
+      "sha256": "d7400a66dd3f8a3e066de0a96b068c8ca55212477c36e84a6ca37c2f573c91a4"
+    },
+    {
+      "label": "second-draft-after-current-number",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-second-draft-after-current-number-1be802a3cb574ca7b0879c9183dcfe01.json",
+      "remoteRemoved": true,
+      "sha256": "d7400a66dd3f8a3e066de0a96b068c8ca55212477c36e84a6ca37c2f573c91a4"
+    },
+    {
+      "label": "before-other-number",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-before-other-number-0689f47d75a84d7d8ab51f6c30bd6153.json",
+      "remoteRemoved": true,
+      "sha256": "86482f1a3c77e965446e8fa719660134e08f93b9f2547f13d45fb49d4b4604e4"
+    },
+    {
+      "label": "other-number-focused",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-other-number-focused-8a82742482e64072a0b2b701f32160ee.json",
+      "remoteRemoved": true,
+      "sha256": "9a2514b4b68a59ea7d4a76b16f5ce58393929833ef34ffb28446bb97035bb6a7"
+    },
+    {
+      "label": "reentry-current-focused",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/raw-reentry-current-focused-a9b01b237d85469384c5988b45f272ee.json",
+      "remoteRemoved": true,
+      "sha256": "8e127e57c579d7e74ff6fca239df93b8ee1a854fb99ac837e3e0a763fa58a343"
+    }
+  ],
+  "sameDataWebFixtures": {
+    "first-current-second-locked": {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/first-current-second-locked-web-dtos.json",
+      "sha256": "87188da4c5d76203f47c21b564442f2d0eb9e5758ed640df1ce6b809f330ae4e"
+    },
+    "first-complete-second-unlocked": {
+      "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/first-complete-second-unlocked-web-dtos.json",
+      "sha256": "ceab1e5994961f5f92767115714f7d02c169f01f78ec103493969f1eaad6fd6d"
+    }
+  },
+  "observations": {
+    "writeCounts": {
+      "starts": 1,
+      "answers": 1,
+      "xp": 50
+    }
+  },
+  "fixedPreviewTouched": false,
+  "failure": null
+}

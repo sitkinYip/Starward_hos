@@ -17,6 +17,7 @@ import { StarwardQuestHint } from '../ui/StarwardQuestHint';
 import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
 import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
 import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
+import { StarwardQuestionSwiper } from '../ui/StarwardQuestionSwiper';
 
 /** Native presentation only: the account-bound ViewModel owns drafts and writes. */
 @ComponentV2
@@ -27,6 +28,7 @@ export struct GameplayPage {
   @Param bottomClearance: number = 24;
   @Param titleBottom: number = 0;
   @Param statusInset: number = 0;
+  @Param keyboardVisible: boolean = false;
   @Param reducedMotion: boolean = true;
   @Event leave: () => void = () => {};
   @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
@@ -39,16 +41,24 @@ export struct GameplayPage {
   @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState();
   private readonly questionScroller: Scroller = new Scroller();
   private cardContentTop: number = -1;
+  private questionRegionHeight: number = 0;
   private titleHidden: boolean = false;
+  private positionOwner: string = '';
+  private positionPending: boolean = false;
+  private positionTimer: number = -1;
 
   aboutToAppear(): void {
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
     this.recoveryChanged();
+    this.trackQuestionPosition();
   }
 
   aboutToDisappear(): void {
     this.viewer.close(this.viewer.sessionId, true);
+    clearTimeout(this.positionTimer);
+    this.positionTimer = -1;
+    this.positionPending = false;
     this.titleVisibilityChanged(false);
   }
 
@@ -57,8 +67,10 @@ export struct GameplayPage {
     this.viewer.validateOwner();
     if (!this.play.currentLevel()?.question) {
       this.cardContentTop = -1;
+      this.questionRegionHeight = 0;
       this.setTitleHidden(false, this.scrollOffset(), 0);
     }
+    this.trackQuestionPosition();
   }
 
   private scrollOffset(): number {
@@ -86,14 +98,60 @@ export struct GameplayPage {
 
   private measureCard(area: Area): void {
     const top: number = Number(area.globalPosition.y);
-    if (!Number.isFinite(top) || Number(area.height) <= 0) { return; }
+    const height: number = Number(area.height);
+    if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) { return; }
     this.cardContentTop = top + this.scrollOffset();
+    this.questionRegionHeight = height;
     this.syncTitle();
+    this.scheduleQuestionPosition();
+  }
+
+  private positionKey(): string {
+    return this.play.visible && this.play.snapshot?.detail.status !== 'cancelled' && this.readableQuestionId().length > 0 ?
+      this.imageOwner() : '';
+  }
+
+  private trackQuestionPosition(force: boolean = false): void {
+    const owner: string = this.positionKey();
+    if (owner !== this.positionOwner || force) {
+      this.positionOwner = owner;
+      this.positionPending = owner.length > 0;
+    }
+    this.scheduleQuestionPosition();
+  }
+
+  private foregroundTopInset(): number {
+    return Math.max(0, this.statusInset - this.viewportTop);
+  }
+
+  private minimumQuestionRegionHeight(): number {
+    return Math.max(0, this.viewportHeight - this.foregroundTopInset());
+  }
+
+  @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
+    'play.refreshing', 'viewer.visible', 'viewer.closing')
+  scheduleQuestionPosition(): void {
+    if (this.positionTimer !== -1 || !this.questionPositionReady()) {
+      return;
+    }
+    this.positionTimer = setTimeout(() => {
+      this.positionTimer = -1;
+      if (!this.questionPositionReady() || this.positionOwner !== this.positionKey()) { return; }
+      const y: number = Math.max(0, this.cardContentTop - Math.max(this.viewportTop, this.statusInset));
+      this.positionPending = false;
+      this.questionScroller.scrollTo({ xOffset: 0, yOffset: y,
+        animation: this.reducedMotion ? false : { duration: 240, curve: Curve.EaseOut } });
+    }, 0);
+  }
+
+  private questionPositionReady(): boolean {
+    return this.positionPending && this.viewportHeight > 0 && this.cardContentTop >= 0 &&
+      this.questionRegionHeight + 0.5 >= this.minimumQuestionRegionHeight() && this.questionInteractionReady();
   }
 
   private foregroundClip(): RectShape | undefined {
     if (this.viewportHeight <= 0) { return undefined; }
-    const top: number = Math.max(0, this.statusInset - this.viewportTop);
+    const top: number = this.foregroundTopInset();
     return new RectShape({ width: '100%', height: Math.max(0, this.viewportHeight - top) }).offset({ x: 0, y: top });
   }
 
@@ -202,9 +260,24 @@ export struct GameplayPage {
     }
   }
 
-  private displayedLevelIds(): string[] {
+  private readableQuestionId(): string {
     const level: GameplayLevel | null = this.play.currentLevel();
-    return level !== null && level.question !== null ? [level.id] : [];
+    return level?.question ? level.id : '';
+  }
+
+  private levelById(id: string): GameplayLevel | undefined {
+    return this.play.snapshot?.levels.find((level: GameplayLevel) => level.id === id);
+  }
+
+  private swipeableQuestionIds(): string[] {
+    const levels: GameplayLevel[] = this.play.snapshot?.levels || [];
+    const current: number = this.play.activeIndex;
+    if (!levels[current]?.question) { return []; }
+    let first: number = current;
+    let last: number = current;
+    while (first > 0 && levels[first - 1].question !== null) { first--; }
+    while (last + 1 < levels.length && levels[last + 1].question !== null) { last++; }
+    return levels.slice(first, last + 1).map((level: GameplayLevel) => level.id);
   }
 
   private questionNavigationItems(): QuestionNavigationItem[] {
@@ -217,15 +290,25 @@ export struct GameplayPage {
   }
 
   private selectQuestion(index: number): void {
-    if (!this.interactionReady() || !this.play.canMoveTo(index)) {
+    if (!this.interactionReady() || this.recoveryVisible || !this.play.canMoveTo(index)) {
       return;
     }
     StarwardKeyboard.dismiss(this.getUIContext());
     this.play.moveTo(index);
+    this.trackQuestionPosition(true);
   }
 
-  private contentBlocks(): GameplayContentBlock[] {
-    return this.play.currentLevel()?.question?.content || [];
+  private selectSwipedQuestion(id: string): boolean {
+    const index: number = this.play.snapshot?.levels.findIndex((level: GameplayLevel) => level.id === id) ?? -1;
+    if (!this.questionInteractionReady() || Math.abs(index - this.play.activeIndex) !== 1 || !this.play.canMoveTo(index)) {
+      return false;
+    }
+    this.selectQuestion(index);
+    return this.readableQuestionId() === id;
+  }
+
+  private contentBlocks(id: string): GameplayContentBlock[] {
+    return this.levelById(id)?.question?.content || [];
   }
 
   private blockImages(block: GameplayContentBlock): string[] {
@@ -277,8 +360,13 @@ export struct GameplayPage {
     return !this.play.loading && !this.play.starting && !this.play.submitting && !this.play.refreshing;
   }
 
-  private titleVisible(): boolean {
-    const hidden: boolean | undefined = this.play.currentLevel()?.presentationOverride.hideTitle;
+  private questionInteractionReady(): boolean {
+    return this.interactionReady() && !this.keyboardVisible && !this.recoveryVisible &&
+      !this.viewer.visible && !this.viewer.closing;
+  }
+
+  private titleVisible(id: string): boolean {
+    const hidden: boolean | undefined = this.levelById(id)?.presentationOverride.hideTitle;
     return hidden === undefined ? this.play.snapshot?.presentation.hideTitle !== true : !hidden;
   }
 
@@ -376,48 +464,93 @@ export struct GameplayPage {
   }
 
   @Builder
-  questionCard() {
-    StarwardQuestionFrame({ frameId: 'gameplay-question-card', measured: (area: Area) => this.measureCard(area) }) {
+  questionCard(levelId: string) {
+    StarwardQuestionFrame({ frameId: levelId === this.readableQuestionId() ? 'gameplay-question-card' : '' }) {
       Column() {
         Row() {
-          Text(`第 ${this.play.currentLevel()?.position || 0} 题`).id('question-number')
+          Text(`第 ${this.levelById(levelId)?.position || 0} 题`)
+            .id(levelId === this.readableQuestionId() ? 'question-number' : '')
             .fontFamily('monospace').fontSize(12).lineHeight('14.4fp').fontColor($r('app.color.subtle'))
           Blank()
-          Text(this.play.currentLevel()?.question?.kind === 'choice' ? '选择题' : '填空题').id('question-kind')
+          Text(this.levelById(levelId)?.question?.kind === 'choice' ? '选择题' : '填空题')
+            .id(levelId === this.readableQuestionId() ? 'question-kind' : '')
             .fontFamily('monospace').fontSize(12).lineHeight('14.4fp').fontColor($r('app.color.subtle'))
         }.width('100%')
-        if (this.titleVisible() && (this.play.currentLevel()?.question?.title || '').length > 0) {
-          Text(this.play.currentLevel()?.question?.title || '').id('question-title').width('100%')
+        if (this.titleVisible(levelId) && (this.levelById(levelId)?.question?.title || '').length > 0) {
+          Text(this.levelById(levelId)?.question?.title || '')
+            .id(levelId === this.readableQuestionId() ? 'question-title' : '').width('100%')
             .fontFamily(this.displayFont).fontSize(this.questionTitleSize()).fontWeight(FontWeight.Medium)
             .lineHeight(`${this.questionTitleSize() * 0.98}fp`).letterSpacing(`${this.questionTitleSize() * -0.055}fp`)
             .lineBreakStrategy(LineBreakStrategy.BALANCED)
             .fontColor($r('app.color.strong')).margin({ top: 18 })
         }
         Column({ space: 20 }) {
-          ForEach(this.contentBlocks(), (block: GameplayContentBlock, index: number) => {
+          ForEach(this.contentBlocks(levelId), (block: GameplayContentBlock, index: number) => {
             Column({ space: 13 }) {
-              if (this.blockImages(block).length > 0 && block.videoUrl.length === 0) {
+              if (levelId === this.readableQuestionId() && this.blockImages(block).length > 0 && block.videoUrl.length === 0) {
                 StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.imageOwner(),
                   ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null && key === this.imageOwner(),
                   groupId: `question-images-${index}`, maxHeight: this.viewportWidth <= 620 ? 340 : 420,
                   reducedMotion: this.reducedMotion, opened: (imageIndex: number) => this.openImages(index, imageIndex) })
               }
               if (block.text.length > 0) {
-                Text(block.text).id(`question-content-text-${index}`).width('100%')
+                Text(block.text).id(levelId === this.readableQuestionId() ? `question-content-text-${index}` : '').width('100%')
                   .fontSize(16).lineHeight('27.52fp').fontColor($r('app.color.text'))
               }
-              if (block.hint.length > 0) {
+              if (levelId === this.readableQuestionId() && block.hint.length > 0) {
                 StarwardQuestHint({ text: block.hint, contentIndex: index, reducedMotion: this.reducedMotion })
               }
             }.width('100%').alignItems(HorizontalAlign.Start)
           }, (block: GameplayContentBlock, index: number) => `${index}:${JSON.stringify(block)}`)
-        }.id('question-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 20 })
-        Column() {
-          this.answerForm()
-        }.width('100%').alignItems(HorizontalAlign.Start).margin({ top: 24 })
+        }.id(levelId === this.readableQuestionId() ? 'question-content' : '')
+          .width('100%').alignItems(HorizontalAlign.Start).margin({ top: 20 })
+        if (levelId === this.readableQuestionId()) {
+          Column() {
+            this.answerForm()
+          }.width('100%').alignItems(HorizontalAlign.Start).margin({ top: 24 })
+        }
       }.width('100%').alignItems(HorizontalAlign.Start)
         .padding({ top: 22, left: 18, right: 18, bottom: 26 })
     }
+  }
+
+  @Builder
+  questionRegion() {
+    Column({ space: 16 }) {
+      if (this.readableQuestionId().length > 0) {
+        if ((this.play.snapshot?.detail.totalLevels || 0) > 1) {
+          StarwardQuestionSwiper({ pages: this.swipeableQuestionIds(), currentId: this.readableQuestionId(),
+            swipeEnabled: this.questionInteractionReady() && this.play.canMoveTo(this.play.activeIndex),
+            reducedMotion: this.reducedMotion,
+            content: (id: string) => { this.questionCard(id) },
+            select: (id: string) => this.selectSwipedQuestion(id) })
+        } else {
+          this.questionCard(this.readableQuestionId())
+        }
+      } else {
+        Text('题目尚未解锁，请同步进度后重试。').id('gameplay-question-unavailable').width('100%')
+          .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))
+      }
+      if ((this.play.snapshot?.clues.length || 0) > 0) {
+        Text('本场线索内容尚未迁移。').id('gameplay-clue-notice').width('100%')
+          .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted'))
+      }
+      if (this.play.snapshot?.detail.status === 'completed') {
+        Text('本次场次已完成。').id('gameplay-completed-state').width('100%')
+          .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.accent_text'))
+        if (this.play.snapshot?.presentation.completionStyle === 'finale' ||
+          this.play.snapshot?.completionTarget !== null) {
+          Text('终章与旅程出口尚未迁移。').id('gameplay-completion-pending').width('100%')
+            .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted'))
+        }
+      }
+    }.width('100%').alignItems(HorizontalAlign.Start)
+      // Short cards still need enough scroll range to reach the safe reading position.
+      .constraintSize({ minHeight: this.readableQuestionId().length > 0 ?
+        this.minimumQuestionRegionHeight() : 0 })
+      .onAreaChange((_previous: Area, current: Area) => {
+        if (this.readableQuestionId().length > 0) { this.measureCard(current); }
+      })
   }
 
   @Builder
@@ -450,26 +583,7 @@ export struct GameplayPage {
           if (this.play.snapshot.detail.totalLevels > 1) {
             this.questionNavigation()
           }
-          ForEach(this.displayedLevelIds(), (_levelId: string) => {
-            this.questionCard()
-          }, (levelId: string) => levelId)
-          if (this.displayedLevelIds().length === 0) {
-            Text('题目尚未解锁，请同步进度后重试。').id('gameplay-question-unavailable').width('100%')
-              .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))
-          }
-          if (this.play.snapshot.clues.length > 0) {
-            Text('本场线索内容尚未迁移。').id('gameplay-clue-notice').width('100%')
-              .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted'))
-          }
-          if (this.play.snapshot.detail.status === 'completed') {
-            Text('本次场次已完成。').id('gameplay-completed-state').width('100%')
-              .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.accent_text'))
-            if (this.play.snapshot.presentation.completionStyle === 'finale' ||
-              this.play.snapshot.completionTarget !== null) {
-              Text('终章与旅程出口尚未迁移。').id('gameplay-completion-pending').width('100%')
-                .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted'))
-            }
-          }
+          this.questionRegion()
         } else {
           Text('尚未读取题目，请重新尝试。').id('gameplay-empty').width('100%')
             .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))
@@ -493,6 +607,7 @@ export struct GameplayPage {
         if (Number.isFinite(height) && height > 0 && height !== this.viewportHeight) {
           this.viewportHeight = height;
         }
+        this.scheduleQuestionPosition();
       })
   }
 

@@ -1,0 +1,528 @@
+{
+  "status": "reviewed_same_data_visual_scope",
+  "scope": "Daytime straight phone originals and same DTOs in frozen Web",
+  "native": {
+    "file": "artifacts/validation/ui-gameplay-question-swipe-20261106/native-swipe-01.json",
+    "sha256": "d5462903f0ddba0ed644943404c0acb96b0de62390272aee1dfad420e79db4b8"
+  },
+  "runtime": {
+    "file": "artifacts/validation/ui-gameplay-question-swipe-20261106/runtime-01.json",
+    "sha256": "1ade01542fa700dcbed2cc4aa76a228f0b599bcc0ac4ab5de15c8c39e17ab377"
+  },
+  "web": {
+    "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01.json",
+    "sha256": "66452db8800948a1e723e565639d7a5f5e99c2e89af7b6df5b2a0b79f7bb01f7"
+  },
+  "webReplay": {
+    "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/receipt-exact-phone-01.json",
+    "sha256": "dbcd7777453c36a0687c7a430e05597102cfc1391769d18c661aeb68553fa952"
+  },
+  "hapSha256": "410dfbab4d9b3618e80a1d39738ee1432dde81a999617286e8f5b1d4c23349bc",
+  "runtimeStatusInsetPx": 136,
+  "nativeOriginalsReviewed": 7,
+  "browserOriginalsCaptured": 20,
+  "pairs": [
+    {
+      "nativeState": "first-entry-focused",
+      "webState": "natural-entry",
+      "webDtoOrdinal": 1,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/first-entry-focused.png",
+        "sha256": "a5073d53da7077dc0494a5739a9a88a0351eb6f8913f6f454ffa079df92fc526",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-1-light-natural-entry.png",
+        "sha256": "ac201917dc551ec9e061baa386bc7f96f9aedbd9a137d76506f4ca76c16b8b3e"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 312.85714285714283,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 312.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    },
+    {
+      "nativeState": "second-auto-next-focused",
+      "webState": "natural-entry",
+      "webDtoOrdinal": 2,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/second-auto-next-focused.png",
+        "sha256": "eed1140be4c3129db25717e703b7dd27c41839155b8e37c8115c36f9353948c7",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-2-light-natural-entry.png",
+        "sha256": "5cce47e9a9fc4f67570793a474a9f84531af86a01e3b20e19da8ed460af742cb"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 384.0,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 384.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    },
+    {
+      "nativeState": "first-focused-by-swipe",
+      "webState": "swipe-previous",
+      "webDtoOrdinal": 2,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/first-focused-by-swipe.png",
+        "sha256": "926b73b242a3d6cac194d921ab254530b1333b4580996726da7a1943a4064512",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-2-light-swipe-previous.png",
+        "sha256": "66b1d016564ec6885ad05e62f846e6a9fda72b99da4e996b23c7a78f89c10fb3"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 312.85714285714283,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 312.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    },
+    {
+      "nativeState": "second-focused-by-swipe",
+      "webState": "swipe-next",
+      "webDtoOrdinal": 2,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/second-focused-by-swipe.png",
+        "sha256": "0fd31cfdb3328720a6ad8ac7713366cced54c34555f68e8d38cf752bb1022f89",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-2-light-swipe-next.png",
+        "sha256": "3b046604440a3349711bf56db7cd46558fd43b36feb405cd02f4cadc486f2432"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 384.0,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 384.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    },
+    {
+      "nativeState": "same-current-number-refocused",
+      "webState": "current-restored",
+      "webDtoOrdinal": 2,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/same-current-number-refocused.png",
+        "sha256": "d8f1ab147ea7d41dd4d8d1d0a0feebacdf6f7e46361d7e7eebc92d3b2aba2f42",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-2-light-current-restored.png",
+        "sha256": "57eb18ce45dc95f31fde33ac8145f3971225d2bd76b1465e817a113af69cda06"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 384.0,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 384.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    },
+    {
+      "nativeState": "other-number-focused",
+      "webState": "other-readable",
+      "webDtoOrdinal": 2,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/other-number-focused.png",
+        "sha256": "278c439dad0f40a0742e40dac88aeac99a4576c0edf684f12b4ba2f05acfcbca",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-2-light-other-readable.png",
+        "sha256": "538d06279bd0b3779edb75e001f6e334d65d2a4e65c6de31f1e34f51d64f79cf"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 312.85714285714283,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 312.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    },
+    {
+      "nativeState": "reentry-current-focused",
+      "webState": "natural-entry",
+      "webDtoOrdinal": 2,
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-20261104/entry-main-20261106T110904318110Z/reentry-current-focused.png",
+        "sha256": "260ec8d0836661a1e8505c862f865fe5911fad453af6d5c95bc6245237c6e358",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/ui-reference/gameplay-question-swipe-20261106/web-swipe-exact-phone-01/case-2-light-natural-entry.png",
+        "sha256": "5cce47e9a9fc4f67570793a474a9f84531af86a01e3b20e19da8ed460af742cb"
+      },
+      "nativeCardWidthVp": 352.0,
+      "nativeCardHeightVp": 384.0,
+      "nativeGapFromUsableTopVp": 0.0,
+      "nativeCardTopPx": 137,
+      "nativeOriginalPixelSamples": [
+        {
+          "x": 500,
+          "y": 135,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 136,
+          "rgb": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 500,
+          "y": 137,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 139,
+          "rgb": [
+            187,
+            207,
+            197
+          ]
+        },
+        {
+          "x": 500,
+          "y": 148,
+          "rgb": [
+            247,
+            249,
+            248
+          ]
+        }
+      ],
+      "webCardWidthCssPx": 352,
+      "webCardHeightCssPx": 384.734375,
+      "webCardTopCssPx": 190.578125,
+      "webViewportHeightCssPx": 742,
+      "webDocumentHeightCssPx": 742
+    }
+  ],
+  "visualNotes": {
+    "actualNativeTopBorderVisibleBelowStatusArea": true,
+    "nativeCardUsesIntrinsicHeight": true,
+    "nativeAnswerFormAndDraftVisible": true,
+    "webShortCardDoesNotScroll": true,
+    "nativeNightNotSampled": true,
+    "scrollRequiringLongCardNotSampled": true,
+    "preexistingDifferences": [
+      "Web outer backdrop halo",
+      "completed-next action tint"
+    ]
+  }
+}
