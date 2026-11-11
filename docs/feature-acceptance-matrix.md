@@ -71,7 +71,7 @@ Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版
 | 文本答题 | 已实现并完成新直板机/隔离HTTPS验证：空白、真实键盘、pending、错答200、正确结算和只读答案；首次发现的UI快照滞留已修复并用新玩家完整复验 |
 | 选择答题、处罚和答题重试 | 已实现并完成新直板机/隔离真实HTTPS验证：未选零POST、错答/正确、真实冷却到期、永久锁定及回访；503和提交后丢响应均以原命令重试且不重复结算，退出后的完整迟到答题响应被丢弃 |
 | 进度及普通完成 | 已实现并验证服务端进度、上一题只读、手动下一题和autoNext、普通单题内联/多题官方完成弹窗、历史2/2与GET回访不重复提交或庆祝；护照经验区未单独重跑，终章/出口不在此次完成范围 |
-| 线索/媒体/终章/出口/奖励领取 | 尚未迁移；不能从普通文本/选择主链推定这些能力可用 |
+| 线索/媒体/终章/出口/奖励领取 | 截至 11 月 11 日，普通文字和图片线索已完成本轮验证，见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)。组合线索、演出、视频、链接、BGM、终章、出口和奖励领取仍未迁移。 |
 
 具体包、源码和逐状态证据见本轮记录。此前首切片、资料头像、安全及底栏各自的历史验收保持原版本范围，不作为新增玩法通过的替代证据。
 
@@ -482,3 +482,34 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [同包长短题与键盘补验](../artifacts/validation/ui-gameplay-question-swipe-20261106/native-long-short-01.json)使用另一个专用隔离账号，主机先通过真实 HTTPS 为十段长填空结算一次，以便短填空可编辑且相邻长题已解锁。实际键盘出现时应用可用区域为 y=137–1733px，在题面同一位置横滑仍留在当前题，草稿保持。键盘收起后同手势切到长题，可以纵向滚到末尾的只读答案。滑回短题重新定位到 137px，题卡恢复其自然高度和原草稿。复核原图无状态栏遮挡，手机阶段新增业务写入为零。
 
 [固定预览交还](../artifacts/validation/ui-gameplay-question-swipe-20261106/fixed-preview-restored-swipe-20261106-02.json)通过。首轮交还已安装启动并通过运行时检查，逐卡遍历超时。随后保留同一安装包，通过固定预览 HTTPS 核对全部六场，在原生列表确认《清宫那点事》和《关于初见的故事》可见。预览包应用代码和隔离测试包一致。手机留在已登录的「待赴之约」。
+### C01a 普通文字与图片线索（2026-11-11，实施前）
+
+冻结 Web `4b7d1a0` 的手机题卡为参照。首轮只做普通线索列表、手动打开文字弹层和图片查看器；自动演出、组合线索、视频、链接、信纸、祝福、BGM 与旅程出口另拆。不用原占位文案或假可点卡片表示尚未迁移的内容。
+
+同数据 Web 原图中，含正文图片的线索卡可能露出被裁掉的图片边缘。2026-11-11 用户确认原生卡片只预览文字，完整图片留在弹层。线索正文里的链接保留可读文字，不提供跳转；视频及海报不加载。
+
+| 状态 | 本轮验收要求 |
+| --- | --- |
+| 未解锁或当前题未完成 | 不显示线索区。只使用服务端已发放的线索，已发放的全场线索不提前出现在未完成题下。 |
+| 当前题已完成 | 按 Web 筛选、排序和编号：全场线索或本场绑定到本题的线索，题目来源必须绑定本关；排除多题场次的无绑定完成文字组合线索。按场次来源、题目来源、位置、定义 ID、线索 ID 排序。列表位于题卡内反馈下方；无普通可用项不占位。 |
+| 手动打开、返回与重开 | 文字保留原有标题、正文层次、换行、标记和正文嵌入图片，使用 ArkUI 居中弹层；关闭按钮、蒙层和系统返回均返回同题、同滚动位置。图片按后端图集顺序从第一张打开，正文图片放大后返回原弹层。复用原生查看器与原有加载、重试。返回或重开不提交答案，不改进度。 |
+| 授权与状态变化 | 当前题、账号或服务端授权变化后，旧线索和查看器不能继续显示；刷新与回访只按最新快照。未迁移类型不自动弹出或发送业务请求。 |
+| 真机与视觉 | 新直板机重新签名安装、隔离真实 HTTPS 与账号回收单独记录。用相同 DTO、设备实际内容宽度和主题对照 Web 原图。已有入场/答题只运行生成本轮状态所需的最短路径。 |
+
+#### C01a 重新安装与主机检查
+
+新直板机识别为 HarmonyOS API 26。第一次官方 `scripts/hm.sh run` 已编译和签名，但因旧调试描述文件未授权新设备而拒绝安装。使用 DevEco Studio 项目结构的自动签名后，官方构建、安装、启动成功。[预览基线运行时](../artifacts/validation/ui-gameplay-clues-20261111/new-phone-runtime-01.json) 的 5 项检查均通过；窗口为 1260×2720 物理像素、密度 3.25、387.692 vp 宽，扣除系统区后的内容高度为 771.077 vp。
+
+普通线索仅使用当前服务端快照。线索卡通过 ArkUI Button 封装；文字使用 [ArkUI PromptAction 居中模态弹层](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-uicontext-promptaction)，读完回到原题，正文图片和独立图集都复用现有加载与查看器。未引入新网络写入、存储或生产联调。
+
+[最终单测](../artifacts/validation/ui-gameplay-clues-20261111/polish-unit/local-test-summary.json) 6/6、失败 0、忽略 0；[codelinter](../artifacts/validation/ui-gameplay-clues-20261111/polish-lint/lint.json) 命令成功，问题 0，报告的 `filesChecked=0` 如实保留。首轮一次性代理中途离线，出现[可信 CA 请求未收到 200](../artifacts/validation/ui-gameplay-clues-20261111/disposable-native-runtime-01.json)；恢复隔离 PocketBase 和同一 USB TLS 网关后，[隔离安装包](../artifacts/validation/ui-gameplay-clues-20261111/disposable-native-runtime-02.json) 和[图片间距修正版](../artifacts/validation/ui-gameplay-clues-20261111/disposable-polish-runtime-01.json) 均由官方工具重新签名、安装、启动，真机运行时检查各 5 项通过，包括严格 HTTPS 可信 CA、未知 CA 和错误主机名的正反结果。固定预览数据库和账号未用作验收写入。
+
+[首阶段真机记录](../artifacts/validation/ui-gameplay-clues-20261111/native-02.json) 实测未答无占位、首次正确提交后普通线索筛选与排序、文字通过按钮/系统返回/蒙层关闭、两类图集、正文图片退出回原弹层和失败项可重试。失败项使用保留的 `.invalid` 地址验证错误分支，不代表已验证可控的远端断网或恢复。脚本原误用 48 vp 高度门槛，未找到实际 46 vp 的「前往下一题」，本报告保留未完成状态；[独立 SQLite 快照](../artifacts/validation/ui-gameplay-clues-20261111/native-sqlite-settlement-02.json) 确认此时恰好一次入场、一次正确提交、50 XP、未提交第二题。
+
+[同账号续验](../artifacts/validation/ui-gameplay-clues-20261111/native-04.json) 从服务端已保存的第一题继续。第二题未答时不显示此前已发放的线索；答对后显示全场及本题的两条普通线索，排除第一题专属线索和未迁移类型。完成后从历史页夜间回访可重新读取第一题线索，正文图退出回原文字弹层；退出账号后表单为空，题卡和弹层均不再出现。中间一次[题号控件测量失败](../artifacts/validation/ui-gameplay-clues-20261111/native-03.json) 未写入第二题，续验改按官方 UiTest 给出的可见区域点击。最终[独立 SQLite 核验](../artifacts/validation/ui-gameplay-clues-20261111/native-sqlite-settlement-04.json) 与真机记录一致：1 次入场、2 次正确提交、2/2、100 XP，无其他玩法写入。弹层打开时的服务端撤销授权未做强制注入；旧授权清理为代码约束，退出边界已有真机记录。
+
+[同账号和场次 DTO 的 Web 重放](../artifacts/validation/ui-gameplay-clues-20261111/web-reference-phone-01.json) 使用真机四个阶段快照，388×771 逻辑内容视口，26 张日夜及字体对照原图；Web 业务和外部请求均未放行。已阅真机列表、文字弹层和图片查看原图。列表宽约 326，卡间距约 11；[间距实测](../artifacts/validation/ui-gameplay-clues-20261111/visual-comparison-01.json) 显示去掉图块两侧多出的文字行后，弹层由 480.92 vp 降至 420.00 vp；用已完成 DTO 回访、点击第一题后，[Web 夜间同状态原图](../artifacts/validation/ui-gameplay-clues-20261111/web-reference-phone-completed-night-01.json) 为 420.92 CSS px。按用户确认，卡片仅预览文字，完整图片放在弹层；弹层采用 ArkUI 系统遮罩。折叠屏、生产写入和其他玩法未复验。
+
+固定预览已切回原本机数据库与账号。官方签名安装后的[真机运行时](../artifacts/validation/ui-gameplay-clues-20261111/preview-restored-runtime-01.json) 5 项通过，[交付包的 ArkTS 字节码](../artifacts/validation/ui-gameplay-clues-20261111/preview-package-equivalence-01.json) 与间距修正版验收包一致。[固定预览交接](../artifacts/validation/ui-gameplay-clues-20261111/fixed-preview-restored-01.json) 7 项通过：无需改密、两场既有多题场次可见、进度未改，手机留在已登录首页。[一次性环境清理](../artifacts/validation/ui-gameplay-clues-20261111/disposable-cleanup-01.json) 核验原预览容器、数据库和登录配置保持原样。
+
+复验入口：`scripts/hm.sh run`（官方构建、签名、安装、启动）；`scripts/hm.sh test GameplayClues`；`scripts/hm.sh lint`；`scripts/capture-window-evidence.py --font-scale 1 --require-tls --output <报告>`。普通线索真机驱动为 `scripts/device-gameplay-ordinary-clues.py run`，需要新的一次性玩家、精确签名包、媒体清单和设备回执；已结算夹具不能再次执行入场或答题。Web 同数据原图由 `scripts/capture-web-gameplay-ordinary-clues.py` 在冻结 checkout 重放，禁止转发业务 API，并核对登记的图片字节。

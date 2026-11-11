@@ -139,6 +139,7 @@ export struct StarwardQuestionImages {
   @Require @Param ownerKey: string;
   @Require @Param ownerIsCurrent: (key: string) => boolean;
   @Param groupId: string = 'question-images';
+  @Param imageLabel: string = '题图';
   @Param maxHeight: number = 340;
   @Param reducedMotion: boolean = true;
   @Event opened: (index: number) => void = () => {};
@@ -168,7 +169,8 @@ export struct StarwardQuestionImages {
             ForEach(this.rowSources(start), (source: string, index: number) => {
               QuestionImageCell({ source: source, ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent,
                 cellWidth: this.cellWidth(), maxHeight: this.maxHeight, imageId: `${this.groupId}-${start + index}`,
-                imageLabel: `题图 ${start + index + 1}，共 ${this.sources.length} 张`, reducedMotion: this.reducedMotion,
+                imageLabel: `${this.imageLabel} ${start + index + 1}，共 ${this.sources.length} 张`,
+                reducedMotion: this.reducedMotion,
                 opened: () => this.opened(start + index) })
             }, (source: string) => `${this.ownerKey}:${source}`)
           }.width('100%').alignItems(VerticalAlign.Top)

@@ -1,0 +1,42 @@
+{
+  "status": "sqlite_settlement_observed_native_incomplete",
+  "scope": "Independent local read-only SQLite transaction on the exact disposable actor and case",
+  "nativeReportSha256": "f4828d2450aa3b550e57e2611317b13d6fbb75031d04d358d54c87fcbcddcc68",
+  "nativeStatus": "incomplete",
+  "caseReferenceSha256": "f366c37f4a60762274edcd4f796b9a8e2b7a5d60f9cb55663d9185b646a51774",
+  "beforeHttpsDtoSha256": "e55f4f012d2043491aea158ff590e57017627cc4f9c712fe4b0126876df19805",
+  "hapSha256": "7a376afc11bd95ec7469fc2f8e85e8faaaf6b0ee1d3b67e6e5eb092430025b6b",
+  "crosscheck": "incomplete_native_report_consistent_with_last_confirmed_prefix",
+  "databaseFacts": {
+    "assignmentStatus": "active",
+    "startedAtPresent": true,
+    "completedAtPresent": false,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "completedLevelIndexes": [
+      0
+    ],
+    "xpLedgerRows": 1,
+    "xpDeltaSum": 50,
+    "playerTotalXp": 50,
+    "sessionClueUnlockRows": 2,
+    "sessionClueTriggerCounts": {
+      "start": 1,
+      "level_completed": 1,
+      "session_completed": 0
+    },
+    "questionClueDefinitionCount": 3,
+    "unrelatedActorGameplayWrites": 0,
+    "sameLevelAnswerReceiptsAndSubmissions": true,
+    "sameLevelProgressAndExperience": true
+  },
+  "readOnlySQLiteMode": true,
+  "gameplayRequestsSent": 0,
+  "deviceCommandsSent": 0,
+  "previewTouched": false,
+  "actorIdentifiersOrSecretsIncluded": false,
+  "uiAcceptanceClaimedByThisReport": false
+}

@@ -1,0 +1,79 @@
+{
+  "status": "incomplete",
+  "stage": "resume-existing-first-answer",
+  "hapSha256": "2b56b75d75574ff5e67a14d0210acd8b5bf14dddd2178e60613da974cdf4403f",
+  "checksPassed": 0,
+  "scope": "One dedicated real HTTPS two-question clue case; no production or fixed preview operations",
+  "checks": [],
+  "states": [],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "bindingSha256": {
+    "hap": "2b56b75d75574ff5e67a14d0210acd8b5bf14dddd2178e60613da974cdf4403f",
+    "runtime": "a9f6de1a9122933d20bc67fa5e64d278e56888466a199a0fae56b1674d3f3953",
+    "caseReference": "f366c37f4a60762274edcd4f796b9a8e2b7a5d60f9cb55663d9185b646a51774",
+    "ca": "49bee76065b59b5318d54853fe333edce510d4eb14ec766974026fbdef8377a1",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "clueDriver": "830a12e388d6857e6edae538caa0fef8aa6768f6891b21f772f718a54a3d4c93",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "navigationDriver": "9ff3991129625a295e705b7312c4a8a740c81986a21b7905a0b34df60a462eae",
+    "page": "ace7aca5768a6d32bff28ea527df6ef089f12fb111fb3dc801062f4529cf7d33",
+    "cluePresentation": "0fe9185edc88a105996ff774622dd5992726e485e7d3bf786bb83801cb0d9741",
+    "imageViewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "inlineImages": "dd92e3a7a5c582a9b3a09acc54b35fe27036977e05cdbe45c5f8911de8e527aa",
+    "lightColors": "4b4d00e4c7ed14ce89d801842700b447ba4ed92711e06bc548538ae679a2e54e",
+    "darkColors": "f8a26c6bd6574312c259d39adf6ad1aebffcb05d7fa1a4f684942155c7cef0cb",
+    "cluePanel": "2fbced571af1f33a3feee4cc7f287bc7d3a17a4e1d349c8dff8d0be0a1e01635",
+    "clueDialog": "4672fa0de6b2228f41be7bedf9ddc2abd4f31b0ed3804b68e4125d4620d91bf7",
+    "mediaManifest": "90b18233d78b135a6103f81c7446614aa12ab5568aa7fbf769ec29f43b38545d"
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [],
+  "sameDataWebFixtures": {
+    "uncompleted-first": {
+      "file": "artifacts/private/entry-main-20261111T092520536353Z/uncompleted-first-web-dtos.json",
+      "sha256": "ce055340ecb3e24df77651d439ca93d69097cfa352b040652bbfff518ba0073a"
+    },
+    "completed-first": {
+      "file": "artifacts/private/entry-main-20261111T092520536353Z/completed-first-web-dtos.json",
+      "sha256": "dc78ac8dfe1468ddd0761cce31eedf7872ee89bdcc1e890c00718d931f90b4f3"
+    }
+  },
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "inheritedFirstPhaseReportSha256": "f4828d2450aa3b550e57e2611317b13d6fbb75031d04d358d54c87fcbcddcc68",
+    "businessWrites": {
+      "starts": 1,
+      "answers": 1,
+      "readOnlyReceiptDiagnosticAvailable": false
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ]
+  },
+  "fixedPreviewTouched": false,
+  "visualReview": "pending_original_review",
+  "failure": "Expected test control is not reachable: gameplay-level-0"
+}

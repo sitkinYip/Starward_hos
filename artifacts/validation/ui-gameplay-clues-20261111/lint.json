@@ -1,0 +1,27 @@
+{
+  "issues": [
+    {
+      "file": "/Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardClueArchive.ets",
+      "line": 35,
+      "column": 15,
+      "severity": "Warning",
+      "rule": "@performance/foreach-args-check",
+      "message": "For performance purposes, set keyGenerator for ForEach."
+    },
+    {
+      "file": "/Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardClueTextDialog.ets",
+      "line": 23,
+      "column": 7,
+      "severity": "Warning",
+      "rule": "@performance/foreach-args-check",
+      "message": "For performance purposes, set keyGenerator for ForEach."
+    }
+  ],
+  "summary": {
+    "filesChecked": 2,
+    "issues": 2,
+    "errors": 0,
+    "warnings": 2,
+    "suggestions": 0
+  }
+}

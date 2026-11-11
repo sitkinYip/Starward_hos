@@ -1,7 +1,9 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { RectShape } from '@kit.ArkUI';
-import { GameplayContentBlock, GameplayLevel, GameplayOption,
+import { PromptAction, promptAction, RectShape } from '@kit.ArkUI';
+import { clueImageSources, ClueTextPart, clueTextParts, ordinaryClues } from '../business/GameplayClues';
+import { GameplayClue, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
+import { AppLifecycle } from '../platform/AppLifecycle';
 import { GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
@@ -18,6 +20,21 @@ import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
 import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
 import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
 import { StarwardQuestionSwiper } from '../ui/StarwardQuestionSwiper';
+import { StarwardClueArchive } from '../ui/StarwardClueArchive';
+import { StarwardClueTextDialog } from '../ui/StarwardClueTextDialog';
+
+class ClueDialogRequest {
+  id: number = -1;
+  closing: boolean = false;
+  nativeDismissed: boolean = false;
+  readonly owner: string;
+  readonly action: PromptAction;
+
+  constructor(owner: string, action: PromptAction) {
+    this.owner = owner;
+    this.action = action;
+  }
+}
 
 /** Native presentation only: the account-bound ViewModel owns drafts and writes. */
 @ComponentV2
@@ -39,6 +56,11 @@ export struct GameplayPage {
   @Local private viewportTop: number = 0;
   @Local private viewportHeight: number = 0;
   @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState();
+  @Local private textClue: GameplayClue | null = null;
+  private clueDialog: ClueDialogRequest | null = null;
+  private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
+    if (!foreground && this.clueDialog !== null) { this.closeClueDialog(true); }
+  };
   private readonly questionScroller: Scroller = new Scroller();
   private cardContentTop: number = -1;
   private questionRegionHeight: number = 0;
@@ -52,9 +74,12 @@ export struct GameplayPage {
     this.seenCompletionRevision = this.play.completionRevision;
     this.recoveryChanged();
     this.trackQuestionPosition();
+    AppLifecycle.subscribe(this.clueLifecycle);
   }
 
   aboutToDisappear(): void {
+    AppLifecycle.unsubscribe(this.clueLifecycle);
+    this.closeClueDialog(true);
     this.viewer.close(this.viewer.sessionId, true);
     clearTimeout(this.positionTimer);
     this.positionTimer = -1;
@@ -62,9 +87,11 @@ export struct GameplayPage {
     this.titleVisibilityChanged(false);
   }
 
-  @Monitor('play.visible', 'play.snapshot', 'play.activeIndex')
+  @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error')
   imageOwnerChanged(): void {
     this.viewer.validateOwner();
+    if (this.clueDialog !== null && this.textClue !== null &&
+      !this.isClueCurrent(this.clueDialog.owner, this.textClue)) { this.closeClueDialog(true); }
     if (!this.play.currentLevel()?.question) {
       this.cardContentTop = -1;
       this.questionRegionHeight = 0;
@@ -129,7 +156,7 @@ export struct GameplayPage {
   }
 
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
-    'play.refreshing', 'viewer.visible', 'viewer.closing')
+    'play.refreshing', 'viewer.visible', 'viewer.closing', 'textClue')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -192,6 +219,127 @@ export struct GameplayPage {
   imageViewer() {
     StarwardImageViewer({ model: this.viewer, sessionId: this.viewer.sessionId, reducedMotion: this.reducedMotion,
       close: this.viewerCloseAction() })
+  }
+
+  private currentClues(): GameplayClue[] {
+    return this.play.visible && this.play.error.length === 0 ?
+      ordinaryClues(this.play.snapshot, this.play.currentLevel()) : [];
+  }
+
+  private isClueCurrent(owner: string, clue: GameplayClue): boolean {
+    return this.imageOwner() === owner && this.currentClues().some((actual: GameplayClue) =>
+      actual.id === clue.id && JSON.stringify(actual) === JSON.stringify(clue));
+  }
+
+  private openClue(id: string): void {
+    if (!this.questionInteractionReady() || this.clueDialog !== null) { return; }
+    const clue: GameplayClue | undefined = this.currentClues().find((item: GameplayClue) => item.id === id);
+    if (clue === undefined) { return; }
+    const owner: string = this.imageOwner();
+    if (clue.kind === 'text') {
+      this.openClueDialog(clue, owner);
+    } else {
+      this.viewer.open(clueImageSources(clue), 0, () => this.isClueCurrent(owner, clue));
+    }
+  }
+
+  private clueDialogWidth(): number { return Math.min(720, this.viewportWidth - 48); }
+  private clueDialogHeight(): number {
+    return this.viewportHeight - this.foregroundTopInset() - Math.max(24, this.bottomClearance) - 24;
+  }
+
+  private async openClueDialog(clue: GameplayClue, owner: string): Promise<void> {
+    if (this.clueDialogWidth() < 160 || this.clueDialogHeight() < 120) { return; }
+    let request: ClueDialogRequest;
+    try { request = new ClueDialogRequest(owner, this.getUIContext().getPromptAction()); } catch { return; }
+    this.clueDialog = request;
+    this.textClue = clue;
+    const fade: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY :
+      TransitionEffect.OPACITY.animation({ duration: 180, curve: Curve.EaseOut });
+    const options: promptAction.CustomDialogOptions = {
+      builder: () => { this.clueDialogContent(request); },
+      alignment: DialogAlignment.Center, width: this.clueDialogWidth(), cornerRadius: 0,
+      isModal: true, autoCancel: true, showInSubWindow: false,
+      backgroundColor: $r('app.color.raised'), maskColor: $r('app.color.clue_mask'),
+      dialogTransition: fade, maskTransition: fade,
+      onWillDismiss: (action: DismissDialogAction) => {
+        if (this.clueDialog === request && (this.viewer.visible || this.viewer.closing)) {
+          if (this.viewer.visible) { this.viewer.close(this.viewer.sessionId); }
+        } else {
+          request.closing = true;
+          request.nativeDismissed = true;
+          action.dismiss();
+        }
+      },
+      onDidDisappear: () => this.releaseClueDialog(request)
+    };
+    try {
+      request.id = await request.action.openCustomDialog(options);
+      if (!request.nativeDismissed &&
+        (request.closing || this.clueDialog !== request || !this.isClueCurrent(owner, clue))) {
+        this.finishClueDialogClose(request);
+      }
+    } catch {
+      this.releaseClueDialog(request);
+    }
+  }
+
+  private finishClueDialogClose(request: ClueDialogRequest): void {
+    if (request.id < 0 || request.nativeDismissed) { return; }
+    try { request.action.closeCustomDialog(request.id); } catch { this.releaseClueDialog(request); }
+  }
+
+  private closeClueDialog(invalidOwner: boolean = false): void {
+    const request: ClueDialogRequest | null = this.clueDialog;
+    if (request === null) { return; }
+    if (!invalidOwner && (this.viewer.visible || this.viewer.closing)) {
+      if (this.viewer.visible) { this.viewer.close(this.viewer.sessionId); }
+      return;
+    }
+    const closing: boolean = request.closing;
+    request.closing = true;
+    if (invalidOwner) {
+      this.viewer.close(this.viewer.sessionId, true);
+      this.viewer.disappeared(this.viewer.sessionId);
+      this.releaseClueDialog(request);
+    }
+    if (!closing) { this.finishClueDialogClose(request); }
+  }
+
+  private releaseClueDialog(request: ClueDialogRequest): void {
+    if (this.clueDialog === request) {
+      this.clueDialog = null;
+      this.textClue = null;
+    }
+  }
+
+  private currentTextClueOwner(owner: string): boolean {
+    return this.clueDialog?.owner === owner && !this.clueDialog.closing && this.textClue !== null &&
+      this.isClueCurrent(owner, this.textClue);
+  }
+
+  private openInlineClueImage(partIndex: number): void {
+    const clue: GameplayClue | null = this.textClue;
+    const owner: string = this.clueDialog?.owner || '';
+    if (clue === null || !this.currentTextClueOwner(owner)) { return; }
+    const parts: ClueTextPart[] = clueTextParts(clue.content.text);
+    if ((parts[partIndex]?.image || '').length === 0) { return; }
+    const sources: string[] = parts.filter((part: ClueTextPart) => part.image.length > 0)
+      .map((part: ClueTextPart) => part.image);
+    const index: number = parts.slice(0, partIndex).filter((part: ClueTextPart) => part.image.length > 0).length;
+    this.viewer.open(sources, index, () => this.textClue === clue && this.currentTextClueOwner(owner));
+  }
+
+  @Builder
+  clueDialogContent(request: ClueDialogRequest) {
+    if (this.clueDialog === request && this.textClue !== null) {
+      StarwardClueTextDialog({ clue: this.textClue, ownerKey: request.owner,
+        ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
+        panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
+        reducedMotion: this.reducedMotion, close: () => this.closeClueDialog(),
+        openImage: (index: number) => this.openInlineClueImage(index) })
+        .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
+    }
   }
 
   @Monitor('play.retryAnswer', 'play.submitting', 'play.loading', 'play.visible', 'play.snapshot',
@@ -362,7 +510,7 @@ export struct GameplayPage {
 
   private questionInteractionReady(): boolean {
     return this.interactionReady() && !this.keyboardVisible && !this.recoveryVisible &&
-      !this.viewer.visible && !this.viewer.closing;
+      this.textClue === null && !this.viewer.visible && !this.viewer.closing;
   }
 
   private titleVisible(id: string): boolean {
@@ -508,6 +656,10 @@ export struct GameplayPage {
           Column() {
             this.answerForm()
           }.width('100%').alignItems(HorizontalAlign.Start).margin({ top: 24 })
+          if (this.currentClues().length > 0) {
+            StarwardClueArchive({ clues: this.currentClues(), displayFont: this.displayFont,
+              opened: (id: string) => this.openClue(id) })
+          }
         }
       }.width('100%').alignItems(HorizontalAlign.Start)
         .padding({ top: 22, left: 18, right: 18, bottom: 26 })
@@ -530,10 +682,6 @@ export struct GameplayPage {
       } else {
         Text('题目尚未解锁，请同步进度后重试。').id('gameplay-question-unavailable').width('100%')
           .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))
-      }
-      if ((this.play.snapshot?.clues.length || 0) > 0) {
-        Text('本场线索内容尚未迁移。').id('gameplay-clue-notice').width('100%')
-          .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted'))
       }
       if (this.play.snapshot?.detail.status === 'completed') {
         Text('本次场次已完成。').id('gameplay-completed-state').width('100%')
@@ -616,7 +764,7 @@ export struct GameplayPage {
       StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
         request: async () => { await this.play.refresh(); },
         content: () => { this.gameplayScroll() } })
-        .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
+        .bindContentCover(this.textClue === null && this.viewer.visible, this.imageViewer(), this.viewerOptions())
     }.width('100%').height('100%')
       // Keep the immersive page background outside the scrolling foreground's clip.
       .clipShape(this.foregroundClip())

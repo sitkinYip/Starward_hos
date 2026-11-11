@@ -1,0 +1,56 @@
+{
+  "status": "verified_exact_native_settlement",
+  "scope": "Independent local read-only SQLite transaction on the exact disposable actor and case",
+  "nativeReportSha256": "c950b1d84cebdf12a14aa31aadf1c6bae5ea94850ca5c79febaaa6e8801e6261",
+  "nativeStatus": "captured_native_ordinary_clues",
+  "caseReferenceSha256": "f366c37f4a60762274edcd4f796b9a8e2b7a5d60f9cb55663d9185b646a51774",
+  "beforeHttpsDtoSha256": "e55f4f012d2043491aea158ff590e57017627cc4f9c712fe4b0126876df19805",
+  "hapSha256": "2b56b75d75574ff5e67a14d0210acd8b5bf14dddd2178e60613da974cdf4403f",
+  "crosscheck": "exact",
+  "databaseFacts": {
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "answerSubmissionCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "completedLevelIndexes": [
+      0,
+      1
+    ],
+    "xpLedgerRows": 2,
+    "xpDeltaSum": 100,
+    "playerTotalXp": 100,
+    "sessionClueUnlockRows": 4,
+    "sessionClueTriggerCounts": {
+      "start": 1,
+      "level_completed": 2,
+      "session_completed": 1
+    },
+    "questionClueDefinitionCount": 3,
+    "unrelatedActorGameplayWrites": 0,
+    "sameLevelAnswerReceiptsAndSubmissions": true,
+    "sameLevelProgressAndExperience": true
+  },
+  "readOnlySQLiteMode": true,
+  "gameplayRequestsSent": 0,
+  "deviceCommandsSent": 0,
+  "previewTouched": false,
+  "actorIdentifiersOrSecretsIncluded": false,
+  "uiAcceptanceClaimedByThisReport": false,
+  "continuation": {
+    "priorNativeReportSha256": "f4828d2450aa3b550e57e2611317b13d6fbb75031d04d358d54c87fcbcddcc68",
+    "priorIndependentSettlementSha256": "4f71319f322ad9b92906e6d93b57241a08b00d1839f2521c3d4f3d932b530751",
+    "startedAndFirstCompletedDtoSha256": [
+      "ce055340ecb3e24df77651d439ca93d69097cfa352b040652bbfff518ba0073a",
+      "dc78ac8dfe1468ddd0761cce31eedf7872ee89bdcc1e890c00718d931f90b4f3"
+    ],
+    "settledDtoSha256": "b08aea7a2ddd0ad445d3acff84712e00c9e71b5900bd383b4b45dbbb2957b5d6",
+    "originalStartAndFirstCompletionTimestampsMatchSQLite": true,
+    "settledTimestampsMatchSQLite": true,
+    "continuationAuditHelperSha256": "c1d192d1d9528c95ac3c83a7c67c4c9bd6677270b67a9de85cf3c075464249e6",
+    "settlementAuditHelperSha256": "f9d9ed9ed3525265f78e901c46fb9166bde03b6ae7900fcba35b994f6be9bf46"
+  }
+}

@@ -1,0 +1,527 @@
+{
+  "status": "captured_native_ordinary_clues",
+  "stage": "night-get-reentry-and-logout",
+  "hapSha256": "2b56b75d75574ff5e67a14d0210acd8b5bf14dddd2178e60613da974cdf4403f",
+  "checksPassed": 5,
+  "scope": "One dedicated real HTTPS two-question clue case; no production or fixed preview operations",
+  "checks": [
+    "Existing first answer resumed by real GET without a duplicate start or answer",
+    "The second editable question has no clue panel despite previously authorized global clues",
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "The completed second question retains applicable common clues and excludes other-question or unsupported entries",
+    "Night GET reentry restored the first archive and polished rich dialog; inline viewer returns to it without writes"
+  ],
+  "states": [
+    {
+      "state": "completed-second-card-0",
+      "boundsPx": [
+        100,
+        2241,
+        1160,
+        2549
+      ],
+      "rawSha256": "a751363d2f5c422706882134fa34e42f2a4c397f1280d803332bcf385717e51d",
+      "visibleGeometryPx": {
+        "question": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "archive": [
+          100,
+          1908,
+          1160,
+          2720
+        ],
+        "archiveHeading": [
+          100,
+          2071,
+          451,
+          2176
+        ],
+        "archiveCount": [
+          1029,
+          2116,
+          1161,
+          2151
+        ],
+        "questionContent": [
+          100,
+          1144,
+          1160,
+          1233
+        ],
+        "page": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      }
+    },
+    {
+      "state": "completed-second-card-1",
+      "boundsPx": [
+        100,
+        1762,
+        1160,
+        2070
+      ],
+      "rawSha256": "3dc37ce7c894f2f3312b5c2c5e0dba8bec3964fb7851e9d3d98edbcf595924a0",
+      "visibleGeometryPx": {
+        "question": [
+          39,
+          124,
+          1221,
+          2197
+        ],
+        "archive": [
+          100,
+          1085,
+          1160,
+          2110
+        ],
+        "archiveHeading": [
+          100,
+          1248,
+          451,
+          1353
+        ],
+        "archiveCount": [
+          1029,
+          1293,
+          1161,
+          1328
+        ],
+        "questionContent": [
+          100,
+          321,
+          1160,
+          410
+        ],
+        "page": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      }
+    },
+    {
+      "state": "revisited-first-night-card-0",
+      "boundsPx": [
+        100,
+        1496,
+        1160,
+        1804
+      ],
+      "rawSha256": "3f2ee11f81236372ee581705466e394167c3f5a872e934c9aad67a5e5adfd096",
+      "visibleGeometryPx": {
+        "question": [
+          39,
+          124,
+          1221,
+          2720
+        ],
+        "archive": [
+          100,
+          1163,
+          1160,
+          2720
+        ],
+        "archiveHeading": [
+          100,
+          1326,
+          451,
+          1431
+        ],
+        "archiveCount": [
+          1029,
+          1371,
+          1161,
+          1406
+        ],
+        "questionContent": [
+          100,
+          490,
+          1160,
+          579
+        ],
+        "page": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      }
+    },
+    {
+      "state": "revisited-first-night-card-1",
+      "boundsPx": [
+        100,
+        1840,
+        1160,
+        2102
+      ],
+      "rawSha256": "3f2ee11f81236372ee581705466e394167c3f5a872e934c9aad67a5e5adfd096",
+      "visibleGeometryPx": {
+        "question": [
+          39,
+          124,
+          1221,
+          2720
+        ],
+        "archive": [
+          100,
+          1163,
+          1160,
+          2720
+        ],
+        "archiveHeading": [
+          100,
+          1326,
+          451,
+          1431
+        ],
+        "archiveCount": [
+          1029,
+          1371,
+          1161,
+          1406
+        ],
+        "questionContent": [
+          100,
+          490,
+          1160,
+          579
+        ],
+        "page": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      }
+    },
+    {
+      "state": "revisited-first-night-card-2",
+      "boundsPx": [
+        100,
+        2137,
+        1160,
+        2446
+      ],
+      "rawSha256": "3f2ee11f81236372ee581705466e394167c3f5a872e934c9aad67a5e5adfd096",
+      "visibleGeometryPx": {
+        "question": [
+          39,
+          124,
+          1221,
+          2720
+        ],
+        "archive": [
+          100,
+          1163,
+          1160,
+          2720
+        ],
+        "archiveHeading": [
+          100,
+          1326,
+          451,
+          1431
+        ],
+        "archiveCount": [
+          1029,
+          1371,
+          1161,
+          1406
+        ],
+        "questionContent": [
+          100,
+          490,
+          1160,
+          579
+        ],
+        "page": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      }
+    },
+    {
+      "state": "revisited-first-night-card-3",
+      "boundsPx": [
+        100,
+        2029,
+        1160,
+        2291
+      ],
+      "rawSha256": "bd051982fc6d5eebcf9da849536c7f04287d4d6b9945ea6832f0c2e8f313ff41",
+      "visibleGeometryPx": {
+        "question": [
+          39,
+          124,
+          1221,
+          2417
+        ],
+        "archive": [
+          100,
+          711,
+          1160,
+          2330
+        ],
+        "archiveHeading": [
+          100,
+          874,
+          451,
+          979
+        ],
+        "archiveCount": [
+          1029,
+          919,
+          1161,
+          954
+        ],
+        "questionContent": [
+          100,
+          124,
+          1160,
+          127
+        ],
+        "page": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      }
+    },
+    {
+      "state": "polished-rich-night-text-dialog",
+      "rawSha256": "5fda6f30138f0674b721de8071b1dff762f0fed1386e72ae86e97a6e72d5a988",
+      "visibleGeometryPx": {
+        "dialog": [
+          78,
+          678,
+          1182,
+          2043
+        ],
+        "title": [
+          172,
+          860,
+          523,
+          986
+        ],
+        "content": [
+          172,
+          1132,
+          1088,
+          1949
+        ],
+        "close": [
+          984,
+          733,
+          1127,
+          876
+        ]
+      }
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "bindingSha256": {
+    "hap": "2b56b75d75574ff5e67a14d0210acd8b5bf14dddd2178e60613da974cdf4403f",
+    "runtime": "a9f6de1a9122933d20bc67fa5e64d278e56888466a199a0fae56b1674d3f3953",
+    "caseReference": "f366c37f4a60762274edcd4f796b9a8e2b7a5d60f9cb55663d9185b646a51774",
+    "ca": "49bee76065b59b5318d54853fe333edce510d4eb14ec766974026fbdef8377a1",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "clueDriver": "830a12e388d6857e6edae538caa0fef8aa6768f6891b21f772f718a54a3d4c93",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "navigationDriver": "9ff3991129625a295e705b7312c4a8a740c81986a21b7905a0b34df60a462eae",
+    "page": "ace7aca5768a6d32bff28ea527df6ef089f12fb111fb3dc801062f4529cf7d33",
+    "cluePresentation": "0fe9185edc88a105996ff774622dd5992726e485e7d3bf786bb83801cb0d9741",
+    "imageViewer": "d4073696b459b0c31d8f2fd82bff59e2325df61d417606a070950e60b295cc6d",
+    "inlineImages": "dd92e3a7a5c582a9b3a09acc54b35fe27036977e05cdbe45c5f8911de8e527aa",
+    "lightColors": "4b4d00e4c7ed14ce89d801842700b447ba4ed92711e06bc548538ae679a2e54e",
+    "darkColors": "f8a26c6bd6574312c259d39adf6ad1aebffcb05d7fa1a4f684942155c7cef0cb",
+    "cluePanel": "2fbced571af1f33a3feee4cc7f287bc7d3a17a4e1d349c8dff8d0be0a1e01635",
+    "clueDialog": "4672fa0de6b2228f41be7bedf9ddc2abd4f31b0ed3804b68e4125d4620d91bf7",
+    "mediaManifest": "90b18233d78b135a6103f81c7446614aa12ab5568aa7fbf769ec29f43b38545d"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/uncompleted-second.png",
+      "sha256": "3603a57f6663e0962420db4c2b59797986d0d980caa06b4d20cbdfd9fc615bde",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/completed-second-card-0.png",
+      "sha256": "ea04cda255d8fd530ba77fa1a240106f27581df54c3816fb1231d97bd99b9dbe",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/completed-second-card-1.png",
+      "sha256": "c11bbd189e398e0382d6c2b4e0531fb3a2e6347af869a675715f1220ab599d96",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/revisited-first-night-card-0.png",
+      "sha256": "6d2fefadd28cd8cc26c1063f0715db7aaa98ecb24a6d5208bd9134b742a23061",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/revisited-first-night-card-1.png",
+      "sha256": "7a376759bbf651c8258265dd45db11454a3c94dea6bcda91d14c6140f392cd23",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/revisited-first-night-card-2.png",
+      "sha256": "c9ca9524705983517349d5857f5f6a89f85ada17edc0e812e0d3ea0db449e381",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/revisited-first-night-card-3.png",
+      "sha256": "5dbead150bb205fd3a04e72dbd04fdae460fd262902db68f0360b88b36d7e699",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/polished-rich-night-text-dialog.png",
+      "sha256": "395da7d0ce5d6ebd978218ba9447254a5f5591fa4f4a63272684f8b3bc2fc1cf",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/polished-rich-night-inline-1.png",
+      "sha256": "ec106bf3f6894ec857cd7e11d3214d6f4e7a99f7595ed079b05bc603759e1fa2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/polished-rich-night-inline-viewer-1.png",
+      "sha256": "aa9e654803fb218a289fa6380ed72cff7b0fa1eae6e2349da025d3241e6d3a88",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "uncompleted-second",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-uncompleted-second-6ffca25ebafb4ea4baafdb39a2298997.json",
+      "remoteRemoved": true,
+      "sha256": "34dba3c7d1edc4a09af4f68906e6053a4d9cb7e53a3d927217ce4d9974666881"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-followup-ready-submit-6f843edd50e8468a8cc784703ecf3cb0.json",
+      "remoteRemoved": true,
+      "sha256": "f8179780c22ff7be71ec737efe4f781d63fad550617d4bf18550ba99fea1002d"
+    },
+    {
+      "label": "completed-second-card-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-completed-second-card-0-cfebbd0dcb2948698c42ada05a6a4ead.json",
+      "remoteRemoved": true,
+      "sha256": "a751363d2f5c422706882134fa34e42f2a4c397f1280d803332bcf385717e51d"
+    },
+    {
+      "label": "completed-second-card-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-completed-second-card-1-9135391dd1f54ba091bdd16f40b13f14.json",
+      "remoteRemoved": true,
+      "sha256": "3dc37ce7c894f2f3312b5c2c5e0dba8bec3964fb7851e9d3d98edbcf595924a0"
+    },
+    {
+      "label": "revisited-first-night-card-0",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-revisited-first-night-card-0-eb1fe718d746413db47349b742b2bb68.json",
+      "remoteRemoved": true,
+      "sha256": "3f2ee11f81236372ee581705466e394167c3f5a872e934c9aad67a5e5adfd096"
+    },
+    {
+      "label": "revisited-first-night-card-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-revisited-first-night-card-1-462e4ecd0a304548817be9661f1b6a79.json",
+      "remoteRemoved": true,
+      "sha256": "3f2ee11f81236372ee581705466e394167c3f5a872e934c9aad67a5e5adfd096"
+    },
+    {
+      "label": "revisited-first-night-card-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-revisited-first-night-card-2-560f1db442e74e398bb4c724de821a51.json",
+      "remoteRemoved": true,
+      "sha256": "3f2ee11f81236372ee581705466e394167c3f5a872e934c9aad67a5e5adfd096"
+    },
+    {
+      "label": "revisited-first-night-card-3",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-revisited-first-night-card-3-0a8722ec530f48e1b03964c1d9ffcc5c.json",
+      "remoteRemoved": true,
+      "sha256": "bd051982fc6d5eebcf9da849536c7f04287d4d6b9945ea6832f0c2e8f313ff41"
+    },
+    {
+      "label": "polished-rich-night-text-dialog",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/raw-polished-rich-night-text-dialog-7ea4359ca32c498cbd4f9aaccd41a92f.json",
+      "remoteRemoved": true,
+      "sha256": "5fda6f30138f0674b721de8071b1dff762f0fed1386e72ae86e97a6e72d5a988"
+    }
+  ],
+  "sameDataWebFixtures": {
+    "uncompleted-first": {
+      "file": "artifacts/private/entry-main-20261111T092520536353Z/uncompleted-first-web-dtos.json",
+      "sha256": "ce055340ecb3e24df77651d439ca93d69097cfa352b040652bbfff518ba0073a"
+    },
+    "completed-first": {
+      "file": "artifacts/private/entry-main-20261111T092520536353Z/completed-first-web-dtos.json",
+      "sha256": "dc78ac8dfe1468ddd0761cce31eedf7872ee89bdcc1e890c00718d931f90b4f3"
+    },
+    "completed-second": {
+      "file": "artifacts/private/entry-main-20261111T094354119410Z/completed-second-web-dtos.json",
+      "sha256": "b08aea7a2ddd0ad445d3acff84712e00c9e71b5900bd383b4b45dbbb2957b5d6"
+    }
+  },
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "inheritedFirstPhaseReportSha256": "f4828d2450aa3b550e57e2611317b13d6fbb75031d04d358d54c87fcbcddcc68",
+    "businessWrites": {
+      "starts": 1,
+      "answers": 2,
+      "readOnlyReceiptDiagnosticAvailable": false
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ]
+  },
+  "fixedPreviewTouched": false,
+  "visualReview": "pending_original_review",
+  "failure": null
+}
