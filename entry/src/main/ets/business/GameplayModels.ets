@@ -100,6 +100,7 @@ export class GameplayAnswerResult {
   xpDelta: number = 0;
   rewardIds: string[] = [];
   effects: GameplayEffect[] = [];
+  effectsProvided: boolean = false;
   assignment: GameplaySnapshot = new GameplaySnapshot();
   player: Player = new Player();
 }

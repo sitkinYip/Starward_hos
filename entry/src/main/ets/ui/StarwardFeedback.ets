@@ -28,20 +28,43 @@ export class StarwardFeedback {
   }
 
   /** Informational completion only; dismissal never performs a business write. */
-  static notice(context: UIContext, title: string, message: string): void {
+  static notice(context: UIContext, title: string, message: string, disappeared?: () => void): boolean {
     if (!StarwardFeedback.isAvailable(context)) {
-      return;
+      return false;
     }
     try {
       context.showAlertDialog({
         title: title,
         message: message,
         primaryButton: { value: '知晓了', action: () => {} },
+        onDidDisappear: disappeared,
         systemMaterial: StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THICK)
       });
+      return true;
     } catch {
       // The page still displays the server-confirmed completion.
-      return;
+      return false;
+    }
+  }
+
+  /** Present the acknowledgement before handing off to the next reading surface. */
+  static combinationNotice(context: UIContext, title: string, message: string,
+    disappeared: (acknowledged: boolean) => void): boolean {
+    if (!StarwardFeedback.isAvailable(context)) { return false; }
+    let acknowledged: boolean = false;
+    try {
+      context.showAlertDialog({
+        title: title,
+        message: message,
+        autoCancel: false,
+        onWillDismiss: () => {},
+        primaryButton: { value: '查看组合结果', action: () => { acknowledged = true; } },
+        onDidDisappear: () => disappeared(acknowledged),
+        systemMaterial: StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THICK)
+      });
+      return true;
+    } catch {
+      return false;
     }
   }
 

@@ -71,7 +71,7 @@ Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版
 | 文本答题 | 已实现并完成新直板机/隔离HTTPS验证：空白、真实键盘、pending、错答200、正确结算和只读答案；首次发现的UI快照滞留已修复并用新玩家完整复验 |
 | 选择答题、处罚和答题重试 | 已实现并完成新直板机/隔离真实HTTPS验证：未选零POST、错答/正确、真实冷却到期、永久锁定及回访；503和提交后丢响应均以原命令重试且不重复结算，退出后的完整迟到答题响应被丢弃 |
 | 进度及普通完成 | 已实现并验证服务端进度、上一题只读、手动下一题和autoNext、普通单题内联/多题官方完成弹窗、历史2/2与GET回访不重复提交或庆祝；护照经验区未单独重跑，终章/出口不在此次完成范围 |
-| 线索/媒体/终章/出口/奖励领取 | 截至 11 月 11 日，普通文字和图片线索已完成本轮验证，见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)。组合线索、演出、视频、链接、BGM、终章、出口和奖励领取仍未迁移。 |
+| 线索/媒体/终章/出口/奖励领取 | 普通文字和图片线索见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)，组合线索的解锁、顺序、入口和回访见 [C01b](#c01b-组合线索2026-11-12)。其他演出、视频、链接跳转、BGM、终章、出口和奖励领取仍分片。 |
 
 具体包、源码和逐状态证据见本轮记录。此前首切片、资料头像、安全及底栏各自的历史验收保持原版本范围，不作为新增玩法通过的替代证据。
 
@@ -513,3 +513,33 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 固定预览已切回原本机数据库与账号。官方签名安装后的[真机运行时](../artifacts/validation/ui-gameplay-clues-20261111/preview-restored-runtime-01.json) 5 项通过，[交付包的 ArkTS 字节码](../artifacts/validation/ui-gameplay-clues-20261111/preview-package-equivalence-01.json) 与间距修正版验收包一致。[固定预览交接](../artifacts/validation/ui-gameplay-clues-20261111/fixed-preview-restored-01.json) 7 项通过：无需改密、两场既有多题场次可见、进度未改，手机留在已登录首页。[一次性环境清理](../artifacts/validation/ui-gameplay-clues-20261111/disposable-cleanup-01.json) 核验原预览容器、数据库和登录配置保持原样。
 
 复验入口：`scripts/hm.sh run`（官方构建、签名、安装、启动）；`scripts/hm.sh test GameplayClues`；`scripts/hm.sh lint`；`scripts/capture-window-evidence.py --font-scale 1 --require-tls --output <报告>`。普通线索真机驱动为 `scripts/device-gameplay-ordinary-clues.py run`，需要新的一次性玩家、精确签名包、媒体清单和设备回执；已结算夹具不能再次执行入场或答题。Web 同数据原图由 `scripts/capture-web-gameplay-ordinary-clues.py` 在冻结 checkout 重放，禁止转发业务 API，并核对登记的图片字节。
+
+### C01b 组合线索（2026-11-12）
+
+以冻结 Web `4b7d1a0` 手机行为为准。组合线索是多题场次中服务端已发放、没有绑定关卡的场次来源 `session_completed` 文字；普通线索继续留在原题卡。仅迁移阅读及入口，不接入普通线索自动演出、视频、BGM、终章和旅程出口。2026-11-12 用户确认正文保留链接文字，点按跳转另拆。
+
+| 状态 | 验收要求 |
+| --- | --- |
+| 未完成、已撤回、无合格线索 | 不出现组合入口和弹层；不从题目完成数或 XP 推断授权。 |
+| 本次正确提交完成 | 先完成提示，再按 Web 顺序打开本次新发放的组合线索。显式效果列表（含空列表）优先；未返回才比较授权差值。无合格线索沿用普通完成提示。 |
+| 弹层 | 保留正文、可用正文图、标题、说明、确认按钮和默认文案。正文滚动，确认按钮保持可达。点蒙层不关闭，系统返回和确认按 Web 收起或继续下一条。 |
+| 收起、拖动、回访 | 完成后通过浮动「查看本场线索」只重开排序最后一条。入口遵守安全区，可拖动、贴边、保存坐标；历史回访与刷新不重播，不改变进度。 |
+| 账号、退出与真机 | 弹层和待展示队列只归属当前授权与页面；离开后清理。验证隔离 HTTPS 授权及写入台账，按同主题、同数据、同宽度对照 Web 原图。 |
+
+[新签名包的真机运行时](../artifacts/validation/ui-gameplay-combination-20261112/runtime-01.json) 5 项通过，含可信 CA、未知 CA 和错误主机名。隔离 HTTPS 夹具包含同场次真机账号、单独 Web 参考账号及完成但无组合线索的反例；[Host 证据](../artifacts/validation/ui-gameplay-combination-20261112/host-fixture-01.json) 验证了真实效果列表和授权差异。
+
+[正例真机](../artifacts/validation/ui-gameplay-combination-20261112/native-01.json) 7 项及退出清理通过。未完成时无入口；最后一题答对先显示「查看组合结果」，系统返回不能跳过。两条线索按排序自动打开，第一条使用自定义文案，最后一条使用默认文案；蒙层不关闭，确认/返回按顺序推进或收起。完成后仍能读两条普通线索；组合入口只打开最后一条。拖动贴边没有误点，从历史页通过真实 GET 回访时保留位置、不重播。台账只有 1 次入场和 2 次不同题目的正确提交。
+
+[同场次 Web 真响应重放](../artifacts/validation/ui-gameplay-combination-clues-20261112/web-reference-01.json) 用 388×771 逻辑内容视口采集 20 张日夜与反例原图，业务与外部请求转发均为零。首条弹层原生 339.69×419.69 vp，Web 340×418.95 CSS px；确认按钮分别约 292×46，换行、高亮、说明及页脚对齐。原生采用系统遮罩，Web 使用较强模糊。首包原图发现入口边框覆盖圆角、图标描边在夜间发黑；该问题进入交付包修正及窄复核。
+
+[真机账号 Web 只读重放](../artifacts/validation/ui-gameplay-combination-clues-20261112/web-reference-phone-01.json) 以该账号的 4 个实际 HTTPS 快照采集 8 张日夜原图；验证回访、手动重开、拖动、位置恢复，不伪造答题响应。Web 自动顺序另由上面的隔离参考账号真实答题响应证明。[独立 SQLite 核验](../artifacts/validation/ui-gameplay-combination-20261112/native-sqlite-settlement-01.json) 将真机 4 个快照、两次提交、100 XP、两条普通授权及两条组合授权和写入回执对应起来，无额外玩法写入。
+
+[交付修正版运行时](../artifacts/validation/ui-gameplay-combination-20261112/runtime-02.json) 5 项通过。[真机只读复核](../artifacts/validation/ui-gameplay-combination-20261112/native-final-reentry-01.json) 通过，实测重新安装及冷启动仍保留拖动位置，手动只打开最后一条，未新增入场或答题。实际检查了夜间入口圆角与图标颜色，确认箭头清楚可见；验收拖动已移回初始位置。修正版同时限制后台迟到响应自动开窗、隐藏显式空效果情形下完成提示后方的入口，以及收敛不可打开弹层的窗口边界；这些额外边界未单独注入真机场景。
+
+[无组合授权反例](../artifacts/validation/ui-gameplay-combination-20261112/native-negative-01.json) 使用同一个修正版安装包。真实已完成场次仍可读普通线索，滚动至题卡末尾均未见组合入口或弹层；业务写入为零，退出清理通过。
+
+[GameplayClues](../artifacts/validation/ui-gameplay-combination-20261112/unit-clues-final/local-test-summary.json) 8/8、[GameplayAnswerViewModel](../artifacts/validation/ui-gameplay-combination-20261112/unit-answer-final/local-test-summary.json) 12/12，均无失败、无忽略。[codelinter](../artifacts/validation/ui-gameplay-combination-20261112/lint-02/lint.json) 命令成功，报告 0 问题，`filesChecked=0`。组合线索真机夹具覆盖纯文字、高亮和分段；内嵌图片复用现有图片查看器，组合正文长图及查看器未单独做真机专项。折叠屏、外接键盘和生产写入未执行。
+
+已按原账号切回固定预览。[官方签名安装后的预览运行时](../artifacts/validation/ui-gameplay-combination-20261112/preview-restored-runtime-01.json) 5 项通过，[预览包 ArkTS 字节码](../artifacts/validation/ui-gameplay-combination-20261112/preview-package-equivalence-01.json) 与隔离修正版一致。[固定预览交接](../artifacts/validation/ui-gameplay-combination-20261112/fixed-preview-restored-01.json) 7 项通过，无需改密，两场多题场次仍可见，进度保持，手机留在已登录首页。[一次性环境清理](../artifacts/validation/ui-gameplay-combination-20261112/disposable-cleanup-01.json) 确认临时后端及凭据已移除，固定预览原数据库与登录配置未改动。
+
+复现入口：`scripts/hm.sh run`、`scripts/hm.sh test GameplayClues`、`scripts/hm.sh test GameplayAnswerViewModel`、`scripts/hm.sh lint`；`scripts/device-gameplay-combination-clues.py run` 只用于新的正例隔离账号，`run-negative` 只读取已结算无授权夹具。Web 使用 `scripts/capture-web-gameplay-combination-clues.py` 绑定冻结源码和相应隔离 DTO，不转发实际业务请求。

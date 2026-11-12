@@ -1,0 +1,48 @@
+{
+  "status": "verified_native_combination_settlement",
+  "scope": "Independent SQLite mode=ro transaction on the exact owned disposable actor and assignment",
+  "nativeReportSha256": "4f2e00b737f13047eafbc38a2c0434b11574bd25a2ebf2263a3a82a12fd316bf",
+  "nativeStatus": "captured_native_combination_clues",
+  "caseReferenceSha256": "bc8b9aa8c5219a29f0ea290ffbdf9ecbf542da610540b9f6b53b6558bc61557f",
+  "hostBaselineDtoSha256": "07028ef57b78d19755b597d85f612b11fa8896a3155d3b8cfcaf6619c196cc58",
+  "signedHapSha256": "55d8fd52a7b71fcd7debe192bf8e4079ea1c475cbad03a6a01ce87b336678bd2",
+  "crosscheck": "exact",
+  "nativeReportedGameplayWrites": {
+    "starts": 1,
+    "answers": 2,
+    "readOnlyReceiptDiagnosticAvailable": false
+  },
+  "databaseFacts": {
+    "assignmentStatus": "completed",
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "correctAnswerSubmissionCount": 2,
+    "completedLevelIndexes": [
+      0,
+      1
+    ],
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 100,
+    "playerTotalXp": 100,
+    "ordinarySessionClueUnlockRows": 2,
+    "combinationUnlockRows": 2,
+    "combinationGrantPositions": [
+      2,
+      3
+    ],
+    "unrelatedActorGameplayWrites": 0,
+    "receiptSubmissionProgressXpIdentityMatched": true,
+    "nativeDtoPhasesMatchingSQLite": [
+      "pristine",
+      "started",
+      "first-completed",
+      "completed"
+    ]
+  },
+  "auditHelperSha256": "5b826cd508f2ade28930170df14447029eeeaf7dc0f59726fea485e2e1fdc42a",
+  "sqliteQueryOnly": true,
+  "gameplayRequestsSent": 0,
+  "deviceCommandsSent": 0,
+  "fixedPreviewTouched": false,
+  "uiAcceptanceClaimedByThisAudit": false
+}

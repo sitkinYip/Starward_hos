@@ -1,0 +1,150 @@
+{
+  "status": "captured_native_combination_clues",
+  "stage": "guarded-build-completed-readonly-reentry",
+  "hapSha256": "acf3f85749c06e2278c34db4d14485496f1a39cc8c34a3de9caa807868029db5",
+  "checksPassed": 1,
+  "scope": "Dedicated real HTTPS two-question combination clue acceptance on the reviewed straight phone",
+  "checks": [
+    "The guarded build cold-opens real history without an automatic dialog, then manually reads the latest clue with zero new gameplay writes"
+  ],
+  "states": [
+    {
+      "state": "guarded-build-launcher",
+      "rawSha256": "8a50c837888d9461d45853e2d4b39c86674822f4478f10012260ea9e47089627",
+      "geometryPx": {
+        "gameplay-combination-launcher": [
+          39,
+          1241,
+          572,
+          1436
+        ]
+      }
+    },
+    {
+      "state": "guarded-build-latest",
+      "rawSha256": "5db817c0e4df25d4c82796d649d57dbebfe402c8814fdff7555dd51b5fcdd74b",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          861,
+          1108
+        ],
+        "gameplay-combination-content": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-description": [
+          156,
+          1654,
+          790,
+          1717
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1782,
+          1104,
+          1932
+        ]
+      }
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "bindingSha256": {
+    "hap": "acf3f85749c06e2278c34db4d14485496f1a39cc8c34a3de9caa807868029db5",
+    "runtime": "4486a940e1e7655951cc05926ee50ea2571dd56ed738151baf1af9947e0b9572",
+    "caseReference": "bc8b9aa8c5219a29f0ea290ffbdf9ecbf542da610540b9f6b53b6558bc61557f",
+    "ca": "55cc7db64df7dccbb9172e9a54c93255481f9bd618cb3eb31062c0786592912d",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "navigationDriver": "9ff3991129625a295e705b7312c4a8a740c81986a21b7905a0b34df60a462eae",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "page": "2a7383abe57f8bfa1bc9a16592316f2627f92aef64ad577e30dbf811f17e7ba9",
+    "playModel": "f434f1991acbff402c11719afc9d10ba64479911e4677f100c9466a4c54d5117",
+    "selection": "ca32d78e05169a02c211edde1887d7acd6a41edab9142cda85abe3503bd5798c",
+    "StarwardCombinationDialog": "ec9e976105b74186bf472fe816b4b662b9e47fb034a43ae00e3e5f3216600e09",
+    "StarwardCombinationLauncher": "a3ee7ca45b73f8d90ce3ad06f83797d9bc8231aaa5f028505d079a3993925bf8"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T015924432059Z/guarded-build-launcher.png",
+      "sha256": "cc292631be04e5a1f4564a6f329c2b29bf2130764dbc7ed643fd9124adcd3700",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T015924432059Z/guarded-build-latest.png",
+      "sha256": "e99b934ecd6a7a0211b5eae84bcfb869f23d65f73f6794b9b6475574027d9cab",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "guarded-build-launcher",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T015924432059Z/raw-guarded-build-launcher-3dc5de164a0346fea20d3a983a921eb5.json",
+      "remoteRemoved": true,
+      "sha256": "8a50c837888d9461d45853e2d4b39c86674822f4478f10012260ea9e47089627"
+    },
+    {
+      "label": "guarded-build-latest",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T015924432059Z/raw-guarded-build-latest-2725ffd9d1f748bbbfe7b85b57ac221f.json",
+      "remoteRemoved": true,
+      "sha256": "5db817c0e4df25d4c82796d649d57dbebfe402c8814fdff7555dd51b5fcdd74b"
+    }
+  ],
+  "sameDataWebFixtures": {
+    "completed": {
+      "file": "artifacts/private/entry-main-20261112T015924432059Z/completed-web-dtos.json",
+      "sha256": "dafa4841546384298ec6f846b9fb498c370014e8a11c248bd02e48e83f5ed01d"
+    }
+  },
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "priorNativeReportSha256": "4f2e00b737f13047eafbc38a2c0434b11574bd25a2ebf2263a3a82a12fd316bf",
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "storedDragRestoredAcrossColdRelaunch": true,
+    "originalLauncherPlacementRestored": true,
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    }
+  },
+  "fixedPreviewTouched": false,
+  "visualReview": "pending_original_review",
+  "failure": null
+}

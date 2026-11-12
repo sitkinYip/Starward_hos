@@ -1,0 +1,513 @@
+{
+  "status": "captured_native_combination_clues",
+  "stage": "completed-history-no-replay",
+  "hapSha256": "55d8fd52a7b71fcd7debe192bf8e4079ea1c475cbad03a6a01ce87b336678bd2",
+  "checksPassed": 7,
+  "scope": "Dedicated real HTTPS two-question combination clue acceptance on the reviewed straight phone",
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "The initial and final editable questions expose no combination dialog or launcher",
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "The final correct answer settles the case and displays the existing acknowledgement first",
+    "The exact sorted automatic dialogs preserve raw copy and fallback copy; outside touch is ignored and Back closes the last dialog",
+    "The completed launcher opens only the latest clue and can drag without opening the dialog",
+    "History GET restores the launcher position without replay; manual reopen reads the latest clue with no extra gameplay writes"
+  ],
+  "states": [
+    {
+      "state": "first-question-no-combination",
+      "rawSha256": "1e0f85744496ae8589e89caa8d67d3435e2692ac71366e10c25e4c61402d0dc2",
+      "geometryPx": {}
+    },
+    {
+      "state": "before-completion",
+      "rawSha256": "591d06b34a952806da216d65462c8cc492da49e6443efda1a9a371c9fc0741eb",
+      "geometryPx": {}
+    },
+    {
+      "state": "completion-acknowledgement",
+      "rawSha256": "b2b5fadeed8fde9d64e650bead90792e1321c036ab6610842c5a21fb2dc5e595",
+      "geometryPx": {}
+    },
+    {
+      "state": "first-combination-auto",
+      "rawSha256": "2688a5bad5677c9acf705f4d40ceecfc54cf0ac1c371309f0ae82a41a34bdefd",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          678,
+          1182,
+          2042
+        ],
+        "gameplay-combination-title": [
+          178,
+          918,
+          764,
+          1058
+        ],
+        "gameplay-combination-content": [
+          178,
+          1149,
+          1082,
+          1545
+        ],
+        "gameplay-combination-description": [
+          156,
+          1703,
+          663,
+          1766
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1831,
+          1104,
+          1981
+        ]
+      }
+    },
+    {
+      "state": "first-combination-mask-ignored",
+      "rawSha256": "2688a5bad5677c9acf705f4d40ceecfc54cf0ac1c371309f0ae82a41a34bdefd",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          678,
+          1182,
+          2042
+        ],
+        "gameplay-combination-title": [
+          178,
+          918,
+          764,
+          1058
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1831,
+          1104,
+          1981
+        ]
+      }
+    },
+    {
+      "state": "last-combination-auto",
+      "rawSha256": "4496313f99fd60f655a17c47fe2c79d57c9ad4bc50f0a58dcbfb1599de56a9d1",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          861,
+          1108
+        ],
+        "gameplay-combination-content": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-description": [
+          156,
+          1654,
+          790,
+          1717
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1782,
+          1104,
+          1932
+        ]
+      }
+    },
+    {
+      "state": "launcher-after-queue",
+      "rawSha256": "0f14d6ebc22c5b6b67de521cd9816c6b7a1d2f4af5f3759aba9f62cee4d819d5",
+      "geometryPx": {
+        "gameplay-combination-launcher": [
+          656,
+          1760,
+          1189,
+          1955
+        ]
+      }
+    },
+    {
+      "state": "ordinary-archive-separation",
+      "rawSha256": "6f66723bee8b4f27aa180e26f3750a527663a28f170af9da2986155306ce9a3b",
+      "geometryPx": {
+        "gameplay-combination-launcher": [
+          656,
+          1760,
+          1189,
+          1955
+        ]
+      }
+    },
+    {
+      "state": "last-combination-reopened-light",
+      "rawSha256": "7b8e7a030e6ce5de772140b17abc635d9fdc619347c6f3b74e1d83e013655b2d",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          861,
+          1108
+        ],
+        "gameplay-combination-content": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-description": [
+          156,
+          1654,
+          790,
+          1717
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1782,
+          1104,
+          1932
+        ]
+      }
+    },
+    {
+      "state": "launcher-dragged",
+      "rawSha256": "44c51115ce0cf800b878fd5af0d96ffafacd783f6489e69a812ae5974ed1bfaf",
+      "geometryPx": {
+        "gameplay-combination-launcher": [
+          39,
+          1241,
+          572,
+          1436
+        ]
+      }
+    },
+    {
+      "state": "launcher-reentry",
+      "rawSha256": "5c3b4463d1cf62719b4677bf19d16baea0ab038f802f5c09bd1465d8045d0c14",
+      "geometryPx": {
+        "gameplay-combination-launcher": [
+          39,
+          1241,
+          572,
+          1436
+        ]
+      }
+    },
+    {
+      "state": "last-combination-reopened",
+      "rawSha256": "7b2e81c43bc423833204e5ead4b3aa1f313322cf271e9212484d3473acf7a0d4",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          861,
+          1108
+        ],
+        "gameplay-combination-content": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-description": [
+          156,
+          1654,
+          790,
+          1717
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1782,
+          1104,
+          1932
+        ]
+      }
+    }
+  ],
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "bindingSha256": {
+    "hap": "55d8fd52a7b71fcd7debe192bf8e4079ea1c475cbad03a6a01ce87b336678bd2",
+    "runtime": "9193253e939496c06356fff3488929144786788e07dd4d0e1de6f5918004ac26",
+    "caseReference": "bc8b9aa8c5219a29f0ea290ffbdf9ecbf542da610540b9f6b53b6558bc61557f",
+    "ca": "55cc7db64df7dccbb9172e9a54c93255481f9bd618cb3eb31062c0786592912d",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "navigationDriver": "9ff3991129625a295e705b7312c4a8a740c81986a21b7905a0b34df60a462eae",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "page": "ea142c6123ac4411a67a2dcec97811171875d703fd65c0b686b2f3ffab43ec03",
+    "playModel": "f434f1991acbff402c11719afc9d10ba64479911e4677f100c9466a4c54d5117",
+    "selection": "ca32d78e05169a02c211edde1887d7acd6a41edab9142cda85abe3503bd5798c",
+    "StarwardCombinationDialog": "ec9e976105b74186bf472fe816b4b662b9e47fb034a43ae00e3e5f3216600e09",
+    "StarwardCombinationLauncher": "68d72776b9f2c94f363c6186ef96767abbfb7f37954b0eab6ee79a0f00b0af1b"
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/first-question-no-combination.png",
+      "sha256": "45e44a965eae78ad2b168c1a12be85e9375554109c44ddbdaed2e476f48d3390",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/before-completion.png",
+      "sha256": "67a6e2448091d3f90eaf7f61fba9d75cfdec70ce777452d24c47c16e1ddeb317",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/completion-acknowledgement.png",
+      "sha256": "f81630e08be516c2d31eb615d25994f72989dda381c0b6787051860dc3bd8f09",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/first-combination-auto.png",
+      "sha256": "59c588f5abbb5fe63745aa6de0aee0dfc3f9363dad8432d9ce602b2fe5e91dac",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/first-combination-mask-ignored.png",
+      "sha256": "59c588f5abbb5fe63745aa6de0aee0dfc3f9363dad8432d9ce602b2fe5e91dac",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/last-combination-auto.png",
+      "sha256": "24a048a81585d12d786b87aa49c81c955a96136d609b5f72dfbbcdf38932edd0",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/launcher-after-queue.png",
+      "sha256": "c1d2d1ec1fb867fd3f0e52f1fda5790fad7fd1907dc94ee94c5b100e821e3b17",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/ordinary-archive-separation.png",
+      "sha256": "15507542f36357f121296f6cf60a51d3b3686e8b66e4e84a0d9136ea43d7d718",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/last-combination-reopened-light.png",
+      "sha256": "e866c3145e7bea9d0e99c9bdac13c005a7d00fd7713e1d2238db3003cbb930c0",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/launcher-dragged.png",
+      "sha256": "65d1a5cd674cee3cd51936c2858acdef76336c270619f96641353a65eba06e44",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/launcher-reentry.png",
+      "sha256": "678ef709c8f1fe48a322923f9839c3e7501d146caf691e0b1c670e80a078eac9",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/last-combination-reopened.png",
+      "sha256": "0728823c212ae7dcbb0c1908e5571ed7166f8dce67b12ae8ddeb38ba31b908e6",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "first-question-no-combination",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-first-question-no-combination-8145d3f5dc624ef6b8c51490cd4d234f.json",
+      "remoteRemoved": true,
+      "sha256": "1e0f85744496ae8589e89caa8d67d3435e2692ac71366e10c25e4c61402d0dc2"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-followup-ready-submit-38825d1c1d4a476f8503ac0b9fb5c6dd.json",
+      "remoteRemoved": true,
+      "sha256": "2942ebfc5f00523a6bca1f76572a5af9f2517d553b2eea2df59bd234b377f068"
+    },
+    {
+      "label": "before-completion",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-before-completion-02cd300d9a124d5c98f2b7a0780fc477.json",
+      "remoteRemoved": true,
+      "sha256": "591d06b34a952806da216d65462c8cc492da49e6443efda1a9a371c9fc0741eb"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-followup-ready-submit-dd39bd3a7bdd468d90da7baf18d5b68f.json",
+      "remoteRemoved": true,
+      "sha256": "4f39aee22015418573d7b4108137e95a4db137d1353e0d2b87a53be4419abe6d"
+    },
+    {
+      "label": "completion-acknowledgement",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-completion-acknowledgement-b0723288a5724610babef7d20ddf2978.json",
+      "remoteRemoved": true,
+      "sha256": "b2b5fadeed8fde9d64e650bead90792e1321c036ab6610842c5a21fb2dc5e595"
+    },
+    {
+      "label": "first-combination-auto",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-first-combination-auto-2415b00ec1a0460490938218ee1c078d.json",
+      "remoteRemoved": true,
+      "sha256": "2688a5bad5677c9acf705f4d40ceecfc54cf0ac1c371309f0ae82a41a34bdefd"
+    },
+    {
+      "label": "first-combination-mask-ignored",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-first-combination-mask-ignored-b5d55c27ae394e2a8e0f2bb57d29bf52.json",
+      "remoteRemoved": true,
+      "sha256": "2688a5bad5677c9acf705f4d40ceecfc54cf0ac1c371309f0ae82a41a34bdefd"
+    },
+    {
+      "label": "last-combination-auto",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-last-combination-auto-ef5f5d0dffc6497989512dfea91cd169.json",
+      "remoteRemoved": true,
+      "sha256": "4496313f99fd60f655a17c47fe2c79d57c9ad4bc50f0a58dcbfb1599de56a9d1"
+    },
+    {
+      "label": "launcher-after-queue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-launcher-after-queue-766abad7d464456b93e7c43287da2379.json",
+      "remoteRemoved": true,
+      "sha256": "0f14d6ebc22c5b6b67de521cd9816c6b7a1d2f4af5f3759aba9f62cee4d819d5"
+    },
+    {
+      "label": "ordinary-archive-separation",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-ordinary-archive-separation-3216cb9f3b67437e8790e8563d3e4131.json",
+      "remoteRemoved": true,
+      "sha256": "6f66723bee8b4f27aa180e26f3750a527663a28f170af9da2986155306ce9a3b"
+    },
+    {
+      "label": "last-combination-reopened-light",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-last-combination-reopened-light-977d9d9b75aa4d7aa4a73e6406638773.json",
+      "remoteRemoved": true,
+      "sha256": "7b8e7a030e6ce5de772140b17abc635d9fdc619347c6f3b74e1d83e013655b2d"
+    },
+    {
+      "label": "launcher-dragged",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-launcher-dragged-728459d80b204cf3831aa62afc22c953.json",
+      "remoteRemoved": true,
+      "sha256": "44c51115ce0cf800b878fd5af0d96ffafacd783f6489e69a812ae5974ed1bfaf"
+    },
+    {
+      "label": "launcher-reentry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-launcher-reentry-4d8a69154e6745aa9b54e87cf06e89c7.json",
+      "remoteRemoved": true,
+      "sha256": "5c3b4463d1cf62719b4677bf19d16baea0ab038f802f5c09bd1465d8045d0c14"
+    },
+    {
+      "label": "last-combination-reopened",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/raw-last-combination-reopened-bb2e501621104c689f203edba951a110.json",
+      "remoteRemoved": true,
+      "sha256": "7b2e81c43bc423833204e5ead4b3aa1f313322cf271e9212484d3473acf7a0d4"
+    }
+  ],
+  "sameDataWebFixtures": {
+    "pristine": {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/pristine-web-dtos.json",
+      "sha256": "e7a0bd07734f6b392e909257df83d40acd4a3fa0e565b661a96e6b2ddeef230b"
+    },
+    "started": {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/started-web-dtos.json",
+      "sha256": "472d967be80bb00cafe660122b67538383a95972af91f1702a5f7be89cce1165"
+    },
+    "first-completed": {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/first-completed-web-dtos.json",
+      "sha256": "848bdabf0d104f92d0c01f688743002ca22ce3b8a4a4ee16e440ef6c2209f758"
+    },
+    "completed": {
+      "file": "artifacts/private/entry-main-20261112T014842654438Z/completed-web-dtos.json",
+      "sha256": "3f3ddf84aa4f85081a3bef3e5c1c95b3e382325fab546036bc1846c318a14453"
+    }
+  },
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 1,
+      "answers": 2,
+      "readOnlyReceiptDiagnosticAvailable": false
+    },
+    "launcherDrag": {
+      "beforePx": [
+        656,
+        1760,
+        1189,
+        1955
+      ],
+      "afterPx": [
+        39,
+        1241,
+        572,
+        1436
+      ],
+      "viewportPx": [
+        0,
+        124,
+        1260,
+        2720
+      ],
+      "gesturePx": [
+        922,
+        1857,
+        252,
+        1338
+      ]
+    }
+  },
+  "fixedPreviewTouched": false,
+  "visualReview": "pending_original_review",
+  "failure": null
+}

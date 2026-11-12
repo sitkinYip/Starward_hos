@@ -1,5 +1,6 @@
 import { GameRepository } from '../business/GameRepository';
-import { GameplayAnswerResult, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
+import { completionCombinations } from '../business/GameplayClues';
+import { GameplayAnswerResult, GameplayClue, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
 import { GameFailure, Player } from '../business/models';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 
@@ -59,6 +60,7 @@ export class GameplayViewModel {
   @Trace feedbackVersion: number = 0;
   @Trace feedbackTransient: boolean = false;
   @Trace completionRevision: number = 0;
+  completionClues: GameplayClue[] = [];
   @Trace advancing: boolean = false;
   @Trace now: number = Date.now();
   private readonly repository: GameRepository;
@@ -124,6 +126,7 @@ export class GameplayViewModel {
     this.feedback = '';
     this.feedbackDanger = false;
     this.completionRevision = 0;
+    this.completionClues = [];
     this.drafts = [];
     this.serverOffset = 0;
   }
@@ -172,6 +175,7 @@ export class GameplayViewModel {
     this.feedback = '';
     this.feedbackDanger = false;
     this.completionRevision = 0;
+    this.completionClues = [];
   }
 
   private accept(snapshot: GameplaySnapshot): void {
@@ -376,6 +380,7 @@ export class GameplayViewModel {
     this.answerError = '';
     this.feedback = '';
     this.completionRevision = 0;
+    this.completionClues = [];
     try {
       const snapshot: GameplaySnapshot = await this.repository.gameplay(id);
       if (this.current(epoch, revision, id)) {
@@ -539,6 +544,8 @@ export class GameplayViewModel {
         this.feedback = completed ? '全部题目已经完成。' : '回答正确，当前题目已完成。';
         if (completed && previous?.detail.status !== 'completed' && result.assignment.detail.totalLevels > 1 &&
           result.assignment.presentation.completionStyle !== 'finale') {
+          this.completionClues = completionCombinations(previous, result.assignment,
+            result.effectsProvided ? result.effects : undefined);
           this.completionRevision++;
         } else if (!completed && settled?.autoNext && result.assignment.detail.status === 'active') {
           const nextIndex: number = result.assignment.detail.currentIndex;

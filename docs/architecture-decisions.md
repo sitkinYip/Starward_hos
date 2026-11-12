@@ -258,6 +258,8 @@
 
 2026-11-11 补充：普通线索是当前已完成题目的只读视图，由服务端发放快照投影；打开文字、切换图集和关闭弹层不发送玩法命令。文字通过 ArkUI PromptAction 居中弹层呈现，正文图片和独立图集沿用本决策的下载、解码与查看器。弹层和图集按账号代次、场次、题目及线索授权绑定；退出或失效时关闭并清理。视频、组合线索与自动演出仍单独迁移，逐状态验收见 [C01a](feature-acceptance-matrix.md#c01a-普通文字与图片线索2026-11-11实施前)。
 
+2026-11-12 补充：组合线索的手动入口取当前已完成场次最新授权快照中按 Web 顺序最后一条。仅本次正确答题产生的完成事件能排队，区分显式空效果与字段缺失；GET、刷新和页面重建不重播。完成提示消失后交由 ArkUI 居中弹层接续，离开账号/场次或丢失授权即取消队列。入口通过 [ArkUI PanGesture](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-gesture-common/) 拖动，[PersistenceV2](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/arkts-new-persistencev2/) 只保存设备本地的两个无量纲坐标，无账号、场次和线索数据。未迁移终章的场次完成后仍能手动读取已授权组合线索，终章自动序列另做。见 [C01b](feature-acceptance-matrix.md#c01b-组合线索2026-11-12)。
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

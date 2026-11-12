@@ -1,4 +1,4 @@
-import { GameplayClue, GameplayLevel, GameplaySnapshot } from './GameplayModels';
+import { GameplayClue, GameplayEffect, GameplayLevel, GameplaySnapshot } from './GameplayModels';
 
 function compareText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -6,6 +6,36 @@ function compareText(left: string, right: string): number {
 
 export function clueImageSources(clue: GameplayClue): string[] {
   return clue.content.imageUrls.filter((source: string) => source.length > 0);
+}
+
+function clueOrder(left: GameplayClue, right: GameplayClue): number {
+  if (left.source !== right.source) { return left.source === 'session' ? -1 : 1; }
+  return left.position - right.position ||
+    compareText(left.definitionId || left.id, right.definitionId || right.id) || compareText(left.id, right.id);
+}
+
+function isCombinationClue(clue: GameplayClue, totalLevels: number): boolean {
+  return totalLevels > 1 && clue.source === 'session' && clue.sessionLevel.length === 0 &&
+    clue.trigger === 'session_completed' && clue.kind === 'text';
+}
+
+export function combinationClues(snapshot: GameplaySnapshot | null): GameplayClue[] {
+  if (snapshot === null || snapshot.detail.status !== 'completed') { return []; }
+  return snapshot.clues.filter((clue: GameplayClue) =>
+    isCombinationClue(clue, snapshot.detail.totalLevels)).sort(clueOrder);
+}
+
+/** Only the result of this answer can start the sequence. A GET always opens silently. */
+export function completionCombinations(previous: GameplaySnapshot | null, settled: GameplaySnapshot,
+  effects: GameplayEffect[] | undefined): GameplayClue[] {
+  const available: GameplayClue[] = combinationClues(settled);
+  if (effects !== undefined) {
+    const ids: Set<string> = new Set(effects.filter((item: GameplayEffect) => item.type === 'clue')
+      .map((item: GameplayEffect) => item.clueId));
+    return available.filter((clue: GameplayClue) => ids.has(clue.id));
+  }
+  const known: Set<string> = new Set((previous?.clues || []).map((clue: GameplayClue) => clue.id));
+  return available.filter((clue: GameplayClue) => !known.has(clue.id));
 }
 
 /** Mobile archive projection. The server snapshot is the only source of grants. */
@@ -18,12 +48,8 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
     if (clue.kind !== 'text' && (clue.kind !== 'image' || clueImageSources(clue).length === 0)) { return false; }
     if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === level.id; }
     if (clue.sessionLevel.length > 0) { return clue.sessionLevel === level.id; }
-    return !(snapshot.detail.totalLevels > 1 && clue.trigger === 'session_completed' && clue.kind === 'text');
-  }).sort((left: GameplayClue, right: GameplayClue) => {
-    if (left.source !== right.source) { return left.source === 'session' ? -1 : 1; }
-    return left.position - right.position ||
-      compareText(left.definitionId || left.id, right.definitionId || right.id) || compareText(left.id, right.id);
-  });
+    return !isCombinationClue(clue, snapshot.detail.totalLevels);
+  }).sort(clueOrder);
 }
 
 export function clueTitle(clue: GameplayClue): string {

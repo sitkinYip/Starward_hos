@@ -1,0 +1,65 @@
+{
+  "status": "verified_disposable_host_fixture",
+  "scope": "Real isolated PocketBase through temporary loopback HTTPS; Web reference capture inputs",
+  "actorCount": 3,
+  "publishedSessionCount": 2,
+  "nativeActorInitiallyAssigned": true,
+  "nativeActorStartOrAnswerWritesDuringSetup": 0,
+  "hostReadOnlyDatabaseFacts": {
+    "web": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 4,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    },
+    "negative": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 2,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "actualFinalAnswerHasTwoCombinationEffects": true,
+  "strictTls": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true,
+    "hostOnly": true
+  },
+  "verifiedProxyActorAndRawToken": true,
+  "temporaryAdminRetired": true,
+  "fixedPreviewTouched": false,
+  "deviceCommandsSent": 0,
+  "webReferenceInputSha256": {
+    "negative-web-dto-01.json": "c849c78d42e7dbc3bf7da108fb252b499faa6982309cfa62f53d7ebaf2d0ac04",
+    "phone-pristine-dto-01.json": "07028ef57b78d19755b597d85f612b11fa8896a3155d3b8cfcaf6619c196cc58",
+    "web-dtos-01.json": "9d99e659a265813a1e11e45bb2024bbd09ce144c1d2db41739e0d2036d1ffb26",
+    "web-final-answer-01.json": "b340a358f430a83f8114e37692cab9c8edc565f2a64a62d7fcd98f485cf9a2e3",
+    "web-final-answer-request-01.json": "0de29f5a3351c1b5c2adf7d002377cf332f382e69a71c4d26c68cff3993c651c"
+  },
+  "nativeCaseReferenceSha256": "bc8b9aa8c5219a29f0ea290ffbdf9ecbf542da610540b9f6b53b6558bc61557f",
+  "negativeCaseReferenceSha256": "abf0e40f2431467564ab86073de30249718b178f10ac6539ac6dbe83732bd1de",
+  "fixtureHelperSha256": "74025e1738112ca22768797b30bd079c203e3f3aa47bd1b35589df5b244f39ac"
+}

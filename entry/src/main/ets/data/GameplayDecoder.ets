@@ -261,6 +261,7 @@ export function decodeGameplayAnswer(body: string): GameplayAnswerResult {
     throw invalid();
   }
   if (source['effects'] !== undefined) {
+    result.effectsProvided = true;
     const effects: Object[] = array(source['effects']);
     for (let i: number = 0; i < effects.length; i++) {
       result.effects.push(effect(effects[i]));

@@ -1,7 +1,8 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { clueImageSources, ClueSpan, ClueTextPart, clueTextParts, clueTitle,
+import { clueImageSources, ClueSpan, ClueTextPart, clueTextParts, clueTitle, combinationClues, completionCombinations,
   ordinaryClues } from '../main/ets/business/GameplayClues';
-import { GameplayClue, GameplayLevel, GameplayQuestion, GameplaySnapshot } from '../main/ets/business/GameplayModels';
+import { GameplayClue, GameplayEffect, GameplayLevel, GameplayQuestion,
+  GameplaySnapshot } from '../main/ets/business/GameplayModels';
 
 function level(id: string, completed: boolean = true): GameplayLevel {
   const result: GameplayLevel = new GameplayLevel();
@@ -39,6 +40,12 @@ function visibleIds(result: GameplaySnapshot | null, active: GameplayLevel | nul
 
 function plainText(part: ClueTextPart): string {
   return part.spans.map((span: ClueSpan) => span.text).join('');
+}
+
+function effect(clueId: string): GameplayEffect {
+  const result: GameplayEffect = new GameplayEffect();
+  result.clueId = clueId;
+  return result;
 }
 
 export default function gameplayCluesTests(): void {
@@ -135,6 +142,39 @@ export default function gameplayCluesTests(): void {
       expect(parts[1].image).assertEqual('/clue.png');
       expect(plainText(parts[2])).assertEqual('\n下文');
       expect(plainText(clueTextParts(source, true)[0])).assertEqual('上文\n\n\n下文');
+    });
+
+    it('retainsOnlyAuthorizedGlobalCompletionTextInStableOrder', 0, () => {
+      const latest: GameplayClue = clue('latest', 'text', 'session', '', 'session_completed');
+      latest.position = 2;
+      const result: GameplaySnapshot = snapshot([level('one'), level('two')], [
+        latest, clue('bound', 'text', 'session', 'two', 'session_completed'),
+        clue('question', 'text', 'question', '', 'session_completed'),
+        clue('image', 'image', 'session', '', 'session_completed'), clue('start'),
+        clue('earlier', 'text', 'session', '', 'session_completed')
+      ]);
+      expect(combinationClues(result).length).assertEqual(0);
+      result.detail.status = 'completed';
+      expect(combinationClues(result).map((row: GameplayClue) => row.id).join(',')).assertEqual('earlier,latest');
+      result.detail.totalLevels = 1;
+      expect(combinationClues(result).length).assertEqual(0);
+      result.detail.totalLevels = 2;
+      result.detail.status = 'cancelled';
+      expect(combinationClues(result).length).assertEqual(0);
+    });
+
+    it('usesExplicitCompletionEffectsIncludingEmptyBeforeFallingBackToNewGrants', 0, () => {
+      const first: GameplayClue = clue('previously-granted', 'text', 'session', '', 'session_completed');
+      const second: GameplayClue = clue('newly-granted', 'text', 'session', '', 'session_completed');
+      second.position = 2;
+      const previous: GameplaySnapshot = snapshot([level('one'), level('two', false)], [first]);
+      const final: GameplaySnapshot = snapshot([level('one'), level('two')], [second, first, clue('ordinary')]);
+      final.detail.status = 'completed';
+      expect(completionCombinations(previous, final, []).length).assertEqual(0);
+      expect(completionCombinations(previous, final, [effect('ordinary'), effect('unknown')]).length).assertEqual(0);
+      expect(completionCombinations(previous, final, [effect(second.id), effect(first.id), effect(second.id)])
+        .map((row: GameplayClue) => row.id).join(',')).assertEqual('previously-granted,newly-granted');
+      expect(completionCombinations(previous, final, undefined)[0]?.id).assertEqual('newly-granted');
     });
   });
 }
