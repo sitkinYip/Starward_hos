@@ -1,0 +1,61 @@
+{
+  "status": "strict_host_replay_and_read_only_sqlite_verified",
+  "actors": {
+    "long": {
+      "fixtureSha256": "b491bba195c16e69b736d2ba3a0336227aff1574314bda86dcb95c58e359a39b",
+      "snapshotSha256": "6527c37552ba6b5ba4a42152e7172f9db34bcfe7898bdee440a7b2916680f13c",
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 2,
+        "combinationUnlockRows": 1,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "short": {
+      "fixtureSha256": "bbe7d57bc50357a22c8021c096fd758a448fc5b17282e2a4c8bc7bffe9573087",
+      "snapshotSha256": "036efa613f861f1426c0acbddb57291b47da8ebda013bda55b985e8dd3ac40a2",
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 2,
+        "combinationUnlockRows": 1,
+        "unrelatedActorGameplayWrites": 0
+      }
+    }
+  },
+  "hostReplayStrictTls": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostnameRejected": true
+  },
+  "bodyImage": {
+    "originalJpegSha256": "06958f694bb0b1a5474ff073625da28d6fc35358cfb0b5d68c8718b8582e5b87",
+    "widthPx": 640,
+    "heightPx": 427,
+    "fetchedByHostViaHttps": true,
+    "publicSyntheticFixtureOnly": true
+  },
+  "fixedPreviewUntouched": true,
+  "fixtureImageHasProductionGameplayContent": false
+}

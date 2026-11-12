@@ -1,0 +1,123 @@
+{
+  "status": "captured_web_combination_overflow_reference",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "baselineHelperSha256": "e90c7d6ae67f6399280950322ece13356a30d14f89f7e01f892c808c9a62703b",
+  "captureHelperSha256": "cf4b7c23d47cf32d2174994edd2c1fe1589dc6cc061d869e818dd448ee08e48e",
+  "isolatedDtoSha256": "6527c37552ba6b5ba4a42152e7172f9db34bcfe7898bdee440a7b2916680f13c",
+  "imageSha256": "06958f694bb0b1a5474ff073625da28d6fc35358cfb0b5d68c8718b8582e5b87",
+  "sourceSha256": {
+    "src/features/clues/MultiQuestClueDialog.tsx": "f197c5ec0c36635da0412e7249ae75615fe723ff55fe5e39f4d5461b9c0ced47",
+    "src/features/content/RichContent.tsx": "3eb037ff18774f186fe77286f60df8c624c905edcc57466ab65dade8f46de8d8",
+    "src/domain/content/parser.ts": "4908c745e0c8202a6944f851b1a8f230289926f0c0eeaf955e09eb44d67b9f94",
+    "src/styles/features/clues.css": "c7fcc898825ed13afc993c1302b218f1526dc359b8b90c73771b94de0dbe0dba"
+  },
+  "businessRequestsForwarded": 0,
+  "externalRequestsForwarded": 0,
+  "states": [
+    {
+      "state": "top",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "theme": "light"
+        },
+        "panel": {
+          "x": 24,
+          "y": 24,
+          "width": 340,
+          "height": 723
+        },
+        "scroll": {
+          "x": 25,
+          "y": 25,
+          "width": 338,
+          "height": 580
+        },
+        "footer": {
+          "x": 25,
+          "y": 605,
+          "width": 338,
+          "height": 141
+        },
+        "button": {
+          "x": 48.265625,
+          "y": 682,
+          "width": 291.46875,
+          "height": 46
+        },
+        "image": {
+          "x": 55,
+          "y": 538.078125,
+          "width": 277.984375,
+          "height": 185.46875
+        },
+        "scrollY": 0,
+        "clientHeight": 580,
+        "scrollHeight": 809,
+        "buttonEdgeHit": true,
+        "imageDecoded": true
+      },
+      "privateOriginal": {
+        "path": "artifacts/private/gameplay-combination-overflow-20261112/web-overflow-1/top.png",
+        "sha256": "d012dc80dbd8b31a737201dccc5a1342130cc0a4e74803578c8a6accf920475b"
+      }
+    },
+    {
+      "state": "bottom",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "theme": "light"
+        },
+        "panel": {
+          "x": 24,
+          "y": 24,
+          "width": 340,
+          "height": 723
+        },
+        "scroll": {
+          "x": 25,
+          "y": 25,
+          "width": 338,
+          "height": 580
+        },
+        "footer": {
+          "x": 25,
+          "y": 605,
+          "width": 338,
+          "height": 141
+        },
+        "button": {
+          "x": 48.265625,
+          "y": 682,
+          "width": 291.46875,
+          "height": 46
+        },
+        "image": {
+          "x": 55,
+          "y": 309.078125,
+          "width": 277.984375,
+          "height": 185.46875
+        },
+        "scrollY": 229,
+        "clientHeight": 580,
+        "scrollHeight": 809,
+        "buttonEdgeHit": true,
+        "imageDecoded": true
+      },
+      "privateOriginal": {
+        "path": "artifacts/private/gameplay-combination-overflow-20261112/web-overflow-1/bottom.png",
+        "sha256": "fad0861a62084c04c7cec9d03196a4edc92e9b9d01d3a7a37267e36c3684e92e"
+      }
+    }
+  ],
+  "confirmationCloses": true,
+  "sameFooterAndButtonGeometryAtBothEnds": true,
+  "imageResponsesFulfilledFromRegisteredBytes": 1,
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-combination-overflow-20261112/web-overflow-1/browser-private.json",
+    "sha256": "339acc3b09add3c3d0e689adf17878a1bd264d3a3f00fccce7db538630e20066"
+  }
+}

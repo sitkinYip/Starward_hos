@@ -1,0 +1,71 @@
+{
+  "status": "passed_ui_with_gateway_late_response",
+  "originalNativeReportSha256": "c2777e2cb301d0d0d0e5228db4684b3beeb452b7b3a25283bc2de9ddfbbf55ec",
+  "originalNativeStatus": "incomplete",
+  "frozenDriverSha256": "d833f67383e0b1b75bc7c847adf135b7afcedddc8fc9b5d46e0664504fb65900",
+  "runtimeSha256": "288073dc5d8c9ff72326cd13a57d674665431b6ef4a850d7bf74f85d4129c5e7",
+  "installedHapSha256": "438159804f80639a3207936edf61d7ca96e2dcc3387e0c8bc62a2ffe83f937ea",
+  "observedMediaEventPrefixSha256": "6cbd2d9004708786ad11b5f7e26c1f0ad7f31683c400cef915b5f5b070f767ca",
+  "mediaSha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+  "passedUiChecks": [
+    "Only the completed question displays the authorized video card and opening its archive does not fetch",
+    "Native autoplay, pause, seek and play were proven from rendered video timestamps",
+    "Natural end closes the overlay and returns to the same completed question card",
+    "Explicit close, system Back and an outside-stage touch return to the same clue card",
+    "One deliberate retry recovers the same rejected media route and renders the clip",
+    "Closing a controlled loading attempt remains closed after the response window",
+    "Returning from Home rereads the same question with the native player closed",
+    "Read-only media interactions leave the unsubmitted answer intact"
+  ],
+  "observedFramesSeconds": {
+    "autoplay-frame": 7,
+    "paused-first-frame": 9,
+    "paused-still-frame": 9,
+    "seeked-frame": 18,
+    "resumed-frame": 23,
+    "retry-rendered-frame": 7
+  },
+  "cancelWhileLoading": {
+    "actualGeometryPx": {
+      "gameplay-video-loading": [
+        585,
+        1330,
+        676,
+        1421
+      ],
+      "gameplay-video-close": [
+        1066,
+        1047,
+        1216,
+        1197
+      ]
+    },
+    "driverVerifiedTapBeforeDelayMs": 10000,
+    "driverVerifiedNoReopenedPlayerAfterMs": 10500,
+    "exactTapTimestampCaptured": false,
+    "gateway": {
+      "label": "retry",
+      "mode": "slow",
+      "status": 200,
+      "contentBytes": 258860,
+      "completed": true,
+      "durationMs": 10008
+    },
+    "transportAbortObserved": false,
+    "interpretation": "The player closed before the delay and stayed closed after the gateway completed the late response."
+  },
+  "businessWrites": {
+    "starts": 0,
+    "answers": 0
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true,
+    "mediaGateRestored": true
+  },
+  "scope": "Independent review of the existing straight-phone run. No additional device or network action."
+}

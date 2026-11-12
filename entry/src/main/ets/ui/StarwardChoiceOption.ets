@@ -1,6 +1,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { curves } from '@kit.ArkUI';
 import { AppEnvironment } from '../platform/AppEnvironment';
+import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
 
 /** The platform owns Radio selection; its content modifier supplies the brand layout. */
@@ -41,12 +42,6 @@ function choiceRadioContent(config: RadioConfiguration) {
     .onClick(() => { if (config.enabled) { config.triggerChange(true); } })
 }
 
-async function releaseChoiceImage(value: QuestionImageResult | undefined): Promise<void> {
-  if (value !== undefined) {
-    try { await value.pixels.release(); } catch { /* Private media details must not enter logs. */ }
-  }
-}
-
 /** One option retains its Radio and its independently owned thumbnail across selection and Refresh. */
 @ComponentV2
 export struct StarwardChoiceOption {
@@ -58,6 +53,7 @@ export struct StarwardChoiceOption {
   @Require @Param imageId: string;
   @Require @Param ownerKey: string;
   @Require @Param ownerIsCurrent: (key: string) => boolean;
+  @Require @Param imageCache: QuestionImageCache;
   @Param imageSource: string = '';
   @Param selected: boolean = false;
   @Param editable: boolean = false;
@@ -124,7 +120,7 @@ export struct StarwardChoiceOption {
     const previous: QuestionImageResult | undefined = this.image;
     this.image = undefined;
     this.imageState = 'idle';
-    releaseChoiceImage(previous);
+    previous?.release();
   }
 
   private current(revision: number, owner: string, source: string): boolean {
@@ -132,10 +128,10 @@ export struct StarwardChoiceOption {
       this.ownerIsCurrent(owner);
   }
 
-  private record(state: string, httpStatus: number, value?: QuestionImageResult): void {
+  private record(state: string, httpStatus: number, value?: QuestionImageResult, cacheHit: boolean = false): void {
     if (AppEnvironment.endpoint.length > 0 && AppEnvironment.probeTls) {
       hilog.info(0x0000, 'StarwardQuestionImage', '%{public}s', JSON.stringify({
-        slot: this.imageId, state: state, httpStatus: httpStatus,
+        slot: this.imageId, state: state, httpStatus: httpStatus, cacheHit: cacheHit,
         naturalWidthPx: value?.naturalWidthPx || 0, naturalHeightPx: value?.naturalHeightPx || 0,
         decodedWidthPx: value?.decodedWidthPx || 0, decodedHeightPx: value?.decodedHeightPx || 0
       }));
@@ -150,13 +146,22 @@ export struct StarwardChoiceOption {
     const previous: QuestionImageResult | undefined = this.image;
     this.image = undefined;
     this.imageState = 'idle';
-    await releaseChoiceImage(previous);
+    previous?.release();
     if (!this.current(revision, owner, source) || source.length === 0) { return; }
+    const cached: QuestionImageResult | undefined = this.imageCache.acquire(source);
+    if (cached !== undefined) {
+      this.image = cached;
+      this.imageState = 'ready';
+      this.record('ready', 0, cached, true);
+      return;
+    }
+    const cacheVersion: number = this.imageCache.version();
     this.imageState = 'loading';
     this.record('loading', 0);
     try {
-      const value: QuestionImageResult = await this.loader.load(source, 2048);
-      if (!this.current(revision, owner, source)) { await releaseChoiceImage(value); return; }
+      const value: QuestionImageResult = await this.loader.load(source);
+      if (!this.current(revision, owner, source)) { await value.release(); return; }
+      this.imageCache.remember(source, value, cacheVersion);
       this.image = value;
       this.imageState = 'ready';
       this.record('ready', 200, value);

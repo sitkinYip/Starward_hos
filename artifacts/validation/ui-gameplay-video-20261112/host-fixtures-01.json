@@ -1,0 +1,131 @@
+{
+  "status": "strict_host_synthetic_video_fixtures_verified",
+  "actors": {
+    "phone": {
+      "status": "strict_host_video_fixture_verified",
+      "usage": "phone",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "dtoSha256": "24dd36dc4f9769f6c9f6dde705c82ec88dc4f9ebe6b34688c244e519a1850bf6",
+      "fixtureSha256": "5347f1c3b9fac3293fa57df08392a06813f33ca7c806efe217d7d795ac327c55",
+      "verifiedStrictHostTls": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 2,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "web": {
+      "status": "strict_host_video_fixture_verified",
+      "usage": "web",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "dtoSha256": "944451047955646bd4cf7934307c3a32ec12ca23520733d75056c7fca71bab7e",
+      "fixtureSha256": "ef84001da884885a0048b88c4925d64167d59ec2df65815edbbb54b6f2cbf881",
+      "verifiedStrictHostTls": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 2,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "spare": {
+      "status": "strict_host_video_fixture_verified",
+      "usage": "spare",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "dtoSha256": "163d7e2a01d1ddc8926ad4d5e509a66995d6fa2ae4b713381e2dbd3afd19b9e5",
+      "fixtureSha256": "88727b541c6a8f9141051ca8418b6630e8b5b83359bd3ce4fa48153bdd45f010",
+      "verifiedStrictHostTls": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 2,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    }
+  },
+  "footage": {
+    "status": "verified_synthetic_mp4",
+    "width": 640,
+    "height": 360,
+    "durationSeconds": 28.0,
+    "bytes": 258860,
+    "video": "h264 baseline yuv420p",
+    "audio": "aac quiet test tone",
+    "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "source": "generated color and elapsed time"
+  },
+  "hostMediaChecks": {
+    "status": "strict_host_synthetic_media_verified",
+    "mediaSha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "bytes": 258860,
+    "range": true,
+    "head": true,
+    "exactPathAndMethods": true,
+    "strictRefererRequired": true,
+    "credentialsRejected": true,
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true,
+    "persistentFaultAndManualRecovery": true,
+    "slowClientCancellationObserved": true,
+    "realDeviceInvoked": false,
+    "nativeAppTrustModified": false
+  },
+  "gatewaySource": {
+    "status": "generated_private_tls_media_gateway",
+    "baseSha256": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "privateGatewaySha256": "e9ed6ce2a2419d3f0b669070dc0e66d4df9188b21ed2b47115f0433399a4c66f",
+    "exactMediaHandlerSha256": "69217a20b92c64818b17ef8b893edd3cacd3b4d1a9d6ebb9f468e68747a208ba",
+    "gatewayPreparationUsedDevice": false,
+    "packagedConfigurationChanged": false
+  },
+  "productionAccessed": false,
+  "deviceCommandsSent": 0,
+  "fixedPreviewChanged": false
+}

@@ -18,6 +18,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { AppEnvironment } from '../platform/AppEnvironment';
+import { pruneAbandonedClueVideos } from '../platform/ClueVideoFile';
 import { reportWindowMetrics } from '../platform/WindowMetrics';
 import { LaunchRoutes } from '../platform/LaunchRoutes';
 import { runTlsProbe } from '../platform/TlsProbe';
@@ -45,6 +46,7 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     AppEnvironment.load(this.context.resourceManager);
+    pruneAbandonedClueVideos(this.context.cacheDir);
     LaunchRoutes.receive(want.uri || '');
     runTlsProbe();
     try {

@@ -1,9 +1,12 @@
+import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { PromptAction, promptAction, RectShape } from '@kit.ArkUI';
 import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, ordinaryClues } from '../business/GameplayClues';
 import { GameplayClue, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
 import { AppLifecycle } from '../platform/AppLifecycle';
+import { QuestionImageCache } from '../platform/QuestionImageCache';
+import { openExternalClueLink } from '../platform/ExternalClueLink';
 import { GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
@@ -14,6 +17,7 @@ import { StarwardQuestionFrame } from '../ui/StarwardQuestionFrame';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardQuestionImages } from '../ui/StarwardQuestionImages';
 import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
+import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVideoViewer';
 import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
 import { StarwardQuestHint } from '../ui/StarwardQuestHint';
 import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
@@ -24,6 +28,7 @@ import { StarwardClueArchive } from '../ui/StarwardClueArchive';
 import { StarwardClueTextDialog } from '../ui/StarwardClueTextDialog';
 import { StarwardCombinationDialog } from '../ui/StarwardCombinationDialog';
 import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
+import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -33,12 +38,39 @@ class ClueDialogRequest {
   readonly action: PromptAction;
   readonly combination: boolean;
   readonly sequence: boolean;
+  readonly onClosed?: (dismissed: boolean) => void;
 
-  constructor(owner: string, action: PromptAction, combination: boolean, sequence: boolean) {
+  constructor(owner: string, action: PromptAction, combination: boolean, sequence: boolean,
+    onClosed?: (dismissed: boolean) => void) {
     this.owner = owner;
     this.action = action;
     this.combination = combination;
     this.sequence = sequence;
+    this.onClosed = onClosed;
+  }
+}
+
+class ClueLinkHandoff {
+  readonly dialog: ClueDialogRequest;
+  timeout: number = -1;
+
+  constructor(dialog: ClueDialogRequest) { this.dialog = dialog; }
+}
+
+class CompletionNoticeRequest {
+  id: number = -1;
+  closing: boolean = false;
+  acknowledged: boolean = false;
+  readonly action: PromptAction;
+  readonly owner: string;
+  readonly count: number;
+  readonly hasResults: boolean;
+
+  constructor(action: PromptAction, owner: string, count: number, hasResults: boolean) {
+    this.action = action;
+    this.owner = owner;
+    this.count = count;
+    this.hasResults = hasResults;
   }
 }
 
@@ -61,23 +93,44 @@ export struct GameplayPage {
   @Local viewportWidth: number = 0;
   @Local private viewportTop: number = 0;
   @Local private viewportHeight: number = 0;
-  @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState();
+  private readonly imageCache: QuestionImageCache = new QuestionImageCache(() => this.imageCacheOwner());
+  @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState(this.imageCache);
+  @Local private videoViewer: StarwardVideoViewerState = new StarwardVideoViewerState();
   @Local private textClue: GameplayClue | null = null;
   @Local private combinationSequenceActive: boolean = false;
-  @Local private completionNoticeVisible: boolean = false;
+  @Local private completionNotice: CompletionNoticeRequest | null = null;
   private clueDialog: ClueDialogRequest | null = null;
   private combinationQueue: GameplayClue[] = [];
   private combinationOwner: string = '';
-  private completionNoticeId: number = 0;
-  private foreground: boolean = true;
+  @Local private foreground: boolean = true;
+  private clueLinkHandoff: ClueLinkHandoff | null = null;
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
-    if (!foreground) {
+    const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
+    const keepReading: boolean = handoff !== null && this.clueDialog === handoff.dialog &&
+      this.currentTextClueOwner(handoff.dialog.owner);
+    if (!foreground && !keepReading) { this.play.cancelAutomaticClues(); }
+    this.imageCache.validateOwner();
+    this.viewer.validateOwner();
+    if (foreground) {
+      this.clearClueLinkHandoff();
+      if (this.play.visible) {
+        if (keepReading) { this.play.refresh(this.textClue ?? undefined); } else { this.play.reload(); }
+      }
+    } else if (keepReading && handoff !== null) {
+      // Keep this one reading session alive until the system returns to the app.
+      clearTimeout(handoff.timeout);
+      handoff.timeout = -1;
+    } else {
+      this.clearClueLinkHandoff();
+      this.cancelCompletionNotice();
       this.interruptCombinationSequence();
-      if (this.clueDialog !== null) { this.closeClueDialog(true); }
+      this.closeClueDialog(true);
+      this.videoViewer.close(this.videoViewer.sessionId, true);
     }
   };
   private readonly questionScroller: Scroller = new Scroller();
+  @Local private questionContentWidth: number = 0;
   private cardContentTop: number = -1;
   private questionRegionHeight: number = 0;
   private titleHidden: boolean = false;
@@ -97,11 +150,14 @@ export struct GameplayPage {
   aboutToDisappear(): void {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
+    this.play.cancelAutomaticClues();
+    this.imageCache.validateOwner();
+    this.clearClueLinkHandoff();
+    this.cancelCompletionNotice();
     this.interruptCombinationSequence();
-    this.completionNoticeId++;
-    this.completionNoticeVisible = false;
     this.closeClueDialog(true);
     this.viewer.close(this.viewer.sessionId, true);
+    this.videoViewer.close(this.videoViewer.sessionId, true);
     clearTimeout(this.positionTimer);
     this.positionTimer = -1;
     this.positionPending = false;
@@ -110,9 +166,16 @@ export struct GameplayPage {
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error')
   imageOwnerChanged(): void {
+    const clue: GameplayClue | null = this.play.automaticClue;
+    if (clue !== null && !this.isClueCurrent(this.imageOwner(), clue)) { this.play.cancelAutomaticClues(); }
+    this.imageCache.validateOwner();
     this.viewer.validateOwner();
+    this.videoViewer.validateOwner();
     if (this.combinationSequenceActive && (this.combinationOwner !== this.play.imageOwnerKey() ||
       this.currentCombinations().length === 0)) { this.interruptCombinationSequence(); }
+    if (this.completionNotice !== null && !this.isCompletionNoticeCurrent(this.completionNotice)) {
+      this.cancelCompletionNotice();
+    }
     if (this.clueDialog !== null && this.textClue !== null &&
       !this.isDialogClueCurrent(this.clueDialog, this.textClue)) { this.closeClueDialog(true); }
     if (!this.play.currentLevel()?.question) {
@@ -179,7 +242,8 @@ export struct GameplayPage {
   }
 
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
-    'play.refreshing', 'viewer.visible', 'viewer.closing', 'textClue', 'completionNoticeVisible', 'combinationSequenceActive')
+    'play.refreshing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
+    'textClue', 'completionNotice', 'combinationSequenceActive')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -244,6 +308,25 @@ export struct GameplayPage {
       close: this.viewerCloseAction() })
   }
 
+  private videoViewerOptions(): ContentCoverOptions {
+    const sessionId: number = this.videoViewer.sessionId;
+    return { backgroundColor: '#050605', enableSafeArea: false,
+      modalTransition: this.reducedMotion ? ModalTransition.NONE : ModalTransition.ALPHA,
+      onWillDismiss: (action: DismissContentCoverAction) => {
+        if (!this.videoViewer.exitFullscreen(sessionId)) {
+          this.videoViewer.close(sessionId);
+          action.dismiss();
+        }
+      },
+      onDisappear: () => this.videoViewer.disappeared(sessionId) };
+  }
+
+  @Builder
+  clueVideoViewer() {
+    StarwardVideoViewer({ model: this.videoViewer, sessionId: this.videoViewer.sessionId,
+      reducedMotion: this.reducedMotion })
+  }
+
   private currentClues(): GameplayClue[] {
     return this.play.visible && this.play.error.length === 0 ?
       ordinaryClues(this.play.snapshot, this.play.currentLevel()) : [];
@@ -287,6 +370,10 @@ export struct GameplayPage {
 
   private showNextCombination(): void {
     if (!this.combinationSequenceActive) { return; }
+    if (!this.foreground) {
+      this.interruptCombinationSequence();
+      return;
+    }
     while (this.combinationQueue.length > 0) {
       const clue: GameplayClue | undefined = this.combinationQueue.shift();
       if (clue !== undefined && this.isCombinationCurrent(this.combinationOwner, clue)) {
@@ -298,14 +385,55 @@ export struct GameplayPage {
   }
 
   private openClue(id: string): void {
-    if (!this.questionInteractionReady() || this.clueDialog !== null) { return; }
+    if (!this.questionInteractionReady() || this.clueDialog !== null || this.play.automaticClue !== null) { return; }
     const clue: GameplayClue | undefined = this.currentClues().find((item: GameplayClue) => item.id === id);
     if (clue === undefined) { return; }
     const owner: string = this.imageOwner();
     if (clue.kind === 'text') {
       this.openClueDialog(clue, owner);
-    } else {
+    } else if (clue.kind === 'image') {
       this.viewer.open(clueImageSources(clue), 0, () => this.isClueCurrent(owner, clue));
+    } else if (clue.kind === 'video' && this.foreground) {
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+      if (context && this.videoViewer.open(clue.content.url.trim(), context.cacheDir,
+        () => this.foreground && this.isClueCurrent(owner, clue))) {
+        this.play.cancelAutoAdvance();
+      }
+    }
+  }
+
+  @Monitor('play.automaticClue', 'play.submitting', 'play.refreshing', 'keyboardVisible', 'recoveryVisible',
+    'foreground', 'textClue', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing')
+  automaticClueChanged(): void {
+    const clue: GameplayClue | null = this.play.automaticClue;
+    if (clue === null || !this.foreground) { return; }
+    const owner: string = this.imageOwner();
+    const current = (): boolean => this.foreground && this.play.automaticClue === clue &&
+      this.isClueCurrent(owner, clue);
+    if (!current()) {
+      this.play.cancelAutomaticClues();
+      return;
+    }
+    if (!this.questionInteractionReady()) { return; }
+    const finish = (allowAdvance: boolean): void => {
+      if (current()) { this.play.finishAutomaticClue(clue, allowAdvance); }
+    };
+    if (clue.kind === 'text') {
+      this.openClueDialog(clue, owner, false, false, (dismissed: boolean) => {
+        if (!current()) { return; }
+        if (dismissed) { finish(true); } else { this.play.cancelAutomaticClues(); }
+      });
+      return;
+    }
+    if (clue.kind === 'image') {
+      if (!this.viewer.open(clueImageSources(clue), 0, current, () => finish(true))) {
+        this.play.cancelAutomaticClues();
+      }
+      return;
+    }
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (!context || !this.videoViewer.open(clue.content.url.trim(), context.cacheDir, current, finish)) {
+      this.play.cancelAutomaticClues();
     }
   }
 
@@ -317,16 +445,18 @@ export struct GameplayPage {
   }
 
   private async openClueDialog(clue: GameplayClue, owner: string,
-    combination: boolean = false, sequence: boolean = false): Promise<void> {
+    combination: boolean = false, sequence: boolean = false, onClosed?: (dismissed: boolean) => void): Promise<void> {
     if (this.clueDialogWidth(combination) < 160 || this.clueDialogHeight() < 120 || this.clueDialog !== null) {
       if (sequence) { this.interruptCombinationSequence(); }
+      onClosed?.(false);
       return;
     }
     let request: ClueDialogRequest;
     try {
-      request = new ClueDialogRequest(owner, this.getUIContext().getPromptAction(), combination, sequence);
+      request = new ClueDialogRequest(owner, this.getUIContext().getPromptAction(), combination, sequence, onClosed);
     } catch {
       if (sequence) { this.interruptCombinationSequence(); }
+      onClosed?.(false);
       return;
     }
     this.clueDialog = request;
@@ -392,15 +522,53 @@ export struct GameplayPage {
 
   private releaseClueDialog(request: ClueDialogRequest, dismissed: boolean = false): void {
     if (this.clueDialog === request) {
+      if (this.clueLinkHandoff?.dialog === request) { this.clearClueLinkHandoff(); }
       this.clueDialog = null;
       this.textClue = null;
       if (dismissed && request.sequence) { this.showNextCombination(); }
+      request.onClosed?.(dismissed);
     }
   }
 
   private currentTextClueOwner(owner: string): boolean {
     return this.clueDialog?.owner === owner && !this.clueDialog.closing && this.textClue !== null &&
       this.isDialogClueCurrent(this.clueDialog, this.textClue);
+  }
+
+  private clearClueLinkHandoff(): void {
+    if (this.clueLinkHandoff !== null) { clearTimeout(this.clueLinkHandoff.timeout); }
+    this.clueLinkHandoff = null;
+  }
+
+  private async openClueLink(request: ClueDialogRequest, href: string): Promise<void> {
+    if (!this.foreground || this.clueDialog !== request || this.clueLinkHandoff !== null ||
+      !this.currentTextClueOwner(request.owner) || this.viewer.visible || this.viewer.closing) {
+      return;
+    }
+    const handoff: ClueLinkHandoff = new ClueLinkHandoff(request);
+    this.clueLinkHandoff = handoff;
+    this.play.cancelAutoAdvance();
+    try {
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+      const opened: boolean = await openExternalClueLink(context, href);
+      if (this.foreground && this.clueLinkHandoff === handoff) {
+        if (!opened) {
+          this.clearClueLinkHandoff();
+        } else {
+          // The system may open the target without moving this window to the background.
+          handoff.timeout = setTimeout(() => {
+            if (this.clueLinkHandoff === handoff) { this.clearClueLinkHandoff(); }
+          }, 8000);
+        }
+      }
+    } catch {
+      if (this.foreground && this.clueLinkHandoff === handoff) {
+        this.clearClueLinkHandoff();
+        if (this.clueDialog === request && this.currentTextClueOwner(request.owner)) {
+          StarwardFeedback.toast(this.getUIContext(), '暂时无法打开链接，请重试。');
+        }
+      }
+    }
   }
 
   private openInlineClueImage(partIndex: number): void {
@@ -421,16 +589,20 @@ export struct GameplayPage {
       if (request.combination) {
         StarwardCombinationDialog({ clue: this.textClue, ownerKey: request.owner,
           ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
+          imageCache: this.imageCache,
           panelWidth: this.clueDialogWidth(true), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
           reducedMotion: this.reducedMotion, acknowledge: () => this.closeClueDialog(),
-          openImage: (index: number) => this.openInlineClueImage(index) })
+          openImage: (index: number) => this.openInlineClueImage(index),
+          openLink: (href: string) => this.openClueLink(request, href) })
           .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
       } else {
         StarwardClueTextDialog({ clue: this.textClue, ownerKey: request.owner,
           ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
+          imageCache: this.imageCache,
           panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
           reducedMotion: this.reducedMotion, close: () => this.closeClueDialog(),
-          openImage: (index: number) => this.openInlineClueImage(index) })
+          openImage: (index: number) => this.openInlineClueImage(index),
+          openLink: (href: string) => this.openClueLink(request, href) })
           .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
       }
     }
@@ -482,6 +654,80 @@ export struct GameplayPage {
       retry: () => this.retryAnswer(), stay: () => this.stayOnQuestion() })
   }
 
+  private isCompletionNoticeCurrent(request: CompletionNoticeRequest): boolean {
+    return this.completionNotice === request && this.foreground && this.play.visible && this.play.error.length === 0 &&
+      this.play.snapshot?.detail.status === 'completed' && this.play.imageOwnerKey() === request.owner &&
+      (!request.hasResults || this.combinationQueue.some((clue: GameplayClue) =>
+        this.isCombinationCurrent(request.owner, clue)));
+  }
+
+  @Builder
+  combinationNoticeContent(request: CompletionNoticeRequest, width: number, height: number) {
+    if (this.completionNotice === request) {
+      StarwardCombinationNotice({ completedCount: request.count, hasResults: request.hasResults,
+        panelWidth: width, maxHeight: height, viewportWidth: this.viewportWidth, displayFont: this.displayFont,
+        acknowledge: () => {
+          if (request.closing || !this.isCompletionNoticeCurrent(request)) { return; }
+          request.acknowledged = request.hasResults;
+          request.closing = true;
+          this.closeCompletionNotice(request);
+        } })
+    }
+  }
+
+  private async openCompletionNotice(owner: string, count: number, hasResults: boolean): Promise<void> {
+    const width: number = Math.min(680, this.viewportWidth - 48);
+    const height: number = this.clueDialogHeight();
+    if (width < 160 || height < 120) {
+      this.interruptCombinationSequence();
+      return;
+    }
+    let request: CompletionNoticeRequest;
+    try {
+      request = new CompletionNoticeRequest(this.getUIContext().getPromptAction(), owner, count, hasResults);
+    } catch {
+      this.interruptCombinationSequence();
+      return;
+    }
+    this.completionNotice = request;
+    const fade: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY :
+      TransitionEffect.OPACITY.animation({ duration: 180, curve: Curve.EaseOut });
+    try {
+      request.id = await request.action.openCustomDialog({
+        builder: () => { this.combinationNoticeContent(request, width, height); },
+        alignment: DialogAlignment.Center, width: width, cornerRadius: 0, isModal: true, showInSubWindow: false,
+        backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
+        maskColor: $r('app.color.completion_mask'), dialogTransition: fade, maskTransition: fade,
+        autoCancel: !hasResults, onWillDismiss: hasResults ? () => {} : undefined,
+        onDidDisappear: () => this.releaseCompletionNotice(request, true)
+      });
+      if (request.closing || !this.isCompletionNoticeCurrent(request)) { this.closeCompletionNotice(request); }
+    } catch {
+      this.releaseCompletionNotice(request);
+    }
+  }
+
+  private closeCompletionNotice(request: CompletionNoticeRequest): void {
+    if (request.id < 0) { return; }
+    try { request.action.closeCustomDialog(request.id); } catch { this.releaseCompletionNotice(request); }
+  }
+
+  private cancelCompletionNotice(): void {
+    const request: CompletionNoticeRequest | null = this.completionNotice;
+    if (request === null) { return; }
+    const closing: boolean = request.closing;
+    request.closing = true;
+    this.releaseCompletionNotice(request);
+    if (!closing) { this.closeCompletionNotice(request); }
+  }
+
+  private releaseCompletionNotice(request: CompletionNoticeRequest, dismissed: boolean = false): void {
+    if (this.completionNotice !== request) { return; }
+    const showResults: boolean = dismissed && request.acknowledged && this.isCompletionNoticeCurrent(request);
+    this.completionNotice = null;
+    if (showResults) { this.showNextCombination(); } else { this.interruptCombinationSequence(); }
+  }
+
   @Monitor('play.completionRevision')
   completionChanged(): void {
     const revision: number = this.play.completionRevision;
@@ -497,35 +743,16 @@ export struct GameplayPage {
     if (snapshot.presentation.completionStyle === 'finale') {
       StarwardFeedback.notice(this.getUIContext(), '本次场次已完成', '全部题目已经完成。终章内容尚未迁移。');
     } else if (snapshot.detail.totalLevels > 1) {
-      const title: string = '组合谜题全部破解';
-      const detail: string = `你已完成本次组合中的 ${snapshot.detail.completedLevels} 道谜题。`;
+      this.cancelCompletionNotice();
       const owner: string = this.play.imageOwnerKey();
       this.combinationQueue = this.play.completionClues.filter((clue: GameplayClue) =>
         this.isCombinationCurrent(owner, clue));
-      if (this.combinationQueue.length === 0) {
-        if (this.currentCombinations().length === 0) {
-          StarwardFeedback.notice(this.getUIContext(), title, detail);
-        } else {
-          this.completionNoticeVisible = true;
-          const noticeId: number = ++this.completionNoticeId;
-          if (!StarwardFeedback.notice(this.getUIContext(), title, detail, () => {
-            if (noticeId === this.completionNoticeId) { this.completionNoticeVisible = false; }
-          })) { this.completionNoticeVisible = false; }
-        }
-        return;
+      const hasResults: boolean = this.combinationQueue.length > 0;
+      if (hasResults) {
+        this.combinationOwner = owner;
+        this.combinationSequenceActive = true;
       }
-      this.combinationOwner = owner;
-      this.combinationSequenceActive = true;
-      this.completionNoticeVisible = true;
-      const noticeId: number = ++this.completionNoticeId;
-      if (!StarwardFeedback.combinationNotice(this.getUIContext(), title, detail, (acknowledged: boolean) => {
-        if (noticeId !== this.completionNoticeId) { return; }
-        this.completionNoticeVisible = false;
-        if (acknowledged) { this.showNextCombination(); } else { this.interruptCombinationSequence(); }
-      })) {
-        this.completionNoticeVisible = false;
-        this.interruptCombinationSequence();
-      }
+      this.openCompletionNotice(owner, snapshot.detail.completedLevels, hasResults);
     }
   }
 
@@ -589,8 +816,23 @@ export struct GameplayPage {
     return sources;
   }
 
-  private imageOwner(): string {
-    return `${this.play.imageOwnerKey()}:${this.play.currentLevel()?.id || ''}`;
+  private showsQuestionImages(id: string): boolean {
+    if (id === this.readableQuestionId()) { return true; }
+    if (!this.foreground) { return false; }
+    const levels: GameplayLevel[] = this.play.snapshot?.levels || [];
+    const previous: GameplayLevel | undefined = levels[this.play.activeIndex - 1];
+    const next: GameplayLevel | undefined = levels[this.play.activeIndex + 1];
+    return (previous?.id === id && previous.question !== null) || (next?.id === id && next.question !== null);
+  }
+
+  private questionImageOwner(id: string): string { return `${this.play.imageOwnerKey()}:${id}`; }
+
+  private imageOwner(): string { return this.questionImageOwner(this.play.currentLevel()?.id || ''); }
+
+  private imageCacheOwner(): string {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    return this.foreground && this.play.visible && this.play.error.length === 0 && snapshot !== null &&
+      snapshot.detail.status !== 'cancelled' ? this.play.imageOwnerKey() : '';
   }
 
   private optionKeys(): string[] {
@@ -632,7 +874,8 @@ export struct GameplayPage {
   private questionInteractionReady(): boolean {
     return this.interactionReady() && !this.keyboardVisible && !this.recoveryVisible &&
       this.textClue === null && !this.viewer.visible && !this.viewer.closing &&
-      !this.combinationSequenceActive && !this.completionNoticeVisible;
+      !this.videoViewer.visible && !this.videoViewer.closing &&
+      !this.combinationSequenceActive && this.completionNotice === null;
   }
 
   private titleVisible(id: string): boolean {
@@ -676,6 +919,7 @@ export struct GameplayPage {
           selected: this.shownAnswer() === key, editable: this.play.answerEditable(),
           imageSource: this.optionImage(key), ownerKey: this.optionOwner(key),
           ownerIsCurrent: (owner: string) => this.play.visible && this.play.snapshot !== null && owner === this.optionOwner(key),
+          imageCache: this.imageCache,
           reducedMotion: this.reducedMotion, chosen: () => this.play.editAnswer(key), opened: () => this.openOptionImage(key) })
       }, (key: string) => key)
     }.id('gameplay-choice-options').width('100%')
@@ -757,11 +1001,18 @@ export struct GameplayPage {
         Column({ space: 20 }) {
           ForEach(this.contentBlocks(levelId), (block: GameplayContentBlock, index: number) => {
             Column({ space: 13 }) {
-              if (levelId === this.readableQuestionId() && this.blockImages(block).length > 0 && block.videoUrl.length === 0) {
-                StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.imageOwner(),
-                  ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null && key === this.imageOwner(),
-                  groupId: `question-images-${index}`, maxHeight: this.viewportWidth <= 620 ? 340 : 420,
-                  reducedMotion: this.reducedMotion, opened: (imageIndex: number) => this.openImages(index, imageIndex) })
+              if (this.showsQuestionImages(levelId) && this.blockImages(block).length > 0 && block.videoUrl.length === 0) {
+                StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.questionImageOwner(levelId),
+                  ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null &&
+                    this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
+                  imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
+                  availableWidth: this.questionContentWidth,
+                  groupId: levelId === this.readableQuestionId() ? `question-images-${index}` :
+                    `question-preview-${this.levelById(levelId)?.position || 0}-${index}`,
+                  maxHeight: this.viewportWidth <= 620 ? 340 : 420, reducedMotion: this.reducedMotion,
+                  opened: (imageIndex: number) => {
+                    if (levelId === this.readableQuestionId()) { this.openImages(index, imageIndex); }
+                  } })
               }
               if (block.text.length > 0) {
                 Text(block.text).id(levelId === this.readableQuestionId() ? `question-content-text-${index}` : '').width('100%')
@@ -774,6 +1025,11 @@ export struct GameplayPage {
           }, (block: GameplayContentBlock, index: number) => `${index}:${JSON.stringify(block)}`)
         }.id(levelId === this.readableQuestionId() ? 'question-content' : '')
           .width('100%').alignItems(HorizontalAlign.Start).margin({ top: 20 })
+          .onAreaChange((_previous: Area, current: Area) => {
+            const width: number = Number(current.width);
+            if (levelId === this.readableQuestionId() && Number.isFinite(width) && width > 2 &&
+              width !== this.questionContentWidth) { this.questionContentWidth = width; }
+          })
         if (levelId === this.readableQuestionId()) {
           Column() {
             this.answerForm()
@@ -879,6 +1135,7 @@ export struct GameplayPage {
         }
         this.scheduleQuestionPosition();
       })
+      .bindContentCover(this.videoViewer.visible, this.clueVideoViewer(), this.videoViewerOptions())
   }
 
   build() {

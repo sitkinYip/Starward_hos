@@ -1,0 +1,18 @@
+{
+  "status": "isolated_web_and_phone_host_scene_equal",
+  "phase": "second",
+  "webInputSha256": "944451047955646bd4cf7934307c3a32ec12ca23520733d75056c7fca71bab7e",
+  "phoneInputSha256": "24dd36dc4f9769f6c9f6dde705c82ec88dc4f9ebe6b34688c244e519a1850bf6",
+  "normalisedSceneSha256": "44ab6176dcb7a6285853ea70e632ef5490d509380b1e53fffa8eebd17af8c799",
+  "syntheticMp4Sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+  "webReferenceSha256": "74e652ec370769935e18979b15428e58abae49656ad333204dce67c348275ca0",
+  "reviewedWebOriginals": 6,
+  "isolatedActorsAndAssignmentIdsDiffer": true,
+  "normalisation": [
+    "Selected assignment: omit assignment/player identity and server time.",
+    "Preserve started/completed/unlocked time presence.",
+    "Player: omit account and identity.",
+    "List excluded because this replay compares one selected assignment."
+  ],
+  "scope": "Both exact isolated Host readbacks and six frozen Web originals. Native playback evidence recorded separately."
+}

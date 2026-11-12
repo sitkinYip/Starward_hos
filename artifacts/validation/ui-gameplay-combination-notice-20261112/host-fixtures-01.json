@@ -1,0 +1,87 @@
+{
+  "status": "strict_host_replay_and_read_only_sqlite_verified",
+  "actors": {
+    "phone": {
+      "dtoSha256": "5c2d8851ae3a420975059e982ee17ebebac0869092a3d76b1151c405c7bbd383",
+      "fixtureSha256": "5db0b981a8c0059873352d29b7f05aa8baf54e2a7e9a0a09507630e183c4cd99",
+      "expectedStartAndAnswerCounts": [
+        1,
+        1
+      ],
+      "verifiedStrictHostTls": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 1,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "queue": {
+      "dtoSha256": "addbed61e72c160e758a305dc4157f3b6db0f166aba350324aad0280cd5122ec",
+      "fixtureSha256": "791c86d7e6ed4d677cc73e2ff63aa958dea5ae9fea543da9898d100fb5b3ecff",
+      "expectedStartAndAnswerCounts": [
+        1,
+        1
+      ],
+      "verifiedStrictHostTls": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 1,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "web": {
+      "dtoSha256": "656c879a2361a7d5e384dc64ece02934919987f3f42a9a5905bf350dcfa5657a",
+      "fixtureSha256": "39276d42dc5d42b694561b0d83b11a64cda812cd5ba78909de35dfe50f5daa5a",
+      "expectedStartAndAnswerCounts": [
+        1,
+        2
+      ],
+      "verifiedStrictHostTls": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      }
+    }
+  },
+  "ordinaryFixtureContentSynthetic": true,
+  "nativeFinalAnswersRemaining": 2,
+  "webFinalAnswerRequestSha256": "93cb8d4bac01be89d3ae60b1799874fedf875efcd6de90b83494df0104274581",
+  "webFinalAnswerResponseSha256": "c2e487d83449c0dfd5196a884e1c004f0ff99b2737138eb850a3adc98101be5a"
+}

@@ -1,42 +1,27 @@
-import { ClueSpan, ClueTextPart, clueTextParts } from '../business/GameplayClues';
+import { ClueTextPart, clueTextParts } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
+import { QuestionImageCache } from '../platform/QuestionImageCache';
+import { StarwardClueParagraph } from './StarwardClueParagraph';
 import { StarwardQuestionImages } from './StarwardQuestionImages';
 
-/** Reading content for the native modal; the footer remains outside its Scroll. */
+/** Only the reading viewport shrinks when the dialog reaches its height limit. */
 @ComponentV2
 export struct StarwardCombinationDialog {
   @Require @Param clue: GameplayClue;
   @Require @Param ownerKey: string;
   @Require @Param ownerIsCurrent: (key: string) => boolean;
+  @Require @Param imageCache: QuestionImageCache;
   @Require @Param panelWidth: number;
   @Require @Param maxHeight: number;
   @Param displayFont: string = 'serif';
   @Param reducedMotion: boolean = true;
   @Event acknowledge: () => void = () => {};
   @Event openImage: (partIndex: number) => void = () => {};
-  @Local private footerHeight: number = 0;
+  @Event openLink: (href: string) => void = () => {};
 
   private compact(): boolean { return this.panelWidth + 48 <= 620; }
   private bodyPadding(): number { return Math.max(30, Math.min(62, (this.panelWidth + 48) * 0.06)); }
   private footerPadding(): number { return Math.max(20, Math.min(62, (this.panelWidth + 48) * 0.06)); }
-  private bodyHeight(): number {
-    return Math.max(1, this.maxHeight - (this.footerHeight || (this.compact() ? 126 : 84)));
-  }
-
-  @Builder
-  paragraph(part: ClueTextPart, index: number) {
-    Text() {
-      ForEach(part.spans, (span: ClueSpan) => {
-        if (span.highlight) {
-          Span(span.text).fontColor($r('app.color.clue_mark_text'))
-            .textBackgroundStyle({ color: $r('app.color.clue_mark_surface') })
-        } else {
-          Span(span.text)
-        }
-      }, (span: ClueSpan, segment: number) => `${segment}:${span.highlight}:${span.text}`)
-    }.id(`gameplay-combination-paragraph-${index}`).width('100%').fontSize(16).lineHeight('30.4fp')
-      .fontColor($r('app.color.combination_body')).wordBreak(WordBreak.BREAK_WORD)
-  }
 
   @Builder
   description() {
@@ -55,7 +40,7 @@ export struct StarwardCombinationDialog {
   }
 
   build() {
-    Column() {
+    Flex({ direction: FlexDirection.Column }) {
       Scroll() {
         Column() {
           Text('COMBINED REVELATION').fontFamily('monospace').fontSize(11).lineHeight('13.2fp')
@@ -66,19 +51,21 @@ export struct StarwardCombinationDialog {
           Column() {
             ForEach(clueTextParts(this.clue.content.text), (part: ClueTextPart, index: number) => {
               if (part.image.length > 0) {
-                StarwardQuestionImages({ sources: [part.image], ownerKey: this.ownerKey,
+                StarwardQuestionImages({ sources: [part.image], ownerKey: this.ownerKey, imageCache: this.imageCache,
                   ownerIsCurrent: this.ownerIsCurrent, groupId: `gameplay-combination-inline-${index}`,
                   imageLabel: '线索图片', maxHeight: Math.min(660, (this.maxHeight + 48) * 0.58),
                   reducedMotion: this.reducedMotion, opened: () => this.openImage(index) })
                   .margin({ top: 20, bottom: 20 })
               } else {
-                this.paragraph(part, index)
+                StarwardClueParagraph({ part: part, paragraphId: `gameplay-combination-paragraph-${index}`,
+                  color: $r('app.color.combination_body'), openLink: (href: string) => this.openLink(href) })
               }
-            }, (part: ClueTextPart, index: number) => `${index}:${JSON.stringify(part)}`)
+            }, (_part: ClueTextPart, index: number) => index.toString())
           }.id('gameplay-combination-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 28 })
         }.width('100%').alignItems(HorizontalAlign.Start)
           .padding({ top: this.bodyPadding() + 16, right: this.bodyPadding(), bottom: 30, left: this.bodyPadding() })
-      }.id('gameplay-combination-scroll').width('100%').constraintSize({ maxHeight: this.bodyHeight() })
+      }.id('gameplay-combination-scroll').width('100%').flexShrink(1)
+        .constraintSize({ maxHeight: this.maxHeight })
         .align(Alignment.Top).scrollBar(BarState.Off)
       Column() {
         if (this.compact()) {
@@ -94,15 +81,12 @@ export struct StarwardCombinationDialog {
             this.ackButton(false)
           }.width('100%').alignItems(VerticalAlign.Center)
         }
-      }.id('gameplay-combination-footer').width('100%')
+      }.id('gameplay-combination-footer').width('100%').flexShrink(0)
         .padding({ left: this.footerPadding(), right: this.footerPadding(), top: 18, bottom: 18 })
         .backgroundColor($r('app.color.combination_footer'))
         .border({ width: { top: 1 }, color: $r('app.color.combination_footer_border') })
-        .onAreaChange((_previous: Area, current: Area) => {
-          const height: number = Number(current.height);
-          if (Number.isFinite(height) && height > 0 && height !== this.footerHeight) { this.footerHeight = height; }
-        })
-    }.id('gameplay-combination-dialog').width(this.panelWidth).constraintSize({ maxHeight: this.maxHeight })
+    }.id('gameplay-combination-dialog').width(this.panelWidth).height('auto')
+      .constraintSize({ maxHeight: this.maxHeight })
       .backgroundColor($r('app.color.combination_surface'))
       .border({ width: 1, color: $r('app.color.combination_border') })
   }

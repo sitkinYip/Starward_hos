@@ -12,6 +12,7 @@ import gameplayAnswerViewModelTests from './GameplayAnswerViewModel.test';
 import gameplayCluesTests from './GameplayClues.test';
 import gameplayRefreshViewModelTests from './GameplayRefreshViewModel.test';
 import questionImageLoaderTests from './QuestionImageLoader.test';
+import questionImageCacheTests from './QuestionImageCache.test';
 import immersiveSurfacesTests from './ImmersiveSurfaces.test';
 
 export default function testsuite(): void {
@@ -29,5 +30,6 @@ export default function testsuite(): void {
   gameplayCluesTests();
   gameplayRefreshViewModelTests();
   questionImageLoaderTests();
+  questionImageCacheTests();
   immersiveSurfacesTests();
 }

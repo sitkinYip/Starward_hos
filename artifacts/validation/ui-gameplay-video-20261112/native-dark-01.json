@@ -1,0 +1,244 @@
+{
+  "status": "passed_ordinary_clue_video",
+  "stage": "retry-cancel-and-background",
+  "scope": "ordinary-clue-video-dark-fullscreen",
+  "theme": "dark",
+  "hapSha256": "438159804f80639a3207936edf61d7ca96e2dcc3387e0c8bc62a2ffe83f937ea",
+  "bindingSha256": {
+    "hap": "438159804f80639a3207936edf61d7ca96e2dcc3387e0c8bc62a2ffe83f937ea",
+    "runtime": "288073dc5d8c9ff72326cd13a57d674665431b6ef4a850d7bf74f85d4129c5e7",
+    "caseReference": "88727b541c6a8f9141051ca8418b6630e8b5b83359bd3ce4fa48153bdd45f010",
+    "ca": "a7d987eb29817af775c72a8c5645760435b46675b038fe1882c4006e4eeef9c4",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "d833f67383e0b1b75bc7c847adf135b7afcedddc8fc9b5d46e0664504fb65900",
+    "nativeUI": "d92ffdda17272c7ebcf06253093d07bafbab458751aac228d120ec57c372022f",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "clueDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "fixtureDriver": "1c5caf1fbdbd47f937a0eb0d1cbfd5c588958e97395c14dc91e976bd2c7f33c5",
+    "proof": "ff505f18548906872dca8c8c5131be853a665ab294dbbde805b9df2f89123930",
+    "snapshots": "163d7e2a01d1ddc8926ad4d5e509a66995d6fa2ae4b713381e2dbd3afd19b9e5",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "mediaRoute": "69217a20b92c64818b17ef8b893edd3cacd3b4d1a9d6ebb9f468e68747a208ba",
+    "tlsRunner": "e9ed6ce2a2419d3f0b669070dc0e66d4df9188b21ed2b47115f0433399a4c66f",
+    "archive": "2fbced571af1f33a3feee4cc7f287bc7d3a17a4e1d349c8dff8d0be0a1e01635",
+    "page": "01d2247173225d61f19d480364e82338c918c46c2eb2fe05452d83ada6c448d9",
+    "loader": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "ability": "e75867a1031631a25c40e8f6a3e1a222cbf6e37d59b821118e5d3150c2efb12b",
+    "fullscreenDriver": "15977e9a2b71e1bf22f69ebe764e63602aa3c04e29b5b2176c81a9dfe8be42d7"
+  },
+  "checksPassed": 3,
+  "checks": [
+    "Only the completed question displays the authorized video card and opening its archive does not fetch",
+    "Official fullscreen expands the player, first Back restores it, and second Back returns to the same clue card",
+    "Read-only media interactions leave the unsubmitted answer intact"
+  ],
+  "states": [
+    {
+      "state": "video-ready",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-player": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ]
+      },
+      "rawSha256": "32accb7faf69c3f863402ec7f8d714bdf386138ad4e341a41d87bc778150d2e7"
+    },
+    {
+      "state": "video-rendered-original",
+      "playbackSecond": 9,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T052245218418Z/video-rendered-original-0.png",
+        "sha256": "33a85d46e009d113037b3ced3a0ec8d471c7e332bab650a4cc69a11012528f9d",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "video-native-fullscreen",
+      "geometryPx": {
+        "fullscreen": [
+          0,
+          124,
+          1260,
+          2720
+        ]
+      },
+      "officialEvidence": "official fullscreen video bounds",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T052245218418Z/video-native-fullscreen.png",
+        "sha256": "3f40e7b8ca058234bd379ffd1e754910435ce33ced12672875e2b409d4718241",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "video-inline-after-fullscreen-back",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-player": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ]
+      },
+      "rawSha256": "776f13abd3f18c67df8463915c64173aa8286ebe25f881bc50b0fe8aa9412a2f",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T052245218418Z/video-inline-after-fullscreen-back.png",
+        "sha256": "70008374beb98b6191232d2fc1d04378506ee2f556b5c1a22667a3114a0c8d72",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "fullscreenControlPx": [
+      1150,
+      1635
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    },
+    "deviceMediaEventCount": 1,
+    "deviceMediaOutcomes": [
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 7
+      }
+    ]
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true,
+    "mediaGateRestored": true
+  },
+  "sameDataWebFixtures": {
+    "ordinary-video-same-data": {
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/ordinary-video-same-data-web-dtos.json",
+      "sha256": "23181bbf4b3fd93dcdcd0dff3d1dbc1ea0a9245c53779b5af1c595c911057822"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/unfinished-question-video-absent.png",
+      "sha256": "ce55001645fdd39fdd267a5f56861f635ae2cc42aac2a3577f03ada722d99770",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/video-archive.png",
+      "sha256": "ca2ec429fbe558ae0cc230ae025590cdcdc800e36568bfd25e4b604bfe3ebfd7",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/video-rendered-original-0.png",
+      "sha256": "33a85d46e009d113037b3ced3a0ec8d471c7e332bab650a4cc69a11012528f9d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/video-native-fullscreen.png",
+      "sha256": "3f40e7b8ca058234bd379ffd1e754910435ce33ced12672875e2b409d4718241",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/video-inline-after-fullscreen-back.png",
+      "sha256": "70008374beb98b6191232d2fc1d04378506ee2f556b5c1a22667a3114a0c8d72",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "unfinished-question-video-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/raw-unfinished-question-video-absent-d257de1bd37649c197a79047dc2603e3.json",
+      "remoteRemoved": true,
+      "sha256": "2366d983f84cff397e634d85c5e78cd33036bf8cf2dcf1b0f85f2b5e066e25de"
+    },
+    {
+      "label": "video-archive",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/raw-video-archive-46d15ca226f24dfdb2aa21e7d2708823.json",
+      "remoteRemoved": true,
+      "sha256": "bd5c8db29178c796a04a3afbd2871777470605393cb71154047f14de22977c87"
+    },
+    {
+      "label": "video-ready",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/raw-video-ready-68e5f402b8e740b393e36590069f044f.json",
+      "remoteRemoved": true,
+      "sha256": "32accb7faf69c3f863402ec7f8d714bdf386138ad4e341a41d87bc778150d2e7"
+    },
+    {
+      "label": "video-inline-after-fullscreen-back",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T052245218418Z/raw-video-inline-after-fullscreen-back-b1d6628952cb455c99aa128cc27577f6.json",
+      "remoteRemoved": true,
+      "sha256": "776f13abd3f18c67df8463915c64173aa8286ebe25f881bc50b0fe8aa9412a2f"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

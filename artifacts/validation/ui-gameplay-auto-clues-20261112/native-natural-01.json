@@ -1,0 +1,92 @@
+{
+  "status": "incomplete",
+  "stage": "verify-exact-isolation-before-device-operations",
+  "scope": "automatic-ordinary-clues-natural",
+  "theme": "light",
+  "hapSha256": "de3f3eed2e8044e7c3c07a08b31af3977d0985e226fe8023559e6425ce741f42",
+  "bindingSha256": {
+    "hap": "de3f3eed2e8044e7c3c07a08b31af3977d0985e226fe8023559e6425ce741f42",
+    "runtime": "89755ea1b5d634d4ac12ca7ee53d8833475b442f78ca55d73c62bcbc03ed2b2c",
+    "caseReference": "58c942e93ac91ba25fb943bd978ab89a5f66b3ea18f0dcc751e5a33a0cd64d3c",
+    "ca": "255f6ce7b43b9ac505ecafc16f22af1e4a2450be6ed90c93773ea887bfae5fcd",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "automaticClueDriver": "03d5b3151882b58ca9752eab0412e2c32438a0d4133c17881d9ea63c108e7f75",
+    "videoDriver": "df598c697cf4a0046edaf866628ddaf7fe54573a1f7930a77997a4351587537d",
+    "fixtureDriver": "771eb6f9650c96bd8934d5fc783de12a0fd5e5e849aa3db8460772392cd33616",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "51af6558a9f25ce2edfafe25f28934100f7aaeeb922102b132c92bddb6c6c997",
+    "hostSnapshots": "a3eed1599add5aa7b81e46d5dcc47700a0b4e17d74d208bc3e8e3870a2e60d53",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageRoute": "f497d53a3fed6456a90a4fadaff31d77c0ae4f5f94698920e5f6b69b57ca0817",
+    "imageMetadata": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "a6f527dc2145a23143bb3abb62f5fedad351ce340482172e6c3556db91eb1646",
+    "GameplayViewModel": "2b53da7a96f499750544bbbc6161f7449dc1468b620f95fae51d94baebffe85f",
+    "GameplayClues": "2d364fa4d1f5a4d67155598bb0dc30b24c2503d61af18eb222b97fe31038576a",
+    "StarwardClueTextDialog": "4242847cca2e2157e44d975f06d61936bf5822cbd04e7ec83980065d7371dc3a",
+    "StarwardImageViewer": "2f03e208b4bbb322657505a312d1464960e12004d47595c715d1cd1275853017",
+    "StarwardVideoViewer": "f382fc06b2988a0e525c2ac2f63e9dba623296812dafd1086c6b1ad7c19a9da0",
+    "QuestionImageLoader": "e4b95ffb0f9a2e6a14f218a5ec1b08eabdd02c46b5476700dd9a34af64506e43",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "auto-clue-a": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd"
+  },
+  "checksPassed": 0,
+  "checks": [],
+  "states": [],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "assigned",
+      "startedAtPresent": false,
+      "completedAtPresent": false,
+      "startReceiptCount": 0,
+      "answerReceiptCount": 0,
+      "answerSubmissionCount": 0,
+      "correctAnswerCount": 0,
+      "completedProgressRows": 0,
+      "xpLedgerCount": 0,
+      "xpDeltaSum": 0,
+      "playerTotalXp": 0,
+      "clueUnlockRows": 0,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true,
+    "imageGateRestored": true
+  },
+  "sameDataWebFixtures": {
+    "auto-clues-assigned": {
+      "file": "artifacts/private/entry-main-20261112T091224606367Z/auto-clues-assigned-web-dtos.json",
+      "sha256": "340a830e2fec7956b3feb76e6e6c54cfff5dfbecdf4ed8b0a6f0f55ebd4a15e1"
+    }
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": "Entry checks stopped; raw diagnostics omitted"
+}

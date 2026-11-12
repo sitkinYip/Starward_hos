@@ -1,0 +1,142 @@
+{
+  "status": "baseline_clipping_reproduced",
+  "stage": "native-open-combination",
+  "scope": "combination",
+  "theme": "light",
+  "hapSha256": "240531eb04ca64849d66f7351f9047f8f36f792a4264e62dc418930246dad968",
+  "bindingSha256": {
+    "hap": "240531eb04ca64849d66f7351f9047f8f36f792a4264e62dc418930246dad968",
+    "runtime": "a1dc14a31eadc952dac18ac803c87015766b3074b9ab832e5a7699e726380e4c",
+    "caseReference": "b491bba195c16e69b736d2ba3a0336227aff1574314bda86dcb95c58e359a39b",
+    "ca": "ace4c6da94b9c787fe403bd08fbc432a9cedf15622b4b1eca614fd651edfb8ea",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "overflowDriver": "2b31abaefed90f3f0091a77b93f8fedeea45ac51c88777bac349c69d7378ac8e",
+    "readOnlyDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "dialogSource": "afb2c5f74e9873bb2438818c39de53f1b4e15d50c47e5280114d68c33cd6f158"
+  },
+  "checksPassed": 2,
+  "checks": [
+    "The baseline long dialog exposes a cropped button or loses its bottom padding",
+    "Closing the dialog restores the completed question and launcher"
+  ],
+  "states": [
+    {
+      "state": "dialog-initial",
+      "rawSha256": "d642bf4af9097c5c573431c2b797c28df27938a414fb198e3d7b4db3d52b3af5",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          232,
+          1182,
+          2487
+        ],
+        "gameplay-combination-scroll": [
+          81,
+          235,
+          1179,
+          2126
+        ],
+        "gameplay-combination-footer": [
+          81,
+          2126,
+          1179,
+          2586
+        ],
+        "gameplay-combination-ack": [
+          156,
+          2378,
+          1104,
+          2528
+        ],
+        "gameplay-combination-title": [
+          178,
+          472,
+          666,
+          612
+        ],
+        "gameplay-combination-description": [
+          156,
+          2187,
+          1086,
+          2313
+        ],
+        "gameplay-combination-inline-1-0-pixels": [
+          181,
+          1959,
+          1079,
+          2126
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T040056460761Z/dialog-initial.png",
+        "sha256": "05a8ab4104d65d6adbc47633bb9606a4130010cb4bb8fc2688b53991f1c7a40d",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "bodyScrollable": true,
+      "buttonVisibleHeightVp": 33.53846153846154,
+      "buttonBottomPaddingVp": -12.615384615384615
+    }
+  ],
+  "observations": {
+    "probe": "baseline",
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "overflow-same-data": {
+      "file": "artifacts/private/entry-main-20261112T040056460761Z/overflow-same-data-web-dtos.json",
+      "sha256": "907112eedfc39ff26143b73b20e2c6dc78c156c5e0c7f77cfcd25c5ab1476298"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T040056460761Z/dialog-initial.png",
+      "sha256": "05a8ab4104d65d6adbc47633bb9606a4130010cb4bb8fc2688b53991f1c7a40d",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "dialog-initial",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T040056460761Z/raw-dialog-initial-ad2f887e97b94031b018c3faf3ced939.json",
+      "remoteRemoved": true,
+      "sha256": "d642bf4af9097c5c573431c2b797c28df27938a414fb198e3d7b4db3d52b3af5"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

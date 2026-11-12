@@ -1,0 +1,362 @@
+{
+  "status": "passed_automatic_ordinary_clues",
+  "stage": "fresh-native-reentry-stays-silent",
+  "scope": "automatic-ordinary-clues-interrupt",
+  "theme": "light",
+  "hapSha256": "de3f3eed2e8044e7c3c07a08b31af3977d0985e226fe8023559e6425ce741f42",
+  "bindingSha256": {
+    "hap": "de3f3eed2e8044e7c3c07a08b31af3977d0985e226fe8023559e6425ce741f42",
+    "runtime": "89755ea1b5d634d4ac12ca7ee53d8833475b442f78ca55d73c62bcbc03ed2b2c",
+    "caseReference": "9c5ee96d40bc6bfc6dee8f6578a6506d71c7f5f6bd30516f8167b78c0056825d",
+    "ca": "255f6ce7b43b9ac505ecafc16f22af1e4a2450be6ed90c93773ea887bfae5fcd",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "automaticClueDriver": "401082e62d7217c263c547044b978945d1652c141c710bbe7d7183e806bdb5bd",
+    "videoDriver": "df598c697cf4a0046edaf866628ddaf7fe54573a1f7930a77997a4351587537d",
+    "fixtureDriver": "771eb6f9650c96bd8934d5fc783de12a0fd5e5e849aa3db8460772392cd33616",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "51af6558a9f25ce2edfafe25f28934100f7aaeeb922102b132c92bddb6c6c997",
+    "hostSnapshots": "a3eed1599add5aa7b81e46d5dcc47700a0b4e17d74d208bc3e8e3870a2e60d53",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageRoute": "f497d53a3fed6456a90a4fadaff31d77c0ae4f5f94698920e5f6b69b57ca0817",
+    "imageMetadata": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "a6f527dc2145a23143bb3abb62f5fedad351ce340482172e6c3556db91eb1646",
+    "GameplayViewModel": "2b53da7a96f499750544bbbc6161f7449dc1468b620f95fae51d94baebffe85f",
+    "GameplayClues": "2d364fa4d1f5a4d67155598bb0dc30b24c2503d61af18eb222b97fe31038576a",
+    "StarwardClueTextDialog": "4242847cca2e2157e44d975f06d61936bf5822cbd04e7ec83980065d7371dc3a",
+    "StarwardImageViewer": "2f03e208b4bbb322657505a312d1464960e12004d47595c715d1cd1275853017",
+    "StarwardVideoViewer": "f382fc06b2988a0e525c2ac2f63e9dba623296812dafd1086c6b1ad7c19a9da0",
+    "QuestionImageLoader": "e4b95ffb0f9a2e6a14f218a5ec1b08eabdd02c46b5476700dd9a34af64506e43",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "auto-clue-a": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd"
+  },
+  "checksPassed": 4,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "One answer opens the exact authorized text first and makes no media request before dismissal",
+    "Home cancels pending playback and advance, and foreground GET restores the same settled question",
+    "Re-entry uses an authorized strict HTTPS GET and does not replay any clue or answer"
+  ],
+  "states": [
+    {
+      "state": "auto-text-before-media",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          937,
+          1182,
+          1782
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1119,
+          523,
+          1245
+        ],
+        "gameplay-clue-text-content": [
+          172,
+          1391,
+          1088,
+          1688
+        ],
+        "gameplay-clue-text-close": [
+          984,
+          992,
+          1127,
+          1135
+        ]
+      },
+      "rawSha256": "fb4f585ed7292bfaf331f16c1adf4c26e1d9edf56a637fc8a76afed3c17e6433",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-text-before-media.png",
+        "sha256": "f4409ec53cadf37aae563264e9a8c742c6b39082da850d7b4f9d6c243b2857c3",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-interrupted-q1",
+      "viewedQuestion": 1,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2720
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ]
+      },
+      "rawSha256": "da6adc666543469496bd28f27558c1e24628dc6f76657e80f23fae06b503e202",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-interrupted-q1.png",
+        "sha256": "34c1276f88a1ce06a0745d03d95426c39683647f49c9706bad00a2cebd41f263",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "manual-only-text-from-archive",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          1036,
+          1182,
+          1683
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1218,
+          523,
+          1344
+        ],
+        "gameplay-clue-text-content": [
+          172,
+          1490,
+          1088,
+          1589
+        ],
+        "gameplay-clue-text-close": [
+          984,
+          1091,
+          1127,
+          1234
+        ]
+      },
+      "rawSha256": "ce3f53512c24f672b1e9104374fdfb84f545e824873210a96db08e9c41174acf",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T092231344273Z/manual-only-text-from-archive.png",
+        "sha256": "b627057e384ae4f97a28482f066b47c1c1d8695b7d785a1a747e632077da00fa",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-interrupted-manual-next",
+      "viewedQuestion": 2,
+      "answerEditable": true,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1140
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ]
+      },
+      "rawSha256": "e56d5bbde22c967bae6c24b45dde302c0b10796a7bb7341727bf91be95c515b5",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-interrupted-manual-next.png",
+        "sha256": "d35d6148bd41187c1eb445cf5bb8d90f97141b9d5219e7cec33ae511a8b44222",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-clues-q2-reentered",
+      "viewedQuestion": 2,
+      "answerEditable": true,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1140
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ]
+      },
+      "rawSha256": "89cd4aec1fa8fb1a5524d580650f34fc254709e4b7df279e52017cc619735c15",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-clues-q2-reentered.png",
+        "sha256": "8a584082ebf0f6e900fc19e1cbcf481975613705bccf2319d66e6850610afd05",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "businessWrites": {
+      "starts": 1,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 1,
+      "answerSubmissionCount": 1,
+      "correctAnswerCount": 1,
+      "completedProgressRows": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "clueUnlockRows": 4,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "deviceVideoOutcomes": [],
+    "deviceImageOutcomes": []
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true,
+    "imageGateRestored": true
+  },
+  "sameDataWebFixtures": {
+    "auto-clues-assigned": {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-clues-assigned-web-dtos.json",
+      "sha256": "cb632b8ec24b5da04ae74f4020c4118d1ae0418325c0d9e6fc76edfd6fb2a4e2"
+    },
+    "auto-clues-unanswered": {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-clues-unanswered-web-dtos.json",
+      "sha256": "1c8d1a01220dc51598a1d752b975365c2bd35c2a8e68fbcf069624b885eeb9ad"
+    },
+    "auto-clues-settled": {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-clues-settled-web-dtos.json",
+      "sha256": "bc3d8881c86207f75e7f436e3dd3c7aa08740280b6c691e7b1c01b691875c6e1"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-clues-unanswered.png",
+      "sha256": "78e1ced912018fd31004a3197cee18cceba5b8169fccb66ca358d02b505290f8",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-text-before-media.png",
+      "sha256": "f4409ec53cadf37aae563264e9a8c742c6b39082da850d7b4f9d6c243b2857c3",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-interrupted-q1.png",
+      "sha256": "34c1276f88a1ce06a0745d03d95426c39683647f49c9706bad00a2cebd41f263",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/manual-only-text-from-archive.png",
+      "sha256": "b627057e384ae4f97a28482f066b47c1c1d8695b7d785a1a747e632077da00fa",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-interrupted-manual-next.png",
+      "sha256": "d35d6148bd41187c1eb445cf5bb8d90f97141b9d5219e7cec33ae511a8b44222",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/auto-clues-q2-reentered.png",
+      "sha256": "8a584082ebf0f6e900fc19e1cbcf481975613705bccf2319d66e6850610afd05",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "auto-clues-unanswered",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-auto-clues-unanswered-3af67c57c1d44281970b9664ed337142.json",
+      "remoteRemoved": true,
+      "sha256": "4479434ea57a26fb380693858f288cf1ccbb61b2077f58016825709d8500921b"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-followup-ready-submit-f2d38a8b49b842ad9fa6caec40378ad3.json",
+      "remoteRemoved": true,
+      "sha256": "b0332a5dee25b2800aa3c5295373458328a55427d9f457dbc1a125665891b5b0"
+    },
+    {
+      "label": "auto-text-before-media",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-auto-text-before-media-a1ac9d7c3643499c860c0a6aa189d930.json",
+      "remoteRemoved": true,
+      "sha256": "fb4f585ed7292bfaf331f16c1adf4c26e1d9edf56a637fc8a76afed3c17e6433"
+    },
+    {
+      "label": "auto-interrupted-q1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-auto-interrupted-q1-333116fbbc57461da36be589cbc12eac.json",
+      "remoteRemoved": true,
+      "sha256": "da6adc666543469496bd28f27558c1e24628dc6f76657e80f23fae06b503e202"
+    },
+    {
+      "label": "manual-only-text-from-archive",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-manual-only-text-from-archive-78a1d8fc29e4438dbd88541b3fa5bd1c.json",
+      "remoteRemoved": true,
+      "sha256": "ce3f53512c24f672b1e9104374fdfb84f545e824873210a96db08e9c41174acf"
+    },
+    {
+      "label": "auto-interrupted-manual-next",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-auto-interrupted-manual-next-425a1e0068614ea59462a607e6dbe1b4.json",
+      "remoteRemoved": true,
+      "sha256": "e56d5bbde22c967bae6c24b45dde302c0b10796a7bb7341727bf91be95c515b5"
+    },
+    {
+      "label": "auto-clues-q2-reentered",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T092231344273Z/raw-auto-clues-q2-reentered-2c1fe36279034dedbd1dbde37080a705.json",
+      "remoteRemoved": true,
+      "sha256": "89cd4aec1fa8fb1a5524d580650f34fc254709e4b7df279e52017cc619735c15"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

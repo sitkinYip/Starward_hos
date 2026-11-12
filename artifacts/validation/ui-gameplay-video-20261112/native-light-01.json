@@ -1,0 +1,335 @@
+{
+  "status": "incomplete",
+  "stage": "retry-cancel-and-background",
+  "scope": "ordinary-clue-video",
+  "theme": "light",
+  "hapSha256": "438159804f80639a3207936edf61d7ca96e2dcc3387e0c8bc62a2ffe83f937ea",
+  "bindingSha256": {
+    "hap": "438159804f80639a3207936edf61d7ca96e2dcc3387e0c8bc62a2ffe83f937ea",
+    "runtime": "288073dc5d8c9ff72326cd13a57d674665431b6ef4a850d7bf74f85d4129c5e7",
+    "caseReference": "5347f1c3b9fac3293fa57df08392a06813f33ca7c806efe217d7d795ac327c55",
+    "ca": "a7d987eb29817af775c72a8c5645760435b46675b038fe1882c4006e4eeef9c4",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "d833f67383e0b1b75bc7c847adf135b7afcedddc8fc9b5d46e0664504fb65900",
+    "nativeUI": "d92ffdda17272c7ebcf06253093d07bafbab458751aac228d120ec57c372022f",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "clueDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "fixtureDriver": "1c5caf1fbdbd47f937a0eb0d1cbfd5c588958e97395c14dc91e976bd2c7f33c5",
+    "proof": "895a78854c2670aa7cefe94909a7cba31a69ce45a912e2874cc7c63f5bbc7695",
+    "snapshots": "24dd36dc4f9769f6c9f6dde705c82ec88dc4f9ebe6b34688c244e519a1850bf6",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "mediaRoute": "69217a20b92c64818b17ef8b893edd3cacd3b4d1a9d6ebb9f468e68747a208ba",
+    "tlsRunner": "e9ed6ce2a2419d3f0b669070dc0e66d4df9188b21ed2b47115f0433399a4c66f",
+    "archive": "2fbced571af1f33a3feee4cc7f287bc7d3a17a4e1d349c8dff8d0be0a1e01635",
+    "page": "01d2247173225d61f19d480364e82338c918c46c2eb2fe05452d83ada6c448d9",
+    "loader": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "ability": "e75867a1031631a25c40e8f6a3e1a222cbf6e37d59b821118e5d3150c2efb12b"
+  },
+  "checksPassed": 8,
+  "checks": [
+    "Only the completed question displays the authorized video card and opening its archive does not fetch",
+    "Native autoplay, pause, seek and play were proven from rendered video timestamps",
+    "Natural end closes the overlay and returns to the same completed question card",
+    "Explicit close, system Back and an outside-stage touch return to the same clue card",
+    "One deliberate retry recovers the same rejected media route and renders the clip",
+    "Closing a controlled loading attempt remains closed after the response window",
+    "Returning from Home rereads the same question with the native player closed",
+    "Read-only media interactions leave the unsubmitted answer intact"
+  ],
+  "states": [
+    {
+      "state": "autoplay-frame",
+      "playbackSecond": 7,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/autoplay-frame-0.png",
+        "sha256": "5dfdce8e42760f071ce3aea331600e66207bb347147c6221eb77ef61bc6cf1a2",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "paused-first-frame",
+      "playbackSecond": 9,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/paused-first-frame-0.png",
+        "sha256": "1acf048180c93da600b9d6737d7df67fb7b7a60ebf1f4c48b67d86a5e7f3126b",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "paused-still-frame",
+      "playbackSecond": 9,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/paused-still-frame-0.png",
+        "sha256": "1acf048180c93da600b9d6737d7df67fb7b7a60ebf1f4c48b67d86a5e7f3126b",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "seeked-frame",
+      "playbackSecond": 18,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/seeked-frame-0.png",
+        "sha256": "9a0e0236fd3b170b365150f8cb6b9f7ef90abf52e07a4d45128754298b766d0f",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "resumed-frame",
+      "playbackSecond": 23,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/resumed-frame-0.png",
+        "sha256": "d235141b592b02e476e20205bfd00777aad1ecbc0cf7c334ba7205f75aeed80d",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "media-error",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ],
+        "gameplay-video-error": [
+          504,
+          1262,
+          758,
+          1334
+        ],
+        "gameplay-video-retry": [
+          488,
+          1347,
+          774,
+          1490
+        ]
+      },
+      "rawSha256": "044a93ec0eecd8ad52ee0f9130de260ac92ac86c9a991bc23d0071031f56ef85",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/media-error.png",
+        "sha256": "3cb992529ced081e16368e38d273cd18c3db87e4014f7b6a76552d4a43daaf36",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "retry-rendered-frame",
+      "playbackSecond": 7,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T051507804065Z/retry-rendered-frame-0.png",
+        "sha256": "7a440b676b8e6e492cbfcfb24921006621c73f40b90ac1762cae444497ff47ee",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "controlled-loading",
+      "geometryPx": {
+        "gameplay-video-loading": [
+          585,
+          1330,
+          676,
+          1421
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ]
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "playbackControlSource": "official UiTest descendants of the native Video",
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    },
+    "deviceMediaEventCount": 8,
+    "deviceMediaOutcomes": [
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 46
+      },
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 1
+      },
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 3
+      },
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 3
+      },
+      {
+        "label": "retry",
+        "mode": "hold",
+        "status": 503,
+        "contentBytes": 0,
+        "completed": true,
+        "durationMs": 6
+      },
+      {
+        "label": "retry",
+        "mode": "recover",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 4
+      },
+      {
+        "label": "retry",
+        "mode": "slow",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 10008
+      },
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 1
+      }
+    ]
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true,
+    "mediaGateRestored": true
+  },
+  "sameDataWebFixtures": {
+    "ordinary-video-same-data": {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/ordinary-video-same-data-web-dtos.json",
+      "sha256": "c9814b77f69e076739b77cc2974637ad16b96d5358e53883c4612460c8de5e0a"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/unfinished-question-video-absent.png",
+      "sha256": "1150a121ecc590b5a421f6d9f0897c9ab1131b693c0690edc461bff30bf577d4",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/video-archive.png",
+      "sha256": "7621e3cd3e66e0247ceded006da0b7ffd9da370a8df737cfcdefcc831d322d42",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/autoplay-frame-0.png",
+      "sha256": "5dfdce8e42760f071ce3aea331600e66207bb347147c6221eb77ef61bc6cf1a2",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/paused-first-frame-0.png",
+      "sha256": "1acf048180c93da600b9d6737d7df67fb7b7a60ebf1f4c48b67d86a5e7f3126b",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/paused-still-frame-0.png",
+      "sha256": "1acf048180c93da600b9d6737d7df67fb7b7a60ebf1f4c48b67d86a5e7f3126b",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/seeked-frame-0.png",
+      "sha256": "9a0e0236fd3b170b365150f8cb6b9f7ef90abf52e07a4d45128754298b766d0f",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/resumed-frame-0.png",
+      "sha256": "d235141b592b02e476e20205bfd00777aad1ecbc0cf7c334ba7205f75aeed80d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/media-error.png",
+      "sha256": "3cb992529ced081e16368e38d273cd18c3db87e4014f7b6a76552d4a43daaf36",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/retry-rendered-frame-0.png",
+      "sha256": "7a440b676b8e6e492cbfcfb24921006621c73f40b90ac1762cae444497ff47ee",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "unfinished-question-video-absent",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/raw-unfinished-question-video-absent-0fa360cb96db4764b935735ec235f982.json",
+      "remoteRemoved": true,
+      "sha256": "6b0d451c5c6a0d1e8735fce983f2ee3b8b4be592896759ac5b4d9bf87950d7aa"
+    },
+    {
+      "label": "video-archive",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/raw-video-archive-733974b25c094ce2b8ce3d39b62597a3.json",
+      "remoteRemoved": true,
+      "sha256": "9443dae751f9db4824450b5325e79d64a80e54044ea87e85d62b964f030cd196"
+    },
+    {
+      "label": "media-error",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T051507804065Z/raw-media-error-bf8275f74ecd4b80985defeba74e8d57.json",
+      "remoteRemoved": true,
+      "sha256": "044a93ec0eecd8ad52ee0f9130de260ac92ac86c9a991bc23d0071031f56ef85"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": "The gateway did not observe exact initial, retry and transport cancellation outcomes"
+}

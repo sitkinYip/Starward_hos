@@ -1,0 +1,322 @@
+{
+  "status": "captured_native_clue_links",
+  "stage": "actual-native-link-taps",
+  "scope": "ordinary",
+  "theme": "light",
+  "hapSha256": "c5e3bcd31fc43d887bd1aa60ed9b934b128d18ac19f4e9541b85c9a7f17194d5",
+  "bindingSha256": {
+    "hap": "c5e3bcd31fc43d887bd1aa60ed9b934b128d18ac19f4e9541b85c9a7f17194d5",
+    "runtime": "21a03c062faac18d912f4a06bc639c9e28625bdcd17d6b951ad1492856fd9c44",
+    "caseReference": "4b3a894991b99c4be262bcd6a403b6cf6a4c2a7c40c024d021672cd3c893522a",
+    "ca": "fc4eae2c77a833171b61ebe8b90a2db2b54a984cf9c23e94df6c9ca09ca3efb2",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "GameplayPage": "ef6d7c1c2e147b0a2d1a51045957949e6c55a0e214132a9f2fb6aa411e453424",
+    "GameplayViewModel": "ccb531e3cc5c2c888c5ba09dc0c951c33afc1b85f8507537f6aecb774b3b24b9",
+    "Index": "1c1bc859ab6e7aa4a7454ffed925e4be98c5dffedde019d028631ba7dcab36d9",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "GameplayClues": "4bf01411af8aeb697fd1ae3094935900d0f69e404ce4817f780402d4cb1573e7",
+    "StarwardClueParagraph": "9ea76439814c3e58c3ae439a85e9beab03c42808abec6e4297bc2c2611572afa",
+    "StarwardClueTextDialog": "a7d4d7103b39ebc33ddc169bdc9a047ab50e3c470bd0a82e82821b51b48efa00",
+    "StarwardCombinationDialog": "afb2c5f74e9873bb2438818c39de53f1b4e15d50c47e5280114d68c33cd6f158"
+  },
+  "checksPassed": 5,
+  "checks": [
+    "No handoff or gameplay request for plain-neighbor-text",
+    "No handoff or gameplay request for blocked-scheme-label",
+    "System handoff and Back retain the exact dialog and visible reading position for safe-browser-link",
+    "The exact unsubmitted draft survives reading a clue from the previous completed question",
+    "A normal Home transition closes the clue and keeps the previous question on return"
+  ],
+  "states": [
+    {
+      "state": "before-plain-neighbor-text",
+      "rawSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          838,
+          1182,
+          1881
+        ],
+        "gameplay-clue-paragraph-0": [
+          172,
+          1292,
+          1088,
+          1787
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1020,
+          523,
+          1146
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T022445325541Z/before-plain-neighbor-text.png",
+        "sha256": "d67d5caf9c98ae04651491738da23246a6655e0fcacc5a931e4aac385335f976",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "tapPx": [
+        920,
+        1450
+      ]
+    },
+    {
+      "state": "after-plain-neighbor-text",
+      "rawSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          838,
+          1182,
+          1881
+        ],
+        "gameplay-clue-paragraph-0": [
+          172,
+          1292,
+          1088,
+          1787
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1020,
+          523,
+          1146
+        ]
+      }
+    },
+    {
+      "state": "before-blocked-scheme-label",
+      "rawSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          838,
+          1182,
+          1881
+        ],
+        "gameplay-clue-paragraph-0": [
+          172,
+          1292,
+          1088,
+          1787
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1020,
+          523,
+          1146
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T022445325541Z/before-blocked-scheme-label.png",
+        "sha256": "44d08a84efaac0908de70ad9524abd0e62ef377735d55bab836b089cdf411ca2",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "tapPx": [
+        350,
+        1748
+      ]
+    },
+    {
+      "state": "after-blocked-scheme-label",
+      "rawSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          838,
+          1182,
+          1881
+        ],
+        "gameplay-clue-paragraph-0": [
+          172,
+          1292,
+          1088,
+          1787
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1020,
+          523,
+          1146
+        ]
+      }
+    },
+    {
+      "state": "before-safe-browser-link",
+      "rawSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          838,
+          1182,
+          1881
+        ],
+        "gameplay-clue-paragraph-0": [
+          172,
+          1292,
+          1088,
+          1787
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1020,
+          523,
+          1146
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T022445325541Z/before-safe-browser-link.png",
+        "sha256": "c2fb939f2164ffcb6a9d82b75dd3dd057f74fc4ed27753d2271085cead9bd119",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "tapPx": [
+        905,
+        1652
+      ],
+      "systemHandlerObserved": "browser",
+      "systemBackPresses": 3
+    },
+    {
+      "state": "after-safe-browser-link",
+      "rawSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          838,
+          1182,
+          1881
+        ],
+        "gameplay-clue-paragraph-0": [
+          172,
+          1292,
+          1088,
+          1787
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1020,
+          523,
+          1146
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T022445325541Z/after-safe-browser-link.png",
+        "sha256": "cb842868ed23439b4beeccc3a27472e4933e52b3187855ca6a1a8337a4cddc8b",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "ordinary-same-data": {
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/ordinary-same-data-web-dtos.json",
+      "sha256": "6f6ced1c260741225974a1a0415e7537fdcc7911a14ab7026b899fcb60251d6c"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/before-plain-neighbor-text.png",
+      "sha256": "d67d5caf9c98ae04651491738da23246a6655e0fcacc5a931e4aac385335f976",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/before-blocked-scheme-label.png",
+      "sha256": "44d08a84efaac0908de70ad9524abd0e62ef377735d55bab836b089cdf411ca2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/before-safe-browser-link.png",
+      "sha256": "c2fb939f2164ffcb6a9d82b75dd3dd057f74fc4ed27753d2271085cead9bd119",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/after-safe-browser-link.png",
+      "sha256": "cb842868ed23439b4beeccc3a27472e4933e52b3187855ca6a1a8337a4cddc8b",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "before-plain-neighbor-text",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/raw-before-plain-neighbor-text-cbdccc1be6634b4eb9d89db9f6ac0836.json",
+      "remoteRemoved": true,
+      "sha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063"
+    },
+    {
+      "label": "after-plain-neighbor-text",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/raw-after-plain-neighbor-text-95d1088f094d407088b51b9985607b07.json",
+      "remoteRemoved": true,
+      "sha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063"
+    },
+    {
+      "label": "before-blocked-scheme-label",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/raw-before-blocked-scheme-label-b0eb48d180d04a8aa1f3ac1aecef74d4.json",
+      "remoteRemoved": true,
+      "sha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063"
+    },
+    {
+      "label": "after-blocked-scheme-label",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/raw-after-blocked-scheme-label-611722751ba24601823b4f36950ca40b.json",
+      "remoteRemoved": true,
+      "sha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063"
+    },
+    {
+      "label": "before-safe-browser-link",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/raw-before-safe-browser-link-e9b4e176a50f4971af75a84b826ce0a5.json",
+      "remoteRemoved": true,
+      "sha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063"
+    },
+    {
+      "label": "after-safe-browser-link",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T022445325541Z/raw-after-safe-browser-link-326582061672420fa684412bd2bff5af.json",
+      "remoteRemoved": true,
+      "sha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

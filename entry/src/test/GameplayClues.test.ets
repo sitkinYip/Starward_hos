@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { clueImageSources, ClueSpan, ClueTextPart, clueTextParts, clueTitle, combinationClues, completionCombinations,
+import { answerAutomaticClues, clueImageSources, ClueSpan, ClueTextPart, clueTextParts, clueTitle, combinationClues, completionCombinations,
   ordinaryClues } from '../main/ets/business/GameplayClues';
 import { GameplayClue, GameplayEffect, GameplayLevel, GameplayQuestion,
   GameplaySnapshot } from '../main/ets/business/GameplayModels';
@@ -50,6 +50,37 @@ function effect(clueId: string): GameplayEffect {
 
 export default function gameplayCluesTests(): void {
   describe('GameplayClues', () => {
+    it('mixedAnswerCluesUseExplicitEffectsOrOnlyNewGrantsWhenEffectsAreMissing', 0, () => {
+      const first: GameplayLevel = level('first');
+      const second: GameplayLevel = level('second', false);
+      const known: GameplayClue = clue('known', 'video');
+      const session: GameplayClue = clue('session', 'text', 'session', 'first');
+      const question: GameplayClue = clue('question', 'image', 'question', 'first');
+      question.content.imageUrls = ['https://media.example/clue.png'];
+      const video: GameplayClue = clue('video', 'video', 'session', 'first');
+      video.position = 1;
+      const other: GameplayClue = clue('other', 'video', 'question', 'second');
+      for (const row of [known, session, question, video, other]) {
+        row.content.url = 'https://media.example/clue.mp4';
+        row.autoPlay = true;
+      }
+      const previous: GameplaySnapshot = snapshot([level('first', false), second], [known]);
+      const settled: GameplaySnapshot = snapshot([first, second], [other, question, video, session, known]);
+      expect(answerAutomaticClues(previous, settled, first, undefined).map((row: GameplayClue) =>
+        row.id).join(',')).assertEqual('session,video,question');
+      expect(answerAutomaticClues(previous, settled, first, []).length).assertEqual(0);
+      const optOut: GameplayEffect = effect('question');
+      optOut.autoPlay = false;
+      const optIn: GameplayEffect = effect('session');
+      optIn.autoPlay = true;
+      session.autoPlay = false;
+      expect(answerAutomaticClues(previous, settled, first,
+        [optOut, effect('absent'), effect('other'), optIn])[0]?.id).assertEqual('session');
+      expect(answerAutomaticClues(previous, settled, first, [optOut, optIn]).length).assertEqual(1);
+      settled.detail.status = 'completed';
+      expect(answerAutomaticClues(previous, settled, first, [optIn]).length).assertEqual(0);
+    });
+
     it('usesOnlyCurrentReadableCompletedLevelAndServerGrantedRows', 0, () => {
       const first: GameplayLevel = level('first', false);
       const second: GameplayLevel = level('second');
@@ -119,7 +150,28 @@ export default function gameplayCluesTests(): void {
       expect(result.clues.map((row: GameplayClue) => row.id).join(',')).assertEqual('question,last,middle,early,position');
     });
 
-    it('preservesHighlightsAndLineBreaksButNeverTurnsLinkOrVideoIntoAnAction', 0, () => {
+    it('projectsOnlyGrantedVideosWithSourcesForTheCurrentCompletedQuestion', 0, () => {
+      const first: GameplayLevel = level('first');
+      const second: GameplayLevel = level('second', false);
+      const questionVideo: GameplayClue = clue('question-video', 'video', 'question', 'first', 'question_completed');
+      questionVideo.content.url = 'https://media.example/first.mp4';
+      const completionVideo: GameplayClue = clue('completion-video', 'video', 'session', '', 'session_completed');
+      completionVideo.content.url = 'https://media.example/completion.mp4';
+      completionVideo.content.title = '星海记录';
+      const empty: GameplayClue = clue('no-source', 'video');
+      empty.content.url = '  ';
+      const result: GameplaySnapshot = snapshot([first, second], [questionVideo, empty, completionVideo]);
+      result.detail.status = 'completed';
+      expect(visibleIds(result, first)).assertEqual('completion-video,question-video');
+      expect(visibleIds(result, second)).assertEqual('');
+      second.completedAt = first.completedAt;
+      expect(visibleIds(result, second)).assertEqual('completion-video');
+      expect(combinationClues(result).length).assertEqual(0);
+      expect(clueTitle(questionVideo)).assertEqual('时空回溯');
+      expect(clueTitle(completionVideo)).assertEqual('星海记录');
+    });
+
+    it('retainsLinkTargetOnlyForTheDialogAndPreservesHighlightsAndLineBreaks', 0, () => {
       const source: string = '起始\r\n[[重点]]\n{{ https://images.example/clue.png }}\n结尾' +
         '((查看说明||https://links.example/read))<<https://video.example/movie>>{{http://images.example/insecure.png}}';
       const parts: ClueTextPart[] = clueTextParts(source);
@@ -128,10 +180,20 @@ export default function gameplayCluesTests(): void {
       expect(parts[0].spans.find((span: ClueSpan) => span.highlight)?.text).assertEqual('重点');
       expect(parts[1].image).assertEqual('https://images.example/clue.png');
       expect(plainText(parts[2])).assertEqual('结尾查看说明');
+      expect(parts[2].spans.find((span: ClueSpan) => span.text === '查看说明')?.linkTarget)
+        .assertEqual('https://links.example/read');
       const preview: ClueTextPart[] = clueTextParts(source, true);
       expect(preview.length).assertEqual(1);
       expect(preview[0].image).assertEqual('');
       expect(plainText(preview[0])).assertEqual('起始\n重点\n结尾查看说明');
+      expect(preview[0].spans.every((span: ClueSpan) => span.linkTarget.length === 0)).assertTrue();
+    });
+
+    it('keepsEmptyLinkLabelsAsAuthoredTextAndSplitsOnlyTheFirstSeparator', 0, () => {
+      const parts: ClueTextPart[] = clueTextParts('((||https://links.example/))前((链接|| https://links.example/?x=a||b ))后');
+      expect(plainText(parts[0])).assertEqual('((||https://links.example/))前链接后');
+      expect(parts[0].spans.filter((span: ClueSpan) => span.linkTarget.length > 0).map((span: ClueSpan) => span.linkTarget)
+        .join(',')).assertEqual('https://links.example/?x=a||b');
     });
 
     it('removes only structural media line breaks and preserves authored blank lines', 0, () => {

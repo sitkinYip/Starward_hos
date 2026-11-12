@@ -1,0 +1,190 @@
+{
+  "status": "passed_combination_completion_notice",
+  "stage": "no-results-back-dismissal",
+  "scope": "combination-completion-notice",
+  "theme": "light",
+  "hapSha256": "458ba8a01dd535a276d349b41351c34190c63505bd78b3155cca944c697155dd",
+  "bindingSha256": {
+    "hap": "458ba8a01dd535a276d349b41351c34190c63505bd78b3155cca944c697155dd",
+    "runtime": "828a34ab403f96dc805294056730bd69fb8c9bdc15c2a55a7cc9670abf3c1943",
+    "caseReference": "2bf1f74d19b09f103e6b6e9446dc8a81ffeead106fc4f9810d14796ae29bb5fd",
+    "ca": "a482abd1ab3414af3aa273899f7d704f0b6183b17a2208eb485f4e20cb97d17e",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "noticeDriver": "0ca4a419cb90bee059800a8223321a37984efef7524569a390380e0a0e0f9f0a",
+    "queueDriver": "e324740e1acf6fdbe7440a8733aa643c53814dedc0356821846ba3052e25e9cc",
+    "linkDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "sqliteReader": "74025e1738112ca22768797b30bd079c203e3f3aa47bd1b35589df5b244f39ac",
+    "GameplayPage": "f00aae1bbbac214aa4f4d854f0e54239100d63d2157c844eb0735358e2dc8466",
+    "GameplayViewModel": "ccb531e3cc5c2c888c5ba09dc0c951c33afc1b85f8507537f6aecb774b3b24b9",
+    "StarwardCombinationNotice": "e8da15ee77ab0fe4685e40b7b23227326495593cdef004ce4faa533ea0ec398a",
+    "StarwardCombinationDialog": "b61b19cfba800d15b674fbe751d8dc80f6e0978a314179ecc1d6833292cf87cf",
+    "baseColors": "defbceb5d43ec3448250ee600e7521d80aef0719fc8bc76eb4f5aaa193a00e19",
+    "darkColors": "65ab2cfb6efe1ba9c2859e7a7f9b9be674014fcbc0a2a3ff7ae51fd23d16e823"
+  },
+  "checksPassed": 3,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "The server-completed count, branded notice copy and fully visible CTA were measured",
+    "Back dismisses the informational notice and opens no combination clue or launcher"
+  ],
+  "states": [
+    {
+      "state": "completion-notice",
+      "geometryPx": {
+        "gameplay-combination-notice": [
+          78,
+          654,
+          1182,
+          2067
+        ],
+        "gameplay-combination-notice-count": [
+          497,
+          857,
+          764,
+          1124
+        ],
+        "gameplay-combination-notice-eyebrow": [
+          370,
+          1172,
+          890,
+          1219
+        ],
+        "gameplay-combination-notice-title": [
+          158,
+          1268,
+          1102,
+          1568
+        ],
+        "gameplay-combination-notice-detail": [
+          237,
+          1617,
+          1023,
+          1711
+        ],
+        "gameplay-combination-notice-ack": [
+          487,
+          1786,
+          774,
+          1936
+        ]
+      },
+      "rawSha256": "82739f8411e03e9a4780899e4bc371cdcd70d827d9f47d8ae978ca097cba8b74",
+      "completedCount": 2,
+      "ctaClickableAndEnabled": true,
+      "rawDecorationsExposed": {
+        "gameplay-combination-notice-count": true,
+        "gameplay-combination-notice-eyebrow": true
+      },
+      "rawDecorationsTextExposed": {
+        "gameplay-combination-notice-count": false,
+        "gameplay-combination-notice-eyebrow": false
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T043928373508Z/completion-notice.png",
+        "sha256": "d0a2a294525f3a5583dcf77ec654aedd3cd348e09c2001fd8a59db6f2176b076",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "state": "no-results-back-dismissed",
+      "rawSha256": "0307f591697a1aafd6fb1d0ea26de5019c6d444b2736a7b26cb70c172dbf63c5"
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 1,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "notice-before": {
+      "file": "artifacts/private/entry-main-20261112T043928373508Z/notice-before-web-dtos.json",
+      "sha256": "6884b4b0d34d51d7b5626cb72c10aaad14df83603c4a66daafb8a445a8e9fd24"
+    },
+    "notice-completed": {
+      "file": "artifacts/private/entry-main-20261112T043928373508Z/notice-completed-web-dtos.json",
+      "sha256": "d23c3e669ce2c7ea46e634cb6f999c4fa6c9f389c6541dfc46ced0797edb98af"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T043928373508Z/completion-notice.png",
+      "sha256": "d0a2a294525f3a5583dcf77ec654aedd3cd348e09c2001fd8a59db6f2176b076",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043928373508Z/raw-followup-ready-submit-df83e0f3793b42368b9088c252df32c4.json",
+      "remoteRemoved": true,
+      "sha256": "19e1fbff5866d6a77dfb579148107763134685556814b8df4646b731f0acc13c"
+    },
+    {
+      "label": "completion-notice",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043928373508Z/raw-completion-notice-958c7de9e8164f209a34c07d8c01a28e.json",
+      "remoteRemoved": true,
+      "sha256": "82739f8411e03e9a4780899e4bc371cdcd70d827d9f47d8ae978ca097cba8b74"
+    },
+    {
+      "label": "no-results-back-dismissed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043928373508Z/raw-no-results-back-dismissed-f1cdcb0e0c0c4869b83d7a68f77d07dc.json",
+      "remoteRemoved": true,
+      "sha256": "0307f591697a1aafd6fb1d0ea26de5019c6d444b2736a7b26cb70c172dbf63c5"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

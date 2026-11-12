@@ -252,3 +252,46 @@ hdc shell power-shell timeout -r
 ```
 
 上述runtime和smoke路径现已冻结；以后重新安装须选择新路径和匹配的新HAP。公开文件检查分别见`public-scan-before-cleanup.json`及`public-scan-final.json`，不输出设备标识、口令或token。Web/后端工作树始终作为只读输入，未执行生产写操作。
+
+## 非末题答对后的自动视频（2026-11-12）
+
+逐状态结果见 [C01i](feature-acceptance-matrix.md#c01i-答对后自动播放视频线索)。复验用专用隔离账号、真实 PocketBase、带时间戳的合成 MP4 及专用 CA。为新一轮运行指定新报告目录及一次性账号，复用已结算账号会跳过首答演出。
+
+```sh
+starward_private=artifacts/private/gameplay-auto-video-20261112
+starward_reports=artifacts/validation/ui-gameplay-auto-video-20261112
+scripts/hm.sh build
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayClues" scripts/hm.sh test GameplayClues
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayAnswerViewModel" scripts/hm.sh test GameplayAnswerViewModel
+STARWARD_VALIDATION_DIR="$starward_reports/lint-01" scripts/hm.sh lint
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-01.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-auto-video.py" --runtime "$starward_reports/runtime-01.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage natural --theme light --output "$starward_reports/native-natural-01.json"
+```
+
+`early` 使用日间模式，`failure` 使用夜间模式，分别指定独立报告。三组依次使用同一部手机，每组使用独立账号并核对答题台账、只读 SQLite 与媒体 GET。主机及冻结 Web 报告、应用签名、实际视口和真机报告分别记录。
+
+## 非末题自动文字与图集演出（2026-11-12）
+
+验收表见 [C01j](feature-acceptance-matrix.md#c01j-答对后的文字与图片线索演出)。私有目录 `artifacts/private/gameplay-auto-clues-20261112/` 提供真实隔离 PocketBase、固定 PNG/MP4、专用 CA 及三个真机账号。使用新的一次性账号和报告名复验。
+
+```sh
+starward_private=artifacts/private/gameplay-auto-clues-20261112
+starward_reports=artifacts/validation/ui-gameplay-auto-clues-20261112
+scripts/hm.sh build
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayClues" scripts/hm.sh test GameplayClues
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayAnswerViewModel" scripts/hm.sh test GameplayAnswerViewModel
+STARWARD_VALIDATION_DIR="$starward_reports/QuestionImageLoaderTests" scripts/hm.sh test QuestionImageLoaderTests
+STARWARD_VALIDATION_DIR="$starward_reports/lint-01" scripts/hm.sh lint
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-01.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-auto-clues-02.py" --runtime "$starward_reports/runtime-01.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage natural --theme light --output "$starward_reports/native-natural-02.json"
+```
+
+`early` 及 `interrupt` 分别指定独立真机报告。媒体请求台账与 SQLite 结算各自复核。冻结 Web 回放取独立账号的同场次响应与同一组媒体原文件，保持业务接口由测试拦截。

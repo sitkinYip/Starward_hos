@@ -1,5 +1,7 @@
-import { ClueSpan, ClueTextPart, clueTextParts, clueTitle } from '../business/GameplayClues';
+import { ClueTextPart, clueTextParts, clueTitle } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
+import { QuestionImageCache } from '../platform/QuestionImageCache';
+import { StarwardClueParagraph } from './StarwardClueParagraph';
 import { StarwardQuestionImages } from './StarwardQuestionImages';
 
 /** The reading surface within ArkUI's centered native dialog. */
@@ -8,29 +10,16 @@ export struct StarwardClueTextDialog {
   @Require @Param clue: GameplayClue;
   @Require @Param ownerKey: string;
   @Require @Param ownerIsCurrent: (key: string) => boolean;
+  @Require @Param imageCache: QuestionImageCache;
   @Require @Param panelWidth: number;
   @Require @Param maxHeight: number;
   @Param displayFont: string = 'serif';
   @Param reducedMotion: boolean = true;
   @Event close: () => void = () => {};
   @Event openImage: (partIndex: number) => void = () => {};
+  @Event openLink: (href: string) => void = () => {};
 
   private bodyPadding(): number { return Math.max(28, Math.min(58, (this.panelWidth + 48) * 0.06)); }
-
-  @Builder
-  paragraph(part: ClueTextPart, index: number) {
-    Text() {
-      ForEach(part.spans, (span: ClueSpan) => {
-        if (span.highlight) {
-          Span(span.text).fontColor($r('app.color.clue_mark_text'))
-            .textBackgroundStyle({ color: $r('app.color.clue_mark_surface') })
-        } else {
-          Span(span.text)
-        }
-      }, (span: ClueSpan, segment: number) => `${segment}:${span.highlight}:${span.text}`)
-    }.id(`gameplay-clue-paragraph-${index}`).width('100%').fontSize(16).lineHeight('30.4fp')
-      .fontColor($r('app.color.text')).wordBreak(WordBreak.BREAK_WORD)
-  }
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
@@ -49,15 +38,16 @@ export struct StarwardClueTextDialog {
           Column() {
             ForEach(clueTextParts(this.clue.content.text), (part: ClueTextPart, index: number) => {
               if (part.image.length > 0) {
-                StarwardQuestionImages({ sources: [part.image], ownerKey: this.ownerKey,
+                StarwardQuestionImages({ sources: [part.image], ownerKey: this.ownerKey, imageCache: this.imageCache,
                   ownerIsCurrent: this.ownerIsCurrent, groupId: `gameplay-clue-inline-${index}`,
                   imageLabel: '线索图片', maxHeight: Math.min(680, this.maxHeight * 0.6),
                   reducedMotion: this.reducedMotion, opened: () => this.openImage(index) })
                   .margin({ top: 18, bottom: 18 })
               } else {
-                this.paragraph(part, index)
+                StarwardClueParagraph({ part: part, paragraphId: `gameplay-clue-paragraph-${index}`,
+                  color: $r('app.color.text'), openLink: (href: string) => this.openLink(href) })
               }
-            }, (part: ClueTextPart, index: number) => `${index}:${JSON.stringify(part)}`)
+            }, (_part: ClueTextPart, index: number) => index.toString())
           }.id('gameplay-clue-text-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 24 })
         }.width('100%').alignItems(HorizontalAlign.Start).padding(this.bodyPadding())
       }.width('100%').constraintSize({ maxHeight: this.maxHeight }).align(Alignment.Top).scrollBar(BarState.Off)

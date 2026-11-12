@@ -1,0 +1,88 @@
+{
+  "status": "independent_actor_content_bound",
+  "webReferenceSha256": "d07a8973303bab1c8a2954e07cda2c5612cec8ebbbe1aeaffeea4a13d8b0135d",
+  "inputDtoSha256": {
+    "phone": "5c2d8851ae3a420975059e982ee17ebebac0869092a3d76b1151c405c7bbd383",
+    "queue": "addbed61e72c160e758a305dc4157f3b6db0f166aba350324aad0280cd5122ec",
+    "web": "656c879a2361a7d5e384dc64ece02934919987f3f42a9a5905bf350dcfa5657a"
+  },
+  "samePublishedSession": true,
+  "comparedExactTypedAssignmentDtoValues": true,
+  "referenceActorIsIndependent": true,
+  "comparisons": [
+    {
+      "role": "phone",
+      "phases": [
+        {
+          "phase": "before",
+          "assignmentDifferences": [
+            "/id",
+            "/player",
+            "/serverTime"
+          ],
+          "sameSceneContent": true
+        },
+        {
+          "phase": "active",
+          "assignmentDifferences": [
+            "/clues/0/unlockedAt",
+            "/id",
+            "/player",
+            "/serverTime",
+            "/startedAt"
+          ],
+          "sameSceneContent": true
+        },
+        {
+          "phase": "second",
+          "assignmentDifferences": [
+            "/clues/0/unlockedAt",
+            "/id",
+            "/levels/0/completedAt",
+            "/player",
+            "/serverTime",
+            "/startedAt"
+          ],
+          "sameSceneContent": true
+        }
+      ]
+    },
+    {
+      "role": "queue",
+      "phases": [
+        {
+          "phase": "before",
+          "assignmentDifferences": [
+            "/id",
+            "/player",
+            "/serverTime"
+          ],
+          "sameSceneContent": true
+        },
+        {
+          "phase": "active",
+          "assignmentDifferences": [
+            "/clues/0/unlockedAt",
+            "/id",
+            "/player",
+            "/serverTime",
+            "/startedAt"
+          ],
+          "sameSceneContent": true
+        },
+        {
+          "phase": "second",
+          "assignmentDifferences": [
+            "/clues/0/unlockedAt",
+            "/id",
+            "/levels/0/completedAt",
+            "/player",
+            "/serverTime",
+            "/startedAt"
+          ],
+          "sameSceneContent": true
+        }
+      ]
+    }
+  ]
+}

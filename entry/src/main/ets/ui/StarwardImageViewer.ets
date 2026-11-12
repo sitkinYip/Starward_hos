@@ -1,12 +1,9 @@
 import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AppEnvironment } from '../platform/AppEnvironment';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
+import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
-
-async function releaseViewerImage(value: QuestionImageResult | undefined): Promise<void> {
-  if (value !== undefined) {
-    try { await value.pixels.release(); } catch { /* Native details can contain private media URLs. */ }
-  }
-}
 
 /** UI-only cover/resource owner. It never changes gameplay or owns an application Window. */
 @ObservedV2
@@ -21,25 +18,31 @@ export class StarwardImageViewerState {
   @Trace zoom: number = 1;
   @Trace x: number = 0;
   @Trace y: number = 0;
+  private readonly imageCache: QuestionImageCache;
   private readonly loader: QuestionImageLoader = new QuestionImageLoader();
   private revision: number = 0;
   private leaseId: number = 0;
   private ownerCurrent: () => boolean = () => false;
+  private onClosed?: () => void;
 
-  open(sources: string[], index: number, ownerCurrent: () => boolean): void {
+  constructor(imageCache: QuestionImageCache) { this.imageCache = imageCache; }
+
+  open(sources: string[], index: number, ownerCurrent: () => boolean, onClosed?: () => void): boolean {
     if (this.visible || this.closing || !ownerCurrent() || !Number.isInteger(index) ||
       index < 0 || index >= sources.length || sources.some((source: string) => source.length === 0)) {
-      return;
+      return false;
     }
     let lease: number = 0;
-    try { lease = ImmersiveSurfaces.acquireDark(); } catch { return; }
+    try { lease = ImmersiveSurfaces.acquireDark(); } catch { return false; }
     this.sessionId++;
     this.sources = sources.slice();
     this.index = index;
     this.ownerCurrent = ownerCurrent;
+    this.onClosed = onClosed;
     this.leaseId = lease;
     this.visible = true;
     this.load();
+    return true;
   }
 
   active(): boolean { return this.visible && !this.closing && this.ownerCurrent(); }
@@ -64,12 +67,14 @@ export class StarwardImageViewerState {
 
   disappeared(sessionId: number): void {
     if (sessionId !== this.sessionId) { return; }
+    const onClosed = this.onClosed;
     this.revision++;
     this.loader.cancel();
     this.visible = false;
     this.clearContent();
     this.releaseLease();
     this.closing = false;
+    onClosed?.();
   }
 
   private clearContent(): void {
@@ -78,9 +83,10 @@ export class StarwardImageViewerState {
     this.sources = [];
     this.index = 0;
     this.ownerCurrent = () => false;
+    this.onClosed = undefined;
     this.loadState = 'idle';
     this.reset();
-    releaseViewerImage(previous);
+    previous?.release();
   }
 
   private releaseLease(): void {
@@ -109,6 +115,14 @@ export class StarwardImageViewerState {
       index === this.index && source === this.sources[index];
   }
 
+  private record(state: string, cacheHit: boolean = false): void {
+    if (AppEnvironment.endpoint.length > 0 && AppEnvironment.probeTls) {
+      hilog.info(0x0000, 'StarwardViewerImage', '%{public}s', JSON.stringify({
+        sessionId: this.sessionId, index: this.index, state: state, cacheHit: cacheHit
+      }));
+    }
+  }
+
   private async load(): Promise<void> {
     const revision: number = ++this.revision;
     const sessionId: number = this.sessionId;
@@ -119,14 +133,25 @@ export class StarwardImageViewerState {
     this.value = undefined;
     this.loadState = 'idle';
     this.reset();
-    await releaseViewerImage(previous);
+    previous?.release();
     if (!this.current(revision, sessionId, index, source) || source.length === 0) { return; }
+    const cached: QuestionImageResult | undefined = this.imageCache.acquire(source);
+    if (cached !== undefined) {
+      this.value = cached;
+      this.loadState = 'ready';
+      this.record('ready', true);
+      return;
+    }
+    const cacheVersion: number = this.imageCache.version();
     this.loadState = 'loading';
+    this.record('loading');
     try {
-      const value: QuestionImageResult = await this.loader.load(source, 2048);
-      if (!this.current(revision, sessionId, index, source)) { await releaseViewerImage(value); return; }
+      const value: QuestionImageResult = await this.loader.load(source);
+      if (!this.current(revision, sessionId, index, source)) { await value.release(); return; }
+      this.imageCache.remember(source, value, cacheVersion);
       this.value = value;
       this.loadState = 'ready';
+      this.record('ready');
     } catch (error) {
       if (this.current(revision, sessionId, index, source) &&
         !(error instanceof QuestionImageFailure && error.cancelled)) { this.loadState = 'failed'; }

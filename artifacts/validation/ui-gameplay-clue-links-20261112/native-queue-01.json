@@ -1,0 +1,240 @@
+{
+  "status": "captured_native_clue_links",
+  "stage": "outbound-link-and-second-automatic-modal",
+  "scope": "automatic-combination-queue",
+  "theme": "dark",
+  "hapSha256": "c5e3bcd31fc43d887bd1aa60ed9b934b128d18ac19f4e9541b85c9a7f17194d5",
+  "bindingSha256": {
+    "hap": "c5e3bcd31fc43d887bd1aa60ed9b934b128d18ac19f4e9541b85c9a7f17194d5",
+    "runtime": "21a03c062faac18d912f4a06bc639c9e28625bdcd17d6b951ad1492856fd9c44",
+    "caseReference": "9f4d704658e3a8fa4d11d2fbf0c438c9fbc6b419703d357ac6fa2f62fcf1c9a2",
+    "ca": "fc4eae2c77a833171b61ebe8b90a2db2b54a984cf9c23e94df6c9ca09ca3efb2",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "queueDriver": "e324740e1acf6fdbe7440a8733aa643c53814dedc0356821846ba3052e25e9cc",
+    "linkDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "sqliteReader": "74025e1738112ca22768797b30bd079c203e3f3aa47bd1b35589df5b244f39ac",
+    "GameplayPage": "ef6d7c1c2e147b0a2d1a51045957949e6c55a0e214132a9f2fb6aa411e453424",
+    "GameplayViewModel": "ccb531e3cc5c2c888c5ba09dc0c951c33afc1b85f8507537f6aecb774b3b24b9",
+    "Index": "1c1bc859ab6e7aa4a7454ffed925e4be98c5dffedde019d028631ba7dcab36d9",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "GameplayClues": "4bf01411af8aeb697fd1ae3094935900d0f69e404ce4817f780402d4cb1573e7",
+    "StarwardClueParagraph": "9ea76439814c3e58c3ae439a85e9beab03c42808abec6e4297bc2c2611572afa",
+    "StarwardCombinationDialog": "afb2c5f74e9873bb2438818c39de53f1b4e15d50c47e5280114d68c33cd6f158"
+  },
+  "checksPassed": 4,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "One correct native Q2 settles the case and begins the exact two-clue sequence",
+    "System handoff and Back retain the exact dialog and visible reading position for authored-first-queued-link",
+    "Confirming after Back advances the original queue once, then closes to the completed launcher"
+  ],
+  "states": [
+    {
+      "state": "before-authored-first-queued-link",
+      "rawSha256": "d37524fbacaeb869331509b9b5184d68cc215eada54f0a6a3c0893171b2242a5",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-paragraph-0": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          569,
+          1108
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T023421423090Z/before-authored-first-queued-link.png",
+        "sha256": "5b08109f07a93c9d018ee572a44a0f26cdf721b7ee8605bf49e56d7e4af45315",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "tapPx": [
+        650,
+        1360
+      ],
+      "systemHandlerObserved": "browser",
+      "systemBackPresses": 2
+    },
+    {
+      "state": "after-authored-first-queued-link",
+      "rawSha256": "d37524fbacaeb869331509b9b5184d68cc215eada54f0a6a3c0893171b2242a5",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-paragraph-0": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          569,
+          1108
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T023421423090Z/after-authored-first-queued-link.png",
+        "sha256": "3b34e3149d39dff6980cb4640d430ea2c8b211504eac38bfbe81e11226a1b6c2",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "state": "second-queued-clue",
+      "rawSha256": "91124a5734b6a12ac77b3680bec2fb96bf16ac45a0d5717b42afdf2b2690d00b",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          827,
+          1182,
+          1894
+        ],
+        "gameplay-combination-paragraph-0": [
+          178,
+          1298,
+          1082,
+          1397
+        ],
+        "gameplay-combination-title": [
+          178,
+          1067,
+          569,
+          1207
+        ]
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T023421423090Z/second-queued-clue.png",
+        "sha256": "e49f6b71b03322aa4549351bed32c05d93bf902daa0759eb93852c753acc99b7",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 3,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "queue-before": {
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/queue-before-web-dtos.json",
+      "sha256": "43bf703ae81630f6895043c991a0039cc513c702cde4cabf22baf404202ca8af"
+    },
+    "queue-completed": {
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/queue-completed-web-dtos.json",
+      "sha256": "6f59300b037c842ec1e199ca17145c0f0e642928f3c1e16aaf5a0a9c89b527b3"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/before-authored-first-queued-link.png",
+      "sha256": "5b08109f07a93c9d018ee572a44a0f26cdf721b7ee8605bf49e56d7e4af45315",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/after-authored-first-queued-link.png",
+      "sha256": "3b34e3149d39dff6980cb4640d430ea2c8b211504eac38bfbe81e11226a1b6c2",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/second-queued-clue.png",
+      "sha256": "e49f6b71b03322aa4549351bed32c05d93bf902daa0759eb93852c753acc99b7",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/raw-followup-ready-submit-ffa802113a1b4fe8a560b7fd66d1f415.json",
+      "remoteRemoved": true,
+      "sha256": "83a540ee2012decfdeb4addd290ac9bd95883b2a0b26451e0a3cffbf9ce7336e"
+    },
+    {
+      "label": "before-authored-first-queued-link",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/raw-before-authored-first-queued-link-44604a9f97224f35bd706013c597c62f.json",
+      "remoteRemoved": true,
+      "sha256": "d37524fbacaeb869331509b9b5184d68cc215eada54f0a6a3c0893171b2242a5"
+    },
+    {
+      "label": "after-authored-first-queued-link",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/raw-after-authored-first-queued-link-68b3e6ee2bb641dd96a6832dfce735b5.json",
+      "remoteRemoved": true,
+      "sha256": "d37524fbacaeb869331509b9b5184d68cc215eada54f0a6a3c0893171b2242a5"
+    },
+    {
+      "label": "second-queued-clue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T023421423090Z/raw-second-queued-clue-ba951601a6624eb28fcd93c8cd930dab.json",
+      "remoteRemoved": true,
+      "sha256": "91124a5734b6a12ac77b3680bec2fb96bf16ac45a0d5717b42afdf2b2690d00b"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

@@ -248,7 +248,9 @@
 
 - `platform/QuestionImageLoader`使用官方NetworkKit/ImageKit，固定公开来源`https://sitkin.top/`，不附玩家Authorization/Cookie，不沿用头像file token或隔离后端CA；外部HTTPS采用系统信任，下载不持久化。相对图片地址按Web站点解析，禁止凭据、危险scheme和字面本地地址URL；不把后端API origin当媒体origin。普通主机名交给系统DNS/TLS，SDK没有解析地址pin接口，不增加无法保证实际连接目标的二次DNS探测，也不声称抗DNS重绑定。
 - 下载字节、原始尺寸、解码尺寸分别有界；以实际图片magic与ImageSource确认格式，容忍已知HTTP MIME误标。自然尺寸来自原图，解码可降采样；布局不把源像素除density，也不用缩略分辨率替代自然大小。
-- 每个挂载图片有独立请求代次。取消关闭自己的HttpRequest；解码不能强停时，迟到结果释放。ImageSource操作完成后释放，已交付PixelMap由UI单一持有并在替换/离开时清理；不建立跨账号磁盘/全局图片缓存。
+- 每个挂载图片有独立请求代次。取消关闭自己的HttpRequest；解码不能强停时，迟到结果释放。ImageSource操作完成后释放，PixelMap 由显示组件和当前场次缓存分别持有，最后一个引用释放时回收。
+- 题图、选项缩略图、线索正文及查看器共享当前玩法页的内存缓存。按完整来源和统一的 2048 px 解码尺寸上限复用成功结果。最多保留 24 张和 48 MiB，以解码行字节数计费，按最近使用顺序淘汰。回看直接使用已解码 PixelMap，首次读取、失败与重试走现有路径。离开场次、退后台、失去授权快照或账号代次变化清空缓存，已发出的加载不能填回失效缓存。见 [C01g](feature-acceptance-matrix.md#c01g-题图和线索查看器回看缓存2026-11-12)。
+- Swiper 当前页与相邻可读页保留同一题图组件，使用场次加题目标识持有显示引用。相邻页只绘制已有解码结果，缓存未命中的图片由落定后的当前页发起读取。题卡共用当前实测正文宽度，活动状态变化时保留已就绪的图像节点。见 [C01h](feature-acceptance-matrix.md#c01h-横滑中的相邻题图)。
 - 2026-11-05补充：平台层以每实例的窄`QuestionImageIO`封装HTTP、ImageSource和PixelMap句柄，默认实现仍只调用固定SDK；不全局替换Kit，也不在发行配置加入测试延迟。受控Promise用于验证HTTP迟到、decode迟到、旧请求清理与新请求隔离、source释放期间取消四种资源交付竞态。测试句柄不伪造可绘制PixelMap；受控时序通过不等于实际SDK解码/TLS/释放行为通过，真实加载与绘制继续用真机验证。
 - 页面/账号失效时立即清图片与查看数据；同题只读Refresh保持图片所有者，不重挂输入或以图片回调驱动判题。图片403是局部媒体错误，不触发玩家登出或答题重试。
 - `ui/`内V2组件封装官方Image和加载/失败重试反馈，保留Web图片顺序、自然比例、手机340高度上限、图集min150/gap10及选择图130高Cover。查看后续以官方bindContentCover/Pinch/Pan组合原有索引、缩放、滑动与关闭；不自制触摸识别器或声称有完整系统图库组件。
@@ -259,6 +261,22 @@
 2026-11-11 补充：普通线索是当前已完成题目的只读视图，由服务端发放快照投影；打开文字、切换图集和关闭弹层不发送玩法命令。文字通过 ArkUI PromptAction 居中弹层呈现，正文图片和独立图集沿用本决策的下载、解码与查看器。弹层和图集按账号代次、场次、题目及线索授权绑定；退出或失效时关闭并清理。视频、组合线索与自动演出仍单独迁移，逐状态验收见 [C01a](feature-acceptance-matrix.md#c01a-普通文字与图片线索2026-11-11实施前)。
 
 2026-11-12 补充：组合线索的手动入口取当前已完成场次最新授权快照中按 Web 顺序最后一条。仅本次正确答题产生的完成事件能排队，区分显式空效果与字段缺失；GET、刷新和页面重建不重播。完成提示消失后交由 ArkUI 居中弹层接续，离开账号/场次或丢失授权即取消队列。入口通过 [ArkUI PanGesture](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-gesture-common/) 拖动，[PersistenceV2](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/arkts-new-persistencev2/) 只保存设备本地的两个无量纲坐标，无账号、场次和线索数据。未迁移终章的场次完成后仍能手动读取已授权组合线索，终章自动序列另做。见 [C01b](feature-acceptance-matrix.md#c01b-组合线索2026-11-12)。
+
+2026-11-12 完成提示由 [ArkUI PromptAction](https://developer.huawei.com/consumer/en/doc/harmonyos-references/arkts-apis-uicontext-promptaction/#opencustomdialog12) 承载模态、焦点、遮罩和转场，品牌内容用原生组件构建。提示句柄按当前账号和场次持有，退后台或失效时撤销。仅当前提示被明确确认并完全关闭后，才读取仍然获准的组合队列。空队列保留「知晓了」及系统返回。见 [C01e](feature-acceptance-matrix.md#c01e-组合谜题完成提示的主题样式2026-11-12)。
+
+2026-11-12 线索正文外链使用 ArkUI `Span` 维持行内排版。平台边界只向 `UIAbilityContext.openLink` 交付校验后的 HTTP(S) 地址，由系统选择关联应用或默认浏览器。玩法页按当前弹层和单次打开动作登记交接，通过官方启动回调处理失败或取消。主动点按外链会取消尚未执行的自动前进，回前台使用保留题目实例的只读同步。普通后台返回沿用原有重载，账号、场次及线索授权继续由现有代次和快照约束。见 [Span](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-span/)、[openLink](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-inner-application-uiabilitycontext/#openlink12) 和 [C01c](feature-acceptance-matrix.md#c01c-线索正文外链2026-11-12)。
+
+## ADR-022：普通视频线索的播放与临时文件
+
+2026-11-12，冻结 Web 的 7 个已发布视频样本均为 HTTPS MP4，约 0.31–2.72 MB。去掉 Web 站点 `Referer` 的单字节 GET 均返回 403，带该来源的请求均返回 206。固定 API 26 的 ArkUI [Video](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-media-components-video) 自带播控，其数据源参数接收 URL 或资源。
+
+- 普通已授权视频由 [NetworkKit HTTP](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-http) 附固定 Web 来源取回完整 MP4，使用严格 HTTPS，拒绝重定向，关闭代理、缓存和 Cookie，不发送玩家凭据。16 MiB 上限覆盖已检查样本，限制播放器前置缓冲占用。隔离包只对已配置的同源本机媒体夹具使用专用 CA。
+- 单次播放持有独立的应用沙箱临时文件和官方 Video 控制器。优先使用 [AVMetadataExtractor](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-media-avmetadataextractor) 的视频尺寸与方向保持画面比例。结束、关闭、退出前台、账号/题目或授权失效时释放播放器并删除文件。能力启动时清理上次异常退出遗留的专用临时文件。
+- 网络完成、播放器准备、播放结束均检查同一授权和尝试身份。手动播放结束后关闭当前媒体预览。重试只创建新的媒体读取尝试。手动播放验收见 [C01f](feature-acceptance-matrix.md#c01f-普通视频线索手动播放2026-11-12)。
+
+2026-11-12 补充：非末题正确响应可按当前题已发放的效果启动视频序列。显式效果优先，字段缺失才比较前后授权。查看器在浮层消失后报告本次播放是否自然结束；ViewModel 依据已结算的自动前进配置和当前题位置决定切题。提前关闭取消自动前进，重试沿用媒体读取，退后台或离开场次清空队列并让在途答题响应的演出失效。答题响应仍独立结算，GET 不创建播放事件。见 [C01i](feature-acceptance-matrix.md#c01i-答对后自动播放视频线索)。
+
+非末题的文字、图片与视频共用按授权顺序推进的演出队列。原生阅读弹层及独立图集通过各自的消失事件结束一步。文字内嵌图仍是当前阅读的一部分。普通后台中断使队列及迟到响应失效，正文主动外链交接保留阅读及队列，通过只读回源复核授权并沿用取消自动前进的规则。隔离包开启 TLS 探针时，仅在配置的精确本机 HTTPS origin 上为两条合成 PNG 路径使用打包 CA，外部图片继续使用系统信任。见 [C01j](feature-acceptance-matrix.md#c01j-答对后的文字与图片线索演出)。
 
 ## 验证记录边界
 

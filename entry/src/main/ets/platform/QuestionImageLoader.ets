@@ -1,6 +1,7 @@
 import { url } from '@kit.ArkTS';
 import { image } from '@kit.ImageKit';
 import { http } from '@kit.NetworkKit';
+import { AppEnvironment } from './AppEnvironment';
 import { QuestionImageIO, QuestionImageMetadata, QuestionImagePixelsHandle, QuestionImageRequestHandle,
   QuestionImageResponse, QuestionImageSourceHandle } from './QuestionImageIO';
 
@@ -9,23 +10,49 @@ const MAX_BYTES: number = 5 * 1024 * 1024;
 const MAX_ORIGINAL_EDGE: number = 16384;
 const MAX_ORIGINAL_PIXELS: number = 40 * 1024 * 1024;
 const MAX_DECODED_EDGE: number = 2048;
+const IMAGE_FIXTURE_ORIGIN: string = 'https://127.0.0.1:18443';
+
+function fixtureImageCa(target: string): string | undefined {
+  if (AppEnvironment.endpoint === IMAGE_FIXTURE_ORIGIN && AppEnvironment.probeTls &&
+    AppEnvironment.configurationError === '' && AppEnvironment.caData.length > 0 &&
+    (target === IMAGE_FIXTURE_ORIGIN + '/__starward_fixture_media/auto-clue-a.png' ||
+      target === IMAGE_FIXTURE_ORIGIN + '/__starward_fixture_media/auto-clue-b.png')) {
+    return AppEnvironment.caData;
+  }
+  return undefined;
+}
 
 export class QuestionImageResult {
-  pixels: image.PixelMap;
-  naturalWidthPx: number;
-  naturalHeightPx: number;
-  decodedWidthPx: number;
-  decodedHeightPx: number;
-  detectedMime: string;
+  readonly naturalWidthPx: number;
+  readonly naturalHeightPx: number;
+  readonly decodedWidthPx: number;
+  readonly decodedHeightPx: number;
+  readonly detectedMime: string;
+  readonly byteSize: number;
+  private readonly handle: QuestionImagePixelsHandle;
+  private references: number = 1;
 
-  constructor(pixels: image.PixelMap, naturalWidthPx: number, naturalHeightPx: number,
+  constructor(handle: QuestionImagePixelsHandle, naturalWidthPx: number, naturalHeightPx: number,
     decodedWidthPx: number, decodedHeightPx: number, detectedMime: string) {
-    this.pixels = pixels;
+    this.handle = handle;
     this.naturalWidthPx = naturalWidthPx;
     this.naturalHeightPx = naturalHeightPx;
     this.decodedWidthPx = decodedWidthPx;
     this.decodedHeightPx = decodedHeightPx;
     this.detectedMime = detectedMime;
+    this.byteSize = Math.max(handle.bytesPerRow(), decodedWidthPx * 4) * decodedHeightPx;
+  }
+
+  get pixels(): image.PixelMap { return this.handle.nativeValue(); }
+
+  /** The loader, each displaying consumer and the cache own separate references. */
+  retain(): QuestionImageResult {
+    this.references++;
+    return this;
+  }
+
+  async release(): Promise<void> {
+    if (this.references > 0 && --this.references === 0) { await releasePixels(this.handle); }
   }
 }
 
@@ -189,6 +216,7 @@ class NativeQuestionImageRequest implements QuestionImageRequestHandle {
       maxLimit: MAX_BYTES,
       maxRedirects: 0,
       remoteValidation: 'system',
+      caData: fixtureImageCa(target),
       enablePartialChain: false
     });
     return { status: response.responseCode,
@@ -207,6 +235,7 @@ class NativeQuestionImagePixels implements QuestionImagePixelsHandle {
 
   constructor(pixels: image.PixelMap) { this.pixels = pixels; }
 
+  bytesPerRow(): number { return this.pixels.getBytesNumberPerRow(); }
   async metadata(): Promise<QuestionImageMetadata> { return metadata(await this.pixels.getImageInfo()); }
   async flip(horizontal: boolean, vertical: boolean): Promise<void> { await this.pixels.flip(horizontal, vertical); }
   async rotate(degrees: number): Promise<void> { await this.pixels.rotate(degrees); }
@@ -236,7 +265,7 @@ class NativeQuestionImageSource implements QuestionImageSourceHandle {
 
 class NativeQuestionImageIO implements QuestionImageIO {
   /** @throws {Error} The loader maps source policy failures to its fixed product message. */
-  resolveSource(source: string): string { return imageTarget(source).href; }
+  resolveSource(source: string): string { return fixtureImageCa(source) === undefined ? imageTarget(source).href : source; }
   createRequest(): QuestionImageRequestHandle { return new NativeQuestionImageRequest(); }
   /** @throws {Error} Source allocation failures are handled by the owning load operation. */
   createSource(bytes: ArrayBuffer): QuestionImageSourceHandle { return new NativeQuestionImageSource(bytes); }
@@ -254,7 +283,7 @@ async function releasePixels(pixels: QuestionImagePixelsHandle): Promise<void> {
   try {
     await pixels.release();
   } catch {
-    // The loader only releases a PixelMap before transferring ownership to the UI.
+    // Native cleanup failures must not expose details of private media.
   }
 }
 
@@ -384,8 +413,13 @@ export class QuestionImageLoader {
       }
       throw new QuestionImageFailure(generation !== this.generation, status);
     }
-    // No await after this check: ownership transfers exactly once, after source cleanup.
-    return new QuestionImageResult(pixels.nativeValue(), swapped ? original.heightPx : original.widthPx,
-      swapped ? original.widthPx : original.heightPx, decoded.widthPx, decoded.heightPx, mime);
+    try {
+      // No await on success: ownership transfers after source cleanup.
+      return new QuestionImageResult(pixels, swapped ? original.heightPx : original.widthPx,
+        swapped ? original.widthPx : original.heightPx, decoded.widthPx, decoded.heightPx, mime);
+    } catch {
+      await releasePixels(pixels);
+      throw new QuestionImageFailure(generation !== this.generation, status);
+    }
   }
 }

@@ -1,0 +1,113 @@
+{
+  "status": "incomplete",
+  "stage": "single-native-final-answer-and-notice",
+  "scope": "combination-completion-notice",
+  "theme": "light",
+  "hapSha256": "458ba8a01dd535a276d349b41351c34190c63505bd78b3155cca944c697155dd",
+  "bindingSha256": {
+    "hap": "458ba8a01dd535a276d349b41351c34190c63505bd78b3155cca944c697155dd",
+    "runtime": "828a34ab403f96dc805294056730bd69fb8c9bdc15c2a55a7cc9670abf3c1943",
+    "caseReference": "5db0b981a8c0059873352d29b7f05aa8baf54e2a7e9a0a09507630e183c4cd99",
+    "ca": "a482abd1ab3414af3aa273899f7d704f0b6183b17a2208eb485f4e20cb97d17e",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "noticeDriver": "f45d76431c2b8ee3fa6252971450803adb9469213c62e12047ea5a81a4182d31",
+    "queueDriver": "e324740e1acf6fdbe7440a8733aa643c53814dedc0356821846ba3052e25e9cc",
+    "linkDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "sqliteReader": "74025e1738112ca22768797b30bd079c203e3f3aa47bd1b35589df5b244f39ac",
+    "GameplayPage": "f00aae1bbbac214aa4f4d854f0e54239100d63d2157c844eb0735358e2dc8466",
+    "GameplayViewModel": "ccb531e3cc5c2c888c5ba09dc0c951c33afc1b85f8507537f6aecb774b3b24b9",
+    "StarwardCombinationNotice": "e8da15ee77ab0fe4685e40b7b23227326495593cdef004ce4faa533ea0ec398a",
+    "StarwardCombinationDialog": "b61b19cfba800d15b674fbe751d8dc80f6e0978a314179ecc1d6833292cf87cf",
+    "baseColors": "defbceb5d43ec3448250ee600e7521d80aef0719fc8bc76eb4f5aaa193a00e19",
+    "darkColors": "65ab2cfb6efe1ba9c2859e7a7f9b9be674014fcbc0a2a3ff7ae51fd23d16e823"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed"
+  ],
+  "states": [],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 3,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "notice-before": {
+      "file": "artifacts/private/entry-main-20261112T042559579692Z/notice-before-web-dtos.json",
+      "sha256": "5eab276951b00980c74d335df11586b9aaef3875a3b75807ff4c6e757975e70a"
+    },
+    "notice-completed": {
+      "file": "artifacts/private/entry-main-20261112T042559579692Z/notice-completed-web-dtos.json",
+      "sha256": "24a52754583c9ead83a69086320b6ed7af4292f504beec40fe98a96982ce39c2"
+    }
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T042559579692Z/raw-followup-ready-submit-657b213af2b8426a93651ee1960c4817.json",
+      "remoteRemoved": true,
+      "sha256": "19e1fbff5866d6a77dfb579148107763134685556814b8df4646b731f0acc13c"
+    },
+    {
+      "label": "completion-notice",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T042559579692Z/raw-completion-notice-05c44f7fb51d4c189badf34600106889.json",
+      "remoteRemoved": true,
+      "sha256": "87de9bc0e45505c796247817a3c56ceff64f31b4a0fe54fe0352bb76a599b2e2"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": "The completion notice copy does not match the reference or server-completed count"
+}

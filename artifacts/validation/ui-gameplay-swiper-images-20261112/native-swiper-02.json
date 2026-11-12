@@ -1,0 +1,31 @@
+{
+  "status": "incomplete",
+  "checks": {
+    "exactSignedHapRuntimeAndStrictTls": true,
+    "fixedPreviewProgressUnchanged": true
+  },
+  "scope": "Read-only fixed-preview Swiper drag frame",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-02/first-previously-seen-photo.png",
+      "sha256": "b34affe37734ba67d31631af0b00218c6eb39071a164c88e32b6b3921084cc63"
+    },
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-02/second-photo-before-swipe.png",
+      "sha256": "ad121d5c0fcbd5ce493e27aa3341f6fc330b1dd4c35e6ff44d942e5dd1898b1e"
+    }
+  ],
+  "nativeBusinessWritesInvoked": false,
+  "hapSha256": "14b47c322823007279c59c3e8be8595702969ca36bc2f4d203c55ecdb70a9c08",
+  "runtimeSha256": "40fd6cc527c9eedb80d8d354b51bc2c17852c713c6df6c9501dcdb22bc542c2d",
+  "driverSha256": "822866f1ff2aa46cc7f9c41a5c63594a6f052716abeb6d9b334b39b5df8a8728",
+  "previewDriverSha256": "a5394bbf07b5e8862dc5f41962fd1f001f11e999ac1cfad85a31ba240fd0399d",
+  "questionOrder": [
+    6,
+    5,
+    6
+  ],
+  "failure": "Swiper observation stopped; private values omitted",
+  "diagnosticStreamsStopped": true,
+  "leftLoggedInForReview": true
+}

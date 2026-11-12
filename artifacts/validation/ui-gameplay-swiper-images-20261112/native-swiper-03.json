@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "checks": {
+    "exactSignedHapRuntimeAndStrictTls": true,
+    "physicalSwipeReturnedWithoutLoading": true,
+    "bothDecodedPhotosPresentBeforeSwipeSettled": true,
+    "fixedPreviewProgressUnchanged": true
+  },
+  "scope": "Read-only fixed-preview Swiper drag frame",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-03/first-previously-seen-photo.png",
+      "sha256": "67c0496cc128c99a74dd3e909afc9e6389174251e0e710390ce4fc9a3bebfb0a"
+    },
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-03/second-photo-before-swipe.png",
+      "sha256": "7a207220e7dbbbe16fb5ed5ef3a65a4fcf4af0c584c9208583dfc48589b03a59"
+    },
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-03/during-return-swipe.png",
+      "sha256": "2b64387cd7a49c9d33bf622aebe9db51051bd38fceec48a028ab20e32ef8cad9"
+    }
+  ],
+  "nativeBusinessWritesInvoked": false,
+  "hapSha256": "14b47c322823007279c59c3e8be8595702969ca36bc2f4d203c55ecdb70a9c08",
+  "runtimeSha256": "40fd6cc527c9eedb80d8d354b51bc2c17852c713c6df6c9501dcdb22bc542c2d",
+  "driverSha256": "8e88a6efd9f3cccafffc89f6bb63287be3b4793b256d8f2ff5f846fef376f5e0",
+  "previewDriverSha256": "a5394bbf07b5e8862dc5f41962fd1f001f11e999ac1cfad85a31ba240fd0399d",
+  "questionOrder": [
+    6,
+    5,
+    6
+  ],
+  "gesture": {
+    "startPx": [
+      985,
+      220
+    ],
+    "endPx": [
+      275,
+      220
+    ],
+    "moveMs": 1400,
+    "holdMs": 6000,
+    "captureDelaySeconds": 2.2,
+    "gestureActiveDuringCapture": true
+  },
+  "photoMatches": {
+    "incoming": {
+      "meanRgbError": 6.07,
+      "horizontalOffsetPx": 490,
+      "verticalOffsetPx": 0,
+      "sampleCount": 99
+    },
+    "outgoing": {
+      "meanRgbError": 4.34,
+      "horizontalOffsetPx": -695,
+      "verticalOffsetPx": 0,
+      "sampleCount": 66
+    }
+  },
+  "pageWidthPx": 1182,
+  "diagnosticStreamsStopped": true,
+  "leftLoggedInForReview": true
+}

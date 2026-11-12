@@ -17,6 +17,7 @@ export interface QuestionImageRequestHandle {
 }
 
 export interface QuestionImagePixelsHandle {
+  bytesPerRow(): number;
   metadata(): Promise<QuestionImageMetadata>;
   flip(horizontal: boolean, vertical: boolean): Promise<void>;
   rotate(degrees: number): Promise<void>;

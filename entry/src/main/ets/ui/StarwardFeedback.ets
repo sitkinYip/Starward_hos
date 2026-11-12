@@ -47,27 +47,6 @@ export class StarwardFeedback {
     }
   }
 
-  /** Present the acknowledgement before handing off to the next reading surface. */
-  static combinationNotice(context: UIContext, title: string, message: string,
-    disappeared: (acknowledged: boolean) => void): boolean {
-    if (!StarwardFeedback.isAvailable(context)) { return false; }
-    let acknowledged: boolean = false;
-    try {
-      context.showAlertDialog({
-        title: title,
-        message: message,
-        autoCancel: false,
-        onWillDismiss: () => {},
-        primaryButton: { value: '查看组合结果', action: () => { acknowledged = true; } },
-        onDidDisappear: () => disappeared(acknowledged),
-        systemMaterial: StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THICK)
-      });
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
   static confirm(context: UIContext, title: string, message: string, accepted: () => void): void {
     if (!StarwardFeedback.isAvailable(context)) {
       return;

@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "scope": "real isolated PocketBase and synthetic media on the host",
+  "orderedGrantKinds": [
+    "text",
+    "text",
+    "video",
+    "image"
+  ],
+  "orderedAutomaticKinds": [
+    "text",
+    "video",
+    "image"
+  ],
+  "answerEffectsMatchNewlyAuthorizedClues": true,
+  "ordinaryReadReplaysNoTransitionEffect": true,
+  "temporaryAdministratorsRetired": true,
+  "settlement": {
+    "readOnlyDiagnostic": true,
+    "assignmentStatus": "active",
+    "startedAtPresent": true,
+    "completedAtPresent": false,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 50,
+    "playerTotalXp": 50,
+    "clueUnlockRows": 4,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "media": {
+    "exactImagesAndHashes": true,
+    "imageFaultRecovery": true,
+    "secondImageUnaffectedByFirstImageFailure": true,
+    "imageRoutesRejectCredentialsAndUnexpectedInputs": true,
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true
+  },
+  "privateSourceSha256": {
+    "business": "51af6558a9f25ce2edfafe25f28934100f7aaeeb922102b132c92bddb6c6c997",
+    "media": "0aab884b8e7fe0f1ab48d55372deb6d7701d55dc660b481f65fcd0d3533a3dca",
+    "provision": "1822ced7703686cbd6905c0c8eed9da4f830d65a3a5fecf353aa95253ece044c"
+  }
+}

@@ -45,24 +45,46 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
     return [];
   }
   return snapshot.clues.filter((clue: GameplayClue) => {
-    if (clue.kind !== 'text' && (clue.kind !== 'image' || clueImageSources(clue).length === 0)) { return false; }
+    const supported: boolean = clue.kind === 'text' ||
+      (clue.kind === 'image' && clueImageSources(clue).length > 0) ||
+      (clue.kind === 'video' && clue.content.url.trim().length > 0);
+    if (!supported) { return false; }
     if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === level.id; }
     if (clue.sessionLevel.length > 0) { return clue.sessionLevel === level.id; }
     return !isCombinationClue(clue, snapshot.detail.totalLevels);
   }).sort(clueOrder);
 }
 
+/** Only the successful answer response can start automatic clues for the current question. */
+export function answerAutomaticClues(previous: GameplaySnapshot | null, settled: GameplaySnapshot,
+  level: GameplayLevel, effects: GameplayEffect[] | undefined): GameplayClue[] {
+  if (settled.detail.status !== 'active') { return []; }
+  const provided: Map<string, boolean | undefined> = new Map();
+  for (const effect of effects || []) {
+    if (effect.type === 'clue') { provided.set(effect.clueId, effect.autoPlay); }
+  }
+  const known: Set<string> = new Set((previous?.clues || []).map((clue: GameplayClue) => clue.id));
+  return ordinaryClues(settled, level).filter((clue: GameplayClue) => {
+    return effects === undefined ? !known.has(clue.id) && clue.autoPlay :
+      provided.has(clue.id) && (provided.get(clue.id) ?? clue.autoPlay);
+  });
+}
+
 export function clueTitle(clue: GameplayClue): string {
-  return clue.content.title || (clue.kind === 'image' ? '神谕影像' : '古老密卷');
+  if (clue.content.title.length > 0) { return clue.content.title; }
+  if (clue.kind === 'image') { return '神谕影像'; }
+  return clue.kind === 'video' ? '时空回溯' : '古老密卷';
 }
 
 export class ClueSpan {
   text: string;
   highlight: boolean;
+  linkTarget: string;
 
-  constructor(text: string, highlight: boolean = false) {
+  constructor(text: string, highlight: boolean = false, linkTarget: string = '') {
     this.text = text;
     this.highlight = highlight;
+    this.linkTarget = linkTarget;
   }
 }
 
@@ -73,7 +95,7 @@ export class ClueTextPart {
 
 /**
  * Native reading subset of the frozen RichContent tokens. Inline images go through
- * the existing image loader policy. Link labels remain readable without navigation;
+ * the existing image loader policy. Link targets are retained only in the reading body;
  * videos and their posters are not fetched by the text dialog.
  */
 export function clueTextParts(source: string, preview: boolean = false): ClueTextPart[] {
@@ -81,8 +103,8 @@ export function clueTextParts(source: string, preview: boolean = false): ClueTex
   const parts: ClueTextPart[] = [];
   let paragraph: ClueTextPart = new ClueTextPart();
   let from: number = 0;
-  const append = (text: string, highlight: boolean = false): void => {
-    if (text.length > 0) { paragraph.spans.push(new ClueSpan(text.replace(/\r\n/g, '\n'), highlight)); }
+  const append = (text: string, highlight: boolean = false, linkTarget: string = ''): void => {
+    if (text.length > 0) { paragraph.spans.push(new ClueSpan(text.replace(/\r\n/g, '\n'), highlight, linkTarget)); }
   };
   let match: RegExpExecArray | null = tokens.exec(source);
   while (match !== null) {
@@ -97,7 +119,9 @@ export function clueTextParts(source: string, preview: boolean = false): ClueTex
     if (token.startsWith('[[')) {
       append(token.slice(2, -2), true);
     } else if (token.startsWith('((')) {
-      append(token.slice(2, token.indexOf('||')) || token);
+      const separator: number = token.indexOf('||');
+      const label: string = token.slice(2, separator);
+      append(label || token, false, !preview && label.length > 0 ? token.slice(separator + 2, -2).trim() : '');
     } else if (showImage) {
       if (paragraph.spans.length > 0) { parts.push(paragraph); }
       const picture: ClueTextPart = new ClueTextPart();

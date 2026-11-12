@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "checks": {
+    "exactSignedHapRuntimeAndStrictTls": true,
+    "strictHostReadsBindTwoMediaPaths": true,
+    "questionBackForwardCacheHitWithoutLoading": true,
+    "combinationViewerSwipeBackCacheHitWithoutLoading": true,
+    "fixedPreviewProgressUnchanged": true
+  },
+  "scope": "Read-only isolated fixed preview image cache",
+  "stage": "both",
+  "phases": {
+    "questionA": [
+      {
+        "state": "loading",
+        "cacheHit": false,
+        "httpStatus": 0,
+        "naturalWidthPx": 0,
+        "naturalHeightPx": 0,
+        "decodedWidthPx": 0,
+        "decodedHeightPx": 0
+      },
+      {
+        "state": "ready",
+        "cacheHit": false,
+        "httpStatus": 200,
+        "naturalWidthPx": 760,
+        "naturalHeightPx": 552,
+        "decodedWidthPx": 760,
+        "decodedHeightPx": 552
+      }
+    ],
+    "questionB": [
+      {
+        "state": "loading",
+        "cacheHit": false,
+        "httpStatus": 0,
+        "naturalWidthPx": 0,
+        "naturalHeightPx": 0,
+        "decodedWidthPx": 0,
+        "decodedHeightPx": 0
+      },
+      {
+        "state": "ready",
+        "cacheHit": false,
+        "httpStatus": 200,
+        "naturalWidthPx": 794,
+        "naturalHeightPx": 533,
+        "decodedWidthPx": 794,
+        "decodedHeightPx": 533
+      }
+    ],
+    "questionARevisited": [
+      {
+        "state": "ready",
+        "cacheHit": true,
+        "httpStatus": 0,
+        "naturalWidthPx": 760,
+        "naturalHeightPx": 552,
+        "decodedWidthPx": 760,
+        "decodedHeightPx": 552
+      }
+    ],
+    "viewerA": [
+      {
+        "index": 0,
+        "state": "ready",
+        "cacheHit": true
+      }
+    ],
+    "viewerB": [
+      {
+        "index": 1,
+        "state": "ready",
+        "cacheHit": true
+      }
+    ],
+    "viewerARevisited": [
+      {
+        "index": 0,
+        "state": "ready",
+        "cacheHit": true
+      }
+    ]
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-image-cache-20261112/capture-native-cache-01/question-a-revisited.png",
+      "sha256": "6a255e5c4bbabe50a1e1d19eab60bf493c8f98ae6a646cbeb51a2c93b9a37cf8"
+    },
+    {
+      "file": "artifacts/private/gameplay-image-cache-20261112/capture-native-cache-01/viewer-a-revisited.png",
+      "sha256": "d6bb26db15d26f2ddf01ac9d65e84cf26fc888d80968de2d419187c3420c9446"
+    }
+  ],
+  "nativeBusinessWritesInvoked": false,
+  "hapSha256": "3a791b54e937228d9bef8f4b3c664700f803ccfa64bf24c318f69c94e8b2e534",
+  "runtimeSha256": "4505c9623e957a703d17ffee9fcc54a10d5721f5d4c4ea3b4bbb345291d03c61",
+  "publicCaSha256": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+  "driverSha256": "a5394bbf07b5e8862dc5f41962fd1f001f11e999ac1cfad85a31ba240fd0399d",
+  "questionOrder": [
+    6,
+    5,
+    6
+  ],
+  "diagnosticStreamsStopped": true,
+  "leftLoggedInForReview": true
+}

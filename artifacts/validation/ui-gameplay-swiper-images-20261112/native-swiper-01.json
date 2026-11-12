@@ -1,0 +1,31 @@
+{
+  "status": "incomplete",
+  "checks": {
+    "exactSignedHapRuntimeAndStrictTls": true,
+    "fixedPreviewProgressUnchanged": true
+  },
+  "scope": "Read-only fixed-preview Swiper drag frame",
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-01/first-previously-seen-photo.png",
+      "sha256": "491d1e06061b6924bdbf19079f573d109c13215e21dde61c1dcfdc129b58f119"
+    },
+    {
+      "file": "artifacts/private/gameplay-swiper-preview-20261112/capture-native-swiper-01/second-photo-before-swipe.png",
+      "sha256": "9987991e90821cf951cee6aaedfc8aa2c1f1a0257162913cda63e87157ac4413"
+    }
+  ],
+  "nativeBusinessWritesInvoked": false,
+  "hapSha256": "14b47c322823007279c59c3e8be8595702969ca36bc2f4d203c55ecdb70a9c08",
+  "runtimeSha256": "40fd6cc527c9eedb80d8d354b51bc2c17852c713c6df6c9501dcdb22bc542c2d",
+  "driverSha256": "c0db68f57edbeb618e818de76c303b6009d1496e320ae1f2bac867b017c31d9c",
+  "previewDriverSha256": "a5394bbf07b5e8862dc5f41962fd1f001f11e999ac1cfad85a31ba240fd0399d",
+  "questionOrder": [
+    6,
+    5,
+    6
+  ],
+  "failure": "Official phone screenshot was not observed while the swipe process was alive",
+  "diagnosticStreamsStopped": true,
+  "leftLoggedInForReview": true
+}

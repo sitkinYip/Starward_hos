@@ -1,0 +1,37 @@
+{
+  "status": "native_and_web_fixture_equivalence_verified",
+  "webManifestSha256": "4c78258c30c91362d70910ee40cb286a8116352904d5cc2f7862357b400b7f21",
+  "webRendering": {
+    "widthCssPx": 388,
+    "heightCssPx": 771
+  },
+  "comparedByExactTypesAndValues": true,
+  "cases": {
+    "ordinary": {
+      "frozenWebInputFile": "artifacts/private/gameplay-links-20261112/web-capture-05/ordinary-input.json",
+      "frozenWebInputSha256": "514fa7d989fe2a85f7b9740febc84ea78d15b9446e261165fce11fea34ad0375",
+      "nativeObservedInputFile": "artifacts/private/entry-main-20261112T022445325541Z/ordinary-same-data-web-dtos.json",
+      "nativeObservedInputSha256": "6f6ced1c260741225974a1a0415e7537fdcc7911a14ab7026b899fcb60251d6c",
+      "webPhase": "second",
+      "differencePaths": [
+        "assignment.serverTime"
+      ],
+      "playerAndListExactlyEqual": true,
+      "clueContentAndAuthorizationExactlyEqual": true,
+      "progressExactlyEqual": true
+    },
+    "combination": {
+      "frozenWebInputFile": "artifacts/private/gameplay-links-20261112/web-capture-05/combination-input.json",
+      "frozenWebInputSha256": "558f90ee2d715d34a46d925d2915761fbcadc9788d72e3b0c3881fa1139aaec1",
+      "nativeObservedInputFile": "artifacts/private/entry-main-20261112T023110814656Z/combination-same-data-web-dtos.json",
+      "nativeObservedInputSha256": "698a0345bd5f1a45984a2cf3795b9ef46f324ed75b06fc305c6f1bbedd2af2aa",
+      "webPhase": "completed",
+      "differencePaths": [
+        "assignment.serverTime"
+      ],
+      "playerAndListExactlyEqual": true,
+      "clueContentAndAuthorizationExactlyEqual": true,
+      "progressExactlyEqual": true
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "status": "original_visual_pairs_reviewed",
+  "webReport": {
+    "file": "artifacts/validation/ui-gameplay-links-20261112/web-reference-05.json",
+    "sha256": "4c78258c30c91362d70910ee40cb286a8116352904d5cc2f7862357b400b7f21"
+  },
+  "inputBindingReport": {
+    "file": "artifacts/validation/ui-gameplay-links-20261112/web-native-input-binding-01.json",
+    "sha256": "9ebde35a5c374f5672126de10747a0bdb0b752d4537e669a638ac06cdb9ff71b"
+  },
+  "nativeComparisonViewportVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "webComparisonViewportCssPx": [
+    388,
+    771
+  ],
+  "nativeFontScale": 1,
+  "reviewedPairCount": 2,
+  "cases": [
+    {
+      "case": "ordinary",
+      "theme": "light",
+      "nativeReport": {
+        "file": "artifacts/validation/ui-gameplay-clue-links-20261112/native-ordinary-light-01.json",
+        "sha256": "8ce543cd7f70fa37116ab7b1ca616b4ac18ea5deec9acf0156970a12a3f30b0d"
+      },
+      "nativeHapSha256": "c5e3bcd31fc43d887bd1aa60ed9b934b128d18ac19f4e9541b85c9a7f17194d5",
+      "nativeOriginal": {
+        "file": "artifacts/private/entry-main-20261112T022445325541Z/before-safe-browser-link.png",
+        "sha256": "c2fb939f2164ffcb6a9d82b75dd3dd057f74fc4ed27753d2271085cead9bd119"
+      },
+      "nativeGeometrySourceSha256": "06b8aa3be051ed42404c4efa67b46f77a69a30a4c5d548a4e3df4b048ebf0063",
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-links-20261112/web-capture-05/ordinary-light.png",
+        "sha256": "37773a274c87ff0719b5e7db1053f90d327df612c7a4fe5c649c887d3d9fb3fb"
+      },
+      "nativePanelSizeVp": [
+        339.6923076923077,
+        320.9230769230769
+      ],
+      "webPanelSizeCssPx": [
+        340,
+        322.34375
+      ],
+      "nativeBodyWidthVp": 281.84615384615387,
+      "webBodyWidthCssPx": 282,
+      "observedSameLineBreaks": true,
+      "observedUnderlinedLinks": true,
+      "observedDistinctFromInlineHighlight": true,
+      "observedBodyAndControlOrderEqual": true,
+      "nativeLinkColorResource": "#116958",
+      "webComputedLinkColor": "rgb(0, 0, 238)"
+    },
+    {
+      "case": "combination",
+      "theme": "dark",
+      "nativeReport": {
+        "file": "artifacts/validation/ui-gameplay-clue-links-20261112/native-combination-dark-01.json",
+        "sha256": "981daff48a2872710197f4fb3f05d28894121e718adf298bfa99b05e02911c4b"
+      },
+      "nativeHapSha256": "c5e3bcd31fc43d887bd1aa60ed9b934b128d18ac19f4e9541b85c9a7f17194d5",
+      "nativeOriginal": {
+        "file": "artifacts/private/entry-main-20261112T023110814656Z/before-authored-combination-link.png",
+        "sha256": "1f5740c3e89d68eb7d6adc03ecbe21b2a9c0ce425036e9a241b168f833909685"
+      },
+      "nativeGeometrySourceSha256": "ea14f356df9ac5d986e9e805a778438ade564adf58f85fd6b097c7156d3fd1ac",
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-links-20261112/web-capture-05/combination-dark.png",
+        "sha256": "146c287d02f30a39024a7017f510501c3f2998d85845472b29f57793fe1ad03d"
+      },
+      "nativePanelSizeVp": [
+        339.6923076923077,
+        389.2307692307692
+      ],
+      "webPanelSizeCssPx": [
+        340,
+        388.5625
+      ],
+      "nativeBodyWidthVp": 278.15384615384613,
+      "webBodyWidthCssPx": 278,
+      "observedSameLineBreaks": true,
+      "observedUnderlinedLinks": true,
+      "observedDistinctFromInlineHighlight": true,
+      "observedBodyAndControlOrderEqual": true,
+      "nativeLinkColorResource": "#D8C486",
+      "webComputedLinkColor": "rgb(158, 158, 255)"
+    }
+  ]
+}

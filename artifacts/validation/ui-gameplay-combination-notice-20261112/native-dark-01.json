@@ -1,0 +1,361 @@
+{
+  "status": "passed_combination_completion_notice",
+  "stage": "acknowledge-and-run-the-authorized-queue-once",
+  "scope": "combination-completion-notice",
+  "theme": "dark",
+  "hapSha256": "458ba8a01dd535a276d349b41351c34190c63505bd78b3155cca944c697155dd",
+  "bindingSha256": {
+    "hap": "458ba8a01dd535a276d349b41351c34190c63505bd78b3155cca944c697155dd",
+    "runtime": "828a34ab403f96dc805294056730bd69fb8c9bdc15c2a55a7cc9670abf3c1943",
+    "caseReference": "791c86d7e6ed4d677cc73e2ff63aa958dea5ae9fea543da9898d100fb5b3ecff",
+    "ca": "a482abd1ab3414af3aa273899f7d704f0b6183b17a2208eb485f4e20cb97d17e",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "noticeDriver": "0ca4a419cb90bee059800a8223321a37984efef7524569a390380e0a0e0f9f0a",
+    "queueDriver": "e324740e1acf6fdbe7440a8733aa643c53814dedc0356821846ba3052e25e9cc",
+    "linkDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "combinationDriver": "43ea86f242705be7c07181496bc37f1e981c85e9e7bd802f4485cb42b54f09de",
+    "ordinaryDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "sqliteReader": "74025e1738112ca22768797b30bd079c203e3f3aa47bd1b35589df5b244f39ac",
+    "GameplayPage": "f00aae1bbbac214aa4f4d854f0e54239100d63d2157c844eb0735358e2dc8466",
+    "GameplayViewModel": "ccb531e3cc5c2c888c5ba09dc0c951c33afc1b85f8507537f6aecb774b3b24b9",
+    "StarwardCombinationNotice": "e8da15ee77ab0fe4685e40b7b23227326495593cdef004ce4faa533ea0ec398a",
+    "StarwardCombinationDialog": "b61b19cfba800d15b674fbe751d8dc80f6e0978a314179ecc1d6833292cf87cf",
+    "baseColors": "defbceb5d43ec3448250ee600e7521d80aef0719fc8bc76eb4f5aaa193a00e19",
+    "darkColors": "65ab2cfb6efe1ba9c2859e7a7f9b9be674014fcbc0a2a3ff7ae51fd23d16e823"
+  },
+  "checksPassed": 5,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "The server-completed count, branded notice copy and fully visible CTA were measured",
+    "System Back leaves the acknowledgement and its geometry in place",
+    "Touch outside leaves the acknowledgement and its geometry in place",
+    "One CTA tap enters both authorized clues in order and returns to the completed question"
+  ],
+  "states": [
+    {
+      "state": "completion-notice",
+      "geometryPx": {
+        "gameplay-combination-notice": [
+          78,
+          654,
+          1182,
+          2067
+        ],
+        "gameplay-combination-notice-count": [
+          497,
+          857,
+          764,
+          1124
+        ],
+        "gameplay-combination-notice-eyebrow": [
+          370,
+          1172,
+          890,
+          1219
+        ],
+        "gameplay-combination-notice-title": [
+          158,
+          1268,
+          1102,
+          1568
+        ],
+        "gameplay-combination-notice-detail": [
+          237,
+          1617,
+          1023,
+          1711
+        ],
+        "gameplay-combination-notice-ack": [
+          409,
+          1786,
+          852,
+          1936
+        ]
+      },
+      "rawSha256": "ff41ba53e226b024edc46dfa96057f0e75d84ccbfc3256f6bad61522aedfcc22",
+      "completedCount": 2,
+      "ctaClickableAndEnabled": true,
+      "rawDecorationsExposed": {
+        "gameplay-combination-notice-count": true,
+        "gameplay-combination-notice-eyebrow": true
+      },
+      "rawDecorationsTextExposed": {
+        "gameplay-combination-notice-count": false,
+        "gameplay-combination-notice-eyebrow": false
+      },
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T043536705806Z/completion-notice.png",
+        "sha256": "ab7d25f4a58377d399267f19a128bc927d55e19b8f8cbdd0f4f98e5d536b5de1",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    {
+      "state": "completion-notice-after-system-back",
+      "geometryPx": {
+        "gameplay-combination-notice": [
+          78,
+          654,
+          1182,
+          2067
+        ],
+        "gameplay-combination-notice-count": [
+          497,
+          857,
+          764,
+          1124
+        ],
+        "gameplay-combination-notice-eyebrow": [
+          370,
+          1172,
+          890,
+          1219
+        ],
+        "gameplay-combination-notice-title": [
+          158,
+          1268,
+          1102,
+          1568
+        ],
+        "gameplay-combination-notice-detail": [
+          237,
+          1617,
+          1023,
+          1711
+        ],
+        "gameplay-combination-notice-ack": [
+          409,
+          1786,
+          852,
+          1936
+        ]
+      },
+      "rawSha256": "ff41ba53e226b024edc46dfa96057f0e75d84ccbfc3256f6bad61522aedfcc22",
+      "completedCount": 2,
+      "ctaClickableAndEnabled": true,
+      "rawDecorationsExposed": {
+        "gameplay-combination-notice-count": true,
+        "gameplay-combination-notice-eyebrow": true
+      },
+      "rawDecorationsTextExposed": {
+        "gameplay-combination-notice-count": false,
+        "gameplay-combination-notice-eyebrow": false
+      }
+    },
+    {
+      "state": "completion-notice-after-mask-touch",
+      "geometryPx": {
+        "gameplay-combination-notice": [
+          78,
+          654,
+          1182,
+          2067
+        ],
+        "gameplay-combination-notice-count": [
+          497,
+          857,
+          764,
+          1124
+        ],
+        "gameplay-combination-notice-eyebrow": [
+          370,
+          1172,
+          890,
+          1219
+        ],
+        "gameplay-combination-notice-title": [
+          158,
+          1268,
+          1102,
+          1568
+        ],
+        "gameplay-combination-notice-detail": [
+          237,
+          1617,
+          1023,
+          1711
+        ],
+        "gameplay-combination-notice-ack": [
+          409,
+          1786,
+          852,
+          1936
+        ]
+      },
+      "rawSha256": "ff41ba53e226b024edc46dfa96057f0e75d84ccbfc3256f6bad61522aedfcc22",
+      "completedCount": 2,
+      "ctaClickableAndEnabled": true,
+      "rawDecorationsExposed": {
+        "gameplay-combination-notice-count": true,
+        "gameplay-combination-notice-eyebrow": true
+      },
+      "rawDecorationsTextExposed": {
+        "gameplay-combination-notice-count": false,
+        "gameplay-combination-notice-eyebrow": false
+      }
+    },
+    {
+      "state": "first-authorized-clue",
+      "rawSha256": "2c98d457451a312be9e170c488eee6acebbf3c8155adbdd795638ffe8aee57cc",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          777,
+          1182,
+          1943
+        ],
+        "gameplay-combination-paragraph-0": [
+          178,
+          1248,
+          1082,
+          1446
+        ],
+        "gameplay-combination-title": [
+          178,
+          1017,
+          569,
+          1157
+        ]
+      }
+    },
+    {
+      "state": "second-authorized-clue",
+      "rawSha256": "a37f270b627f4229a94827e9a053a3ecd72cabf70c15a4a6a8dec1d7ccbdc59a",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          827,
+          1182,
+          1894
+        ],
+        "gameplay-combination-paragraph-0": [
+          178,
+          1298,
+          1082,
+          1397
+        ],
+        "gameplay-combination-title": [
+          178,
+          1067,
+          569,
+          1207
+        ]
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "businessWrites": {
+      "starts": 0,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 3,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "notice-before": {
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/notice-before-web-dtos.json",
+      "sha256": "638da17004ec8c838825ee77927b37dc5dad1e98b46603134fdbce7420323b4b"
+    },
+    "notice-completed": {
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/notice-completed-web-dtos.json",
+      "sha256": "9d9d6d8467e198f95b934f1388fc218977808427c2f2ae3b5fe5d889ccc386e2"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/completion-notice.png",
+      "sha256": "ab7d25f4a58377d399267f19a128bc927d55e19b8f8cbdd0f4f98e5d536b5de1",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/raw-followup-ready-submit-dea30e06c1734205a0db7d4088a0e53b.json",
+      "remoteRemoved": true,
+      "sha256": "7ac88a01329fbd9ea554f2b22ee2ce65a9f2aee0d60822ade658c4ae7be40320"
+    },
+    {
+      "label": "completion-notice",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/raw-completion-notice-5c136824efaf41fdabbe58b1abe8b9b3.json",
+      "remoteRemoved": true,
+      "sha256": "ff41ba53e226b024edc46dfa96057f0e75d84ccbfc3256f6bad61522aedfcc22"
+    },
+    {
+      "label": "completion-notice-after-system-back",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/raw-completion-notice-after-system-back-2f57b96a8e314678817d14a69d9b62c6.json",
+      "remoteRemoved": true,
+      "sha256": "ff41ba53e226b024edc46dfa96057f0e75d84ccbfc3256f6bad61522aedfcc22"
+    },
+    {
+      "label": "completion-notice-after-mask-touch",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/raw-completion-notice-after-mask-touch-f0303d5d41f744f399899cee7b0a0ccd.json",
+      "remoteRemoved": true,
+      "sha256": "ff41ba53e226b024edc46dfa96057f0e75d84ccbfc3256f6bad61522aedfcc22"
+    },
+    {
+      "label": "first-authorized-clue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/raw-first-authorized-clue-e01903e9b300484084d63c2e7fc11821.json",
+      "remoteRemoved": true,
+      "sha256": "2c98d457451a312be9e170c488eee6acebbf3c8155adbdd795638ffe8aee57cc"
+    },
+    {
+      "label": "second-authorized-clue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T043536705806Z/raw-second-authorized-clue-5c530e0d7aeb415db88f0c06c2eb6050.json",
+      "remoteRemoved": true,
+      "sha256": "a37f270b627f4229a94827e9a053a3ecd72cabf70c15a4a6a8dec1d7ccbdc59a"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

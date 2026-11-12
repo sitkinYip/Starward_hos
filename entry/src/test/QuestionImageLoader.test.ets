@@ -45,6 +45,7 @@ class ControlledPixels implements QuestionImagePixelsHandle {
   releaseCalls: number = 0;
   transferCalls: number = 0;
 
+  bytesPerRow(): number { return 240 * 4; }
   async metadata(): Promise<QuestionImageMetadata> { return { widthPx: 240, heightPx: 120, mimeType: 'image/png' }; }
   async flip(_horizontal: boolean, _vertical: boolean): Promise<void> {}
   async rotate(_degrees: number): Promise<void> {}

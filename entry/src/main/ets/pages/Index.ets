@@ -66,12 +66,8 @@ struct Index {
       this.startClock();
       if (this.vm.gate === 'home') {
         this.vm.refresh();
-        if (this.paths.size() > 0 && this.selectedId.length > 0) {
-          if (this.vm.play.visible) {
-            this.vm.play.reload();
-          } else {
-            this.vm.openAssignment(this.selectedId);
-          }
+        if (this.paths.size() > 0 && this.selectedId.length > 0 && !this.vm.play.visible) {
+          this.vm.openAssignment(this.selectedId);
         }
       }
     } else {

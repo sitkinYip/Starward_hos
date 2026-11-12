@@ -1,0 +1,1340 @@
+{
+  "status": "captured_web_clue_video_reference",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "rendererSha256": "1ebeeb0a4c792e71ef46dfe8dd0aea6f9b900148f7aaab5667faa0ff517fb5d6",
+  "inputSha256": "944451047955646bd4cf7934307c3a32ec12ca23520733d75056c7fca71bab7e",
+  "mediaSha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+  "mediaBytes": 258860,
+  "sourceSha256": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/components/ui/Dialog.tsx": "3424d6686401869fe002c809d5a9b2c40c2080b127247aaf9815b0329acd63db",
+    "src/features/clues/CluePanel.tsx": "062fd7639af3a561fb84e3a2442a7e2b4f786652b2677420ea65a24a856eda09",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/clue-presentation.ts": "fc3b4e189ec189300e487fd3ffafaccf534b2d7b288e40d65214648745dcc05e",
+    "src/features/game/useGamePresentation.ts": "e48cef4eca361a40aefa4d326ef033ccc4310ace74a5c9f35ef0d4b0d7e33367",
+    "src/features/media/MediaViewer.tsx": "d37ef115da63e7954f202ae6adfe7881504ca4b7d843dbbcaed364e57a498f4e",
+    "src/features/media/NativeVideo.tsx": "977b6ce8513aee2268372f052bec002aacc3872543c8ca23e2a54be1249e9ba1",
+    "src/styles/features/clues.css": "c7fcc898825ed13afc993c1302b218f1526dc359b8b90c73771b94de0dbe0dba",
+    "src/styles/components/media-backdrop.css": "e5f56b3d64c86f15f4a070112f5df421a8fe9800dccbcb0a169b26067fc3afc9",
+    "src/styles/components/media-viewer.css": "0b693cb0333ebae58cf3cb0da70b07ee13bb2e1ae8ae1365534d40d374c497a3",
+    "src/styles/effects/overlay-lighting.css": "78884afbc15fd742b2585dd66652f3ba7f11ad172c1b535f84cb1e129c572e27"
+  },
+  "syntheticAuthentication": true,
+  "businessRequestsForwarded": 0,
+  "externalRequestsForwarded": 0,
+  "nativeAcceptance": false,
+  "visualReview": "pending_original_review",
+  "states": [
+    {
+      "theme": "light",
+      "state": "archive",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "cards": [
+          {
+            "card": {
+              "x": 31,
+              "y": 505.890625,
+              "width": 326,
+              "height": 81,
+              "visible": true,
+              "color": "rgb(41, 60, 56)",
+              "background": "rgb(238, 243, 241)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 40,
+              "y": 520.890625,
+              "width": 52,
+              "height": 50,
+              "visible": true,
+              "color": "rgb(57, 123, 109)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 103,
+              "y": 522.484375,
+              "width": 192,
+              "height": 21,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 103,
+              "y": 548.484375,
+              "width": 192,
+              "height": 20.796875,
+              "visible": true,
+              "color": "rgb(83, 107, 99)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 310,
+              "y": 528.890625,
+              "width": 34,
+              "height": 34,
+              "visible": true,
+              "color": "rgb(17, 105, 88)",
+              "background": "rgba(24, 123, 105, 0.05)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          },
+          {
+            "card": {
+              "x": 31,
+              "y": 597.890625,
+              "width": 326,
+              "height": 98.59375,
+              "visible": true,
+              "color": "rgb(41, 60, 56)",
+              "background": "rgb(238, 243, 241)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 40,
+              "y": 621.6875,
+              "width": 52,
+              "height": 50,
+              "visible": true,
+              "color": "rgb(57, 123, 109)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 103,
+              "y": 612.890625,
+              "width": 192,
+              "height": 21,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 103,
+              "y": 638.890625,
+              "width": 192,
+              "height": 41.59375,
+              "visible": true,
+              "color": "rgb(83, 107, 99)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 310,
+              "y": 629.6875,
+              "width": 34,
+              "height": 34,
+              "visible": true,
+              "color": "rgb(17, 105, 88)",
+              "background": "rgba(24, 123, 105, 0.05)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          }
+        ],
+        "panel": {
+          "x": 31,
+          "y": 397.5,
+          "width": 326,
+          "height": 310.984375,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "28px 0px 12px",
+          "borderRadius": "0px"
+        },
+        "viewer": null,
+        "backdrop": null,
+        "stage": null,
+        "video": null,
+        "close": null
+      },
+      "playback": null,
+      "screenshot": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/light-archive.png",
+        "sha256": "ee4945fa147086f899d13d28f1b6a0bba231cddf1b6a75fdfa8594131cfe7dec"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/light-archive.html",
+        "sha256": "6aa2a6acfd6efa5c89b2392e7eaf74f33a1cbc88bf11298f5ec3991dbee184c8"
+      }
+    },
+    {
+      "theme": "light",
+      "state": "playing",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "cards": [
+          {
+            "card": {
+              "x": 38.92327117919922,
+              "y": 502.9422607421875,
+              "width": 326.161376953125,
+              "height": 80.936767578125,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgb(233, 242, 239)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 47.9562873840332,
+              "y": 517.91845703125,
+              "width": 52.0729866027832,
+              "height": 49.96038818359375,
+              "visible": true,
+              "color": "rgb(57, 123, 109)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 111.00294494628906,
+              "y": 519.510009765625,
+              "width": 191.99317932128906,
+              "height": 20.97674560546875,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 110.9767837524414,
+              "y": 545.4827880859375,
+              "width": 192.0537109375,
+              "height": 20.7869873046875,
+              "visible": true,
+              "color": "rgb(83, 107, 99)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 317.2666931152344,
+              "y": 522.20654296875,
+              "width": 39.4693603515625,
+              "height": 39.38006591796875,
+              "visible": true,
+              "color": "rgb(17, 105, 88)",
+              "background": "rgba(24, 123, 105, 0.1)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          },
+          {
+            "card": {
+              "x": 31,
+              "y": 597.890625,
+              "width": 326,
+              "height": 98.59375,
+              "visible": true,
+              "color": "rgb(41, 60, 56)",
+              "background": "rgb(238, 243, 241)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 40,
+              "y": 621.6875,
+              "width": 52,
+              "height": 50,
+              "visible": true,
+              "color": "rgb(57, 123, 109)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 103,
+              "y": 612.890625,
+              "width": 192,
+              "height": 21,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 103,
+              "y": 638.890625,
+              "width": 192,
+              "height": 41.59375,
+              "visible": true,
+              "color": "rgb(83, 107, 99)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 310,
+              "y": 629.6875,
+              "width": 34,
+              "height": 34,
+              "visible": true,
+              "color": "rgb(17, 105, 88)",
+              "background": "rgba(24, 123, 105, 0.05)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          }
+        ],
+        "panel": {
+          "x": 31,
+          "y": 397.5,
+          "width": 326,
+          "height": 310.984375,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "28px 0px 12px",
+          "borderRadius": "0px"
+        },
+        "viewer": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "backdrop": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(5, 6, 5, 0.94)",
+          "padding": "14px",
+          "borderRadius": "0px"
+        },
+        "stage": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "video": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "close": {
+          "x": 328,
+          "y": 284.25,
+          "width": 46,
+          "height": 46,
+          "visible": true,
+          "color": "rgb(240, 236, 223)",
+          "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+          "padding": "0px",
+          "borderRadius": "50%"
+        }
+      },
+      "playback": {
+        "width": 640,
+        "height": 360,
+        "duration": 28,
+        "time": 0.618109,
+        "autoPlay": true,
+        "inline": true,
+        "controls": true
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/light-playing.png",
+        "sha256": "0456666de3d760c36d356fae68cc43c82fe19f7a4196a198c278aae3ecdea297"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/light-playing.html",
+        "sha256": "2c31a6569a29723a617e98b57cbef110c72107c7d26513c3156c5cc798fbc9f5"
+      }
+    },
+    {
+      "theme": "light",
+      "state": "playing-later",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "cards": [
+          {
+            "card": {
+              "x": 38.92327117919922,
+              "y": 502.9422607421875,
+              "width": 326.161376953125,
+              "height": 80.936767578125,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgb(233, 242, 239)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 47.9562873840332,
+              "y": 517.91845703125,
+              "width": 52.0729866027832,
+              "height": 49.96038818359375,
+              "visible": true,
+              "color": "rgb(57, 123, 109)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 111.00294494628906,
+              "y": 519.510009765625,
+              "width": 191.99317932128906,
+              "height": 20.97674560546875,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 110.9767837524414,
+              "y": 545.4827880859375,
+              "width": 192.0537109375,
+              "height": 20.7869873046875,
+              "visible": true,
+              "color": "rgb(83, 107, 99)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 317.2666931152344,
+              "y": 522.20654296875,
+              "width": 39.4693603515625,
+              "height": 39.38006591796875,
+              "visible": true,
+              "color": "rgb(17, 105, 88)",
+              "background": "rgba(24, 123, 105, 0.1)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          },
+          {
+            "card": {
+              "x": 31,
+              "y": 597.890625,
+              "width": 326,
+              "height": 98.59375,
+              "visible": true,
+              "color": "rgb(41, 60, 56)",
+              "background": "rgb(238, 243, 241)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 40,
+              "y": 621.6875,
+              "width": 52,
+              "height": 50,
+              "visible": true,
+              "color": "rgb(57, 123, 109)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 103,
+              "y": 612.890625,
+              "width": 192,
+              "height": 21,
+              "visible": true,
+              "color": "rgb(22, 46, 40)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 103,
+              "y": 638.890625,
+              "width": 192,
+              "height": 41.59375,
+              "visible": true,
+              "color": "rgb(83, 107, 99)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 310,
+              "y": 629.6875,
+              "width": 34,
+              "height": 34,
+              "visible": true,
+              "color": "rgb(17, 105, 88)",
+              "background": "rgba(24, 123, 105, 0.05)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          }
+        ],
+        "panel": {
+          "x": 31,
+          "y": 397.5,
+          "width": 326,
+          "height": 310.984375,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "28px 0px 12px",
+          "borderRadius": "0px"
+        },
+        "viewer": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "backdrop": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(5, 6, 5, 0.94)",
+          "padding": "14px",
+          "borderRadius": "0px"
+        },
+        "stage": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "video": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(41, 60, 56)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "close": {
+          "x": 328,
+          "y": 284.25,
+          "width": 46,
+          "height": 46,
+          "visible": true,
+          "color": "rgb(240, 236, 223)",
+          "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+          "padding": "0px",
+          "borderRadius": "50%"
+        }
+      },
+      "playback": {
+        "width": 640,
+        "height": 360,
+        "duration": 28,
+        "time": 7.534769,
+        "autoPlay": true,
+        "inline": true,
+        "controls": true
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/light-playing-later.png",
+        "sha256": "a83a2d1524b3c2b4205f3904ca2781be56441b78da5d413975c18fa2e7f3da78"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/light-playing-later.html",
+        "sha256": "2c31a6569a29723a617e98b57cbef110c72107c7d26513c3156c5cc798fbc9f5"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "archive",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "cards": [
+          {
+            "card": {
+              "x": 35.07500457763672,
+              "y": 537.3941650390625,
+              "width": 317.8499755859375,
+              "height": 78.9749755859375,
+              "visible": true,
+              "color": "rgb(231, 230, 225)",
+              "background": "rgb(16, 17, 14)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 43.850006103515625,
+              "y": 552.0191650390625,
+              "width": 50.69999694824219,
+              "height": 48.75,
+              "visible": true,
+              "color": "rgb(189, 166, 111)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 105.2750015258789,
+              "y": 553.5730590820312,
+              "width": 187.20004272460938,
+              "height": 20.47503662109375,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 105.2750015258789,
+              "y": 578.923095703125,
+              "width": 187.20004272460938,
+              "height": 20.27691650390625,
+              "visible": true,
+              "color": "rgb(170, 169, 159)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 307.10003662109375,
+              "y": 559.8191528320312,
+              "width": 33.14996337890625,
+              "height": 33.14996337890625,
+              "visible": true,
+              "color": "rgb(216, 196, 134)",
+              "background": "rgba(212, 188, 125, 0.055)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          },
+          {
+            "card": {
+              "x": 35.07500457763672,
+              "y": 627.0941162109375,
+              "width": 317.8499755859375,
+              "height": 96.12896728515625,
+              "visible": true,
+              "color": "rgb(231, 230, 225)",
+              "background": "rgb(16, 17, 14)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 43.850006103515625,
+              "y": 650.2960815429688,
+              "width": 50.69999694824219,
+              "height": 48.75,
+              "visible": true,
+              "color": "rgb(189, 166, 111)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 105.2750015258789,
+              "y": 641.7191772460938,
+              "width": 187.20004272460938,
+              "height": 20.4749755859375,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 105.2750015258789,
+              "y": 667.0691528320312,
+              "width": 187.20004272460938,
+              "height": 40.55389404296875,
+              "visible": true,
+              "color": "rgb(170, 169, 159)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 307.10003662109375,
+              "y": 658.0961303710938,
+              "width": 33.14996337890625,
+              "height": 33.14996337890625,
+              "visible": true,
+              "color": "rgb(216, 196, 134)",
+              "background": "rgba(212, 188, 125, 0.055)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          }
+        ],
+        "panel": {
+          "x": 35.07500457763672,
+          "y": 431.7132568359375,
+          "width": 317.8499755859375,
+          "height": 303.20977783203125,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "28px 0px 12px",
+          "borderRadius": "0px"
+        },
+        "viewer": null,
+        "backdrop": null,
+        "stage": null,
+        "video": null,
+        "close": null
+      },
+      "playback": null,
+      "screenshot": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/dark-archive.png",
+        "sha256": "620eafc104b607527651ecb4ec618c2d6f44a602a7e16872bd55730002439cc6"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/dark-archive.html",
+        "sha256": "fd8089a69a4ff826fd3dbcd957bd9fc3820daaf8804aafe1ec9129705604bb2c"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "playing",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "cards": [
+          {
+            "card": {
+              "x": 38.92327117919922,
+              "y": 502.9422607421875,
+              "width": 326.161376953125,
+              "height": 80.936767578125,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgb(29, 30, 25)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 47.9562873840332,
+              "y": 517.91845703125,
+              "width": 52.0729866027832,
+              "height": 49.96038818359375,
+              "visible": true,
+              "color": "rgb(189, 166, 111)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 111.00294494628906,
+              "y": 519.510009765625,
+              "width": 191.99317932128906,
+              "height": 20.97674560546875,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 110.9767837524414,
+              "y": 545.4827880859375,
+              "width": 192.0537109375,
+              "height": 20.7869873046875,
+              "visible": true,
+              "color": "rgb(170, 169, 159)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 317.2666931152344,
+              "y": 522.20654296875,
+              "width": 39.4693603515625,
+              "height": 39.38006591796875,
+              "visible": true,
+              "color": "rgb(216, 196, 134)",
+              "background": "rgba(212, 188, 125, 0.12)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          },
+          {
+            "card": {
+              "x": 31,
+              "y": 597.890625,
+              "width": 326,
+              "height": 98.59375,
+              "visible": true,
+              "color": "rgb(231, 230, 225)",
+              "background": "rgb(16, 17, 14)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 40,
+              "y": 621.6875,
+              "width": 52,
+              "height": 50,
+              "visible": true,
+              "color": "rgb(189, 166, 111)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 103,
+              "y": 612.890625,
+              "width": 192,
+              "height": 21,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 103,
+              "y": 638.890625,
+              "width": 192,
+              "height": 41.59375,
+              "visible": true,
+              "color": "rgb(170, 169, 159)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 310,
+              "y": 629.6875,
+              "width": 34,
+              "height": 34,
+              "visible": true,
+              "color": "rgb(216, 196, 134)",
+              "background": "rgba(212, 188, 125, 0.055)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          }
+        ],
+        "panel": {
+          "x": 31,
+          "y": 397.5,
+          "width": 326,
+          "height": 310.984375,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "28px 0px 12px",
+          "borderRadius": "0px"
+        },
+        "viewer": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "backdrop": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(5, 6, 5, 0.94)",
+          "padding": "14px",
+          "borderRadius": "0px"
+        },
+        "stage": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "video": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "close": {
+          "x": 328,
+          "y": 284.25,
+          "width": 46,
+          "height": 46,
+          "visible": true,
+          "color": "rgb(240, 236, 223)",
+          "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+          "padding": "0px",
+          "borderRadius": "50%"
+        }
+      },
+      "playback": {
+        "width": 640,
+        "height": 360,
+        "duration": 28,
+        "time": 0.516961,
+        "autoPlay": true,
+        "inline": true,
+        "controls": true
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/dark-playing.png",
+        "sha256": "36b2ffaf06b08fe6f0f3fcc6466cfd2ee908541bff374fc406bec4da66f9aea3"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/dark-playing.html",
+        "sha256": "35b5ac0b80eeaa4f36fc6b54857c5555ae87ad62c1e4195f2d37a14232c39788"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "playing-later",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "cards": [
+          {
+            "card": {
+              "x": 38.92327117919922,
+              "y": 502.9422607421875,
+              "width": 326.161376953125,
+              "height": 80.936767578125,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgb(29, 30, 25)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 47.9562873840332,
+              "y": 517.91845703125,
+              "width": 52.0729866027832,
+              "height": 49.96038818359375,
+              "visible": true,
+              "color": "rgb(189, 166, 111)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 111.00294494628906,
+              "y": 519.510009765625,
+              "width": 191.99317932128906,
+              "height": 20.97674560546875,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 110.9767837524414,
+              "y": 545.4827880859375,
+              "width": 192.0537109375,
+              "height": 20.7869873046875,
+              "visible": true,
+              "color": "rgb(170, 169, 159)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 317.2666931152344,
+              "y": 522.20654296875,
+              "width": 39.4693603515625,
+              "height": 39.38006591796875,
+              "visible": true,
+              "color": "rgb(216, 196, 134)",
+              "background": "rgba(212, 188, 125, 0.12)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          },
+          {
+            "card": {
+              "x": 31,
+              "y": 597.890625,
+              "width": 326,
+              "height": 98.59375,
+              "visible": true,
+              "color": "rgb(231, 230, 225)",
+              "background": "rgb(16, 17, 14)",
+              "padding": "14px 12px 15px 8px",
+              "borderRadius": "0px"
+            },
+            "lead": {
+              "x": 40,
+              "y": 621.6875,
+              "width": 52,
+              "height": 50,
+              "visible": true,
+              "color": "rgb(189, 166, 111)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "status": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "visible": false,
+              "color": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "title": {
+              "x": 103,
+              "y": 612.890625,
+              "width": 192,
+              "height": 21,
+              "visible": true,
+              "color": "rgb(240, 236, 223)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "preview": {
+              "x": 103,
+              "y": 638.890625,
+              "width": 192,
+              "height": 41.59375,
+              "visible": true,
+              "color": "rgb(170, 169, 159)",
+              "background": "rgba(0, 0, 0, 0)",
+              "padding": "0px",
+              "borderRadius": "0px"
+            },
+            "action": {
+              "x": 310,
+              "y": 629.6875,
+              "width": 34,
+              "height": 34,
+              "visible": true,
+              "color": "rgb(216, 196, 134)",
+              "background": "rgba(212, 188, 125, 0.055)",
+              "padding": "0px",
+              "borderRadius": "50%"
+            }
+          }
+        ],
+        "panel": {
+          "x": 31,
+          "y": 397.5,
+          "width": 326,
+          "height": 310.984375,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "28px 0px 12px",
+          "borderRadius": "0px"
+        },
+        "viewer": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "backdrop": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(5, 6, 5, 0.94)",
+          "padding": "14px",
+          "borderRadius": "0px"
+        },
+        "stage": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "video": {
+          "x": 14,
+          "y": 284.25,
+          "width": 360,
+          "height": 202.5,
+          "visible": true,
+          "color": "rgb(231, 230, 225)",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px"
+        },
+        "close": {
+          "x": 328,
+          "y": 284.25,
+          "width": 46,
+          "height": 46,
+          "visible": true,
+          "color": "rgb(240, 236, 223)",
+          "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+          "padding": "0px",
+          "borderRadius": "50%"
+        }
+      },
+      "playback": {
+        "width": 640,
+        "height": 360,
+        "duration": 28,
+        "time": 7.520651,
+        "autoPlay": true,
+        "inline": true,
+        "controls": true
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/dark-playing-later.png",
+        "sha256": "da6c8f77a023d8a7032c7ea7e48e5e597e838fcfead34313ed728a00940103c8"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-video-20261112/web-capture-01/dark-playing-later.html",
+        "sha256": "35b5ac0b80eeaa4f36fc6b54857c5555ae87ad62c1e4195f2d37a14232c39788"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "authorizedOrdinaryVideoCards": 2,
+      "requestBeforeTap": false,
+      "closeButtonReturnedToArchive": true,
+      "seekThenNaturalEndedReturnedToArchive": true,
+      "registeredMediaResponses": 2,
+      "frozenSourceChecks": 15,
+      "schemaChecks": 3
+    },
+    {
+      "theme": "dark",
+      "authorizedOrdinaryVideoCards": 2,
+      "requestBeforeTap": false,
+      "closeButtonReturnedToArchive": true,
+      "seekThenNaturalEndedReturnedToArchive": true,
+      "registeredMediaResponses": 2,
+      "frozenSourceChecks": 15,
+      "schemaChecks": 3
+    }
+  ],
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-video-20261112/web-capture-01/browser-private.json",
+    "sha256": "cb3d5b1efd5f22af3c308b1266b2c1649c3509d1906e67f4914ba966a9d2c94e"
+  }
+}

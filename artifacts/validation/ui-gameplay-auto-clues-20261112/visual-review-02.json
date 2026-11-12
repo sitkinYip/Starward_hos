@@ -1,0 +1,322 @@
+{
+  "status": "same_data_originals_reviewed",
+  "scope": "自动打开文字线索及双图查看器的原始画面",
+  "theme": "light",
+  "branch": "video-natural-end",
+  "nativeRunStatus": "passed_automatic_ordinary_clues",
+  "nativeAcceptanceSeparate": true,
+  "runtimeSha256": "89755ea1b5d634d4ac12ca7ee53d8833475b442f78ca55d73c62bcbc03ed2b2c",
+  "nativeReportSha256": "f4dd89ed160096262bac71050ee841245faa480e594ad9db7e18d9625aac56d4",
+  "nativeHapSha256": "de3f3eed2e8044e7c3c07a08b31af3977d0985e226fe8023559e6425ce741f42",
+  "webReferenceSha256": "18a83fa3fef25f6601b177ad55fab7fab5301561283d5ec355a874b3c7478a89",
+  "webReplayInputSha256": "b8996403cc36cbb24b9d46ad8a0c62e5193e8f5d9af0115d19fd5a343b229b50",
+  "webSourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "comparisonScriptSha256": "0080fede4284fa55b25b98e09faa68812bf30360f482b2862ee865f482e789a3",
+  "webViewport": {
+    "width": 388,
+    "height": 771
+  },
+  "nativeWindow": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91
+  },
+  "nativeDtoOriginals": {
+    "active": {
+      "path": "artifacts/private/entry-main-20261112T091328951935Z/auto-clues-unanswered-web-dtos.json",
+      "sha256": "b7e008934bbd8f7d780636d9a71962504cbb4ea21cf6cf97e2a94bad040b8750"
+    },
+    "second": {
+      "path": "artifacts/private/entry-main-20261112T091328951935Z/auto-clues-settled-web-dtos.json",
+      "sha256": "328e421c70ca79e4d21927ef2a9e4cfad3ec1bd948c691febf8bb23c847d14b7"
+    }
+  },
+  "sameNormalizedScene": true,
+  "identicalMedia": {
+    "ordinary.mp4": {
+      "bytes": 258860,
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7"
+    },
+    "auto-clue-a.png": {
+      "bytes": 2203,
+      "sha256": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04"
+    },
+    "auto-clue-b.png": {
+      "bytes": 2650,
+      "sha256": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd"
+    }
+  },
+  "measurement": "原生位置来自未裁剪原图对应的原始 UiTest 控件矩形，纵坐标换算扣除状态栏真实避让。Web 位置来自同一帧 DOM。",
+  "originalReview": [
+    "文字弹层双方均保持档案眉题、衬线标题、细分隔线、北辰高亮、原有段落换行与右上关闭。原生面板 339.69×260.00 vp，Web 340.00×261.56 CSS px。原生关闭目标 44 vp，Web 42 CSS px。",
+    "扣除真机状态栏避让后，文字面板中心比 Web 高约 5.04 个逻辑像素。原生采用系统居中弹层与透明罩，系统栏及背后第一题保持可见。Web 遮罩带背景模糊和面板内细装饰框。",
+    "图库同一顺序显示蓝色横图 1 / 2 与棕色竖图 2 / 2，原图均等比完整，未裁剪画面内容。舞台尺寸、画面尺寸与可用内容区中的画面位置差均不足 0.4 个逻辑像素。原生采用近黑背景并维持浅色 100% 提示，Web 日间的该百分比对比度较弱。"
+  ],
+  "states": {
+    "automaticText": {
+      "nativeOriginal": {
+        "path": "artifacts/private/entry-main-20261112T091328951935Z/auto-text-before-media.png",
+        "sha256": "4fa16296e9c61bbb0e9d5c569acc760ef25672495cd46c4228a58bb724b418d5"
+      },
+      "nativeRawUiTest": {
+        "path": "artifacts/private/entry-main-20261112T091328951935Z/raw-auto-text-before-media-8081974dd53e4971bade277188803451.json",
+        "sha256": "a2d56f85c28176e7052a2b27148046be16a8260145d16cd2871e11448a63144f"
+      },
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-auto-clues-20261112/web-capture-01/light-video-natural-end-automatic-text.png",
+        "sha256": "7958d3277a63bae1cf83ba75914172d500830548a220316ae53c71f725f36fef"
+      },
+      "webDom": {
+        "path": "artifacts/private/gameplay-auto-clues-20261112/web-capture-01/light-video-natural-end-automatic-text.html",
+        "sha256": "7f9ed64d807c3df1c85070227cb450b6717f686f0feb93394ccfb5e69f6f9f66"
+      },
+      "rectangles": {
+        "panel": {
+          "nativeRawPx": [
+            78,
+            937,
+            1182,
+            1782
+          ],
+          "nativeContentRelativeVp": [
+            24.0,
+            250.46153846153845,
+            339.6923076923077,
+            260.0
+          ],
+          "webCssPx": [
+            24,
+            254.71875,
+            340,
+            261.5625
+          ]
+        },
+        "title": {
+          "nativeRawPx": [
+            172,
+            1119,
+            523,
+            1245
+          ],
+          "nativeContentRelativeVp": [
+            52.92307692307692,
+            306.46153846153845,
+            108.0,
+            38.76923076923077
+          ],
+          "webCssPx": [
+            53,
+            313.109375,
+            282,
+            38
+          ]
+        },
+        "body": {
+          "nativeRawPx": [
+            172,
+            1391,
+            1088,
+            1688
+          ],
+          "nativeContentRelativeVp": [
+            52.92307692307692,
+            390.15384615384613,
+            281.84615384615387,
+            91.38461538461539
+          ],
+          "webCssPx": [
+            53,
+            396.109375,
+            282,
+            91.171875
+          ]
+        },
+        "close": {
+          "nativeRawPx": [
+            984,
+            992,
+            1127,
+            1135
+          ],
+          "nativeContentRelativeVp": [
+            302.7692307692308,
+            267.38461538461536,
+            44.0,
+            44.0
+          ],
+          "webCssPx": [
+            305,
+            271.71875,
+            42,
+            42
+          ]
+        }
+      }
+    },
+    "firstImage": {
+      "nativeOriginal": {
+        "path": "artifacts/private/entry-main-20261112T091328951935Z/auto-gallery-a-rendered.png",
+        "sha256": "2bb7f39e6192319d720fc1a74910691349b92ffafb75fa88af3839d2f30cf2c3"
+      },
+      "nativeRawUiTest": {
+        "path": "artifacts/private/entry-main-20261112T091328951935Z/raw-auto-gallery-a-rendered-91bec0c7222344b2bdd2312b42ebcca5.json",
+        "sha256": "2cedbf513d75eac51334a04a14ab94ffee86e01f3990bdc70f037d50adcc84ca"
+      },
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-auto-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-1.png",
+        "sha256": "68d66967b333c500216dd035a732b69514e7632248c0a63253e23b031f0187be"
+      },
+      "webDom": {
+        "path": "artifacts/private/gameplay-auto-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-1.html",
+        "sha256": "b361f15ebebdab28e0c8e62607b1c9b36a978c6a8c517f4a612d0415d39d56b1"
+      },
+      "rectangles": {
+        "stage": {
+          "nativeRawPx": [
+            46,
+            354,
+            1215,
+            1983
+          ],
+          "nativeContentRelativeVp": [
+            14.153846153846153,
+            71.07692307692308,
+            359.6923076923077,
+            501.2307692307692
+          ],
+          "webCssPx": [
+            14,
+            70.921875,
+            360,
+            501.140625
+          ]
+        },
+        "picture": {
+          "nativeRawPx": [
+            46,
+            840,
+            1215,
+            1498
+          ],
+          "nativeContentRelativeVp": [
+            14.153846153846153,
+            220.6153846153846,
+            359.6923076923077,
+            202.46153846153845
+          ],
+          "webCssPx": [
+            14,
+            220.234375,
+            360,
+            202.5
+          ]
+        },
+        "close": {
+          "nativeRawPx": [
+            1066,
+            354,
+            1216,
+            504
+          ],
+          "nativeContentRelativeVp": [
+            328.0,
+            71.07692307692308,
+            46.15384615384615,
+            46.15384615384615
+          ],
+          "webCssPx": [
+            328,
+            70.921875,
+            46,
+            46
+          ]
+        }
+      }
+    },
+    "secondImage": {
+      "nativeOriginal": {
+        "path": "artifacts/private/entry-main-20261112T091328951935Z/auto-gallery-b-rendered.png",
+        "sha256": "e58fa5358fbd4444552b499ee655f05fd30b148147ce3075e81def1508fe942f"
+      },
+      "nativeRawUiTest": {
+        "path": "artifacts/private/entry-main-20261112T091328951935Z/raw-auto-gallery-b-rendered-b398b06274e24ab2a33e82528dfbd331.json",
+        "sha256": "568d5b913a4df5c95a5dae7368ea70441052f118ab967b0e5039a06d44bb7561"
+      },
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-auto-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-2.png",
+        "sha256": "a7ca791cc5519ec231ace244ccbe170f338d2a78f86212b20df4128b34e652c9"
+      },
+      "webDom": {
+        "path": "artifacts/private/gameplay-auto-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-2.html",
+        "sha256": "973862ab29aeb328236207d203917de6dd483478f4ed78efc491b0e42770292d"
+      },
+      "rectangles": {
+        "stage": {
+          "nativeRawPx": [
+            46,
+            354,
+            1215,
+            1983
+          ],
+          "nativeContentRelativeVp": [
+            14.153846153846153,
+            71.07692307692308,
+            359.6923076923077,
+            501.2307692307692
+          ],
+          "webCssPx": [
+            14,
+            70.921875,
+            360,
+            501.140625
+          ]
+        },
+        "picture": {
+          "nativeRawPx": [
+            85,
+            388,
+            1177,
+            1948
+          ],
+          "nativeContentRelativeVp": [
+            26.153846153846153,
+            81.53846153846153,
+            336.0,
+            480.0
+          ],
+          "webCssPx": [
+            26,
+            81.484375,
+            336,
+            480
+          ]
+        },
+        "close": {
+          "nativeRawPx": [
+            1066,
+            354,
+            1216,
+            504
+          ],
+          "nativeContentRelativeVp": [
+            328.0,
+            71.07692307692308,
+            46.15384615384615,
+            46.15384615384615
+          ],
+          "webCssPx": [
+            328,
+            70.921875,
+            46,
+            46
+          ]
+        }
+      }
+    }
+  }
+}

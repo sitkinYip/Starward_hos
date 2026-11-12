@@ -1,0 +1,354 @@
+{
+  "status": "passed_automatic_clue_video",
+  "stage": "native-reentry-does-not-replay",
+  "scope": "automatic-clue-video-failure",
+  "theme": "dark",
+  "hapSha256": "a5b64903870aa731a53b9115bfc2932cf2cd38377c5624874b9335891eefb6a4",
+  "bindingSha256": {
+    "hap": "a5b64903870aa731a53b9115bfc2932cf2cd38377c5624874b9335891eefb6a4",
+    "runtime": "0d7374fc08b8c8cc7407dd659cce6b4f0cd51494f667a574089da96ad9647e43",
+    "caseReference": "238f3de11f54318ac8454189075825f344d26bbeb1a6e8f26b43ed7c3404f734",
+    "ca": "7079189160e1b59eb3b002208a9964d16d40f0d561785daa387eb2e9e37cedac",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "autoplayDriver": "df598c697cf4a0046edaf866628ddaf7fe54573a1f7930a77997a4351587537d",
+    "manualDriver": "d833f67383e0b1b75bc7c847adf135b7afcedddc8fc9b5d46e0664504fb65900",
+    "clueDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "fixtureDriver": "96bf0fe1e44ed8522ddc4e4346ddfed7b73aca532aacad26aae030776ec8fdb3",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "6021ec6a99f3c82cacb784aa492e43a1c0ee6f24fec05d81e11ee0e46a111e28",
+    "hostSnapshots": "f96f3d3c443b1569ca2b749b4218532c85eecfef44aa9a4542bdc47dcd2f1cfc",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "mediaRoute": "69217a20b92c64818b17ef8b893edd3cacd3b4d1a9d6ebb9f468e68747a208ba",
+    "tlsRunner": "e9ed6ce2a2419d3f0b669070dc0e66d4df9188b21ed2b47115f0433399a4c66f",
+    "GameplayPage": "21675b020c7ddddd585768759853a18bc519d7bf9c131158f21d197543bb51a2",
+    "GameplayViewModel": "700ec5286c8ebbb774805d379006d80ffdefd8d8ce2ed781769b0b333fed9b0e",
+    "GameplayClues": "28ba3fc0a9fc6c40e5fc8e92d23b36e7a88f1438c7672832e2a901a30644c6d8",
+    "StarwardVideoViewer": "f382fc06b2988a0e525c2ac2f63e9dba623296812dafd1086c6b1ad7c19a9da0",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055"
+  },
+  "checksPassed": 3,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "A rejected autoplay settles Q1 once, then one media-only retry plays and naturally advances",
+    "Re-entering the scene uses a fresh read and neither replays media nor submits another answer"
+  ],
+  "states": [
+    {
+      "state": "auto-media-error",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ],
+        "gameplay-video-error": [
+          504,
+          1262,
+          758,
+          1334
+        ],
+        "gameplay-video-retry": [
+          488,
+          1347,
+          774,
+          1490
+        ]
+      },
+      "rawSha256": "0c31bfaaaee39b814d535819b150b0866ae69493732556f31dff5411402c0ea8",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-error.png",
+        "sha256": "7bcac8de6f3caa7963935edbfa2e285e8383859d5a17b9e2341603abf243774d",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-media-retry-ready",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-player": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ]
+      },
+      "rawSha256": "bc5462dfc519a80313d597048730312895b2afb8265d4ac95e89e1bf9b2ef956"
+    },
+    {
+      "state": "auto-media-retry-first-rendered",
+      "playbackSecond": 5,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-retry-first-rendered-0.png",
+        "sha256": "f5c184e730894e4b5825efa9f9ede5c7e36da76f58fabb415e4ef432b4cf028a",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-media-retry-late-rendered",
+      "playbackSecond": 25,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-retry-late-rendered-0.png",
+        "sha256": "2580ec474f89b65406601a49d28677a2ba684b1320b4630cc4b8b50e6fe7ae75",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-media-retry-q2",
+      "viewedQuestion": 2,
+      "answerEditable": true,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1140
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ]
+      },
+      "rawSha256": "3b094960b54534417d64b45269231feafa718d49e3130e66eb618ac4852b0151",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-retry-q2.png",
+        "sha256": "9dc7d6ccd0dbfb53d196dcf78882e89338c4401f614fe9f14915c67de6648279",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "auto-media-q2-reentered",
+      "viewedQuestion": 2,
+      "answerEditable": true,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1140
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ]
+      },
+      "rawSha256": "d2247ed916f504d379e433e38b53ac60eb6e935ce8273a9b3e48195df944a499",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-q2-reentered.png",
+        "sha256": "f7b38c1d51d09a3cdd0b318d8bdcce8f0699d7265fd6853a77764a72668a09cf",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "businessWrites": {
+      "starts": 1,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 1,
+      "answerSubmissionCount": 1,
+      "correctAnswerCount": 1,
+      "completedProgressRows": 1,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "clueUnlockRows": 1,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "deviceMediaOutcomes": [
+      {
+        "label": "retry",
+        "mode": "hold",
+        "status": 503,
+        "contentBytes": 0,
+        "completed": true,
+        "durationMs": 1
+      },
+      {
+        "label": "retry",
+        "mode": "recover",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 2
+      }
+    ],
+    "manualNextClicks": 0
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true,
+    "mediaGateRestored": true
+  },
+  "sameDataWebFixtures": {
+    "auto-video-assigned": {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-video-assigned-web-dtos.json",
+      "sha256": "d712fc4ae8d7cb87e5b2b51a6fe1f3df80731c11383b8b81b3afe40d71c2ce9e"
+    },
+    "auto-video-unanswered": {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-video-unanswered-web-dtos.json",
+      "sha256": "986d548866d4f6814154d5004ac1c0b791c2be8ba6d962f11b4cf7e2e26789c1"
+    },
+    "auto-video-settled": {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-video-settled-web-dtos.json",
+      "sha256": "349f1d827b5701038c4c46abb7b7e6740a2521fd868e8b4b848c718bbb6f452a"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/autoplay-unanswered-no-clue.png",
+      "sha256": "4b7b69db997ab138d6272f15d0701ed157032303cf98f7b60e6b2b6f1cd4e76a",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-error.png",
+      "sha256": "7bcac8de6f3caa7963935edbfa2e285e8383859d5a17b9e2341603abf243774d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-retry-first-rendered-0.png",
+      "sha256": "f5c184e730894e4b5825efa9f9ede5c7e36da76f58fabb415e4ef432b4cf028a",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-retry-late-rendered-0.png",
+      "sha256": "2580ec474f89b65406601a49d28677a2ba684b1320b4630cc4b8b50e6fe7ae75",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-retry-q2.png",
+      "sha256": "9dc7d6ccd0dbfb53d196dcf78882e89338c4401f614fe9f14915c67de6648279",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/auto-media-q2-reentered.png",
+      "sha256": "f7b38c1d51d09a3cdd0b318d8bdcce8f0699d7265fd6853a77764a72668a09cf",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "autoplay-unanswered-no-clue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/raw-autoplay-unanswered-no-clue-59453060ef7a43a5ad710cd0048a7642.json",
+      "remoteRemoved": true,
+      "sha256": "cb6fa27ed046dd2deb76cf1ff18f4d5bc2c4a2a55e213291312a11e6ed6e6f20"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/raw-followup-ready-submit-b33889556a1d449e9fced6a4335d5fe9.json",
+      "remoteRemoved": true,
+      "sha256": "a038b794959f680f21a4ae0502be4577875e2bff818e8161f50bb51189ff9e09"
+    },
+    {
+      "label": "auto-media-error",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/raw-auto-media-error-27f6233e72bc403abf73230c73ed9682.json",
+      "remoteRemoved": true,
+      "sha256": "0c31bfaaaee39b814d535819b150b0866ae69493732556f31dff5411402c0ea8"
+    },
+    {
+      "label": "auto-media-retry-ready",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/raw-auto-media-retry-ready-ff557821f5634f1dae5a88f1befbe9fb.json",
+      "remoteRemoved": true,
+      "sha256": "bc5462dfc519a80313d597048730312895b2afb8265d4ac95e89e1bf9b2ef956"
+    },
+    {
+      "label": "auto-media-retry-q2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/raw-auto-media-retry-q2-dff343d382b9447cbe8aa7bb65ef4012.json",
+      "remoteRemoved": true,
+      "sha256": "3b094960b54534417d64b45269231feafa718d49e3130e66eb618ac4852b0151"
+    },
+    {
+      "label": "auto-media-q2-reentered",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T084754765053Z/raw-auto-media-q2-reentered-3a2d38ddce454ab6b7bdfd5f432dd111.json",
+      "remoteRemoved": true,
+      "sha256": "d2247ed916f504d379e433e38b53ac60eb6e935ce8273a9b3e48195df944a499"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

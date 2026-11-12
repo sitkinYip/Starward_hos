@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { GameplayAnswerResult, GameplaySnapshot } from '../main/ets/business/GameplayModels';
+import { GameplayAnswerResult, GameplayClue, GameplayEffect, GameplaySnapshot } from '../main/ets/business/GameplayModels';
 import { GameFailure, Player } from '../main/ets/business/models';
 import { decodeGameplay } from '../main/ets/data/GameplayDecoder';
 import { decodePlayer } from '../main/ets/data/DtoDecoder';
@@ -39,6 +39,29 @@ function answerResult(result: string, assignment: GameplaySnapshot, totalXp: num
   value.player.totalXp = totalXp;
   value.xpDelta = result === 'correct' ? 50 : 0;
   return value;
+}
+
+function clueResult(kinds: string[], autoNext: boolean = true): GameplayAnswerResult {
+  const settled: GameplaySnapshot = choiceSnapshot();
+  settled.levels[0].autoNext = autoNext;
+  const result: GameplayAnswerResult = answerResult('correct', settled);
+  result.effectsProvided = true;
+  for (let index: number = 0; index < kinds.length; index++) {
+    const kind: string = kinds[index];
+    const clue: GameplayClue = new GameplayClue();
+    clue.id = `${kind}-${index}`;
+    clue.kind = kind;
+    clue.position = index;
+    if (kind === 'video') { clue.content.url = 'https://media.example/clue.mp4'; }
+    if (kind === 'image') { clue.content.imageUrls = ['https://media.example/clue.png']; }
+    clue.sessionLevel = settled.levels[0].id;
+    const effect: GameplayEffect = new GameplayEffect();
+    effect.clueId = clue.id;
+    effect.autoPlay = true;
+    settled.clues.push(clue);
+    result.effects.push(effect);
+  }
+  return result;
 }
 
 class AnswerCall {
@@ -202,6 +225,114 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.activeIndex).assertEqual(1);
       expect(vm.advancing).assertFalse();
       vm.leave();
+    });
+
+    it('mixedAutomaticCluesKeepTheSettledQuestionUntilTheLastGalleryCloses', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = clueResult(['text', 'video', 'image']);
+      repository.answers[0].succeed(result);
+      await pending;
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.snapshot?.detail.currentIndex).assertEqual(1);
+      expect(vm.automaticClue?.kind).assertEqual('text');
+      expect(vm.canRefresh()).assertFalse();
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.automaticClue?.kind).assertEqual('video');
+      vm.finishAutomaticClue(result.assignment.clues[1], true);
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.automaticClue?.kind).assertEqual('image');
+      vm.finishAutomaticClue(result.assignment.clues[2], true);
+      expect(vm.activeIndex).assertEqual(1);
+      expect(vm.automaticClue).assertNull();
+      expect(repository.answers.length).assertEqual(1);
+    });
+
+    it('earlyVideoCloseCancelsAdvanceAndGetNeverReopensTheQueue', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = clueResult(['text', 'video', 'image']);
+      repository.answers[0].succeed(result);
+      await pending;
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      vm.finishAutomaticClue(result.assignment.clues[1], false);
+      expect(vm.automaticClue?.kind).assertEqual('image');
+      vm.finishAutomaticClue(result.assignment.clues[2], true);
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.automaticClue).assertNull();
+      repository.server = result.assignment;
+      await vm.refresh();
+      await vm.reload();
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.automaticClue).assertNull();
+      expect(repository.answers.length).assertEqual(1);
+    });
+
+    it('backgroundDuringSubmissionKeepsSettlementAndCancelsTheLateVideoAndAdvance', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      vm.cancelAutomaticClues();
+      const result: GameplayAnswerResult = clueResult(['text', 'image']);
+      repository.answers[0].succeed(result);
+      await pending;
+      expect(vm.snapshot?.detail.currentIndex).assertEqual(1);
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.automaticClue).assertNull();
+      expect(repository.answers.length).assertEqual(1);
+    });
+
+    it('naturalVideoEndRespectsDisabledAutoNextAndAccountChanges', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = clueResult(['video', 'video'], false);
+      repository.answers[0].succeed(result);
+      await pending;
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      vm.finishAutomaticClue(result.assignment.clues[1], true);
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.automaticClue).assertNull();
+      vm.bindOwner('another-player');
+      vm.finishAutomaticClue(result.assignment.clues[1], true);
+      expect(vm.snapshot).assertNull();
+      expect(vm.visible).assertFalse();
+    });
+
+    it('textLinkHandoffAllowsOnlyItsReadAndKeepsTheQueueWithoutAutoAdvance', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = clueResult(['text', 'image']);
+      repository.answers[0].succeed(result);
+      await pending;
+      repository.server = result.assignment;
+      await vm.refresh();
+      await vm.refresh(result.assignment.clues[1]);
+      expect(repository.reads).assertEqual(1);
+      vm.cancelAutoAdvance();
+      await vm.refresh(result.assignment.clues[0]);
+      expect(repository.reads).assertEqual(2);
+      expect(vm.automaticClue?.kind).assertEqual('text');
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      expect(vm.automaticClue?.kind).assertEqual('image');
+      vm.finishAutomaticClue(result.assignment.clues[1], true);
+      expect(vm.activeIndex).assertEqual(0);
+      expect(repository.answers.length).assertEqual(1);
     });
 
     it('unknownOutcomeFreezesOriginalBodyAcrossRetryAndPageReentry', 0, async () => {

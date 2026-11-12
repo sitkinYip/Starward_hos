@@ -1,5 +1,5 @@
 import { GameRepository } from '../business/GameRepository';
-import { completionCombinations } from '../business/GameplayClues';
+import { answerAutomaticClues, completionCombinations } from '../business/GameplayClues';
 import { GameplayAnswerResult, GameplayClue, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
 import { GameFailure, Player } from '../business/models';
 import { createRequestIdentity } from '../platform/RequestIdentity';
@@ -61,6 +61,7 @@ export class GameplayViewModel {
   @Trace feedbackTransient: boolean = false;
   @Trace completionRevision: number = 0;
   completionClues: GameplayClue[] = [];
+  @Trace automaticClue: GameplayClue | null = null;
   @Trace advancing: boolean = false;
   @Trace now: number = Date.now();
   private readonly repository: GameRepository;
@@ -78,6 +79,9 @@ export class GameplayViewModel {
   private drafts: AnswerDraft[] = [];
   private serverOffset: number = 0;
   private advanceTimer: number = -1;
+  private automaticClueQueue: GameplayClue[] = [];
+  private clueAdvanceIndex: number = -1;
+  private clueGeneration: number = 0;
 
   constructor(repository: GameRepository, accepted: (snapshot: GameplaySnapshot) => void = () => {},
     authenticationFailed: (message: string) => void = () => {}, requestIdentity: () => string = createRequestIdentity,
@@ -105,7 +109,8 @@ export class GameplayViewModel {
   }
 
   leave(): void {
-    this.cancelAdvance();
+    this.cancelAutoAdvance();
+    this.cancelAutomaticClues();
     this.contentGeneration++;
     this.revision++;
     this.assignmentId = '';
@@ -196,12 +201,33 @@ export class GameplayViewModel {
     this.now = Date.now() + this.serverOffset;
   }
 
-  private cancelAdvance(): void {
+  cancelAutoAdvance(): void {
     if (this.advanceTimer !== -1) {
       clearTimeout(this.advanceTimer);
       this.advanceTimer = -1;
     }
+    this.clueAdvanceIndex = -1;
     this.advancing = false;
+  }
+
+  cancelAutomaticClues(): void {
+    this.clueGeneration++;
+    this.automaticClueQueue = [];
+    this.clueAdvanceIndex = -1;
+    this.automaticClue = null;
+  }
+
+  finishAutomaticClue(clue: GameplayClue, allowAdvance: boolean): void {
+    if (this.automaticClue !== clue) { return; }
+    if (!allowAdvance) { this.clueAdvanceIndex = -1; }
+    this.automaticClue = this.automaticClueQueue.shift() ?? null;
+    if (this.automaticClue !== null) { return; }
+    const index: number = this.clueAdvanceIndex;
+    this.clueAdvanceIndex = -1;
+    if (this.snapshot?.detail.status === 'active' && index === this.snapshot.detail.currentIndex &&
+      index > this.activeIndex) {
+      this.moveTo(index);
+    }
   }
 
   currentLevel(): GameplayLevel | null {
@@ -301,7 +327,8 @@ export class GameplayViewModel {
     if (this.refreshing || !this.canMoveTo(index)) {
       return;
     }
-    this.cancelAdvance();
+    this.cancelAutoAdvance();
+    this.cancelAutomaticClues();
     this.restoreForm(index);
     this.answerError = '';
     this.feedback = '';
@@ -369,7 +396,8 @@ export class GameplayViewModel {
     const epoch: number = this.epoch;
     const revision: number = ++this.revision;
     const index: number = keepPosition ? this.activeIndex : -1;
-    this.cancelAdvance();
+    this.cancelAutoAdvance();
+    this.cancelAutomaticClues();
     this.assignmentId = id;
     this.visible = true;
     this.loading = true;
@@ -405,15 +433,16 @@ export class GameplayViewModel {
     await this.open(this.assignmentId, true);
   }
 
-  canRefresh(): boolean {
+  canRefresh(handoffClue?: GameplayClue): boolean {
     return this.owner.length > 0 && this.assignmentId.length > 0 && this.visible && this.snapshot !== null &&
       !this.loading && !this.starting && !this.submitting && !this.retryEntry && !this.retryAnswer &&
-      !this.advancing && !this.refreshing;
+      !this.advancing && !this.refreshing &&
+      (this.automaticClue === null || (handoffClue?.kind === 'text' && this.automaticClue === handoffClue));
   }
 
   /** A user GET refresh keeps the current level mounted and never resolves an unknown write. */
-  async refresh(): Promise<void> {
-    if (!this.canRefresh()) {
+  async refresh(handoffClue?: GameplayClue): Promise<void> {
+    if (!this.canRefresh(handoffClue)) {
       return;
     }
     const epoch: number = this.epoch;
@@ -508,7 +537,8 @@ export class GameplayViewModel {
     const id: string = this.assignmentId;
     const previous: GameplaySnapshot | null = this.snapshot;
     const submittedIndex: number = this.activeIndex;
-    this.cancelAdvance();
+    const clueGeneration: number = this.clueGeneration;
+    this.cancelAutoAdvance();
     this.submitting = true;
     this.retryAnswer = true;
     this.answerError = '';
@@ -542,11 +572,19 @@ export class GameplayViewModel {
       } else if (result.result === 'correct') {
         const completed: boolean = result.assignment.detail.status === 'completed';
         this.feedback = completed ? '全部题目已经完成。' : '回答正确，当前题目已完成。';
+        const effects = result.effectsProvided ? result.effects : undefined;
+        const automatic: GameplayClue[] = settled === undefined ? [] :
+          answerAutomaticClues(previous, result.assignment, settled, effects);
         if (completed && previous?.detail.status !== 'completed' && result.assignment.detail.totalLevels > 1 &&
           result.assignment.presentation.completionStyle !== 'finale') {
-          this.completionClues = completionCombinations(previous, result.assignment,
-            result.effectsProvided ? result.effects : undefined);
+          this.completionClues = completionCombinations(previous, result.assignment, effects);
           this.completionRevision++;
+        } else if (automatic.length > 0) {
+          if (clueGeneration === this.clueGeneration) {
+            this.automaticClueQueue = automatic;
+            this.clueAdvanceIndex = settled?.autoNext ? result.assignment.detail.currentIndex : -1;
+            this.automaticClue = this.automaticClueQueue.shift() ?? null;
+          }
         } else if (!completed && settled?.autoNext && result.assignment.detail.status === 'active') {
           const nextIndex: number = result.assignment.detail.currentIndex;
           const delay: number = Number.isFinite(autoNextDelay) ? Math.max(0, Math.min(1500, autoNextDelay)) : 0;
