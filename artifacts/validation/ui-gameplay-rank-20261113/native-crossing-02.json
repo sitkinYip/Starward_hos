@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "group": "crossing",
+  "usage": "final",
+  "theme": "light",
+  "action": "ack",
+  "hapSha256": "2792c5ac2c23e5e7d6e3a7aaf25f65c885cd127b1d3e7033285c0017303255a5",
+  "checks": [
+    "empty isolated login",
+    "pristine native submit boundary",
+    "ordinary clue comes first",
+    "completion notice after ordinary clue",
+    "combination clue 1 follows in server order",
+    "combination clue 2 follows in server order",
+    "rank opens after final combination",
+    "rank action fully visible and at least 44vp",
+    "authoritative rank number and CTA",
+    "outside tap leaves rank dialog open",
+    "no new ceremony after dismissal or same-rank answer",
+    "history re-entry never replays ceremony",
+    "only one correct native final POST; no other native business write",
+    "strict HTTPS and SQLite agree on both answers, two completions and two XP entries"
+  ],
+  "originals": {
+    "ordinary": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/ordinary-00.png",
+        "sha256": "064036b73faa4a71c9730ad44939cd6fdbc9a028bb798974f804320cc5a62a52"
+      }
+    ],
+    "rank": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-00.png",
+        "sha256": "f037776da3b4a3709939bf5ba47053028dc47617f2f8e7e1c2d6e0cbe8dc9188"
+      },
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-01.png",
+        "sha256": "bd561bc584e15e198240e922cd2bbc2af5f4fcc87a42f1320e2ae2a31109aa95"
+      },
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-02.png",
+        "sha256": "d2b0b1fb3059e84ef2e2385c165a408ad8d5dff06bea360413341cd684766759"
+      },
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-03.png",
+        "sha256": "ffce2c3e658175ec15e1f6db295a63f85193b216dd63784ad697e67f1fe986e5"
+      },
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-04.png",
+        "sha256": "b268b2e10ddb97d97da502e74877165d8b02d335a9688256dbd082a053bac464"
+      },
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-05.png",
+        "sha256": "8c4566327c20ce15efdd969bb10934793bb411447dc99c9c0b433e4227b1535a"
+      }
+    ],
+    "settled": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/settled-00.png",
+        "sha256": "c72eca41b285fec9ff2f5bfd702e703dc951d9b2434ed4c35d2811f778f9256f"
+      }
+    ],
+    "history": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/history-00.png",
+        "sha256": "f834c6314586f2eb0e555fbc978634c96984c34446066bb17364967bfc3c933f"
+      }
+    ]
+  },
+  "geometryPx": {
+    "panel": [
+      46,
+      598,
+      1215,
+      2122
+    ],
+    "ack": [
+      338,
+      1886,
+      923,
+      2036
+    ],
+    "emblem": [
+      328,
+      766,
+      933,
+      1202
+    ],
+    "app": [
+      0,
+      124,
+      1260,
+      2720
+    ]
+  },
+  "settlement": {
+    "readOnlyDiagnostic": true,
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "answerSubmissionCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 100,
+    "playerTotalXp": 100,
+    "clueUnlockRows": 3,
+    "combinationUnlockRows": 2,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "rankAfter": 2,
+  "emptyLoginRestored": true
+}

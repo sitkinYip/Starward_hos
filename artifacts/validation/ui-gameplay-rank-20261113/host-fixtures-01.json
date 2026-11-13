@@ -1,0 +1,252 @@
+{
+  "status": "verified_rank_host_preparations",
+  "scope": "Isolated PocketBase fixture preparation over strict HTTPS; no device UI action by this preparation",
+  "branchDifference": "same text-only ordinary two-question flow; final answer XP 50 versus 40",
+  "samePublishedGameplaySessionWithinEachBranch": true,
+  "strictHostTls": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true
+  },
+  "webTwinsFullySettled": true,
+  "nativeRolesPrefixOnly": true,
+  "ordinaryReadsReplayedNoTransitionEffect": true,
+  "answerEffectsMatchedAuthorizedClues": true,
+  "addition": {
+    "temporaryAdministratorsRetired": true,
+    "exactSamePublishedSession": true,
+    "existingActorEntriesUnchanged": true,
+    "existingFixtureFilesUnchanged": true,
+    "tlsReceiptUnchanged": true
+  },
+  "records": {
+    "crossing-native": {
+      "status": "strict_host_rank_prefix_verified",
+      "group": "crossing",
+      "usage": "native",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "rankBeforeFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "rankAfterFinal": null,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "dtoSha256": "d4ad58bbcd30bcef8c6fd7b8e4f7acf7b9dfa8775647fe7a97926a19a1ebd147",
+      "fixtureSha256": "0b213ae19f821f1691e479a64860a4933d6f75e04b5a1ed6df9c230c9096642e"
+    },
+    "crossing-reduced": {
+      "status": "strict_host_rank_prefix_verified",
+      "group": "crossing",
+      "usage": "reduced",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "rankBeforeFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "rankAfterFinal": null,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "dtoSha256": "6c3c25defcf4558aef0c0c0d98b7fc487155b3f6dc655068431db5480249287a",
+      "fixtureSha256": "94a0e07b9e661508f2d13295b3c17e541091ead4f9317aa1b9c9ba8b3a06cf45"
+    },
+    "crossing-web": {
+      "status": "strict_host_rank_verified",
+      "group": "crossing",
+      "usage": "web",
+      "phases": [
+        "before",
+        "active",
+        "second",
+        "completed"
+      ],
+      "rankBeforeFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "rankAfterFinal": {
+        "order": 2,
+        "name": "旅行者 2",
+        "minTotalXp": 100,
+        "visualConfig": {}
+      },
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "dtoSha256": "09180b032d00abf2bdc3cf6624a62de38bd3e63857d740d2196495ab5952c842",
+      "fixtureSha256": "b3148ea71d46cb4ba1dd9726b950b179638cdb9ea4646f67d659cff0a652a0bf"
+    },
+    "crossing-final": {
+      "status": "strict_host_rank_prefix_verified",
+      "group": "crossing",
+      "usage": "final",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "rankBeforeFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "rankAfterFinal": null,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "dtoSha256": "c3721ef66b8bf87fab0e8dad6a6baa356bc67b506e8b62a2235165e325216502",
+      "fixtureSha256": "c17ecd6e4c9a63e2ff1b94377816a8cadca5b7506e7842d6d6776fe7ec170192"
+    },
+    "noncrossing-native": {
+      "status": "strict_host_rank_prefix_verified",
+      "group": "noncrossing",
+      "usage": "native",
+      "phases": [
+        "before",
+        "active",
+        "second"
+      ],
+      "rankBeforeFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "rankAfterFinal": null,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "dtoSha256": "4257c63f6eb36248b330bf2cd38af7c8778ac46897c39e2229b97c35df2c6605",
+      "fixtureSha256": "97b4cecf7e4806ac8336bd912e812523611ea1642ec0d131fa36c1d9f168750a"
+    },
+    "noncrossing-web": {
+      "status": "strict_host_rank_verified",
+      "group": "noncrossing",
+      "usage": "web",
+      "phases": [
+        "before",
+        "active",
+        "second",
+        "completed"
+      ],
+      "rankBeforeFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "rankAfterFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 90,
+        "playerTotalXp": 90,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "dtoSha256": "cedc0aacec38e724c02127bc23e8d492970bf5ef3130babec12149418d5af56b",
+      "fixtureSha256": "91ddff2fafea4e12c23d52f9cb79fcaf0588648a4877b97b2f339cbfd0a65705"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "accessibility_mode_not_activated_on_test_phone",
+  "control": "Settings > Care and accessibility > Advanced visual assistance > Transition animation",
+  "observations": {
+    "systemControlWasOn": true,
+    "systemControlObservedOffDuringRankRun": true,
+    "systemControlRestoredOn": true,
+    "publicAccessibilityApiOn": false,
+    "publicAccessibilityApiOff": false,
+    "legacySettingsKeysExposedByPublicGetter": false,
+    "rankDialogOperableWithTransitionAnimationOff": true,
+    "panelPixelChangesStillVisibleWithTransitionAnimationOff": true
+  },
+  "scope": "Observed switch and boolean only. The disposable diagnostic HAP contained temporary foreground read-only instrumentation; the probe has been removed from app source. No hidden settings or private APIs were used. This is not a passing reduced-motion test."
+}

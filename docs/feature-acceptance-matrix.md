@@ -841,3 +841,13 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 | 外观与动态验收 | 用同一隔离服务端快照对照冻结 Web，核对徽章、名称、状态、按钮与生效的进退场、光环和粒子。直板机核对正常动画及系统「减少动画」下的操作可达性，逐项记录实际证据。 |
 
 本片范围为普通场次的新答题结果。使用专用隔离真实 HTTPS 场次验证跨级与未跨级；检查答题回执、经验账本和只读回访。终章、剧情、奖励和 BGM 属于各自切片。
+
+同一普通双题场次的隔离数据用于原生和冻结 Web `4b7d1a0` 对照。[Web 原图与动作记录](../artifacts/validation/ui-gameplay-rank-20261113/web-reference-05.json) 覆盖日夜主题、减少动画及未跨级；页面重放来自 [严格 HTTPS 准备的真实 DTO](../artifacts/validation/ui-gameplay-rank-20261113/host-fixtures-02.json)，浏览器不回写。Web 外层独立环形光与背景模糊保留为视觉差异；原生用官方模态遮罩，面板内用 ArkUI 实现徽章轨道、呼吸、扫光和粒子。
+
+- [最终直板安装与 HTTPS](../artifacts/validation/ui-gameplay-rank-20261113/runtime-02.json) 的窗口和证书 5 项通过，1260×2720，density 3.25，字号 1。[跨级原生验证](../artifacts/validation/ui-gameplay-rank-20261113/native-crossing-02.json) 在 100 XP 时显示「旅行者 2」，且只在普通线索、完成提示和两条组合线索全部结束后展示。点外不关闭，确认后回到已完成题；历史回访不重播。SQLite 核实一次原生末题 POST、该题一笔经验。
+- [未跨级原生验证](../artifacts/validation/ui-gameplay-rank-20261113/native-noncrossing-01.json) 在 90 XP 时仍为等级 1，原有线索照常显示，未出现升级弹窗。两类场次的 [独立 HTTPS 与 SQLite 对账](../artifacts/validation/ui-gameplay-rank-20261113/host-ledger-01.json) 核实收据、写入次数、经验、线索授权及只读回访。
+- [原图复核](../artifacts/validation/ui-gameplay-rank-20261113/visual-review-01.json) 实测原生面板 359.7×468.9vp、按钮 180×46.2vp，Web 360×470.2 CSS px、按钮 180×46 CSS px。日夜原图中布局、文字及点击区可读可达，连续画面可见动效变化；未用截屏序列推定原生动画精确时长。
+- [夜间真机](../artifacts/validation/ui-gameplay-rank-20261113/native-reduced-01.json) 在系统「过渡动画」关闭时可用系统返回关闭且不重播；面板内仍可见动效。[诊断](../artifacts/validation/ui-gameplay-rank-20261113/system-motion-probe-01.json) 证实切换该选项前后 [AccessibilityKit 减弱动效状态](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-accessibility/) 均为 false，系统选项已恢复。应用收到减弱动效为 true 时不挂载持续动画；该系统分支未在本机触发，保留待验。
+- [答题 20/20](../artifacts/validation/ui-gameplay-rank-20261113/GameplayAnswerViewModel/local-test-summary.json) 与 [线索 12/12](../artifacts/validation/ui-gameplay-rank-20261113/GameplayClues/local-test-summary.json) 通过。非末题自动切题、提前关闭视频、历史回访和取消只使用相应本地用例覆盖的范围。未为这些分支新增真机场次。[codelinter](../artifacts/validation/ui-gameplay-rank-20261113/lint/lint.json) 退出 0、`filesChecked=0`，不计为实际源码静态检查覆盖。
+
+已恢复[固定预览登录](../artifacts/validation/ui-gameplay-rank-20261113/fixed-preview-restored-01.json)，隔离包与预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-rank-20261113/preview-package-equivalence-01.json)。本轮[临时环境已移除](../artifacts/validation/ui-gameplay-rank-20261113/disposable-cleanup-01.json)，固定预览资料和进度保留。

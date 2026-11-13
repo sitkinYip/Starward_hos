@@ -7,7 +7,7 @@ import { GameplayClue, GameplayContentBlock, GameplayLevel, GameplayOption,
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { openExternalClueLink } from '../platform/ExternalClueLink';
-import { GameplayViewModel } from './GameplayViewModel';
+import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
 import { PrimaryAction } from '../ui/PrimaryAction';
@@ -29,6 +29,7 @@ import { StarwardClueTextDialog } from '../ui/StarwardClueTextDialog';
 import { StarwardCombinationDialog } from '../ui/StarwardCombinationDialog';
 import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
 import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
+import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -65,12 +66,29 @@ class CompletionNoticeRequest {
   readonly owner: string;
   readonly count: number;
   readonly hasResults: boolean;
+  readonly revision: number;
 
-  constructor(action: PromptAction, owner: string, count: number, hasResults: boolean) {
+  constructor(action: PromptAction, owner: string, count: number, hasResults: boolean, revision: number) {
     this.action = action;
     this.owner = owner;
     this.count = count;
     this.hasResults = hasResults;
+    this.revision = revision;
+  }
+}
+
+class RankDialogRequest {
+  id: number = -1;
+  closing: boolean = false;
+  nativeDismissed: boolean = false;
+  readonly action: PromptAction;
+  readonly owner: string;
+  readonly rank: GameplayRankUp;
+
+  constructor(action: PromptAction, owner: string, rank: GameplayRankUp) {
+    this.action = action;
+    this.owner = owner;
+    this.rank = rank;
   }
 }
 
@@ -99,9 +117,11 @@ export struct GameplayPage {
   @Local private textClue: GameplayClue | null = null;
   @Local private combinationSequenceActive: boolean = false;
   @Local private completionNotice: CompletionNoticeRequest | null = null;
+  @Local private rankNotice: RankDialogRequest | null = null;
   private clueDialog: ClueDialogRequest | null = null;
   private combinationQueue: GameplayClue[] = [];
   private combinationOwner: string = '';
+  private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
   private clueLinkHandoff: ClueLinkHandoff | null = null;
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -109,7 +129,10 @@ export struct GameplayPage {
     const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
     const keepReading: boolean = handoff !== null && this.clueDialog === handoff.dialog &&
       this.currentTextClueOwner(handoff.dialog.owner);
-    if (!foreground && !keepReading) { this.play.cancelAutomaticClues(); }
+    if (!foreground) {
+      if (keepReading) { this.play.cancelRankUpPresentation(); } else { this.play.cancelAutomaticClues(); }
+      this.cancelRankNotice();
+    }
     this.imageCache.validateOwner();
     this.viewer.validateOwner();
     if (foreground) {
@@ -156,6 +179,7 @@ export struct GameplayPage {
     this.imageCache.validateOwner();
     this.clearClueLinkHandoff();
     this.cancelCompletionNotice();
+    this.cancelRankNotice();
     this.interruptCombinationSequence();
     this.closeClueDialog(true);
     this.viewer.close(this.viewer.sessionId, true);
@@ -248,7 +272,7 @@ export struct GameplayPage {
 
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
     'play.refreshing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
-    'textClue', 'completionNotice', 'combinationSequenceActive')
+    'textClue', 'completionNotice', 'combinationSequenceActive', 'rankNotice')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -374,8 +398,14 @@ export struct GameplayPage {
   }
 
   private interruptCombinationSequence(): void {
+    if (this.combinationRevision > 0) { this.play.cancelRankUpPresentation(); }
+    this.clearCombinationSequence();
+  }
+
+  private clearCombinationSequence(): void {
     this.combinationQueue = [];
     this.combinationOwner = '';
+    this.combinationRevision = 0;
     this.combinationSequenceActive = false;
   }
 
@@ -392,7 +422,9 @@ export struct GameplayPage {
         return;
       }
     }
-    this.interruptCombinationSequence();
+    const revision: number = this.combinationRevision;
+    this.clearCombinationSequence();
+    this.play.finishCompletionPresentation(revision);
   }
 
   private openClue(id: string): void {
@@ -509,7 +541,7 @@ export struct GameplayPage {
         this.finishClueDialogClose(request);
       }
     } catch {
-      if (sequence) { this.interruptCombinationSequence(); }
+      if (sequence && this.clueDialog === request) { this.interruptCombinationSequence(); }
       this.releaseClueDialog(request);
     }
   }
@@ -517,7 +549,7 @@ export struct GameplayPage {
   private finishClueDialogClose(request: ClueDialogRequest): void {
     if (request.id < 0 || request.nativeDismissed) { return; }
     try { request.action.closeCustomDialog(request.id); } catch {
-      if (request.sequence) { this.interruptCombinationSequence(); }
+      if (request.sequence && this.clueDialog === request) { this.interruptCombinationSequence(); }
       this.releaseClueDialog(request);
     }
   }
@@ -699,18 +731,20 @@ export struct GameplayPage {
     }
   }
 
-  private async openCompletionNotice(owner: string, count: number, hasResults: boolean): Promise<void> {
+  private async openCompletionNotice(owner: string, count: number, hasResults: boolean, revision: number): Promise<void> {
     const width: number = Math.min(680, this.viewportWidth - 48);
     const height: number = this.clueDialogHeight();
     if (width < 160 || height < 120) {
       this.interruptCombinationSequence();
+      this.play.cancelRankUpPresentation();
       return;
     }
     let request: CompletionNoticeRequest;
     try {
-      request = new CompletionNoticeRequest(this.getUIContext().getPromptAction(), owner, count, hasResults);
+      request = new CompletionNoticeRequest(this.getUIContext().getPromptAction(), owner, count, hasResults, revision);
     } catch {
       this.interruptCombinationSequence();
+      this.play.cancelRankUpPresentation();
       return;
     }
     this.completionNotice = request;
@@ -756,9 +790,18 @@ export struct GameplayPage {
 
   private releaseCompletionNotice(request: CompletionNoticeRequest, dismissed: boolean = false): void {
     if (this.completionNotice !== request) { return; }
-    const showResults: boolean = dismissed && request.acknowledged && this.isCompletionNoticeCurrent(request);
+    const completed: boolean = dismissed && this.isCompletionNoticeCurrent(request);
     this.completionNotice = null;
-    if (showResults) { this.showNextCombination(); } else { this.interruptCombinationSequence(); }
+    if (completed && request.acknowledged) {
+      this.showNextCombination();
+    } else {
+      this.interruptCombinationSequence();
+      if (completed && !request.hasResults) {
+        this.play.finishCompletionPresentation(request.revision);
+      } else {
+        this.play.cancelRankUpPresentation();
+      }
+    }
   }
 
   @Monitor('play.completionRevision')
@@ -783,10 +826,111 @@ export struct GameplayPage {
       const hasResults: boolean = this.combinationQueue.length > 0;
       if (hasResults) {
         this.combinationOwner = owner;
+        this.combinationRevision = revision;
         this.combinationSequenceActive = true;
       }
-      this.openCompletionNotice(owner, snapshot.detail.completedLevels, hasResults);
+      this.openCompletionNotice(owner, snapshot.detail.completedLevels, hasResults, revision);
     }
+  }
+
+  @Monitor('play.rankUp', 'play.visible', 'play.error', 'play.snapshot', 'play.automaticClue',
+    'play.loading', 'play.starting', 'play.submitting', 'play.refreshing', 'seenCompletionRevision',
+    'completionNotice', 'combinationSequenceActive', 'keyboardVisible', 'foreground', 'recoveryVisible',
+    'textClue', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
+    'viewportWidth', 'viewportHeight')
+  rankChanged(): void {
+    if (this.rankNotice !== null) {
+      if (!this.isRankNoticeCurrent(this.rankNotice)) { this.cancelRankNotice(); }
+      return;
+    }
+    const rank: GameplayRankUp | null = this.play.rankUp;
+    const width: number = Math.min(680, this.viewportWidth - (this.viewportWidth <= 620 ? 28 : 48));
+    const height: number = this.clueDialogHeight();
+    if (rank === null || !this.foreground || !this.play.visible || this.play.error.length > 0 ||
+      this.play.imageOwnerKey().length === 0 || this.play.automaticClue !== null ||
+      this.seenCompletionRevision !== this.play.completionRevision || !this.questionInteractionReady() ||
+      width < 160 || height < 120) { return; }
+    this.openRankNotice(rank, width, height);
+  }
+
+  private isRankNoticeCurrent(request: RankDialogRequest): boolean {
+    return this.rankNotice === request && this.play.rankUp === request.rank && this.foreground && this.play.visible &&
+      this.play.error.length === 0 && this.play.imageOwnerKey() === request.owner;
+  }
+
+  @Builder
+  rankNoticeContent(request: RankDialogRequest, width: number, height: number) {
+    if (this.rankNotice === request) {
+      StarwardRankUpDialog({ rankOrder: request.rank.order, rankName: request.rank.name,
+        panelWidth: width, maxHeight: height, viewportWidth: this.viewportWidth, displayFont: this.displayFont,
+        motionEnabled: this.foreground && !this.reducedMotion,
+        acknowledge: () => {
+          if (request.closing || !this.isRankNoticeCurrent(request)) { return; }
+          request.closing = true;
+          this.closeRankNotice(request);
+        } })
+    }
+  }
+
+  private async openRankNotice(rank: GameplayRankUp, width: number, height: number): Promise<void> {
+    let request: RankDialogRequest;
+    try {
+      request = new RankDialogRequest(this.getUIContext().getPromptAction(), this.play.imageOwnerKey(), rank);
+    } catch {
+      this.play.dismissRankUp(rank);
+      return;
+    }
+    this.rankNotice = request;
+    const maskTransition: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY :
+      TransitionEffect.asymmetric(
+        TransitionEffect.opacity(0).animation({ duration: 320, curve: Curve.EaseOut }),
+        TransitionEffect.opacity(0).animation({ duration: 240, curve: Curve.EaseIn }));
+    const dialogTransition: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY :
+      TransitionEffect.asymmetric(
+        TransitionEffect.opacity(0).combine(TransitionEffect.translate({ y: 14 }))
+          .combine(TransitionEffect.scale({ x: 0.96, y: 0.96 }))
+          .animation({ duration: 320, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) }),
+        TransitionEffect.opacity(0).combine(TransitionEffect.translate({ y: 14 }))
+          .combine(TransitionEffect.scale({ x: 0.96, y: 0.96 }))
+          .animation({ duration: 240, curve: curves.cubicBezierCurve(0.4, 0, 0.8, 0.4) }));
+    try {
+      request.id = await request.action.openCustomDialog({
+        builder: () => { this.rankNoticeContent(request, width, height); },
+        alignment: DialogAlignment.Center, width, cornerRadius: 0, isModal: true, showInSubWindow: false,
+        backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
+        maskColor: $r('app.color.rank_up_mask'), dialogTransition, maskTransition, autoCancel: false,
+        onWillDismiss: (action: DismissDialogAction) => {
+          if (action.reason === DismissReason.TOUCH_OUTSIDE) { return; }
+          request.closing = true;
+          request.nativeDismissed = true;
+          action.dismiss();
+        },
+        onDidDisappear: () => this.releaseRankNotice(request)
+      });
+      if (request.closing || !this.isRankNoticeCurrent(request)) { this.closeRankNotice(request); }
+    } catch {
+      this.releaseRankNotice(request);
+    }
+  }
+
+  private closeRankNotice(request: RankDialogRequest): void {
+    if (request.id < 0 || request.nativeDismissed) { return; }
+    try { request.action.closeCustomDialog(request.id); } catch { this.releaseRankNotice(request); }
+  }
+
+  private cancelRankNotice(): void {
+    const request: RankDialogRequest | null = this.rankNotice;
+    if (request === null) { return; }
+    const wasClosing: boolean = request.closing;
+    request.closing = true;
+    this.releaseRankNotice(request);
+    if (!wasClosing) { this.closeRankNotice(request); }
+  }
+
+  private releaseRankNotice(request: RankDialogRequest): void {
+    if (this.rankNotice !== request) { return; }
+    this.rankNotice = null;
+    this.play.dismissRankUp(request.rank);
   }
 
   private readableQuestionId(): string {
@@ -917,13 +1061,13 @@ export struct GameplayPage {
     return this.interactionReady() && !this.keyboardVisible && !this.recoveryVisible &&
       this.textClue === null && !this.viewer.visible && !this.viewer.closing &&
       !this.videoViewer.visible && !this.videoViewer.closing &&
-      !this.combinationSequenceActive && this.completionNotice === null;
+      !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
   }
 
   private answerMotionEnabled(): boolean {
     return this.foreground && !this.reducedMotion && !this.recoveryVisible && this.textClue === null &&
       !this.viewer.visible && !this.viewer.closing && !this.videoViewer.visible && !this.videoViewer.closing &&
-      !this.combinationSequenceActive && this.completionNotice === null;
+      !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
   }
 
   private hasAnswerFeedback(): boolean {

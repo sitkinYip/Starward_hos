@@ -1,0 +1,122 @@
+{
+  "status": "reviewed_originals",
+  "sourceHapSha256": "2792c5ac2c23e5e7d6e3a7aaf25f65c885cd127b1d3e7033285c0017303255a5",
+  "sourceWebReportSha256": "d26bba0f1fa5f2277b02c60118ba2463f77cfeff9df1bd1913f04ef58dfa9928",
+  "screen": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1,
+    "webCssViewport": [
+      388,
+      771
+    ]
+  },
+  "webPanelCssPx": [
+    360,
+    470.171875
+  ],
+  "webAckCssPx": [
+    180,
+    46
+  ],
+  "native": {
+    "motion": {
+      "sourceReport": "native-crossing-02.json",
+      "sourceReportSha256": "7396b6984426209bcc0f802fb086f9e18181ac7f919187a2d826928a311a3a3e",
+      "nativeRankOriginals": [
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-00.png",
+          "sha256": "f037776da3b4a3709939bf5ba47053028dc47617f2f8e7e1c2d6e0cbe8dc9188"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-01.png",
+          "sha256": "bd561bc584e15e198240e922cd2bbc2af5f4fcc87a42f1320e2ae2a31109aa95"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-02.png",
+          "sha256": "d2b0b1fb3059e84ef2e2385c165a408ad8d5dff06bea360413341cd684766759"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-03.png",
+          "sha256": "ffce2c3e658175ec15e1f6db295a63f85193b216dd63784ad697e67f1fe986e5"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-04.png",
+          "sha256": "b268b2e10ddb97d97da502e74877165d8b02d335a9688256dbd082a053bac464"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T025842116145Z/rank-05.png",
+          "sha256": "8c4566327c20ce15efdd969bb10934793bb411447dc99c9c0b433e4227b1535a"
+        }
+      ],
+      "panelVp": [
+        359.6923076923077,
+        468.9230769230769
+      ],
+      "ackVp": [
+        180.0,
+        46.15384615384615
+      ],
+      "consecutivePanelChangeFractionAt2Gray": [
+        0.1471043525769441,
+        0.1152723595548697,
+        0.15502161431624956,
+        0.16242128267308226,
+        0.1503512925456968
+      ],
+      "largestPanelChangeFractionAt2Gray": 0.16242128267308226
+    },
+    "systemTransitionOff": {
+      "sourceReport": "native-reduced-01.json",
+      "sourceReportSha256": "396d234fc4d856010232f9e92d2cde2dd31e89dab9487fa2b63b03616fbabb88",
+      "nativeRankOriginals": [
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T030114791591Z/rank-00.png",
+          "sha256": "f3fc10f0a2d618350502382ccf49150ce201bb76916b5980829d10c4c77172a6"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T030114791591Z/rank-01.png",
+          "sha256": "1fcfb31879804d7e6f3f50a57ad5ba16c7292dc543a487d1c501751416c98087"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T030114791591Z/rank-02.png",
+          "sha256": "bf76f8912fe21d5035133003c58b88589e2408a86a6af16bcdf2b15e2b7c5fa5"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T030114791591Z/rank-03.png",
+          "sha256": "995b1ad246c307effdb133308e53f96b72cf7377f9f9ccf09f4f524ae1e9c08c"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T030114791591Z/rank-04.png",
+          "sha256": "cbe12587ae5271da9c134aa7b05b4ad40a2ee0648bfad3c24b33d4ba98b146f6"
+        },
+        {
+          "name": "artifacts/private/rank-20261113/entry-main-20261113T030114791591Z/rank-05.png",
+          "sha256": "aea4bac92c1c76ddbc5e068f24b5c447efc157cbadd85451177f929dc07b9d63"
+        }
+      ],
+      "panelVp": [
+        359.6923076923077,
+        468.9230769230769
+      ],
+      "ackVp": [
+        180.0,
+        46.15384615384615
+      ],
+      "consecutivePanelChangeFractionAt2Gray": [
+        0.14274314907647923,
+        0.10322633208408016,
+        0.1539025582532182,
+        0.1616640627246499,
+        0.14891113688427954
+      ],
+      "largestPanelChangeFractionAt2Gray": 0.1616640627246499
+    }
+  },
+  "reviewScope": "Same authored branch and authoritative level across twin actors. Normal and reduced samples are different native themes. Frames show presence or absence of ongoing visual change, not exact native timing.",
+  "knownVisualDifferences": [
+    "Official native dim/fade with per-theme color; no separate screen backdrop blur or stage ellipse animation.",
+    "Native particle paths and serif glyph fallback differ. Native radius, badge, status and action follow the frozen design."
+  ]
+}

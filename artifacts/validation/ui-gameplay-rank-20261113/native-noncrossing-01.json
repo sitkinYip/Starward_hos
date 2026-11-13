@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "group": "noncrossing",
+  "usage": "native",
+  "theme": "light",
+  "action": "ack",
+  "hapSha256": "2792c5ac2c23e5e7d6e3a7aaf25f65c885cd127b1d3e7033285c0017303255a5",
+  "checks": [
+    "empty isolated login",
+    "pristine native submit boundary",
+    "ordinary clue comes first",
+    "completion notice after ordinary clue",
+    "combination clue 1 follows in server order",
+    "combination clue 2 follows in server order",
+    "no new ceremony after dismissal or same-rank answer",
+    "history re-entry never replays ceremony",
+    "only one correct native final POST; no other native business write",
+    "strict HTTPS and SQLite agree on both answers, two completions and two XP entries"
+  ],
+  "originals": {
+    "ordinary": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T030350906045Z/ordinary-00.png",
+        "sha256": "eafb80a799d46adc168b7739b616e7b9413aa20a7f703428a971c846503568bb"
+      }
+    ],
+    "settled": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T030350906045Z/settled-00.png",
+        "sha256": "def5664a04c1dc9c44259bd82eed54ae6189141d424a174a3a6fe5b6ceb04c28"
+      }
+    ],
+    "history": [
+      {
+        "name": "artifacts/private/rank-20261113/entry-main-20261113T030350906045Z/history-00.png",
+        "sha256": "2f3eafdec4394a279d9bcf6b0fe857f2fa4720945a21f77b8863209ea6f5ea7b"
+      }
+    ]
+  },
+  "geometryPx": {},
+  "settlement": {
+    "readOnlyDiagnostic": true,
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "answerSubmissionCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 90,
+    "playerTotalXp": 90,
+    "clueUnlockRows": 3,
+    "combinationUnlockRows": 2,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "rankAfter": 1,
+  "emptyLoginRestored": true
+}

@@ -1,0 +1,144 @@
+{
+  "status": "verified_rank_settlement",
+  "scope": "Isolated PocketBase ordinary final-answer fixtures; read-only verification after UI submission",
+  "caProbes": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true
+  },
+  "nativeUiAcceptance": false,
+  "records": {
+    "crossing-native": {
+      "status": "rank_settlement_verified",
+      "group": "crossing",
+      "usage": "native",
+      "rankAfterFinal": {
+        "order": 2,
+        "name": "旅行者 2",
+        "minTotalXp": 100,
+        "visualConfig": {}
+      },
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "proxyGameplayPosts": 3,
+      "proxyReceiptsMatchSqliteWithoutDuplicates": true,
+      "readonlyRevisitLedgerUnchanged": true,
+      "completedGameplayMatchesFrozenWebTwin": true,
+      "verifiedStrictHostTls": true
+    },
+    "crossing-final": {
+      "status": "rank_settlement_verified",
+      "group": "crossing",
+      "usage": "final",
+      "rankAfterFinal": {
+        "order": 2,
+        "name": "旅行者 2",
+        "minTotalXp": 100,
+        "visualConfig": {}
+      },
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "proxyGameplayPosts": 3,
+      "proxyReceiptsMatchSqliteWithoutDuplicates": true,
+      "readonlyRevisitLedgerUnchanged": true,
+      "completedGameplayMatchesFrozenWebTwin": true,
+      "verifiedStrictHostTls": true
+    },
+    "noncrossing-native": {
+      "status": "rank_settlement_verified",
+      "group": "noncrossing",
+      "usage": "native",
+      "rankAfterFinal": {
+        "order": 1,
+        "name": "初见",
+        "minTotalXp": 0,
+        "visualConfig": {}
+      },
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 90,
+        "playerTotalXp": 90,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "proxyGameplayPosts": 3,
+      "proxyReceiptsMatchSqliteWithoutDuplicates": true,
+      "readonlyRevisitLedgerUnchanged": true,
+      "completedGameplayMatchesFrozenWebTwin": true,
+      "verifiedStrictHostTls": true
+    },
+    "crossing-reduced": {
+      "status": "rank_settlement_verified",
+      "group": "crossing",
+      "usage": "reduced",
+      "rankAfterFinal": {
+        "order": 2,
+        "name": "旅行者 2",
+        "minTotalXp": 100,
+        "visualConfig": {}
+      },
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 3,
+        "combinationUnlockRows": 2,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "proxyGameplayPosts": 3,
+      "proxyReceiptsMatchSqliteWithoutDuplicates": true,
+      "readonlyRevisitLedgerUnchanged": true,
+      "completedGameplayMatchesFrozenWebTwin": true,
+      "verifiedStrictHostTls": true
+    }
+  }
+}

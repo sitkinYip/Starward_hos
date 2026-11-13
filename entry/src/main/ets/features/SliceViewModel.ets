@@ -68,7 +68,7 @@ export class SliceViewModel {
         this.profileRevision++;
         this.acceptPlayer(player);
       }
-    });
+    }, () => this.gate === 'home' ? this.player : null);
   }
 
   private message(error: Object): string {

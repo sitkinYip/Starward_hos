@@ -4,7 +4,7 @@ import { GameFailure, Player } from '../main/ets/business/models';
 import { decodeGameplay } from '../main/ets/data/GameplayDecoder';
 import { decodePlayer } from '../main/ets/data/DtoDecoder';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
-import { GameplayViewModel } from '../main/ets/features/GameplayViewModel';
+import { GameplayRankUp, GameplayViewModel } from '../main/ets/features/GameplayViewModel';
 import { GAMEPLAY_CHOICE_JSON, GAMEPLAY_STARTED_JSON } from './fixtures/GameplayFixture';
 import { WEB_PLAYER_JSON } from './fixtures/WebFixture';
 
@@ -39,6 +39,13 @@ function answerResult(result: string, assignment: GameplaySnapshot, totalXp: num
   value.player.totalXp = totalXp;
   value.xpDelta = result === 'correct' ? 50 : 0;
   return value;
+}
+
+function withRank(result: GameplayAnswerResult, order: number = 2): GameplayAnswerResult {
+  result.player.level.id = `rank${order}`;
+  result.player.level.order = order;
+  result.player.level.name = '远航见习者';
+  return result;
 }
 
 function clueResult(kinds: string[], autoNext: boolean = true,
@@ -122,12 +129,18 @@ class AnswerRepository extends MockGameRepository {
   }
 }
 
-function viewModel(repository: AnswerRepository, playerAccepted: (player: Player) => void = () => {}): GameplayViewModel {
+function viewModel(repository: AnswerRepository, playerAccepted: (player: Player) => void = () => {},
+  currentPlayer: () => Player | null = () => null): GameplayViewModel {
   let sequence: number = 0;
   const value: GameplayViewModel = new GameplayViewModel(repository, () => {}, () => {},
-    () => `answer-${++sequence}`, playerAccepted);
+    () => `answer-${++sequence}`, playerAccepted, currentPlayer);
   value.bindOwner('playeralice');
   return value;
+}
+
+function viewModelWithRank(repository: AnswerRepository): GameplayViewModel {
+  let player: Player = decodePlayer(WEB_PLAYER_JSON);
+  return viewModel(repository, (updated: Player) => { player = updated; }, () => player);
 }
 
 export default function gameplayAnswerViewModelTests(): void {
@@ -160,25 +173,28 @@ export default function gameplayAnswerViewModelTests(): void {
 
     it('incorrect200AcceptsOnlyReturnedProgressAndAllowsANewAnswerIdentity', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
-      let playerXp: number = -1;
-      const vm: GameplayViewModel = viewModel(repository, (player: Player) => { playerXp = player.totalXp; });
+      let player: Player = decodePlayer(WEB_PLAYER_JSON);
+      const vm: GameplayViewModel = viewModel(repository, (updated: Player) => { player = updated; }, () => player);
       await vm.open('assignment1');
       vm.editAnswer('错误');
       const attempt: Promise<void> = vm.submitAnswer();
       const incorrect: GameplaySnapshot = textSnapshot();
       incorrect.levels[0].lastAnswer = '错误';
-      repository.answers[0].succeed(answerResult('incorrect', incorrect, 0));
+      repository.answers[0].succeed(withRank(answerResult('incorrect', incorrect, 0)));
       await attempt;
       expect(vm.feedbackDanger).assertTrue();
       expect(vm.snapshot?.detail.completedLevels).assertEqual(0);
       expect(vm.currentLevel()?.wrongCount).assertEqual(0);
-      expect(playerXp).assertEqual(0);
+      expect(player.totalXp).assertEqual(0);
+      expect(player.level.order).assertEqual(2);
+      expect(vm.rankUp).assertNull();
       expect(vm.answerAllowed()).assertTrue();
       vm.editAnswer('星辰大海');
       const next: Promise<void> = vm.submitAnswer();
       expect(repository.answers[0].requestId === repository.answers[1].requestId).assertFalse();
-      repository.answers[1].succeed(answerResult('correct', choiceSnapshot()));
+      repository.answers[1].succeed(withRank(answerResult('correct', choiceSnapshot())));
       await next;
+      expect(vm.rankUp).assertNull();
       vm.leave();
     });
 
@@ -214,15 +230,16 @@ export default function gameplayAnswerViewModelTests(): void {
 
     it('autoNextUsesSettledConfigurationAndDelayedAdvanceCannotReopenALeftPage', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('星辰大海');
       const pending: Promise<void> = vm.submitAnswer(20);
       const settled: GameplaySnapshot = choiceSnapshot();
       settled.levels[0].autoNext = true;
-      repository.answers[0].succeed(answerResult('correct', settled));
+      repository.answers[0].succeed(withRank(answerResult('correct', settled)));
       await pending;
       expect(vm.advancing).assertTrue();
+      expect(vm.rankUp).assertNull();
       await vm.refresh();
       expect(repository.reads).assertEqual(1);
       expect(vm.activeIndex).assertEqual(0);
@@ -231,24 +248,54 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.visible).assertFalse();
       expect(vm.snapshot).assertNull();
       expect(vm.advancing).assertFalse();
+      expect(vm.rankUp).assertNull();
       repository.server = textSnapshot();
       await vm.open('assignment1');
       vm.editAnswer('星辰大海');
       const reduced: Promise<void> = vm.submitAnswer(0);
-      repository.answers[1].succeed(answerResult('correct', settled));
+      repository.answers[1].succeed(withRank(answerResult('correct', settled), 3));
       await reduced;
       expect(vm.activeIndex).assertEqual(1);
       expect(vm.advancing).assertFalse();
+      expect(vm.rankUp?.order).assertEqual(3);
       vm.leave();
+    });
+
+    it('successfulAnswerPresentsRankAfterTheDelayedAdvanceAndOnlyForThatAnswer', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModelWithRank(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer(20);
+      const settled: GameplaySnapshot = choiceSnapshot();
+      settled.levels[0].autoNext = true;
+      repository.answers[0].succeed(withRank(answerResult('correct', settled)));
+      await pending;
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.rankUp).assertNull();
+      await new Promise<void>((resolve: () => void) => { setTimeout(resolve, 40); });
+      expect(vm.activeIndex).assertEqual(1);
+      const rank: GameplayRankUp | null = vm.rankUp;
+      expect(rank?.order).assertEqual(2);
+      expect(vm.canRefresh()).assertFalse();
+      vm.dismissRankUp(new GameplayRankUp(2, '远航见习者'));
+      expect(vm.rankUp?.order).assertEqual(2);
+      if (rank !== null) { vm.dismissRankUp(rank); }
+      expect(vm.rankUp).assertNull();
+      expect(vm.answerAllowed()).assertTrue();
+      repository.server = settled;
+      await vm.reload();
+      expect(vm.rankUp).assertNull();
+      expect(repository.answers.length).assertEqual(1);
     });
 
     it('mixedAutomaticCluesKeepTheSettledQuestionUntilTheLastGalleryCloses', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('星辰大海');
       const pending: Promise<void> = vm.submitAnswer();
-      const result: GameplayAnswerResult = clueResult(['text', 'video', 'image']);
+      const result: GameplayAnswerResult = withRank(clueResult(['text', 'video', 'image']));
       repository.answers[0].succeed(result);
       await pending;
       expect(vm.activeIndex).assertEqual(0);
@@ -262,19 +309,22 @@ export default function gameplayAnswerViewModelTests(): void {
       vm.finishAutomaticClue(result.assignment.clues[1], true);
       expect(vm.activeIndex).assertEqual(0);
       expect(vm.automaticClue?.kind).assertEqual('image');
+      expect(vm.rankUp).assertNull();
       vm.finishAutomaticClue(result.assignment.clues[2], true);
       expect(vm.activeIndex).assertEqual(1);
       expect(vm.automaticClue).assertNull();
+      expect(vm.rankUp?.order).assertEqual(2);
+      expect(vm.answerAllowed()).assertFalse();
       expect(repository.answers.length).assertEqual(1);
     });
 
     it('earlyVideoCloseCancelsAdvanceAndGetNeverReopensTheQueue', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('星辰大海');
       const pending: Promise<void> = vm.submitAnswer();
-      const result: GameplayAnswerResult = clueResult(['text', 'video', 'image']);
+      const result: GameplayAnswerResult = withRank(clueResult(['text', 'video', 'image']));
       repository.answers[0].succeed(result);
       await pending;
       vm.finishAutomaticClue(result.assignment.clues[0], true);
@@ -283,27 +333,32 @@ export default function gameplayAnswerViewModelTests(): void {
       vm.finishAutomaticClue(result.assignment.clues[2], true);
       expect(vm.activeIndex).assertEqual(0);
       expect(vm.automaticClue).assertNull();
+      const rank: GameplayRankUp | null = vm.rankUp;
+      expect(rank?.order).assertEqual(2);
+      if (rank !== null) { vm.dismissRankUp(rank); }
       repository.server = result.assignment;
       await vm.refresh();
       await vm.reload();
       expect(vm.activeIndex).assertEqual(0);
       expect(vm.automaticClue).assertNull();
+      expect(vm.rankUp).assertNull();
       expect(repository.answers.length).assertEqual(1);
     });
 
     it('backgroundDuringSubmissionKeepsSettlementAndCancelsTheLateVideoAndAdvance', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('星辰大海');
       const pending: Promise<void> = vm.submitAnswer();
       vm.cancelAutomaticClues();
-      const result: GameplayAnswerResult = clueResult(['text', 'image']);
+      const result: GameplayAnswerResult = withRank(clueResult(['text', 'image']));
       repository.answers[0].succeed(result);
       await pending;
       expect(vm.snapshot?.detail.currentIndex).assertEqual(1);
       expect(vm.activeIndex).assertEqual(0);
       expect(vm.automaticClue).assertNull();
+      expect(vm.rankUp).assertNull();
       expect(repository.answers.length).assertEqual(1);
     });
 
@@ -352,7 +407,7 @@ export default function gameplayAnswerViewModelTests(): void {
 
     it('unknownOutcomeFreezesOriginalBodyAcrossRetryAndPageReentry', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer(' 星辰大海 ');
       const first: Promise<void> = vm.submitAnswer();
@@ -371,9 +426,10 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(repository.answers[1].requestId).assertEqual(repository.answers[0].requestId);
       expect(repository.answers[1].rawAnswer).assertEqual(repository.answers[0].rawAnswer);
       expect(repository.answers[1].level).assertEqual(repository.answers[0].level);
-      repository.answers[1].succeed(answerResult('correct', choiceSnapshot()));
+      repository.answers[1].succeed(withRank(answerResult('correct', choiceSnapshot())));
       await retry;
       expect(vm.retryAnswer).assertFalse();
+      expect(vm.rankUp).assertNull();
       vm.leave();
     });
 
@@ -513,11 +569,11 @@ export default function gameplayAnswerViewModelTests(): void {
     it('finalAutomaticCluesDeferCompletionAndEarlyVideoCloseStillDeliversTheCombinationOnce', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
       repository.server = choiceSnapshot();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('B');
       const pending: Promise<void> = vm.submitAnswer();
-      const result: GameplayAnswerResult = finalClueResult();
+      const result: GameplayAnswerResult = withRank(finalClueResult());
       repository.answers[0].succeed(result);
       await pending;
       expect(vm.snapshot?.detail.status).assertEqual('completed');
@@ -534,17 +590,30 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.completionRevision).assertEqual(1);
       expect(vm.completionClues[0]?.id).assertEqual('final-combination');
       expect(vm.activeIndex).assertEqual(1);
+      expect(vm.rankUp).assertNull();
+      vm.finishCompletionPresentation(0);
+      expect(vm.rankUp).assertNull();
+      vm.finishCompletionPresentation(vm.completionRevision);
+      const rank: GameplayRankUp | null = vm.rankUp;
+      expect(rank?.order).assertEqual(2);
+      expect(rank?.name).assertEqual('远航见习者');
+      if (rank !== null) { vm.dismissRankUp(rank); }
+      vm.finishCompletionPresentation(vm.completionRevision);
+      expect(vm.rankUp).assertNull();
+      repository.server = result.assignment;
+      await vm.refresh();
+      expect(vm.rankUp).assertNull();
       expect(repository.answers.length).assertEqual(1);
     });
 
     it('interruptedFinalCluesAndACompletedGetNeverPublishThePendingNotice', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
       repository.server = choiceSnapshot();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('B');
       const pending: Promise<void> = vm.submitAnswer();
-      const result: GameplayAnswerResult = finalClueResult();
+      const result: GameplayAnswerResult = withRank(finalClueResult());
       repository.answers[0].succeed(result);
       await pending;
       vm.cancelAutomaticClues();
@@ -555,6 +624,7 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.automaticClue).assertNull();
       expect(vm.completionRevision).assertEqual(0);
       expect(vm.completionClues.length).assertEqual(0);
+      expect(vm.rankUp).assertNull();
       expect(vm.snapshot?.detail.status).assertEqual('completed');
       expect(repository.answers.length).assertEqual(1);
     });
@@ -562,14 +632,15 @@ export default function gameplayAnswerViewModelTests(): void {
     it('alreadyCompletedAndLatestCancelledSettlementDoNotCelebrate', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
       repository.server = choiceSnapshot();
-      const vm: GameplayViewModel = viewModel(repository);
+      const vm: GameplayViewModel = viewModelWithRank(repository);
       await vm.open('assignment1');
       vm.editAnswer('B');
       const pending: Promise<void> = vm.submitAnswer();
-      repository.answers[0].succeed(answerResult('already_completed', completedSnapshot(), 100));
+      repository.answers[0].succeed(withRank(answerResult('already_completed', completedSnapshot(), 100)));
       await pending;
       expect(vm.completionRevision).assertEqual(0);
       expect(vm.feedback).assertEqual('');
+      expect(vm.rankUp).assertNull();
       vm.leave();
       repository.server = textSnapshot();
       await vm.open('assignment1');
@@ -577,9 +648,10 @@ export default function gameplayAnswerViewModelTests(): void {
       const cancelled: Promise<void> = vm.submitAnswer();
       const latest: GameplaySnapshot = choiceSnapshot();
       latest.detail.status = 'cancelled';
-      repository.answers[1].succeed(answerResult('correct', latest));
+      repository.answers[1].succeed(withRank(answerResult('correct', latest), 3));
       await cancelled;
       expect(vm.completionRevision).assertEqual(0);
+      expect(vm.rankUp).assertNull();
       expect(vm.answerAllowed()).assertFalse();
       expect(vm.retryAnswer).assertFalse();
       vm.leave();
