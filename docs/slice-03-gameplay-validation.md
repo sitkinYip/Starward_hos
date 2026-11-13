@@ -455,3 +455,41 @@ python3 "$starward_private/device-atmosphere-static.py" \
 正常隔离 HAP 经官方 DevEco CLI `run --skip-build` 装回，前后校验 SHA256。[直板下拉刷新](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-refresh-01.json) 用 `device-atmosphere-refresh.py` 和正常 `runtime-02.json` 验证一次下拉。收到授权 200 时距手势开始 1.752 秒，距上次自然轮询读取 1.810 秒，早于 5 秒自然间隔。当前题和场景实例都保持，隔离库无新增玩法写入。
 
 恢复固定预览后，真机停在原账号首页。[预览包运行时](../artifacts/validation/ui-gameplay-atmosphere-20261113/preview-restored-runtime-01.json) 5 项通过，[预览登录与只读回归](../artifacts/validation/ui-gameplay-atmosphere-20261113/fixed-preview-restored-01.json) 7 项通过，预览包和正常验收包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-atmosphere-20261113/preview-package-equivalence-01.json)。[专用环境清理回执](../artifacts/validation/ui-gameplay-atmosphere-20261113/disposable-cleanup-01.json) 确认固定预览身份保留、专用环境关闭及验收期间零新增入场与答题。
+
+## 首次入场后的普通线索演出
+
+见 [C01o](feature-acceptance-matrix.md#c01o-首次入场后的普通线索演出)。冻结 Web `4b7d1a0` 通过入场回执开启普通线索队列。正常版复用 ArkUI 的文字阅读、图片查看和视频播放。首次题卡出现时，队列等布局就绪再开窗。首答引导在队列清空后显示，避免与开场浮层重叠。已完成题卡的线索档案仍按原规则显示。
+
+```sh
+starward_private=artifacts/private/gameplay-entry-clues-20261113
+starward_reports=artifacts/validation/ui-gameplay-entry-clues-20261113
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-02.json"
+for suite in GameplayClues GameplayData GameplayViewModel GameplayAnswerViewModel GameplayRefreshViewModel Contract; do
+  STARWARD_VALIDATION_DIR="$starward_reports/$suite" scripts/hm.sh test "$suite"
+done
+STARWARD_VALIDATION_DIR="$starward_reports/lint" scripts/hm.sh lint
+```
+
+六个 Hypium 套件各通过 14、10、12、20、8、13 项，共 77 项，失败和忽略均为 0。初版官方签名包仅完成窗口与 TLS。定版进一步确认原生提交按钮和输入状态跟随队列变化，由 [定版运行时](../artifacts/validation/ui-gameplay-entry-clues-20261113/runtime-02.json) 绑定签名 SHA256 `22e5e5a9e975fa0ea63f047d71b04e9d8275acdb4ed91e7c94bfdee21fd20a16`。
+
+准备新的隔离后端、两组尚未开始的验收账号、专用媒体及设备绑定后，使用官方工具驱动。丢响应由隔离 TLS 网关在确认后端成功提交后丢弃本次响应，客户端收到传输失败。测试比较请求体和请求 ID 摘要，服务端 SQLite 只读对账。回访验证只看真实授权 GET 与现有题卡，无提交动作。
+
+```sh
+export PATH="/Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/toolchains:$PATH"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-entry-clues.py" --runtime "$starward_reports/runtime-02.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage normal --theme light --output "$starward_reports/native-normal-02.json"
+python3 "$starward_private/device-entry-clues.py" --runtime "$starward_reports/runtime-02.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage lost --theme dark --output "$starward_reports/native-lost-01.json"
+```
+
+[首轮采集](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-normal-01.json) 保留 incomplete。采集器在登录前读取了旧夹具的账本字段，修正后使用同一未入场账号复验。
+
+[正常入场](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-normal-02.json) 7 项通过。实播第 5 秒画面后提前关闭 28 秒视频，尾声文字继续出现。手势刷新在开始后 1.761 秒收到授权 GET 200，距上次自然轮询 1.873 秒。退出回访及冷启动回访都无新增媒体读取。首次答题引导在最后一条线索关闭后出现，首题真实提交控件恢复为 enabled，验收未触发提交。
+
+[夜间丢响应](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-01.json) 6 项业务及交互检查完成。重试前后同账号、同 requestId、同请求体，两次传输仅产生一条 SQLite 入场回执。自然播完视频仍继续尾声文字，回访静默。原报告保留 incomplete，原因是采集器以只读控制入口复位故障失败。[同账号收尾](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-cleanup-01.json) 独立完成全部清理，无再次入场或答题。日夜原图分别比较 [7 组日间状态](../artifacts/validation/ui-gameplay-entry-clues-20261113/visual-review-normal-01.json) 与 [7 组夜间状态](../artifacts/validation/ui-gameplay-entry-clues-20261113/visual-review-lost-01.json)。
+
+恢复预览后，[真机运行时](../artifacts/validation/ui-gameplay-entry-clues-20261113/preview-restored-runtime-01.json) 5 项和 [固定预览登录与读取](../artifacts/validation/ui-gameplay-entry-clues-20261113/fixed-preview-restored-01.json) 7 项通过。[交付包字节码](../artifacts/validation/ui-gameplay-entry-clues-20261113/preview-package-equivalence-01.json) 与隔离验收包一致，[隔离清理回执](../artifacts/validation/ui-gameplay-entry-clues-20261113/disposable-cleanup-01.json) 核对全部专用资源与台账。原固定预览账号留在已登录首页，预览过程无答题与入场操作。

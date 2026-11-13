@@ -210,7 +210,8 @@ export struct GameplayPage {
   private positionTimer: number = -1;
 
   aboutToAppear(): void {
-    this.foreground = true;
+    this.foreground = AppLifecycle.isForeground();
+    if (!this.foreground) { this.play.cancelAutomaticClues(); }
     this.bgmMounted = true;
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
@@ -218,7 +219,7 @@ export struct GameplayPage {
     this.answerGuideAccountChanged();
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
-    this.play.setPollingActive(true);
+    this.play.setPollingActive(this.foreground);
     this.updateBgm();
   }
 
@@ -606,7 +607,10 @@ export struct GameplayPage {
   private isClueCurrent(owner: string, clue: GameplayClue): boolean {
     if (this.imageOwner() !== owner || !this.play.visible || this.play.error.length > 0) { return false; }
     const snapshot: GameplaySnapshot | null = this.play.snapshot;
-    const grants: GameplayClue[] = this.play.automaticClue === clue && snapshot?.detail.status === 'completed' ?
+    if (snapshot === null || snapshot.detail.player !== this.playerId) { return false; }
+    const canUseSessionGrants: boolean = snapshot.detail.status === 'completed' ||
+      (snapshot.detail.status === 'active' && this.play.isEntryClue(clue));
+    const grants: GameplayClue[] = this.play.automaticClue === clue && canUseSessionGrants ?
       snapshot.clues : this.currentClues();
     return grants.some((actual: GameplayClue) =>
       actual.id === clue.id && JSON.stringify(actual) === JSON.stringify(clue));
@@ -687,11 +691,12 @@ export struct GameplayPage {
     }
   }
 
-  @Monitor('play.automaticClue', 'play.submitting', 'play.refreshing', 'keyboardVisible', 'recoveryVisible',
-    'foreground', 'textClue', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing')
+  @Monitor('play.automaticClue', 'play.starting', 'play.submitting', 'play.refreshing', 'keyboardVisible', 'recoveryVisible',
+    'foreground', 'viewportWidth', 'viewportHeight', 'textClue', 'viewer.visible', 'viewer.closing',
+    'videoViewer.visible', 'videoViewer.closing')
   automaticClueChanged(): void {
     const clue: GameplayClue | null = this.play.automaticClue;
-    if (clue === null || !this.foreground) { return; }
+    if (clue === null || !this.foreground || this.viewportWidth <= 0 || this.viewportHeight <= 0) { return; }
     const owner: string = this.imageOwner();
     const current = (): boolean => this.foreground && this.play.automaticClue === clue &&
       this.isClueCurrent(owner, clue);

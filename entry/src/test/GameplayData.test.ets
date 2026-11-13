@@ -139,7 +139,12 @@ export default function gameplayDataTests(): void {
       const body: string = GAMEPLAY_STARTED_JSON.slice(0, -1) +
         ',"transitionEffects":[{"type":"clue","clueId":"clue0","autoPlay":false}]}';
       expect(decodeGameplay(body).transitionEffects[0].autoPlay).assertFalse();
+      expect(decodeGameplay(body).transitionEffectsProvided).assertTrue();
       expect(decodeGameplay(GAMEPLAY_STARTED_JSON).transitionEffects.length).assertEqual(0);
+      expect(decodeGameplay(GAMEPLAY_STARTED_JSON).transitionEffectsProvided).assertFalse();
+      const empty: string = GAMEPLAY_STARTED_JSON.slice(0, -1) + ',"transitionEffects":[]}';
+      expect(decodeGameplay(empty).transitionEffectsProvided).assertTrue();
+      expect(decodeGameplay(empty).transitionEffects.length).assertEqual(0);
       expect(decodeGameplay(GAMEPLAY_STARTED_JSON).levels[0].presentationOverride.hideTitle).assertUndefined();
       contractRejected(body.replace('"autoPlay":false', '"autoPlay":"false"'));
       contractRejected(GAMEPLAY_STARTED_JSON.replace('"bgmMode":"silent"', '"bgmMode":"unknown"'));

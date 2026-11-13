@@ -1,0 +1,46 @@
+{
+  "status": "strict_host_entry_clue_fixtures_verified",
+  "deviceInvoked": false,
+  "normalAndLostActorsRemainPristine": true,
+  "strictHostTls": true,
+  "normalAndLostRolesAreDifferentAccountsAndAssignments": true,
+  "orderedAutomaticKinds": [
+    "text",
+    "image",
+    "video",
+    "text"
+  ],
+  "manualOnlyGrantCount": 1,
+  "webStartEffectsMatchAuthorizedGrants": true,
+  "webPlainReadsHaveNoTransitionEffects": true,
+  "webWriteSettlement": {
+    "startPostAttempts": 1,
+    "serverCommittedBeforeDroppedResponse": false,
+    "sameRequestIdBodyAndActorOnRetry": false,
+    "uniqueSqliteStartReceipt": true,
+    "facts": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 0,
+      "answerSubmissionCount": 0,
+      "correctAnswerCount": 0,
+      "progressRows": 2,
+      "completedProgressRows": 0,
+      "xpLedgerCount": 0,
+      "xpDeltaSum": 0,
+      "playerTotalXp": 0,
+      "clueUnlockRows": 5,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "webDtoSha256": "f4060ecef42b9c74c6788e8b348be1cc0702299ced55b6e643a95c5ce83e13a1",
+  "fixturesSha256": {
+    "normal": "3df31a7a7048ec8359c59b3167f8833375ea1c9c7a20d3128856659220a44505",
+    "lost": "1d7c91adc19ecab9db50a0809a51b4c0a131d58c40cc03465530c26c3ac68810",
+    "web": "562f6d83a25d2e13fc544f1605e5a21b15cf947ec437115f96ba7589450ad8ee"
+  }
+}

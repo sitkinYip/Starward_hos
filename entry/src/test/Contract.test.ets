@@ -53,6 +53,10 @@ export default function contractTests(): void {
       expect(detail.id).assertEqual('assignment1');
       expect(detail.title).assertEqual('星辰探险');
       expect(detail.currentIndex).assertEqual(0);
+      expect(detail.clueIds.length).assertEqual(0);
+      const withPriorGrants: string = ASSIGNMENT_JSON.slice(0, -1) +
+        ',"clues":[{"id":"already-granted"}]}';
+      expect(decodeAssignment(withPriorGrants).clueIds[0]).assertEqual('already-granted');
       expect(decodeAssignments('{"items":[' + ASSIGNMENT_JSON + ']}').length).assertEqual(1);
       expect(decodeAssignments('{"items":[]}').length).assertEqual(0);
     });

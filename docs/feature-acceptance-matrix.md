@@ -1010,3 +1010,28 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [真机静态诊断](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-static-01.json) 与 [夜间静态原图对照](../artifacts/validation/ui-gameplay-atmosphere-20261113/visual-review-static-01.json) 确认，强制氛围进入减少动画分支后，有图和无图都保留静态装饰，微粒为零，切题保持同一实例，离场释放。间隔原图的三个取样区均无达到 2 RGB 通道值的像素变化。正式包继续读取系统设置。本次正常包观测到系统设置为关闭，手机系统打开该选项的生效结果待验。
 
 [固定预览恢复](../artifacts/validation/ui-gameplay-atmosphere-20261113/fixed-preview-restored-01.json) 7 项通过，手机停在原固定预览账号首页，答题进度保留。[预览包字节码核对](../artifacts/validation/ui-gameplay-atmosphere-20261113/preview-package-equivalence-01.json) 确认与正常验收包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-atmosphere-20261113/disposable-cleanup-01.json) 确认专用 TLS、数据库、容器和控制入口已停用。[公开产物扫描](../artifacts/validation/ui-gameplay-atmosphere-20261113/public-artifact-scan-01.json) 无敏感发现。
+
+### C01o 首次入场后的普通线索演出
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 首次入场 | 成功入场回执返回后，按冻结 Web 顺序展示当前账号已授权并启用自动播放的文字、图片及视频。显式空效果保持静默，只有缺少效果字段的旧响应才与入场前授权比较。入场回执的自动播放标记优先。 |
+| 展示和关闭 | 复用已有 ArkUI 阅读、图集与播放器。视频提前关闭仍接续余下线索，最后回到首题并正常显示首次答题引导。手动线索不自动弹出，保留 Web 已完成题卡的档案规则。 |
+| 丢失响应与重试 | 隔离后端首次入场已成功、客户端未收到响应。显式重试沿用同一 requestId 和请求体，恢复原演出，账本仅有一次入场及一组授权，零答题和经验写入。 |
+| 刷新与回访 | 下拉、前台轮询、回访和重启的 GET 不触发演出。退后台或离场、退出账号、撤回授权时清理自动队列和对应媒体，旧响应不得恢复浮层。 |
+
+业务契约、直板真机和同数据 Web 对照分别记录。此小片覆盖普通开场线索。
+
+[隔离真实后端夹具](../artifacts/validation/ui-gameplay-entry-clues-20261113/host-fixtures-01.json) 建立独立正常入场、丢响应重试与 Web 回放账号，使用同一两题内容及 [PNG／MP4 媒体](../artifacts/validation/ui-gameplay-entry-clues-20261113/host-media-01.json)。[冻结 Web 回放](../artifacts/validation/ui-gameplay-entry-clues-20261113/web-entry-clues-01.json) 核对日夜、文字→图集→视频→尾声文字、提前关闭接续、显式空效果和 GET 回访静默。
+
+[签名安装、窗口及严格 HTTPS](../artifacts/validation/ui-gameplay-entry-clues-20261113/runtime-02.json) 5 项通过。相关测试共 77 项通过，覆盖效果字段缺失和空数组、授权交集、顺序、视频早关、同键重试、迟到入场响应以及已有答题与刷新行为。DevEco ArkTS 对 9 个修改过的生产文件未返回诊断。[codelinter](../artifacts/validation/ui-gameplay-entry-clues-20261113/lint/lint.json) 退出 0，报告 `filesChecked=0`。
+
+[日间直板正常入场](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-normal-02.json) 7 项通过。依序展示文字、两张图和视频，提前关闭视频后继续显示尾声文字，关闭后才出现首答引导。真机控件树确认首题输入与提交可用。下拉触发真实授权 GET，退出回访和冷启动重新登录后仍停在未答首题，均无自动重播及新增媒体请求。隔离库只有一次入场、五条线索授权、零答题和经验写入。
+
+[日间同数据原图对照](../artifacts/validation/ui-gameplay-entry-clues-20261113/visual-review-normal-01.json) 逐张核对 7 组原图，确认两段文字换行、题图与视频尺寸和关闭控件。原生保留 ArkUI 遮罩、播放控件及系统栏，首答引导在队列结束后单独出现，Web 会先将引导挂在浮层下方。[Web 夜间自然结束](../artifacts/validation/ui-gameplay-entry-clues-20261113/web-entry-clues-natural-01.json) 另验证自然播完同样进入尾声文字。
+
+[夜间丢响应真机](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-01.json) 完成 6 项业务及交互检查。专用网关在后端成功返回 200 后丢弃响应，手机显示错误和显式重试。两次 POST 的 requestId、请求体与账号一致，SQLite 仅有一条入场回执、两条初始化进度、五条线索授权，答题与经验写入为零。重试收到成功回执后按同一顺序播放，视频自然结束接尾声文字，回访静默。[夜间同数据原图](../artifacts/validation/ui-gameplay-entry-clues-20261113/visual-review-lost-01.json) 核对 7 组。该真机报告保留 incomplete，旧采集器的只读守卫在复位故障时提前终止收尾。
+
+[丢响应专项收尾](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-cleanup-01.json) 在同一账号完成故障复位、主题还原、退出清空及重新对账。仍为两次请求、一条入场回执，收尾无新增玩法写入。后台迟到入场回执的静默行为由单测覆盖，本轮未在真机播放中主动撤回授权。
+
+[固定预览恢复](../artifacts/validation/ui-gameplay-entry-clues-20261113/fixed-preview-restored-01.json) 7 项通过，手机留在原固定预览账号首页。[交付包字节码](../artifacts/validation/ui-gameplay-entry-clues-20261113/preview-package-equivalence-01.json) 与本轮验收包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-entry-clues-20261113/disposable-cleanup-01.json) 核对三组隔离账号各结算一次，专用后端、数据库和 TLS 已移除。[公开产物扫描](../artifacts/validation/ui-gameplay-entry-clues-20261113/public-artifact-scan-01.json) 无敏感发现。

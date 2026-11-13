@@ -1,0 +1,1422 @@
+{
+  "status": "captured_frozen_web_entry_clues_reference",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "rendererSha256": "7028626415cc875a45ce05e90200e9a56c692095e2400d8933824e0adad6743c",
+  "inputSha256": "f4060ecef42b9c74c6788e8b348be1cc0702299ced55b6e643a95c5ce83e13a1",
+  "frameHelperSha256": "12f9b6563ebb95cc141043e966c009375873de0b8de764df9a0308ecf4ae520f",
+  "rangeMediaHelperSha256": "1ebeeb0a4c792e71ef46dfe8dd0aea6f9b900148f7aaab5667faa0ff517fb5d6",
+  "sourceSha256": {
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.client.ts": "7a14111a47948a6c4b05fad838e508fa35944256a45ecbc8b2aeb7d447b0e880",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/features/game/clue-presentation.ts": "fc3b4e189ec189300e487fd3ffafaccf534b2d7b288e40d65214648745dcc05e",
+    "src/features/game/useGamePresentation.ts": "e48cef4eca361a40aefa4d326ef033ccc4310ace74a5c9f35ef0d4b0d7e33367",
+    "src/features/clues/ClueTextDialog.tsx": "5f5ad69c909314f1cbb827862fcf6b31948fdc936b6b8d22c8db87055a02e049",
+    "src/features/media/MediaViewer.tsx": "d37ef115da63e7954f202ae6adfe7881504ca4b7d843dbbcaed364e57a498f4e",
+    "src/features/media/NativeVideo.tsx": "977b6ce8513aee2268372f052bec002aacc3872543c8ca23e2a54be1249e9ba1",
+    "src/features/quest/QuestCard.tsx": "02d106ad6b419225c212a0ce24ce57d2096fb559fa2db508be3dee9649d228d3",
+    "src/styles/features/clues.css": "c7fcc898825ed13afc993c1302b218f1526dc359b8b90c73771b94de0dbe0dba",
+    "src/styles/components/media-viewer.css": "0b693cb0333ebae58cf3cb0da70b07ee13bb2e1ae8ae1365534d40d374c497a3",
+    "src/styles/effects/overlay-lighting.css": "78884afbc15fd742b2585dd66652f3ba7f11ad172c1b535f84cb1e129c572e27"
+  },
+  "nativeFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "media": {
+    "a": {
+      "sha256": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+      "bytes": 2203
+    },
+    "b": {
+      "sha256": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd",
+      "bytes": 2650
+    },
+    "video": {
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+      "bytes": 258860
+    }
+  },
+  "viewport": {
+    "widthCssPx": 388,
+    "heightCssPx": 771,
+    "dpr": 1
+  },
+  "replayOnly": true,
+  "syntheticBrowserAuthentication": true,
+  "actualIsolatedDTOReplayed": true,
+  "forwardedBusinessRequests": 0,
+  "forwardedExternalRequests": 0,
+  "states": [
+    {
+      "theme": "light",
+      "state": "before-entry",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": null,
+          "questionTitle": null,
+          "answer": null,
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-before-entry.png",
+        "sha256": "22081b101216417e9e08955476b831f832091b696aa04e4924d120707d888456"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-before-entry.html",
+        "sha256": "f5aa10b427754419a3a2814a771ce20135cc4b30d1e4bd20bd1c47e9ff0bee91"
+      }
+    },
+    {
+      "theme": "light",
+      "state": "automatic-text",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12.15606689453125,
+            "y": 191.87896728515625,
+            "width": 363.6878662109375,
+            "height": 313.6526794433594,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31.139774322509766,
+            "y": 356.71478271484375,
+            "width": 325.720458984375,
+            "height": 121.8953857421875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": {
+            "x": 24,
+            "y": 254.21875,
+            "width": 340,
+            "height": 262.5625,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "clueTitle": {
+            "x": 25.000043869018555,
+            "y": 255.34356689453125,
+            "width": 0.9999122619628906,
+            "height": 0.999908447265625,
+            "visible": true,
+            "fontSize": "27px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 46, 40)",
+            "borderRadius": "0px"
+          },
+          "clueBody": {
+            "x": 53.05769348144531,
+            "y": 397.2008972167969,
+            "width": 281.8846435546875,
+            "height": 91.13455200195312,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "30.4px",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "clueClose": {
+            "x": 305,
+            "y": 271.21875,
+            "width": 42,
+            "height": 42,
+            "visible": true,
+            "fontSize": "26px",
+            "lineHeight": "normal",
+            "background": "rgb(238, 243, 241)",
+            "color": "rgb(22, 46, 40)",
+            "borderRadius": "50%"
+          },
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text.png",
+        "sha256": "972df90fe21e1c059e6e86f3ef8be615b052f9b02e64c1876e436972bf24edf5"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text.html",
+        "sha256": "7232315e4d6e3337e89cc52e171fd6dff885131efaddf6842de6fa0cf1a06ff8"
+      }
+    },
+    {
+      "theme": "light",
+      "state": "automatic-gallery-first",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": {
+            "x": 14,
+            "y": 70.921875,
+            "width": 360,
+            "height": 629.140625,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "mediaClose": {
+            "x": 328,
+            "y": 70.921875,
+            "width": 46,
+            "height": 46,
+            "visible": true,
+            "fontSize": "28px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "50%"
+          },
+          "galleryImage": {
+            "x": 14,
+            "y": 220.234375,
+            "width": 360,
+            "height": 202.5,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "galleryNav": {
+            "x": 69,
+            "y": 644.0625,
+            "width": 250,
+            "height": 56,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(15, 16, 13, 0.86)",
+            "color": "rgb(184, 183, 174)",
+            "borderRadius": "999px"
+          },
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-first.png",
+        "sha256": "4adf729ef3da76cfa0e93674b91780b3aab5ee49449aaae066bd0c8527d674bf"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-first.html",
+        "sha256": "095dabe4e3724f6f1a1525bf8cc047675ac40ba83ba159892c29b8c691ccdf23"
+      },
+      "media": {
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "theme": "light",
+      "state": "automatic-gallery-second",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": {
+            "x": 14,
+            "y": 70.921875,
+            "width": 360,
+            "height": 629.140625,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "mediaClose": {
+            "x": 328,
+            "y": 70.921875,
+            "width": 46,
+            "height": 46,
+            "visible": true,
+            "fontSize": "28px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "50%"
+          },
+          "galleryImage": {
+            "x": 26,
+            "y": 81.484375,
+            "width": 336,
+            "height": 480,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "galleryNav": {
+            "x": 69,
+            "y": 644.0625,
+            "width": 250,
+            "height": 56,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(15, 16, 13, 0.86)",
+            "color": "rgb(184, 183, 174)",
+            "borderRadius": "999px"
+          },
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-second.png",
+        "sha256": "0688a201c72bd6f7372f24a914db0616afb9648d96ff0656a06367e3609ac5be"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-second.html",
+        "sha256": "ac8db0e6699fe4f2f7936eb5f9c70d3d918844bc6a768243c4567748b0c3d626"
+      },
+      "media": {
+        "width": 336,
+        "height": 480
+      }
+    },
+    {
+      "theme": "light",
+      "state": "automatic-video-playing",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": {
+            "x": 14,
+            "y": 284.25,
+            "width": 360,
+            "height": 202.5,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "mediaClose": {
+            "x": 327.6549987792969,
+            "y": 281.9049987792969,
+            "width": 46.69000244140625,
+            "height": 46.69000244140625,
+            "visible": true,
+            "fontSize": "28px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+            "color": "rgb(255, 240, 201)",
+            "borderRadius": "50%"
+          },
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": {
+            "x": 14,
+            "y": 284.25,
+            "width": 360,
+            "height": 202.5,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          }
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-video-playing.png",
+        "sha256": "02639b3a630d4d374eb59d9dd86f7d4a6845840c2518d492852e777d32e15cab"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-video-playing.html",
+        "sha256": "21bfccfef4d8c1cc7f566f9d90c0b22d932900bd349bf3d688c6df6813555874"
+      },
+      "media": {
+        "currentTime": 0.509797,
+        "duration": 28,
+        "width": 640,
+        "height": 360,
+        "paused": false,
+        "autoPlay": true,
+        "inline": true
+      }
+    },
+    {
+      "theme": "light",
+      "state": "automatic-text-after-early-video-close",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": {
+            "x": 24,
+            "y": 239.015625,
+            "width": 340,
+            "height": 292.953125,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "clueTitle": {
+            "x": 25.000072479248047,
+            "y": 240.21620178222656,
+            "width": 0.9998550415039062,
+            "height": 0.9998626708984375,
+            "visible": true,
+            "fontSize": "27px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(22, 46, 40)",
+            "borderRadius": "0px"
+          },
+          "clueBody": {
+            "x": 53.08241271972656,
+            "y": 382.26007080078125,
+            "width": 281.835205078125,
+            "height": 121.491455078125,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "30.4px",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "clueClose": {
+            "x": 305,
+            "y": 256.015625,
+            "width": 42,
+            "height": 42,
+            "visible": true,
+            "fontSize": "26px",
+            "lineHeight": "normal",
+            "background": "rgb(238, 243, 241)",
+            "color": "rgb(22, 46, 40)",
+            "borderRadius": "50%"
+          },
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text-after-early-video-close.png",
+        "sha256": "40ea7c0139758d7c5666a2b9aeed42096e578938f8d9c3f44403130d8498b99b"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text-after-early-video-close.html",
+        "sha256": "94185b094a505d6b2cf39cc64bf5a278b8fb4c9427f708b7f28e56d1a04c9c2e"
+      }
+    },
+    {
+      "theme": "light",
+      "state": "unanswered-first-question-after-sequence",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-unanswered-first-question-after-sequence.png",
+        "sha256": "3a242f46dace4e36b33b9abb196528e4ac53b8b1785fbbd9db3850b31946aa7c"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-unanswered-first-question-after-sequence.html",
+        "sha256": "b7a032005b6a51090b5b05149bec7bc426062af1deb9930268d97c7fdacdc7c8"
+      }
+    },
+    {
+      "theme": "light",
+      "state": "fresh-get-unanswered-first-question",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "light"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 1 1 1 / 0.96)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-fresh-get-unanswered-first-question.png",
+        "sha256": "d12bda4e6414feadf02681583c4ee67d09a5225db44b214b39c53150e5d05b8b"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-fresh-get-unanswered-first-question.html",
+        "sha256": "774c15d6ffaaea97fcebe23b22f3d962f98e87088c0a71b3c559968426d551a4"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "before-entry",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": null,
+          "questionTitle": null,
+          "answer": null,
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-before-entry.png",
+        "sha256": "6e33970bd4e870ffc3fffdf3d7feaadea426b301079377a0a7279a9ad4091db4"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-before-entry.html",
+        "sha256": "e474f6e5d76766c16cf8bee4116d42b9ea738fe9fe83740667e19c5d448108c4"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "automatic-text",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12.155990600585938,
+            "y": 191.8783416748047,
+            "width": 363.68798828125,
+            "height": 313.65277099609375,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31.139705657958984,
+            "y": 356.71417236328125,
+            "width": 325.7205810546875,
+            "height": 121.89544677734375,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": {
+            "x": 24,
+            "y": 254.21875,
+            "width": 340,
+            "height": 262.5625,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgb(23, 24, 20)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "clueTitle": {
+            "x": 25.000043869018555,
+            "y": 255.3434295654297,
+            "width": 0.9999122619628906,
+            "height": 0.9999237060546875,
+            "visible": true,
+            "fontSize": "27px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "0px"
+          },
+          "clueBody": {
+            "x": 53.057647705078125,
+            "y": 397.200439453125,
+            "width": 281.88470458984375,
+            "height": 91.13458251953125,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "30.4px",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "clueClose": {
+            "x": 305,
+            "y": 271.21875,
+            "width": 42,
+            "height": 42,
+            "visible": true,
+            "fontSize": "26px",
+            "lineHeight": "normal",
+            "background": "rgb(16, 17, 14)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "50%"
+          },
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-text.png",
+        "sha256": "ae66e0b087f750c974eeb1f440266e672973d095cb5dad90635a4b15d06f250d"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-text.html",
+        "sha256": "bc17d583f972be59edb6aaf24191829e7752ac2de0bbd8202e6928f9da5baa81"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "automatic-gallery-first",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": {
+            "x": 14,
+            "y": 70.921875,
+            "width": 360,
+            "height": 629.140625,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "mediaClose": {
+            "x": 328,
+            "y": 70.921875,
+            "width": 46,
+            "height": 46,
+            "visible": true,
+            "fontSize": "28px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "50%"
+          },
+          "galleryImage": {
+            "x": 14,
+            "y": 220.234375,
+            "width": 360,
+            "height": 202.5,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "galleryNav": {
+            "x": 69,
+            "y": 644.0625,
+            "width": 250,
+            "height": 56,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(15, 16, 13, 0.86)",
+            "color": "rgb(184, 183, 174)",
+            "borderRadius": "999px"
+          },
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-gallery-first.png",
+        "sha256": "44a1dc1a76f80eef7a86b004e435e78ecd16215f1bbcade93742631f9fbe596a"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-gallery-first.html",
+        "sha256": "330ce68bf750eb801f1728bf4cca013598d488e06cdd8b621fe3984f8b42e787"
+      },
+      "media": {
+        "width": 480,
+        "height": 270
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "automatic-gallery-second",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": {
+            "x": 14,
+            "y": 70.921875,
+            "width": 360,
+            "height": 629.140625,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "mediaClose": {
+            "x": 328,
+            "y": 70.921875,
+            "width": 46,
+            "height": 46,
+            "visible": true,
+            "fontSize": "28px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "50%"
+          },
+          "galleryImage": {
+            "x": 26,
+            "y": 81.484375,
+            "width": 336,
+            "height": 480,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "galleryNav": {
+            "x": 69,
+            "y": 644.0625,
+            "width": 250,
+            "height": 56,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(15, 16, 13, 0.86)",
+            "color": "rgb(184, 183, 174)",
+            "borderRadius": "999px"
+          },
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-gallery-second.png",
+        "sha256": "44cac75ae414cef6f276f6324cb05b34cfcca0fbc9d38706226cdd6673b230e7"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-gallery-second.html",
+        "sha256": "1a145a34597991a6d8674cd1ba5531dff8f43a20e4ca6c377c41c469886cf23f"
+      },
+      "media": {
+        "width": 336,
+        "height": 480
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "automatic-video-playing",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": {
+            "x": 14,
+            "y": 284.25,
+            "width": 360,
+            "height": 202.5,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "mediaClose": {
+            "x": 327.6585693359375,
+            "y": 281.9188232421875,
+            "width": 46.682830810546875,
+            "height": 46.682830810546875,
+            "visible": true,
+            "fontSize": "28px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0627451 0.0666667 0.054902 / 0.82)",
+            "color": "rgb(255, 240, 201)",
+            "borderRadius": "50%"
+          },
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": {
+            "x": 14.006851196289062,
+            "y": 284.26300048828125,
+            "width": 359.986328125,
+            "height": 202.49227905273438,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          }
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-video-playing.png",
+        "sha256": "96422f1c469323508d27cdb26e0e1e356bd81e308900de766b973e2d873db306"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-video-playing.html",
+        "sha256": "efc331bd497e9fbf6b351ec1dcf65f90570cfd121bf6105336cee9d765e39748"
+      },
+      "media": {
+        "currentTime": 0.50479,
+        "duration": 28,
+        "width": 640,
+        "height": 360,
+        "paused": false,
+        "autoPlay": true,
+        "inline": true
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "automatic-text-after-early-video-close",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": {
+            "x": 24,
+            "y": 239.015625,
+            "width": 340,
+            "height": 292.953125,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgb(23, 24, 20)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "clueTitle": {
+            "x": 25.000072479248047,
+            "y": 240.21620178222656,
+            "width": 0.9998550415039062,
+            "height": 0.9998626708984375,
+            "visible": true,
+            "fontSize": "27px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "0px"
+          },
+          "clueBody": {
+            "x": 53.08241271972656,
+            "y": 382.26007080078125,
+            "width": 281.835205078125,
+            "height": 121.491455078125,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "30.4px",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "clueClose": {
+            "x": 305,
+            "y": 256.015625,
+            "width": 42,
+            "height": 42,
+            "visible": true,
+            "fontSize": "26px",
+            "lineHeight": "normal",
+            "background": "rgb(16, 17, 14)",
+            "color": "rgb(240, 236, 223)",
+            "borderRadius": "50%"
+          },
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-text-after-early-video-close.png",
+        "sha256": "434bf11440d23268e020960fd63543573f891f4a92e15299dee4ed4047fa10c5"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-automatic-text-after-early-video-close.html",
+        "sha256": "8ecf8521f96e9cca321ebff641b96cf05cc36e7c41d5779c9ae0620fd9f10bb7"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "unanswered-first-question-after-sequence",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-unanswered-first-question-after-sequence.png",
+        "sha256": "da94c38442cc4e45660e8b37ebc8773970001054c9f25554dce9bad913c051ec"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-unanswered-first-question-after-sequence.html",
+        "sha256": "f7148e8672de26616923d2e5b211f313aeb37fe8107368c21b9f3bc29dfcc24b"
+      }
+    },
+    {
+      "theme": "dark",
+      "state": "fresh-get-unanswered-first-question",
+      "geometry": {
+        "viewport": {
+          "width": 388,
+          "height": 771,
+          "dpr": 1,
+          "theme": "dark"
+        },
+        "elements": {
+          "quest": {
+            "x": 12,
+            "y": 190.578125,
+            "width": 364,
+            "height": 313.921875,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "0px"
+          },
+          "questionTitle": null,
+          "answer": {
+            "x": 31,
+            "y": 355.5,
+            "width": 326,
+            "height": 122,
+            "visible": true,
+            "fontSize": "16px",
+            "lineHeight": "normal",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "borderRadius": "2px"
+          },
+          "textPanel": null,
+          "clueTitle": null,
+          "clueBody": null,
+          "clueClose": null,
+          "mediaPanel": null,
+          "mediaClose": null,
+          "galleryImage": null,
+          "galleryNav": null,
+          "video": null
+        }
+      },
+      "screenshot": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-fresh-get-unanswered-first-question.png",
+        "sha256": "d50b37fb23bdd9599cc2fcc9c5a20b2b891d28edbc30075100307b1fa95db27e"
+      },
+      "privateDom": {
+        "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/dark-fresh-get-unanswered-first-question.html",
+        "sha256": "77635440557e287ef8da1a3bdcd8a4be7ca93aba217b7dbf9e73a3db867a80f7"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "theme": "light",
+      "mode": "exact_receipt",
+      "oneInterceptedStart": true,
+      "freshGetReplayedNoEffects": true,
+      "lockedNextAndUnansweredFirstQuestion": true,
+      "manualOnlyClueNeverOpened": true,
+      "manualArchiveHiddenBeforeAnswer": true,
+      "sourceOrderedOpenings": 4,
+      "galleryImageCount": 2,
+      "earlyVideoCloseAdvancedToFinalText": true,
+      "earlyVideoClose": {
+        "time": 0.611702,
+        "duration": 28,
+        "ended": false
+      },
+      "registeredMediaResponses": 3,
+      "fontRequests": 2
+    },
+    {
+      "theme": "dark",
+      "mode": "exact_receipt",
+      "oneInterceptedStart": true,
+      "freshGetReplayedNoEffects": true,
+      "lockedNextAndUnansweredFirstQuestion": true,
+      "manualOnlyClueNeverOpened": true,
+      "manualArchiveHiddenBeforeAnswer": true,
+      "sourceOrderedOpenings": 4,
+      "galleryImageCount": 2,
+      "earlyVideoCloseAdvancedToFinalText": true,
+      "earlyVideoClose": {
+        "time": 0.642179,
+        "duration": 28,
+        "ended": false
+      },
+      "registeredMediaResponses": 3,
+      "fontRequests": 2
+    },
+    {
+      "theme": "light",
+      "mode": "controlled_explicit_empty_effects",
+      "oneInterceptedStart": true,
+      "freshGetReplayedNoEffects": true,
+      "lockedNextAndUnansweredFirstQuestion": true,
+      "manualOnlyClueNeverOpened": true,
+      "manualArchiveHiddenBeforeAnswer": true,
+      "sourceOrderedOpenings": 0,
+      "galleryImageCount": 0,
+      "earlyVideoCloseAdvancedToFinalText": false,
+      "earlyVideoClose": null,
+      "registeredMediaResponses": 0,
+      "fontRequests": 2
+    }
+  ],
+  "frozenSourceChecks": 15,
+  "schemaChecks": 6,
+  "effectRuleChecks": {
+    "snapshotOverridesClue": true,
+    "empty": 0,
+    "legacy": true
+  },
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/browser-private.json",
+    "sha256": "3bdf731886ad75660a00538b9cc90457e8d46932d1f78cef58e82dab405ff546"
+  }
+}

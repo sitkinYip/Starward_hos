@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { answerAutomaticClues, clueImageSources, ClueSpan, ClueTextPart, clueTextParts, clueTitle, combinationClues, completionCombinations,
-  ordinaryClues } from '../main/ets/business/GameplayClues';
+  entryAutomaticClues, ordinaryClues } from '../main/ets/business/GameplayClues';
 import { GameplayClue, GameplayEffect, GameplayLevel, GameplayQuestion,
   GameplaySnapshot } from '../main/ets/business/GameplayModels';
 
@@ -50,6 +50,42 @@ function effect(clueId: string): GameplayEffect {
 
 export default function gameplayCluesTests(): void {
   describe('GameplayClues', () => {
+    it('matchesStartReceiptOrderAndAutoplayBeforeTheFirstQuestionIsSolved', 0, () => {
+      const first: GameplayLevel = level('first', false);
+      const later: GameplayLevel = level('later', false);
+      const text: GameplayClue = clue('text', 'text', 'session', '', 'start');
+      const image: GameplayClue = clue('image', 'image', 'session', '', 'start');
+      const video: GameplayClue = clue('video', 'video', 'session', '', 'start');
+      const last: GameplayClue = clue('last', 'text', 'session', '', 'start');
+      const manual: GameplayClue = clue('manual', 'text', 'session', '', 'start');
+      const external: GameplayClue = clue('external', 'link', 'session', '', 'start');
+      const combination: GameplayClue = clue('combination', 'text', 'session', '', 'session_completed');
+      const result: GameplaySnapshot = snapshot([first, later], [manual, video, last, image, text, external, combination]);
+      result.clues.forEach((row: GameplayClue) => { row.autoPlay = true; });
+      image.content.imageUrls = ['https://media.example/clue.png'];
+      video.content.url = 'https://media.example/clue.mp4';
+      external.content.url = 'https://media.example/';
+      image.position = 1;
+      video.position = 2;
+      last.position = 3;
+      text.autoPlay = false;
+      const selected: GameplayEffect = effect(text.id);
+      selected.autoPlay = true;
+      const silent: GameplayEffect = effect(manual.id);
+      silent.autoPlay = false;
+      result.transitionEffectsProvided = true;
+      result.transitionEffects = [effect('ungranted'), effect(last.id), effect(video.id), effect(image.id), selected,
+        silent, effect(external.id), effect(combination.id)];
+      expect(visibleIds(result, first)).assertEqual('');
+      expect(entryAutomaticClues([text.id], result).map((row: GameplayClue) => row.id).join(','))
+        .assertEqual('text,image,video,last');
+      result.transitionEffects = [];
+      expect(entryAutomaticClues([], result).length).assertEqual(0);
+      result.transitionEffectsProvided = false;
+      expect(entryAutomaticClues([manual.id, image.id], result).map((row: GameplayClue) => row.id).join(','))
+        .assertEqual('video,last');
+    });
+
     it('archives authorized external cards without ever adding them to automatic playback', 0, () => {
       const first: GameplayLevel = level('first');
       const last: GameplayLevel = level('last', false);

@@ -193,7 +193,13 @@ export function decodeAssignment(body: string): AssignmentDetail {
   fillSummary(detail, source);
   detail.currentIndex = intField(source, 'currentIndex');
   detail.serverTime = dateField(source, 'serverTime', true);
-  // This slice deliberately does not decode/render question, clue or presentation payloads.
+  // Legacy start receipts can omit effects, so retain only the pre-entry grant identities here.
+  const clues: Object = source['clues'];
+  if (clues !== undefined) {
+    if (!Array.isArray(clues)) { throw contractFailure(); }
+    const values: Object[] = clues as Object[];
+    detail.clueIds = values.map((item: Object) => stringField(record(item), 'id', true));
+  }
   return detail;
 }
 

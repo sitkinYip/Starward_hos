@@ -49,6 +49,30 @@ function isPlayableClue(clue: GameplayClue, totalLevels: number): boolean {
     (clue.kind === 'video' && clue.content.url.trim().length > 0));
 }
 
+function autoplayEffects(effects: GameplayEffect[]): Map<string, boolean | undefined> {
+  const result: Map<string, boolean | undefined> = new Map();
+  for (const effect of effects) {
+    if (effect.type === 'clue') { result.set(effect.clueId, effect.autoPlay); }
+  }
+  return result;
+}
+
+/** The start receipt can present grants before the current question is completed. */
+export function entryAutomaticClues(previousIds: string[], snapshot: GameplaySnapshot): GameplayClue[] {
+  if (snapshot.detail.status !== 'active' && snapshot.detail.status !== 'completed') { return []; }
+  const available: GameplayClue[] = snapshot.clues.filter((clue: GameplayClue) =>
+    isPlayableClue(clue, snapshot.detail.totalLevels));
+  if (!snapshot.transitionEffectsProvided) {
+    const known: Set<string> = new Set(previousIds);
+    return available.filter((clue: GameplayClue) => clue.autoPlay && !known.has(clue.id)).sort(clueOrder);
+  }
+  const effects = autoplayEffects(snapshot.transitionEffects);
+  const levelOrder: Map<string, number> = new Map();
+  snapshot.levels.forEach((level: GameplayLevel, index: number) => levelOrder.set(level.id, index));
+  return available.filter((clue: GameplayClue) => effects.has(clue.id) && (effects.get(clue.id) ?? clue.autoPlay))
+    .sort((left: GameplayClue, right: GameplayClue) => clueOrder(left, right, levelOrder));
+}
+
 /** Mobile archive projection. The server snapshot is the only source of grants. */
 export function ordinaryClues(snapshot: GameplaySnapshot | null, level: GameplayLevel | null): GameplayClue[] {
   if (snapshot === null || snapshot.detail.status === 'cancelled' || level === null ||
@@ -69,10 +93,7 @@ export function answerAutomaticClues(previous: GameplaySnapshot | null, settled:
   const normalCompletion: boolean = settled.detail.status === 'completed' &&
     previous?.detail.status !== 'completed' && settled.presentation.completionStyle !== 'finale';
   if (settled.detail.status !== 'active' && !normalCompletion) { return []; }
-  const provided: Map<string, boolean | undefined> = new Map();
-  for (const effect of effects || []) {
-    if (effect.type === 'clue') { provided.set(effect.clueId, effect.autoPlay); }
-  }
+  const provided = autoplayEffects(effects || []);
   const known: Set<string> = new Set((previous?.clues || []).map((clue: GameplayClue) => clue.id));
   let available: GameplayClue[];
   if (normalCompletion && effects !== undefined) {

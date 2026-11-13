@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { GameFailure } from '../main/ets/business/models';
-import { GameplaySnapshot } from '../main/ets/business/GameplayModels';
+import { GameplayClue, GameplaySnapshot } from '../main/ets/business/GameplayModels';
 import { MockGameRepository, sampleAssignment, sampleGameplaySnapshot } from '../main/ets/data/MockGameRepository';
 import { GameplayViewModel } from '../main/ets/features/GameplayViewModel';
 
@@ -61,6 +61,18 @@ function enteredSnapshot(id: string = 'assignment1', player: string = 'playerali
   return sampleGameplaySnapshot(detail);
 }
 
+function openingClue(id: string, kind: string, position: number): GameplayClue {
+  const result: GameplayClue = new GameplayClue();
+  result.id = id;
+  result.kind = kind;
+  result.position = position;
+  result.trigger = 'start';
+  result.autoPlay = true;
+  result.content.url = 'https://media.example/video.mp4';
+  result.content.imageUrls = ['https://media.example/image.png'];
+  return result;
+}
+
 class RequestIds {
   generated: number = 0;
 
@@ -72,6 +84,67 @@ class RequestIds {
 
 export default function gameplayViewModelTests(): void {
   describe('GameplayViewModel', () => {
+    it('recoveredStartPlaysTheNewGrantsOnceAndEarlyVideoCloseKeepsTheQueue', 0, async () => {
+      const repository: ControlledGameplayRepository = new ControlledGameplayRepository();
+      const ids: RequestIds = new RequestIds();
+      const vm: GameplayViewModel = new GameplayViewModel(repository, () => {}, () => {}, () => ids.next());
+      vm.bindOwner('playeralice');
+      const first: Promise<void> = vm.enter('assignment1', ['already-granted']);
+      repository.entries[0].fail(new GameFailure('NETWORK_ERROR', '连接中断'));
+      await first;
+      expect(vm.automaticClue).assertNull();
+      const retry: Promise<void> = vm.enter('assignment1', []);
+      expect(repository.entries[1].requestId).assertEqual(repository.entries[0].requestId);
+      expect(ids.generated).assertEqual(1);
+      const snapshot: GameplaySnapshot = enteredSnapshot();
+      const firstText: GameplayClue = openingClue('first', 'text', 1);
+      const image: GameplayClue = openingClue('image', 'image', 2);
+      const video: GameplayClue = openingClue('video', 'video', 3);
+      const lastText: GameplayClue = openingClue('last', 'text', 4);
+      snapshot.clues = [lastText, video, image, firstText, openingClue('already-granted', 'text', 0)];
+      repository.entries[1].succeed(snapshot);
+      await retry;
+      expect(vm.isEntryClue(firstText)).assertTrue();
+      expect(vm.answerAllowed()).assertFalse();
+      vm.finishAutomaticClue(firstText, true);
+      expect(vm.isEntryClue(image)).assertTrue();
+      vm.finishAutomaticClue(image, true);
+      expect(vm.isEntryClue(video)).assertTrue();
+      vm.finishAutomaticClue(video, false);
+      expect(vm.isEntryClue(lastText)).assertTrue();
+      vm.finishAutomaticClue(video, true);
+      expect(vm.isEntryClue(lastText)).assertTrue();
+      vm.finishAutomaticClue(lastText, true);
+      expect(vm.automaticClue).assertNull();
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.answerAllowed()).assertTrue();
+      const refresh: Promise<void> = vm.refresh();
+      repository.reads[0].succeed(snapshot);
+      await refresh;
+      vm.leave();
+      const revisit: Promise<void> = vm.open('assignment1');
+      repository.reads[1].succeed(snapshot);
+      await revisit;
+      expect(vm.automaticClue).assertNull();
+      expect(vm.activeIndex).assertEqual(0);
+      expect(repository.entries.length).assertEqual(2);
+    });
+
+    it('aSuccessfulStartCanSettleSilentlyAfterAnInterruption', 0, async () => {
+      const repository: ControlledGameplayRepository = new ControlledGameplayRepository();
+      const vm: GameplayViewModel = new GameplayViewModel(repository);
+      vm.bindOwner('playeralice');
+      const pending: Promise<void> = vm.enter('assignment1');
+      vm.cancelAutomaticClues();
+      const snapshot: GameplaySnapshot = enteredSnapshot();
+      snapshot.clues = [openingClue('intro', 'text', 0)];
+      repository.entries[0].succeed(snapshot);
+      await pending;
+      expect(vm.visible).assertTrue();
+      expect(vm.automaticClue).assertNull();
+      expect(vm.answerAllowed()).assertTrue();
+    });
+
     it('duplicateEntryWhileCurrentPageIsBusySendsOnlyOneCommand', 0, async () => {
       const repository: ControlledGameplayRepository = new ControlledGameplayRepository();
       const ids: RequestIds = new RequestIds();

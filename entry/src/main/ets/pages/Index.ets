@@ -75,6 +75,7 @@ struct Index {
       }
     } else {
       this.stopClock();
+      if (this.vm.play.starting) { this.vm.play.cancelAutomaticClues(); }
     }
   };
 
@@ -848,9 +849,10 @@ struct Index {
           .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
           .opacity(assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'ready' ? 1 : 0.45)
           .accessibilityText(this.vm.play.starting ? '正在进入本场冒险' : '开始本场冒险')
-          .onClick(() => this.vm.play.enter(this.selectedId))
+          .onClick(() => this.vm.play.enter(this.selectedId, this.vm.detail.clueIds))
         ErrorNotice({ message: this.vm.play.error, retryable: this.vm.play.retryEntry && !this.vm.play.starting,
-          retry: () => this.vm.play.enter(this.selectedId), returnHome: () => { this.vm.play.leave(); this.paths.clear(); } })
+          retry: () => this.vm.play.enter(this.selectedId, this.vm.detail.clueIds),
+          returnHome: () => { this.vm.play.leave(); this.paths.clear(); } })
         if (assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'expired') {
           Button({ type: ButtonType.Normal }) {
             Row({ space: 12 }) {

@@ -59,6 +59,7 @@ export class AssignmentSummary {
 export class AssignmentDetail extends AssignmentSummary {
   currentIndex: number = 0;
   serverTime: string = '';
+  clueIds: string[] = [];
 }
 
 export class GameFailure extends Error {

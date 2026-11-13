@@ -1,5 +1,5 @@
 import { GameRepository } from '../business/GameRepository';
-import { answerAutomaticClues, completionCombinations } from '../business/GameplayClues';
+import { answerAutomaticClues, completionCombinations, entryAutomaticClues } from '../business/GameplayClues';
 import { GameplayAnswerResult, GameplayClue, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
 import { GameFailure, Player } from '../business/models';
 import { ReadCancellation } from '../business/ReadCancellation';
@@ -8,12 +8,14 @@ import { createRequestIdentity } from '../platform/RequestIdentity';
 const GAMEPLAY_POLL_INTERVAL_MS: number = 5000;
 
 class EntryIntent {
-  assignmentId: string;
-  requestId: string;
+  readonly assignmentId: string;
+  readonly requestId: string;
+  readonly previousClueIds: string[];
 
-  constructor(assignmentId: string, requestId: string) {
+  constructor(assignmentId: string, requestId: string, previousClueIds: string[]) {
     this.assignmentId = assignmentId;
     this.requestId = requestId;
+    this.previousClueIds = previousClueIds.slice();
   }
 }
 
@@ -101,6 +103,7 @@ export class GameplayViewModel {
   private serverOffset: number = 0;
   private advanceTimer: number = -1;
   private automaticClueQueue: GameplayClue[] = [];
+  private entryClueSequence: boolean = false;
   private pendingCompletionClues: GameplayClue[] | null = null;
   private completionSequence: number = 0;
   private clueAdvanceIndex: number = -1;
@@ -255,6 +258,7 @@ export class GameplayViewModel {
   cancelAutomaticClues(): void {
     this.clueGeneration++;
     this.automaticClueQueue = [];
+    this.entryClueSequence = false;
     this.pendingCompletionClues = null;
     this.clueAdvanceIndex = -1;
     this.automaticClue = null;
@@ -291,6 +295,7 @@ export class GameplayViewModel {
     if (!allowAdvance) { this.clueAdvanceIndex = -1; }
     this.automaticClue = this.automaticClueQueue.shift() ?? null;
     if (this.automaticClue !== null) { return; }
+    this.entryClueSequence = false;
     const index: number = this.clueAdvanceIndex;
     const completion: GameplayClue[] | null = this.pendingCompletionClues;
     this.clueAdvanceIndex = -1;
@@ -304,6 +309,14 @@ export class GameplayViewModel {
       this.selectQuestion(index);
     }
     this.presentPendingRankUp();
+  }
+
+  isEntryClue(clue: GameplayClue): boolean {
+    return this.entryClueSequence && this.automaticClue === clue;
+  }
+
+  private presentingEntryClues(): boolean {
+    return this.automaticClue !== null && this.entryClueSequence;
   }
 
   private presentCompletion(clues: GameplayClue[]): void {
@@ -376,7 +389,7 @@ export class GameplayViewModel {
   }
 
   answerEditable(): boolean {
-    return this.owner.length > 0 && !this.loading && !this.starting && !this.submitting &&
+    return !this.presentingEntryClues() && this.owner.length > 0 && !this.loading && !this.starting && !this.submitting &&
       !this.advancing && !this.retryAnswer && this.rankUp === null && this.blockedReason().length === 0;
   }
 
@@ -402,7 +415,8 @@ export class GameplayViewModel {
   }
 
   canMoveTo(index: number): boolean {
-    return !this.loading && !this.submitting && !this.retryAnswer && this.rankUp === null && this.snapshot !== null &&
+    return !this.presentingEntryClues() && !this.loading && !this.submitting && !this.retryAnswer &&
+      this.rankUp === null && this.snapshot !== null &&
       index >= 0 && index < this.snapshot.levels.length && this.snapshot.levels[index].question !== null;
   }
 
@@ -428,13 +442,14 @@ export class GameplayViewModel {
     }
   }
 
-  async enter(id: string): Promise<void> {
+  async enter(id: string, previousClueIds: string[] = []): Promise<void> {
     if (this.owner.length === 0 || id.length === 0 || this.starting || this.loading || this.refreshing) {
       return;
     }
     this.interruptPolling();
     const epoch: number = this.epoch;
     const revision: number = ++this.revision;
+    const clueGeneration: number = this.clueGeneration;
     this.assignmentId = id;
     this.starting = true;
     this.error = '';
@@ -442,7 +457,7 @@ export class GameplayViewModel {
     this.refreshError = '';
     let intent: EntryIntent | undefined = this.intents.find((item: EntryIntent) => item.assignmentId === id);
     if (intent === undefined) {
-      intent = new EntryIntent(id, this.requestIdentity());
+      intent = new EntryIntent(id, this.requestIdentity(), previousClueIds);
       this.intents.push(intent);
     }
     this.retryEntry = true;
@@ -461,6 +476,11 @@ export class GameplayViewModel {
         this.intents = this.intents.filter((item: EntryIntent) => item !== intent);
         this.retryEntry = false;
         this.restoreForm(snapshot.detail.currentIndex);
+        if (this.current(epoch, revision, id) && clueGeneration === this.clueGeneration) {
+          this.automaticClueQueue = entryAutomaticClues(intent.previousClueIds, snapshot);
+          this.entryClueSequence = this.automaticClueQueue.length > 0;
+          this.automaticClue = this.automaticClueQueue.shift() ?? null;
+        }
       }
     } catch (error) {
       if (this.current(epoch, revision, id)) {

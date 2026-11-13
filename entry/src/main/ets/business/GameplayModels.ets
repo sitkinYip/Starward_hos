@@ -93,6 +93,7 @@ export class GameplaySnapshot {
   levels: GameplayLevel[] = [];
   clues: GameplayClue[] = [];
   transitionEffects: GameplayEffect[] = [];
+  transitionEffectsProvided: boolean = false;
 }
 
 export class GameplayAnswerResult {

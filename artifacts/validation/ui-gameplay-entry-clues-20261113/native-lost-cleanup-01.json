@@ -1,0 +1,96 @@
+{
+  "status": "passed_cleanup_only",
+  "role": "lost",
+  "theme": "dark",
+  "scope": "First-entry automatic ordinary clues on the sole exact USB phone, with strict isolated HTTPS",
+  "stage": "cleanup-only-no-gameplay-actions",
+  "hapSha256": "22e5e5a9e975fa0ea63f047d71b04e9d8275acdb4ed91e7c94bfdee21fd20a16",
+  "bindingSha256": {
+    "hap": "22e5e5a9e975fa0ea63f047d71b04e9d8275acdb4ed91e7c94bfdee21fd20a16",
+    "runtime": "fb452501567f50ae1610df924be37ee4f2dc5bf06a96cf6f430b482adb96cac3",
+    "caseReference": "1d7c91adc19ecab9db50a0809a51b4c0a131d58c40cc03465530c26c3ac68810",
+    "ca": "9b9b84586f742eeba3fb5c06de3c370d271cf18cecef2f5d0e4f3e52b6e5be27",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "openingDriver": "efe6e5f86e40f4676540da9e1beb48f6fc45c06d846e986cf3ff6db93b938db7",
+    "mixedClueDriver": "401082e62d7217c263c547044b978945d1652c141c710bbe7d7183e806bdb5bd",
+    "videoDriver": "d833f67383e0b1b75bc7c847adf135b7afcedddc8fc9b5d46e0664504fb65900",
+    "pullDriver": "997b0008357665384e9f9429c22ead638c769a132a058cb9fbd879d00d7c2549",
+    "fixtureDriver": "8589c2576bf5fe84b085e754bef189347ac68f277ecd9cdcecf037e3e7a07853",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageMetadata": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "906edf5018d5ae706835ae1bb6909aa562023cd0317ad38ce524484bc651bab7",
+    "GameplayViewModel": "4274c0328ae09689a4b1297022b9984f1614b998912b84b6305f19ffb391a502",
+    "GameplayClues": "572c20c17d6eeaca2b4f63732bd523a52a4c2f4315fa1a707b9f7d39e702018c",
+    "GameplayModels": "883c7c541d919c4af4a8b008a35f8abe0e6d0f4f28334c490dcb53f98b13af29",
+    "GameplayDecoder": "dc68f9186950068b9b9118b069aa4228bfd79993d57966cf8089f814219ea990",
+    "StarwardClueTextDialog": "f1366c29103f2efe84b0acbbae8ae94da5402e7ddc68cc70fd5390d9cc1b5d58",
+    "StarwardImageViewer": "875be88ef53a92a3147edfca762c4d4faf3e536fd5971d66bc478a16337f3716",
+    "StarwardVideoViewer": "3ef5918f4d9b7023fef703c34ad623f8c8acbe64334b9fed45229b629fe49df4",
+    "auto-clue-a": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd",
+    "originalJourneyReport": "7cb24bb68058f10821a836d19ac2112f44d8e70c046f831dd0201bae9bd86478"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Fault neutralized and system theme restored; isolated logout left no private UI or extra writes"
+  ],
+  "states": [],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "appThemeActions": [
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "independentSettlement": {
+      "startPostAttempts": 2,
+      "serverCommittedBeforeDroppedResponse": true,
+      "sameRequestIdBodyAndActorOnRetry": true,
+      "uniqueSqliteStartReceipt": true,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 0,
+        "answerSubmissionCount": 0,
+        "correctAnswerCount": 0,
+        "progressRows": 2,
+        "completedProgressRows": 0,
+        "xpLedgerCount": 0,
+        "xpDeltaSum": 0,
+        "playerTotalXp": 0,
+        "clueUnlockRows": 5,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "appThemeRestored": true,
+    "zeroUnexpectedWrites": true
+  },
+  "sameData": {},
+  "privateScreenshots": [],
+  "privateRawEvidence": [],
+  "visualReview": "pending_separate_web_native_original_review"
+}

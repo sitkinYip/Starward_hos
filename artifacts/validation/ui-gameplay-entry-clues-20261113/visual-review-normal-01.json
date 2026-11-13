@@ -1,0 +1,467 @@
+{
+  "status": "reviewed_same_content_opening_clue_originals",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "webReference": {
+    "path": "artifacts/validation/ui-gameplay-entry-clues-20261113/web-entry-clues-01.json",
+    "sha256": "e6b8d09ce58719ae4aab038fe1dabcaa3150c567eb3f883730624a7b7eb756f4"
+  },
+  "webNaturalEndReference": null,
+  "hostFixture": {
+    "path": "artifacts/validation/ui-gameplay-entry-clues-20261113/host-fixtures-01.json",
+    "sha256": "5b4e1fc4ac8f9d62130f4ce32e86e5b44a1f8630f44fbf3991fb26205cc308ab"
+  },
+  "hostMedia": {
+    "path": "artifacts/validation/ui-gameplay-entry-clues-20261113/host-media-01.json",
+    "sha256": "0aab884b8e7fe0f1ab48d55372deb6d7701d55dc660b481f65fcd0d3533a3dca"
+  },
+  "sameVisibleContentAcrossSeparateIsolatedActors": true,
+  "mediaBytes": {
+    "a": {
+      "sha256": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+      "bytes": 2203
+    },
+    "b": {
+      "sha256": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd",
+      "bytes": 2650
+    },
+    "video": {
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+      "bytes": 258860
+    }
+  },
+  "matchedNativePackagedSerifFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "comparisonScriptSha256": "a0676a4628ad3d6c2aa67c2bd6e036895693aeb601015720f2bb2a7918824723",
+  "runs": [
+    {
+      "role": "normal",
+      "theme": "light",
+      "nativeStatus": "passed",
+      "nativeReport": {
+        "path": "artifacts/validation/ui-gameplay-entry-clues-20261113/native-normal-02.json",
+        "sha256": "e7d84f255ae53376e10d17b3f506d2019d8fdc9497a90f9042ef8fbf238e6468"
+      },
+      "nativeRuntime": {
+        "path": "artifacts/validation/ui-gameplay-entry-clues-20261113/runtime-02.json",
+        "sha256": "fb452501567f50ae1610df924be37ee4f2dc5bf06a96cf6f430b482adb96cac3"
+      },
+      "nativeHapSha256": "22e5e5a9e975fa0ea63f047d71b04e9d8275acdb4ed91e7c94bfdee21fd20a16",
+      "nativeDto": {
+        "before": {
+          "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/assigned-get.json",
+          "sha256": "f00eb1c8a656b9b37905a6c9beaa6573a0b4373ae05764eeb32cb3192343977e"
+        },
+        "active": {
+          "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/active-get.json",
+          "sha256": "1c6a5c7a85bc914760c67e283ae3c3acc57e3fcbbb4bccd19e2bd03e4609a117"
+        }
+      },
+      "window": {
+        "widthPx": 1260,
+        "heightPx": 2720,
+        "density": 3.25,
+        "fontScale": 1,
+        "widthVp": 387.6923076923077,
+        "contentHeightVp": 771.0769230769231,
+        "topInsetPx": 123,
+        "bottomInsetPx": 91
+      },
+      "viewport": {
+        "widthCssPx": 388,
+        "heightCssPx": 771,
+        "dpr": 1
+      },
+      "evidence": {
+        "entry-text-first": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-text-first.png",
+            "sha256": "847e576c64d63bf9d6e3561e713c95077a64377dd40f852c38c0c934f9751e5d"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text.png",
+            "sha256": "972df90fe21e1c059e6e86f3ef8be615b052f9b02e64c1876e436972bf24edf5"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text.html",
+            "sha256": "7232315e4d6e3337e89cc52e171fd6dff885131efaddf6842de6fa0cf1a06ff8"
+          },
+          "geometry": {
+            "panel": {
+              "nativeRawPx": [
+                78,
+                937,
+                1182,
+                1782
+              ],
+              "nativeContentVp": [
+                24.0,
+                250.462,
+                339.692,
+                260.0
+              ],
+              "webCssPx": [
+                24,
+                254.21875,
+                340,
+                262.5625
+              ]
+            },
+            "body": {
+              "nativeRawPx": [
+                172,
+                1391,
+                1088,
+                1688
+              ],
+              "nativeContentVp": [
+                52.923,
+                390.154,
+                281.846,
+                91.385
+              ],
+              "webCssPx": [
+                53.05769348144531,
+                397.2008972167969,
+                281.8846435546875,
+                91.13455200195312
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                984,
+                992,
+                1127,
+                1135
+              ],
+              "nativeContentVp": [
+                302.769,
+                267.385,
+                44.0,
+                44.0
+              ],
+              "webCssPx": [
+                305,
+                271.21875,
+                42,
+                42
+              ]
+            }
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-text-first-1eda59e9bd6746f6b032de04f74bdaf9.json",
+            "sha256": "380f9996a8411a132d92a3ecee0162cc910019d73cc753c9ab7bc83266fe56a2"
+          }
+        },
+        "entry-gallery-1": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-gallery-1.png",
+            "sha256": "9b73572c9a27a695583542e6e20f182a47c4582e686517495ed79e09e8c302e5"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-first.png",
+            "sha256": "4adf729ef3da76cfa0e93674b91780b3aab5ee49449aaae066bd0c8527d674bf"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-first.html",
+            "sha256": "095dabe4e3724f6f1a1525bf8cc047675ac40ba83ba159892c29b8c691ccdf23"
+          },
+          "geometry": {
+            "image": {
+              "nativeRawPx": [
+                46,
+                840,
+                1215,
+                1498
+              ],
+              "nativeContentVp": [
+                14.154,
+                220.615,
+                359.692,
+                202.462
+              ],
+              "webCssPx": [
+                14,
+                220.234375,
+                360,
+                202.5
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                1066,
+                354,
+                1216,
+                504
+              ],
+              "nativeContentVp": [
+                328.0,
+                71.077,
+                46.154,
+                46.154
+              ],
+              "webCssPx": [
+                328,
+                70.921875,
+                46,
+                46
+              ]
+            }
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-gallery-1-339da3d0e6d84a0ea6d9aa284f05e5fb.json",
+            "sha256": "e999a12c0e071ee8d9598fff7b9cedde0cb996ccfbce703a02c76e4ae0de75ed"
+          }
+        },
+        "entry-gallery-2": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-gallery-2.png",
+            "sha256": "931fc6761271af8be5345f8a6fd2bd86102f33b5c245bb93da0ff0c4afec972c"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-second.png",
+            "sha256": "0688a201c72bd6f7372f24a914db0616afb9648d96ff0656a06367e3609ac5be"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-gallery-second.html",
+            "sha256": "ac8db0e6699fe4f2f7936eb5f9c70d3d918844bc6a768243c4567748b0c3d626"
+          },
+          "geometry": {
+            "image": {
+              "nativeRawPx": [
+                85,
+                388,
+                1177,
+                1948
+              ],
+              "nativeContentVp": [
+                26.154,
+                81.538,
+                336.0,
+                480.0
+              ],
+              "webCssPx": [
+                26,
+                81.484375,
+                336,
+                480
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                1066,
+                354,
+                1216,
+                504
+              ],
+              "nativeContentVp": [
+                328.0,
+                71.077,
+                46.154,
+                46.154
+              ],
+              "webCssPx": [
+                328,
+                70.921875,
+                46,
+                46
+              ]
+            }
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-gallery-2-93c50805408840f3966b47f31f8e7d09.json",
+            "sha256": "8b252d64a0b2a6131a0c79eecce5f870b5e3813e86cd8e85b41bb1436c164f35"
+          }
+        },
+        "entry-video-playing": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-video-playing-0.png",
+            "sha256": "f0aa1fb4135ae4fd3620179061afdd40180c2ee77a3d17bf697f5cc990d2362a"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-video-playing.png",
+            "sha256": "02639b3a630d4d374eb59d9dd86f7d4a6845840c2518d492852e777d32e15cab"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-video-playing.html",
+            "sha256": "21bfccfef4d8c1cc7f566f9d90c0b22d932900bd349bf3d688c6df6813555874"
+          },
+          "geometry": {
+            "picture": {
+              "nativeRawPx": [
+                46,
+                1047,
+                1215,
+                1705
+              ],
+              "nativeContentVp": [
+                14.154,
+                284.308,
+                359.692,
+                202.462
+              ],
+              "webCssPx": [
+                14,
+                284.25,
+                360,
+                202.5
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                1066,
+                1047,
+                1216,
+                1197
+              ],
+              "nativeContentVp": [
+                328.0,
+                284.308,
+                46.154,
+                46.154
+              ],
+              "webCssPx": [
+                327.6549987792969,
+                281.9049987792969,
+                46.69000244140625,
+                46.69000244140625
+              ]
+            }
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-video-ready-7f4453cebc13417aa2d7a586f51c043c.json",
+            "sha256": "5ac16268ac4b808516737bc8fac33e14861fa901746daef7354374d9f45c6419"
+          },
+          "nativePlaybackSecond": 5,
+          "webPlaybackSecond": 0.509797
+        },
+        "entry-text-after-video": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-text-after-video.png",
+            "sha256": "b2ec66d7237641260f341c32f96e1af33a8e39b4ef1637f75a22fb879cea7efa"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text-after-early-video-close.png",
+            "sha256": "40ea7c0139758d7c5666a2b9aeed42096e578938f8d9c3f44403130d8498b99b"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-automatic-text-after-early-video-close.html",
+            "sha256": "94185b094a505d6b2cf39cc64bf5a278b8fb4c9427f708b7f28e56d1a04c9c2e"
+          },
+          "geometry": {
+            "panel": {
+              "nativeRawPx": [
+                78,
+                888,
+                1182,
+                1832
+              ],
+              "nativeContentVp": [
+                24.0,
+                235.385,
+                339.692,
+                290.462
+              ],
+              "webCssPx": [
+                24,
+                239.015625,
+                340,
+                292.953125
+              ]
+            },
+            "body": {
+              "nativeRawPx": [
+                172,
+                1342,
+                1088,
+                1738
+              ],
+              "nativeContentVp": [
+                52.923,
+                375.077,
+                281.846,
+                121.846
+              ],
+              "webCssPx": [
+                53.08241271972656,
+                382.26007080078125,
+                281.835205078125,
+                121.491455078125
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                984,
+                943,
+                1127,
+                1086
+              ],
+              "nativeContentVp": [
+                302.769,
+                252.308,
+                44.0,
+                44.0
+              ],
+              "webCssPx": [
+                305,
+                256.015625,
+                42,
+                42
+              ]
+            }
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-text-after-video-49d58a68e247466ab89a793aa6c3f5b6.json",
+            "sha256": "8d49095b50fb129e59cb45d9ddd8d53a0ee302fdb62220875e2e7842e7268ffa"
+          }
+        },
+        "entry-settled-question": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-settled-question.png",
+            "sha256": "990ca0983bccec31415b34ca8044a1a3a5b0abb7575a4e146c5b21c67ec53731"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-unanswered-first-question-after-sequence.png",
+            "sha256": "3a242f46dace4e36b33b9abb196528e4ac53b8b1785fbbd9db3850b31946aa7c"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-unanswered-first-question-after-sequence.html",
+            "sha256": "b7a032005b6a51090b5b05149bec7bc426062af1deb9930268d97c7fdacdc7c8"
+          },
+          "geometry": {},
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-settled-question-a60694773bf0467fb1977fd5e5d2c9bb.json",
+            "sha256": "11ba61e8bf52768761cc682be6598d63496b1749ee0434bd528b36557b7630ae"
+          }
+        },
+        "entry-after-revisit": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/entry-after-revisit.png",
+            "sha256": "242fa4cdaf45f92176e5c67be91cbce6a1d29af243e230a0fd0bafb203a4a904"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-fresh-get-unanswered-first-question.png",
+            "sha256": "d12bda4e6414feadf02681583c4ee67d09a5225db44b214b39c53150e5d05b8b"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/web-entry-reference-01/light-fresh-get-unanswered-first-question.html",
+            "sha256": "774c15d6ffaaea97fcebe23b22f3d962f98e87088c0a71b3c559968426d551a4"
+          },
+          "geometry": {},
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-entry-clues-20261113/entry-main-20261113T094047946286Z/raw-entry-after-revisit-dd21fa81860b41278e9bfbb702fa312e.json",
+            "sha256": "4b59de13378bd1cd0eb168bbc698d22b6b8fc909fdf4b4aed0b0f6031df1d2d5"
+          }
+        }
+      }
+    }
+  ],
+  "observations": {
+    "normal": [
+      "日间首尾文字在原生和 Web 保留相同文案、高亮和换行。弹层宽、正文宽和双段留白接近；原生圆形关闭按钮约 44vp，易于点按。",
+      "ArkUI 遮罩保留后方题卡轮廓，Web 使用模糊；原生的面板轮廓装饰更明显。原生等待线索全部结束才显示答题引导，Web 在遮罩后已渲染引导。",
+      "两张实图按同一顺序和比例铺入，宽图和长图无裁切，页码和方向按钮一致。原生底部的百分比沿用已确认浅色，系统状态栏和手势条保留。",
+      "视频与 Web 播放同一媒体，画幅尺寸接近，画面时间点不同。ArkUI 使用系统播放器控件，视频关闭后顺序进入末段文字。",
+      "线索全部关闭并确认引导后，题目、输入与主按钮可读可用，回访呈现同一首题。原生按既有自动定位将题卡置于安全区上缘，Web 原图保留页首可见。"
+    ]
+  },
+  "method": "Reviewed uncropped originals at equal logical width. ArkUI geometry is measured from the original UiTest tree. Vertical vp subtracts the actual native top safe inset. Video is the same exact clip at different playback instants. Behavior, timing and visual review are recorded separately."
+}

@@ -238,6 +238,7 @@ export function decodeGameplay(body: string): GameplaySnapshot {
     result.clues.push(clue(clues[i]));
   }
   if (source['transitionEffects'] !== undefined) {
+    result.transitionEffectsProvided = true;
     const effects: Object[] = array(source['transitionEffects']);
     for (let i: number = 0; i < effects.length; i++) {
       result.transitionEffects.push(effect(effects[i]));
