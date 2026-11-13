@@ -1,0 +1,938 @@
+{
+  "status": "incomplete",
+  "stage": "main",
+  "hapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f",
+  "bindingSha256": {
+    "driver": "a37accb60ebffc444d43298fea7ef755fa9be4ab479575bcadd1c904a7c69f93",
+    "previousDriverGuard": "997b0008357665384e9f9429c22ead638c769a132a058cb9fbd879d00d7c2549",
+    "previousPhoneGuard": "1a6088074c63b1eb115c263b4cd5b473a7001ff1a26db5f4ceb59e66902dddb5",
+    "fixtureHelper": "c466f1efbfb7ca8b13c213273f67ed5c3fcf51f0e8363d32e4e6ceb51c7c8c12",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "GameplayPage": "d9f0ccb5c95711a46f517e57cd8fe82fe356fcec43a7e408a31c816c8d52a490",
+    "StarwardBgmControl": "ac5d012323b26c0ecc6074742e46548a2d1b289e3c1ea8916dd50a4013441845",
+    "StarwardAnswerInput": "fdc50fe0750b28828c27677faed030b31455eb90a7b6deb2cc0bb9c2a2282dff",
+    "StarwardAnswerGuide": "3553948689e09c26cc36c146ad2e102ccba839c889cd84454af8b609fbb0326e",
+    "QuestAnswerGuidePreference": "8782cf27ced2a91be2a5124289bfb5671c0920684496244acff9733d783143e6"
+  },
+  "roleBindings": {
+    "locate": {
+      "hap": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f",
+      "runtime": "58c261c027221d8e09a5d9e493c9b37905368ec743723f983b80b7ef5dd5ee76",
+      "caseReference": "4406f056ffd701da5ed3f849f0cb551256b320a7d165115972cca40369986da0",
+      "ca": "aa5a7d32e8240f89e38a128b7b3b562f5726d84bff443076182a0cc2ad76d3f7",
+      "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+      "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+      "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+      "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+      "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9"
+    },
+    "edit": {
+      "hap": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f",
+      "runtime": "58c261c027221d8e09a5d9e493c9b37905368ec743723f983b80b7ef5dd5ee76",
+      "caseReference": "d49c69aea7f5bf6378e5a2002aae561ffaaa681e294dbeb6811e870ff866b3c5",
+      "ca": "aa5a7d32e8240f89e38a128b7b3b562f5726d84bff443076182a0cc2ad76d3f7",
+      "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+      "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+      "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+      "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+      "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9"
+    },
+    "dismiss": {
+      "hap": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f",
+      "runtime": "58c261c027221d8e09a5d9e493c9b37905368ec743723f983b80b7ef5dd5ee76",
+      "caseReference": "00ae4206445c6f34074748b2dae6b2b82fca9aec04fb4c09170fa156060143b0",
+      "ca": "aa5a7d32e8240f89e38a128b7b3b562f5726d84bff443076182a0cc2ad76d3f7",
+      "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+      "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+      "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+      "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+      "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9"
+    }
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "checks": [
+    "First active multi-question guide and playing BGM are simultaneously visible and separately reachable",
+    "Normal BGM pause and resume still work with the guide visible",
+    "Locate scrolls to the actual empty form without opening IME and restores the BGM dock",
+    "Returning to the assignment on the same account does not replay the guide",
+    "A cold App process and fresh login with the same account retain the seen guide preference",
+    "First active multi-question guide and playing BGM are simultaneously visible and separately reachable",
+    "Keyboard focus alone hides the guide temporarily and preserves first-time state",
+    "A real draft edit consumes this account’s guide without answer submission",
+    "An active single-question and a completed multi-question do not show the guide",
+    "First active multi-question guide and playing BGM are simultaneously visible and separately reachable",
+    "Explicit dismiss preserves scroll position and consumes only this account’s guide"
+  ],
+  "states": {
+    "first-guide-and-bgm": {
+      "raw": {
+        "label": "first-guide-and-bgm",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-first-guide-and-bgm-0a5ce1c613f84574b8278fe8980c7b82.json",
+        "remoteRemoved": true,
+        "sha256": "09bd1096b3cd4b4537acff8b8d9d54292ca6807f06e14b87f52bbf83cbc8dbe3"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          1950,
+          1221,
+          2132
+        ],
+        "gameplay-answer-guide": [
+          39,
+          2172,
+          1221,
+          2630
+        ],
+        "gameplay-answer-guide-dismiss": [
+          609,
+          2439,
+          836,
+          2582
+        ],
+        "gameplay-answer-guide-locate": [
+          855,
+          2439,
+          1173,
+          2582
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle",
+        "gameplay-answer-guide",
+        "gameplay-answer-guide-dismiss",
+        "gameplay-answer-guide-locate"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/first-guide-and-bgm.png",
+        "sha256": "68358360fa5a8da402b825e1a1a67809e31b97cd650877b063e87130ea1c7d5a",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "locate-highlight": {
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/locate-highlight.png",
+        "sha256": "7129b94350f8504e6557825f56fb58eec1e52e9a1a092afb631909571e0f6432"
+      },
+      "captureElapsedMsUpperBound": 2055
+    },
+    "locate-settled-form": {
+      "raw": {
+        "label": "locate-settled-form",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-locate-settled-form-cf973e6c3936483c84d6e65cf4bdbb62.json",
+        "remoteRemoved": true,
+        "sha256": "5acc33269ee9dd62697f7bf910d03d71eec635d1d426fbd5e47657c14eccbda6"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-form": [
+          100,
+          1884,
+          1160,
+          2280
+        ],
+        "gameplay-answer-input": [
+          100,
+          1884,
+          1161,
+          2073
+        ],
+        "gameplay-submit": [
+          100,
+          2131,
+          439,
+          2281
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ]
+    },
+    "after-locate-highlight-ended": {
+      "raw": {
+        "label": "after-locate-highlight-ended",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-after-locate-highlight-ended-2ab8218981b541b39f1cea99027b754c.json",
+        "remoteRemoved": true,
+        "sha256": "5acc33269ee9dd62697f7bf910d03d71eec635d1d426fbd5e47657c14eccbda6"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-form": [
+          100,
+          1884,
+          1160,
+          2280
+        ],
+        "gameplay-answer-input": [
+          100,
+          1884,
+          1161,
+          2073
+        ],
+        "gameplay-submit": [
+          100,
+          2131,
+          439,
+          2281
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/after-locate-highlight-ended.png",
+        "sha256": "efc713ba79132bc98c8ee8f4a0bb8e5f4c79e028e28f0bdc24ceb3143505575a",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "locate-after-route-reenter": {
+      "raw": {
+        "label": "locate-after-route-reenter",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-locate-after-route-reenter-c7f99ae2f3b34acd9d5c7b892922dd88.json",
+        "remoteRemoved": true,
+        "sha256": "a78d0d5db9810e2eac93123a73b8eb6c20f53260a2c2d6721d2d9b6750bb3f69"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/locate-after-route-reenter.png",
+        "sha256": "f7a2a394e532f49658b436df9c117d62f2cd5852e47592e896e0cdf257ab3f85",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "locate-after-cold-restart": {
+      "raw": {
+        "label": "locate-after-cold-restart",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-locate-after-cold-restart-5fdbf2a1be9049a2b4a10b03dc1485d1.json",
+        "remoteRemoved": true,
+        "sha256": "22b6955cd6a19b3dae31103209a06019123242f48c5937dbb479965532ec489f"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/locate-after-cold-restart.png",
+        "sha256": "fb93fd406b490fc0ca4d89e31fb2657435f3f93fa2b055aa6750162ead77f401",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "edit-actor-first-guide": {
+      "raw": {
+        "label": "edit-actor-first-guide",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/raw-edit-actor-first-guide-1b33b61cc45a40efa6842815af95cc58.json",
+        "remoteRemoved": true,
+        "sha256": "ca4330c0e00d042bce1f0f5f58b60848c6ded4764d6388b480412f4d0f237bbe"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          1950,
+          1221,
+          2132
+        ],
+        "gameplay-answer-guide": [
+          39,
+          2172,
+          1221,
+          2630
+        ],
+        "gameplay-answer-guide-dismiss": [
+          609,
+          2439,
+          836,
+          2582
+        ],
+        "gameplay-answer-guide-locate": [
+          855,
+          2439,
+          1173,
+          2582
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle",
+        "gameplay-answer-guide",
+        "gameplay-answer-guide-dismiss",
+        "gameplay-answer-guide-locate"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/edit-actor-first-guide.png",
+        "sha256": "fb97a8641d47026a7cfe4611a16d4e091ddf5f2a89a3b30d1ae079f1205b8500",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "first-real-edit": {
+      "raw": {
+        "label": "first-real-edit",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/raw-first-real-edit-fccc5b0b4d5c4bbb89db7f1797593095.json",
+        "remoteRemoved": true,
+        "sha256": "d0f8456a855c26d3d5f8ed7defe87cc5bbe97df0fd17a6889ad7c165169ce371"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-form": [
+          100,
+          1886,
+          1160,
+          2282
+        ],
+        "gameplay-answer-input": [
+          100,
+          1886,
+          1161,
+          2075
+        ],
+        "gameplay-submit": [
+          100,
+          2133,
+          439,
+          2283
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/first-real-edit.png",
+        "sha256": "b6eb442d0f6f866bb3225a0475f2a04c16e97641e245ca84de2d8319a696ef56",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "edit-after-route-reenter": {
+      "raw": {
+        "label": "edit-after-route-reenter",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/raw-edit-after-route-reenter-d7faecdc541143bfa06cdba902284b3c.json",
+        "remoteRemoved": true,
+        "sha256": "fe097c491310e15abf1a0bb40013edf38760611ab55961dd715af9223d79aa09"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ]
+    },
+    "single-question-no-guide": {
+      "raw": {
+        "label": "single-question-no-guide",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/raw-single-question-no-guide-3a7490e2746c458bbde0d8c8530ec5d6.json",
+        "remoteRemoved": true,
+        "sha256": "7110f1811e4761a46b6753f6b60c6a3dd193847d264bf58bc058d7f5407203dd"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/single-question-no-guide.png",
+        "sha256": "d721b42dcf95c472dc6df1c4fd926a5f64a816d87112440aa28a9addc194163d",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "completed-multi-no-guide": {
+      "raw": {
+        "label": "completed-multi-no-guide",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/raw-completed-multi-no-guide-e492a7351add4b40b69a520bf0a5fb48.json",
+        "remoteRemoved": true,
+        "sha256": "9857cf1cea17c900faa19f9f6c95d79c5bde6faa0e6c8bf198aa384aaa32c5d9"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2424
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/completed-multi-no-guide.png",
+        "sha256": "09b0e3c5db1a032e4b1082383a4573d6032e142a97f735567dd29d4b1c0aac2d",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "dismiss-actor-first-guide": {
+      "raw": {
+        "label": "dismiss-actor-first-guide",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/raw-dismiss-actor-first-guide-f8e3a45d02334e9dbfb374971e1acb8f.json",
+        "remoteRemoved": true,
+        "sha256": "ecc8e5554ad85fe1b561317196076dd1008acaae483f4e073a2f7ab8b028aa16"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          1950,
+          1221,
+          2132
+        ],
+        "gameplay-answer-guide": [
+          39,
+          2172,
+          1221,
+          2630
+        ],
+        "gameplay-answer-guide-dismiss": [
+          609,
+          2439,
+          836,
+          2582
+        ],
+        "gameplay-answer-guide-locate": [
+          855,
+          2439,
+          1173,
+          2582
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle",
+        "gameplay-answer-guide",
+        "gameplay-answer-guide-dismiss",
+        "gameplay-answer-guide-locate"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/dismiss-actor-first-guide.png",
+        "sha256": "0c778a1a67d5553c7fe3a5f08d756bedd16a81be127344318d9373820dd030f2",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "dismiss-only": {
+      "raw": {
+        "label": "dismiss-only",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/raw-dismiss-only-e62f237e7f094c51acc7e4a9ff27b08f.json",
+        "remoteRemoved": true,
+        "sha256": "18402fa864d1a7338ea12214e1711bc3005ba0eb4a6e8770f7839ee131e04b35"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/dismiss-only.png",
+        "sha256": "ceba653db0a13849b6bf810ed920705c1218b415911e7e349a1ae86522dc9e4b",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "dismiss-after-route-reenter": {
+      "raw": {
+        "label": "dismiss-after-route-reenter",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/raw-dismiss-after-route-reenter-d4d08a90c9ab432d9dcda71466053081.json",
+        "remoteRemoved": true,
+        "sha256": "ed4af22ed352e7c51dd7a3bf431e829687e8007bed5b0adcd1d667d1fa071627"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-form": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ],
+        "gameplay-bgm-toggle": [
+          1039,
+          2408,
+          1221,
+          2590
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "question-title",
+        "gameplay-answer-form",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-bgm-toggle"
+      ]
+    }
+  },
+  "observations": {
+    "locateScroll": {
+      "submitInitiallyOffscreenOrObscured": true,
+      "formAndSubmitVisible": true,
+      "imeAbsentAfterLocate": true,
+      "formFocusAfterLocate": false,
+      "draftAfterLocateEmpty": true,
+      "transientRawMarkerObserved": false,
+      "rawMarkerAbsentAfterTimeout": true,
+      "bgmBeforeBoundsPx": [
+        1039,
+        1950,
+        1221,
+        2132
+      ],
+      "bgmAfterBoundsPx": [
+        1039,
+        2408,
+        1221,
+        2590
+      ],
+      "extraMediaReads": 0
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": false
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": false
+      }
+    ]
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "appThemeRestored": true,
+    "remoteRawFilesRemoved": true,
+    "zeroGameplayWrites": false
+  },
+  "sameDataWebFixtures": {
+    "same-data-locate": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/same-data-locate.json",
+      "sha256": "0d85ab3b461d5adac37b5d2529cbe09c9eab33cbe124b4f86a5eafeaf4844c3e"
+    },
+    "same-data-edit": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/same-data-edit.json",
+      "sha256": "1104911be8da2f6870ff87ec94f324eeee40c67c8436bbcc058d8a652563537c"
+    },
+    "same-data-dismiss": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/same-data-dismiss.json",
+      "sha256": "2e3f18e23a64834c1ccc234b9c9eb8fc9a97aae9e7c5d7031b84ac1c0a6a9194"
+    }
+  },
+  "cleanupFailure": "Owned process or evidence source changed during device actions",
+  "failure": "Owned process or evidence source changed during device actions",
+  "lastStep": "dismiss-first-visit",
+  "visualReview": "pending_original_review"
+}

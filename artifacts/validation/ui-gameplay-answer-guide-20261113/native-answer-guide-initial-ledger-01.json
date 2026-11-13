@@ -1,0 +1,32 @@
+{
+  "status": "initial_actors_read_only_reconciled",
+  "originalReportSha256": "90edba96c825c020b7e116439664bbc8fcf1b36f804e757349c802d5d35dcc83",
+  "hapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f",
+  "originalFixtureHelperSha256": "c466f1efbfb7ca8b13c213273f67ed5c3fcf51f0e8363d32e4e6ceb51c7c8c12",
+  "reconcilerFixtureHelperSha256": "0785cdd89fa74bd0a3807c48940af8b257cdaae56167e44535fa284d6393fd37",
+  "originalStatusPreserved": "incomplete",
+  "scope": "Initial locate, edit, dismiss and its two controls",
+  "roles": {
+    "locate": {
+      "fixtureSha256": "4406f056ffd701da5ed3f849f0cb551256b320a7d165115972cca40369986da0",
+      "baselineSha256": "7ba3db70925807d6a9343010758c14889ee73e211077252d7dda80e4656fc233",
+      "successfulAuthenticatedDetailReads": 19,
+      "gameplayWriteCount": 0,
+      "sqliteAndHttpsReceiptsMatchBaseline": true
+    },
+    "edit": {
+      "fixtureSha256": "d49c69aea7f5bf6378e5a2002aae561ffaaa681e294dbeb6811e870ff866b3c5",
+      "baselineSha256": "afc3cbd48579535ae094b8cbd130518dce0b429adf39e46ebb643678aa6ee257",
+      "successfulAuthenticatedDetailReads": 19,
+      "gameplayWriteCount": 0,
+      "sqliteAndHttpsReceiptsMatchBaseline": true
+    },
+    "dismiss": {
+      "fixtureSha256": "00ae4206445c6f34074748b2dae6b2b82fca9aec04fb4c09170fa156060143b0",
+      "baselineSha256": "0cbd6b11f2ea3ae147df701818a6cd145a533c603beadf7c8652f916a8e85715",
+      "successfulAuthenticatedDetailReads": 24,
+      "gameplayWriteCount": 0,
+      "sqliteAndHttpsReceiptsMatchBaseline": true
+    }
+  }
+}

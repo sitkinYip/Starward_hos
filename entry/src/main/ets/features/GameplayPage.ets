@@ -11,6 +11,7 @@ import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { openExternalClueLink } from '../platform/ExternalClueLink';
 import { isQuestBgmSource, QuestBgmPlayer, QuestBgmState } from '../platform/QuestBgmPlayer';
 import { QuestBgmPreference } from '../platform/QuestBgmPreference';
+import { QuestAnswerGuidePreference } from '../platform/QuestAnswerGuidePreference';
 import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
@@ -36,6 +37,7 @@ import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
 import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
+import { StarwardAnswerGuide } from '../ui/StarwardAnswerGuide';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -138,6 +140,11 @@ export struct GameplayPage {
   private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
   @Local private dismissedSyncEpisode: number = 0;
+  @Local private guideAccount: string = '';
+  @Local private guideSeen: boolean = true;
+  @Local private guideHeight: number = 132;
+  @Local private guideHighlightOwner: string = '';
+  private guideHighlightTimer: number = -1;
   @Local private bgmState: QuestBgmState = 'idle';
   @Local private bgmPosition: QuestBgmPosition = new QuestBgmPosition();
   private readonly bgm: QuestBgmPlayer = new QuestBgmPlayer((state: QuestBgmState) => { this.bgmState = state; });
@@ -149,6 +156,7 @@ export struct GameplayPage {
     this.foreground = foreground;
     if (!foreground) {
       this.play.setPollingActive(false);
+      this.clearAnswerGuideHighlight();
       this.updateBgm();
     }
     const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
@@ -203,6 +211,7 @@ export struct GameplayPage {
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
     this.recoveryChanged();
+    this.answerGuideAccountChanged();
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
     this.play.setPollingActive(true);
@@ -218,6 +227,7 @@ export struct GameplayPage {
     this.bgmPreferenceOwner = '';
     this.bgmEnabled = true;
     this.bgmPosition = new QuestBgmPosition();
+    this.clearAnswerGuideHighlight();
     this.play.cancelAutomaticClues();
     this.imageCache.validateOwner();
     this.clearClueLinkHandoff();
@@ -235,6 +245,9 @@ export struct GameplayPage {
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error')
   imageOwnerChanged(): void {
+    if (this.guideHighlightOwner.length > 0 && this.guideHighlightOwner !== this.positionKey()) {
+      this.clearAnswerGuideHighlight();
+    }
     if (this.clueLinkHandoff !== null && !this.clueLinkHandoff.isCurrent()) { this.clearClueLinkHandoff(); }
     if (this.explicitQuestionTarget.length > 0 && this.explicitQuestionTarget !== this.readableQuestionId()) {
       this.explicitQuestionTarget = '';
@@ -262,6 +275,91 @@ export struct GameplayPage {
   private scrollOffset(): number {
     const offset: number = this.questionScroller.offset()?.yOffset ?? 0;
     return Number.isFinite(offset) ? Math.max(0, offset) : 0;
+  }
+
+  @Monitor('playerId')
+  answerGuideAccountChanged(): void {
+    const account: string = this.playerId;
+    if (account === this.guideAccount) { return; }
+    this.clearAnswerGuideHighlight();
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    this.guideSeen = account.length === 0 || (context !== undefined && QuestAnswerGuidePreference.load(context, account));
+    this.guideAccount = account;
+  }
+
+  private hasPendingAnswerGuide(): boolean {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    return !this.guideSeen && this.guideAccount.length > 0 && this.guideAccount === this.playerId &&
+      this.play.visible && this.play.error.length === 0 && snapshot !== null &&
+      snapshot.detail.player === this.guideAccount && snapshot.detail.status === 'active' &&
+      snapshot.detail.totalLevels > 1 && this.readableQuestionId().length > 0 &&
+      this.viewportWidth > 0 && this.viewportWidth < 1100 && this.viewportHeight > 0;
+  }
+
+  private showAnswerGuide(): boolean {
+    return this.hasPendingAnswerGuide() && this.foreground && this.questionInteractionReady() &&
+      this.play.automaticClue === null;
+  }
+
+  private consumeAnswerGuide(): void {
+    if (!this.hasPendingAnswerGuide()) { return; }
+    this.guideSeen = true;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context) { QuestAnswerGuidePreference.save(context, this.guideAccount); }
+  }
+
+  private editAnswer(value: string): void {
+    const previous: string = this.play.draftAnswer;
+    this.play.editAnswer(value);
+    if (this.play.draftAnswer !== previous) { this.consumeAnswerGuide(); }
+  }
+
+  private locateAnswerForm(): void {
+    if (!this.showAnswerGuide()) { return; }
+    const ui: UIContext = this.getUIContext();
+    let formHeight: number;
+    let formTop: number;
+    try {
+      const geometry = ui.getComponentUtils();
+      const form = geometry.getRectangleById('gameplay-answer-form');
+      const viewport = geometry.getRectangleById('gameplay-page');
+      formHeight = ui.px2vp(form.size.height);
+      formTop = ui.px2vp(form.windowOffset.y - viewport.windowOffset.y);
+    } catch {
+      // A relayout can temporarily remove the form. Keep the guide available for another tap.
+      return;
+    }
+    if (!Number.isFinite(formHeight) || formHeight <= 0 || !Number.isFinite(formTop)) { return; }
+    const safeTop: number = this.foregroundTopInset();
+    const safeBottom: number = Math.max(safeTop, this.viewportHeight - this.bgmBottomInset());
+    const available: number = safeBottom - safeTop;
+    const alignment: number = safeTop + Math.max(0, (available - formHeight) / 2);
+    const target: number = Math.max(0, this.scrollOffset() + formTop - alignment);
+    clearTimeout(this.positionTimer);
+    this.positionTimer = -1;
+    this.positionPending = false;
+    this.consumeAnswerGuide();
+    this.guideHighlightOwner = this.positionKey();
+    this.guideHighlightTimer = setTimeout(() => this.clearAnswerGuideHighlight(), 2400);
+    this.questionScroller.scrollTo({ xOffset: 0, yOffset: target,
+      animation: this.reducedMotion ? false : { duration: 420, curve: Curve.EaseOut } });
+  }
+
+  private clearAnswerGuideHighlight(): void {
+    clearTimeout(this.guideHighlightTimer);
+    this.guideHighlightTimer = -1;
+    this.guideHighlightOwner = '';
+  }
+
+  private answerGuideHighlighted(): boolean {
+    return this.guideHighlightOwner.length > 0 && this.guideHighlightOwner === this.positionKey();
+  }
+
+  private guideBottomInset(): number { return Math.max(12, this.bgmBottomInset()); }
+
+  private scrollBottomClearance(): number {
+    const baseline: number = this.bottomClearance + (this.bgmSource().length > 0 ? QUEST_BGM_SIZE : 0);
+    return this.showAnswerGuide() ? Math.max(baseline, this.guideBottomInset() + this.guideHeight + 12) : baseline;
   }
 
   private bgmSource(): string {
@@ -297,17 +395,22 @@ export struct GameplayPage {
     return this.foreground && !this.keyboardVisible && !this.videoViewer.visible && !this.videoViewer.closing &&
       !this.viewer.visible && !this.viewer.closing && this.bgmSource().length > 0 &&
       this.viewportWidth - this.leftInset - this.rightInset >= minimum &&
-      this.viewportHeight - this.foregroundTopInset() - this.bgmBottomInset() >= minimum;
+      this.viewportHeight - this.foregroundTopInset() - this.bgmLayoutBottomInset() >= minimum;
   }
 
   private bgmBottomInset(): number { return Math.max(0, this.bottomClearance - 24); }
+
+  private bgmLayoutBottomInset(): number {
+    return this.showAnswerGuide() ? this.guideBottomInset() + this.guideHeight : this.bgmBottomInset();
+  }
 
   private bgmLeft(): number {
     return questBgmCoordinate(this.bgmPosition.x, this.viewportWidth, this.leftInset, this.rightInset);
   }
 
   private bgmTop(): number {
-    return questBgmCoordinate(this.bgmPosition.y, this.viewportHeight, this.foregroundTopInset(), this.bgmBottomInset());
+    return questBgmCoordinate(this.bgmPosition.y, this.viewportHeight, this.foregroundTopInset(),
+      this.bgmLayoutBottomInset());
   }
 
   private rememberBgmPosition(owner: string, x: number, y: number): void {
@@ -1244,7 +1347,7 @@ export struct GameplayPage {
           imageSource: this.optionImage(key), ownerKey: this.optionOwner(key),
           ownerIsCurrent: (owner: string) => this.play.visible && this.play.snapshot !== null && owner === this.optionOwner(key),
           imageCache: this.imageCache,
-          reducedMotion: !this.answerMotionEnabled(), chosen: () => this.play.editAnswer(key),
+          reducedMotion: !this.answerMotionEnabled(), chosen: () => this.editAnswer(key),
           opened: () => this.openOptionImage(key) })
       }, (key: string) => key)
     }.id('gameplay-choice-options').width('100%')
@@ -1259,7 +1362,7 @@ export struct GameplayPage {
         StarwardAnswerInput({ value: this.shownAnswer(),
           placeholder: this.play.currentLevel()?.question?.placeholder || '输入你的答案',
           editable: this.play.answerEditable(), reducedMotion: this.reducedMotion,
-          changed: (value: string) => this.play.editAnswer(value) })
+          changed: (value: string) => this.editAnswer(value) })
       }
       if (!this.currentCompleted() && this.play.blockedReason().length > 0) {
         Text(this.play.blockedReason()).id('gameplay-penalty').width('100%')
@@ -1303,6 +1406,14 @@ export struct GameplayPage {
         }, (version: number) => version.toString())
       }
     }.id('gameplay-answer-form').width('100%').alignItems(HorizontalAlign.Start)
+      .outlineWidth(1).outlineRadius(2)
+      .outlineColor(this.answerGuideHighlighted() ? $r('app.color.accent') : Color.Transparent)
+      .backgroundColor(this.answerGuideHighlighted() ? $r('app.color.accent_faint') : Color.Transparent)
+      .animation({ duration: this.reducedMotion ? 0 : 480, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
+      .shadow({ radius: this.getUIContext().vp2px(52),
+        color: this.answerGuideHighlighted() ? $r('app.color.quest_avatar_glow') : Color.Transparent })
+      .animation({ duration: this.reducedMotion ? 0 : 620, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
+      .accessibilityDescription(this.answerGuideHighlighted() ? '已定位到当前答题区' : '')
   }
 
   @Builder
@@ -1454,7 +1565,7 @@ export struct GameplayPage {
         }
       }.width('100%').alignItems(HorizontalAlign.Start)
         .padding({ left: 12, right: 12, top: 16 + Math.max(0, this.titleBottom - this.viewportTop),
-          bottom: this.bottomClearance + (this.bgmSource().length > 0 ? QUEST_BGM_SIZE : 0) })
+          bottom: this.scrollBottomClearance() })
     }.id('gameplay-page').width('100%').height('100%').align(Alignment.Top).scrollBar(BarState.Off)
       .onDidScroll(() => this.syncTitle())
       .onAreaChange((_previous: Area, current: Area) => {
@@ -1492,10 +1603,23 @@ export struct GameplayPage {
         StarwardBgmControl({ state: this.bgmState, reducedMotion: this.reducedMotion,
           viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
           topInset: this.foregroundTopInset(), leftInset: this.leftInset, rightInset: this.rightInset,
-          bottomInset: this.bgmBottomInset(), savedX: this.bgmPosition.x, savedY: this.bgmPosition.y,
+          bottomInset: this.bgmLayoutBottomInset(), savedX: this.bgmPosition.x, savedY: this.bgmPosition.y,
           ownerKey: this.playerId, positionCommitted: (owner: string, x: number, y: number) => {
             this.rememberBgmPosition(owner, x, y);
           }, toggle: () => this.toggleBgm() })
+      }
+      if (this.showAnswerGuide()) {
+        Column() {
+          StarwardAnswerGuide({ reducedMotion: this.reducedMotion,
+            dismiss: () => { if (this.showAnswerGuide()) { this.consumeAnswerGuide(); } },
+            locate: () => this.locateAnswerForm(),
+            measured: (height: number) => {
+              if (Number.isFinite(height) && height > 0 && this.guideHeight !== height) { this.guideHeight = height; }
+            } })
+        }.width('100%').height('100%').justifyContent(FlexAlign.End)
+          .padding({ bottom: this.guideBottomInset(), left: Math.max(12, this.leftInset),
+            right: Math.max(12, this.rightInset) })
+          .hitTestBehavior(HitTestMode.None)
       }
       if (this.foreground && this.play.syncEpisode > 0 && this.play.syncEpisode !== this.dismissedSyncEpisode &&
         this.play.error.length === 0) {

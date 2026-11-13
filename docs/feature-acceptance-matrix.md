@@ -941,3 +941,24 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 原生提示超时、上滑关闭、视频正在播放时下线及真机切换账号的迟到响应未单独触发。超时与减少动画有 Web 对照，迟到账号及权限失败有本地用例。终态页面保留显式重试；自动同步止于场次下线。
 
 [固定预览](../artifacts/validation/ui-gameplay-polling-20261113/fixed-preview-restored-01.json) 已恢复登录，正常验收包和预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-polling-20261113/preview-package-equivalence-01.json)。[隔离环境已清理](../artifacts/validation/ui-gameplay-polling-20261113/disposable-cleanup-01.json)，SQLite 与严格 HTTPS 台账核对无新增入场、答题或经验结算。
+
+### Q01a 首次多题答题引导
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 首次展示与排版 | 按冻结 Web `4b7d1a0` 手机布局，仅在进行中的多题场次显示「答案在题目下方」「知道了」「定位答题区」。单题、已完成、不可读题和未入场详情不展示。逐图对照内容、底部安全区和入场动效。 |
+| 定位答题区 | 滚到当前题的实际表单，在可用范围内居中并短暂高亮。无焦点抢占、无主动弹键盘、无自动答题；减少动画时即时滚动。切题、离场和旧授权失效时清理待执行定位。 |
+| 关闭与按账号记忆 | 点「知道了」、定位或实际编辑填空、选择答案后记为已见。仅聚焦和取消键盘不计已见。不同账号独立，重进场次和重启 App 后仍记住。 |
+| 浮标与验收 | 直板机同时操作 BGM 和引导，键盘收起后可继续尚未完成的引导。用隔离真实 HTTPS 对账，无新增入场或答题写入。 |
+
+[冻结 Web 回放](../artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-02.json) 使用同款长题快照和 388 × 771 CSS px 视口。分别核对日夜、定位与高亮、独立账号、实际编辑及不展示条件。[选择题](../artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-choice-03.json) 补验实际点选。直板原生保留已确认的题卡自动落位，并按实际系统手势区避让。引导显示时暂时让 BGM 浮标停在面板上方，关闭后回到原停靠位置。Web 在默认停靠位会被面板遮住。
+
+[首轮原生](../artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-01.json) 观察到定位、BGM 播放暂停、同账号重进与冷启动后记忆、键盘取消、填空编辑、单题与完成态排除、夜间原位关闭等交互。采集中补建隔离账号改变了夹具脚本哈希，报告保留 incomplete。[独立台账复核](../artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-initial-ledger-01.json) 核对首轮三个专用账号无新增入场、答题或经验变化。[首轮原图](../artifacts/validation/ui-gameplay-answer-guide-20261113/visual-review-initial-01.json) 可见表单完整滚入，未能看到预期高亮。后续使用 ArkUI 外描边及主题底色补验。
+
+[修正版签名安装、窗口及 TLS](../artifacts/validation/ui-gameplay-answer-guide-20261113/runtime-02.json) 5 项通过。[答题 20/20](../artifacts/validation/ui-gameplay-answer-guide-20261113/GameplayAnswerViewModel/local-test-summary.json)、[刷新 8/8](../artifacts/validation/ui-gameplay-answer-guide-20261113/GameplayRefreshViewModel/local-test-summary.json) 和 [BGM 3/3](../artifacts/validation/ui-gameplay-answer-guide-20261113/GameplayBgm/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-answer-guide-20261113/lint-final/lint.json) 返回 `filesChecked=0`。DevEco ArkTS 检查对答题页、引导和新偏好文件未返回诊断，BGM 偏好工厂保留原有异常提示。
+
+[修正版直板复验](../artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-final-01.json) 在两个全新隔离玩家上通过。日间定位让当前表单上移约 108 vp，输入和提交完整可见。原图有两张高亮帧和一张退去后的帧，退去后表单位置一致，未出现焦点或键盘。引导显示时实点暂停及恢复 BGM，关闭引导恢复停靠位，定位未额外读取音频。夜间实际点选 Radio 后引导关闭，回访不再出现。严格 HTTPS 记录及 SQLite 对账无新增玩法写入。
+
+[日夜原图对照](../artifacts/validation/ui-gameplay-answer-guide-20261113/visual-review-final-01.json) 包含最终版首次引导、定位、退去和实际点选。定位描边沿 ArkUI 表单外缘绘制，保持表单几何。Web 轮廓额外外扩 12 CSS px。减少动画使用系统设置，原生即时定位，Web 减少动画已重放。当前直板机未取得该设置生效的独立证据，也未录制连续入场动效。
+
+[固定预览账号](../artifacts/validation/ui-gameplay-answer-guide-20261113/fixed-preview-restored-01.json) 已恢复并停留在首页。预览包与修正版验收包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-answer-guide-20261113/preview-package-equivalence-01.json)。[临时验收环境已清理](../artifacts/validation/ui-gameplay-answer-guide-20261113/disposable-cleanup-01.json)，六个隔离账号的八个场次台账保持准备后的原值。

@@ -366,3 +366,26 @@ STARWARD_VALIDATION_DIR="$starward_reports/GameplayClues-final" scripts/hm.sh te
 STARWARD_VALIDATION_DIR="$starward_reports/GameplayAnswerViewModel-final" scripts/hm.sh test GameplayAnswerViewModel
 STARWARD_VALIDATION_DIR="$starward_reports/lint-final" scripts/hm.sh lint
 ```
+
+## 首次多题答题引导（2026-11-13）
+
+见 [Q01a](feature-acceptance-matrix.md#q01a-首次多题答题引导)。验收使用独立玩家、长填空及选择题场次、可回放的真实隔离 HTTPS 快照。Web 使用冻结提交 `4b7d1a0`、相同题面和约 388 的内容视口宽度。原图、带鉴权的快照与设备工具日志存于私有目录。公开报告只记录脱敏控件位置、原图哈希和台账差值。
+
+```sh
+starward_private=artifacts/private/gameplay-answer-guide-20261113
+starward_reports=artifacts/validation/ui-gameplay-answer-guide-20261113
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-02.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-answer-guide-final.py" --stage final --dark-choice \
+  --runtime "$starward_reports/runtime-02.json" --device-ref "$starward_private/device-ref.json" \
+  --expected-hap "$starward_hap_sha" --output "$starward_reports/native-answer-guide-final-01.json"
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayAnswerViewModel" scripts/hm.sh test GameplayAnswerViewModel
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayRefreshViewModel" scripts/hm.sh test GameplayRefreshViewModel
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayBgm" scripts/hm.sh test GameplayBgm
+STARWARD_VALIDATION_DIR="$starward_reports/lint-final" scripts/hm.sh lint
+```
+
+复现需要重新准备未消费引导的隔离玩家和对应的严格 HTTPS、设备及 HAP 绑定，并使用新的报告路径。
+
+定位使用 ArkUI `Scroller.scrollTo` 和窗口坐标。表单高亮使用不占布局的原生外描边。已对照固定 API 26 声明。[ArkUI Scroll](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-scroll/) · [ArkUI 外描边设置](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-outline/)

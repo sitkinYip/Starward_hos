@@ -1,0 +1,609 @@
+{
+  "status": "reviewed_native_and_frozen_web_answer_guide_originals",
+  "sourceCommit": "4b7d1a0",
+  "sameData": {
+    "locate": {
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-dtos-01.json",
+        "sha256": "30731da5e4ec770a5424510c4c67ee0154d27d11e879939b36fb7d669d1de0f4"
+      },
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/same-data-locate.json",
+        "sha256": "0d85ab3b461d5adac37b5d2529cbe09c9eab33cbe124b4f86a5eafeaf4844c3e"
+      },
+      "sameCanonicalPlayerAndAssignment": true
+    },
+    "edit": {
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-dtos-01.json",
+        "sha256": "30731da5e4ec770a5424510c4c67ee0154d27d11e879939b36fb7d669d1de0f4"
+      },
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/same-data-edit.json",
+        "sha256": "1104911be8da2f6870ff87ec94f324eeee40c67c8436bbcc058d8a652563537c"
+      },
+      "sameCanonicalPlayerAndAssignment": true
+    },
+    "dismiss": {
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/same-data-dismiss.json",
+        "sha256": "2e3f18e23a64834c1ccc234b9c9eb8fc9a97aae9e7c5d7031b84ac1c0a6a9194"
+      },
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/same-data-dismiss.json",
+        "sha256": "2e3f18e23a64834c1ccc234b9c9eb8fc9a97aae9e7c5d7031b84ac1c0a6a9194"
+      },
+      "sameCanonicalPlayerAndAssignment": true
+    },
+    "choice": {
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/choice-dtos-01.json",
+        "sha256": "ee564283c87083d293e1be10de81b70aec53ad643c2338ff8114a01ce2531f44"
+      },
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111659896Z/same-data-choice.json",
+        "sha256": "beb38d4e5c31dbdce96f210c1f1de88ccf866908507f4604f637b717118532ee"
+      },
+      "sameCanonicalPlayerAndAssignment": true
+    },
+    "highlight": {
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-dtos-01.json",
+        "sha256": "30731da5e4ec770a5424510c4c67ee0154d27d11e879939b36fb7d669d1de0f4"
+      },
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/same-data-relocate.json",
+        "sha256": "7e1afa80679752bf2ab03e69f84a44476a23d35d5ee300e61f9104452807fabd"
+      },
+      "sameCanonicalPlayerAndAssignment": true
+    }
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "fontScale": 1
+  },
+  "windowEvidence": {
+    "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/runtime-01.json",
+    "sha256": "58c261c027221d8e09a5d9e493c9b37905368ec743723f983b80b7ef5dd5ee76"
+  },
+  "finalWindowEvidence": {
+    "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/runtime-02.json",
+    "sha256": "b5bffe362c8f63f7ae20fd30e493f8c35ad0780c59346931a6c300ddd5f7b256"
+  },
+  "webViewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "sources": {
+    "webBehavior": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-02.json",
+      "sha256": "e9f10acec122fa88afc4507ac557766527b606ecfdccf66ab4eda89151c3ace7"
+    },
+    "webScrollAlignedVisual": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-aligned-01.json",
+      "sha256": "c671a4cc1678f337c8e4bb9a7c9bea004912f6e73f0ba1718154d4c7dd544798"
+    },
+    "webChoice": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-choice-dark-01.json",
+      "sha256": "54dc82ae33fc703332e1d7ecf9774b0d0531dd7dd534228bdefa5972a2b28021"
+    },
+    "webDarkControls": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-dark-controls-device-dto-01.json",
+      "sha256": "7c978e999f2eb13e339154b6a7cad6b2ad66f18e9dbab8c8aa4694abf11d4bd5"
+    },
+    "initialReview": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/visual-review-initial-01.json",
+      "sha256": "33d94620b01a041891409d117d87c6786d9e0db75be2af5ecbff89bde7745f4b"
+    },
+    "nativeMain": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-01.json",
+      "sha256": "90edba96c825c020b7e116439664bbc8fcf1b36f804e757349c802d5d35dcc83"
+    },
+    "nativeMainIndependentLedger": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-initial-ledger-01.json",
+      "sha256": "7ca74a36ff4c88dac474dd9cee2b51de6cb1cdeb46727537f1e002a799ae626b"
+    },
+    "nativeHighlight": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-final-01.json",
+      "sha256": "1ebd8001dce2bf4c480a20fc483190e995d3ea05996808041777ed418cb9de60"
+    },
+    "nativeChoice": {
+      "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/native-answer-guide-final-01.json",
+      "sha256": "1ebd8001dce2bf4c480a20fc483190e995d3ea05996808041777ed418cb9de60"
+    }
+  },
+  "geometryLightNative": {
+    "source": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/raw-first-guide-and-bgm-94035f688275469882cd14fb5836d291.json",
+      "sha256": "f73bf51a0cccd4cb59d9cae50d98c8e5fdeecb0eda2e2e9732a5c1a39e4d9b5d"
+    },
+    "controls": {
+      "page": {
+        "boundsPx": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "xywhVpContentOrigin": [
+          0.0,
+          0.31,
+          387.69,
+          798.77
+        ]
+      },
+      "form": {
+        "boundsPx": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          649.85,
+          326.15,
+          121.85
+        ]
+      },
+      "input": {
+        "boundsPx": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          649.85,
+          326.46,
+          58.15
+        ]
+      },
+      "bgm": {
+        "boundsPx": [
+          1039,
+          1950,
+          1221,
+          2132
+        ],
+        "xywhVpContentOrigin": [
+          319.69,
+          562.15,
+          56.0,
+          56.0
+        ]
+      },
+      "guide": {
+        "boundsPx": [
+          39,
+          2172,
+          1221,
+          2630
+        ],
+        "xywhVpContentOrigin": [
+          12.0,
+          630.46,
+          363.69,
+          140.92
+        ]
+      },
+      "dismiss": {
+        "boundsPx": [
+          609,
+          2439,
+          836,
+          2582
+        ],
+        "xywhVpContentOrigin": [
+          187.38,
+          712.62,
+          69.85,
+          44.0
+        ]
+      },
+      "locate": {
+        "boundsPx": [
+          855,
+          2439,
+          1173,
+          2582
+        ],
+        "xywhVpContentOrigin": [
+          263.08,
+          712.62,
+          97.85,
+          44.0
+        ]
+      }
+    }
+  },
+  "geometryDarkNative": {
+    "source": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111659896Z/raw-choice-actor-first-guide-f30c4b641d164f9ea89aa822be88043f.json",
+      "sha256": "e094f2c057a85990b0d017116c4e2e2d4ce7e3171609cd497dd86a886ac44f5b"
+    },
+    "controls": {
+      "page": {
+        "boundsPx": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "xywhVpContentOrigin": [
+          0.0,
+          0.31,
+          387.69,
+          798.77
+        ]
+      },
+      "form": {
+        "boundsPx": [
+          100,
+          2235,
+          1160,
+          2720
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          649.85,
+          326.15,
+          149.23
+        ]
+      },
+      "bgm": {
+        "boundsPx": [
+          1039,
+          1950,
+          1221,
+          2132
+        ],
+        "xywhVpContentOrigin": [
+          319.69,
+          562.15,
+          56.0,
+          56.0
+        ]
+      },
+      "guide": {
+        "boundsPx": [
+          39,
+          2172,
+          1221,
+          2630
+        ],
+        "xywhVpContentOrigin": [
+          12.0,
+          630.46,
+          363.69,
+          140.92
+        ]
+      },
+      "dismiss": {
+        "boundsPx": [
+          609,
+          2439,
+          836,
+          2582
+        ],
+        "xywhVpContentOrigin": [
+          187.38,
+          712.62,
+          69.85,
+          44.0
+        ]
+      },
+      "locate": {
+        "boundsPx": [
+          855,
+          2439,
+          1173,
+          2582
+        ],
+        "xywhVpContentOrigin": [
+          263.08,
+          712.62,
+          97.85,
+          44.0
+        ]
+      }
+    }
+  },
+  "geometryNativeAfterLocate": {
+    "source": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/raw-after-locate-highlight-ended-aa262af2c4834722aaf1850d0cc61a57.json",
+      "sha256": "ca8ceed18e83e97f384f6969454451e32d19c773190164780e0825e4d692dae4"
+    },
+    "controls": {
+      "page": {
+        "boundsPx": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "xywhVpContentOrigin": [
+          0.0,
+          0.31,
+          387.69,
+          798.77
+        ]
+      },
+      "form": {
+        "boundsPx": [
+          100,
+          1884,
+          1160,
+          2280
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          541.85,
+          326.15,
+          121.85
+        ]
+      },
+      "input": {
+        "boundsPx": [
+          100,
+          1884,
+          1161,
+          2073
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          541.85,
+          326.46,
+          58.15
+        ]
+      },
+      "bgm": {
+        "boundsPx": [
+          1039,
+          2408,
+          1221,
+          2590
+        ],
+        "xywhVpContentOrigin": [
+          319.69,
+          703.08,
+          56.0,
+          56.0
+        ]
+      }
+    }
+  },
+  "originals": [
+    {
+      "state": "initial-guide-light",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/first-guide-and-bgm.png",
+        "sha256": "55ea846b04b4d0dbd7f0a3c8d9fd6d509548145810de0fb4ed347b38c66ed7c0",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-aligned-01/light-aligned-first-guide-and-bgm.png",
+        "sha256": "642d4a9cd35e682f75247c58eefcc0020fe9c3961528752b68c6b308a3c3aede",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0"
+    },
+    {
+      "state": "located-form-highlight",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/locate-highlight.png",
+        "sha256": "984eb757c8671c35272287b01b1431e893bfa3150366f54bf4a36d2a452bdf39",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-02/light-locate-locate-highlight.png",
+        "sha256": "fd7f0113929291574e1cbd1915109eed9d8f3f270fd9ff299bbdab90f35e99f7",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0"
+    },
+    {
+      "state": "located-form-highlight-second-native-frame",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/locate-highlight-second.png",
+        "sha256": "8ffc386f27a1096a72dacd3bc4d5bb290dbf69bdc2e73cfc2465f48ba5617791",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-02/light-locate-locate-highlight.png",
+        "sha256": "fd7f0113929291574e1cbd1915109eed9d8f3f270fd9ff299bbdab90f35e99f7",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0"
+    },
+    {
+      "state": "highlight-expired",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111629049Z/after-locate-highlight-ended.png",
+        "sha256": "61951e579ced6f115b1e8509bce49f11a3668c914f01e3e2da31b12451a3a238",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-02/light-locate-after-locate-highlight-ended.png",
+        "sha256": "ce84389fb1b9e3a5b1281a046f929f55b79122ec4130c1a5c4b876205b4db5dc",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0"
+    },
+    {
+      "state": "first-real-edit",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717112792Z/first-real-edit.png",
+        "sha256": "b6eb442d0f6f866bb3225a0475f2a04c16e97641e245ca84de2d8319a696ef56",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-02/light-edit-first-real-edit.png",
+        "sha256": "9261f7a9d4dc1b5804d82de86086393397500d9b2535a213969b2a7e79559d81",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f"
+    },
+    {
+      "state": "initial-guide-dark",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111659896Z/choice-actor-first-guide.png",
+        "sha256": "c32d3f2683d6bf3df5a1acd5c6cfc1b215031a93014204d0c1da2bdd494b6dd5",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-choice-dark-01/dark-choice-first-guide-and-bgm.png",
+        "sha256": "47c41a52d64fb2a7a7f02ded1707100d4e452a707a66afacb1fd0c0988183a01",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0"
+    },
+    {
+      "state": "initial-guide-dark-first-package",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/dismiss-actor-first-guide.png",
+        "sha256": "0c778a1a67d5553c7fe3a5f08d756bedd16a81be127344318d9373820dd030f2",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-dark-controls-device-dto-01/dark-aligned-first-guide-and-bgm.png",
+        "sha256": "b7150fc03264d5e59383717f8ad645274c4e74792b0f8b7452d28275a5f891be",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f"
+    },
+    {
+      "state": "dismiss-only",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/dismiss-only.png",
+        "sha256": "ceba653db0a13849b6bf810ed920705c1218b415911e7e349a1ae86522dc9e4b",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-dark-controls-device-dto-01/dark-aligned-dismiss-only.png",
+        "sha256": "c8f143afc9b3d02909b0fd81ee5958e3679cca7f0090dd6bdbbad0ee5277cefc",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f"
+    },
+    {
+      "state": "single-excluded",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/single-question-no-guide.png",
+        "sha256": "d721b42dcf95c472dc6df1c4fd926a5f64a816d87112440aa28a9addc194163d",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-dark-controls-device-dto-01/dark-single-excluded-guide.png",
+        "sha256": "d296d9e8a028f1884b682e8619ebd30b97e5a5c0cc25dbd668ada0e4b0b2bd65",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f"
+    },
+    {
+      "state": "completed-excluded",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717147580Z/completed-multi-no-guide.png",
+        "sha256": "09b0e3c5db1a032e4b1082383a4573d6032e142a97f735567dd29d4b1c0aac2d",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-dark-controls-device-dto-01/dark-completed-excluded-guide.png",
+        "sha256": "864b8c98c229528f1aba1441f0bf3400688185cba6121e3878761b0847750b0a",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f"
+    },
+    {
+      "state": "choice-selected",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T075111659896Z/first-real-choice.png",
+        "sha256": "0b12114414325c0025e395e04c580ff5b258ac09271a68a962669aa94100cc95",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-choice-dark-01/dark-choice-first-choice-selection.png",
+        "sha256": "acc6b58ef3c8960e88a0eb60a358795600192471809c7af535a5c80b38cea1b7",
+        "widthPx": 388,
+        "heightPx": 771
+      },
+      "nativeHapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0"
+    }
+  ],
+  "visualReviewByTheme": {
+    "light": "日间青绿实心定位、透明知道了，正文两行，方形编号与左右排版对应。",
+    "dark": "夜间深底配金色定位，标题和正文清晰可读，与日间同层级，同数据同宽原图。"
+  },
+  "visualReviewHighlight": {
+    "observed": true,
+    "nativeCaptureElapsedMsUpperBound": 2096,
+    "webMeasuredLifetimeMs": 2395,
+    "surface": "细 accent 边界和淡色背景围绕输入与提交，消退后同一位置无遮挡。",
+    "nativeSecondCaptureElapsedMsUpperBound": 3108,
+    "firstAttemptHadNoVisibleOutline": true
+  },
+  "knownNativeDifferences": [
+    "原生状态栏与系统手势区保留，Web 比照有效内容窗口 388×771。",
+    "原生按既有已确认规则先落到题卡。另录手动对齐 Web 图用于视觉对照。",
+    "原生按钮保留 44vp 触控区，Web 对应 40px。原生面板为主题表面，Web 为轻度半透明及模糊。",
+    "初版原生「知道了」使用主题色文字。修订版与 Web 使用正文色，保留透明按钮和实心主动作层级。",
+    "Web 默认音乐浮标由面板覆盖，原生浮标让位到面板上方，播放与暂停仍可触达。",
+    "ArkUI 外框贴表单边界，Web 细线外扩 12px。两端均有淡色背景和柔光，输入与提交仍可读且未被覆盖。",
+    "原生 IME 出现时暂时隐藏未消费的指南；Web 文本编辑图使用桌面浏览器移动视口，无系统 IME。",
+    "原生没有可读题、被模态挡住或退出前台时暂停展示；Web 的 guide 条件较少。"
+  ],
+  "scope": "narrow_guide_panel_and_current_answer_form",
+  "initialNativeRunStatus": "incomplete",
+  "initialNativeRunGuardFailure": "Owned process or evidence source changed during device actions",
+  "manualOriginalReview": true,
+  "didNotUseOcr": true,
+  "fontEvidence": {
+    "webSourceFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "nativePackages": {
+      "initial": {
+        "hapSha256": "e1e8161521deace39530f6dd9ef286947c8ed11059988bb1324a22f826b0968f",
+        "packagedFontMatchesSource": true
+      },
+      "final": {
+        "hapSha256": "c1d798dcfb34eb55c3a49b2d8d2cde442e6f0533ecfe8b3c304e47916a2269a0",
+        "packagedFontMatchesSource": true
+      }
+    }
+  },
+  "motionEvidence": {
+    "webEnterDurationMs": 620,
+    "webEnterTranslateYCssPx": 18,
+    "webReducedEnterMs": 0.01,
+    "nativeTimedHighlightFrames": 2,
+    "nativeEntryContinuousRecording": false,
+    "nativeReducedMotionDeviceRun": false
+  }
+}

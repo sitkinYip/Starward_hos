@@ -1,0 +1,318 @@
+{
+  "status": "initial_original_review_with_locate_highlight_gap",
+  "sourceCommit": "4b7d1a0",
+  "sameData": {
+    "web": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/web-dtos-01.json",
+      "sha256": "30731da5e4ec770a5424510c4c67ee0154d27d11e879939b36fb7d669d1de0f4"
+    },
+    "native": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/same-data-locate.json",
+      "sha256": "0d85ab3b461d5adac37b5d2529cbe09c9eab33cbe124b4f86a5eafeaf4844c3e"
+    },
+    "sameCanonicalPlayerAndAssignment": true
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "fontScale": 1
+  },
+  "windowEvidence": {
+    "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/runtime-01.json",
+    "sha256": "58c261c027221d8e09a5d9e493c9b37905368ec743723f983b80b7ef5dd5ee76"
+  },
+  "webBehavior": {
+    "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-02.json",
+    "sha256": "e9f10acec122fa88afc4507ac557766527b606ecfdccf66ab4eda89151c3ace7"
+  },
+  "webScrollAlignedVisualEvidence": {
+    "file": "artifacts/validation/ui-gameplay-answer-guide-20261113/web-answer-guide-aligned-01.json",
+    "sha256": "c671a4cc1678f337c8e4bb9a7c9bea004912f6e73f0ba1718154d4c7dd544798"
+  },
+  "webViewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "nativeTheme": "light",
+  "webGuideGeometry": {
+    "guide": {
+      "x": 12,
+      "y": 617.8125,
+      "width": 364,
+      "height": 141.1875,
+      "bottomInset": 12
+    },
+    "marker": {
+      "x": 27,
+      "y": 644.40625,
+      "width": 38,
+      "height": 38,
+      "bottomInset": 88.59375
+    },
+    "title": {
+      "x": 77,
+      "y": 632.8125,
+      "width": 284,
+      "height": 20,
+      "bottomInset": 118.1875
+    },
+    "body": {
+      "x": 77,
+      "y": 656.8125,
+      "width": 284,
+      "height": 37.1875,
+      "bottomInset": 77
+    },
+    "locate": {
+      "x": 261,
+      "y": 704,
+      "width": 100,
+      "height": 40,
+      "bottomInset": 27
+    },
+    "dismiss": {
+      "x": 183,
+      "y": 704,
+      "width": 72,
+      "height": 40,
+      "bottomInset": 27
+    },
+    "bgm": {
+      "x": 320,
+      "y": 703,
+      "width": 56,
+      "height": 56,
+      "bottomInset": 12
+    }
+  },
+  "nativeGeometryBefore": {
+    "source": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-first-guide-and-bgm-0a5ce1c613f84574b8278fe8980c7b82.json",
+      "sha256": "09bd1096b3cd4b4537acff8b8d9d54292ca6807f06e14b87f52bbf83cbc8dbe3"
+    },
+    "controls": {
+      "page": {
+        "boundsPx": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "xywhVpContentOrigin": [
+          0.0,
+          0.31,
+          387.69,
+          798.77
+        ]
+      },
+      "form": {
+        "boundsPx": [
+          100,
+          2235,
+          1160,
+          2631
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          649.85,
+          326.15,
+          121.85
+        ]
+      },
+      "input": {
+        "boundsPx": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          649.85,
+          326.46,
+          58.15
+        ]
+      },
+      "bgm": {
+        "boundsPx": [
+          1039,
+          1950,
+          1221,
+          2132
+        ],
+        "xywhVpContentOrigin": [
+          319.69,
+          562.15,
+          56.0,
+          56.0
+        ]
+      },
+      "guide": {
+        "boundsPx": [
+          39,
+          2172,
+          1221,
+          2630
+        ],
+        "xywhVpContentOrigin": [
+          12.0,
+          630.46,
+          363.69,
+          140.92
+        ]
+      },
+      "dismiss": {
+        "boundsPx": [
+          609,
+          2439,
+          836,
+          2582
+        ],
+        "xywhVpContentOrigin": [
+          187.38,
+          712.62,
+          69.85,
+          44.0
+        ]
+      },
+      "locate": {
+        "boundsPx": [
+          855,
+          2439,
+          1173,
+          2582
+        ],
+        "xywhVpContentOrigin": [
+          263.08,
+          712.62,
+          97.85,
+          44.0
+        ]
+      }
+    }
+  },
+  "nativeGeometryAfter": {
+    "source": {
+      "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/raw-after-locate-highlight-ended-2ab8218981b541b39f1cea99027b754c.json",
+      "sha256": "5acc33269ee9dd62697f7bf910d03d71eec635d1d426fbd5e47657c14eccbda6"
+    },
+    "controls": {
+      "page": {
+        "boundsPx": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "xywhVpContentOrigin": [
+          0.0,
+          0.31,
+          387.69,
+          798.77
+        ]
+      },
+      "form": {
+        "boundsPx": [
+          100,
+          1884,
+          1160,
+          2280
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          541.85,
+          326.15,
+          121.85
+        ]
+      },
+      "input": {
+        "boundsPx": [
+          100,
+          1884,
+          1161,
+          2073
+        ],
+        "xywhVpContentOrigin": [
+          30.77,
+          541.85,
+          326.46,
+          58.15
+        ]
+      },
+      "bgm": {
+        "boundsPx": [
+          1039,
+          2408,
+          1221,
+          2590
+        ],
+        "xywhVpContentOrigin": [
+          319.69,
+          703.08,
+          56.0,
+          56.0
+        ]
+      }
+    }
+  },
+  "originals": [
+    {
+      "state": "first-guide",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/first-guide-and-bgm.png",
+        "sha256": "68358360fa5a8da402b825e1a1a67809e31b97cd650877b063e87130ea1c7d5a",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-aligned-01/light-aligned-first-guide-and-bgm.png",
+        "sha256": "642d4a9cd35e682f75247c58eefcc0020fe9c3961528752b68c6b308a3c3aede",
+        "widthPx": 388,
+        "heightPx": 771
+      }
+    },
+    {
+      "state": "locate-highlight-window",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/locate-highlight.png",
+        "sha256": "7129b94350f8504e6557825f56fb58eec1e52e9a1a092afb631909571e0f6432",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-02/light-locate-locate-highlight.png",
+        "sha256": "fd7f0113929291574e1cbd1915109eed9d8f3f270fd9ff299bbdab90f35e99f7",
+        "widthPx": 388,
+        "heightPx": 771
+      }
+    },
+    {
+      "state": "locate-highlight-expired",
+      "native": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/entry-main-20261113T073717082931Z/after-locate-highlight-ended.png",
+        "sha256": "efc713ba79132bc98c8ee8f4a0bb8e5f4c79e028e28f0bdc24ceb3143505575a",
+        "widthPx": 1260,
+        "heightPx": 2720
+      },
+      "web": {
+        "file": "artifacts/private/gameplay-answer-guide-20261113/web-reference-02/light-locate-after-locate-highlight-ended.png",
+        "sha256": "ce84389fb1b9e3a5b1281a046f929f55b79122ec4130c1a5c4b876205b4db5dc",
+        "widthPx": 388,
+        "heightPx": 771
+      }
+    }
+  ],
+  "findings": {
+    "panelCompositionAndCopy": "同内容宽度、两行正文和相同断点，方形序号、强弱按钮、日间配色与 Web 保持。",
+    "systemBarsAndExistingPosition": "原生状态栏和系统手势区保留。用于视觉对照的 Web 图只手动滚到题卡上缘，正式入口原图另存。",
+    "bgmPriority": "Web 默认 BGM 浮标位于指南面板后，中心触点被定位按钮覆盖。原生 BGM 上移，两个控件可各自点按。",
+    "locate": "原生滚动后，输入及提交完整显示；早晚两张表单未辨认出高亮，初次验收不能记为通过。",
+    "webFormHighlightOutlineOffsetCssPx": 12.0
+  },
+  "visualAcceptanceForHighlight": false
+}
