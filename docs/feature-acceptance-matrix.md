@@ -985,3 +985,28 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [同数据日夜视觉对照](../artifacts/validation/ui-gameplay-background-20261113/visual-review-final-01.json) 确认顶部灰带已去除，状态栏、题目和答题控件可读。原生保留官方顶栏材质与已有题卡表面，Web 仍有单独的全屏氛围。测试覆盖普通字号直板机。配置了 BGM 的场次与后台后授权变化未在该切片单独触发。
 
 [固定预览账号](../artifacts/validation/ui-gameplay-background-20261113/fixed-preview-restored-01.json) 已恢复登录。预览包与最终验收包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-background-20261113/preview-package-equivalence-01.json)，[临时隔离环境已清理](../artifacts/validation/ui-gameplay-background-20261113/disposable-cleanup-01.json)。
+
+### T03b 答题页默认氛围
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 日夜和层级 | 对照冻结 Web `4b7d1a0` 的极光、光隙、椭圆光环、旋转轨道、细光束与微粒。装饰固定在视口，位于配置背景图之上、题卡及交互之下。有图和显式无图都显示，系统栏保持可读。 |
+| 运动与静态 | 对照持续的呼吸、漂移、旋转与错峰微粒。跟随系统「减少动画」，保留静态光晕、轨道和光束，停用微粒。退出答题页、退后台或失去授权时释放动画，回到前台恢复。 |
+| 交互 | 切题和只读刷新不重启动画，背景图变化不替换装饰层。直板机验证滚动、键盘、草稿、切题与返回，装饰层无触点和读屏节点。 |
+| 证据 | 同宽同数据日夜原图和可核实的运动帧，分别记录真实系统减少动画与受控分支证据。隔离真实 HTTPS 对账无新增入场、答题或经验写入。 |
+
+[冻结 Web 回放](../artifacts/validation/ui-gameplay-atmosphere-20261113/web-atmosphere-04.json) 覆盖有图与无图、日夜及减少动画。移动端实测有 8 个错峰微粒，减少动画时隐藏微粒，光晕和轨道保留为静态。由有图切到无图再切回，装饰层保持同一实例。
+
+[首轮真机记录](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-01.json) 保留 incomplete。键盘及运动像素检查通过，采集器用循环日志总数计算游标，Home 后漏读新行。独立官方日志确认原机进后台时装饰停止，回到前台重新运行，后续使用连续日志流复验。[首轮日间原图](../artifacts/validation/ui-gameplay-atmosphere-20261113/visual-review-initial-01.json) 还发现旋转轨道在某些角度过于直立。修正版先旋转，再压扁轨道投影。
+
+[修正版签名安装、窗口和 TLS](../artifacts/validation/ui-gameplay-atmosphere-20261113/runtime-02.json) 5 项通过。[刷新 8/8](../artifacts/validation/ui-gameplay-atmosphere-20261113/GameplayRefreshViewModel/local-test-summary.json)、[背景规则 3/3](../artifacts/validation/ui-gameplay-atmosphere-20261113/GameplayBackground/local-test-summary.json) 和 [答题 20/20](../artifacts/validation/ui-gameplay-atmosphere-20261113/GameplayAnswerViewModel/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-atmosphere-20261113/lint/lint.json) 返回 `filesChecked=0`。DevEco ArkTS 检查对答题页未返回诊断，对氛围组件的同步更新 API 提示异常处理。
+
+[修正版直板交互](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-final-01.json) 6 项通过。日夜各验证有图和无图，三个分时原图均保持控件位置，轨道附近像素随时间变化。切题沿用同一动画实例。滚动、键盘开合、按 Home 及回前台均保留输入草稿，Home 停止动画，回到原页恢复，离开答题页停止动画。隔离真实 HTTPS 和 SQLite 对账确认入场、答题及经验写入均为零。
+
+[最终同数据原图对照](../artifacts/validation/ui-gameplay-atmosphere-20261113/visual-review-final-01.json) 覆盖 8 组页首与题卡顶部。日间青绿、夜间暖金，旋转轨道保持横向投影，状态栏与控件清晰。原生题卡沿用较不透明的表面，Web 题卡透出的光色更多。授权撤销时的氛围卸载完成代码核查，直板机未单独注入该场景。
+
+[直板下拉刷新](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-refresh-01.json) 通过。手势触发授权详情读取，1.75 秒收到 200，早于下一次 5 秒轮询。仍停留在同一题，氛围未重挂，隔离库无新增玩法写入。
+
+[真机静态诊断](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-static-01.json) 与 [夜间静态原图对照](../artifacts/validation/ui-gameplay-atmosphere-20261113/visual-review-static-01.json) 确认，强制氛围进入减少动画分支后，有图和无图都保留静态装饰，微粒为零，切题保持同一实例，离场释放。间隔原图的三个取样区均无达到 2 RGB 通道值的像素变化。正式包继续读取系统设置。本次正常包观测到系统设置为关闭，手机系统打开该选项的生效结果待验。
+
+[固定预览恢复](../artifacts/validation/ui-gameplay-atmosphere-20261113/fixed-preview-restored-01.json) 7 项通过，手机停在原固定预览账号首页，答题进度保留。[预览包字节码核对](../artifacts/validation/ui-gameplay-atmosphere-20261113/preview-package-equivalence-01.json) 确认与正常验收包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-atmosphere-20261113/disposable-cleanup-01.json) 确认专用 TLS、数据库、容器和控制入口已停用。[公开产物扫描](../artifacts/validation/ui-gameplay-atmosphere-20261113/public-artifact-scan-01.json) 无敏感发现。

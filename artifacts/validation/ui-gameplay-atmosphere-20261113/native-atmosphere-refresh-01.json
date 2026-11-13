@@ -1,0 +1,149 @@
+{
+  "status": "passed",
+  "scope": "One normal-package official pull on the exact isolated HTTPS gameplay fixture",
+  "hapSha256": "ec6240b711baff5fbfd5f5af2517892da571fb917bd7d3270f58e32f502077fe",
+  "bindingSha256": {
+    "hap": "ec6240b711baff5fbfd5f5af2517892da571fb917bd7d3270f58e32f502077fe",
+    "runtime": "913330fe6a36a3d66a19cdc68450d19a0b5587cba2247160f2a0e1c76c738eac",
+    "caseReference": "5d113732e273fd63ff0bba8e4261e8c41712de02e18e917b84cb09fee06c1851",
+    "ca": "c0328061233a3076bc5cccbcda254b9dc56a694b903ce65f3b03753269dbca6c",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "backgroundGuard": "f34dfff8455a0622e8052e1e76a4da0d59821efa51553ccc82f1e01b47b71ba1",
+    "deviceDriver": "6a806220958b0de63b973101a4d7064fff81acbb0c6da0a0677b318ea71987fc",
+    "guardDriver": "923fc865faa933f3a4649a9ea57f9a07edb7c92c7dd4eafc62ea138c7cb693d7",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "mediaGateway": "40cc7cfd47e44adb40a5fc76ef5a2bb9e198ea08a9d074419edf2431958c032a",
+    "fixtureHelper": "e197225e7696ed8497e6dd69188bea28cd24c091cf5034f0dfe3c4d491706121",
+    "sceneSource": "71a90448a783c7bc94403cdb9104b39433d2efc6398a708335fcf33f15add4ff",
+    "gameplayPage": "2d674b393e1890e934ff9d7cec7e4ea14d15c518c8f6caa2af1eb6113f4afb68",
+    "visualDeviceDriver": "9d17f7a9d863be4a10956024ad120a3e516d1729a92238c39eea8432aec5492a",
+    "pullDeviceDriver": "d0a2b4a3b459a98b3145e71be79c7e62161e240f68b59fbd96c90a684b8ca836",
+    "measuredPullGesture": "997b0008357665384e9f9429c22ead638c769a132a058cb9fbd879d00d7c2549"
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "checks": [
+    "A physical pull issued an immediate authorized HTTPS read, retained the question and kept the same scene"
+  ],
+  "states": {
+    "normal-after-direct-pull": {
+      "raw": {
+        "label": "normal-after-direct-pull",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T091920613202Z/raw-normal-after-direct-pull-bac0a68aee5a4604a1ec01a8e27fdda0.json",
+        "remoteRemoved": true,
+        "sha256": "cd452a0165593c82081c334520c1ef406c0bdbbcc683cce23da9bd8955d50e50"
+      },
+      "geometryPx": {
+        "gameplay-background-image": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "visibleIds": [
+        "gameplay-background-image",
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T091920613202Z/normal-after-direct-pull.png",
+        "sha256": "b94dcac212259cd188cc72516965c5d4c010be640e8541307f47c33fcc66526c"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          224.0,
+          234.5,
+          242.5
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    }
+  },
+  "observations": {
+    "reducedMotion": {
+      "status": "public_system_preference_false_in_observed_session",
+      "priorPublicApiAttempt": "artifacts/validation/ui-gameplay-rank-20261113/system-motion-probe-01.json"
+    },
+    "pullGesturePx": [
+      630,
+      793,
+      630,
+      1391
+    ],
+    "pullDetail": {
+      "status": 200,
+      "authorized": true,
+      "authorizationBearer": false,
+      "afterPriorForegroundGetMs": 1810,
+      "afterGestureStartMs": 1752,
+      "ordinaryForegroundIntervalMs": 5000
+    },
+    "isolatedLedger": {
+      "gameplayWriteCount": 0,
+      "sqliteVerified": true,
+      "authorizedApiGetCount": 18,
+      "assetGets": {
+        "session": 1,
+        "level": 0,
+        "missing": 0,
+        "slow": 0
+      }
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "appThemeRestored": true,
+    "remoteRawFilesRemoved": true,
+    "zeroGameplayWrites": true
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T091920613202Z/same-data-background.json",
+    "sha256": "8df4d9ac3879aa589f60ea41936aba3002cb07c6487686302fcb1a501e95e43b"
+  },
+  "failure": null,
+  "lastStep": "direct-physical-pull",
+  "visualReview": "separate_original_review"
+}

@@ -1,0 +1,529 @@
+{
+  "status": "reviewed_native_and_frozen_web_atmosphere_originals",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "reports": {
+    "native": {
+      "path": "artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-01.json",
+      "sha256": "746a3b64b9ad32bb139c3a14f17bc3bbda58a76cbb26675e86cb876c7f828b84"
+    },
+    "nativeRuntime": {
+      "path": "artifacts/validation/ui-gameplay-atmosphere-20261113/runtime-01.json",
+      "sha256": "aea1fa2c75df89f6593b0b1e97c9ca7dedd7f0699395e7722a94724eb56115a2"
+    },
+    "frozenWeb": {
+      "path": "artifacts/validation/ui-gameplay-atmosphere-20261113/web-atmosphere-04.json",
+      "sha256": "5e3d529f9cea2d5c749bd41b61b93250e7569755751d4bcc0e2339f54b645bd0"
+    },
+    "isolatedHost": {
+      "path": "artifacts/validation/ui-gameplay-atmosphere-20261113/host-fixtures-01.json",
+      "sha256": "48beb590537c886d589649f89ec0f6f6949b631f949dfec6245be806a55bd5fd"
+    }
+  },
+  "nativeRuntimeStatus": "passed",
+  "nativeStatus": "incomplete",
+  "nativeSupplementStatus": null,
+  "data": {
+    "hostDto": {
+      "path": "artifacts/private/gameplay-atmosphere-20261113/atmosphere-dtos-01.json",
+      "sha256": "81045db3e5e24004bfca5da44498fc9c8cec4a6b3f6b0a0eefeb9980266d6c79"
+    },
+    "nativeDto": {
+      "path": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T085917696108Z/same-data-background.json",
+      "sha256": "b127b2e34dbcf7a591f9ad3a1020bd8a71de363b41cc85f93fbcfa3fe4ff090e"
+    },
+    "sameVisiblePlayerAndAssignment": true,
+    "onlyAssignmentDifference": "serverTime"
+  },
+  "hap": {
+    "sha256": "c7f33621cdda3f071eead53a66a9486f5325dacbac96217494d799aee5f8e6d7",
+    "sameWebAndPackagedDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9"
+  },
+  "viewport": {
+    "native": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "topInsetPx": 123,
+      "bottomInsetPx": 91,
+      "widthVp": 387.6923076923077,
+      "contentHeightVp": 771.0769230769231,
+      "fontScale": 1
+    },
+    "webCssPx": {
+      "width": 388,
+      "height": 771
+    }
+  },
+  "pairs": [
+    {
+      "theme": "light",
+      "reducedMotion": false,
+      "nativeState": "light-configured-page-top",
+      "webState": "image-page-top-phase-a",
+      "configuredImage": true,
+      "nativeSource": "native",
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T085917696108Z/light-configured-page-top.png",
+        "sha256": "fcf3e3cb65d5b5980513d0b290a36c7a7b29ac6143de4625b7221aab2872d91e"
+      },
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/light-image-page-top-phase-a.png",
+        "sha256": "b2b72a6f3504962551054b2c006e3a24f7d5702847537cf376b4326d0aca7d17"
+      }
+    },
+    {
+      "theme": "light",
+      "reducedMotion": false,
+      "nativeState": "light-configured-card-top",
+      "webState": "image-card-top",
+      "configuredImage": true,
+      "nativeSource": "native",
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T085917696108Z/light-configured-card-top.png",
+        "sha256": "c144bcaa66c4626dc379516986fc10aa4ed06175cc5532cd9c46453d2b7f6819"
+      },
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/light-image-card-top.png",
+        "sha256": "9105fe6b21d409c9be15c1d9da14971cc5a08966192d404eaa57d4a6eb4b76c1"
+      }
+    }
+  ],
+  "observations": [
+    "初版日间真机在题卡两侧和题目切换栏下方可见独立淡青色氛围，文字、按钮和系统栏仍清晰。",
+    "初版页顶旋转轨道相对 Web 偏竖，虚线与菱形轮廓穿过题号区更明显。修正版计划保持 Web 的固定纵向投影。",
+    "初版真机确认透过实际无遮蔽区域观测到动态像素。该采集轮在前后台日志断言处标记未完成，完整交互仍待复验。"
+  ],
+  "webMotion": {
+    "light": {
+      "normalTracksElapsedMs": {
+        "aurora": 1749.9,
+        "rift": 1749.9,
+        "halo": 1749.9,
+        "sigil": 1749.9,
+        "rays": 1749.9
+      },
+      "normalMotes": 8,
+      "reducedMotes": 0,
+      "normalMotionOriginals": {
+        "first": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/light-image-page-top-phase-a.png",
+          "sha256": "b2b72a6f3504962551054b2c006e3a24f7d5702847537cf376b4326d0aca7d17"
+        },
+        "second": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/light-image-page-top-phase-b.png",
+          "sha256": "20f6df2a8cfc5f9ffff3ebc363384b4f8f585e551723196db36ca231005050b5"
+        },
+        "measurement": {
+          "belowHeader": {
+            "boxCssPx": [
+              78,
+              106,
+              363,
+              108
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.1175
+          },
+          "gapBeforeCard": {
+            "boxCssPx": [
+              16,
+              175,
+              372,
+              188
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.2697
+          },
+          "leftGutterNearCardTop": {
+            "boxCssPx": [
+              0,
+              194,
+              12,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0122
+          },
+          "rightGutterNearCardTop": {
+            "boxCssPx": [
+              377,
+              194,
+              388,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0125
+          }
+        }
+      },
+      "staticReducedOriginals": {
+        "first": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/light-image-page-top-phase-a.png",
+          "sha256": "b1ae9b1b4e6ff0cc7a0ded3de6a7781fc4da98772ff7625c240593cfaca50e77"
+        },
+        "second": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/light-image-page-top-phase-b.png",
+          "sha256": "b1ae9b1b4e6ff0cc7a0ded3de6a7781fc4da98772ff7625c240593cfaca50e77"
+        },
+        "measurement": {
+          "belowHeader": {
+            "boxCssPx": [
+              78,
+              106,
+              363,
+              108
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          },
+          "gapBeforeCard": {
+            "boxCssPx": [
+              16,
+              175,
+              372,
+              188
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          },
+          "leftGutterNearCardTop": {
+            "boxCssPx": [
+              0,
+              194,
+              12,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          },
+          "rightGutterNearCardTop": {
+            "boxCssPx": [
+              377,
+              194,
+              388,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          }
+        }
+      },
+      "staticAtmosphereIsolation": {
+        "first": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/light-none-page-top.png",
+          "sha256": "8c81185fd81ac4d89e76ac30f00be7eb06fbe3e070ad84eec954e6e8f81d9916"
+        },
+        "second": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/light-none-page-top-isolation.png",
+          "sha256": "83e33e5c5a5d03d5bfc5c76264860f0da52c5f7d042b11e3f24007298ffc1846"
+        },
+        "measurement": {
+          "belowHeader": {
+            "boxCssPx": [
+              78,
+              106,
+              363,
+              108
+            ],
+            "medianRgbDelta": [
+              -7.0,
+              -4.5,
+              -5.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.6754
+          },
+          "gapBeforeCard": {
+            "boxCssPx": [
+              16,
+              175,
+              372,
+              188
+            ],
+            "medianRgbDelta": [
+              -5.0,
+              -3.0,
+              -4.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.7122
+          },
+          "leftGutterNearCardTop": {
+            "boxCssPx": [
+              0,
+              194,
+              12,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0237
+          },
+          "rightGutterNearCardTop": {
+            "boxCssPx": [
+              377,
+              194,
+              388,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0141
+          }
+        }
+      }
+    },
+    "dark": {
+      "normalTracksElapsedMs": {
+        "aurora": 1750.0,
+        "rift": 1750.0,
+        "halo": 1750.0,
+        "sigil": 1750.0,
+        "rays": 1750.0
+      },
+      "normalMotes": 8,
+      "reducedMotes": 0,
+      "normalMotionOriginals": {
+        "first": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/dark-image-page-top-phase-a.png",
+          "sha256": "197f7737c42b3f1ecf4c617fafb58f3716aa1416c1f9ae1bf068a4b8098fbb0f"
+        },
+        "second": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/dark-image-page-top-phase-b.png",
+          "sha256": "fc3efd6ea248a48a34e9c0ca0899743598dd1392b29ecb99f694c0fe969048a0"
+        },
+        "measurement": {
+          "belowHeader": {
+            "boxCssPx": [
+              78,
+              106,
+              363,
+              108
+            ],
+            "medianRgbDelta": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.1596
+          },
+          "gapBeforeCard": {
+            "boxCssPx": [
+              16,
+              175,
+              372,
+              188
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.2526
+          },
+          "leftGutterNearCardTop": {
+            "boxCssPx": [
+              0,
+              194,
+              12,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0115
+          },
+          "rightGutterNearCardTop": {
+            "boxCssPx": [
+              377,
+              194,
+              388,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0133
+          }
+        }
+      },
+      "staticReducedOriginals": {
+        "first": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/dark-image-page-top-phase-a.png",
+          "sha256": "e2e248fb24485ae478116df2a63467f1139c40545d59f898236c23f03849da89"
+        },
+        "second": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/dark-image-page-top-phase-b.png",
+          "sha256": "e2e248fb24485ae478116df2a63467f1139c40545d59f898236c23f03849da89"
+        },
+        "measurement": {
+          "belowHeader": {
+            "boxCssPx": [
+              78,
+              106,
+              363,
+              108
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          },
+          "gapBeforeCard": {
+            "boxCssPx": [
+              16,
+              175,
+              372,
+              188
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          },
+          "leftGutterNearCardTop": {
+            "boxCssPx": [
+              0,
+              194,
+              12,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          },
+          "rightGutterNearCardTop": {
+            "boxCssPx": [
+              377,
+              194,
+              388,
+              310
+            ],
+            "medianRgbDelta": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.0
+          }
+        }
+      },
+      "staticAtmosphereIsolation": {
+        "first": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/dark-none-page-top.png",
+          "sha256": "a3ba52337710647512596dde9111a82b2c404152b7bdaca02d1e3c65a22ee9af"
+        },
+        "second": {
+          "path": "artifacts/private/gameplay-atmosphere-20261113/web-reference-04/reduce/dark-none-page-top-isolation.png",
+          "sha256": "a4c7e611ecc3a96a99cf273be2afdaeb9ab5e22579b86ed681026afba77f758f"
+        },
+        "measurement": {
+          "belowHeader": {
+            "boxCssPx": [
+              78,
+              106,
+              363,
+              108
+            ],
+            "medianRgbDelta": [
+              6.0,
+              5.0,
+              3.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.6807
+          },
+          "gapBeforeCard": {
+            "boxCssPx": [
+              16,
+              175,
+              372,
+              188
+            ],
+            "medianRgbDelta": [
+              7.0,
+              5.0,
+              2.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.8369
+          },
+          "leftGutterNearCardTop": {
+            "boxCssPx": [
+              0,
+              194,
+              12,
+              310
+            ],
+            "medianRgbDelta": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.4447
+          },
+          "rightGutterNearCardTop": {
+            "boxCssPx": [
+              377,
+              194,
+              388,
+              310
+            ],
+            "medianRgbDelta": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "fractionAnyChannelDiffAtLeast2": 0.3621
+          }
+        }
+      }
+    }
+  },
+  "method": "Uncropped native/Web visual states are reviewed independently at the same logical width. Native includes the real system regions. Regional channel differences describe only the frozen Web time or diagnostic comparison."
+}

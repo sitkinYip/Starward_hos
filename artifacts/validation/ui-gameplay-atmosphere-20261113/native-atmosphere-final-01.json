@@ -1,0 +1,1201 @@
+{
+  "status": "passed",
+  "scope": "Final straight-phone corrected atmosphere geometry and motion",
+  "hapSha256": "ec6240b711baff5fbfd5f5af2517892da571fb917bd7d3270f58e32f502077fe",
+  "bindingSha256": {
+    "hap": "ec6240b711baff5fbfd5f5af2517892da571fb917bd7d3270f58e32f502077fe",
+    "runtime": "913330fe6a36a3d66a19cdc68450d19a0b5587cba2247160f2a0e1c76c738eac",
+    "caseReference": "5d113732e273fd63ff0bba8e4261e8c41712de02e18e917b84cb09fee06c1851",
+    "ca": "c0328061233a3076bc5cccbcda254b9dc56a694b903ce65f3b03753269dbca6c",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "backgroundGuard": "f34dfff8455a0622e8052e1e76a4da0d59821efa51553ccc82f1e01b47b71ba1",
+    "deviceDriver": "6a806220958b0de63b973101a4d7064fff81acbb0c6da0a0677b318ea71987fc",
+    "guardDriver": "923fc865faa933f3a4649a9ea57f9a07edb7c92c7dd4eafc62ea138c7cb693d7",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "mediaGateway": "40cc7cfd47e44adb40a5fc76ef5a2bb9e198ea08a9d074419edf2431958c032a",
+    "fixtureHelper": "e197225e7696ed8497e6dd69188bea28cd24c091cf5034f0dfe3c4d491706121",
+    "sceneSource": "71a90448a783c7bc94403cdb9104b39433d2efc6398a708335fcf33f15add4ff",
+    "gameplayPage": "2d674b393e1890e934ff9d7cec7e4ea14d15c518c8f6caa2af1eb6113f4afb68",
+    "visualDeviceDriver": "9d17f7a9d863be4a10956024ad120a3e516d1729a92238c39eea8432aec5492a"
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "checks": [
+    "Scrolling and system keyboard preserve the same answer field, draft and atmosphere instance",
+    "System Home stops atmosphere; resuming the same game restarts it without losing the draft",
+    "light: final atmosphere remains legible and moving with and without a configured image",
+    "light: leaving gameplay stops the final scene",
+    "dark: final atmosphere remains legible and moving with and without a configured image",
+    "dark: leaving gameplay stops the final scene"
+  ],
+  "states": {
+    "light-configured-card-top": {
+      "raw": {
+        "label": "light-configured-card-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-configured-card-top-2c0115cc060e46b294d7f88dc2bb7cdd.json",
+        "remoteRemoved": true,
+        "sha256": "50a955dd7e88246a01105adc34b9151a0a2df81d756024e1a999fbf477c57a2b"
+      },
+      "geometryPx": {
+        "gameplay-background-image": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2718
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ]
+      },
+      "visibleIds": [
+        "gameplay-background-image",
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-configured-card-top.png",
+        "sha256": "b9715019bca77863d5baa7d5ad9b5a9a727592a0ac5ed8c4cc1a110475acd226"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          224.0,
+          234.5,
+          242.5
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "light-configured-page-top": {
+      "raw": {
+        "label": "light-configured-page-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-configured-page-top-688b232b47c64ceb86369ca7f48d7dd1.json",
+        "remoteRemoved": true,
+        "sha256": "ebb1e0dc9f6ba3884b253baf69653ff86e4c61722ddea382f9e415f5541d97b7"
+      },
+      "geometryPx": {
+        "gameplay-background-image": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "visibleIds": [
+        "gameplay-background-image",
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-configured-page-top.png",
+        "sha256": "75546a5ede51c5cb99e09c02f1ca328e9df9c19aec3af2f54755e3b2e418f235"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          224.0,
+          234.5,
+          242.5
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "light-configured-motion-1": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-configured-motion-1.png",
+        "sha256": "2e84cb0c11f697991c7ad67a5948e9723471b1d8d39c409f64ba2a50cb5d164c"
+      }
+    },
+    "light-configured-motion-2": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-configured-motion-2.png",
+        "sha256": "4d9fcc063b150af1667ae1cbf6892f1ee5a0ff78b3ba9fd288adcdec7d4ee6a3"
+      }
+    },
+    "light-configured-motion-3": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-configured-motion-3.png",
+        "sha256": "391dd3777135b61e06affe2cba71a8bebb81823b71323a28101f4a1a71174c61"
+      }
+    },
+    "light-input-before-keyboard": {
+      "raw": {
+        "label": "light-input-before-keyboard",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-input-before-keyboard-8fcaef28d918463191be2c2833610330.json",
+        "remoteRemoved": true,
+        "sha256": "bb3d31435182be54449b3b0f226e3fc521e3f22e132d11859bbbcb6622ed5192"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-input": [
+          100,
+          2066,
+          1161,
+          2255
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-input"
+      ]
+    },
+    "light-input-ime-visible": {
+      "raw": {
+        "label": "light-input-ime-visible",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-input-ime-visible-fbe11770c2fe4a42ac440db42f815f00.json",
+        "remoteRemoved": true,
+        "sha256": "866bf30b0a8b4b87810f5ae6f28fae5ef7d5f8bd4b301ca99aa080f33e1fe7b5"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          1699
+        ],
+        "gameplay-answer-input": [
+          100,
+          1493,
+          1161,
+          1682
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-input"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-input-ime-visible.png",
+        "sha256": "4118068f67644060a207762bd2565b62c3428bcfccb611189422ae5b70a1ccb3"
+      }
+    },
+    "light-input-after-keyboard": {
+      "raw": {
+        "label": "light-input-after-keyboard",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-input-after-keyboard-2198755a2df246b19edde9dda9d136ba.json",
+        "remoteRemoved": true,
+        "sha256": "7cffb8bd6f0d380eeae3082e5be9da9093b16fa8d505a50c92c2b223a9e5fb55"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-input"
+      ]
+    },
+    "light-input-after-app-resume": {
+      "raw": {
+        "label": "light-input-after-app-resume",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-input-after-app-resume-acd79719c1ba42678a434702bf44164b.json",
+        "remoteRemoved": true,
+        "sha256": "5ed1e1aaf6f2283822be29487d5a85e2b2aaaa326347d2705b9cfa867b67502c"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-input"
+      ]
+    },
+    "light-no-image-card-top": {
+      "raw": {
+        "label": "light-no-image-card-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-no-image-card-top-3e22c717438b40b6bf29635e7341baa2.json",
+        "remoteRemoved": true,
+        "sha256": "d35a7d64f827d3f5ba82ce6804aa13bb6886f9c05fbd37024bf15f2694c61732"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2718
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title",
+        "gameplay-answer-input"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-no-image-card-top.png",
+        "sha256": "e34a0c95545a30535b7770e19657de18581fda7729cdf5c82caf12749a2fed4e"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          252.5,
+          254.0,
+          253.5
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "light-no-image-page-top": {
+      "raw": {
+        "label": "light-no-image-page-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-light-no-image-page-top-1cf4bafdcb16493593b15025f651e2f8.json",
+        "remoteRemoved": true,
+        "sha256": "ab8308fea2b90a48b5b7837a0ac191ad8e45aaf2c82a7277c0e8124d0274f1b5"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-no-image-page-top.png",
+        "sha256": "57023fa9ef17bcdb4f84e47d67167338475abd5fde1adba43d0dc34aced20589"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          251.5,
+          253.0,
+          253.0
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "light-no-image-motion-1": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-no-image-motion-1.png",
+        "sha256": "9a867d6523bc096ac9ef92717459a70bf3a8bafd4bcf81b813f5339f90b8eed3"
+      }
+    },
+    "light-no-image-motion-2": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-no-image-motion-2.png",
+        "sha256": "15f3cc957d2a545cdd7124f1168880fc12c0e3aa5a40ccd1839a9ead4e915a74"
+      }
+    },
+    "light-no-image-motion-3": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/light-no-image-motion-3.png",
+        "sha256": "412ba84b2741b9b780f9117d017c76d384d3822d19879f116c38fd520cabea94"
+      }
+    },
+    "dark-configured-card-top": {
+      "raw": {
+        "label": "dark-configured-card-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-dark-configured-card-top-c7455e7a47f54cd19fc983498c727242.json",
+        "remoteRemoved": true,
+        "sha256": "ab4d230d8f616dd4fa702bf59c774ac89b8d510b44ec541fabde8af91c7830ca"
+      },
+      "geometryPx": {
+        "gameplay-background-image": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2718
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ],
+        "gameplay-submit": [
+          100,
+          2482,
+          439,
+          2632
+        ]
+      },
+      "visibleIds": [
+        "gameplay-background-image",
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-configured-card-top.png",
+        "sha256": "143c0d9044884e0966dd9923ed417b67b4182f537d62a1878489309e93b4315e"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          17.5,
+          24.5,
+          29.0
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "dark-configured-page-top": {
+      "raw": {
+        "label": "dark-configured-page-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-dark-configured-page-top-6cccd95163824a7b9cc454098caf0bbe.json",
+        "remoteRemoved": true,
+        "sha256": "3618118c6961fc107beb55fd7636d8fb2b350caac38b3096f5f888a77c823199"
+      },
+      "geometryPx": {
+        "gameplay-background-image": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "visibleIds": [
+        "gameplay-background-image",
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-configured-page-top.png",
+        "sha256": "295350dfca71bdd298a719901b40801647f202373963b00bf59ebaae9701bc3b"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          19.5,
+          24.5,
+          28.5
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "dark-configured-motion-1": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-configured-motion-1.png",
+        "sha256": "e08c9b2c4ae99212a128371d0592df73e55c78a6715c47572a0b1b7beccfb288"
+      }
+    },
+    "dark-configured-motion-2": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-configured-motion-2.png",
+        "sha256": "52294a6c028e9ea5bb05bef65d06c7cc9b8fe5048939666ed3c83062bdc5edb9"
+      }
+    },
+    "dark-configured-motion-3": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-configured-motion-3.png",
+        "sha256": "3aa360af718cddd4f4673efd079c1f91744d87f6dfc9a18618cf597905ce5796"
+      }
+    },
+    "dark-no-image-card-top": {
+      "raw": {
+        "label": "dark-no-image-card-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-dark-no-image-card-top-3d332158d0f54571b89f8870d5a4ff43.json",
+        "remoteRemoved": true,
+        "sha256": "d2514b8c104e8cfff21717ba2bc50acb37ef5cf12b995b36eee2e9435287ec57"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2718
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          2235,
+          1161,
+          2424
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title",
+        "gameplay-answer-input"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-no-image-card-top.png",
+        "sha256": "e2a354f7ffb1fd1682e8ac765a8db3d16a790535d106c8d089f8bbdb9c955981"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          18.0,
+          19.0,
+          16.0
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "dark-no-image-page-top": {
+      "raw": {
+        "label": "dark-no-image-page-top",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/raw-dark-no-image-page-top-f0553e850f1d42ec9c19c5c5899302be.json",
+        "remoteRemoved": true,
+        "sha256": "92fec5f8a0c0cac05dd73b57cb977d50638e09b81cac49255e7adbb9edd9f10d"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "question-title"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-no-image-page-top.png",
+        "sha256": "5f9328119dfefa7fecff68097d6017b18082c7b0a678cfa3ca67ec1ec8d11517"
+      },
+      "margins": {
+        "sampleCount": 24,
+        "medianRgb": [
+          18.5,
+          19.0,
+          16.0
+        ],
+        "xFractions": [
+          0.013,
+          0.023,
+          0.977,
+          0.987
+        ],
+        "yFractions": [
+          0.16,
+          0.23,
+          0.3,
+          0.37,
+          0.44,
+          0.51
+        ]
+      }
+    },
+    "dark-no-image-motion-1": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-no-image-motion-1.png",
+        "sha256": "4b1ecf5bcb7360fb2121e26b7d3edebe5c294e0b10570b753a0d05ddc3abc587"
+      }
+    },
+    "dark-no-image-motion-2": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-no-image-motion-2.png",
+        "sha256": "63b9dd65c4134cfc8168d853e3cca063104ec748e750e4563d6defa0eb23a29a"
+      }
+    },
+    "dark-no-image-motion-3": {
+      "original": {
+        "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/dark-no-image-motion-3.png",
+        "sha256": "bfb6a6592b47561c6bd55ef722ce357c5f443143e4aaa5b924f747b233f5fab1"
+      }
+    }
+  },
+  "observations": {
+    "reducedMotion": {
+      "status": "public_system_preference_false_in_observed_sessions",
+      "priorPublicApiAttempt": "artifacts/validation/ui-gameplay-rank-20261113/system-motion-probe-01.json",
+      "deviceSystemSettingChanged": false
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": false
+      },
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": false
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": false
+      }
+    ],
+    "lightRunning": {
+      "state": "running",
+      "reduced": false,
+      "particles": 8
+    },
+    "light-configuredMotion": {
+      "stableForegroundGeometry": true,
+      "comparisons": [
+        {
+          "comparedFrame": 2,
+          "captureRequestGapMs": 2591,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 213,
+              "changedAtLeast4": 155,
+              "maxChannelDifference": 28
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 333,
+              "changedAtLeast4": 105,
+              "maxChannelDifference": 25
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 5939,
+              "changedAtLeast4": 3023,
+              "maxChannelDifference": 56
+            }
+          ]
+        },
+        {
+          "comparedFrame": 3,
+          "captureRequestGapMs": 5261,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 245,
+              "changedAtLeast4": 162,
+              "maxChannelDifference": 29
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 317,
+              "changedAtLeast4": 105,
+              "maxChannelDifference": 25
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 5495,
+              "changedAtLeast4": 3078,
+              "maxChannelDifference": 34
+            }
+          ]
+        }
+      ]
+    },
+    "lifecycle": {
+      "backgroundState": {
+        "state": "stopped",
+        "reduced": false,
+        "particles": 0
+      },
+      "foregroundState": {
+        "state": "running",
+        "reduced": false,
+        "particles": 8
+      },
+      "unchangedWhileBackgrounded": true,
+      "sameProcess": true
+    },
+    "light-no-imageMotion": {
+      "stableForegroundGeometry": true,
+      "comparisons": [
+        {
+          "comparedFrame": 2,
+          "captureRequestGapMs": 2592,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 386,
+              "changedAtLeast4": 112,
+              "maxChannelDifference": 26
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 580,
+              "changedAtLeast4": 62,
+              "maxChannelDifference": 23
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 5765,
+              "changedAtLeast4": 2002,
+              "maxChannelDifference": 54
+            }
+          ]
+        },
+        {
+          "comparedFrame": 3,
+          "captureRequestGapMs": 5242,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 434,
+              "changedAtLeast4": 177,
+              "maxChannelDifference": 46
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 557,
+              "changedAtLeast4": 106,
+              "maxChannelDifference": 28
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 6260,
+              "changedAtLeast4": 2594,
+              "maxChannelDifference": 55
+            }
+          ]
+        }
+      ]
+    },
+    "darkRunning": {
+      "state": "running",
+      "reduced": false,
+      "particles": 8
+    },
+    "dark-configuredMotion": {
+      "stableForegroundGeometry": true,
+      "comparisons": [
+        {
+          "comparedFrame": 2,
+          "captureRequestGapMs": 2533,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 278,
+              "changedAtLeast4": 145,
+              "maxChannelDifference": 25
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 284,
+              "changedAtLeast4": 91,
+              "maxChannelDifference": 15
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 6343,
+              "changedAtLeast4": 3574,
+              "maxChannelDifference": 86
+            }
+          ]
+        },
+        {
+          "comparedFrame": 3,
+          "captureRequestGapMs": 5159,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 212,
+              "changedAtLeast4": 143,
+              "maxChannelDifference": 23
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 248,
+              "changedAtLeast4": 91,
+              "maxChannelDifference": 15
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 4573,
+              "changedAtLeast4": 2978,
+              "maxChannelDifference": 34
+            }
+          ]
+        }
+      ]
+    },
+    "dark-no-imageMotion": {
+      "stableForegroundGeometry": true,
+      "comparisons": [
+        {
+          "comparedFrame": 2,
+          "captureRequestGapMs": 2603,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 251,
+              "changedAtLeast4": 116,
+              "maxChannelDifference": 21
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 89,
+              "changedAtLeast4": 66,
+              "maxChannelDifference": 15
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 5632,
+              "changedAtLeast4": 3771,
+              "maxChannelDifference": 121
+            }
+          ]
+        },
+        {
+          "comparedFrame": 3,
+          "captureRequestGapMs": 5196,
+          "samples": [
+            {
+              "regionPx": [
+                3,
+                177,
+                20,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 421,
+              "changedAtLeast4": 143,
+              "maxChannelDifference": 24
+            },
+            {
+              "regionPx": [
+                1240,
+                177,
+                1257,
+                809
+              ],
+              "pixels": 10744,
+              "changedAtLeast2": 345,
+              "changedAtLeast4": 93,
+              "maxChannelDifference": 15
+            },
+            {
+              "regionPx": [
+                164,
+                728,
+                1096,
+                774
+              ],
+              "pixels": 42872,
+              "changedAtLeast2": 4105,
+              "changedAtLeast4": 2538,
+              "maxChannelDifference": 32
+            }
+          ]
+        }
+      ]
+    },
+    "lifecycleEvidenceSource": "Official exact-process append-only atmosphere hilog stream",
+    "isolatedLedger": {
+      "gameplayWriteCount": 0,
+      "sqliteVerified": true,
+      "authorizedApiGetCount": 74,
+      "assetGets": {
+        "session": 3,
+        "level": 0,
+        "missing": 0,
+        "slow": 0
+      }
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "appThemeRestored": true,
+    "remoteRawFilesRemoved": true,
+    "zeroGameplayWrites": true
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/gameplay-atmosphere-20261113/entry-main-20261113T090506578817Z/same-data-background.json",
+    "sha256": "5d0d5fcca071b379ef2679ceefcad1d99a1df87618a7bce77996a7694542ce47"
+  },
+  "failure": null,
+  "lastStep": "dark-final-no-configured-image",
+  "visualReview": "separate_original_review"
+}

@@ -415,3 +415,43 @@ STARWARD_VALIDATION_DIR="$starward_reports/lint" scripts/hm.sh lint
 背景用 ArkUI `ImageFit.Cover`、原生颜色渐变和单独的渲染组。测试前先核对固定 API 26 声明。[ArkUI Image](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-image) · [ArkUI 颜色渐变](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-gradient-color)
 
 复现需重新创建隔离场次、媒体网关、HTTPS 与设备绑定，并使用新的报告路径。主轮未能把回页顶触发的额外媒体请求与静默轮询分开，补验先等待一次真实无操作轮询，再单独执行下拉动作。
+
+## 答题页默认氛围
+
+见 [T03b](feature-acceptance-matrix.md#t03b-答题页默认氛围)。视觉基线使用冻结 Web `4b7d1a0`、388 × 771 CSS px 和同一隔离六题场次。原生装饰层通过 ArkUI 形状、径向及扫掠渐变、透明度混合和属性动画绘制。独立离屏合成范围只包含装饰层。逐题背景图和答题前景仍由各自原有组件持有。[ArkUI 属性动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-animatorproperty) · [关键帧动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-keyframeanimateto) · [ArkUI 图像效果](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-universal-attributes-image-effect/)
+
+```sh
+starward_private=artifacts/private/gameplay-atmosphere-20261113
+starward_reports=artifacts/validation/ui-gameplay-atmosphere-20261113
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-02.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-atmosphere-visual.py" --runtime "$starward_reports/runtime-02.json" \
+  --case-ref "$starward_private/fixture-atmosphere-01.json" --device-ref "$starward_private/device-ref.json" \
+  --expected-hap "$starward_hap_sha" --output "$starward_reports/native-atmosphere-final-01.json"
+for suite in GameplayRefreshViewModel GameplayBackground GameplayAnswerViewModel; do
+  STARWARD_VALIDATION_DIR="$starward_reports/$suite" scripts/hm.sh test "$suite"
+done
+STARWARD_VALIDATION_DIR="$starward_reports/lint" scripts/hm.sh lint
+```
+
+手机使用官方工具分时截取原图，并以固定控件几何及避开文字的装饰区域量测像素差异。时间戳只说明样本间隔，不用于推断帧率或动画精确时长。复现需重新创建隔离场次和 HTTPS、媒体网关与设备绑定，使用新的报告路径。
+
+最终正常版 SHA256 为 `ec6240b711baff5fbfd5f5af2517892da571fb917bd7d3270f58e32f502077fe`。官方签名安装、窗口和 TLS 5 项通过，31 项相关单测通过。直板机测试使用隔离账户，核对四组日夜有图／无图分时原图、切题、滚动、键盘草稿、前后台与退出，6 项通过。测试期间捕获 74 次已授权 API GET 和 3 次无凭据媒体读取，SQLite 核对无新增入场、答题、经验写入。[直板报告](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-final-01.json) · [同数据日夜原图对照](../artifacts/validation/ui-gameplay-atmosphere-20261113/visual-review-final-01.json)
+
+独立诊断包临时强制氛围组件的 `reducedMotion` 输入为 `true`。编译后即还原正式系统偏好绑定，复核源码与正常包摘要。其他组件仍读取真实系统设置，诊断只覆盖氛围。复现时用隔离签名包和单独报告路径，先核对签名包 SHA256，再运行诊断脚本。
+
+```sh
+python3 "$starward_private/device-atmosphere-static.py" \
+  --runtime "$starward_reports/runtime-static-01.json" --normal-runtime "$starward_reports/runtime-02.json" \
+  --diagnostic-diff "$starward_private/static-atmosphere-only.patch" \
+  --case-ref "$starward_private/fixture-atmosphere-01.json" --device-ref "$starward_private/device-ref.json" \
+  --expected-hap "$(shasum -a 256 "$starward_private/static-signed.hap" | awk '{print $1}')" \
+  --output "$starward_reports/native-atmosphere-static-01.json"
+```
+
+[诊断包窗口与 TLS](../artifacts/validation/ui-gameplay-atmosphere-20261113/runtime-static-01.json) 5 项通过。[静态分支真机报告](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-static-01.json) 通过，场景报告 0 个微粒并在退出时停止，三个取样区域两帧间最大单通道变化为 1。[夜间静态原图对照](../artifacts/validation/ui-gameplay-atmosphere-20261113/visual-review-static-01.json) 核对三组原图。本轮未取得手机系统「减少动画」开启的证据。
+
+正常隔离 HAP 经官方 DevEco CLI `run --skip-build` 装回，前后校验 SHA256。[直板下拉刷新](../artifacts/validation/ui-gameplay-atmosphere-20261113/native-atmosphere-refresh-01.json) 用 `device-atmosphere-refresh.py` 和正常 `runtime-02.json` 验证一次下拉。收到授权 200 时距手势开始 1.752 秒，距上次自然轮询读取 1.810 秒，早于 5 秒自然间隔。当前题和场景实例都保持，隔离库无新增玩法写入。
+
+恢复固定预览后，真机停在原账号首页。[预览包运行时](../artifacts/validation/ui-gameplay-atmosphere-20261113/preview-restored-runtime-01.json) 5 项通过，[预览登录与只读回归](../artifacts/validation/ui-gameplay-atmosphere-20261113/fixed-preview-restored-01.json) 7 项通过，预览包和正常验收包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-atmosphere-20261113/preview-package-equivalence-01.json)。[专用环境清理回执](../artifacts/validation/ui-gameplay-atmosphere-20261113/disposable-cleanup-01.json) 确认固定预览身份保留、专用环境关闭及验收期间零新增入场与答题。

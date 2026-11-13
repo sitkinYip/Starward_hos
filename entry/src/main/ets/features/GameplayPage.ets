@@ -40,6 +40,7 @@ import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { StarwardAnswerGuide } from '../ui/StarwardAnswerGuide';
 import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
+import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -285,6 +286,13 @@ export struct GameplayPage {
     if (this.playerId.length === 0 || snapshot?.detail.player !== this.playerId ||
       this.imageCacheOwner().length === 0) { return ''; }
     return gameplayBackgroundSource(snapshot, this.play.currentLevel());
+  }
+
+  private showAtmosphere(): boolean {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    return snapshot !== null && this.playerId.length > 0 && snapshot.detail.player === this.playerId &&
+      (snapshot.detail.status === 'active' || snapshot.detail.status === 'completed') &&
+      this.imageCacheOwner().length > 0;
   }
 
   private async refreshQuestion(): Promise<void> {
@@ -1663,6 +1671,9 @@ export struct GameplayPage {
           sourceIsCurrent: (owner: string, source: string) => owner === this.imageCacheOwner() &&
             source === this.backgroundSource(),
           imageCache: this.imageCache, retryRevision: this.backgroundRetryRevision })
+      }
+      if (this.showAtmosphere()) {
+        StarwardQuestAtmosphere({ reducedMotion: this.reducedMotion })
       }
       this.gameplayForeground()
     }.width('100%').height('100%')

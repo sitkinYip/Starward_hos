@@ -1,0 +1,41 @@
+{
+  "status": "verified_atmosphere_host_preparation",
+  "deviceInvoked": false,
+  "hostTls": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true,
+    "hostOnly": true,
+    "temporaryCaSha256": "eecc1798ce4741ace88840e0a82b808f001174fa48ceb8570207541ff742a59d"
+  },
+  "expectedActiveIndex": 5,
+  "backgroundLabelsByLevel": [
+    "session",
+    "level",
+    "none",
+    "missing",
+    "slow",
+    "session"
+  ],
+  "dtoSha256": "81045db3e5e24004bfca5da44498fc9c8cec4a6b3f6b0a0eefeb9980266d6c79",
+  "fixtureSha256": "5d113732e273fd63ff0bba8e4261e8c41712de02e18e917b84cb09fee06c1851",
+  "facts": {
+    "main": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 5,
+      "answerSubmissionCount": 5,
+      "correctAnswerCount": 5,
+      "completedProgressRows": 5,
+      "xpLedgerCount": 5,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 0,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    }
+  }
+}
