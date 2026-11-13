@@ -1,0 +1,415 @@
+{
+  "status": "reviewed_native_and_frozen_web_question_video_originals",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "webReference": {
+    "path": "artifacts/validation/ui-gameplay-question-video-20261113/web-question-video-04.json",
+    "sha256": "51cf7a8daaf36fd7719fa52948ee0214a0f96577621493dc9f36544567e50100"
+  },
+  "webDisabledOptionReference": {
+    "path": "artifacts/validation/ui-gameplay-question-video-20261113/web-question-video-disabled-01.json",
+    "sha256": "d977c27ebe8333113c31fd6c23a644fdcfb3b178b44605e6ca36c81d755445c0"
+  },
+  "hostFixtures": {
+    "path": "artifacts/validation/ui-gameplay-question-video-20261113/host-fixtures-01.json",
+    "sha256": "1480ed655bedfd095ca2d9cfffef1055d84e1e4b424947f28429fe2d250d6bf9"
+  },
+  "hostMedia": {
+    "path": "artifacts/validation/ui-gameplay-question-video-20261113/host-media-01.json",
+    "sha256": "1b945a4d954b851dcdd6794b7e75c9e8f8cc126c8d28dd51d89aae9538bd1b2f"
+  },
+  "media": {
+    "auto-clue-a.png": {
+      "sha256": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+      "bytes": 2203
+    },
+    "auto-clue-b.png": {
+      "sha256": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd",
+      "bytes": 2650
+    },
+    "quest-bg-session.png": {
+      "sha256": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a",
+      "bytes": 100732
+    },
+    "question-body.mp4": {
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+      "bytes": 258860
+    },
+    "question-body-no-poster.mp4": {
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+      "bytes": 258860
+    },
+    "question-option.mp4": {
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+      "bytes": 258860
+    },
+    "question-option-no-poster.mp4": {
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+      "bytes": 258860
+    },
+    "theme-a.mp3": {
+      "sha256": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+      "bytes": 17493
+    }
+  },
+  "nativeFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "comparisonScriptSha256": "3e6cd22e526c8672d401933d07460f5b221c01435bdaff6b564e919048c3e79e",
+  "sameVisibleContent": true,
+  "runs": [
+    {
+      "role": "completed",
+      "theme": "dark",
+      "nativeStatus": "passed",
+      "nativeReport": {
+        "path": "artifacts/validation/ui-gameplay-question-video-20261113/native-final-completed-01.json",
+        "sha256": "b89c81ac89c854fcec4add913875d5c5bd3fa9c77e310032a21449f8ee462a0e"
+      },
+      "runtime": {
+        "path": "artifacts/validation/ui-gameplay-question-video-20261113/runtime-final-01.json",
+        "sha256": "cbaf8d40c57e6c8b305458284595056def265ee365bb6b4fbf4cd61d0fdae033"
+      },
+      "signedNativeHap": {
+        "path": "artifacts/private/gameplay-question-video-20261113/normal-signed.hap",
+        "sha256": "283a13d8b50d2a20cc185347c869ff20d1e1afba31b39841b5c19b2644d9d884"
+      },
+      "nativeDetailGET": {
+        "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/active-get.json",
+        "sha256": "6f740c8fae706879b8a1c5c93d8d548f95c9fc56df43ac0e10463549d39f12d6"
+      },
+      "window": {
+        "widthPx": 1260,
+        "heightPx": 2720,
+        "widthVp": 387.6923076923077,
+        "contentHeightVp": 771.0769230769231,
+        "topInsetPx": 123,
+        "bottomInsetPx": 91,
+        "density": 3.25,
+        "fontScale": 1
+      },
+      "pairs": {
+        "completed-body-poster": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/completed-body-poster.png",
+            "sha256": "6915b5e6560a689d6102cdd3e355f5a98fdaec0816525670b811aa8d719ae784"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-body-poster.png",
+            "sha256": "e4a7f7edbf1b3f40dba63a7eeb70e4f2b954104ad2c4d69e77a1d65eb2d9d8c4"
+          },
+          "webDOM": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-body-poster.html",
+            "sha256": "08d88485315ee14b6d25b4c91ca6bf566808febea3155410b3aae612f04a6221"
+          },
+          "geometry": {
+            "nativeOriginalPx": [
+              103,
+              490,
+              1157,
+              1089
+            ],
+            "nativeContentVp": [
+              31.692,
+              112.923,
+              324.308,
+              184.308
+            ],
+            "crossPlatformAbsoluteVerticalPositionCompared": false,
+            "webCssPx": [
+              23,
+              292.984,
+              326,
+              184.25
+            ],
+            "webSteadyLayoutSizeCssPx": [
+              326,
+              184
+            ],
+            "webTransformAtCapture": "none"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/raw-completed-body-poster-efa0017aa6df4a7c8599d5c756c38297.json",
+            "sha256": "f99b6c0124396a76fa1023a60067dfb1ab0acca04227e7bf278ff040898f3987"
+          },
+          "nativeEnabled": true,
+          "webDisabled": false
+        },
+        "completed-body-video": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/completed-body-video-0.png",
+            "sha256": "2e28d2240287afcbacbb39481c0a528cc0db034f7e84b44dce1616da74379e7b"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-body-video.png",
+            "sha256": "67c0ccc131b159f6a8b1214e9f57f3828e188e77b92995ed4de64467225ef32a"
+          },
+          "webDOM": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-body-video.html",
+            "sha256": "12febec0ea515fbc3acae97e51754e6ff4014c839d6cd84d40667eaf5b22db1d"
+          },
+          "geometry": {
+            "nativeOriginalPx": [
+              46,
+              1047,
+              1215,
+              1705
+            ],
+            "nativeContentVp": [
+              14.154,
+              284.308,
+              359.692,
+              202.462
+            ],
+            "crossPlatformAbsoluteVerticalPositionCompared": false,
+            "webCssPx": [
+              14,
+              284.25,
+              360,
+              202.5
+            ],
+            "webSteadyLayoutSizeCssPx": [
+              360,
+              203
+            ],
+            "webTransformAtCapture": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/raw-completed-body-video-ready-a88b4eddf2e64d57b9f24c04df77d6f0.json",
+            "sha256": "0623b380ff26c012363b8355754185064786555cc6537b765e22710e1b117cbd"
+          },
+          "nativePlaybackSecond": 6,
+          "webPlaybackSecond": 5.08438
+        },
+        "completed-option-disabled": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/completed-option-disabled.png",
+            "sha256": "1eebdee9945148f0aa8d9f9a3c58176aa526cd68887a57a27584779ccbc6b682"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-option-disabled.png",
+            "sha256": "ae5fdb1f079ec66536677d88ec9fbafb224f06e400e96345b41ebfa9f9d0c31c"
+          },
+          "webDOM": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-option-disabled.html",
+            "sha256": "08d88485315ee14b6d25b4c91ca6bf566808febea3155410b3aae612f04a6221"
+          },
+          "geometry": {
+            "nativeOriginalPx": [
+              119,
+              2108,
+              1179,
+              2531
+            ],
+            "nativeContentVp": [
+              36.615,
+              610.769,
+              326.154,
+              130.154
+            ],
+            "crossPlatformAbsoluteVerticalPositionCompared": false,
+            "webCssPx": [
+              29.028,
+              320.065,
+              325.944,
+              130.78
+            ],
+            "webSteadyLayoutSizeCssPx": [
+              324,
+              130
+            ],
+            "webTransformAtCapture": "none"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/raw-completed-option-disabled-4a566626dca845a49d1f915ef77bbbe7.json",
+            "sha256": "5a4e7d80bac64adae26bf250f7ddeaad08a11a269980021e9679657e0ccf091a"
+          },
+          "nativeEnabled": false,
+          "webDisabled": true
+        },
+        "completed-option-no-poster-disabled": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/completed-option-no-poster-disabled.png",
+            "sha256": "0a7cf859b0f87b0ffa8375a4f582cdcf114527ca8bc4f9aa9f1c8d26cb43b2de"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-option-no-poster-disabled.png",
+            "sha256": "5c6e15b9c5cae77b75a2aa04e929a5584d48515c96c5aee5d0ddaff9d60480ae"
+          },
+          "webDOM": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-completed-completed-option-no-poster-disabled.html",
+            "sha256": "08d88485315ee14b6d25b4c91ca6bf566808febea3155410b3aae612f04a6221"
+          },
+          "geometry": {
+            "nativeOriginalPx": [
+              103,
+              1916,
+              1157,
+              2337
+            ],
+            "nativeContentVp": [
+              31.692,
+              551.692,
+              324.308,
+              129.538
+            ],
+            "crossPlatformAbsoluteVerticalPositionCompared": false,
+            "webCssPx": [
+              24,
+              320.281,
+              324,
+              130
+            ],
+            "webSteadyLayoutSizeCssPx": [
+              324,
+              130
+            ],
+            "webTransformAtCapture": "none"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102339733935Z/raw-completed-option-no-poster-disabled-c2368d82172f4ce0a34cb1978b6447c4.json",
+            "sha256": "09287adc93adc5a21e7601b16ac24ca4add8603c37dc219596e0e7c20126d2df"
+          },
+          "nativeEnabled": false,
+          "webDisabled": true
+        }
+      },
+      "nativeOnlyFailureStates": {}
+    },
+    {
+      "role": "locked",
+      "theme": "dark",
+      "nativeStatus": "passed",
+      "nativeReport": {
+        "path": "artifacts/validation/ui-gameplay-question-video-20261113/native-final-locked-01.json",
+        "sha256": "c8a0876e4d21eb452cb9cc7118db56541d27a290355df88ebc4aa38b6913d996"
+      },
+      "runtime": {
+        "path": "artifacts/validation/ui-gameplay-question-video-20261113/runtime-final-01.json",
+        "sha256": "cbaf8d40c57e6c8b305458284595056def265ee365bb6b4fbf4cd61d0fdae033"
+      },
+      "signedNativeHap": {
+        "path": "artifacts/private/gameplay-question-video-20261113/normal-signed.hap",
+        "sha256": "283a13d8b50d2a20cc185347c869ff20d1e1afba31b39841b5c19b2644d9d884"
+      },
+      "nativeDetailGET": {
+        "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/active-get.json",
+        "sha256": "2242194fc3332e4289fbe13507b50c6f9c88aa0a754da8700248b4851491d758"
+      },
+      "window": {
+        "widthPx": 1260,
+        "heightPx": 2720,
+        "widthVp": 387.6923076923077,
+        "contentHeightVp": 771.0769230769231,
+        "topInsetPx": 123,
+        "bottomInsetPx": 91,
+        "density": 3.25,
+        "fontScale": 1
+      },
+      "pairs": {
+        "locked-option-disabled": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/locked-option-disabled.png",
+            "sha256": "592d540242d1a88f0dd9a39a3d67ddc65c2e9db055dd0a7c420c5c339da8f084"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-locked-locked-option-disabled.png",
+            "sha256": "1f60cc4c2617ae0872114aaf0251c3c8a9d584a79438bae12f4567fd7104d380"
+          },
+          "webDOM": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-locked-locked-option-disabled.html",
+            "sha256": "3bdbb4646f99b48bc3c4580173279070b9412ad96c31218b3ca43f1c61294d77"
+          },
+          "geometry": {
+            "nativeOriginalPx": [
+              103,
+              2167,
+              1157,
+              2588
+            ],
+            "nativeContentVp": [
+              31.692,
+              628.923,
+              324.308,
+              129.538
+            ],
+            "crossPlatformAbsoluteVerticalPositionCompared": false,
+            "webCssPx": [
+              32,
+              320.281,
+              324,
+              130
+            ],
+            "webSteadyLayoutSizeCssPx": [
+              324,
+              130
+            ],
+            "webTransformAtCapture": "none"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/raw-locked-option-disabled-515ab83d8a2e49b0bf3486698c2d6c98.json",
+            "sha256": "22a386b6b737d74ee389d837bc2147d175d351fa990df2d89f700b48262ef598"
+          },
+          "nativeEnabled": false,
+          "webDisabled": true
+        },
+        "locked-option-no-poster-disabled": {
+          "nativeOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/locked-option-no-poster-disabled.png",
+            "sha256": "3c713bcd29180b9dfddeb61b04dfe2a05fffc47cfb8a116ea964cf3e96b0cd4f"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-locked-locked-option-no-poster-disabled.png",
+            "sha256": "ad0c7164bb2bf5c25260908cd14418501e620a1faadc9697dbf3c2bb1eb3f44c"
+          },
+          "webDOM": {
+            "path": "artifacts/private/gameplay-question-video-20261113/web-question-video-disabled-01/dark-locked-locked-option-no-poster-disabled.html",
+            "sha256": "3bdbb4646f99b48bc3c4580173279070b9412ad96c31218b3ca43f1c61294d77"
+          },
+          "geometry": {
+            "nativeOriginalPx": [
+              103,
+              1954,
+              1157,
+              2375
+            ],
+            "nativeContentVp": [
+              31.692,
+              563.385,
+              324.308,
+              129.538
+            ],
+            "crossPlatformAbsoluteVerticalPositionCompared": false,
+            "webCssPx": [
+              32,
+              320.281,
+              324,
+              130
+            ],
+            "webSteadyLayoutSizeCssPx": [
+              324,
+              130
+            ],
+            "webTransformAtCapture": "none"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/raw-locked-option-no-poster-disabled-f3ce3b9b24f5470bb93306254f3e5338.json",
+            "sha256": "046acb719a8fd95a5476094c02c9ceffd8ab198dda2040b05ee4f2df0fe90409"
+          },
+          "nativeEnabled": false,
+          "webDisabled": true
+        }
+      },
+      "nativeOnlyFailureStates": {}
+    }
+  ],
+  "observations": {
+    "completed": [
+      "同宽度夜间原图中，题干封面完整显示，金色圆章、单色播放图标、封面下正文和提示仍按同样层级呈现。题干点开的视频使用同份片源，Web 和原生截图的片内时刻不同，播放器画布分别为 360×202.50 CSS px 和 359.69×202.46 vp。",
+      "已答题仍高亮已提交的 A。A 视频采用和 Web 相同的中央封面裁切，B 显示暗色无封面框。Web 的播放圆章压到 B 文案，按用户确认将原生文案移至圆章下方，卡片与触摸区域保持原布局。",
+      "两张选项视频仍显示封面或占位，原图没有新增禁用蒙层。按钮的禁用由官方 UI 树与真机实际点击验证。"
+    ],
+    "locked": [
+      "永久锁定原图中，已提交的 C 继续高亮。A 的封面、B 的无封面框和下方文字仍在 Web 对应的选项区域，夜间金色圆章与文案可辨。",
+      "两个选项分别点按，页面及选中项未改变，也无视频请求。冻结 Web 对应 DOM 均显示 :disabled。"
+    ]
+  },
+  "method": "Uncropped originals at comparable logical window widths. Native rectangles subtract the measured top safe-area inset. Different scroll anchors prevent comparing absolute vertical position of underlying content across platforms. Native video-entry geometry uses the tappable inner rectangle, inside any visible border. Media frames show the same exact clip bytes at the recorded capture times and do not claim frame equality. Timing and input are verified by separate original receipts."
+}

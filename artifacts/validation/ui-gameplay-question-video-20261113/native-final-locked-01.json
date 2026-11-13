@@ -1,0 +1,188 @@
+{
+  "status": "passed",
+  "role": "locked",
+  "theme": "dark",
+  "scope": "Read-only question media on the sole exact USB phone, with strict isolated HTTPS",
+  "stage": "verify-authoritative-no-write",
+  "hapSha256": "283a13d8b50d2a20cc185347c869ff20d1e1afba31b39841b5c19b2644d9d884",
+  "bindingSha256": {
+    "hap": "283a13d8b50d2a20cc185347c869ff20d1e1afba31b39841b5c19b2644d9d884",
+    "runtime": "cbaf8d40c57e6c8b305458284595056def265ee365bb6b4fbf4cd61d0fdae033",
+    "caseReference": "bb6c23779ab3455bedee64da2f929629b4cf4f29575062e96ba0ea9a932a7fa7",
+    "ca": "ff8a2315a631c7fe81057d9ba1fb206fa1a3c4d3c3b9d1d5e6cb0a389cf4e8b4",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "questionMediaDriver": "5fb395c2cb844388f7ac4810dc872385d50bcef12cd133f2f4429d150e955b3a",
+    "openingDriver": "efe6e5f86e40f4676540da9e1beb48f6fc45c06d846e986cf3ff6db93b938db7",
+    "videoDriver": "d833f67383e0b1b75bc7c847adf135b7afcedddc8fc9b5d46e0664504fb65900",
+    "fixtureDriver": "ce6907a255bee02717459ec420d065f342ecbe54684566050c088cdaa445afec",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageMetadata": "330079f1bb6eb8c57a33fa1c4e03830c4031f764e22243a80055f78188b8f963",
+    "mediaInputs": "c6c63c03459df9ea41ba59b234d82a799ec0a80ea0daebed04956bf70f886b6e",
+    "musicBytes": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+    "mediaRunner": "63ba5b003a2cf91c6c5969b323955983bd9d19549ce9ae9ba140182b31f79c9c",
+    "imageRunner": "02457f3a3c72bf118745389fdc9b5a99b0760f657847ee86e527aed4e71fd1d3",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "3f4f05f9086f9c5a328f805715464c6f48b66938a7ec0eac5e29a44c194a91f9",
+    "GameplayViewModel": "4274c0328ae09689a4b1297022b9984f1614b998912b84b6305f19ffb391a502",
+    "StarwardChoiceOption": "7fbbefdb8ef8669d771232fdf194e295d827699fe0914c32417840c4760f7c2a",
+    "StarwardVideoViewer": "39b1719a7de370202693be7ba83af70c30a10e467c81c51e7a596f5eef0ed866",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "QuestBgmPlayer": "4825f8992d7e6648ecdef0139926c9f28940553a79249108f5463ece950a04f0",
+    "StarwardVideoPoster": "88a207b02dfe03f542ea593847595c1260821500f32c718df4a5fad1bf58481e",
+    "auto-clue-a.png": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b.png": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd",
+    "quest-bg-session.png": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a"
+  },
+  "checksPassed": 2,
+  "checks": [
+    "Both visible option video buttons have native disabled and physical taps issue no media requests",
+    "Strict authorized GET and unchanged read-only SQLite prove zero added start/answer/XP writes"
+  ],
+  "states": [
+    {
+      "state": "locked-option-disabled",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/locked-option-disabled.png",
+        "sha256": "592d540242d1a88f0dd9a39a3d67ddc65c2e9db055dd0a7c420c5c339da8f084",
+        "scope": "Private original"
+      },
+      "rawSha256": "22a386b6b737d74ee389d837bc2147d175d351fa990df2d89f700b48262ef598",
+      "geometryPx": {
+        "gameplay-option-video-0-open": [
+          103,
+          2167,
+          1157,
+          2588
+        ],
+        "gameplay-option-video-0-pixels": [
+          103,
+          2168,
+          1157,
+          2587
+        ]
+      },
+      "posterLoaded": true,
+      "enabled": false,
+      "nativePlaceholderTextObserved": false
+    },
+    {
+      "state": "locked-option-no-poster-disabled",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/locked-option-no-poster-disabled.png",
+        "sha256": "3c713bcd29180b9dfddeb61b04dfe2a05fffc47cfb8a116ea964cf3e96b0cd4f",
+        "scope": "Private original"
+      },
+      "rawSha256": "046acb719a8fd95a5476094c02c9ceffd8ab198dda2040b05ee4f2df0fe90409",
+      "geometryPx": {
+        "gameplay-option-video-1-open": [
+          103,
+          1954,
+          1157,
+          2375
+        ]
+      },
+      "posterLoaded": false,
+      "enabled": false,
+      "nativePlaceholderTextObserved": true
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1,
+      "contentHeightVp": 771.0769230769231
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "videoHttps": [],
+    "posterHttps": [
+      {
+        "label": "auto-clue-a",
+        "status": 200,
+        "bytes": 2203
+      },
+      {
+        "label": "quest-bg-session",
+        "status": 200,
+        "bytes": 100732
+      },
+      {
+        "label": "auto-clue-b",
+        "status": 200,
+        "bytes": 2650
+      }
+    ],
+    "settlement": {
+      "sqliteUnchanged": true,
+      "additionalStartCommands": 0,
+      "additionalAnswerCommands": 0,
+      "additionalXpRows": 0,
+      "authorizedDetailReads": 13
+    },
+    "scope": "options"
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "appThemeRestored": true,
+    "mediaGateRestored": true,
+    "zeroUnexpectedWrites": true
+  },
+  "sameData": {
+    "active-get": {
+      "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/active-get.json",
+      "sha256": "2242194fc3332e4289fbe13507b50c6f9c88aa0a754da8700248b4851491d758"
+    },
+    "after-get": {
+      "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/after-get.json",
+      "sha256": "4068f58b230cefd667c70328edce00002a431a0615704e26f0bb79d4e4bff260"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/locked-option-disabled.png",
+      "sha256": "592d540242d1a88f0dd9a39a3d67ddc65c2e9db055dd0a7c420c5c339da8f084",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/locked-option-no-poster-disabled.png",
+      "sha256": "3c713bcd29180b9dfddeb61b04dfe2a05fffc47cfb8a116ea964cf3e96b0cd4f",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "locked-option-disabled",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/raw-locked-option-disabled-515ab83d8a2e49b0bf3486698c2d6c98.json",
+      "remoteRemoved": true,
+      "sha256": "22a386b6b737d74ee389d837bc2147d175d351fa990df2d89f700b48262ef598"
+    },
+    {
+      "label": "locked-option-no-poster-disabled",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-question-video-20261113/entry-main-20261113T102637237360Z/raw-locked-option-no-poster-disabled-f3ce3b9b24f5470bb93306254f3e5338.json",
+      "remoteRemoved": true,
+      "sha256": "046acb719a8fd95a5476094c02c9ceffd8ab198dda2040b05ee4f2df0fe90409"
+    }
+  ],
+  "visualReview": "pending_separate_web_native_original_review"
+}

@@ -3,6 +3,7 @@ import { curves, UIUtils } from '@kit.ArkUI';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
+import { StarwardVideoPoster } from './StarwardVideoPoster';
 
 /** The platform owns Radio selection; its content modifier supplies the brand layout. */
 class ChoiceRadioStyle implements ContentModifier<RadioConfiguration> {
@@ -51,15 +52,19 @@ export struct StarwardChoiceOption {
   @Require @Param radioId: string;
   @Require @Param cardId: string;
   @Require @Param imageId: string;
+  @Require @Param videoId: string;
   @Require @Param ownerKey: string;
   @Require @Param ownerIsCurrent: (key: string) => boolean;
   @Require @Param imageCache: QuestionImageCache;
   @Param imageSource: string = '';
+  @Param videoSource: string = '';
+  @Param videoPlayable: boolean = false;
   @Param selected: boolean = false;
   @Param editable: boolean = false;
   @Param reducedMotion: boolean = true;
   @Event chosen: () => void = () => {};
   @Event opened: () => void = () => {};
+  @Event videoOpened: () => void = () => {};
   @Local private image: QuestionImageResult | undefined = undefined;
   @Local private imageState: string = 'idle';
   @Local private frameWidth: number = 0;
@@ -114,7 +119,7 @@ export struct StarwardChoiceOption {
     });
   }
 
-  @Monitor('imageSource', 'ownerKey')
+  @Monitor('imageSource', 'ownerKey', 'videoSource')
   imageChanged(): void { this.loadImage(); }
 
   aboutToDisappear(): void {
@@ -153,7 +158,7 @@ export struct StarwardChoiceOption {
     this.image = undefined;
     this.imageState = 'idle';
     previous?.release();
-    if (!this.current(revision, owner, source) || source.length === 0) { return; }
+    if (!this.current(revision, owner, source) || source.length === 0 || this.videoSource.length > 0) { return; }
     const cached: QuestionImageResult | undefined = this.imageCache.acquire(source);
     if (cached !== undefined) {
       this.image = cached;
@@ -242,7 +247,13 @@ export struct StarwardChoiceOption {
         .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
       // The media surface covers the rail below the label, like the Web inset line.
       // Its Button is independent of the Radio selection.
-      if (this.imageSource.length > 0) { this.thumbnail(); }
+      if (this.videoSource.length > 0) {
+        StarwardVideoPoster({ source: this.imageSource, ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent,
+          imageCache: this.imageCache, nodeId: this.videoId, playLabel: `播放选项 ${this.optionKey} 视频`,
+          option: true, playable: this.editable && this.videoPlayable, play: () => this.videoOpened() })
+      } else if (this.imageSource.length > 0) {
+        this.thumbnail()
+      }
     }.id(this.cardId).width('100%').alignItems(HorizontalAlign.Start)
       .backgroundColor(this.selected ? $r('app.color.accent_faint') : Color.Transparent)
       .border({ width: 1, color: this.selected ? $r('app.color.accent') : $r('app.color.border_strong'), radius: 0 })

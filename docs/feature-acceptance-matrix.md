@@ -1035,3 +1035,37 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [丢响应专项收尾](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-cleanup-01.json) 在同一账号完成故障复位、主题还原、退出清空及重新对账。仍为两次请求、一条入场回执，收尾无新增玩法写入。后台迟到入场回执的静默行为由单测覆盖，本轮未在真机播放中主动撤回授权。
 
 [固定预览恢复](../artifacts/validation/ui-gameplay-entry-clues-20261113/fixed-preview-restored-01.json) 7 项通过，手机留在原固定预览账号首页。[交付包字节码](../artifacts/validation/ui-gameplay-entry-clues-20261113/preview-package-equivalence-01.json) 与本轮验收包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-entry-clues-20261113/disposable-cleanup-01.json) 核对三组隔离账号各结算一次，专用后端、数据库和 TLS 已移除。[公开产物扫描](../artifacts/validation/ui-gameplay-entry-clues-20261113/public-artifact-scan-01.json) 无敏感发现。
+
+### C01p 题面视频
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 可读题目 | 有封面用原图及播放标志，无封面显示「影像记录」。同一内容块配置视频时以视频入口替代图集，正文与提示保留。已完成但可读的题面仍可播放，未解锁题不加载素材。 |
+| 播放与中断 | 点击后复用原生播放器，播放期间暂停 BGM，关闭后按原偏好恢复。关闭、系统返回或播放结束回原题，保留滚动位置和草稿。播放失效、离开、后台或账号变化时释放媒体。 |
+| 失败与重试 | 直板机通过隔离真实 HTTPS 验证加载、播放、受控失败及重试。重试只读媒体，不写入入场、答题或经验。日夜使用同数据对照封面、无封面及播放。 |
+
+用户确认无封面入口的「影像记录／播放影像」放在播放标志下方，保留原入口的尺寸、位置和点击范围。
+
+[隔离真实后端夹具](../artifacts/validation/ui-gameplay-question-video-20261113/host-fixtures-01.json) 和 [严格 HTTPS 媒体](../artifacts/validation/ui-gameplay-question-video-20261113/host-media-01.json) 绑定同一两题场次、独立账号、四条视频及两张封面。正常、已完成、锁定三个状态均以隔离真实 DTO 为准。[冻结 Web 回放](../artifacts/validation/ui-gameplay-question-video-20261113/web-question-video-03.json) 实测两种主题播放、BGM 暂停恢复和题卡滚动位置保留。浏览器只重放隔离 DTO 和相同媒体字节，未向后端转发请求。[题面初包签名、安装、窗口与 TLS](../artifacts/validation/ui-gameplay-question-video-20261113/runtime-body-01.json) 5 项通过。
+
+[题面初包直板](../artifacts/validation/ui-gameplay-question-video-20261113/native-body-normal-02.json) 4 项通过。题图、正文及提示保留，点播放前视频请求为零。两条视频均采到第 5 秒实播画面。无封面视频收到 503，点击重新加载后收到 200。返回时播放入口位置与选中项 C 保持，BGM 在同一 AVPlayer 实例暂停和恢复。44 次授权详情 GET，隔离库零新增业务写入。[首轮采集](../artifacts/validation/ui-gameplay-question-video-20261113/native-body-normal-01.json) 在触碰界面前因采集器调用授权辅助函数的命名空间错误停止，原报告留存。
+
+[题面首包原图对照](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-body-initial-01.json) 核对日间封面、无封面、播放及错误。主题图标首包误渲染为蓝色表情，选项接入包改用 API 26 系统单色 `play_fill`。题面封面高度沿同数据比例，出于点按可达性原生题内提示沿用 44 vp 命中区。
+
+### C01q 选项视频
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 有封面与无封面 | 点击选项下方播放区使用同一播放器，保留原有选项样式与独立命中区。无封面沿用「播放影像」。播放、退出及重试均不改变选中项和草稿。 |
+| 禁用边界 | 提交中、冷却、锁定或题目已完成时随选项禁用播放入口，保留海报原色。题面视频按自身可读权限处理。 |
+| 直板机与隔离后端 | 核对实际画面、独立命中、BGM、回原题位置、已完成题和锁定题的禁用以及零新增玩法写入。 |
+
+[题面与选项定版签名安装、窗口及 TLS](../artifacts/validation/ui-gameplay-question-video-20261113/runtime-final-01.json) 5 项通过。玩法解码、答题、刷新、BGM、图片加载及缓存 49 项相关测试通过。[codelinter](../artifacts/validation/ui-gameplay-question-video-20261113/lint/lint.json) 退出 0，报告 `filesChecked=0`。DevEco ArkTS 对视频入口、播放器和答题页未返回诊断，对选项已有同步动画更新提示异常处理。
+
+[正常场次直板定版](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-normal-01.json) 3 项通过。封面和无封面两个选项均实播，后者 503 后点击重新加载成功。三次读取严格 HTTPS、无玩家凭据。关窗后每个入口保持原始坐标，BGM 同一会话暂停后恢复。点播放键、重试和系统返回始终保留选项 C，SQLite 零新增玩法写入。[定版日间同数据原图](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-final-normal-01.json) 复核两种题面、两种选项入口、实播及返回状态，并独立核对错误与重试控件。
+
+[已完成题直板](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-completed-01.json) 3 项通过。回看已答首题可打开题面视频并实际播放，系统返回保持原位置。带封面和无封面的选项按钮均为原生禁用，实点无播放和媒体请求，保留服务端答案选择。
+
+[锁定题直板](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-locked-01.json) 2 项通过。实点两个原生禁用按钮均无播放和视频请求，SQLite 与准备阶段一致。[夜间同数据原图](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-final-dark-01.json) 核对已完成题面和两组禁用状态，共 6 对。提交中和冷却沿用同一个答题可编辑门槛，相关答题测试已运行，本轮未在真机单独触发这两个状态。
+
+[固定预览恢复](../artifacts/validation/ui-gameplay-question-video-20261113/fixed-preview-restored-01.json) 7 项通过，手机停在原账号首页。[预览包字节码](../artifacts/validation/ui-gameplay-question-video-20261113/preview-package-equivalence-01.json) 与定版隔离包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-question-video-20261113/disposable-cleanup-01.json) 核对四个隔离账号台账无变化，专用 TLS、数据库、容器和控制入口均已关闭。[公开产物扫描](../artifacts/validation/ui-gameplay-question-video-20261113/public-artifact-scan-01.json) 无敏感发现。

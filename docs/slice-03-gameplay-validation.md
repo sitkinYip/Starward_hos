@@ -493,3 +493,45 @@ python3 "$starward_private/device-entry-clues.py" --runtime "$starward_reports/r
 [夜间丢响应](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-01.json) 6 项业务及交互检查完成。重试前后同账号、同 requestId、同请求体，两次传输仅产生一条 SQLite 入场回执。自然播完视频仍继续尾声文字，回访静默。原报告保留 incomplete，原因是采集器以只读控制入口复位故障失败。[同账号收尾](../artifacts/validation/ui-gameplay-entry-clues-20261113/native-lost-cleanup-01.json) 独立完成全部清理，无再次入场或答题。日夜原图分别比较 [7 组日间状态](../artifacts/validation/ui-gameplay-entry-clues-20261113/visual-review-normal-01.json) 与 [7 组夜间状态](../artifacts/validation/ui-gameplay-entry-clues-20261113/visual-review-lost-01.json)。
 
 恢复预览后，[真机运行时](../artifacts/validation/ui-gameplay-entry-clues-20261113/preview-restored-runtime-01.json) 5 项和 [固定预览登录与读取](../artifacts/validation/ui-gameplay-entry-clues-20261113/fixed-preview-restored-01.json) 7 项通过。[交付包字节码](../artifacts/validation/ui-gameplay-entry-clues-20261113/preview-package-equivalence-01.json) 与隔离验收包一致，[隔离清理回执](../artifacts/validation/ui-gameplay-entry-clues-20261113/disposable-cleanup-01.json) 核对全部专用资源与台账。原固定预览账号留在已登录首页，预览过程无答题与入场操作。
+
+## 题面与选项视频
+
+见 [C01p](feature-acceptance-matrix.md#c01p-题面视频) 和 [C01q](feature-acceptance-matrix.md#c01q-选项视频)。冻结 Web `4b7d1a0` 的题面视频优先于同内容块图集，正文和提示仍可读。选项播放入口与 Radio 分开并随答题可编辑状态变化。用户确认无封面文案移至播放标志下方。题面与选项使用共享图片缓存及 [ArkUI Video](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-media-components-video)。可用封面通过 SDK 支持的 PixelMap `previewUri` 提交，启用该封面时关闭首帧送显。定版使用 [ArkUI SymbolGlyph](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-symbolglyph) 的 `play_fill`，避免将播放标志渲染成彩色表情。
+
+```sh
+starward_private=artifacts/private/gameplay-question-video-20261113
+starward_reports=artifacts/validation/ui-gameplay-question-video-20261113
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-final-01.json"
+for suite in GameplayData GameplayRefreshViewModel GameplayAnswerViewModel GameplayBgm QuestionImageLoaderTests QuestionImageCacheTests; do
+  STARWARD_VALIDATION_DIR="$starward_reports/$suite" scripts/hm.sh test "$suite"
+done
+STARWARD_VALIDATION_DIR="$starward_reports/lint" scripts/hm.sh lint
+```
+
+六个 Hypium 套件各通过 10、8、20、3、4、4 项，共 49 项。失败和忽略均为 0。题面初包及定版签名 SHA256 分别为 `1688dadc3e0e0cb9ca27a01108466b0b0cbebf40e7dd3ae5bca49cd311b6dbc5` 和 `283a13d8b50d2a20cc185347c869ff20d1e1afba31b39841b5c19b2644d9d884`。原生采集器使用已授权、已开始的隔离账号，播放期间只读校验实际接口与 SQLite。受控故障只覆盖测试视频专用路径。
+
+[题面初包验收](../artifacts/validation/ui-gameplay-question-video-20261113/native-body-normal-02.json) 验证两条视频的真实画面、单次 503 与显式重试、Close 与系统返回及各自的 BGM 暂停恢复。首个采集器记录因初始化调用错误保持 incomplete。[首包原图](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-body-initial-01.json) 记录播放图标与 Web 的差异，定版重新核对。
+
+定版分三组真实账号执行。普通组只重采题面入口原图，然后验证两个选项视频。已完成组回到首题验证题面仍可播及选项禁用。锁定组验证两个选项入口真实禁用。复验先准备新的隔离后端、媒体、账号和该次设备绑定，报告写入新路径。
+
+```sh
+export PATH="/Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/toolchains:$PATH"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+starward_runtime="$starward_reports/runtime-final-01.json"
+python3 "$starward_private/device-question-video.py" --runtime "$starward_runtime" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage normal --scope options --theme light --output "$starward_reports/native-final-normal-01.json"
+python3 "$starward_private/device-question-video.py" --runtime "$starward_runtime" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage completed --scope both --theme dark --output "$starward_reports/native-final-completed-01.json"
+python3 "$starward_private/device-question-video.py" --runtime "$starward_runtime" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage locked --scope options --theme dark --output "$starward_reports/native-final-locked-01.json"
+```
+
+[正常场次定版](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-normal-01.json) 3 项通过，两个选项实际显示第 5 秒画面，无封面选项验证从 503 到单次 200 的显式媒体重试。真机原始控件树核对返回位置与选项 C 保留，BGM 日志核对同一 AVPlayer 暂停与恢复。[日间同数据对照](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-final-normal-01.json) 核对正常场次 8 对原图及独立错误原图。[Web 第 5 秒原图](../artifacts/validation/ui-gameplay-question-video-20261113/web-question-video-04.json) 由浏览器自然播放取得。
+
+[已完成题](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-completed-01.json) 3 项通过，题面视频仍可播放并返回原处，两处选项均保持禁用。[锁定题](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-locked-01.json) 2 项通过，分别实点两个选项仍无视频请求。[夜间同数据对照](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-final-dark-01.json) 核对 6 对原图。提交中、冷却及播放时授权撤销没有在本切片独立注入真机。
+
+[恢复预览后的实际窗口及 TLS](../artifacts/validation/ui-gameplay-question-video-20261113/preview-restored-runtime-01.json) 5 项通过，[固定预览只读登录](../artifacts/validation/ui-gameplay-question-video-20261113/fixed-preview-restored-01.json) 7 项通过。[预览包字节码](../artifacts/validation/ui-gameplay-question-video-20261113/preview-package-equivalence-01.json) 与定版隔离包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-question-video-20261113/disposable-cleanup-01.json) 验证全部四个隔离账号零新增入场、答题和经验写入，专用资源已关闭。

@@ -1,6 +1,7 @@
 import { window } from '@kit.ArkUI';
 import { ClueVideoFile, ClueVideoFileLoader } from '../platform/ClueVideoFile';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
+import { QuestionImageResult } from '../platform/QuestionImageLoader';
 import { StarwardMediaAmbient, StarwardMediaFrame } from './StarwardClueMotion';
 
 class VideoAttempt {
@@ -22,6 +23,7 @@ export class StarwardVideoViewerState {
   @Trace sessionId: number = 0;
   @Trace phase: 'idle' | 'loading' | 'ready' | 'failed' = 'idle';
   @Trace attempt: VideoAttempt | null = null;
+  @Trace poster: QuestionImageResult | undefined = undefined;
   private request: VideoAttempt | null = null;
   private loader: ClueVideoFileLoader | null = null;
   private source: string = '';
@@ -33,7 +35,8 @@ export class StarwardVideoViewerState {
   private lease: number = 0;
 
   open(source: string, cacheDir: string, ownerCurrent: () => boolean,
-    finished?: (ended: boolean) => void, playbackReady?: () => Promise<boolean>): boolean {
+    finished?: (ended: boolean) => void, playbackReady?: () => Promise<boolean>,
+    poster?: QuestionImageResult): boolean {
     if (this.visible || this.closing || source.length === 0 || !ownerCurrent()) { return false; }
     try { this.lease = ImmersiveSurfaces.acquireDark(); } catch { return false; }
     this.sessionId++;
@@ -41,6 +44,7 @@ export class StarwardVideoViewerState {
     this.ownerCurrent = ownerCurrent;
     this.finished = finished;
     this.playbackReady = playbackReady;
+    this.poster = poster?.retain();
     this.endedNaturally = false;
     this.loader = new ClueVideoFileLoader(cacheDir);
     this.visible = true;
@@ -122,6 +126,9 @@ export class StarwardVideoViewerState {
     this.closing = !immediate;
     this.clearAttempt();
     this.loader = null;
+    const poster: QuestionImageResult | undefined = this.poster;
+    this.poster = undefined;
+    poster?.release();
     this.source = '';
     this.ownerCurrent = () => false;
     this.playbackReady = undefined;
@@ -210,7 +217,8 @@ export struct StarwardVideoViewer {
 
   @Builder
   player(attempt: VideoAttempt) {
-    Video({ src: attempt.file?.uri, controller: attempt.controller, posterOptions: { showFirstFrame: true } })
+    Video({ src: attempt.file?.uri, controller: attempt.controller, previewUri: this.model.poster?.pixels,
+      posterOptions: { showFirstFrame: this.model.poster === undefined } })
       .id('gameplay-video-player').width('100%').height('100%').objectFit(ImageFit.Contain)
       .controls(this.model.phase === 'ready')
       .hitTestBehavior(this.model.phase === 'ready' ? HitTestMode.Default : HitTestMode.None)
@@ -223,6 +231,10 @@ export struct StarwardVideoViewer {
   @Builder
   stage() {
     Stack() {
+      if (this.model.phase === 'loading' && this.model.poster !== undefined && this.model.attempt === null) {
+        Image(this.model.poster.pixels).width('100%').height('100%').objectFit(ImageFit.Contain)
+          .draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+      }
       if (this.model.attempt !== null) { this.player(this.model.attempt) }
       if (this.model.phase === 'loading') {
         LoadingProgress().id('gameplay-video-loading').width(28).height(28).color('#d4bc7d')
