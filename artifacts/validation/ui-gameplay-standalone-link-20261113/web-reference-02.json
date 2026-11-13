@@ -1,0 +1,3679 @@
+{
+  "status": "incomplete",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "driverSha256": "80f2f36a5fbb5ee9fe3ee9a1cd820a0d84206eb49eb704f0dc6f9931fbe4d514",
+  "sourceSha256": {
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/features/game/useGamePresentation.ts": "e48cef4eca361a40aefa4d326ef033ccc4310ace74a5c9f35ef0d4b0d7e33367",
+    "src/features/game/clue-presentation.ts": "fc3b4e189ec189300e487fd3ffafaccf534b2d7b288e40d65214648745dcc05e",
+    "src/features/quest/QuestCard.tsx": "02d106ad6b419225c212a0ce24ce57d2096fb559fa2db508be3dee9649d228d3",
+    "src/features/clues/CluePanel.tsx": "062fd7639af3a561fb84e3a2442a7e2b4f786652b2677420ea65a24a856eda09",
+    "src/styles/features/clues.css": "c7fcc898825ed13afc993c1302b218f1526dc359b8b90c73771b94de0dbe0dba",
+    "src/styles/effects/archive-lighting.css": "c6b923dd400fb505cf29d27360294eec308a170c93c7aa1e4a31b936af6b4226",
+    "src/styles/effects/archive-keyframes.css": "086e2e43b8c557bc2ced9d1576bf53233d7aa140d22173cc101ea6bbfa44e50c"
+  },
+  "inputSha256": {
+    "dto": "07d4a39f7e70046b471b5f3be8a27e2d03796345f4c5b3f4e1a70254940553d5",
+    "fixture": "80b5e85fd882cdf5f6bb1cfdf257f94272c863afbd88df6ea7466174f162d106"
+  },
+  "referenceFontSourceSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "inputScope": "exact_disposable_web_actor_before_after_responses",
+  "syntheticAuthentication": true,
+  "businessRequestsForwarded": 0,
+  "externalRequestsForwarded": 0,
+  "visualReview": "pending_original_review",
+  "displayFontReappliedAfterReentry": true,
+  "cases": [
+    {
+      "theme": "light",
+      "motion": "no-preference",
+      "states": [
+        {
+          "state": "pre-unlock-second",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -314.421875,
+              "width": 364,
+              "height": 1049.328125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": null,
+            "archiveHeading": null,
+            "links": [],
+            "scrollY": 505
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-pre-unlock-second.png",
+            "sha256": "8566e99c42c9549862292a7da5946301029eeb70433582bd507fb8d9a4992ab6"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-pre-unlock-second.html",
+            "sha256": "02b93730b7d11bf8f42689d720649796ce295d7ce693bb383d391f4e4d25ed0f"
+          }
+        },
+        {
+          "state": "pre-unlock-first-level-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12.022964477539062,
+              "y": 75.79135131835938,
+              "width": 363.9541015625,
+              "height": 659.822998046875,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(0.999874, 0, 0, 0.999874, 0, 0.171586)",
+              "opacity": "0.994953"
+            },
+            "archive": {
+              "x": 31.020566940307617,
+              "y": 396.6727294921875,
+              "width": 325.9588623046875,
+              "height": 311.945068359375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31.020566940307617,
+              "y": 424.669189453125,
+              "width": 325.9588623046875,
+              "height": 61.38287353515625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31.020566940307617,
+                  "y": 615.6295166015625,
+                  "width": 325.9588623046875,
+                  "height": 80.98974609375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgb(238, 243, 241)",
+                  "borderColor": "rgb(187, 207, 197)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40.019432067871094,
+                  "y": 630.6275634765625,
+                  "width": 51.993438720703125,
+                  "height": 49.99365234375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(57, 123, 109)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(57, 123, 109) rgb(220, 229, 224) rgb(57, 123, 109) rgb(57, 123, 109)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.111148834228516,
+                  "y": 638.3297119140625,
+                  "width": 18.794506072998047,
+                  "height": 17.997802734375,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103.01148223876953,
+                  "y": 632.22119140625,
+                  "width": 191.97576904296875,
+                  "height": 46.7908935546875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(41, 60, 56)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103.01148223876953,
+                  "y": 632.22119140625,
+                  "width": 191.97576904296875,
+                  "height": 20.997314453125,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103.01148223876953,
+                  "y": 658.2178955078125,
+                  "width": 191.97576904296875,
+                  "height": 20.794189453125,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(83, 107, 99)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(83, 107, 99)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(100, 121, 112)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(100, 121, 112)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 309.9853515625,
+                  "y": 638.6265869140625,
+                  "width": 33.9957275390625,
+                  "height": 33.9957275390625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(24, 123, 105, 0.05)",
+                  "borderColor": "rgb(130, 175, 162)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 317.984375,
+                  "y": 646.6256103515625,
+                  "width": 17.9976806640625,
+                  "height": 17.9976806640625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 115
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-pre-unlock-first-level-link.png",
+            "sha256": "ea22a2a876cf5a8ee92e52db60c3edb53eeb0d0e3464999baf886c30f3449528"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-pre-unlock-first-level-link.html",
+            "sha256": "7cef5a4084d51c2deac923f51e7c522dbfbec1977fd26ee0ce8a13724ece1994"
+          }
+        },
+        {
+          "state": "post-unlock-final-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -706.421875,
+              "width": 364,
+              "height": 1441.3125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": {
+              "x": 31,
+              "y": 221.90625,
+              "width": 326,
+              "height": 311.984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31,
+              "y": 249.90625,
+              "width": 326,
+              "height": 61.390625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31,
+                  "y": 440.890625,
+                  "width": 326,
+                  "height": 81,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgb(238, 243, 241)",
+                  "borderColor": "rgb(187, 207, 197)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40,
+                  "y": 455.890625,
+                  "width": 52,
+                  "height": 50,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(57, 123, 109)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(57, 123, 109) rgb(220, 229, 224) rgb(57, 123, 109) rgb(57, 123, 109)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.09375,
+                  "y": 463.59375,
+                  "width": 18.796875,
+                  "height": 18,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103,
+                  "y": 457.484375,
+                  "width": 192,
+                  "height": 46.796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(41, 60, 56)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103,
+                  "y": 457.484375,
+                  "width": 192,
+                  "height": 21,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103,
+                  "y": 483.484375,
+                  "width": 192,
+                  "height": 20.796875,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(83, 107, 99)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(83, 107, 99)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(100, 121, 112)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(100, 121, 112)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 310,
+                  "y": 463.890625,
+                  "width": 34,
+                  "height": 34,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(24, 123, 105, 0.05)",
+                  "borderColor": "rgb(130, 175, 162)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 318,
+                  "y": 471.890625,
+                  "width": 18,
+                  "height": 18,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 897
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-post-unlock-final-link.png",
+            "sha256": "8d1854c1937d920e22b1604353264d87bf067269fe6080fdd72202de21fdaca7"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-post-unlock-final-link.html",
+            "sha256": "4fb4511ddad59b1d1460b48ece4f3e3aa8104fce35b1ef64591c4ac89b263d23"
+          }
+        },
+        {
+          "state": "returned-final-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -706.421875,
+              "width": 364,
+              "height": 1441.3125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(130, 175, 162)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": {
+              "x": 31,
+              "y": 221.90625,
+              "width": 326,
+              "height": 311.984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31,
+              "y": 249.90625,
+              "width": 326,
+              "height": 61.390625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 38.92327117919922,
+                  "y": 437.8880615234375,
+                  "width": 326.161376953125,
+                  "height": 81.0452880859375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgb(233, 242, 239)",
+                  "borderColor": "rgb(130, 175, 162)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix3d(1, 0, 0, 0, 0, 0.999925, 0.012217, 0, 0, -0.012217, 0.999925, 0, 8, -3, 0, 1)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 47.9562873840332,
+                  "y": 452.88427734375,
+                  "width": 52.0729866027832,
+                  "height": 50.02734375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(57, 123, 109)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(57, 123, 109) rgb(220, 229, 224) rgb(57, 123, 109) rgb(57, 123, 109)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 64.09342956542969,
+                  "y": 460.587646484375,
+                  "width": 18.82135009765625,
+                  "height": 18.0062255859375,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 110.9767837524414,
+                  "y": 454.47802734375,
+                  "width": 192.0537109375,
+                  "height": 46.8223876953125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 111.00294494628906,
+                  "y": 454.47802734375,
+                  "width": 191.99317932128906,
+                  "height": 21.0048828125,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 110.9767837524414,
+                  "y": 480.485595703125,
+                  "width": 192.0537109375,
+                  "height": 20.8148193359375,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(83, 107, 99)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(83, 107, 99)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(100, 121, 112)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(100, 121, 112)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 317.2666931152344,
+                  "y": 457.1781005859375,
+                  "width": 39.4693603515625,
+                  "height": 39.432861328125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(24, 123, 105, 0.1)",
+                  "borderColor": "rgb(24, 123, 105)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "matrix(1.06593, -0.0932566, 0.0932566, 1.06593, 2, -1)",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 326.55072021484375,
+                  "y": 466.4530029296875,
+                  "width": 20.89556884765625,
+                  "height": 20.876220703125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 2400,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": true,
+                "sheenOpacity": "1"
+              }
+            ],
+            "scrollY": 897
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-returned-final-link.png",
+            "sha256": "40021bf1c24599dec74dea6b15f14999e1a5d4989bdebb24e62a8de974b27099"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-returned-final-link.html",
+            "sha256": "4fb4511ddad59b1d1460b48ece4f3e3aa8104fce35b1ef64591c4ac89b263d23"
+          }
+        },
+        {
+          "state": "completed-first-both-links",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12.014694213867188,
+              "y": -16.281646728515625,
+              "width": 363.9705810546875,
+              "height": 751.845458984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(0.999919, 0, 0, 0.999919, 0, 0.109874)",
+              "opacity": "0.996768"
+            },
+            "archive": {
+              "x": 31.013158798217773,
+              "y": 304.61431884765625,
+              "width": 325.9736633300781,
+              "height": 403.95172119140625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31.013158798217773,
+              "y": 332.612060546875,
+              "width": 325.9736633300781,
+              "height": 61.3856201171875,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31.013158798217773,
+                  "y": 523.5810546875,
+                  "width": 325.9736633300781,
+                  "height": 80.993408203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgb(238, 243, 241)",
+                  "borderColor": "rgb(187, 207, 197)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40.01243209838867,
+                  "y": 538.579833984375,
+                  "width": 51.99580001831055,
+                  "height": 49.9959716796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(57, 123, 109)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(57, 123, 109) rgb(220, 229, 224) rgb(57, 123, 109) rgb(57, 123, 109)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.104881286621094,
+                  "y": 546.2823486328125,
+                  "width": 18.79535675048828,
+                  "height": 17.99853515625,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103.0073471069336,
+                  "y": 540.1734619140625,
+                  "width": 191.98446655273438,
+                  "height": 46.7930908203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(41, 60, 56)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103.0073471069336,
+                  "y": 540.1734619140625,
+                  "width": 191.98446655273438,
+                  "height": 20.998291015625,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103.0073471069336,
+                  "y": 566.1712646484375,
+                  "width": 191.98446655273438,
+                  "height": 20.7952880859375,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(83, 107, 99)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(83, 107, 99)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(100, 121, 112)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(100, 121, 112)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 309.9906005859375,
+                  "y": 546.5791015625,
+                  "width": 33.99725341796875,
+                  "height": 33.997314453125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(24, 123, 105, 0.05)",
+                  "borderColor": "rgb(130, 175, 162)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 317.989990234375,
+                  "y": 554.5784912109375,
+                  "width": 17.99853515625,
+                  "height": 17.99853515625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              },
+              {
+                "card": {
+                  "x": 31.013158798217773,
+                  "y": 615.5736083984375,
+                  "width": 325.9736633300781,
+                  "height": 80.993408203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgb(238, 243, 241)",
+                  "borderColor": "rgb(187, 207, 197)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40.01243209838867,
+                  "y": 630.5723876953125,
+                  "width": 51.99580001831055,
+                  "height": 49.9959716796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(57, 123, 109)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(57, 123, 109) rgb(220, 229, 224) rgb(57, 123, 109) rgb(57, 123, 109)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.104881286621094,
+                  "y": 638.27490234375,
+                  "width": 18.79535675048828,
+                  "height": 17.99853515625,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103.0073471069336,
+                  "y": 632.166015625,
+                  "width": 191.98446655273438,
+                  "height": 46.7930908203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(41, 60, 56)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103.0073471069336,
+                  "y": 632.166015625,
+                  "width": 191.98446655273438,
+                  "height": 20.998291015625,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103.0073471069336,
+                  "y": 658.163818359375,
+                  "width": 191.98446655273438,
+                  "height": 20.7952880859375,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(83, 107, 99)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(83, 107, 99)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(100, 121, 112)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(100, 121, 112)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 309.9906005859375,
+                  "y": 638.5716552734375,
+                  "width": 33.99725341796875,
+                  "height": 33.997314453125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(24, 123, 105, 0.05)",
+                  "borderColor": "rgb(130, 175, 162)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 317.989990234375,
+                  "y": 646.571044921875,
+                  "width": 17.99853515625,
+                  "height": 17.99853515625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 140,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 207
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-completed-first-both-links.png",
+            "sha256": "470db6b03a779a973a5d6996f0bce757573a31c5f575c70286df6e4a885b6c18"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-completed-first-both-links.html",
+            "sha256": "a91058457fe23e09fce59f70df278baa135187654160bd1dc91f427f61885459"
+          }
+        },
+        {
+          "state": "reopened-completed-final-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -614.421875,
+              "width": 364,
+              "height": 1349.3125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": {
+              "x": 31,
+              "y": 232.90625,
+              "width": 326,
+              "height": 311.984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31,
+              "y": 260.90625,
+              "width": 326,
+              "height": 61.390625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31,
+                  "y": 451.890625,
+                  "width": 326,
+                  "height": 81,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgb(238, 243, 241)",
+                  "borderColor": "rgb(187, 207, 197)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40,
+                  "y": 466.890625,
+                  "width": 52,
+                  "height": 50,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(57, 123, 109)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(57, 123, 109) rgb(220, 229, 224) rgb(57, 123, 109) rgb(57, 123, 109)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.09375,
+                  "y": 474.59375,
+                  "width": 18.796875,
+                  "height": 18,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103,
+                  "y": 468.484375,
+                  "width": 192,
+                  "height": 46.796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(41, 60, 56)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(41, 60, 56)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103,
+                  "y": 468.484375,
+                  "width": 192,
+                  "height": 21,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(22, 46, 40)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(22, 46, 40)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103,
+                  "y": 494.484375,
+                  "width": 192,
+                  "height": 20.796875,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(83, 107, 99)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(83, 107, 99)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(100, 121, 112)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(100, 121, 112)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 310,
+                  "y": 474.890625,
+                  "width": 34,
+                  "height": 34,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(24, 123, 105, 0.05)",
+                  "borderColor": "rgb(130, 175, 162)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 318,
+                  "y": 482.890625,
+                  "width": 18,
+                  "height": 18,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(17, 105, 88)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(17, 105, 88)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 805
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-reopened-completed-final-link.png",
+            "sha256": "ca3334d59dee1808d9a96b3fea2b695ef035aa2c1790ce5211166395267937d3"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/light-no-preference-reopened-completed-final-link.html",
+            "sha256": "ccf15f80186a12bd8f5316b6a24f387f5c886b949a9b0caf51b1c4d74a42a1b7"
+          }
+        }
+      ],
+      "observedTouchPress": {
+        "active": false,
+        "hovered": false,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "sheenOpacity": "0"
+      },
+      "schemaChecksPassed": 5,
+      "sourceChecksPassed": 13,
+      "syntheticSettlements": 1,
+      "interceptedPopupRequests": 1,
+      "beforeUnlockFinalCardAbsent": true,
+      "boundScopeAndDraftRetained": true,
+      "manualExternalTabWithoutOpenerOrPrivateHeaders": true,
+      "externalReturnRetainedQuestionAndScroll": true,
+      "completedGetDoesNotReplay": true
+    },
+    {
+      "theme": "dark",
+      "motion": "no-preference",
+      "states": [
+        {
+          "state": "pre-unlock-second",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -314.421875,
+              "width": 364,
+              "height": 1049.328125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 3.31953e-08)",
+              "opacity": "1"
+            },
+            "archive": null,
+            "archiveHeading": null,
+            "links": [],
+            "scrollY": 505
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-pre-unlock-second.png",
+            "sha256": "044ed46154c4a145148f7d39134e52ed29705c88f2e3e5ef8ca9bfd29acedef3"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-pre-unlock-second.html",
+            "sha256": "acb79492b33fab26f4e0d5d4744da1e3ddbad4d9783b4582a537a2f351a0f96e"
+          }
+        },
+        {
+          "state": "pre-unlock-first-level-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12.0185546875,
+              "y": 75.75039672851562,
+              "width": 363.962890625,
+              "height": 659.8389892578125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(0.999898, 0, 0, 0.999898, 0, 0.138651)",
+              "opacity": "0.995922"
+            },
+            "archive": {
+              "x": 31.016618728637695,
+              "y": 396.6395568847656,
+              "width": 325.9667663574219,
+              "height": 311.9526062011719,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31.016618728637695,
+              "y": 424.63671875,
+              "width": 325.9667663574219,
+              "height": 61.3843994140625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31.016618728637695,
+                  "y": 615.6015625,
+                  "width": 325.9667663574219,
+                  "height": 80.9918212890625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgb(16, 17, 14)",
+                  "borderColor": "rgb(52, 54, 47)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40.01570129394531,
+                  "y": 630.60009765625,
+                  "width": 51.99469757080078,
+                  "height": 49.994873046875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(189, 166, 111)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(189, 166, 111) rgb(48, 50, 44) rgb(189, 166, 111) rgb(189, 166, 111)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.107810974121094,
+                  "y": 638.3023681640625,
+                  "width": 18.794960021972656,
+                  "height": 17.9981689453125,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103.00927734375,
+                  "y": 632.1937255859375,
+                  "width": 191.98043823242188,
+                  "height": 46.7921142578125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(231, 230, 225)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103.00927734375,
+                  "y": 632.1937255859375,
+                  "width": 191.98043823242188,
+                  "height": 20.997802734375,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103.00927734375,
+                  "y": 658.1910400390625,
+                  "width": 191.98043823242188,
+                  "height": 20.7947998046875,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(170, 169, 159)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(170, 169, 159)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(140, 142, 133)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(140, 142, 133)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 309.9881896972656,
+                  "y": 638.5992431640625,
+                  "width": 33.99652099609375,
+                  "height": 33.99658203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(212, 188, 125, 0.055)",
+                  "borderColor": "rgb(117, 104, 74)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 317.98736572265625,
+                  "y": 646.5985107421875,
+                  "width": 17.9981689453125,
+                  "height": 17.9981689453125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 115
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-pre-unlock-first-level-link.png",
+            "sha256": "a608808741acf7bc29caebabfd281b556062bfca986f86c518bd96f3407e39f1"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-pre-unlock-first-level-link.html",
+            "sha256": "d4a4b9f863523367cd3860eb8bcbac6b75e914a9c7f13544e70ef8f0a2f1dec6"
+          }
+        },
+        {
+          "state": "post-unlock-final-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -706.421875,
+              "width": 364,
+              "height": 1441.3125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": {
+              "x": 31,
+              "y": 221.90625,
+              "width": 326,
+              "height": 311.984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31,
+              "y": 249.90625,
+              "width": 326,
+              "height": 61.390625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31,
+                  "y": 440.890625,
+                  "width": 326,
+                  "height": 81,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgb(16, 17, 14)",
+                  "borderColor": "rgb(52, 54, 47)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40,
+                  "y": 455.890625,
+                  "width": 52,
+                  "height": 50,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(189, 166, 111)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(189, 166, 111) rgb(48, 50, 44) rgb(189, 166, 111) rgb(189, 166, 111)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.09375,
+                  "y": 463.59375,
+                  "width": 18.796875,
+                  "height": 18,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103,
+                  "y": 457.484375,
+                  "width": 192,
+                  "height": 46.796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(231, 230, 225)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103,
+                  "y": 457.484375,
+                  "width": 192,
+                  "height": 21,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103,
+                  "y": 483.484375,
+                  "width": 192,
+                  "height": 20.796875,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(170, 169, 159)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(170, 169, 159)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(140, 142, 133)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(140, 142, 133)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 310,
+                  "y": 463.890625,
+                  "width": 34,
+                  "height": 34,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(212, 188, 125, 0.055)",
+                  "borderColor": "rgb(117, 104, 74)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 318,
+                  "y": 471.890625,
+                  "width": 18,
+                  "height": 18,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 897
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-post-unlock-final-link.png",
+            "sha256": "fae9d35e26667710acd272ef057140d41ea9a1082b8a5ddeb5186ff86f6b59a2"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-post-unlock-final-link.html",
+            "sha256": "f45417838cdc0fc298a7a56109fc0beb9ee2f42f408410e97e5961bb6042f963"
+          }
+        },
+        {
+          "state": "returned-final-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -706.421875,
+              "width": 364,
+              "height": 1441.3125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(117, 104, 74)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": {
+              "x": 31,
+              "y": 221.90625,
+              "width": 326,
+              "height": 311.984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31,
+              "y": 249.90625,
+              "width": 326,
+              "height": 61.390625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 38.92327117919922,
+                  "y": 437.8880615234375,
+                  "width": 326.161376953125,
+                  "height": 81.0452880859375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgb(29, 30, 25)",
+                  "borderColor": "rgb(117, 104, 74)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix3d(1, 0, 0, 0, 0, 0.999925, 0.012217, 0, 0, -0.012217, 0.999925, 0, 8, -3, 0, 1)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 47.9562873840332,
+                  "y": 452.88427734375,
+                  "width": 52.0729866027832,
+                  "height": 50.02734375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(189, 166, 111)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(189, 166, 111) rgb(48, 50, 44) rgb(189, 166, 111) rgb(189, 166, 111)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 64.09342956542969,
+                  "y": 460.587646484375,
+                  "width": 18.82135009765625,
+                  "height": 18.0062255859375,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 110.9767837524414,
+                  "y": 454.47802734375,
+                  "width": 192.0537109375,
+                  "height": 46.8223876953125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 111.00294494628906,
+                  "y": 454.47802734375,
+                  "width": 191.99317932128906,
+                  "height": 21.0048828125,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 110.9767837524414,
+                  "y": 480.485595703125,
+                  "width": 192.0537109375,
+                  "height": 20.8148193359375,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(170, 169, 159)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(170, 169, 159)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(140, 142, 133)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(140, 142, 133)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 317.2693786621094,
+                  "y": 457.19189453125,
+                  "width": 39.44927978515625,
+                  "height": 39.4127197265625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(212, 188, 125, 0.12)",
+                  "borderColor": "rgb(212, 188, 125)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "matrix(1.0657, -0.0928926, 0.0928926, 1.0657, 1.99265, -0.996326)",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 326.5487060546875,
+                  "y": 466.4620361328125,
+                  "width": 20.884918212890625,
+                  "height": 20.8656005859375,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 2400,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": true,
+                "sheenOpacity": "1"
+              }
+            ],
+            "scrollY": 897
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-returned-final-link.png",
+            "sha256": "26666b2bb7a3f6afd0458302a2b610681625a2bab00aaef791b625a30c6981c2"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-returned-final-link.html",
+            "sha256": "f45417838cdc0fc298a7a56109fc0beb9ee2f42f408410e97e5961bb6042f963"
+          }
+        },
+        {
+          "state": "completed-first-both-links",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12.014694213867188,
+              "y": -16.281646728515625,
+              "width": 363.9705810546875,
+              "height": 751.845458984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(0.999919, 0, 0, 0.999919, 0, 0.109873)",
+              "opacity": "0.996768"
+            },
+            "archive": {
+              "x": 31.013158798217773,
+              "y": 304.61431884765625,
+              "width": 325.9736633300781,
+              "height": 403.95172119140625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31.013158798217773,
+              "y": 332.612060546875,
+              "width": 325.9736633300781,
+              "height": 61.3856201171875,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31.013158798217773,
+                  "y": 523.5810546875,
+                  "width": 325.9736633300781,
+                  "height": 80.993408203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgb(16, 17, 14)",
+                  "borderColor": "rgb(52, 54, 47)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40.01243209838867,
+                  "y": 538.579833984375,
+                  "width": 51.99580001831055,
+                  "height": 49.9959716796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(189, 166, 111)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(189, 166, 111) rgb(48, 50, 44) rgb(189, 166, 111) rgb(189, 166, 111)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.104881286621094,
+                  "y": 546.2823486328125,
+                  "width": 18.79535675048828,
+                  "height": 17.99853515625,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103.0073471069336,
+                  "y": 540.1734619140625,
+                  "width": 191.98446655273438,
+                  "height": 46.7930908203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(231, 230, 225)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103.0073471069336,
+                  "y": 540.1734619140625,
+                  "width": 191.98446655273438,
+                  "height": 20.998291015625,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103.0073471069336,
+                  "y": 566.1712646484375,
+                  "width": 191.98446655273438,
+                  "height": 20.7952880859375,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(170, 169, 159)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(170, 169, 159)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(140, 142, 133)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(140, 142, 133)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 309.9906005859375,
+                  "y": 546.5791015625,
+                  "width": 33.99725341796875,
+                  "height": 33.997314453125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(212, 188, 125, 0.055)",
+                  "borderColor": "rgb(117, 104, 74)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 317.989990234375,
+                  "y": 554.5784912109375,
+                  "width": 17.99853515625,
+                  "height": 17.99853515625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              },
+              {
+                "card": {
+                  "x": 31.013158798217773,
+                  "y": 615.5736083984375,
+                  "width": 325.9736633300781,
+                  "height": 80.993408203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgb(16, 17, 14)",
+                  "borderColor": "rgb(52, 54, 47)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40.01243209838867,
+                  "y": 630.5723876953125,
+                  "width": 51.99580001831055,
+                  "height": 49.9959716796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(189, 166, 111)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(189, 166, 111) rgb(48, 50, 44) rgb(189, 166, 111) rgb(189, 166, 111)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.104881286621094,
+                  "y": 638.27490234375,
+                  "width": 18.79535675048828,
+                  "height": 17.99853515625,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103.0073471069336,
+                  "y": 632.166015625,
+                  "width": 191.98446655273438,
+                  "height": 46.7930908203125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(231, 230, 225)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103.0073471069336,
+                  "y": 632.166015625,
+                  "width": 191.98446655273438,
+                  "height": 20.998291015625,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103.0073471069336,
+                  "y": 658.163818359375,
+                  "width": 191.98446655273438,
+                  "height": 20.7952880859375,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(170, 169, 159)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(170, 169, 159)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(140, 142, 133)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(140, 142, 133)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 309.9906005859375,
+                  "y": 638.5716552734375,
+                  "width": 33.99725341796875,
+                  "height": 33.997314453125,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(212, 188, 125, 0.055)",
+                  "borderColor": "rgb(117, 104, 74)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 317.989990234375,
+                  "y": 646.571044921875,
+                  "width": 17.99853515625,
+                  "height": 17.99853515625,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 140,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 207
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-completed-first-both-links.png",
+            "sha256": "84f510dd2933328a7f158e7dccae83cb199656bd74cbceb09e70bb57c0b57a9b"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-completed-first-both-links.html",
+            "sha256": "8c394f3a3450985bc619c9553c5831e5c98f74a45680683f06baf5dd603bd7f5"
+          }
+        },
+        {
+          "state": "reopened-completed-final-link",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "question": {
+              "x": 12,
+              "y": -614.421875,
+              "width": 364,
+              "height": 1349.3125,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archive": {
+              "x": 31,
+              "y": 232.90625,
+              "width": 326,
+              "height": 311.984375,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "28px",
+                "0px",
+                "12px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "normal",
+              "display": "block",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)",
+              "opacity": "1"
+            },
+            "archiveHeading": {
+              "x": 31,
+              "y": 260.90625,
+              "width": 326,
+              "height": 61.390625,
+              "fontSize": "16px",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "gridTemplateColumns": "none",
+              "columnGap": "24px",
+              "display": "flex",
+              "transform": "none",
+              "opacity": "1"
+            },
+            "links": [
+              {
+                "card": {
+                  "x": 31,
+                  "y": 451.890625,
+                  "width": 326,
+                  "height": 81,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgb(16, 17, 14)",
+                  "borderColor": "rgb(52, 54, 47)",
+                  "padding": [
+                    "14px",
+                    "12px",
+                    "15px",
+                    "8px"
+                  ],
+                  "gridTemplateColumns": "52px 192px 38px",
+                  "columnGap": "11px",
+                  "display": "grid",
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "opacity": "1"
+                },
+                "index": {
+                  "x": 40,
+                  "y": 466.890625,
+                  "width": 52,
+                  "height": 50,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(189, 166, 111)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(189, 166, 111) rgb(48, 50, 44) rgb(189, 166, 111) rgb(189, 166, 111)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "23.75px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "indexDigits": {
+                  "x": 56.09375,
+                  "y": 474.59375,
+                  "width": 18.796875,
+                  "height": 18,
+                  "fontSize": "18px",
+                  "lineHeight": "18px",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "body": {
+                  "x": 103,
+                  "y": 468.484375,
+                  "width": 192,
+                  "height": 46.796875,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(231, 230, 225)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(231, 230, 225)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "title": {
+                  "x": 103,
+                  "y": 468.484375,
+                  "width": 192,
+                  "height": 21,
+                  "fontSize": "15px",
+                  "lineHeight": "normal",
+                  "color": "rgb(240, 236, 223)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(240, 236, 223)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "preview": {
+                  "x": 103,
+                  "y": 494.484375,
+                  "width": 192,
+                  "height": 20.796875,
+                  "fontSize": "13px",
+                  "lineHeight": "20.8px",
+                  "color": "rgb(170, 169, 159)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(170, 169, 159)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "status": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "fontSize": "8px",
+                  "lineHeight": "9.6px",
+                  "color": "rgb(140, 142, 133)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(140, 142, 133)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "none",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "action": {
+                  "x": 310,
+                  "y": 474.890625,
+                  "width": 34,
+                  "height": 34,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(212, 188, 125, 0.055)",
+                  "borderColor": "rgb(117, 104, 74)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "32px",
+                  "columnGap": "normal",
+                  "display": "grid",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "icon": {
+                  "x": 318,
+                  "y": 482.890625,
+                  "width": 18,
+                  "height": 18,
+                  "fontSize": "16px",
+                  "lineHeight": "normal",
+                  "color": "rgb(216, 196, 134)",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "borderColor": "rgb(216, 196, 134)",
+                  "padding": [
+                    "0px",
+                    "0px",
+                    "0px",
+                    "0px"
+                  ],
+                  "gridTemplateColumns": "none",
+                  "columnGap": "normal",
+                  "display": "block",
+                  "transform": "none",
+                  "opacity": "1"
+                },
+                "cssAnimations": [
+                  {
+                    "name": "archive-card-enter",
+                    "duration": 700,
+                    "delay": 70,
+                    "infinite": false
+                  },
+                  {
+                    "name": "archive-action-orbit",
+                    "duration": 8000,
+                    "delay": 0,
+                    "infinite": true
+                  }
+                ],
+                "active": false,
+                "hovered": false,
+                "sheenOpacity": "0"
+              }
+            ],
+            "scrollY": 805
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-reopened-completed-final-link.png",
+            "sha256": "a52746b2f14f70e198c7231774b75d51d5b6d484004210d03199e199f4542aeb"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/dark-no-preference-reopened-completed-final-link.html",
+            "sha256": "6892a9986a10af16d2b0bf5ce8d3245f998a29d22002dcb35da89ccaf4ab349f"
+          }
+        }
+      ],
+      "observedTouchPress": {
+        "active": false,
+        "hovered": false,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "sheenOpacity": "0"
+      },
+      "schemaChecksPassed": 5,
+      "sourceChecksPassed": 13,
+      "syntheticSettlements": 1,
+      "interceptedPopupRequests": 1,
+      "beforeUnlockFinalCardAbsent": true,
+      "boundScopeAndDraftRetained": true,
+      "manualExternalTabWithoutOpenerOrPrivateHeaders": true,
+      "externalReturnRetainedQuestionAndScroll": true,
+      "completedGetDoesNotReplay": true
+    }
+  ],
+  "failure": "The guarded replay did not complete; private context diagnostics retained.",
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-02/browser-private.json",
+    "sha256": "e3d12df93df11b88cb2990de10d7a045450224bf41b97e336d0819eaa0b78c73"
+  },
+  "blockedRequests": 17
+}

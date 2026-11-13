@@ -1,0 +1,169 @@
+{
+  "status": "reviewed_originals",
+  "nativeRunComplete": true,
+  "nativeTheme": "dark",
+  "nativeOriginalDimensionsPx": [
+    1260,
+    2720
+  ],
+  "nativeContentViewportVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "webViewportCssPx": [
+    388,
+    771
+  ],
+  "deviceDensity": 3.25,
+  "sameAuthoredContentAndProgress": true,
+  "nativeRuntimeSha256": "a03946b21ac7f6b73e34e2b3e0ede096b79e384bfa2b452409834bcb43c612a4",
+  "sameDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "nativeIsolatedFailureVariantSha256": "73c8f5bb8dfdee7351100877992252740fedd596094300ddc8efbb4ca261a6d9",
+  "nativeReportSha256": "c478b9d9d06c39ff6201ff42182fd0b9a59098640b0b5ebd63b8e09eefb8d413",
+  "webReferenceSha256": "91a70ad5bd9f906f1a962980266e4106ca58bff14ed5a926a660c4c09735d261",
+  "hostPreparationSha256": "eebeafd67d063b33c197fa867812f10b5d0e18913af940dc0754158c9b5aa9f7",
+  "nativeSnapshotSha256": {
+    "before-final-answer": "40a8ba281de842d04130a33af9e6964fd553ffb3e9c3450a0b1d411dcf71a84d"
+  },
+  "reviewObservationsSha256": "3c4aeccf8416787a6577f527d738f7e543c98d7d6d92b41400e9f03dca9bc805",
+  "comparedOriginalsUnedited": true,
+  "comparisonUsesCardRelativeCoordinates": true,
+  "pairedStateCount": 3,
+  "pairs": [
+    {
+      "nativeState": "before-isolated-open-failure",
+      "webState": "pre-unlock-first-level-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/before-isolated-open-failure.png",
+        "sha256": "1249ef419c79b523e831d98c8dca2ead1ac047d3fa58d442d743a4fba636fafb",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/dark-no-preference-pre-unlock-first-level-link.png",
+        "sha256": "9508754a7188e343f38ada102b98814e118857693369f9a6c5251998934a06fb"
+      },
+      "findings": [
+        "At 1/2 progress, the earlier question shows its authorized standalone card after the ordinary text card. The same title, one-line preview, gold LINK label and circular up-right action are legible in both originals.",
+        "The native up-right stroke is slightly heavier and the faint Web secondary inset border is absent. Native ornament remains behind the archive content. There is no combination launcher at this stage, so the full link preview is visible.",
+        "The native original precedes tapping the fault variant; the regular idle layout is unchanged by that test-only injection."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          325.9588623046875,
+          80.9898681640625
+        ],
+        "titleOffsetWithinCardCssPx": [
+          71.99092102050781,
+          16.5916748046875
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.19498384915863198,
+        -0.3744835486778868
+      ]
+    },
+    {
+      "nativeState": "after-isolated-open-failure",
+      "webState": "pre-unlock-first-level-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/after-isolated-open-failure.png",
+        "sha256": "3533ec2ca13a0e95440ad11947150aad84457b6db79f5d77a2bdf4d8e04642c5",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/dark-no-preference-pre-unlock-first-level-link.png",
+        "sha256": "9508754a7188e343f38ada102b98814e118857693369f9a6c5251998934a06fb"
+      },
+      "findings": [
+        "The dark archive card remains readable and the standalone action available at the same viewport placement after rejection. Both reviewed native action frames show the themed retry toast below the card, and the after-failure original shows it gone. Frozen Web has no equivalent system-opener failure state in this local replay."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          325.9588623046875,
+          80.9898681640625
+        ],
+        "titleOffsetWithinCardCssPx": [
+          71.99092102050781,
+          16.5916748046875
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.19498384915863198,
+        -0.3744835486778868
+      ]
+    },
+    {
+      "nativeState": "after-retry-system-browser",
+      "webState": "pre-unlock-first-level-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/after-retry-system-browser.png",
+        "sha256": "c2116809c29da16fd670f0aaf558b36974af991358024b8b4c5bf5f857608009",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/dark-no-preference-pre-unlock-first-level-link.png",
+        "sha256": "9508754a7188e343f38ada102b98814e118857693369f9a6c5251998934a06fb"
+      },
+      "findings": [
+        "Returning from the system browser after retry leaves the same gold standalone action, card title and complete preview in place. The reactivated page retains the same scrolled position; only the shared archive ornament is in a later motion phase."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          325.9588623046875,
+          80.9898681640625
+        ],
+        "titleOffsetWithinCardCssPx": [
+          71.99092102050781,
+          16.5916748046875
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.19498384915863198,
+        -0.3744835486778868
+      ]
+    }
+  ],
+  "inspectedNativeToastOriginals": [
+    {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/open-failure-toast-1.png",
+      "sha256": "7712bd5daa255f492893861b35c2feeeed1b57925cbd08547db85aa05f90ee7b"
+    },
+    {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/open-failure-toast-2.png",
+      "sha256": "23ee0dbfb8838f50f224878c092b0fc9e91fa3e5f256e506b0ef975f74e6edfe"
+    }
+  ]
+}

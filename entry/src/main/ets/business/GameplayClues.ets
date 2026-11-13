@@ -43,7 +43,7 @@ export function completionCombinations(previous: GameplaySnapshot | null, settle
   return available.filter((clue: GameplayClue) => !known.has(clue.id));
 }
 
-function isOrdinaryClue(clue: GameplayClue, totalLevels: number): boolean {
+function isPlayableClue(clue: GameplayClue, totalLevels: number): boolean {
   return !isCombinationClue(clue, totalLevels) && (clue.kind === 'text' ||
     (clue.kind === 'image' && clueImageSources(clue).length > 0) ||
     (clue.kind === 'video' && clue.content.url.trim().length > 0));
@@ -56,7 +56,8 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
     return [];
   }
   return snapshot.clues.filter((clue: GameplayClue) => {
-    if (!isOrdinaryClue(clue, snapshot.detail.totalLevels)) { return false; }
+    if (!isPlayableClue(clue, snapshot.detail.totalLevels) &&
+      !(clue.kind === 'link' && clue.content.url.trim().length > 0)) { return false; }
     if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === level.id; }
     return clue.sessionLevel.length === 0 || clue.sessionLevel === level.id;
   }).sort(clueOrder);
@@ -78,10 +79,10 @@ export function answerAutomaticClues(previous: GameplaySnapshot | null, settled:
     // Completion can explicitly unlock a session clue filed under an earlier question.
     const levelOrder: Map<string, number> = new Map();
     settled.levels.forEach((entry: GameplayLevel, index: number) => levelOrder.set(entry.id, index));
-    available = settled.clues.filter((clue: GameplayClue) => isOrdinaryClue(clue, settled.detail.totalLevels))
+    available = settled.clues.filter((clue: GameplayClue) => isPlayableClue(clue, settled.detail.totalLevels))
       .sort((left: GameplayClue, right: GameplayClue) => clueOrder(left, right, levelOrder));
   } else {
-    available = ordinaryClues(settled, level);
+    available = ordinaryClues(settled, level).filter((clue: GameplayClue) => clue.kind !== 'link');
   }
   return available.filter((clue: GameplayClue) => {
     return effects === undefined ? !known.has(clue.id) && clue.autoPlay :
@@ -92,6 +93,7 @@ export function answerAutomaticClues(previous: GameplaySnapshot | null, settled:
 export function clueTitle(clue: GameplayClue): string {
   if (clue.content.title.length > 0) { return clue.content.title; }
   if (clue.kind === 'image') { return '神谕影像'; }
+  if (clue.kind === 'link') { return '位面传送'; }
   return clue.kind === 'video' ? '时空回溯' : '古老密卷';
 }
 

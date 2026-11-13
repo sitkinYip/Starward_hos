@@ -50,6 +50,29 @@ function effect(clueId: string): GameplayEffect {
 
 export default function gameplayCluesTests(): void {
   describe('GameplayClues', () => {
+    it('archives authorized external cards without ever adding them to automatic playback', 0, () => {
+      const first: GameplayLevel = level('first');
+      const last: GameplayLevel = level('last', false);
+      const sceneLink: GameplayClue = clue('scene-link', 'link', 'session', '', 'session_completed');
+      sceneLink.content.url = 'https://example.com/';
+      sceneLink.autoPlay = true;
+      const boundLink: GameplayClue = clue('bound-link', 'link', 'session', 'last');
+      boundLink.content.url = 'https://example.org/';
+      boundLink.autoPlay = true;
+      const previous: GameplaySnapshot = snapshot([first, last], []);
+      const settled: GameplaySnapshot = snapshot([first, level('last')], [sceneLink, boundLink]);
+      settled.detail.status = 'completed';
+      expect(visibleIds(previous, first)).assertEqual('');
+      expect(visibleIds(settled, last)).assertEqual('');
+      expect(visibleIds(settled, first)).assertEqual('scene-link');
+      expect(visibleIds(settled, settled.levels[1])).assertEqual('bound-link,scene-link');
+      expect(clueTitle(sceneLink)).assertEqual('位面传送');
+      expect(answerAutomaticClues(previous, settled, settled.levels[1], undefined).length).assertEqual(0);
+      expect(answerAutomaticClues(previous, settled, settled.levels[1],
+        [effect(sceneLink.id), effect(boundLink.id)]).length).assertEqual(0);
+      expect(combinationClues(settled).length).assertEqual(0);
+    });
+
     it('mixedAnswerCluesUseExplicitEffectsOrOnlyNewGrantsWhenEffectsAreMissing', 0, () => {
       const first: GameplayLevel = level('first');
       const second: GameplayLevel = level('second', false);

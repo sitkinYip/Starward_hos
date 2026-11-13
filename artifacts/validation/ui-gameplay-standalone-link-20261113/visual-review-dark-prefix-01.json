@@ -1,0 +1,77 @@
+{
+  "status": "reviewed_originals",
+  "nativeRunComplete": false,
+  "nativeTheme": "dark",
+  "nativeOriginalDimensionsPx": [
+    1260,
+    2720
+  ],
+  "nativeContentViewportVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "webViewportCssPx": [
+    388,
+    771
+  ],
+  "deviceDensity": 3.25,
+  "sameAuthoredContentAndProgress": true,
+  "nativeRuntimeSha256": "a03946b21ac7f6b73e34e2b3e0ede096b79e384bfa2b452409834bcb43c612a4",
+  "sameDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "nativeIsolatedFailureVariantSha256": "73c8f5bb8dfdee7351100877992252740fedd596094300ddc8efbb4ca261a6d9",
+  "nativeReportSha256": "308b4e87343925a406fae5b0695ffe933f6e0a999924b390d5f96305ed20b9ab",
+  "webReferenceSha256": "91a70ad5bd9f906f1a962980266e4106ca58bff14ed5a926a660c4c09735d261",
+  "hostPreparationSha256": "eebeafd67d063b33c197fa867812f10b5d0e18913af940dc0754158c9b5aa9f7",
+  "nativeSnapshotSha256": {
+    "before-final-answer": "b130f750b7a81ae92886ff4395e58586892a86dbdf790e17479fab152a3a73b7"
+  },
+  "reviewObservationsSha256": "aecc470186c1c04e458861f480f2b5be4d3b911ed41b8d787b64b95a6c858d14",
+  "comparedOriginalsUnedited": true,
+  "comparisonUsesCardRelativeCoordinates": true,
+  "pairedStateCount": 1,
+  "pairs": [
+    {
+      "nativeState": "before-isolated-open-failure",
+      "webState": "pre-unlock-first-level-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053619606259Z/before-isolated-open-failure.png",
+        "sha256": "5603d6cb212317c97636f4a07f19005294c9904accaa0416cb80494939508e8c",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/dark-no-preference-pre-unlock-first-level-link.png",
+        "sha256": "9508754a7188e343f38ada102b98814e118857693369f9a6c5251998934a06fb"
+      },
+      "findings": [
+        "At 1/2 progress, the earlier question shows its authorized standalone card after the ordinary text card. The same title, one-line preview, gold LINK label and circular up-right action are legible in both originals.",
+        "The native up-right stroke is slightly heavier and the faint Web secondary inset border is absent. Native ornament remains behind the archive content. There is no combination launcher at this stage, so the full link preview is visible.",
+        "The native original precedes tapping the test-only fault variant. This pair reviews dark card appearance; it does not establish that the tool-observed failure or retry happened."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          325.9588623046875,
+          80.9898681640625
+        ],
+        "titleOffsetWithinCardCssPx": [
+          71.99092102050781,
+          16.5916748046875
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.19498384915863198,
+        -0.3744835486778868
+      ]
+    }
+  ]
+}

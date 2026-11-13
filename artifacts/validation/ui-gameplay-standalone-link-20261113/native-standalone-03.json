@@ -1,0 +1,617 @@
+{
+  "status": "passed",
+  "scope": "main",
+  "fixtureRole": "native",
+  "theme": "light",
+  "hapSha256": "f4af2ffe04224a3b9cc14a069725c7d239d3f120521a2b69db88ecfae1ee4e80",
+  "bindingSha256": {
+    "hap": "f4af2ffe04224a3b9cc14a069725c7d239d3f120521a2b69db88ecfae1ee4e80",
+    "runtime": "89790d75f40fe942f85a3ef9c14034569711623e5a4fe89916b347f657bf109a",
+    "caseReference": "2e6f143604580f328b5f68abdf41d0c84c5e8cc720bfd6e8fcefb6f363f74bbb",
+    "ca": "347c69e94cae885ef0d066158d28ccf61998921297b7e7cded45d6b69b3f5773",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "standaloneDriver": "cd042c51721cb3f754d678bd135766354667041460ccac6eb9fdc4905db08bdf",
+    "deviceRef": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "inlineDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "archiveDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "standaloneFixture": "29840fe74e8fa2860a9c8a3eed645157c54427d9db9286c0cf081eb61604eb31",
+    "GameplayPage": "d35d0991fc9d6942fbf6edd15be66c1039b52a580aa487dbc4db417119cc4c2c",
+    "GameplayViewModel": "29eb6c922c11a24297e33f8452bf5fa342081de8aa86e73d8818ea4db52498a8",
+    "GameplayClues": "21d6ccf49f3d3e07e512a2a529bd4e1e9a6f4231bd0a20f033feb75e7b494535",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "StarwardClueArchive": "cfa65459665af42dbc5d6102144dae4ba4c006d5b2f87e496ad62d580993cc9b"
+  },
+  "checks": [
+    "Same previously authenticated earlier-question instance retained",
+    "The real earlier level grant is visible as an ordinary archive card",
+    "Before the final answer the final grant is absent, and the existing earlier grant stays on its question",
+    "Server snapshot and SQLite agree on the completed questions and exact granted links",
+    "Actual system browser return preserved the same question and exact visible scroll geometry",
+    "Actual system browser return preserved the same question and exact visible scroll geometry",
+    "Link opening and history made no extra SQLite gameplay writes"
+  ],
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "states": {
+    "prior-completed-question-without-finale-link": {
+      "raw": {
+        "label": "prior-completed-question-without-finale-link",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-prior-completed-question-without-finale-link-33bad8400b314314aa4195a21e8209ef.json",
+        "remoteRemoved": true,
+        "sha256": "0ba8e68ad0c5e51f50571abd62464d3ef1eca4c5a4402150dcfe6831e5737372"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/prior-completed-question-without-finale-link.png",
+        "sha256": "2d588e29c6daa91c648ac269033483feee7b50688391597ee0d3123fa21b80e7",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2059
+        ],
+        "question-title": [
+          100,
+          133,
+          1160,
+          256
+        ],
+        "gameplay-answer-input": [
+          100,
+          488,
+          1161,
+          677
+        ],
+        "gameplay-next": [
+          100,
+          735,
+          497,
+          885
+        ],
+        "gameplay-clues-panel": [
+          100,
+          994,
+          1160,
+          1972
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1088,
+          1160,
+          1262
+        ]
+      }
+    },
+    "previous-level-link-available": {
+      "raw": {
+        "label": "previous-level-link-available",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-previous-level-link-available-fc7f84870eea47bcaa2bb58f061ff139.json",
+        "remoteRemoved": true,
+        "sha256": "0ba8e68ad0c5e51f50571abd62464d3ef1eca4c5a4402150dcfe6831e5737372"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/previous-level-link-available.png",
+        "sha256": "8c7806a0edb6708c3b47ec5b530404c87b8d73caa3721217dea89f50a8b12c6b",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2059
+        ],
+        "question-title": [
+          100,
+          133,
+          1160,
+          256
+        ],
+        "gameplay-answer-input": [
+          100,
+          488,
+          1161,
+          677
+        ],
+        "gameplay-next": [
+          100,
+          735,
+          497,
+          885
+        ],
+        "gameplay-clues-panel": [
+          100,
+          994,
+          1160,
+          1972
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1088,
+          1160,
+          1262
+        ],
+        "gameplay-clue-1": [
+          100,
+          1671,
+          1160,
+          1933
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          1730,
+          959,
+          1787
+        ]
+      }
+    },
+    "pending-final-question-without-links": {
+      "raw": {
+        "label": "pending-final-question-without-links",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-pending-final-question-without-links-378b8fab2ec446e380176a7c8f407774.json",
+        "remoteRemoved": true,
+        "sha256": "c65714464651cd65eaa4373cec66af31b651fc05dd1031aa79c24872e9ea1139"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/pending-final-question-without-links.png",
+        "sha256": "8f8660a188ddef4ff79e64bc8901243f4301d4cc056185116f309e2c6232d346",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ]
+      }
+    },
+    "final-question-excludes-first-level-link": {
+      "raw": {
+        "label": "final-question-excludes-first-level-link",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-final-question-excludes-first-level-link-bb795462168e49f8bce4c13a8f490147.json",
+        "remoteRemoved": true,
+        "sha256": "810d612ef71408e462ab5854d8baf5d891bd6345c1c6a52673f7b80fa654a0e0"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/final-question-excludes-first-level-link.png",
+        "sha256": "825dc321e550bc22d9aec44c0d37cd929c73ae2d6b13ba9fa0d43ad3dca0d6cd",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2417
+        ],
+        "gameplay-answer-input": [
+          100,
+          755,
+          1161,
+          944
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1352,
+          1160,
+          2330
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1446,
+          1160,
+          1620
+        ],
+        "gameplay-completed-state": [
+          39,
+          2469,
+          1221,
+          2551
+        ]
+      }
+    },
+    "before-first-system-browser": {
+      "raw": {
+        "label": "before-first-system-browser",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-before-first-system-browser-cc71f3f05d884817bdcdfcfc72ed6a4e.json",
+        "remoteRemoved": true,
+        "sha256": "810d612ef71408e462ab5854d8baf5d891bd6345c1c6a52673f7b80fa654a0e0"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/before-first-system-browser.png",
+        "sha256": "2e8f392c6cfaaf79208cd1035b169b10ef830421277d9b3433f351fa59bcb19e",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2417
+        ],
+        "gameplay-answer-input": [
+          100,
+          755,
+          1161,
+          944
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1352,
+          1160,
+          2330
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1446,
+          1160,
+          1620
+        ],
+        "gameplay-clue-1": [
+          100,
+          2029,
+          1160,
+          2291
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          2088,
+          959,
+          2145
+        ],
+        "gameplay-completed-state": [
+          39,
+          2469,
+          1221,
+          2551
+        ]
+      }
+    },
+    "after-first-system-browser": {
+      "raw": {
+        "label": "after-first-system-browser",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-after-first-system-browser-9588d596c5094ee79848efa83ce9bf54.json",
+        "remoteRemoved": true,
+        "sha256": "adc947af17d76859888f539196446100e9e5fe17addc7f092311022129195041"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/after-first-system-browser.png",
+        "sha256": "f9bd85fe029550a17816d461dc8ceb9c49900e212bbbac80a07d3d891b7919a0",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2417
+        ],
+        "gameplay-answer-input": [
+          100,
+          755,
+          1161,
+          944
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1352,
+          1160,
+          2330
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1446,
+          1160,
+          1620
+        ],
+        "gameplay-clue-1": [
+          100,
+          2029,
+          1160,
+          2291
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          2088,
+          959,
+          2145
+        ],
+        "gameplay-completed-state": [
+          39,
+          2469,
+          1221,
+          2551
+        ]
+      },
+      "actualSystemBrowser": true,
+      "systemBackPresses": 1,
+      "returnRoute": "existing-app-ability-activation",
+      "authenticatedAssignmentReads": 1,
+      "sameAppProcess": true,
+      "sameViewAndBounds": true
+    },
+    "history-link-reappears": {
+      "raw": {
+        "label": "history-link-reappears",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-history-link-reappears-7b8649dc8a554e85b4e858202f9ad6f0.json",
+        "remoteRemoved": true,
+        "sha256": "76ccf0da679466f14032dea1bb8234a63e71fba65ce403b65810a29c9ec1d3b0"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/history-link-reappears.png",
+        "sha256": "31693bc11ca71384c015ced63bef414d9a5fcd93a40ae4cac8c48741349a9cf3",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2418
+        ],
+        "gameplay-answer-input": [
+          100,
+          1054,
+          1161,
+          1243
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1353,
+          1160,
+          2331
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1447,
+          1160,
+          1621
+        ],
+        "gameplay-clue-1": [
+          100,
+          2030,
+          1160,
+          2292
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          2089,
+          959,
+          2146
+        ],
+        "gameplay-completed-state": [
+          39,
+          2470,
+          1221,
+          2552
+        ]
+      }
+    },
+    "before-history-system-browser": {
+      "raw": {
+        "label": "before-history-system-browser",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-before-history-system-browser-c81f19f263a146b1b1497bac2ea90796.json",
+        "remoteRemoved": true,
+        "sha256": "76ccf0da679466f14032dea1bb8234a63e71fba65ce403b65810a29c9ec1d3b0"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/before-history-system-browser.png",
+        "sha256": "c79610aaf508a933bfc3b824bd7984f8bb028e40ed3f0fc80ba7f511336b3e94",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2418
+        ],
+        "gameplay-answer-input": [
+          100,
+          1054,
+          1161,
+          1243
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1353,
+          1160,
+          2331
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1447,
+          1160,
+          1621
+        ],
+        "gameplay-clue-1": [
+          100,
+          2030,
+          1160,
+          2292
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          2089,
+          959,
+          2146
+        ],
+        "gameplay-completed-state": [
+          39,
+          2470,
+          1221,
+          2552
+        ]
+      }
+    },
+    "after-history-system-browser": {
+      "raw": {
+        "label": "after-history-system-browser",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/raw-after-history-system-browser-cfc70474b1054042bb8f6b6d067d17e6.json",
+        "remoteRemoved": true,
+        "sha256": "5ed3d0503e863f3dab85f4bdac8c7541e593faed8d53ab405ac1b6750e75b0db"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/after-history-system-browser.png",
+        "sha256": "09735e45625e530bc7e331d1f22bef18f6b1dbcb52a519791d4d4f0fc7329cc8",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2418
+        ],
+        "gameplay-answer-input": [
+          100,
+          1054,
+          1161,
+          1243
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1353,
+          1160,
+          2331
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1447,
+          1160,
+          1621
+        ],
+        "gameplay-clue-1": [
+          100,
+          2030,
+          1160,
+          2292
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          2089,
+          959,
+          2146
+        ],
+        "gameplay-completed-state": [
+          39,
+          2470,
+          1221,
+          2552
+        ]
+      },
+      "actualSystemBrowser": true,
+      "systemBackPresses": 1,
+      "returnRoute": "existing-app-ability-activation",
+      "authenticatedAssignmentReads": 1,
+      "sameAppProcess": true,
+      "sameViewAndBounds": true
+    }
+  },
+  "cleanup": {
+    "appThemeRestored": true,
+    "loggedOut": true,
+    "remoteRawFilesRemoved": true,
+    "noExtraWrites": true
+  },
+  "sameDataWebFixtures": {
+    "before-final-answer": {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/before-final-answer-web-dtos.json",
+      "sha256": "efaf2459c12616532e7608096984e9778da6936bb8cc8cfca31be4fee462a7c7"
+    },
+    "settled-after-final-answer": {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/settled-after-final-answer-web-dtos.json",
+      "sha256": "15a89ff2a140e53ceb57080391e0a465dbb6d4d0a15c6f02e4dac6238b3b415c"
+    }
+  },
+  "appThemeActions": [
+    {
+      "mode": "system",
+      "selectedFlagsObserved": false
+    }
+  ],
+  "nativeGameplayPostCount": 1,
+  "stage": "history-reopen",
+  "failure": null,
+  "visualReview": "pending_original_review"
+}

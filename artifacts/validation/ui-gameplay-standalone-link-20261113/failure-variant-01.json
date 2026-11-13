@@ -1,0 +1,12 @@
+{
+  "status": "isolated_os_openlink_failure_variant_installed",
+  "checks": {
+    "normalPackageBound": true,
+    "faultPackageBound": true,
+    "onlyTestingVariantConfiguredForOSFailure": true,
+    "workspacePlatformSourceRestored": true
+  },
+  "normalHapSha256": "f4af2ffe04224a3b9cc14a069725c7d239d3f120521a2b69db88ecfae1ee4e80",
+  "faultHapSha256": "4129349c664025d1f41dabc4f619af48a7bd3527e1f6ed720435d93fb9e69dcc",
+  "method": "Enable official appLinkingOnly on the first attempt of one isolated link; next attempt uses unchanged normal options. UI, data and app logic stay identical."
+}

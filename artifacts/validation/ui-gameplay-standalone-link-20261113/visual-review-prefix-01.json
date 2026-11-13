@@ -1,0 +1,75 @@
+{
+  "status": "reviewed_originals",
+  "nativeRunComplete": false,
+  "nativeTheme": "light",
+  "nativeOriginalDimensionsPx": [
+    1260,
+    2720
+  ],
+  "nativeContentViewportVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "webViewportCssPx": [
+    388,
+    771
+  ],
+  "deviceDensity": 3.25,
+  "sameAuthoredContentAndProgress": true,
+  "nativeRuntimeSha256": "89790d75f40fe942f85a3ef9c14034569711623e5a4fe89916b347f657bf109a",
+  "nativeReportSha256": "0d9329690b3625584c2ff07e6de6890f1e6b6204df87efa7d8c01e33d6e7409c",
+  "webReferenceSha256": "3e0e345d412990f72be7129ed176da8f7ecd1f897949c04b1d71ce01f8707438",
+  "hostPreparationSha256": "eebeafd67d063b33c197fa867812f10b5d0e18913af940dc0754158c9b5aa9f7",
+  "nativeSnapshotSha256": {
+    "before-final-answer": "3672e8747bab68fdd374467d347b8b91806297f6d0c8d05612bbeeea3542d7b4"
+  },
+  "reviewObservationsSha256": "d8f72bfc9d466157463a8c99ba947a17d0e7403914ac3bd6eaab0ad0ff7529ae",
+  "comparedOriginalsUnedited": true,
+  "comparisonUsesCardRelativeCoordinates": true,
+  "pairedStateCount": 1,
+  "pairs": [
+    {
+      "nativeState": "previous-level-link-available",
+      "webState": "pre-unlock-first-level-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T052354438722Z/previous-level-link-available.png",
+        "sha256": "de2b8438766b2e8ea9fc347f39dd85b6ac95c41bec9470fb71c70f17c3563600",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-01/light-no-preference-pre-unlock-first-level-link.png",
+        "sha256": "f7e92fb83dd0561c56b1f9396bdebdc7832977e33d751fa1c92f09f60783dcde"
+      },
+      "findings": [
+        "The earlier question archive has an ordinary text row followed by a standalone link. Both source images show ordinal 02, LINK, bold title, a single-line preview, and a round up-right action. The native arrow stroke looks slightly thicker.",
+        "Both use the same green theme hierarchy. The faint secondary inset stroke in Web cards is absent from the shared native card chrome. Native archive ornament is slightly more apparent and does not touch link text.",
+        "The link title starts at the same horizontal offset within the card. Vertical window placement differs because the native shot retains system bars and the screens have independent measured scroll positions."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          325.9588623046875,
+          80.9898681640625
+        ],
+        "titleOffsetWithinCardCssPx": [
+          71.99092102050781,
+          16.5916748046875
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.19498384915863198,
+        -0.3744835486778868
+      ]
+    }
+  ]
+}

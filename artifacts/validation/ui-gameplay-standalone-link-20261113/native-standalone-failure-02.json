@@ -1,0 +1,399 @@
+{
+  "status": "passed",
+  "scope": "failure-retry",
+  "fixtureRole": "secondary",
+  "theme": "dark",
+  "hapSha256": "4129349c664025d1f41dabc4f619af48a7bd3527e1f6ed720435d93fb9e69dcc",
+  "bindingSha256": {
+    "hap": "4129349c664025d1f41dabc4f619af48a7bd3527e1f6ed720435d93fb9e69dcc",
+    "runtime": "a03946b21ac7f6b73e34e2b3e0ede096b79e384bfa2b452409834bcb43c612a4",
+    "caseReference": "639d0997a453d7533ab41a3bf79f572e7b9f0bdfa692bf546e2f7293b1788fb1",
+    "ca": "347c69e94cae885ef0d066158d28ccf61998921297b7e7cded45d6b69b3f5773",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "standaloneDriver": "908d3fd34d8e266afce1b76bf43e2831db4c878136052fecfe66debfe776d935",
+    "deviceRef": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "inlineDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "archiveDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "standaloneFixture": "29840fe74e8fa2860a9c8a3eed645157c54427d9db9286c0cf081eb61604eb31",
+    "GameplayPage": "d35d0991fc9d6942fbf6edd15be66c1039b52a580aa487dbc4db417119cc4c2c",
+    "GameplayViewModel": "29eb6c922c11a24297e33f8452bf5fa342081de8aa86e73d8818ea4db52498a8",
+    "GameplayClues": "21d6ccf49f3d3e07e512a2a529bd4e1e9a6f4231bd0a20f033feb75e7b494535",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "StarwardClueArchive": "cfa65459665af42dbc5d6102144dae4ba4c006d5b2f87e496ad62d580993cc9b",
+    "toastReaderSource": "f2594805c10397417652cfda6292a38d2ac33a1a332a87cc77469498a994bc28"
+  },
+  "checks": [
+    "Exact isolated player reached home with the requested App theme",
+    "The no-App-Link attempt was rejected by the official API and left the same clue and scroll",
+    "Actual system browser return preserved the same question and exact visible scroll geometry",
+    "The failed link and successful retry did not write gameplay or XP"
+  ],
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "states": {
+    "before-isolated-open-failure": {
+      "raw": {
+        "label": "before-isolated-open-failure",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/raw-before-isolated-open-failure-64de32a6b185499da9be789dfa7ca140.json",
+        "remoteRemoved": true,
+        "sha256": "0fc1d3169bcd3366999393d25eed8e8da8ba655655b2a1b99fcb02d86c267291"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/before-isolated-open-failure.png",
+        "sha256": "1249ef419c79b523e831d98c8dca2ead1ac047d3fa58d442d743a4fba636fafb",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2228
+        ],
+        "question-number": [
+          100,
+          197,
+          249,
+          244
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-next": [
+          100,
+          904,
+          497,
+          1054
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1163,
+          1160,
+          2141
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1257,
+          1160,
+          1431
+        ],
+        "gameplay-clue-1": [
+          100,
+          1840,
+          1160,
+          2102
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          1899,
+          959,
+          1956
+        ]
+      }
+    },
+    "after-isolated-open-failure": {
+      "raw": {
+        "label": "after-isolated-open-failure",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/raw-after-isolated-open-failure-d0435fd567bf495dbfe3d340960ea386.json",
+        "remoteRemoved": true,
+        "sha256": "0fc1d3169bcd3366999393d25eed8e8da8ba655655b2a1b99fcb02d86c267291"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/after-isolated-open-failure.png",
+        "sha256": "3533ec2ca13a0e95440ad11947150aad84457b6db79f5d77a2bdf4d8e04642c5",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2228
+        ],
+        "question-number": [
+          100,
+          197,
+          249,
+          244
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-next": [
+          100,
+          904,
+          497,
+          1054
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1163,
+          1160,
+          2141
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1257,
+          1160,
+          1431
+        ],
+        "gameplay-clue-1": [
+          100,
+          1840,
+          1160,
+          2102
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          1899,
+          959,
+          1956
+        ]
+      }
+    },
+    "before-retry-system-browser": {
+      "raw": {
+        "label": "before-retry-system-browser",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/raw-before-retry-system-browser-f670cf43a2cb43d38422a8f26e6faf8d.json",
+        "remoteRemoved": true,
+        "sha256": "0fc1d3169bcd3366999393d25eed8e8da8ba655655b2a1b99fcb02d86c267291"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/before-retry-system-browser.png",
+        "sha256": "44906fc13e9fb597750666312133c684716b4d3e754a222d4da822a428a3da0a",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2228
+        ],
+        "question-number": [
+          100,
+          197,
+          249,
+          244
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-next": [
+          100,
+          904,
+          497,
+          1054
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1163,
+          1160,
+          2141
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1257,
+          1160,
+          1431
+        ],
+        "gameplay-clue-1": [
+          100,
+          1840,
+          1160,
+          2102
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          1899,
+          959,
+          1956
+        ]
+      }
+    },
+    "after-retry-system-browser": {
+      "raw": {
+        "label": "after-retry-system-browser",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/raw-after-retry-system-browser-cdc6b31f722346409a7c2a465bc9be0b.json",
+        "remoteRemoved": true,
+        "sha256": "29cbbf47b38dc2bb0a3a1940bd83bde1f34da8fa0daf71664e7a06300e86cbce"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/after-retry-system-browser.png",
+        "sha256": "c2116809c29da16fd670f0aaf558b36974af991358024b8b4c5bf5f857608009",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2228
+        ],
+        "question-number": [
+          100,
+          197,
+          249,
+          244
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-next": [
+          100,
+          904,
+          497,
+          1054
+        ],
+        "gameplay-clues-panel": [
+          100,
+          1163,
+          1160,
+          2141
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1257,
+          1160,
+          1431
+        ],
+        "gameplay-clue-1": [
+          100,
+          1840,
+          1160,
+          2102
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          1899,
+          959,
+          1956
+        ]
+      },
+      "actualSystemBrowser": true,
+      "systemBackPresses": 1,
+      "returnRoute": "existing-app-ability-activation",
+      "authenticatedAssignmentReads": 1,
+      "sameAppProcess": true,
+      "sameViewAndBounds": true
+    }
+  },
+  "cleanup": {
+    "appThemeRestored": true,
+    "loggedOut": true,
+    "remoteRawFilesRemoved": true,
+    "noExtraWrites": true
+  },
+  "sameDataWebFixtures": {
+    "before-final-answer": {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/before-final-answer-web-dtos.json",
+      "sha256": "40a8ba281de842d04130a33af9e6964fd553ffb3e9c3450a0b1d411dcf71a84d"
+    }
+  },
+  "appThemeActions": [
+    {
+      "mode": "dark",
+      "selectedFlagsObserved": false
+    },
+    {
+      "mode": "system",
+      "selectedFlagsObserved": false
+    }
+  ],
+  "failureToastOriginals": [
+    {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/open-failure-toast-1.png",
+      "sha256": "7712bd5daa255f492893861b35c2feeeed1b57925cbd08547db85aa05f90ee7b"
+    },
+    {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/open-failure-toast-2.png",
+      "sha256": "23ee0dbfb8838f50f224878c092b0fc9e91fa3e5f256e506b0ef975f74e6edfe"
+    }
+  ],
+  "launchFailureTrace": {
+    "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053955149609Z/official-link-rejection.log",
+    "sha256": "ecdc1e7e2ef2e05f0ae1c526503ff37465b6d1c791de421266b20d83d6485e44",
+    "observedMarkers": [
+      "Isolated openLink request failure callback",
+      "Isolated openLink rejected by system"
+    ]
+  },
+  "failureToastOcrMatched": false,
+  "launchFailureSource": "Private HAP first dedicated HTTPS attempt with appLinkingOnly true; actual platform rejection traced",
+  "nativeGameplayPostCount": 0,
+  "stage": "isolated-failure-and-retry",
+  "failure": null,
+  "visualReview": "pending_original_review"
+}

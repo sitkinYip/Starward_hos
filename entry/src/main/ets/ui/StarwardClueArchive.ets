@@ -8,6 +8,7 @@ export struct StarwardClueArchive {
   @Require @Param clues: GameplayClue[];
   @Param displayFont: string = 'serif';
   @Param motionEnabled: boolean = false;
+  @Param reducedMotion: boolean = true;
   @Event opened: (id: string) => void = () => {};
   @Local private revealed: boolean = true;
   @Local private ringAngle: number = 0;
@@ -96,7 +97,8 @@ export struct StarwardClueArchive {
           Circle().id(`gameplay-clue-action-ring-${index}`).width(24).height(24)
             .fill(Color.Transparent).stroke($r('app.color.accent_soft'))
             .strokeWidth(1).strokeDashArray([2, 2]).rotate({ angle: this.ringAngle })
-          Image($r('app.media.icon_arrow_right')).width(18).height(18).fillColor($r('app.color.accent_text'))
+          Image(clue.kind === 'link' ? $r('app.media.icon_arrow_up_right') : $r('app.media.icon_arrow_right'))
+            .width(18).height(18).fillColor($r('app.color.accent_text'))
         }.width(34).height(34).borderRadius(17).backgroundColor($r('app.color.accent_faint'))
           .border({ width: 1, color: $r('app.color.accent_border') }).margin({ left: 4 })
           .accessibilityLevel('no-hide-descendants')
@@ -106,6 +108,9 @@ export struct StarwardClueArchive {
         .animation(this.revealAnimation(700, Math.min(280, index * 70)))
     }.id(`gameplay-clue-${index}`).width('100%').padding(0).borderRadius(0).clip(true)
       .backgroundColor($r('app.color.inset')).border({ width: 1, color: $r('app.color.border_strong') })
+      .radialGradient(clue.kind === 'link' ? { center: ['0%', '50%'], radius: '34%',
+        colors: [[$r('app.color.accent_faint'), 0], [Color.Transparent, 1]] } : undefined)
+      .clickEffect(clue.kind === 'link' && !this.reducedMotion ? { level: ClickEffectLevel.LIGHT, scale: 0.99 } : null)
       .accessibilityText(clueTitle(clue)).onClick(() => this.opened(clue.id))
   }
 

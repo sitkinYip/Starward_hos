@@ -1,0 +1,191 @@
+{
+  "status": "incomplete",
+  "scope": "main",
+  "fixtureRole": "native",
+  "theme": "light",
+  "hapSha256": "f4af2ffe04224a3b9cc14a069725c7d239d3f120521a2b69db88ecfae1ee4e80",
+  "bindingSha256": {
+    "hap": "f4af2ffe04224a3b9cc14a069725c7d239d3f120521a2b69db88ecfae1ee4e80",
+    "runtime": "89790d75f40fe942f85a3ef9c14034569711623e5a4fe89916b347f657bf109a",
+    "caseReference": "2e6f143604580f328b5f68abdf41d0c84c5e8cc720bfd6e8fcefb6f363f74bbb",
+    "ca": "347c69e94cae885ef0d066158d28ccf61998921297b7e7cded45d6b69b3f5773",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "standaloneDriver": "758d317a0c5baa44b6631734625c0062461f5207e7e7095da545990763dd6282",
+    "deviceRef": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "inlineDriver": "da8147ecf42961444fdb23522fbb6b0750c28e42ca9969e47af597fdf1b75c7f",
+    "archiveDriver": "69fb2ffcc80a4ff93caab02d94bdcfa07e35a19bd28f5375557c522bae972b5c",
+    "standaloneFixture": "29840fe74e8fa2860a9c8a3eed645157c54427d9db9286c0cf081eb61604eb31",
+    "GameplayPage": "d35d0991fc9d6942fbf6edd15be66c1039b52a580aa487dbc4db417119cc4c2c",
+    "GameplayViewModel": "29eb6c922c11a24297e33f8452bf5fa342081de8aa86e73d8818ea4db52498a8",
+    "GameplayClues": "21d6ccf49f3d3e07e512a2a529bd4e1e9a6f4231bd0a20f033feb75e7b494535",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "StarwardClueArchive": "cfa65459665af42dbc5d6102144dae4ba4c006d5b2f87e496ad62d580993cc9b"
+  },
+  "checks": [
+    "Exact isolated player reached home with the requested App theme",
+    "The real earlier level grant is visible as an ordinary archive card"
+  ],
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "states": {
+    "prior-completed-question-without-finale-link": {
+      "raw": {
+        "label": "prior-completed-question-without-finale-link",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T052757925811Z/raw-prior-completed-question-without-finale-link-dff4a062f37e4bf98d44fc8b19d11052.json",
+        "remoteRemoved": true,
+        "sha256": "22d09a867954fb561439a81527a2265f575062a6fd9f7398e4f5e78c00a066ab"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T052757925811Z/prior-completed-question-without-finale-link.png",
+        "sha256": "81da4ce8881b7bb43944549ef627bdd58625577d3ffe33be5d3fa2c0745c397b",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2059
+        ],
+        "question-title": [
+          100,
+          133,
+          1160,
+          256
+        ],
+        "gameplay-answer-input": [
+          100,
+          488,
+          1161,
+          677
+        ],
+        "gameplay-next": [
+          100,
+          735,
+          497,
+          885
+        ],
+        "gameplay-clues-panel": [
+          100,
+          994,
+          1160,
+          1972
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1088,
+          1160,
+          1262
+        ]
+      }
+    },
+    "previous-level-link-available": {
+      "raw": {
+        "label": "previous-level-link-available",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T052757925811Z/raw-previous-level-link-available-3971a4a4035f4d2eb6ed73e4e0020114.json",
+        "remoteRemoved": true,
+        "sha256": "22d09a867954fb561439a81527a2265f575062a6fd9f7398e4f5e78c00a066ab"
+      },
+      "original": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T052757925811Z/previous-level-link-available.png",
+        "sha256": "cf9c6b6187eead323d7577439e45af74ddabb809a8e41d48296142f604e39e21",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2059
+        ],
+        "question-title": [
+          100,
+          133,
+          1160,
+          256
+        ],
+        "gameplay-answer-input": [
+          100,
+          488,
+          1161,
+          677
+        ],
+        "gameplay-next": [
+          100,
+          735,
+          497,
+          885
+        ],
+        "gameplay-clues-panel": [
+          100,
+          994,
+          1160,
+          1972
+        ],
+        "gameplay-clue-archive-heading": [
+          100,
+          1088,
+          1160,
+          1262
+        ],
+        "gameplay-clue-1": [
+          100,
+          1671,
+          1160,
+          1933
+        ],
+        "gameplay-clue-title-1": [
+          334,
+          1730,
+          959,
+          1787
+        ]
+      }
+    }
+  },
+  "cleanup": {
+    "appThemeRestored": false,
+    "loggedOut": false,
+    "remoteRawFilesRemoved": true,
+    "noExtraWrites": true
+  },
+  "sameDataWebFixtures": {
+    "before-final-answer": {
+      "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T052757925811Z/before-final-answer-web-dtos.json",
+      "sha256": "4cee13bfd47af674b6166813a256b64bb8fa1c7e3a129c8e775c12ceb0b92d04"
+    }
+  },
+  "appThemeActions": [
+    {
+      "mode": "light",
+      "selectedFlagsObserved": false
+    }
+  ],
+  "cleanupFailure": "Own App did not regain focus; logout input stopped",
+  "nativeGameplayPostCount": 0,
+  "stage": "before-final-answer",
+  "failure": "The owned bundle is not exposed by official UiTest",
+  "visualReview": "pending_original_review"
+}

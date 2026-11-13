@@ -57,10 +57,15 @@ class ClueDialogRequest {
 }
 
 class ClueLinkHandoff {
-  readonly dialog: ClueDialogRequest;
   timeout: number = -1;
+  failed: boolean = false;
+  readonly dialog: ClueDialogRequest | null;
+  readonly isCurrent: () => boolean;
 
-  constructor(dialog: ClueDialogRequest) { this.dialog = dialog; }
+  constructor(dialog: ClueDialogRequest | null, isCurrent: () => boolean) {
+    this.dialog = dialog;
+    this.isCurrent = isCurrent;
+  }
 }
 
 class CompletionNoticeRequest {
@@ -142,8 +147,8 @@ export struct GameplayPage {
     this.foreground = foreground;
     if (!foreground) { this.updateBgm(); }
     const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
-    const keepReading: boolean = handoff !== null && this.clueDialog === handoff.dialog &&
-      this.currentTextClueOwner(handoff.dialog.owner);
+    const keepHandoff: boolean = handoff !== null && handoff.isCurrent();
+    const keepReading: boolean = keepHandoff && handoff?.dialog !== null;
     if (!foreground) {
       if (keepReading) { this.play.cancelRankUpPresentation(); } else { this.play.cancelAutomaticClues(); }
       this.cancelRankNotice();
@@ -153,10 +158,15 @@ export struct GameplayPage {
     if (foreground) {
       this.clearClueLinkHandoff();
       if (this.play.visible) {
-        if (keepReading) { this.play.refresh(this.textClue ?? undefined); } else { this.play.reload(); }
+        if (keepHandoff) {
+          this.play.refresh(keepReading ? this.textClue ?? undefined : undefined);
+          if (handoff?.failed) { this.showClueLinkFailure(); }
+        } else {
+          this.play.reload();
+        }
       }
-    } else if (keepReading && handoff !== null) {
-      // Keep this one reading session alive until the system returns to the app.
+    } else if (keepHandoff && handoff !== null) {
+      // Preserve the current reading state until the system returns to the app.
       clearTimeout(handoff.timeout);
       handoff.timeout = -1;
     } else {
@@ -214,6 +224,7 @@ export struct GameplayPage {
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error')
   imageOwnerChanged(): void {
+    if (this.clueLinkHandoff !== null && !this.clueLinkHandoff.isCurrent()) { this.clearClueLinkHandoff(); }
     if (this.explicitQuestionTarget.length > 0 && this.explicitQuestionTarget !== this.readableQuestionId()) {
       this.explicitQuestionTarget = '';
     }
@@ -524,6 +535,8 @@ export struct GameplayPage {
       this.openClueDialog(clue, owner);
     } else if (clue.kind === 'image') {
       this.viewer.open(clueImageSources(clue), 0, () => this.isClueCurrent(owner, clue));
+    } else if (clue.kind === 'link') {
+      this.launchClueLink(clue.content.url, null, () => this.isClueCurrent(owner, clue));
     } else if (clue.kind === 'video' && this.foreground) {
       const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
       if (context && this.openVideoWithBgmSuspended(clue.content.url.trim(), context.cacheDir,
@@ -688,12 +701,19 @@ export struct GameplayPage {
     this.clueLinkHandoff = null;
   }
 
-  private async openClueLink(request: ClueDialogRequest, href: string): Promise<void> {
-    if (!this.foreground || this.clueDialog !== request || this.clueLinkHandoff !== null ||
-      !this.currentTextClueOwner(request.owner) || this.viewer.visible || this.viewer.closing) {
-      return;
-    }
-    const handoff: ClueLinkHandoff = new ClueLinkHandoff(request);
+  private openClueLink(request: ClueDialogRequest, href: string): void {
+    if (this.viewer.visible || this.viewer.closing) { return; }
+    this.launchClueLink(href, request, () => this.clueDialog === request && this.currentTextClueOwner(request.owner));
+  }
+
+  private showClueLinkFailure(): void {
+    StarwardFeedback.toast(this.getUIContext(), '暂时无法打开链接，请重试。');
+  }
+
+  private async launchClueLink(href: string, dialog: ClueDialogRequest | null,
+    isCurrent: () => boolean): Promise<void> {
+    if (!this.foreground || this.clueLinkHandoff !== null || !isCurrent()) { return; }
+    const handoff: ClueLinkHandoff = new ClueLinkHandoff(dialog, isCurrent);
     this.clueLinkHandoff = handoff;
     this.play.cancelAutoAdvance();
     try {
@@ -710,12 +730,10 @@ export struct GameplayPage {
         }
       }
     } catch {
-      if (this.foreground && this.clueLinkHandoff === handoff) {
-        this.clearClueLinkHandoff();
-        if (this.clueDialog === request && this.currentTextClueOwner(request.owner)) {
-          StarwardFeedback.toast(this.getUIContext(), '暂时无法打开链接，请重试。');
-        }
-      }
+      if (this.clueLinkHandoff !== handoff) { return; }
+      if (!this.foreground) { handoff.failed = true; return; }
+      this.clearClueLinkHandoff();
+      if (isCurrent()) { this.showClueLinkFailure(); }
     }
   }
 
@@ -1343,6 +1361,7 @@ export struct GameplayPage {
           if (this.currentClues().length > 0) {
             StarwardClueArchive({ clues: this.currentClues(), displayFont: this.displayFont,
               motionEnabled: this.foreground && !this.reducedMotion && this.questionInteractionReady(),
+              reducedMotion: this.reducedMotion,
               opened: (id: string) => this.openClue(id) })
           }
         }

@@ -272,6 +272,8 @@
 
 2026-11-12 线索正文外链使用 ArkUI `Span` 维持行内排版。平台边界只向 `UIAbilityContext.openLink` 交付校验后的 HTTP(S) 地址，由系统选择关联应用或默认浏览器。玩法页按当前弹层和单次打开动作登记交接，通过官方启动回调处理失败或取消。主动点按外链会取消尚未执行的自动前进，回前台使用保留题目实例的只读同步。普通后台返回沿用原有重载，账号、场次及线索授权继续由现有代次和快照约束。见 [Span](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-span/)、[openLink](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-inner-application-uiabilitycontext/#openlink12) 和 [C01c](feature-acceptance-matrix.md#c01c-线索正文外链2026-11-12)。
 
+独立外链卡共用系统交接和错误反馈。卡片来源为当前已完成题目下的服务端授权，点击时绑定账号代次、场次、题目和线索快照；交接返回沿用同一答题实例，只读确认最新授权。外链仅由点按发起，排除于自动播放和组合演出。见 [C01n](feature-acceptance-matrix.md#c01n-独立外链线索卡)。
+
 ## ADR-022：普通视频线索的播放与临时文件
 
 2026-11-12，冻结 Web 的 7 个已发布视频样本均为 HTTPS MP4，约 0.31–2.72 MB。去掉 Web 站点 `Referer` 的单字节 GET 均返回 403，带该来源的请求均返回 206。固定 API 26 的 ArkUI [Video](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-media-components-video) 自带播控，其数据源参数接收 URL 或资源。

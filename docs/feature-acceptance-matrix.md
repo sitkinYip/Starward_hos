@@ -891,3 +891,30 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 - [签名安装与窗口/TLS](../artifacts/validation/ui-gameplay-bgm-drag-20261113/runtime-01.json) 5 项通过。[BGM 用例 3/3](../artifacts/validation/ui-gameplay-bgm-drag-20261113/GameplayBgm/local-test-summary.json) 通过，增加位置适配断言。[codelinter](../artifacts/validation/ui-gameplay-bgm-drag-20261113/lint/lint.json) 退出 0、`filesChecked=0`，不计源码静态检查覆盖。
 
 [固定预览](../artifacts/validation/ui-gameplay-bgm-drag-20261113/fixed-preview-restored-01.json) 已恢复登录，隔离验收包和预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-bgm-drag-20261113/preview-package-equivalence-01.json)。[临时环境已移除](../artifacts/validation/ui-gameplay-bgm-drag-20261113/disposable-cleanup-01.json)，三个隔离账号均无新增玩法写入，固定预览资料和进度保留。
+
+### C01n 独立外链线索卡
+
+以冻结 Web `4b7d1a0` 的手机线索档案为参照。使用真实 HTTPS 隔离后端下发的 `kind=link` 授权，在原生档案内沿用同一张卡的序号、状态、标题、文字预览和交互反馈，右侧使用 Web 的斜向外链箭头。
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 未授权、末题答对与完成回访 | 未发放时卡片不可见。仅按服务端授权和当前已完成题目的归属显示，保持 Web 顺序及计数。末题结算后和只读回访均可主动打开，入场、答题、只读回源均不自动外跳。 |
+| 系统打开与返回 | 复用系统 HTTP(S) 打开能力。从已发放卡片点按进入处理应用，系统返回保留同一题、滚动位置和交互状态，并以只读 GET 重新确认权限。 |
+| 失败、取消和重复点按 | 系统打开失败时就地显示主题反馈，再点原卡可重试。系统取消后可再次点按。无效地址和过期授权不能启动外部应用，在途回调不影响已离开的题目、场次或账号。 |
+| 同数据对照与写入 | 日夜对照卡片样式、命中和交互反馈。直板真机验证解锁、外跳、返回、失败重试、历史回访；后端台账核对本轮只有预期的末题提交和结算。 |
+
+[隔离 HTTPS 夹具](../artifacts/validation/ui-gameplay-standalone-link-20261113/host-fixtures-01.json) 含一张绑定首题的链接卡和一张完成场次才解锁的全场链接卡，二者使用专用示例地址。固定预览及生产场次不参与写入。[Web 同数据回放](../artifacts/validation/ui-gameplay-standalone-link-20261113/web-reference-03.json) 覆盖日间、夜间和减少动画，拦截到主动点按打开新页，业务及外部流量均未转发。卡片的入场和斜箭头圆环沿用共享档案动效。
+
+[正常签名包直板安装与窗口/TLS](../artifacts/validation/ui-gameplay-standalone-link-20261113/runtime-01.json) 5 项通过，内容视口约 387.69 × 771.08 vp，字号 1。[线索测试 13/13](../artifacts/validation/ui-gameplay-standalone-link-20261113/GameplayClues/local-test-summary.json) 包含链接授权、按题筛选、全场归属与禁止自动外跳；[答题 ViewModel 20/20](../artifacts/validation/ui-gameplay-standalone-link-20261113/GameplayAnswerViewModel/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-standalone-link-20261113/lint/lint.json) 退出 0、`filesChecked=0`，不计源码静态检查覆盖。
+
+[正常包直板主轮](../artifacts/validation/ui-gameplay-standalone-link-20261113/native-standalone-03.json) 确认首题仅显示其已授权卡片，末题作答前两张链接卡均不可见。原生提交末题一次，正常结算到 2/2 后显示全场链接，回访可再次打开且无完成演出重播。两次实际进入系统浏览器，按返回后由测试工具唤回同一运行中的 Ability，原题与可见控件实例及像素坐标一致，各只新增一次授权场次 GET。两轮早期报告保留未通过，首次浏览器返回未能在限时内重新聚焦 App，第二次 UiTest 一度未暴露应用树，均无新增玩法写入。 [首轮](../artifacts/validation/ui-gameplay-standalone-link-20261113/native-standalone-01.json) · [第二轮](../artifacts/validation/ui-gameplay-standalone-link-20261113/native-standalone-02.json)
+
+[日间同数据原图](../artifacts/validation/ui-gameplay-standalone-link-20261113/visual-review-01.json) 对照首题、未完成末题、末题解锁、浏览器返回与历史回访。原生链接卡为 326.15 × 80.62 vp，Web 约 326 × 81 CSS px，标题距卡左缘均为 72。原生沿用现有档案卡边框，省略 Web 淡色内描边，斜箭头略粗。当前设备已保存的组合线索浮标位置与 Web 默认位置不同，浮标可遮住卡片一角，卡片中心及外链箭头仍可点。
+
+[夜间失败与重试](../artifacts/validation/ui-gameplay-standalone-link-20261113/native-standalone-failure-02.json) 使用独立签名故障包，只在另一隔离账号的同一示例地址首次点按开启系统 `appLinkingOnly`，使系统真实返回无匹配处理方式。正式源码和预览包没有故障注入。原图可见「暂时无法打开链接，请重试。」，点同一张卡即由系统浏览器打开，回 App 后题目和像素坐标保持一致。失败与重试均无玩法或经验写入。[故障包与运行时绑定](../artifacts/validation/ui-gameplay-standalone-link-20261113/failure-variant-01.json) · [夜间原图对照](../artifacts/validation/ui-gameplay-standalone-link-20261113/visual-review-02.json)
+
+办公设备策略阻止了本地 OCR 辅助程序。现用驱动只采集原图，提示文案以人工原图复核为准。原验收报告的 OCR 字段保留当时的记录。
+
+本轮未单独触发系统选择器取消、外跳期间撤销线索和原生系统减少动画设置。普通正文外链使用同一系统交接，原有专项记录见 C01c。
+
+[固定预览已恢复登录](../artifacts/validation/ui-gameplay-standalone-link-20261113/fixed-preview-restored-01.json)，[预览包与正常隔离包的 ArkTS 字节码一致](../artifacts/validation/ui-gameplay-standalone-link-20261113/preview-package-equivalence-01.json)。[隔离环境已清理](../artifacts/validation/ui-gameplay-standalone-link-20261113/disposable-cleanup-01.json)，独立 HTTPS 台账及 SQLite 核实真机仅提交一次预期末题，故障验证与 Web 对照均无新增玩法写入。

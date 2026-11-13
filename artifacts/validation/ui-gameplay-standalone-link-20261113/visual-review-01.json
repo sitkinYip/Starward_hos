@@ -1,0 +1,220 @@
+{
+  "status": "reviewed_originals",
+  "nativeRunComplete": true,
+  "nativeTheme": "light",
+  "nativeOriginalDimensionsPx": [
+    1260,
+    2720
+  ],
+  "nativeContentViewportVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "webViewportCssPx": [
+    388,
+    771
+  ],
+  "deviceDensity": 3.25,
+  "sameAuthoredContentAndProgress": true,
+  "nativeRuntimeSha256": "89790d75f40fe942f85a3ef9c14034569711623e5a4fe89916b347f657bf109a",
+  "sameDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "nativeIsolatedFailureVariantSha256": null,
+  "nativeReportSha256": "ceb1e9d9b4f63593b92c8e2c934c038e94d47000e7b21fabe51cda99baacff53",
+  "webReferenceSha256": "91a70ad5bd9f906f1a962980266e4106ca58bff14ed5a926a660c4c09735d261",
+  "hostPreparationSha256": "eebeafd67d063b33c197fa867812f10b5d0e18913af940dc0754158c9b5aa9f7",
+  "nativeSnapshotSha256": {
+    "before-final-answer": "efaf2459c12616532e7608096984e9778da6936bb8cc8cfca31be4fee462a7c7",
+    "settled-after-final-answer": "15a89ff2a140e53ceb57080391e0a465dbb6d4d0a15c6f02e4dac6238b3b415c"
+  },
+  "reviewObservationsSha256": "f31b888c2a30b29d69a06a1e6088bcaa667d1a42a201b1cd5af45e00b33c60d4",
+  "comparedOriginalsUnedited": true,
+  "comparisonUsesCardRelativeCoordinates": true,
+  "pairedStateCount": 5,
+  "pairs": [
+    {
+      "nativeState": "pending-final-question-without-links",
+      "webState": "pre-unlock-second",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/pending-final-question-without-links.png",
+        "sha256": "8f8660a188ddef4ff79e64bc8901243f4301d4cc056185116f309e2c6232d346",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/light-no-preference-pre-unlock-second.png",
+        "sha256": "3e519bd7e2b9886ee028355b74a18b8d7898ea06451da291a3c0f8485b1934ce"
+      },
+      "findings": [
+        "The scrolled last question ends in the empty answer input and submit action. The link archive and combination launcher are absent in both originals at this ungranted stage."
+      ]
+    },
+    {
+      "nativeState": "previous-level-link-available",
+      "webState": "pre-unlock-first-level-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/previous-level-link-available.png",
+        "sha256": "8c7806a0edb6708c3b47ec5b530404c87b8d73caa3721217dea89f50a8b12c6b",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/light-no-preference-pre-unlock-first-level-link.png",
+        "sha256": "94e4f4e8b331d257b4401d50e89d9992607b2e872eb1e309eabcd70e44c1568d"
+      },
+      "findings": [
+        "The earlier question archive has an ordinary text row followed by a standalone link. Both source images show ordinal 02, LINK, bold title, a single-line preview, and a round up-right action. The native arrow stroke looks slightly thicker.",
+        "Both use the same green theme hierarchy. The faint secondary inset stroke in Web cards is absent from the shared native card chrome. Native archive ornament is slightly more apparent and does not touch link text.",
+        "The link title starts at the same horizontal offset within the card. Vertical window placement differs because the native shot retains system bars and the screens have independent measured scroll positions."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          325.9588623046875,
+          80.9898681640625
+        ],
+        "titleOffsetWithinCardCssPx": [
+          71.99092102050781,
+          16.5916748046875
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.19498384915863198,
+        -0.3744835486778868
+      ]
+    },
+    {
+      "nativeState": "before-first-system-browser",
+      "webState": "post-unlock-final-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/before-first-system-browser.png",
+        "sha256": "2e8f392c6cfaaf79208cd1035b169b10ef830421277d9b3433f351fa59bcb19e",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/light-no-preference-post-unlock-final-link.png",
+        "sha256": "ebbb5ce8c87e6d0412f6625e12530688d1ab44da14944db836b55c050b6346fd"
+      },
+      "findings": [
+        "The final question archives show ordinal 02, LINK, the session link title, a single-line preview, and an up-right action under the ordinary text card. The native arrow stroke is slightly heavier and the faint Web inner stroke is absent.",
+        "The pre-existing floating combination launcher overlaps part of the link in both captures at their independent scroll positions. The native saved dock is on the left and overlaps the beginning of the preview and left index area. The Web default is on the right and overlaps the card bottom edge. The standalone card center and native up-right action remain available in this sample."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          326,
+          81
+        ],
+        "titleOffsetWithinCardCssPx": [
+          72,
+          16.59375
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.15384615384613198,
+        -0.3846153846153868
+      ]
+    },
+    {
+      "nativeState": "after-first-system-browser",
+      "webState": "returned-final-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/after-first-system-browser.png",
+        "sha256": "f9bd85fe029550a17816d461dc8ceb9c49900e212bbbac80a07d3d891b7919a0",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/light-no-preference-returned-final-link.png",
+        "sha256": "c908b65cd19b05bf1274f3ee7029bbe539aa540bc126401640e3be1130ac0702"
+      },
+      "findings": [
+        "After external return both originals still show the completion feedback and the same final link in the existing archive. The native card, heading, and scroll position match its own before screenshot. The Web screenshot retains browser-emulated sticky hover, while the native card goes back to its idle styling.",
+        "The native dashed archive ornament changes angle between the two captured originals without moving the link card. The launcher overlaps the same region as before."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          326.161376953125,
+          81.0452880859375
+        ],
+        "titleOffsetWithinCardCssPx": [
+          72.07967376708984,
+          16.5899658203125
+        ],
+        "touchHoverApplied": true
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        -0.007530799278868017,
+        -0.4299034705528868
+      ]
+    },
+    {
+      "nativeState": "history-link-reappears",
+      "webState": "reopened-completed-final-link",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/entry-main-20261113T053110548070Z/history-link-reappears.png",
+        "sha256": "31693bc11ca71384c015ced63bef414d9a5fcd93a40ae4cac8c48741349a9cf3",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-standalone-link-20261113/web-capture-03/light-no-preference-reopened-completed-final-link.png",
+        "sha256": "2eb643e121d6b7a32b0ec6824b55e8c5d81a700e2279dfce91f23bc437fc19f9"
+      },
+      "findings": [
+        "A history re-entry still shows the same read-only answer and the same two granted archive cards, without the transient correct-answer panel. The standalone title and up-right affordance remain recognizable and reachable.",
+        "The current docked combination launcher overlaps part of the one-line preview in both history originals. The installed native preference uses the left edge, while the Web replay uses the default right edge. These originals document actual layout at the captured independent scroll positions."
+      ],
+      "webGeometry": {
+        "cardSizeCssPx": [
+          326,
+          81
+        ],
+        "titleOffsetWithinCardCssPx": [
+          72,
+          16.59375
+        ],
+        "touchHoverApplied": false
+      },
+      "nativeGeometry": {
+        "cardSizeVp": [
+          326.15384615384613,
+          80.61538461538461
+        ],
+        "titleOffsetWithinCardVp": [
+          72.0,
+          18.153846153846153
+        ]
+      },
+      "cardSizeDeltaVpMinusCssPx": [
+        0.15384615384613198,
+        -0.3846153846153868
+      ]
+    }
+  ]
+}
