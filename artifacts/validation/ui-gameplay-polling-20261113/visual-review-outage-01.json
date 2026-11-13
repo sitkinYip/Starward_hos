@@ -1,0 +1,97 @@
+{
+  "status": "reviewed_originals",
+  "pairedStates": 3,
+  "pairs": [
+    {
+      "role": "outage",
+      "theme": "light",
+      "nativeState": "automatic-503-with-notice",
+      "webState": "outage-toast",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/automatic-503-with-notice.png",
+        "sha256": "d9ff6d9c6c9e2f929dc8cf11799c447499ad8f2c5ff4365a3c00f065eb97dc23"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/web-capture-06/light-no-preference-outage-outage-toast.png",
+        "sha256": "63cddd13aedda19ca9d282b096b27c0def8d3ccaa853437cf651c8765d4cefc6"
+      },
+      "findings": [
+        "Both originals show the same non-modal title and description above the scrolled assignment, with the same draft and enabled submit button visible below. The description wraps at the same character on both displays. Native uses a visibly larger close glyph and 44vp touch target.",
+        "The native square panel begins immediately below the system status area. The Web reference has 16 CSS px above the square panel in browser content. The two outer widths and heights differ by about one unit or less after accounting for physical rounding."
+      ],
+      "geometry": {
+        "nativeToastVp": {
+          "x": 16.0,
+          "y": 0.3076923076923077,
+          "width": 355.6923076923077,
+          "height": 87.07692307692308
+        },
+        "webToastCssPx": {
+          "x": 16,
+          "y": 16,
+          "width": 356,
+          "height": 86
+        }
+      }
+    },
+    {
+      "role": "outage",
+      "theme": "light",
+      "nativeState": "closed-notice-through-continued-outage",
+      "webState": "dismissed-same-outage",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/closed-notice-through-continued-outage.png",
+        "sha256": "b31717dddbbcb30d048de8c740e56ff7fb5f77cd599d69cf9f0b2f21748c5d4b",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/web-capture-06/light-no-preference-outage-dismissed-same-outage.png",
+        "sha256": "3be0d4b00ab4acd6379994bff3386c11065a43bb0883a295ddb267fbbbc30d3f"
+      },
+      "findings": [
+        "After explicit closure, both originals show the exact same authored answer form and draft without a visible notice or modal. Independent native evidence verifies a further real 503 in the same outage before this capture."
+      ]
+    },
+    {
+      "role": "outage",
+      "theme": "light",
+      "nativeState": "automatic-recovery-retains-form",
+      "webState": "recovered-draft",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/automatic-recovery-retains-form.png",
+        "sha256": "b31717dddbbcb30d048de8c740e56ff7fb5f77cd599d69cf9f0b2f21748c5d4b",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/web-capture-06/light-no-preference-outage-recovered-draft.png",
+        "sha256": "b795fff5a05a0c6ea48ca8c0a95f2cbbd3c92dc6f310ba187496e115a3b72648"
+      },
+      "findings": [
+        "Both originals show the same editable answer, action, and absence of the notice after a successful automatic read. Native raw bounds are unchanged across the outage, dismiss, and recovery captures."
+      ]
+    }
+  ],
+  "nativeWindowPhysicalPixels": [
+    1260,
+    2720
+  ],
+  "nativeContentVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "sameDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "sameNativeActorsAndContent": true,
+  "sourceHapSha256": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+  "nativeRuntimeSha256": "fbdb204b6600b3791109cc6add267dc8539ee4f5433fd8c870d90db8f2b83c19",
+  "webReportSha256": "6d6b22ea63f434c8865987b0ec479c50e0c99e6c86d4a3e84ba35ad601d60a25",
+  "hostFixtureSha256": "cf3c49b089af05aacc57f833adee28e70c8bdcc8efbbf16b08c4296074d69d58",
+  "webArchiveReceiptSha256": "112a31163de40e4db227a9c7441849849d72cc1706b029eb63c3487de31b0c28",
+  "reviewObservationsSha256": "c7fabf911071ca84901590dc0e8a7a348346f9be9468e50ddf42b6aad9534f42",
+  "nativeBindings": {
+    "outage": {
+      "nativeReportSha256": "8f549abacd416f7993b98dcf8b613a19b0e37ad0018c1d8ae74b5826627c51d2",
+      "nativeAssignmentSnapshotSha256": "75b398774e6c370970051855fd6033df77768c826e707e77657f3bc87e0fee7b",
+      "fullNativeRunPassed": false
+    }
+  }
+}

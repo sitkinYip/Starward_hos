@@ -35,6 +35,7 @@ import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
 import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
 import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
+import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -136,6 +137,7 @@ export struct GameplayPage {
   private combinationOwner: string = '';
   private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
+  @Local private dismissedSyncEpisode: number = 0;
   @Local private bgmState: QuestBgmState = 'idle';
   @Local private bgmPosition: QuestBgmPosition = new QuestBgmPosition();
   private readonly bgm: QuestBgmPlayer = new QuestBgmPlayer((state: QuestBgmState) => { this.bgmState = state; });
@@ -145,7 +147,10 @@ export struct GameplayPage {
   private clueLinkHandoff: ClueLinkHandoff | null = null;
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
-    if (!foreground) { this.updateBgm(); }
+    if (!foreground) {
+      this.play.setPollingActive(false);
+      this.updateBgm();
+    }
     const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
     const keepHandoff: boolean = handoff !== null && handoff.isCurrent();
     const keepReading: boolean = keepHandoff && handoff?.dialog !== null;
@@ -161,10 +166,14 @@ export struct GameplayPage {
         if (keepHandoff) {
           this.play.refresh(keepReading ? this.textClue ?? undefined : undefined);
           if (handoff?.failed) { this.showClueLinkFailure(); }
+        } else if (this.play.canRefresh()) {
+          this.play.refresh();
         } else {
-          this.play.reload();
+          // Re-enter with the prior recovery path for unresolved writes.
+          if (this.play.retryAnswer) { this.play.reload(); }
         }
       }
+      this.play.setPollingActive(true);
     } else if (keepHandoff && handoff !== null) {
       // Preserve the current reading state until the system returns to the app.
       clearTimeout(handoff.timeout);
@@ -196,12 +205,14 @@ export struct GameplayPage {
     this.recoveryChanged();
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
+    this.play.setPollingActive(true);
     this.updateBgm();
   }
 
   aboutToDisappear(): void {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
+    this.play.setPollingActive(false);
     this.bgmMounted = false;
     this.bgm.release();
     this.bgmPreferenceOwner = '';
@@ -1486,7 +1497,17 @@ export struct GameplayPage {
             this.rememberBgmPosition(owner, x, y);
           }, toggle: () => this.toggleBgm() })
       }
-    }.width('100%').height('100%')
+      if (this.foreground && this.play.syncEpisode > 0 && this.play.syncEpisode !== this.dismissedSyncEpisode &&
+        this.play.error.length === 0) {
+        Column() {
+          StarwardSyncNotice({ reducedMotion: this.reducedMotion,
+            dismiss: () => { this.dismissedSyncEpisode = this.play.syncEpisode; } })
+        }.width('100%').align(Alignment.Top).alignItems(HorizontalAlign.Center)
+          .padding({ top: Math.max(16, this.foregroundTopInset()),
+            left: 16 + this.leftInset, right: 16 + this.rightInset })
+          .hitTestBehavior(HitTestMode.Transparent)
+      }
+    }.width('100%').height('100%').alignContent(Alignment.Top)
       // Keep the immersive page background outside the scrolling foreground's clip.
       .clipShape(this.foregroundClip())
       .bindContentCover(!!this.recoveryVisible, this.answerRecovery(), this.recoveryOptions())

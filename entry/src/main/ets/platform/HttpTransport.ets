@@ -1,6 +1,7 @@
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { GameFailure } from '../business/models';
+import { ReadCancellation } from '../business/ReadCancellation';
 
 export class TransportRequest {
   url: string = '';
@@ -9,6 +10,7 @@ export class TransportRequest {
   body: string = '';
   multipart: TransportPart[] = [];
   binary: boolean = false;
+  cancellation?: ReadCancellation;
 }
 
 export class TransportPart {
@@ -41,7 +43,14 @@ export class NativeHttpTransport implements HttpTransport {
   }
 
   async send(request: TransportRequest): Promise<TransportResponse> {
+    if (request.cancellation?.cancelled) { throw new GameFailure('CANCELLED', '场次读取已取消。'); }
     const task: http.HttpRequest = http.createHttp();
+    let destroyed: boolean = false;
+    const destroy = (): void => {
+      if (destroyed) { return; }
+      destroyed = true;
+      try { task.destroy(); } catch { /* Native errors can contain request details. */ }
+    };
     const headers: Record<string, string> = {
       'Accept': request.binary ? 'image/jpeg,image/png,image/webp' : 'application/json'
     };
@@ -59,7 +68,7 @@ export class NativeHttpTransport implements HttpTransport {
       headers['Content-Type'] = 'application/json';
     }
     try {
-      const result: http.HttpResponse = await task.request(request.url, {
+      const pending: Promise<http.HttpResponse> = task.request(request.url, {
         method: request.method === 'PATCH' ? http.RequestMethod.PATCH :
           request.method === 'POST' ? http.RequestMethod.POST : http.RequestMethod.GET,
         header: headers,
@@ -76,6 +85,15 @@ export class NativeHttpTransport implements HttpTransport {
         enablePartialChain: false,
         reuseConnections: this.reuseConnections
       });
+      const cancellation: ReadCancellation | undefined = request.cancellation;
+      const result: http.HttpResponse = cancellation === undefined ? await pending : await Promise.race([
+        pending, new Promise<http.HttpResponse>((_resolve, reject) => {
+          cancellation.attach(() => {
+            reject(new GameFailure('CANCELLED', '场次读取已取消。'));
+            destroy();
+          });
+        })
+      ]);
       const response: TransportResponse = new TransportResponse();
       response.status = result.responseCode;
       const responseHeaders: Record<string, Object> = result.header as Record<string, Object>;
@@ -106,7 +124,8 @@ export class NativeHttpTransport implements HttpTransport {
       }
       throw new GameFailure('NETWORK_ERROR', '连接中断，请检查网络后重试。');
     } finally {
-      task.destroy();
+      request.cancellation?.detach();
+      destroy();
     }
   }
 }

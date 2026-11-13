@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { GameplayAnswerResult, GameplaySnapshot } from '../main/ets/business/GameplayModels';
 import { GameFailure } from '../main/ets/business/models';
+import { ReadCancellation } from '../main/ets/business/ReadCancellation';
 import { decodeGameplay } from '../main/ets/data/GameplayDecoder';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
 import { GameplayViewModel } from '../main/ets/features/GameplayViewModel';
@@ -23,14 +24,16 @@ class ReadCall {
 
 class RefreshRepository extends MockGameRepository {
   reads: ReadCall[] = [];
+  cancellations: (ReadCancellation | undefined)[] = [];
   entries: ReadCall[] = [];
   answerWrites: number = 0;
 
   constructor() { super(0); }
 
-  async gameplay(_id: string): Promise<GameplaySnapshot> {
+  async gameplay(_id: string, cancellation?: ReadCancellation): Promise<GameplaySnapshot> {
     const call: ReadCall = new ReadCall();
     this.reads.push(call);
+    this.cancellations.push(cancellation);
     return call.task;
   }
 
@@ -60,8 +63,49 @@ async function open(vm: GameplayViewModel, repository: RefreshRepository,
   await pending;
 }
 
+async function waitForReads(repository: RefreshRepository, count: number): Promise<void> {
+  const deadline: number = Date.now() + 6500;
+  while (repository.reads.length < count && Date.now() < deadline) {
+    await new Promise<void>((resolve: () => void) => { setTimeout(resolve, 15); });
+  }
+  expect(repository.reads.length).assertEqual(count);
+}
+
 export default function gameplayRefreshViewModelTests(): void {
   describe('GameplayRefreshViewModel', () => {
+    it('pullSupersedesAnInFlightPollAndIgnoresItsLateFatalResponse', 0, async () => {
+      const repository: RefreshRepository = new RefreshRepository();
+      let authenticationFailures: number = 0;
+      const vm: GameplayViewModel = new GameplayViewModel(repository, () => {}, () => { authenticationFailures++; });
+      vm.bindOwner('playeralice');
+      await open(vm, repository);
+      try {
+        vm.setPollingActive(true);
+        await waitForReads(repository, 2);
+        expect(vm.refreshing).assertFalse();
+        expect(vm.answerAllowed()).assertTrue();
+        vm.editAnswer(' 原草稿 ');
+        const manual: Promise<void> = vm.refresh();
+        expect(repository.cancellations[1]?.cancelled).assertTrue();
+        expect(repository.reads.length).assertEqual(3);
+        const fresh: GameplaySnapshot = snapshot();
+        fresh.detail.title = '最新快照';
+        repository.reads[2].succeed(fresh);
+        await manual;
+        repository.reads[1].fail(new GameFailure('UNAUTHORIZED', '旧请求失败', 401));
+        await new Promise<void>((resolve: () => void) => { setTimeout(resolve, 0); });
+        expect(vm.snapshot === fresh).assertTrue();
+        expect(vm.draftAnswer).assertEqual(' 原草稿 ');
+        expect(vm.error).assertEqual('');
+        expect(vm.syncEpisode).assertEqual(0);
+        expect(authenticationFailures).assertEqual(0);
+        expect(vm.completionRevision).assertEqual(0);
+        expect(repository.answerWrites).assertEqual(0);
+      } finally {
+        vm.leave();
+      }
+    });
+
     it('singleRefreshKeepsTheSnapshotAndLatestRawDraftWithoutWritingOrRemountIdentityChange', 0, async () => {
       const repository: RefreshRepository = new RefreshRepository();
       let identities: number = 0;

@@ -1,0 +1,2735 @@
+{
+  "status": "captured_frozen_web_assignment_polling_reference",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "driverSha256": "1654d8fcfdc6dbbe4d949704442ecaff013fe4fd7221ae73cf4bb43b0573bfb8",
+  "sourceSha256": {
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/api/game.client.ts": "7a14111a47948a6c4b05fad838e508fa35944256a45ecbc8b2aeb7d447b0e880",
+    "src/api/retry.ts": "c6201ba3b5f917456fb295343a7aacd3651d28faebc02e38b577e4ce966d67df",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GameContext.tsx": "bcff647ce221bb48570ec20979780432703201ae66f8ba1c2ff82511fe13d0db",
+    "src/features/game/components/GameRequestFeedback.tsx": "66856caa1642e05a28341175b6537a870655a6119680dc048eef4c82a7e4c291",
+    "src/features/game/components/GameState.tsx": "b28f86a8cd98cbd6dff9ac8ead823f30f036173001ccdc36e9f41820fe4e0e01",
+    "src/components/ui/Toast.tsx": "4a4d6cb3ff6d84d6aa90baf19ac0d1524f908bf627fa36104276c3cde9086a0d",
+    "src/components/ui/ToastProvider.tsx": "bc2fde44130e674a1d780edc6e530faae9db5782a6b0ef52c3c7b54db8895fa8",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+    "src/styles/components/controls-and-overlays.css": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+    "src/styles/effects/keyframes.css": "32eaffd5ff73587063de50ca64984cd6105a8851f0d72dcb280e4625182f1964",
+    "src/styles/features/game-request-feedback.css": "45f299efcda2783320a979a388dc54867efe0113acebe2e8cce6f5ab3e2bee8a",
+    "src/styles/features/game.css": "1dde5db314207cb4a525f8e45fde703f70170e08488e6ede648b9ff14eac3d4d"
+  },
+  "inputSha256": {
+    "active": "94d133f41285cdeeb092a3a11fe7a1a13077b0082e793200300b50563ac9ac00",
+    "preterminal": "3bc11aec6f38fcb48fc519aac0f641216eea0c6ae1b5920e3405967ddd722c2e",
+    "errorBodies": {
+      "503": "da7b25fc1096bb0121a2a150a68de656be932e17610a57534669b9d0c14579b3",
+      "409": "65e87c13a850e1be1eb0774109b71b8b02523a0901feb66dfe1fd4f94a796eeb"
+    }
+  },
+  "errorReplay": "observed_disposable_http_bodies",
+  "referenceFontSourceSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "inputScope": "exact_disposable_https_assignment_dtos",
+  "syntheticAuthentication": true,
+  "businessRequestsForwarded": 0,
+  "externalRequestsForwarded": 0,
+  "assignmentOnlyFaultInjection": true,
+  "visualReview": "pending_original_review",
+  "cases": [
+    {
+      "theme": "light",
+      "motion": "no-preference",
+      "flow": "outage",
+      "states": [
+        {
+          "state": "healthy-draft",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 585.197509765625,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(23, 68, 58) rgb(23, 68, 58) rgb(100, 160, 146)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgba(24, 123, 105, 0.204) 0px 1.63915px 3.68808px -2.86851px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -0.255607)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-healthy-draft.png",
+            "sha256": "5ddabc5c249b70b7ee7ae05caac997bc8b467388d9abca95936405e38119c7e2"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-healthy-draft.html",
+            "sha256": "2891cdde72a3d7ffc234ab4fd56cfa7979a7e81af8434f12b84bd5e8edb173c2"
+          }
+        },
+        {
+          "state": "outage-toast",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": {
+              "x": 16,
+              "y": 16,
+              "width": 356,
+              "height": 86,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(130, 175, 162)",
+              "borderRadius": "0px",
+              "padding": [
+                "10px",
+                "8px",
+                "10px",
+                "16px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 12px 40px 0px, rgba(24, 123, 105, 0.21) 0px 0px 24px 0px",
+              "opacity": "1",
+              "animationName": "ui-toast-enter",
+              "animationDuration": "0.32s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "toastTitle": {
+              "x": 33,
+              "y": 27,
+              "width": 274,
+              "height": 23,
+              "fontSize": "16px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(22, 46, 40)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "toastDescription": {
+              "x": 33,
+              "y": 53,
+              "width": 274,
+              "height": 38,
+              "fontSize": "13px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(83, 107, 99)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(83, 107, 99)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "toastClose": {
+              "x": 315,
+              "y": 39,
+              "width": 40,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(100, 121, 112)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgba(0, 0, 0, 0)",
+              "borderRadius": "50%",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(24, 123, 105) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-outage-toast.png",
+            "sha256": "a4abdcff4ae7dcce05743283fb72d3560fb2824f77946e9587676d0fa2610aae"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-outage-toast.html",
+            "sha256": "ff621a5e8855f9acd357ccf1e85b7f0891cee5fb910e3db1fc21145f9ec29305"
+          }
+        },
+        {
+          "state": "dismissed-same-outage",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 585.1588134765625,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(22, 56, 48) rgb(22, 56, 48) rgb(116, 168, 155)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgba(24, 123, 105, 0.114) 0px 0.909569px 2.04653px -1.59175px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -0.294328)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-dismissed-same-outage.png",
+            "sha256": "470838ffbd2c96d94fc13800b3094d9b48adc73ce0125cd4152b091085a055be"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-dismissed-same-outage.html",
+            "sha256": "2891cdde72a3d7ffc234ab4fd56cfa7979a7e81af8434f12b84bd5e8edb173c2"
+          }
+        },
+        {
+          "state": "recovered-draft",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(24, 123, 105) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-recovered-draft.png",
+            "sha256": "7fc81f9ac246b26cd441af5b79f1639e8424197ae09598316038706da2dba921"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-recovered-draft.html",
+            "sha256": "2891cdde72a3d7ffc234ab4fd56cfa7979a7e81af8434f12b84bd5e8edb173c2"
+          }
+        },
+        {
+          "state": "second-outage-toast",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": {
+              "x": 16,
+              "y": 16,
+              "width": 356,
+              "height": 86,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(130, 175, 162)",
+              "borderRadius": "0px",
+              "padding": [
+                "10px",
+                "8px",
+                "10px",
+                "16px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 12px 40px 0px, rgba(24, 123, 105, 0.21) 0px 0px 24px 0px",
+              "opacity": "1",
+              "animationName": "ui-toast-enter",
+              "animationDuration": "0.32s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "toastTitle": {
+              "x": 33,
+              "y": 27,
+              "width": 274,
+              "height": 23,
+              "fontSize": "16px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(22, 46, 40)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "toastDescription": {
+              "x": 33,
+              "y": 53,
+              "width": 274,
+              "height": 38,
+              "fontSize": "13px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(83, 107, 99)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(83, 107, 99)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "toastClose": {
+              "x": 315,
+              "y": 39,
+              "width": 40,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(100, 121, 112)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgba(0, 0, 0, 0)",
+              "borderRadius": "50%",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(24, 123, 105) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-second-outage-toast.png",
+            "sha256": "f9e221cee7e3ea48ed1838d7a28ab1cb80f9a7ec7defdf22519e942e0a444ddd"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-second-outage-toast.html",
+            "sha256": "ff621a5e8855f9acd357ccf1e85b7f0891cee5fb910e3db1fc21145f9ec29305"
+          }
+        },
+        {
+          "state": "second-recovery",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(24, 123, 105) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-second-recovery.png",
+            "sha256": "d7c04b9ce259bbc5560783934e2c19f4b88b761a5e757bc2849491e5cdb5066e"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-outage-second-recovery.html",
+            "sha256": "2891cdde72a3d7ffc234ab4fd56cfa7979a7e81af8434f12b84bd5e8edb173c2"
+          }
+        }
+      ],
+      "sourceChecksPassed": 16,
+      "schemaChecksPassed": 3,
+      "assignmentGets": [
+        {
+          "elapsedMs": 3501,
+          "status": 200
+        },
+        {
+          "elapsedMs": 3502,
+          "status": 200
+        },
+        {
+          "elapsedMs": 8505,
+          "status": 503
+        },
+        {
+          "elapsedMs": 8910,
+          "status": 503
+        },
+        {
+          "elapsedMs": 9713,
+          "status": 503
+        },
+        {
+          "elapsedMs": 11316,
+          "status": 503
+        },
+        {
+          "elapsedMs": 16320,
+          "status": 503
+        },
+        {
+          "elapsedMs": 16722,
+          "status": 200
+        },
+        {
+          "elapsedMs": 21725,
+          "status": 503
+        },
+        {
+          "elapsedMs": 22128,
+          "status": 503
+        },
+        {
+          "elapsedMs": 22930,
+          "status": 503
+        },
+        {
+          "elapsedMs": 24533,
+          "status": 503
+        },
+        {
+          "elapsedMs": 29536,
+          "status": 200
+        }
+      ],
+      "observations": {
+        "firstOutageRetriesBeforeToast": 4,
+        "sameMountedFormAndDraft": true,
+        "cursorSelectionAndScrollRetained": true,
+        "nonModal": true,
+        "dismissedSameOutage": true,
+        "rearmedAfterRecovery": true,
+        "toastAnimations": [
+          {
+            "state": "open",
+            "animation": "ui-toast-enter",
+            "duration": "0.32s"
+          },
+          {
+            "state": "closed",
+            "animation": "ui-toast-exit",
+            "duration": "0.24s"
+          },
+          {
+            "state": "open",
+            "animation": "ui-toast-enter",
+            "duration": "0.32s"
+          },
+          {
+            "state": "closed",
+            "animation": "ui-toast-exit",
+            "duration": "0.24s"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "motion": "reduce",
+      "flow": "outage",
+      "states": [
+        {
+          "state": "healthy-draft",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": true
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(212, 188, 125) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-healthy-draft.png",
+            "sha256": "6f1067d247e4870d4f35e6fce97c7f9a3bd9ff4ec3ab33ed5fc27c4470eb4de5"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-healthy-draft.html",
+            "sha256": "4e077740905dec20044c66a26e691d06e9feabbccb91196c15bd50dbd0bc20e4"
+          }
+        },
+        {
+          "state": "outage-toast",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": true
+            },
+            "toast": {
+              "x": 16,
+              "y": 16,
+              "width": 356,
+              "height": 86,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(117, 104, 74)",
+              "borderRadius": "0px",
+              "padding": [
+                "10px",
+                "8px",
+                "10px",
+                "16px"
+              ],
+              "boxShadow": "rgba(5, 6, 5, 0.48) 0px 12px 40px 0px, rgba(218, 184, 99, 0.2) 0px 0px 24px 0px",
+              "opacity": "1",
+              "animationName": "ui-toast-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "toastTitle": {
+              "x": 33,
+              "y": 27,
+              "width": 274,
+              "height": 23,
+              "fontSize": "16px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(240, 236, 223)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "toastDescription": {
+              "x": 33,
+              "y": 53,
+              "width": 274,
+              "height": 38,
+              "fontSize": "13px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(170, 169, 159)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(170, 169, 159)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "toastClose": {
+              "x": 315,
+              "y": 39,
+              "width": 40,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(140, 142, 133)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgba(0, 0, 0, 0)",
+              "borderRadius": "50%",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(212, 188, 125) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-outage-toast.png",
+            "sha256": "2bfbd3f01ff45b4ca9e96380e92f6844b19bda7c7b279434d37f86af66f97c06"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-outage-toast.html",
+            "sha256": "707d2bd210b2f9a67fa709b4c15102c82d3ac5b7e688c4ec807c5f7ef220d13f"
+          }
+        },
+        {
+          "state": "dismissed-same-outage",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": true
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(212, 188, 125) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-dismissed-same-outage.png",
+            "sha256": "6f1067d247e4870d4f35e6fce97c7f9a3bd9ff4ec3ab33ed5fc27c4470eb4de5"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-dismissed-same-outage.html",
+            "sha256": "4e077740905dec20044c66a26e691d06e9feabbccb91196c15bd50dbd0bc20e4"
+          }
+        },
+        {
+          "state": "recovered-draft",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": true
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(212, 188, 125) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-recovered-draft.png",
+            "sha256": "6f1067d247e4870d4f35e6fce97c7f9a3bd9ff4ec3ab33ed5fc27c4470eb4de5"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-recovered-draft.html",
+            "sha256": "4e077740905dec20044c66a26e691d06e9feabbccb91196c15bd50dbd0bc20e4"
+          }
+        },
+        {
+          "state": "second-outage-toast",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": true
+            },
+            "toast": {
+              "x": 16,
+              "y": 16,
+              "width": 356,
+              "height": 86,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(117, 104, 74)",
+              "borderRadius": "0px",
+              "padding": [
+                "10px",
+                "8px",
+                "10px",
+                "16px"
+              ],
+              "boxShadow": "rgba(5, 6, 5, 0.48) 0px 12px 40px 0px, rgba(218, 184, 99, 0.2) 0px 0px 24px 0px",
+              "opacity": "1",
+              "animationName": "ui-toast-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "toastTitle": {
+              "x": 33,
+              "y": 27,
+              "width": 274,
+              "height": 23,
+              "fontSize": "16px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(240, 236, 223)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "toastDescription": {
+              "x": 33,
+              "y": 53,
+              "width": 274,
+              "height": 38,
+              "fontSize": "13px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(170, 169, 159)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(170, 169, 159)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "toastClose": {
+              "x": 315,
+              "y": 39,
+              "width": 40,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(140, 142, 133)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgba(0, 0, 0, 0)",
+              "borderRadius": "50%",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(212, 188, 125) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-second-outage-toast.png",
+            "sha256": "2bfbd3f01ff45b4ca9e96380e92f6844b19bda7c7b279434d37f86af66f97c06"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-second-outage-toast.html",
+            "sha256": "707d2bd210b2f9a67fa709b4c15102c82d3ac5b7e688c4ec807c5f7ef220d13f"
+          }
+        },
+        {
+          "state": "second-recovery",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": true
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(212, 188, 125) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "1e-05s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-second-recovery.png",
+            "sha256": "6f1067d247e4870d4f35e6fce97c7f9a3bd9ff4ec3ab33ed5fc27c4470eb4de5"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-reduce-outage-second-recovery.html",
+            "sha256": "4e077740905dec20044c66a26e691d06e9feabbccb91196c15bd50dbd0bc20e4"
+          }
+        }
+      ],
+      "sourceChecksPassed": 16,
+      "schemaChecksPassed": 3,
+      "assignmentGets": [
+        {
+          "elapsedMs": 1970,
+          "status": 200
+        },
+        {
+          "elapsedMs": 1971,
+          "status": 200
+        },
+        {
+          "elapsedMs": 6973,
+          "status": 503
+        },
+        {
+          "elapsedMs": 7376,
+          "status": 503
+        },
+        {
+          "elapsedMs": 8180,
+          "status": 503
+        },
+        {
+          "elapsedMs": 9783,
+          "status": 503
+        },
+        {
+          "elapsedMs": 14787,
+          "status": 503
+        },
+        {
+          "elapsedMs": 15190,
+          "status": 200
+        },
+        {
+          "elapsedMs": 20193,
+          "status": 503
+        },
+        {
+          "elapsedMs": 20597,
+          "status": 503
+        },
+        {
+          "elapsedMs": 21401,
+          "status": 503
+        },
+        {
+          "elapsedMs": 23004,
+          "status": 503
+        },
+        {
+          "elapsedMs": 28008,
+          "status": 200
+        }
+      ],
+      "observations": {
+        "firstOutageRetriesBeforeToast": 4,
+        "sameMountedFormAndDraft": true,
+        "cursorSelectionAndScrollRetained": true,
+        "nonModal": true,
+        "dismissedSameOutage": true,
+        "rearmedAfterRecovery": true,
+        "toastAnimations": [
+          {
+            "state": "open",
+            "animation": "ui-toast-enter",
+            "duration": "1e-05s"
+          },
+          {
+            "state": "closed",
+            "animation": "ui-toast-exit",
+            "duration": "1e-05s"
+          },
+          {
+            "state": "open",
+            "animation": "ui-toast-enter",
+            "duration": "1e-05s"
+          },
+          {
+            "state": "closed",
+            "animation": "ui-toast-exit",
+            "duration": "1e-05s"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "light",
+      "motion": "no-preference",
+      "flow": "terminal",
+      "states": [
+        {
+          "state": "completed-before-offline",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -621.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 356.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(22, 46, 40) rgb(22, 46, 40) rgb(130, 175, 162)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "none",
+              "opacity": "0.5",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "quest": {
+              "x": 12,
+              "y": -464.421875,
+              "width": 364,
+              "height": 1339.859375,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 655
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-terminal-completed-before-offline.png",
+            "sha256": "0fcf4cfcd91e6e17285f1bc31cc40f796c8241ad5911e8cb1c1bb151e87e38d1"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-terminal-completed-before-offline.html",
+            "sha256": "aa6f2a4fa94b14f7cd0851e572964f076fd1822011b6cdb73d5363d886b44b9a"
+          }
+        },
+        {
+          "state": "offline-removed-private-state",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": {
+              "x": 0,
+              "y": 109.578125,
+              "width": 388,
+              "height": 113.1875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(161, 63, 77)",
+              "backgroundColor": "rgba(161, 63, 77, 0.1)",
+              "borderColor": "rgb(197, 138, 147)",
+              "borderRadius": "10px",
+              "padding": [
+                "16px",
+                "16px",
+                "16px",
+                "16px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "noticeRetry": {
+              "x": 51,
+              "y": 165.765625,
+              "width": 86,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(139, 166, 154)",
+              "borderRadius": "999px",
+              "padding": [
+                "0px",
+                "14px",
+                "0px",
+                "14px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "noticeHome": {
+              "x": 145,
+              "y": 165.765625,
+              "width": 112,
+              "height": 40,
+              "fontSize": "13px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(255, 255, 255)",
+              "backgroundColor": "rgb(24, 123, 105)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "10px",
+              "padding": [
+                "7px",
+                "14px",
+                "7px",
+                "14px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "progress": null,
+            "input": null,
+            "quest": null,
+            "scrollY": 0
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-terminal-offline-removed-private-state.png",
+            "sha256": "4abc999f636e75c009148d7e0ad418a46d832ab47e626542024daf245d7f50e7"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-terminal-offline-removed-private-state.html",
+            "sha256": "cf6630cfddff2d80271450c42535febb212535358e4a166ac81f60b03278994b"
+          }
+        }
+      ],
+      "sourceChecksPassed": 16,
+      "schemaChecksPassed": 3,
+      "assignmentGets": [
+        {
+          "elapsedMs": 2918,
+          "status": 200
+        },
+        {
+          "elapsedMs": 7921,
+          "status": 409
+        },
+        {
+          "elapsedMs": 12961,
+          "status": 409
+        }
+      ],
+      "observations": {
+        "fatalStateHidesPrivateQuestionAndProgress": true,
+        "terminalOffersRetryAndHome": true,
+        "noTransientToast": true,
+        "webKeptPollingAfterFatal": true
+      }
+    },
+    {
+      "theme": "dark",
+      "motion": "no-preference",
+      "flow": "terminal",
+      "states": [
+        {
+          "state": "completed-before-offline",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -621.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(231, 230, 225)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 356.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(240, 236, 223)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(240, 236, 223) rgb(240, 236, 223) rgb(117, 104, 74)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "none",
+              "opacity": "0.5",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "quest": {
+              "x": 12,
+              "y": -464.421875,
+              "width": 364,
+              "height": 1339.859375,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)",
+              "borderColor": "rgb(52, 54, 47)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(3, 4, 3, 0.58) 0px 34px 110px 0px, rgba(218, 184, 99, 0.094) 0px 0px 58px 0px, color(srgb 0.941176 0.92549 0.87451 / 0.06) 0px 1px 0px 0px inset, color(srgb 0.941176 0.92549 0.87451 / 0.018) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 655
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-no-preference-terminal-completed-before-offline.png",
+            "sha256": "63bbbc748b052c0c3626ae8ea109fbc1dc3962184c882394f5147e1f9cb80550"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-no-preference-terminal-completed-before-offline.html",
+            "sha256": "dbc0ad91c66fe2426785410de0139c7390d9031afda5ba34610d28673259d30c"
+          }
+        },
+        {
+          "state": "offline-removed-private-state",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "dark",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": {
+              "x": 0,
+              "y": 109.578125,
+              "width": 388,
+              "height": 113.1875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(219, 166, 161)",
+              "backgroundColor": "rgba(102, 49, 44, 0.12)",
+              "borderColor": "rgb(112, 68, 63)",
+              "borderRadius": "10px",
+              "padding": [
+                "16px",
+                "16px",
+                "16px",
+                "16px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "noticeRetry": {
+              "x": 51,
+              "y": 165.765625,
+              "width": 86,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(85, 87, 77)",
+              "borderRadius": "999px",
+              "padding": [
+                "0px",
+                "14px",
+                "0px",
+                "14px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "noticeHome": {
+              "x": 145,
+              "y": 165.765625,
+              "width": 112,
+              "height": 40,
+              "fontSize": "13px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(25, 24, 17)",
+              "backgroundColor": "rgb(212, 188, 125)",
+              "borderColor": "rgb(212, 188, 125)",
+              "borderRadius": "10px",
+              "padding": [
+                "7px",
+                "14px",
+                "7px",
+                "14px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "progress": null,
+            "input": null,
+            "quest": null,
+            "scrollY": 0
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-no-preference-terminal-offline-removed-private-state.png",
+            "sha256": "d8a6a747c70fc9454761c5a1bbc4df5083c3e29e34269282a4c21722af3d24a4"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/dark-no-preference-terminal-offline-removed-private-state.html",
+            "sha256": "b766cd48b908c1dd6891838ab9608037223364d771adfee6c52c232cb7f415b3"
+          }
+        }
+      ],
+      "sourceChecksPassed": 16,
+      "schemaChecksPassed": 3,
+      "assignmentGets": [
+        {
+          "elapsedMs": 3253,
+          "status": 200
+        },
+        {
+          "elapsedMs": 3253,
+          "status": 200
+        },
+        {
+          "elapsedMs": 8257,
+          "status": 409
+        },
+        {
+          "elapsedMs": 13268,
+          "status": 409
+        }
+      ],
+      "observations": {
+        "fatalStateHidesPrivateQuestionAndProgress": true,
+        "terminalOffersRetryAndHome": true,
+        "noTransientToast": true,
+        "webKeptPollingAfterFatal": true
+      }
+    },
+    {
+      "theme": "light",
+      "motion": "no-preference",
+      "flow": "auto-close",
+      "states": [
+        {
+          "state": "healthy-draft",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31.000137329101562,
+              "y": 585.198486328125,
+              "width": 325.999755859375,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(23, 68, 58) rgb(23, 68, 58) rgb(100, 160, 146)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgba(24, 123, 105, 0.204) 0px 1.63863px 3.68692px -2.8676px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -0.255537)"
+            },
+            "quest": {
+              "x": 12.000152587890625,
+              "y": -396.42022705078125,
+              "width": 363.99969482421875,
+              "height": 1131.8740234375,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "0.999966",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(0.999999, 0, 0, 0.999999, 0, 0.00116326)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-auto-close-healthy-draft.png",
+            "sha256": "d16beb8fe8ee5ef4ea04a4f2fbd84b82b01161158317f0fa6dda716f2910076d"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-auto-close-healthy-draft.html",
+            "sha256": "2891cdde72a3d7ffc234ab4fd56cfa7979a7e81af8434f12b84bd5e8edb173c2"
+          }
+        },
+        {
+          "state": "outage-toast",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": {
+              "x": 16,
+              "y": 16,
+              "width": 356,
+              "height": 86,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(130, 175, 162)",
+              "borderRadius": "0px",
+              "padding": [
+                "10px",
+                "8px",
+                "10px",
+                "16px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 12px 40px 0px, rgba(24, 123, 105, 0.21) 0px 0px 24px 0px",
+              "opacity": "1",
+              "animationName": "ui-toast-enter",
+              "animationDuration": "0.32s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "toastTitle": {
+              "x": 33,
+              "y": 27,
+              "width": 274,
+              "height": 23,
+              "fontSize": "16px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(22, 46, 40)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "toastDescription": {
+              "x": 33,
+              "y": 53,
+              "width": 274,
+              "height": 38,
+              "fontSize": "13px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(83, 107, 99)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(83, 107, 99)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "toastClose": {
+              "x": 315,
+              "y": 39,
+              "width": 40,
+              "height": 40,
+              "fontSize": "14px",
+              "fontWeight": "600",
+              "lineHeight": "normal",
+              "color": "rgb(100, 121, 112)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgba(0, 0, 0, 0)",
+              "borderRadius": "50%",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(24, 123, 105) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-auto-close-outage-toast.png",
+            "sha256": "01150ee6aa2c9a2df84425985743b73dd65ee4b4f2d6a7d8b24fd07d42b16cb4"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-auto-close-outage-toast.html",
+            "sha256": "ff621a5e8855f9acd357ccf1e85b7f0891cee5fb910e3db1fc21145f9ec29305"
+          }
+        },
+        {
+          "state": "auto-closed-same-outage",
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "theme": "light",
+              "coarse": true,
+              "reduced": false
+            },
+            "toast": null,
+            "toastTitle": null,
+            "toastDescription": null,
+            "toastClose": null,
+            "notice": null,
+            "noticeRetry": null,
+            "noticeHome": null,
+            "progress": {
+              "x": 327.203125,
+              "y": -553.21875,
+              "width": 48.796875,
+              "height": 50,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(41, 60, 56)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "0px",
+                "0px",
+                "0px"
+              ],
+              "boxShadow": "none",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "none"
+            },
+            "input": {
+              "x": 31,
+              "y": 584.453125,
+              "width": 326,
+              "height": 58,
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(22, 46, 40)",
+              "backgroundColor": "rgba(0, 0, 0, 0)",
+              "borderColor": "rgb(24, 123, 105)",
+              "borderRadius": "0px",
+              "padding": [
+                "0px",
+                "2px",
+                "0px",
+                "2px"
+              ],
+              "boxShadow": "rgb(24, 123, 105) 0px 8px 18px -14px",
+              "opacity": "1",
+              "animationName": "none",
+              "animationDuration": "0s",
+              "transform": "matrix(1, 0, 0, 1, 0, -1)"
+            },
+            "quest": {
+              "x": 12,
+              "y": -396.421875,
+              "width": 364,
+              "height": 1131.875,
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "normal",
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "color(srgb 1 1 1 / 0.96)",
+              "borderColor": "rgb(187, 207, 197)",
+              "borderRadius": "0px",
+              "padding": [
+                "22px",
+                "18px",
+                "26px",
+                "18px"
+              ],
+              "boxShadow": "rgba(28, 65, 51, 0.1) 0px 34px 100px 0px, rgba(24, 123, 105, 0.21) 0px 0px 64px 0px, color(srgb 0.0941176 0.482353 0.411765 / 0.13) 0px 0px 0px 1px, color(srgb 0.0862745 0.180392 0.156863 / 0.08) 0px 1px 0px 0px inset, rgba(24, 123, 105, 0.106) 0px 0px 0px 6px inset",
+              "opacity": "1",
+              "animationName": "quest-card-enter",
+              "animationDuration": "0.88s",
+              "transform": "matrix(1, 0, 0, 1, 0, 0)"
+            },
+            "scrollY": 587
+          },
+          "screenshot": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-auto-close-auto-closed-same-outage.png",
+            "sha256": "d37176cac24fc49a94150945d11bed72c391cc6821a198d93aec6b61ea694b91"
+          },
+          "privateDom": {
+            "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/light-no-preference-auto-close-auto-closed-same-outage.html",
+            "sha256": "2891cdde72a3d7ffc234ab4fd56cfa7979a7e81af8434f12b84bd5e8edb173c2"
+          }
+        }
+      ],
+      "sourceChecksPassed": 16,
+      "schemaChecksPassed": 3,
+      "assignmentGets": [
+        {
+          "elapsedMs": 3395,
+          "status": 200
+        },
+        {
+          "elapsedMs": 10219,
+          "status": 503
+        },
+        {
+          "elapsedMs": 10623,
+          "status": 503
+        },
+        {
+          "elapsedMs": 11427,
+          "status": 503
+        },
+        {
+          "elapsedMs": 13031,
+          "status": 503
+        },
+        {
+          "elapsedMs": 18039,
+          "status": 503
+        },
+        {
+          "elapsedMs": 18444,
+          "status": 503
+        },
+        {
+          "elapsedMs": 19247,
+          "status": 503
+        },
+        {
+          "elapsedMs": 20851,
+          "status": 503
+        }
+      ],
+      "observations": {
+        "automaticCloseMs": 8002,
+        "toastAnimations": [
+          {
+            "state": "open",
+            "animation": "ui-toast-enter",
+            "duration": "0.32s"
+          },
+          {
+            "state": "closed",
+            "animation": "ui-toast-exit",
+            "duration": "0.24s"
+          }
+        ]
+      }
+    }
+  ],
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/gameplay-polling-20261113/web-capture-03/browser-private.json",
+    "sha256": "ee401dd9c07fab799805bb54d9ca76b6ad5a3d34e0088267a164d0d86afe3566"
+  },
+  "blockedRequests": 23
+}

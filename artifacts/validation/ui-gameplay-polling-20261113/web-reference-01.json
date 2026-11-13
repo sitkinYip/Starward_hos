@@ -1,0 +1,46 @@
+{
+  "status": "incomplete",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "driverSha256": "c1808f6da570161e0904d787b8dd44bdcba60d72906d720cf965259ea84bfa4a",
+  "sourceSha256": {
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/api/game.client.ts": "7a14111a47948a6c4b05fad838e508fa35944256a45ecbc8b2aeb7d447b0e880",
+    "src/api/retry.ts": "c6201ba3b5f917456fb295343a7aacd3651d28faebc02e38b577e4ce966d67df",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GameContext.tsx": "bcff647ce221bb48570ec20979780432703201ae66f8ba1c2ff82511fe13d0db",
+    "src/features/game/components/GameRequestFeedback.tsx": "66856caa1642e05a28341175b6537a870655a6119680dc048eef4c82a7e4c291",
+    "src/features/game/components/GameState.tsx": "b28f86a8cd98cbd6dff9ac8ead823f30f036173001ccdc36e9f41820fe4e0e01",
+    "src/components/ui/Toast.tsx": "4a4d6cb3ff6d84d6aa90baf19ac0d1524f908bf627fa36104276c3cde9086a0d",
+    "src/components/ui/ToastProvider.tsx": "bc2fde44130e674a1d780edc6e530faae9db5782a6b0ef52c3c7b54db8895fa8",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+    "src/styles/components/controls-and-overlays.css": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+    "src/styles/effects/keyframes.css": "32eaffd5ff73587063de50ca64984cd6105a8851f0d72dcb280e4625182f1964",
+    "src/styles/features/game-request-feedback.css": "45f299efcda2783320a979a388dc54867efe0113acebe2e8cce6f5ab3e2bee8a",
+    "src/styles/features/game.css": "1dde5db314207cb4a525f8e45fde703f70170e08488e6ede648b9ff14eac3d4d"
+  },
+  "inputSha256": {
+    "active": "94d133f41285cdeeb092a3a11fe7a1a13077b0082e793200300b50563ac9ac00",
+    "preterminal": "3bc11aec6f38fcb48fc519aac0f641216eea0c6ae1b5920e3405967ddd722c2e",
+    "errorBodies": {
+      "503": "da7b25fc1096bb0121a2a150a68de656be932e17610a57534669b9d0c14579b3",
+      "409": "65e87c13a850e1be1eb0774109b71b8b02523a0901feb66dfe1fd4f94a796eeb"
+    }
+  },
+  "errorReplay": "observed_disposable_http_bodies",
+  "referenceFontSourceSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "inputScope": "exact_disposable_https_assignment_dtos",
+  "syntheticAuthentication": true,
+  "businessRequestsForwarded": 0,
+  "externalRequestsForwarded": 0,
+  "assignmentOnlyFaultInjection": true,
+  "visualReview": "pending_original_review",
+  "cases": [],
+  "failure": "Guarded replay did not complete; see private evidence.",
+  "privateBrowserEvidence": {
+    "file": "artifacts/private/gameplay-polling-20261113/web-capture-01/browser-private.json",
+    "sha256": "9b58896fe60f727094cf8670d9dd4fb2d1771cdfd25d4bf4b841d1d4a970c33f"
+  },
+  "blockedRequests": 4
+}

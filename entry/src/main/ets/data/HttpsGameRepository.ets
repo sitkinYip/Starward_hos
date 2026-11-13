@@ -5,6 +5,7 @@ import { decodeGameplay, decodeGameplayAnswer } from './GameplayDecoder';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, avatarMimeType, GameFailure, Player,
   validateAvatarUpload, validateDisplayName, validatePasswordChange } from '../business/models';
 import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, TransportResponse } from '../platform/HttpTransport';
+import { ReadCancellation } from '../business/ReadCancellation';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
   LoginResult, PasswordResult } from './DtoDecoder';
 
@@ -140,13 +141,15 @@ export class HttpsGameRepository implements GameRepository {
   }
 
   private async request(path: string, method: string, body: string, token: string,
-    generation: number): Promise<string> {
+    generation: number, cancellation?: ReadCancellation): Promise<string> {
     const request: TransportRequest = new TransportRequest();
     request.url = this.baseUrl + path;
     request.method = method;
     request.body = body;
     request.token = token;
+    request.cancellation = cancellation;
     const response: TransportResponse = await this.send(request, generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '场次读取已取消。'); }
     this.rejectResponse(response);
     return response.body;
   }
@@ -353,13 +356,13 @@ export class HttpsGameRepository implements GameRepository {
     return snapshot;
   }
 
-  async gameplay(id: string): Promise<GameplaySnapshot> {
+  async gameplay(id: string, cancellation?: ReadCancellation): Promise<GameplaySnapshot> {
     const generation: number = this.requireSession();
     if (id.length === 0) {
       throw new GameFailure('VALIDATION_ERROR', '缺少场次，请返回后重试。');
     }
     const body: string = await this.request('/api/questions/v1/assignments/' + encodeURIComponent(id),
-      'GET', '', this.token, generation);
+      'GET', '', this.token, generation, cancellation);
     return this.acceptGameplay(body, id, generation);
   }
 

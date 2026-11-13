@@ -1,0 +1,130 @@
+{
+  "status": "passed",
+  "stage": "background",
+  "fixtureRole": "native",
+  "hapSha256": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+  "bindingSha256": {
+    "hap": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+    "runtime": "fbdb204b6600b3791109cc6add267dc8539ee4f5433fd8c870d90db8f2b83c19",
+    "caseReference": "17d52da36a0ff467b113b6240ff710a21b54dc1cca6aed43d5b44dbcfd85eebd",
+    "ca": "e4d65a37e183c64793c4eb6d0d4ada035106865847ddda728ea3fd1717b8b17d",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "997b0008357665384e9f9429c22ead638c769a132a058cb9fbd879d00d7c2549",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "existingPhoneGuard": "1a6088074c63b1eb115c263b4cd5b473a7001ff1a26db5f4ceb59e66902dddb5",
+    "device": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "fixtureDriver": "837916efe353d619af9e1b6eb942fd4d142c4a18094d0e88062b2f3050eede64",
+    "GameplayPage": "106a07683195b35e4c7e0646c2907ccb0001af3124f1dbb50ff06fc70668929c",
+    "GameplayViewModel": "e7c4567430e3f74d951f874a242a95a3f264922829f64fd707daf711b4dc605f",
+    "HttpTransport": "876ca1fd2e16f4508e634ff4aa7af56183eaddb22de8af4ae5b88482016eefb4",
+    "HttpsGameRepository": "fff2d3c40496bff69802356cfcc02128de48d84fe23dd2b7f4f75e365703893f",
+    "StarwardRefresh": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "StarwardSyncNotice": "e6204bc30c710188d563574932c9dc7c7d8976138ad86199451e16bb66f83c59",
+    "ReadCancellation": "fa518a8298ff9ae5168fdd06420f78d0cb8e42e175a91f41ad027f3189fd210b"
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "checks": [
+    "Exact isolated actor entered the second question by authenticated read",
+    "Home pauses detail polling after the old gateway response finishes; same App resumes with a new GET"
+  ],
+  "observations": {
+    "backgroundHeldRead": {
+      "delayMs": 12000,
+      "pausedAtLeastSeconds": 5.6,
+      "oldGatewayResponseEventuallyFinished": true,
+      "newAuthenticatedForegroundRead": true,
+      "readWasStillHeldAtBackground": true
+    },
+    "dedicatedSessionIntentionallyLeftOpen": true,
+    "detailReads": [
+      {
+        "time": "2026-11-13T07:00:17.932Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:00:31.142Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:00:31.161Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:00:36.196Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:00:41.229Z",
+        "status": 200,
+        "fault": true,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": false
+      },
+      {
+        "time": "2026-11-13T07:00:59.332Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      }
+    ]
+  },
+  "states": {},
+  "cleanup": {
+    "faultCleared": true,
+    "remoteRawFilesRemoved": true,
+    "zeroWrites": true
+  },
+  "factsBefore": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 40,
+    "playerTotalXp": 40,
+    "clueUnlockRows": 1,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070017520128Z/native-reference-dtos.json",
+    "sha256": "48d3b141b3660afe0dab8cad154c53c2831d13d387249f1528208e2a4766137a"
+  },
+  "factsAfter": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 40,
+    "playerTotalXp": 40,
+    "clueUnlockRows": 1,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "failure": null,
+  "lastStep": "background-pauses-polling",
+  "visualReview": "pending_original_review"
+}

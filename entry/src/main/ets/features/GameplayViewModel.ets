@@ -2,7 +2,10 @@ import { GameRepository } from '../business/GameRepository';
 import { answerAutomaticClues, completionCombinations } from '../business/GameplayClues';
 import { GameplayAnswerResult, GameplayClue, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
 import { GameFailure, Player } from '../business/models';
+import { ReadCancellation } from '../business/ReadCancellation';
 import { createRequestIdentity } from '../platform/RequestIdentity';
+
+const GAMEPLAY_POLL_INTERVAL_MS: number = 5000;
 
 class EntryIntent {
   assignmentId: string;
@@ -61,6 +64,7 @@ export class GameplayViewModel {
   @Trace loading: boolean = false;
   @Trace refreshing: boolean = false;
   @Trace refreshError: string = '';
+  @Trace syncEpisode: number = 0;
   @Trace starting: boolean = false;
   @Trace error: string = '';
   @Trace errorCode: string = '';
@@ -104,6 +108,10 @@ export class GameplayViewModel {
   private rankGeneration: number = 0;
   private pendingRankUp: GameplayRankUp | null = null;
   private rankCompletionRevision: number = 0;
+  private syncEpisodeSequence: number = 0;
+  private pollingActive: boolean = false;
+  private pollTimer: number = -1;
+  private pollRead: ReadCancellation | null = null;
 
   constructor(repository: GameRepository, accepted: (snapshot: GameplaySnapshot) => void = () => {},
     authenticationFailed: (message: string) => void = () => {}, requestIdentity: () => string = createRequestIdentity,
@@ -132,6 +140,7 @@ export class GameplayViewModel {
   }
 
   leave(): void {
+    this.setPollingActive(false);
     this.cancelAutomaticClues();
     this.cancelAutoAdvance();
     this.contentGeneration++;
@@ -142,6 +151,7 @@ export class GameplayViewModel {
     this.loading = false;
     this.refreshing = false;
     this.refreshError = '';
+    this.syncEpisode = 0;
     this.starting = false;
     this.error = '';
     this.errorCode = '';
@@ -195,11 +205,17 @@ export class GameplayViewModel {
   }
 
   private clearRefreshFacts(): void {
-    this.cancelRankUpPresentation();
+    this.cancelAutomaticClues();
+    this.cancelAutoAdvance();
+    this.contentGeneration++;
     this.snapshot = null;
     this.activeIndex = 0;
     this.draftAnswer = '';
     this.drafts = [];
+    this.answers = this.answers.filter((item: AnswerIntent) => item.assignmentId !== this.assignmentId);
+    this.retryAnswer = false;
+    this.refreshError = '';
+    this.syncEpisode = 0;
     this.answerError = '';
     this.feedback = '';
     this.feedbackDanger = false;
@@ -216,6 +232,7 @@ export class GameplayViewModel {
     this.error = '';
     this.errorCode = '';
     this.refreshError = '';
+    this.syncEpisode = 0;
     this.serverOffset = Date.parse(snapshot.detail.serverTime) - Date.now();
     this.tick();
     this.accepted(snapshot);
@@ -415,6 +432,7 @@ export class GameplayViewModel {
     if (this.owner.length === 0 || id.length === 0 || this.starting || this.loading || this.refreshing) {
       return;
     }
+    this.interruptPolling();
     const epoch: number = this.epoch;
     const revision: number = ++this.revision;
     this.assignmentId = id;
@@ -455,6 +473,7 @@ export class GameplayViewModel {
     } finally {
       if (this.current(epoch, revision, id)) {
         this.starting = false;
+        this.schedulePoll();
       }
     }
   }
@@ -463,6 +482,7 @@ export class GameplayViewModel {
     if (this.owner.length === 0 || id.length === 0 || this.starting || this.loading || this.submitting || this.refreshing) {
       return;
     }
+    this.interruptPolling();
     const epoch: number = this.epoch;
     const revision: number = ++this.revision;
     const index: number = keepPosition ? this.activeIndex : -1;
@@ -475,6 +495,7 @@ export class GameplayViewModel {
     this.error = '';
     this.errorCode = '';
     this.refreshError = '';
+    this.syncEpisode = 0;
     this.answerError = '';
     this.feedback = '';
     this.completionRevision = 0;
@@ -495,6 +516,7 @@ export class GameplayViewModel {
     } finally {
       if (this.current(epoch, revision, id)) {
         this.loading = false;
+        this.schedulePoll();
       }
     }
   }
@@ -505,6 +527,7 @@ export class GameplayViewModel {
 
   canRefresh(handoffClue?: GameplayClue): boolean {
     return this.owner.length > 0 && this.assignmentId.length > 0 && this.visible && this.snapshot !== null &&
+      this.error.length === 0 && this.snapshot.detail.status !== 'cancelled' &&
       !this.loading && !this.starting && !this.submitting && !this.retryEntry && !this.retryAnswer &&
       !this.advancing && !this.refreshing && this.rankUp === null &&
       (this.automaticClue === null || (handoffClue?.kind === 'text' && this.automaticClue === handoffClue));
@@ -515,32 +538,95 @@ export class GameplayViewModel {
     if (!this.canRefresh(handoffClue)) {
       return;
     }
+    this.interruptPolling();
     const epoch: number = this.epoch;
     const revision: number = ++this.revision;
     const id: string = this.assignmentId;
-    const levelId: string = this.currentLevel()?.id || '';
     this.refreshing = true;
     this.refreshError = '';
     try {
       const snapshot: GameplaySnapshot = await this.repository.gameplay(id);
       if (this.current(epoch, revision, id)) {
-        this.accept(snapshot);
-        const index: number = snapshot.levels.findIndex((level: GameplayLevel) => level.id === levelId);
-        this.restoreForm(index >= 0 ? index : snapshot.detail.currentIndex);
+        this.applyRefresh(snapshot);
       }
     } catch (error) {
       if (this.current(epoch, revision, id)) {
-        const failure: Object = error as Object;
-        if (this.transientRefreshFailure(failure)) {
-          this.refreshError = error instanceof Error ? error.message : '同步失败，请稍后重试。';
-        } else {
-          this.clearRefreshFacts();
-          this.fail(failure);
-        }
+        this.reportRefreshFailure(error as Object, true);
       }
     } finally {
       if (this.current(epoch, revision, id)) {
         this.refreshing = false;
+        this.schedulePoll();
+      }
+    }
+  }
+
+  private applyRefresh(snapshot: GameplaySnapshot): void {
+    const levelId: string = this.currentLevel()?.id || '';
+    this.accept(snapshot);
+    if (snapshot.detail.status === 'cancelled' || snapshot.detail.startedAt.length === 0) {
+      this.clearRefreshFacts();
+      this.snapshot = snapshot;
+      return;
+    }
+    this.drafts = this.drafts.filter((draft: AnswerDraft) => snapshot.levels.some((level: GameplayLevel) =>
+      level.id === draft.levelId && level.question !== null && level.completedAt.length === 0));
+    const index: number = snapshot.levels.findIndex((level: GameplayLevel) => level.id === levelId);
+    this.restoreForm(index >= 0 ? index : snapshot.detail.currentIndex);
+  }
+
+  private reportRefreshFailure(error: Object, manual: boolean): void {
+    if (this.transientRefreshFailure(error)) {
+      if (this.syncEpisode === 0) { this.syncEpisode = ++this.syncEpisodeSequence; }
+      if (manual) { this.refreshError = error instanceof Error ? error.message : '同步失败，请稍后重试。'; }
+      return;
+    }
+    this.clearRefreshFacts();
+    this.fail(error);
+  }
+
+  setPollingActive(active: boolean): void {
+    this.pollingActive = active;
+    if (active) { this.schedulePoll(); } else { this.interruptPolling(); }
+  }
+
+  private canPoll(): boolean {
+    return this.pollingActive && this.owner.length > 0 && this.visible && this.error.length === 0 &&
+      this.snapshot !== null && (this.snapshot.detail.status === 'active' || this.snapshot.detail.status === 'completed') &&
+      !this.loading && !this.starting && !this.submitting && !this.retryEntry && !this.retryAnswer && !this.refreshing;
+  }
+
+  private interruptPolling(): void {
+    if (this.pollTimer !== -1) { clearTimeout(this.pollTimer); this.pollTimer = -1; }
+    const read: ReadCancellation | null = this.pollRead;
+    this.pollRead = null;
+    read?.cancel();
+  }
+
+  private schedulePoll(): void {
+    if (this.pollTimer !== -1 || this.pollRead !== null || !this.canPoll()) { return; }
+    this.pollTimer = setTimeout(() => {
+      this.pollTimer = -1;
+      this.poll();
+    }, GAMEPLAY_POLL_INTERVAL_MS);
+  }
+
+  private async poll(): Promise<void> {
+    if (!this.canPoll()) { return; }
+    const read: ReadCancellation = new ReadCancellation();
+    this.pollRead = read;
+    const epoch: number = this.epoch;
+    const revision: number = this.revision;
+    const id: string = this.assignmentId;
+    try {
+      const snapshot: GameplaySnapshot = await this.repository.gameplay(id, read);
+      if (this.pollRead === read && this.current(epoch, revision, id)) { this.applyRefresh(snapshot); }
+    } catch (error) {
+      if (this.pollRead === read && this.current(epoch, revision, id)) { this.reportRefreshFailure(error as Object, false); }
+    } finally {
+      if (this.pollRead === read) {
+        this.pollRead = null;
+        this.schedulePoll();
       }
     }
   }
@@ -606,6 +692,7 @@ export class GameplayViewModel {
   }
 
   private async performAnswer(intent: AnswerIntent, autoNextDelay: number): Promise<void> {
+    this.interruptPolling();
     const epoch: number = this.epoch;
     const revision: number = this.revision;
     const id: string = this.assignmentId;
@@ -720,6 +807,7 @@ export class GameplayViewModel {
     } finally {
       if (this.current(epoch, revision, id)) {
         this.submitting = false;
+        this.schedulePoll();
       }
     }
   }

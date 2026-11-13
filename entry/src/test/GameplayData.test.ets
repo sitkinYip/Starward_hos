@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { GameFailure } from '../main/ets/business/models';
+import { ReadCancellation } from '../main/ets/business/ReadCancellation';
 import { GameplaySnapshot } from '../main/ets/business/GameplayModels';
 import { decodeGameplay } from '../main/ets/data/GameplayDecoder';
 import { HttpsGameRepository } from '../main/ets/data/HttpsGameRepository';
@@ -28,9 +29,9 @@ class GameplayTransport implements HttpTransport {
     });
   }
 
-  complete(body: string): void {
+  complete(body: string, status: number = 200): void {
     const value: TransportResponse = new TransportResponse();
-    value.status = 200;
+    value.status = status;
     value.body = body;
     this.resolvePending(value);
   }
@@ -78,6 +79,22 @@ async function login(repository: HttpsGameRepository, transport: GameplayTranspo
 
 export default function gameplayDataTests(): void {
   describe('GameplayData', () => {
+    it('cancelledReadCannotInvalidateTheSessionWithALateUnauthorizedReply', 0, async () => {
+      const transport: GameplayTransport = new GameplayTransport();
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport);
+      await login(repository, transport);
+      transport.deferNext();
+      const cancellation: ReadCancellation = new ReadCancellation();
+      const pending: Promise<GameplaySnapshot> = repository.gameplay('assignment1', cancellation);
+      expect(transport.requests[2].cancellation === cancellation).assertTrue();
+      cancellation.cancel();
+      transport.complete('{"error":{"code":"UNAUTHORIZED","message":"旧请求失败"}}', 401);
+      expect(await rejected(pending)).assertEqual('CANCELLED');
+      transport.reply(200, GAMEPLAY_STARTED_JSON);
+      await repository.gameplay('assignment1');
+      expect(transport.requests[3].token).assertEqual('gameplay-test-token');
+    });
+
     it('keepsUnstartedQuestionsNullAndDecodesTheVisibleTextQuestionAfterEntry', 0, () => {
       const before: GameplaySnapshot = decodeGameplay(GAMEPLAY_UNSTARTED_JSON);
       expect(before.levels.length).assertEqual(2);

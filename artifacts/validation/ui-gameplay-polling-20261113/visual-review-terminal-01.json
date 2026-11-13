@@ -1,0 +1,66 @@
+{
+  "status": "reviewed_originals",
+  "pairedStates": 2,
+  "pairs": [
+    {
+      "role": "terminal",
+      "theme": "light",
+      "nativeState": "private-clue-before-revocation",
+      "webState": "private-clue-before-offline",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/private-clue-before-revocation.png",
+        "sha256": "1e9cb6fac46913e76a5b2a9a66d9910b0da9d3318b6394baa1b299f14ac8e420",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/web-capture-06/light-no-preference-terminal-private-clue-before-offline.png",
+        "sha256": "8c7bb6833b46745de5b4918da686d486453c9d26e557ea7710c0a6c0813edef8"
+      },
+      "findings": [
+        "Both originals show the same authorized final-question modal, heading, three paragraphs and close affordance before archive. Native uses the established system overlay treatment, leaving more of the scrolled underlying question visually legible than Web's blur."
+      ]
+    },
+    {
+      "role": "terminal",
+      "theme": "light",
+      "nativeState": "after-real-session-revocation",
+      "webState": "offline-removed-private-state",
+      "nativeOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/after-real-session-revocation.png",
+        "sha256": "32f912587f2d47e1de9eef3f0126ad7ee1d902ff17a403e37caea2367e8e8685",
+        "scope": "Private original; may show the dedicated test account"
+      },
+      "webOriginal": {
+        "file": "artifacts/private/gameplay-polling-20261113/web-capture-06/light-no-preference-terminal-offline-removed-private-state.png",
+        "sha256": "aaf44bcbf29ba5296a323562deae1cd383cd0828e265e5ebf5b998ad055a677d"
+      },
+      "findings": [
+        "Both originals replace the scrolled question and private clue with the account identity header and red-tinted inline error, with no visible old progress. Both show the same warning text, retry, and return-home controls in that order.",
+        "The existing native error notice sits inside the 12vp gameplay inset and below the taller official title bar. Web's corresponding error notice reaches the content edges and uses a pill-shaped secondary retry action. Native uses the established rectangular retry appearance. Neither error panel clips the warning or actions."
+      ]
+    }
+  ],
+  "nativeWindowPhysicalPixels": [
+    1260,
+    2720
+  ],
+  "nativeContentVp": [
+    387.6923076923077,
+    771.0769230769231
+  ],
+  "sameDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "sameNativeActorsAndContent": true,
+  "sourceHapSha256": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+  "nativeRuntimeSha256": "fbdb204b6600b3791109cc6add267dc8539ee4f5433fd8c870d90db8f2b83c19",
+  "webReportSha256": "6d6b22ea63f434c8865987b0ec479c50e0c99e6c86d4a3e84ba35ad601d60a25",
+  "hostFixtureSha256": "cf3c49b089af05aacc57f833adee28e70c8bdcc8efbbf16b08c4296074d69d58",
+  "webArchiveReceiptSha256": "112a31163de40e4db227a9c7441849849d72cc1706b029eb63c3487de31b0c28",
+  "reviewObservationsSha256": "41d0b06e3ca26a973662052e7f1abb3c63b9396a92a902d91e3e9b47cf133211",
+  "nativeBindings": {
+    "terminal": {
+      "nativeReportSha256": "c90127aba2170090400460408d99a8e1910b97add989e32bda09346ba0762f9c",
+      "nativeAssignmentSnapshotSha256": "442ce8aee49e582a2fefc84c3168a287e24bfa05ca2de7b26ed28c56b34b7af0",
+      "fullNativeRunPassed": true
+    }
+  }
+}

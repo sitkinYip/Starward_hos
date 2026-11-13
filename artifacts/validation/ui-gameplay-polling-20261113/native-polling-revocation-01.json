@@ -1,0 +1,231 @@
+{
+  "status": "passed",
+  "stage": "revocation",
+  "fixtureRole": "revocation",
+  "hapSha256": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+  "bindingSha256": {
+    "hap": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+    "runtime": "fbdb204b6600b3791109cc6add267dc8539ee4f5433fd8c870d90db8f2b83c19",
+    "caseReference": "d266125564919e0d76da1cb58cd7994152c95ce680269bd7ffea907b0231e7d1",
+    "ca": "e4d65a37e183c64793c4eb6d0d4ada035106865847ddda728ea3fd1717b8b17d",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "997b0008357665384e9f9429c22ead638c769a132a058cb9fbd879d00d7c2549",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "existingPhoneGuard": "1a6088074c63b1eb115c263b4cd5b473a7001ff1a26db5f4ceb59e66902dddb5",
+    "device": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "fixtureDriver": "837916efe353d619af9e1b6eb942fd4d142c4a18094d0e88062b2f3050eede64",
+    "GameplayPage": "106a07683195b35e4c7e0646c2907ccb0001af3124f1dbb50ff06fc70668929c",
+    "GameplayViewModel": "e7c4567430e3f74d951f874a242a95a3f264922829f64fd707daf711b4dc605f",
+    "HttpTransport": "876ca1fd2e16f4508e634ff4aa7af56183eaddb22de8af4ae5b88482016eefb4",
+    "HttpsGameRepository": "fff2d3c40496bff69802356cfcc02128de48d84fe23dd2b7f4f75e365703893f",
+    "StarwardRefresh": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "StarwardSyncNotice": "e6204bc30c710188d563574932c9dc7c7d8976138ad86199451e16bb66f83c59",
+    "ReadCancellation": "fa518a8298ff9ae5168fdd06420f78d0cb8e42e175a91f41ad027f3189fd210b"
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "checks": [
+    "Exact isolated actor entered the second question by authenticated read",
+    "Real backend archive invalidates the visible private clue and stops automatic polling"
+  ],
+  "observations": {
+    "officialAdminArchiveSucceeded": true,
+    "detailReads": [
+      {
+        "time": "2026-11-13T07:01:06.560Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:15.462Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:15.492Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:20.520Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:25.548Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:30.576Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:35.608Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:40.645Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:45.688Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T07:02:50.731Z",
+        "status": 409,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      }
+    ]
+  },
+  "states": {
+    "private-clue-before-revocation": {
+      "raw": {
+        "label": "private-clue-before-revocation",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/raw-private-clue-before-revocation-d706f46cbf234e6794470500a10cc0f1.json",
+        "remoteRemoved": true,
+        "sha256": "c9e1d33fa720b9b8521b67f09ecb41e9578c4d5dbc70c93ca9c25993eb8feaed"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-clue-text-dialog": [
+          78,
+          789,
+          1182,
+          1931
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          971,
+          523,
+          1097
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-clue-text-dialog",
+        "gameplay-clue-text-title"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/private-clue-before-revocation.png",
+        "sha256": "1e9cb6fac46913e76a5b2a9a66d9910b0da9d3318b6394baa1b299f14ac8e420",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "after-real-session-revocation": {
+      "raw": {
+        "label": "after-real-session-revocation",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/raw-after-real-session-revocation-85cf128267e54a609a6bd2590d994830.json",
+        "remoteRemoved": true,
+        "sha256": "2fbfedeeb5ab80870fab100dce9cf0946d18ac02b636e8455708eb7681c8f3c0"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "error-message": [
+          205,
+          615,
+          1167,
+          692
+        ],
+        "request-retry": [
+          205,
+          731,
+          470,
+          861
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "error-message",
+        "request-retry"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/after-real-session-revocation.png",
+        "sha256": "32f912587f2d47e1de9eef3f0126ad7ee1d902ff17a403e37caea2367e8e8685",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    }
+  },
+  "cleanup": {
+    "faultCleared": true,
+    "loggedOut": true,
+    "remoteRawFilesRemoved": true,
+    "zeroWrites": true
+  },
+  "factsBefore": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "answerSubmissionCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 80,
+    "playerTotalXp": 80,
+    "clueUnlockRows": 2,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T070106141445Z/native-reference-dtos.json",
+    "sha256": "442ce8aee49e582a2fefc84c3168a287e24bfa05ca2de7b26ed28c56b34b7af0"
+  },
+  "factsAfter": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "answerSubmissionCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 80,
+    "playerTotalXp": 80,
+    "clueUnlockRows": 2,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "failure": null,
+  "lastStep": "server-revocation-during-open-clue",
+  "visualReview": "pending_original_review"
+}

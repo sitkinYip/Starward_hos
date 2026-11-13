@@ -1,0 +1,802 @@
+{
+  "status": "incomplete",
+  "stage": "main",
+  "fixtureRole": "native",
+  "hapSha256": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+  "bindingSha256": {
+    "hap": "0c74bd620d2e43526cf07d1285919264ed69f93c4a0919bc86123eac894d9b5a",
+    "runtime": "fbdb204b6600b3791109cc6add267dc8539ee4f5433fd8c870d90db8f2b83c19",
+    "caseReference": "17d52da36a0ff467b113b6240ff710a21b54dc1cca6aed43d5b44dbcfd85eebd",
+    "ca": "e4d65a37e183c64793c4eb6d0d4ada035106865847ddda728ea3fd1717b8b17d",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "419f2148ecad00810d6b708778e3531ea2f3bca6aa86d39fd2a1022638553d20",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "existingPhoneGuard": "1a6088074c63b1eb115c263b4cd5b473a7001ff1a26db5f4ceb59e66902dddb5",
+    "device": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "fixtureDriver": "837916efe353d619af9e1b6eb942fd4d142c4a18094d0e88062b2f3050eede64",
+    "GameplayPage": "106a07683195b35e4c7e0646c2907ccb0001af3124f1dbb50ff06fc70668929c",
+    "GameplayViewModel": "e7c4567430e3f74d951f874a242a95a3f264922829f64fd707daf711b4dc605f",
+    "HttpTransport": "876ca1fd2e16f4508e634ff4aa7af56183eaddb22de8af4ae5b88482016eefb4",
+    "HttpsGameRepository": "fff2d3c40496bff69802356cfcc02128de48d84fe23dd2b7f4f75e365703893f",
+    "StarwardRefresh": "682c9b0b428bdf45a8b600bccedbd07ca237815b6efdb928078af3b1f39f7393",
+    "StarwardSyncNotice": "e6204bc30c710188d563574932c9dc7c7d8976138ad86199451e16bb66f83c59",
+    "ReadCancellation": "fa518a8298ff9ae5168fdd06420f78d0cb8e42e175a91f41ad027f3189fd210b"
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "checks": [
+    "Exact isolated actor entered the second question by authenticated read",
+    "One real idle GET retained input instance, focus, keyboard, draft and physical scroll coordinates",
+    "A real held automatic HTTPS response does not show a busy editor or block submit",
+    "Automatic 503 notice is dismissible without losing the draft; continued outage stays dismissed and polling recovers",
+    "A distinct 503 shows a fresh notice and the next 200 removes it without any user action"
+  ],
+  "observations": {
+    "observedTemporary503s": 4,
+    "secondDistinctNoticeObserved": true,
+    "stableTopRailAndTitleBoundsPx": [
+      [
+        364,
+        508,
+        670,
+        712
+      ],
+      [
+        100,
+        956,
+        1160,
+        1079
+      ]
+    ],
+    "officialAdminHideTitleSucceeded": true,
+    "dedicatedSessionIntentionallyLeftOpen": true,
+    "detailReads": [
+      {
+        "time": "2026-11-13T06:42:50.243Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:43:54.651Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:43:54.667Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:43:59.697Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:04.730Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:09.764Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:14.826Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:19.859Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:24.882Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:29.918Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:34.950Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:39.991Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:45.038Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:50.081Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:44:55.130Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:00.180Z",
+        "status": 200,
+        "fault": true,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": false
+      },
+      {
+        "time": "2026-11-13T06:45:17.261Z",
+        "status": 503,
+        "fault": true,
+        "upstreamFinished": null,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:22.293Z",
+        "status": 503,
+        "fault": true,
+        "upstreamFinished": null,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:27.344Z",
+        "status": 503,
+        "fault": true,
+        "upstreamFinished": null,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:32.370Z",
+        "status": 503,
+        "fault": true,
+        "upstreamFinished": null,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:37.395Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:42.438Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:47.473Z",
+        "status": 503,
+        "fault": true,
+        "upstreamFinished": null,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:52.507Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:45:57.682Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:50:59.690Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:03.173Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:08.194Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:13.219Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:18.251Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:18.305Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:23.344Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:27.590Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:32.620Z",
+        "status": 200,
+        "fault": false,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": null
+      },
+      {
+        "time": "2026-11-13T06:51:37.654Z",
+        "status": 200,
+        "fault": true,
+        "upstreamFinished": true,
+        "responseAwaitingDelay": true
+      }
+    ]
+  },
+  "states": {
+    "ime-draft-before": {
+      "raw": {
+        "label": "ime-draft-before",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-ime-draft-before-d6bee9e20cf44198a945788bb2c89e2b.json",
+        "remoteRemoved": true,
+        "sha256": "f44b64b28248718c68f91daaa27a18fbab8d68c8c9a192e3a21820669e3fab69"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          1699
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1530
+        ],
+        "gameplay-answer-input": [
+          100,
+          1043,
+          1161,
+          1232
+        ],
+        "gameplay-submit": [
+          100,
+          1294,
+          439,
+          1444
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/ime-draft-before.png",
+        "sha256": "d8dae0eccf9b3b4dd5953afc72f9a5fc6874e665ccfc48519ad86077626a8460",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "ime-draft-after-automatic-get": {
+      "raw": {
+        "label": "ime-draft-after-automatic-get",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-ime-draft-after-automatic-get-508c606795f94b029e36c1f77f5fe4d4.json",
+        "remoteRemoved": true,
+        "sha256": "f44b64b28248718c68f91daaa27a18fbab8d68c8c9a192e3a21820669e3fab69"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          1699
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1530
+        ],
+        "gameplay-answer-input": [
+          100,
+          1043,
+          1161,
+          1232
+        ],
+        "gameplay-submit": [
+          100,
+          1294,
+          439,
+          1444
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/ime-draft-after-automatic-get.png",
+        "sha256": "b1d6b042abd32095ece53b279181b1d9eda1dbd7acb566e91d5c46551ed4e894",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "unobstructed-draft-before-delayed-poll": {
+      "raw": {
+        "label": "unobstructed-draft-before-delayed-poll",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-unobstructed-draft-before-delayed-poll-2b4bbfab2fc34bd8a4a990e0450f172e.json",
+        "remoteRemoved": true,
+        "sha256": "9849b4be9965b209b2b57b959f6b2a27415415475303d857cb759ef628617149"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ]
+    },
+    "unobstructed-draft-during-delayed-poll": {
+      "raw": {
+        "label": "unobstructed-draft-during-delayed-poll",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-unobstructed-draft-during-delayed-poll-d1f0bd677e7f4f5296aa64c23a3c66b4.json",
+        "remoteRemoved": true,
+        "sha256": "9849b4be9965b209b2b57b959f6b2a27415415475303d857cb759ef628617149"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ]
+    },
+    "before-outage": {
+      "raw": {
+        "label": "before-outage",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-before-outage-2d279a5fb3d148c58d854928c1f061c2.json",
+        "remoteRemoved": true,
+        "sha256": "9849b4be9965b209b2b57b959f6b2a27415415475303d857cb759ef628617149"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ]
+    },
+    "automatic-503-with-notice": {
+      "raw": {
+        "label": "automatic-503-with-notice",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-automatic-503-with-notice-827664c2dc9349a5bc95cf351a05b37f.json",
+        "remoteRemoved": true,
+        "sha256": "2f0dceb063b4dc6852fd1b6c73ef1dd990a455f756c1b05cd7afd9cd416219aa"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ],
+        "gameplay-sync-notice": [
+          52,
+          124,
+          1208,
+          407
+        ],
+        "gameplay-sync-notice-title": [
+          107,
+          158,
+          1010,
+          236
+        ],
+        "gameplay-sync-notice-description": [
+          107,
+          246,
+          1010,
+          372
+        ],
+        "gameplay-sync-notice-dismiss": [
+          1036,
+          193,
+          1179,
+          336
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit",
+        "gameplay-sync-notice",
+        "gameplay-sync-notice-title",
+        "gameplay-sync-notice-description",
+        "gameplay-sync-notice-dismiss"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/automatic-503-with-notice.png",
+        "sha256": "d9ff6d9c6c9e2f929dc8cf11799c447499ad8f2c5ff4365a3c00f065eb97dc23"
+      }
+    },
+    "closed-notice-through-continued-outage": {
+      "raw": {
+        "label": "closed-notice-through-continued-outage",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-closed-notice-through-continued-outage-660c0bbd8b134c909d8c9d4770adf9b2.json",
+        "remoteRemoved": true,
+        "sha256": "9849b4be9965b209b2b57b959f6b2a27415415475303d857cb759ef628617149"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/closed-notice-through-continued-outage.png",
+        "sha256": "b31717dddbbcb30d048de8c740e56ff7fb5f77cd599d69cf9f0b2f21748c5d4b",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "automatic-recovery-retains-form": {
+      "raw": {
+        "label": "automatic-recovery-retains-form",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-automatic-recovery-retains-form-b727fe521c2e40f8ac2b614995d7bc72.json",
+        "remoteRemoved": true,
+        "sha256": "9849b4be9965b209b2b57b959f6b2a27415415475303d857cb759ef628617149"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2551
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-question-card",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ],
+      "original": {
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/automatic-recovery-retains-form.png",
+        "sha256": "b31717dddbbcb30d048de8c740e56ff7fb5f77cd599d69cf9f0b2f21748c5d4b",
+        "scope": "Private original; may show the dedicated test account"
+      }
+    },
+    "second-outage-auto-dismissed": {
+      "raw": {
+        "label": "second-outage-auto-dismissed",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-second-outage-auto-dismissed-29db7046d30e4126a6a9a1a4c2d1ec39.json",
+        "remoteRemoved": true,
+        "sha256": "9849b4be9965b209b2b57b959f6b2a27415415475303d857cb759ef628617149"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-answer-input": [
+          100,
+          2068,
+          1161,
+          2257
+        ],
+        "gameplay-submit": [
+          100,
+          2315,
+          439,
+          2465
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-answer-input",
+        "gameplay-submit"
+      ]
+    },
+    "at-top-before-delayed-poll": {
+      "raw": {
+        "label": "at-top-before-delayed-poll",
+        "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+        "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/raw-at-top-before-delayed-poll-1761a30e13e348b289083510b0058e05.json",
+        "remoteRemoved": true,
+        "sha256": "217e725d4f7dc1fccf3a0177c1cf44c749e2e8d8222fbfb0db16812084dd5ed5"
+      },
+      "geometryPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-level-1": [
+          364,
+          508,
+          670,
+          712
+        ],
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "visibleIds": [
+        "gameplay-page",
+        "gameplay-level-1",
+        "gameplay-question-card",
+        "question-title"
+      ]
+    }
+  },
+  "cleanup": {
+    "faultCleared": true,
+    "remoteRawFilesRemoved": true,
+    "zeroWrites": true
+  },
+  "factsBefore": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 40,
+    "playerTotalXp": 40,
+    "clueUnlockRows": 1,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "sameDataWebFixture": {
+    "file": "artifacts/private/gameplay-polling-20261113/entry-main-20261113T064249825570Z/native-reference-dtos.json",
+    "sha256": "75b398774e6c370970051855fd6033df77768c826e707e77657f3bc87e0fee7b"
+  },
+  "factsAfter": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 40,
+    "playerTotalXp": 40,
+    "clueUnlockRows": 1,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "failure": "GET expectation timed out: measured native pull issued a successful higher-priority GET",
+  "lastStep": "pull-priority-and-new-interval",
+  "visualReview": "pending_original_review"
+}

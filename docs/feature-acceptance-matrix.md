@@ -918,3 +918,26 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 本轮未单独触发系统选择器取消、外跳期间撤销线索和原生系统减少动画设置。普通正文外链使用同一系统交接，原有专项记录见 C01c。
 
 [固定预览已恢复登录](../artifacts/validation/ui-gameplay-standalone-link-20261113/fixed-preview-restored-01.json)，[预览包与正常隔离包的 ArkTS 字节码一致](../artifacts/validation/ui-gameplay-standalone-link-20261113/preview-package-equivalence-01.json)。[隔离环境已清理](../artifacts/validation/ui-gameplay-standalone-link-20261113/disposable-cleanup-01.json)，独立 HTTPS 台账及 SQLite 核实真机仅提交一次预期末题，故障验证与 Web 对照均无新增玩法写入。
+
+### Q03a 答题页前台自动同步与场次撤回
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 正常前台同步 | 按冻结 Web `4b7d1a0` 每隔约 5 秒只读获取当前场次。当前题、输入草稿、键盘焦点和滚动保留，正常轮询无转圈、不锁定作答；授权和进度变化以服务端为准。GET 不产生答对、升级、切题或线索演出。 |
+| 下拉刷新和写命令 | 官方下拉刷新接管同步，取消当前轮询请求或计时，优先处理本次 GET。即使旧响应迟到也不得覆盖新结果。下拉完成后重新计满 5 秒再轮询。提交及结果待确认期间不轮询，不自动重试入场或答题。 |
+| 短时故障与恢复 | 有旧快照时保留题面和草稿。顶部以 Web 文案显示可关闭的「同步暂时中断」，超时或主动关闭后，同一次故障不重复打扰。健康 GET 自动清除故障状态，下一次独立故障可再次提示。 |
+| 撤回、下线和权限失效 | 后端撤回时显示撤回页，场次下线或不可访问时显示服务端错误及可用的恢复动作。清除旧题面、草稿、授权、私密图集、打开的线索及媒体，停止对终态页面轮询。退出场次、退后台和切换账号后停止轮询，在途结果不落地。 |
+| 验证范围 | 同数据 Web 回放与直板机隔离真实 HTTPS 分开记录。专用场次核对授权状态、GET 序列、轮询与下拉冲突、出错及恢复，并确认无新增玩家玩法写入。 |
+
+[同数据 Web 回放](../artifacts/validation/ui-gameplay-polling-20261113/web-reference-06.json) 覆盖日夜、提示关闭、自动消失及独立故障再次提示。下线场景以隔离后端实际归档返回的 `409 SESSION_OFFLINE` 为输入，记录题面、草稿与打开线索退出。系统普通 Toast 无法容纳双行说明及关闭动作，因此原生用 ArkUI 非模态提示承载 Web 文案和动效。主动下拉失败仍保留现有的行内重试入口。
+
+[签名包安装、窗口与 TLS](../artifacts/validation/ui-gameplay-polling-20261113/runtime-01.json) 5 项通过。[刷新状态 8/8](../artifacts/validation/ui-gameplay-polling-20261113/GameplayRefreshViewModel/local-test-summary.json) 验证下拉取代旧轮询、忽略迟到失败并保留最新草稿。[玩法数据 10/10](../artifacts/validation/ui-gameplay-polling-20261113/GameplayData/local-test-summary.json) 验证取消后的迟到 401 不能让当前账号失效。[答题 20/20](../artifacts/validation/ui-gameplay-polling-20261113/GameplayAnswerViewModel/local-test-summary.json) 和 [线索 13/13](../artifacts/validation/ui-gameplay-polling-20261113/GameplayClues/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-polling-20261113/lint/lint.json) 退出 0、`filesChecked=0`，不计源码静态检查覆盖。
+
+- [直板首轮](../artifacts/validation/ui-gameplay-polling-20261113/native-polling-main-01.json) 观察到 5 项实测结果。静默 GET 与刻意延迟的 GET 均保留题目、焦点、真实键盘、草稿和可见控件实例。重复 503 时可关闭提示，直到实际 200 恢复才重新允许提示下一次故障，下一轮 200 自动移除未关闭的提示。首轮下拉手势起于沉浸顶栏，未触发 Refresh，后用同包独立补验。[日间原图对照](../artifacts/validation/ui-gameplay-polling-20261113/visual-review-outage-01.json)
+- [下拉与迟到结果补验](../artifacts/validation/ui-gameplay-polling-20261113/native-polling-race-02.json) 将真实旧 GET 留在网关 12 秒。管理员在隔离场次隐藏题名后，直板下拉在旧响应结束前应用新快照。下一次轮询距下拉请求 5.049 秒，旧响应结束后题名仍隐藏，草稿保留。另一次延迟轮询期间按返回，旧响应结束后仍在首页，未恢复私密题面或继续轮询。两项均无玩法写入。
+- [前后台补验](../artifacts/validation/ui-gameplay-polling-20261113/native-polling-background-01.json) 在旧 GET 仍挂起时使用系统 Home。网关结束该请求后继续观察 5.6 秒，后台没有再读场次，唤回同一进程即有一次新授权 GET。网关记录的是旧响应结束，未推定服务端计算被取消。
+- [真实场次下线](../artifacts/validation/ui-gameplay-polling-20261113/native-polling-revocation-01.json) 在直板机打开文字线索时通过隔离后端归档其场次。轮询收到真实 `409 SESSION_OFFLINE`，关闭线索弹层并移除题面、输入和旧进度，展示「该场次已下线」、重试和回首页，继续观察一个轮询间隔无新场次 GET。[同数据终态原图](../artifacts/validation/ui-gameplay-polling-20261113/visual-review-terminal-01.json) 对照文字线索与错误布局。原生沿用主题错误组件与安全区内边距。主轮四次短时故障及后续读均无玩法写入。
+
+原生提示超时、上滑关闭、视频正在播放时下线及真机切换账号的迟到响应未单独触发。超时与减少动画有 Web 对照，迟到账号及权限失败有本地用例。终态页面保留显式重试；自动同步止于场次下线。
+
+[固定预览](../artifacts/validation/ui-gameplay-polling-20261113/fixed-preview-restored-01.json) 已恢复登录，正常验收包和预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-polling-20261113/preview-package-equivalence-01.json)。[隔离环境已清理](../artifacts/validation/ui-gameplay-polling-20261113/disposable-cleanup-01.json)，SQLite 与严格 HTTPS 台账核对无新增入场、答题或经验结算。
