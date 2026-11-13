@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "checks": {
+    "mp3PlaybackAdvancedAndLooped": true,
+    "switchingInheritedQuestionKeptPlayer": true,
+    "http503ReportedBeforeRetry": true,
+    "retryPreparedASeparateTrack": true,
+    "silentReleasedCustomPlayer": true,
+    "videoPausedAndResumedSamePlayer": true,
+    "videoCloseRetainedUserPause": true,
+    "backgroundReleasedPlayer": true,
+    "returnToAppResumedNewPlayer": true,
+    "leaveReleasedActivePlayer": true,
+    "noKnownPlayerReleaseFailure": true
+  },
+  "sourceHapSha256": "71081c2d169a1df90b0d57b04625af9fb641af3ea725bcba6426a236623c06a3",
+  "rawCheckpointSha256": {
+    "theme-a loop while playing": "41a29739ec6150d077dc0643c7b4ee1a9d1f80d31c6dff832ba499406974f32a",
+    "same track after switching question": "245218c84dc7656ddb71b7689532ee5dcd08ca384a03552efbd93a6d810e5372",
+    "custom track only reports real failure": "11e8e2d60a82c8b542e218725133751703324c0fd610bba5846fd776f19ca5cc",
+    "custom track decoded after retry": "b19ef743a764848eebb3970d8608aaf08e508b497265d2fecee23a477a987bef",
+    "explicit silent question stops audio": "42c5e03c1ab9de621cd20abfd06008e9ba5edce3d23c0d34ab4121a1456d05e9",
+    "BGM paused under actual video": "83376b6563af991e05d2e025b46dcb1a4ee36a7df954be7fae71b0842c95121a",
+    "BGM resumes when video closed": "5ae9c2d138c4e85fabbfc3f23427e8c89f83dc3663247f04ce105304d16b2edc",
+    "explicit user pause": "f34da80a953f207ff15ce6948e7483a11783994c7a62640f97fa1f74e3185bb9",
+    "video close preserves explicit user pause": "f34da80a953f207ff15ce6948e7483a11783994c7a62640f97fa1f74e3185bb9",
+    "explicit pause persists across page exit and reentry": "fa94d9ae22c9de9d913cc00b5a5963f27ea99448e52483583a1f1954eae6fada",
+    "background media stopped": "f7a026b85f14745a58b5717bae027ad9d43e8733424f4544abd710e0e5a058cd",
+    "foreground revalidates track and resumes": "8e8e423d475d0bcbb97818355b3695f3ad41d9805c2fbf3c3dd556422f6bac0b",
+    "left page and logged out": "f31fb0570bdc52092ec7e82b99fa9e1e9f2f2635d57f3a95d7c56fba187cd590",
+    "new account default did not inherit old mute": "a291ca2507c57cea60a1c3865c142c08eb29a51335284e07d90e6725a703c091",
+    "dark paused": "8961739082850878c99c909ec464a3a68fd31388b14c0ea75ecce536a6dca99f"
+  },
+  "scope": "Official AVPlayer state and decoder timeline, plus paired UiTest checkpoints. Acoustic output and unrelated application focus interruption are not proven by these traces."
+}

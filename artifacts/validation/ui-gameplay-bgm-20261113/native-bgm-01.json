@@ -1,0 +1,34 @@
+{
+  "status": "incomplete",
+  "hapSha256": "8e9f0ffd3bb39748b0ba50224b20c0972b4d819daa82ab43dabafd9c129468fd",
+  "checks": [
+    "native isolated login",
+    "native silent current question has no control"
+  ],
+  "originals": {
+    "failure": [
+      {
+        "name": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T033052708216Z/failure-00.png",
+        "sha256": "5c2b6f19be47bd387638b231f1ab67ead0ed65d8a2e97ae30075c2fc7c117d7b"
+      }
+    ]
+  },
+  "traceCheckpoints": [],
+  "stage": "initial-and-shared-track",
+  "failure": "Official command timed out: hdc -t <redacted>",
+  "buttonBoundsPx": {
+    "failure": [
+      1039,
+      2408,
+      1221,
+      2590
+    ]
+  },
+  "disposableSessionCleared": true,
+  "privateTrace": {
+    "file": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T033052708216Z/audio-final.log",
+    "sha256": "cd00a035394f9b3944dbcaad5b7ac20147e41f8beb7e7b970a1a6a62b3e4f7b6"
+  },
+  "driverSha256": "12ba2382deb1a4b07fef22f8a700c88c7034c7c7c15f6796182cfeedc6849e03",
+  "mediaEventsSha256": "fc1f6e059863f2ed9144f933325ac53bdcf1f0bd610b7b6eaf6da18e486ca535"
+}

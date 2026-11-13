@@ -1,0 +1,196 @@
+{
+  "status": "incomplete",
+  "hapSha256": "7aa008488af4801cad8d4f59b420e85af6a72e0d2405af33536b49cd78a01abf",
+  "runtimeSha256": "01922bd2a8514007fcb084883f3f4a31071f822f84a7d2942c93fdf321f02585",
+  "driverSha256": "7273aef9c2c5433d548f615599562d97eb61877573ebb632a29da28d334afb96",
+  "checks": [
+    "native isolated login screen",
+    "drag-playing-left-top docks as expected and preserves actual playback state",
+    "A normal tap after dragging changes playback at the dock",
+    "drag-paused-right-bottom docks as expected and preserves actual playback state",
+    "drag-paused-left-middle docks as expected and preserves actual playback state",
+    "A normal tap after dragging changes playback at the dock",
+    "Actual keyboard hides the floating button and dismissal restores its position"
+  ],
+  "originals": {
+    "default-playing": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/default-playing-00.png",
+        "sha256": "2a8baf1f5d5d80880c7d488448b5c2e5187b18d28e0bfcd7a378b5516566e5cb"
+      }
+    ],
+    "drag-playing-left-top": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/drag-playing-left-top-00.png",
+        "sha256": "54e799d59aeb622f1808a1087ea21bf21c5cce26f598f9aa8603359f4202efdb"
+      }
+    ],
+    "drag-paused-right-bottom": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/drag-paused-right-bottom-00.png",
+        "sha256": "d0d6578990f4800d3424385db46ece47e0045f4bc25c846e7b88c2244af302e8"
+      }
+    ],
+    "drag-paused-left-middle": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/drag-paused-left-middle-00.png",
+        "sha256": "df1aa41fdaa10155a3eb697915159650d48f247063a65e4517e844ca976eac3d"
+      }
+    ],
+    "ime-hidden": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/ime-hidden-00.png",
+        "sha256": "b6c1a70e160be39b68873da6eb03b7875323a8ebcfa902ac97166c5977848e36"
+      }
+    ],
+    "failure": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/failure-00.png",
+        "sha256": "c57cec0cf365acc067a9d60cdb6adf559ebc9eedaf3f044d935e5af7c3b0ae07"
+      }
+    ]
+  },
+  "geometry": {
+    "safeBoundsPx": [
+      0,
+      123,
+      1260,
+      2629
+    ],
+    "density": 3.25,
+    "default-playing": [
+      1039,
+      2408,
+      1221,
+      2590
+    ],
+    "drag-playing-left-top": [
+      39,
+      162,
+      221,
+      344
+    ],
+    "drag-paused-right-bottom": [
+      1039,
+      2408,
+      1221,
+      2590
+    ],
+    "drag-paused-left-middle": [
+      39,
+      1185,
+      221,
+      1367
+    ]
+  },
+  "gestures": [
+    {
+      "name": "drag-playing-left-top",
+      "originPx": [
+        1130,
+        2499
+      ],
+      "targetPx": [
+        315,
+        128
+      ],
+      "beforeBoundsPx": [
+        1039,
+        2408,
+        1221,
+        2590
+      ],
+      "afterBoundsPx": [
+        39,
+        162,
+        221,
+        344
+      ],
+      "playbackState": "playing",
+      "newPlayerStateTransitions": 0,
+      "newMediaReads": 0
+    },
+    {
+      "name": "drag-paused-right-bottom",
+      "originPx": [
+        130,
+        253
+      ],
+      "targetPx": [
+        970,
+        2624
+      ],
+      "beforeBoundsPx": [
+        39,
+        162,
+        221,
+        344
+      ],
+      "afterBoundsPx": [
+        1039,
+        2408,
+        1221,
+        2590
+      ],
+      "playbackState": "paused",
+      "newPlayerStateTransitions": 0,
+      "newMediaReads": 0
+    },
+    {
+      "name": "drag-paused-left-middle",
+      "originPx": [
+        1130,
+        2499
+      ],
+      "targetPx": [
+        328,
+        1276
+      ],
+      "beforeBoundsPx": [
+        1039,
+        2408,
+        1221,
+        2590
+      ],
+      "afterBoundsPx": [
+        39,
+        1185,
+        221,
+        1367
+      ],
+      "playbackState": "paused",
+      "newPlayerStateTransitions": 0,
+      "newMediaReads": 0
+    }
+  ],
+  "traces": {
+    "drag-playing-left-top-before": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/audio-drag-playing-left-top-before.log",
+      "sha256": "2879c4731c40b120f82f48dc3c46b005445089b783b25cc41f1e32e6a2ae0c5d"
+    },
+    "drag-playing-left-top-after": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/audio-drag-playing-left-top-after.log",
+      "sha256": "4c3752907b4169837c80b8ec858eb2870b5426752035cc2ae3a8c11e32725a3d"
+    },
+    "drag-paused-right-bottom-before": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/audio-drag-paused-right-bottom-before.log",
+      "sha256": "84014ea09e425eb3bca8c05f63c986b59c66c943f17ba16be7d314b53f4e6921"
+    },
+    "drag-paused-right-bottom-after": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/audio-drag-paused-right-bottom-after.log",
+      "sha256": "84014ea09e425eb3bca8c05f63c986b59c66c943f17ba16be7d314b53f4e6921"
+    },
+    "drag-paused-left-middle-before": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/audio-drag-paused-left-middle-before.log",
+      "sha256": "84014ea09e425eb3bca8c05f63c986b59c66c943f17ba16be7d314b53f4e6921"
+    },
+    "drag-paused-left-middle-after": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043534691348Z/audio-drag-paused-left-middle-after.log",
+      "sha256": "84014ea09e425eb3bca8c05f63c986b59c66c943f17ba16be7d314b53f4e6921"
+    }
+  },
+  "stage": "keyboard-and-scroll",
+  "failure": "Content actually scrolled relative to the window",
+  "preparedActorsUnchanged": true,
+  "disposableSessionCleared": true
+}

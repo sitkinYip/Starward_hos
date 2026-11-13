@@ -883,8 +883,13 @@ struct Index {
       NavDestination() {
         if (this.vm.play.visible) {
           GameplayPage({ play: this.vm.play, autoNextDelay: this.motion.duration(1500),
+            playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
             displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
             titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
+            leftInset: Math.max(0, this.avoidArea.cutout.leftRect.width, this.avoidArea.statusBar.leftRect.width,
+              this.avoidArea.navigationIndicator.leftRect.width),
+            rightInset: Math.max(0, this.avoidArea.cutout.rightRect.width, this.avoidArea.statusBar.rightRect.width,
+              this.avoidArea.navigationIndicator.rightRect.width),
             keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
             titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
             leave: () => this.leaveGameplay() })

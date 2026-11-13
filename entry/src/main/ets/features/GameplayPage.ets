@@ -4,9 +4,13 @@ import { curves, PromptAction, promptAction, RectShape } from '@kit.ArkUI';
 import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, ordinaryClues } from '../business/GameplayClues';
 import { GameplayClue, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
+import { gameplayBgmSource } from '../business/GameplayBgm';
+import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, QuestBgmPosition, questBgmCoordinate } from '../business/QuestBgmDock';
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { openExternalClueLink } from '../platform/ExternalClueLink';
+import { isQuestBgmSource, QuestBgmPlayer, QuestBgmState } from '../platform/QuestBgmPlayer';
+import { QuestBgmPreference } from '../platform/QuestBgmPreference';
 import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
@@ -30,6 +34,7 @@ import { StarwardCombinationDialog } from '../ui/StarwardCombinationDialog';
 import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
 import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
 import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
+import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -96,11 +101,14 @@ class RankDialogRequest {
 @ComponentV2
 export struct GameplayPage {
   @Require @Param play: GameplayViewModel;
+  @Require @Param playerId: string;
   @Param autoNextDelay: number = 0;
   @Param displayFont: string = 'serif';
   @Param bottomClearance: number = 24;
   @Param titleBottom: number = 0;
   @Param statusInset: number = 0;
+  @Param leftInset: number = 0;
+  @Param rightInset: number = 0;
   @Param keyboardVisible: boolean = false;
   @Param reducedMotion: boolean = true;
   @Event leave: () => void = () => {};
@@ -123,9 +131,16 @@ export struct GameplayPage {
   private combinationOwner: string = '';
   private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
+  @Local private bgmState: QuestBgmState = 'idle';
+  @Local private bgmPosition: QuestBgmPosition = new QuestBgmPosition();
+  private readonly bgm: QuestBgmPlayer = new QuestBgmPlayer((state: QuestBgmState) => { this.bgmState = state; });
+  private bgmMounted: boolean = false;
+  private bgmPreferenceOwner: string = '';
+  private bgmEnabled: boolean = true;
   private clueLinkHandoff: ClueLinkHandoff | null = null;
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
+    if (!foreground) { this.updateBgm(); }
     const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
     const keepReading: boolean = handoff !== null && this.clueDialog === handoff.dialog &&
       this.currentTextClueOwner(handoff.dialog.owner);
@@ -165,16 +180,23 @@ export struct GameplayPage {
 
   aboutToAppear(): void {
     this.foreground = true;
+    this.bgmMounted = true;
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
     this.recoveryChanged();
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
+    this.updateBgm();
   }
 
   aboutToDisappear(): void {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
+    this.bgmMounted = false;
+    this.bgm.release();
+    this.bgmPreferenceOwner = '';
+    this.bgmEnabled = true;
+    this.bgmPosition = new QuestBgmPosition();
     this.play.cancelAutomaticClues();
     this.imageCache.validateOwner();
     this.clearClueLinkHandoff();
@@ -218,6 +240,72 @@ export struct GameplayPage {
   private scrollOffset(): number {
     const offset: number = this.questionScroller.offset()?.yOffset ?? 0;
     return Number.isFinite(offset) ? Math.max(0, offset) : 0;
+  }
+
+  private bgmSource(): string {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    if (!this.play.visible || this.play.error.length > 0 || this.playerId.length === 0 ||
+      snapshot === null || snapshot.detail.player !== this.playerId) { return ''; }
+    const source: string = gameplayBgmSource(snapshot, this.play.currentLevel());
+    return source.length > 0 && isQuestBgmSource(source) ? source : '';
+  }
+
+  @Monitor('play.visible', 'play.snapshot', 'play.error', 'play.activeIndex', 'playerId', 'foreground',
+    'videoViewer.visible', 'videoViewer.closing')
+  bgmInputsChanged(): void { this.updateBgm(); }
+
+  private updateBgm(videoOpening: boolean = false): void {
+    if (!this.bgmMounted) { return; }
+    const account: string = this.playerId;
+    if (this.bgmPreferenceOwner !== account) {
+      this.bgmPreferenceOwner = account;
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+      this.bgmEnabled = context && account.length > 0 ? QuestBgmPreference.load(context, account) : true;
+      this.bgmPosition = context && account.length > 0 ? QuestBgmPreference.loadPosition(context, account) :
+        new QuestBgmPosition();
+    }
+    const source: string = this.bgmSource();
+    const owner: string = source.length > 0 ? this.play.imageOwnerKey() : '';
+    this.bgm.update(owner, source, this.foreground,
+      videoOpening || this.videoViewer.visible || this.videoViewer.closing, this.bgmEnabled);
+  }
+
+  private showBgmControl(): boolean {
+    const minimum: number = QUEST_BGM_SIZE + 2 * QUEST_BGM_MARGIN;
+    return this.foreground && !this.keyboardVisible && !this.videoViewer.visible && !this.videoViewer.closing &&
+      !this.viewer.visible && !this.viewer.closing && this.bgmSource().length > 0 &&
+      this.viewportWidth - this.leftInset - this.rightInset >= minimum &&
+      this.viewportHeight - this.foregroundTopInset() - this.bgmBottomInset() >= minimum;
+  }
+
+  private bgmBottomInset(): number { return Math.max(0, this.bottomClearance - 24); }
+
+  private bgmLeft(): number {
+    return questBgmCoordinate(this.bgmPosition.x, this.viewportWidth, this.leftInset, this.rightInset);
+  }
+
+  private bgmTop(): number {
+    return questBgmCoordinate(this.bgmPosition.y, this.viewportHeight, this.foregroundTopInset(), this.bgmBottomInset());
+  }
+
+  private rememberBgmPosition(owner: string, x: number, y: number): void {
+    if (!this.bgmMounted || !this.showBgmControl() || this.playerId !== owner || this.bgmPreferenceOwner !== owner) {
+      return;
+    }
+    const position: QuestBgmPosition = new QuestBgmPosition(x, y);
+    this.bgmPosition = position;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context) { QuestBgmPreference.savePosition(context, owner, position); }
+  }
+
+  private toggleBgm(): void {
+    if (!this.showBgmControl()) { return; }
+    if (this.bgmPreferenceOwner !== this.playerId) { this.updateBgm(); }
+    this.bgmEnabled = this.bgmState !== 'playing' && this.bgmState !== 'loading';
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context) { QuestBgmPreference.save(context, this.playerId, this.bgmEnabled); }
+    this.updateBgm();
+    if (this.bgmEnabled) { this.bgm.retry(); }
   }
 
   private setTitleHidden(hidden: boolean, offset: number, threshold: number): void {
@@ -438,7 +526,7 @@ export struct GameplayPage {
       this.viewer.open(clueImageSources(clue), 0, () => this.isClueCurrent(owner, clue));
     } else if (clue.kind === 'video' && this.foreground) {
       const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-      if (context && this.videoViewer.open(clue.content.url.trim(), context.cacheDir,
+      if (context && this.openVideoWithBgmSuspended(clue.content.url.trim(), context.cacheDir,
         () => this.foreground && this.isClueCurrent(owner, clue))) {
         this.play.cancelAutoAdvance();
       }
@@ -475,9 +563,17 @@ export struct GameplayPage {
       return;
     }
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-    if (!context || !this.videoViewer.open(clue.content.url.trim(), context.cacheDir, current, finish)) {
+    if (!context || !this.openVideoWithBgmSuspended(clue.content.url.trim(), context.cacheDir, current, finish)) {
       this.play.cancelAutomaticClues();
     }
+  }
+
+  private openVideoWithBgmSuspended(source: string, cacheDir: string, ownerCurrent: () => boolean,
+    finished?: (ended: boolean) => void): boolean {
+    this.updateBgm(true);
+    const opened: boolean = this.videoViewer.open(source, cacheDir, ownerCurrent, finished, () => this.bgm.whenQuiet());
+    if (!opened) { this.updateBgm(); }
+    return opened;
   }
 
   private clueDialogWidth(combination: boolean = false): number {
@@ -1328,7 +1424,7 @@ export struct GameplayPage {
         }
       }.width('100%').alignItems(HorizontalAlign.Start)
         .padding({ left: 12, right: 12, top: 16 + Math.max(0, this.titleBottom - this.viewportTop),
-          bottom: this.bottomClearance })
+          bottom: this.bottomClearance + (this.bgmSource().length > 0 ? QUEST_BGM_SIZE : 0) })
     }.id('gameplay-page').width('100%').height('100%').align(Alignment.Top).scrollBar(BarState.Off)
       .onDidScroll(() => this.syncTitle())
       .onAreaChange((_previous: Area, current: Area) => {
@@ -1357,8 +1453,19 @@ export struct GameplayPage {
         .bindContentCover(this.textClue === null && this.viewer.visible, this.imageViewer(), this.viewerOptions())
       if (this.showCombinationLauncher()) {
         StarwardCombinationLauncher({ viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
-          topInset: this.foregroundTopInset(), bottomInset: Math.max(0, this.bottomClearance - 24),
+          topInset: this.foregroundTopInset(), bottomInset: this.bgmBottomInset(),
+          bgmLeft: this.showBgmControl() ? this.bgmLeft() : -1,
+          bgmTop: this.showBgmControl() ? this.bgmTop() : -1,
           reducedMotion: this.reducedMotion, open: () => this.openLatestCombination() })
+      }
+      if (this.showBgmControl()) {
+        StarwardBgmControl({ state: this.bgmState, reducedMotion: this.reducedMotion,
+          viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
+          topInset: this.foregroundTopInset(), leftInset: this.leftInset, rightInset: this.rightInset,
+          bottomInset: this.bgmBottomInset(), savedX: this.bgmPosition.x, savedY: this.bgmPosition.y,
+          ownerKey: this.playerId, positionCommitted: (owner: string, x: number, y: number) => {
+            this.rememberBgmPosition(owner, x, y);
+          }, toggle: () => this.toggleBgm() })
       }
     }.width('100%').height('100%')
       // Keep the immersive page background outside the scrolling foreground's clip.

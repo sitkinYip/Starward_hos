@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "hapSha256": "7aa008488af4801cad8d4f59b420e85af6a72e0d2405af33536b49cd78a01abf",
+  "runtimeSha256": "01922bd2a8514007fcb084883f3f4a31071f822f84a7d2942c93fdf321f02585",
+  "driverSha256": "31e2b1732a214e44677d4fa5d7fe9c10dd992d83f4efbf44188c7cc8e1382ad4",
+  "checks": [
+    "native isolated login screen",
+    "Cold login restores the exact left-middle position measured in the prior run",
+    "Actual keyboard hides the floating button and dismissal restores its position",
+    "Content actually scrolled relative to the window",
+    "Scrolling does not move BGM",
+    "The button returns to its saved dock after a silent question",
+    "Re-entering the same assignment restores the saved dock",
+    "native isolated login screen",
+    "After force-stop and same-account login, the saved dock is restored",
+    "secondary isolated login screen",
+    "A different isolated account keeps its own default right-bottom dock",
+    "All prepared actors retain exact SQLite facts and gameplay receipts"
+  ],
+  "originals": {
+    "resumed-left-middle": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/resumed-left-middle-00.png",
+        "sha256": "a78f79b9f31f00d19b7e1c5b0cb5b6db9eec959939bccd9a9790d808c7292939"
+      }
+    ],
+    "ime-hidden": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/ime-hidden-00.png",
+        "sha256": "8d749da3e97779394c1a4e62b02c56e341f1b01f170a29442e4a6c289e76fa31"
+      }
+    ],
+    "page-scrolled": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/page-scrolled-00.png",
+        "sha256": "d89b0d6d82210baae1b9c68910a58d71e7cca6dd2ad937daa135cb72b9a53128"
+      }
+    ],
+    "silent-question": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/silent-question-00.png",
+        "sha256": "cd6f805f116c3a9f9b44e94c53a1ca014ecfb786a16cc25fabdb947c629bd005"
+      }
+    ],
+    "reentered": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/reentered-00.png",
+        "sha256": "50757d1af3c83bdff3a8c2f1f5b8dcaa1d53bedabe483d902a7bcf6c2c4b29b3"
+      }
+    ],
+    "cold-restored": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/cold-restored-00.png",
+        "sha256": "34f59f1c30d94383477aa2a6fbb1a9c4d129875b7a3e6a0eab4d2b26bc575445"
+      }
+    ],
+    "secondary-default": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T043831815174Z/secondary-default-00.png",
+        "sha256": "30fb376b08450e285b7ed68ad0009fa77767f7705b2eb91ef78c0c3cc6d0acc1"
+      }
+    ]
+  },
+  "geometry": {
+    "safeBoundsPx": [
+      0,
+      123,
+      1260,
+      2629
+    ],
+    "density": 3.25,
+    "resumed-left-middle": [
+      39,
+      1185,
+      221,
+      1367
+    ],
+    "scrollAnchorBeforePx": {
+      "gameplay-level-navigation": [
+        39,
+        508,
+        1221,
+        725
+      ],
+      "question-title": [
+        100,
+        956,
+        1160,
+        1079
+      ]
+    },
+    "scrollAnchorAfterPx": {
+      "gameplay-level-navigation": null,
+      "question-title": null
+    },
+    "page-scrolled": [
+      39,
+      1185,
+      221,
+      1367
+    ],
+    "reentered": [
+      39,
+      1185,
+      221,
+      1367
+    ],
+    "cold-restored": [
+      39,
+      1185,
+      221,
+      1367
+    ],
+    "secondary-default": [
+      1039,
+      2408,
+      1221,
+      2590
+    ]
+  },
+  "gestures": [],
+  "priorPositionReceiptSha256": "40c7fe6c1ae3fe82cac61dc1a21e8e313608f50367b99c85f8a838b5cf2336ea",
+  "preparedActorsUnchanged": true,
+  "disposableSessionCleared": true
+}

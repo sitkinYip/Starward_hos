@@ -851,3 +851,43 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 - [答题 20/20](../artifacts/validation/ui-gameplay-rank-20261113/GameplayAnswerViewModel/local-test-summary.json) 与 [线索 12/12](../artifacts/validation/ui-gameplay-rank-20261113/GameplayClues/local-test-summary.json) 通过。非末题自动切题、提前关闭视频、历史回访和取消只使用相应本地用例覆盖的范围。未为这些分支新增真机场次。[codelinter](../artifacts/validation/ui-gameplay-rank-20261113/lint/lint.json) 退出 0、`filesChecked=0`，不计为实际源码静态检查覆盖。
 
 已恢复[固定预览登录](../artifacts/validation/ui-gameplay-rank-20261113/fixed-preview-restored-01.json)，隔离包与预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-rank-20261113/preview-package-equivalence-01.json)。本轮[临时环境已移除](../artifacts/validation/ui-gameplay-rank-20261113/disposable-cleanup-01.json)，固定预览资料和进度保留。
+
+### T02a 答题页背景音乐与视频互斥
+
+以冻结 Web `4b7d1a0` 的正式玩法页为参照。先迁移答题页的播放与悬浮播控；拖动与位置记忆、剧情配乐与配音另验。
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 播放、暂停、恢复 | 有有效曲目才显示悬浮按钮。跟随 Web 默认尝试低音量循环，实际播放器状态决定按钮的播放状态和动效。主动暂停后切题或返回答题页不擅自播放；偏好按账号隔离，不持久化凭据或曲目。 |
+| 关卡配置 | 默认继承场次音乐；同曲目切题不重建，`custom` 换曲，`silent` 停止并隐藏控件，自定义缺少地址不回退。已完成场次回访按当前题配置。 |
+| 视频和生命周期 | 已有视频查看器打开前静音 BGM，关闭后只恢复之前想播放的有效曲目。离场、退后台、终态失权和切换账号清理或暂停；系统音频焦点中断不覆盖用户选择。旧网络或播放器回调不能复活音乐。 |
+| 失败与视觉 | 真实 HTTPS 媒体失败后按钮允许手动重试，答题正常，不发答题或经验写入。直板机对照同数据日夜播放/暂停和无曲目状态，核对安全区、键盘、组合线索入口与播放状态动效。 |
+
+[隔离场次](../artifacts/validation/ui-gameplay-bgm-20261113/host-fixtures-01.json) 的有效曲目顺序为 A → A → B → 静音。三个专用账号由服务端预先结算前三题，真机验收仅登录、读取、切题和播放；[媒体 HTTPS 验收](../artifacts/validation/ui-gameplay-bgm-20261113/host-media-01.json) 独立核对证书、资源字节与故障路径。冻结题库的 [CDN 单字节只读探测](../artifacts/validation/ui-gameplay-bgm-20261113/cdn-source-probe-01.json) 发现 5 首已发布内容使用的曲目带 Web 来源返回 206，1 首仅归档场次使用的曲目返回 404；不算生产播放验收。
+
+- [主轮直板交互](../artifacts/validation/ui-gameplay-bgm-20261113/native-bgm-02.json) 与 [AVPlayer 状态和进度](../artifacts/validation/ui-gameplay-bgm-20261113/audio-state-review-02.json) 证实真实 MP3 解码、循环、同曲切题复用、切换曲目失败 503 后手动重试、静音题释放旧曲；视频打开暂停、关闭后按原意图恢复。主动暂停跨题与重新进入仍有效；退后台释放、回前台重新核验并恢复，登出释放，第二个账号不继承上个账号的暂停偏好。该轮真实进度和经验账本未变化。
+- [同数据 Web 重放](../artifacts/validation/ui-gameplay-bgm-20261113/web-reference-04.json) 和 [日夜原图复核](../artifacts/validation/ui-gameplay-bgm-20261113/visual-review-01.json) 覆盖播放、暂停、静音和视频。原生浮标实测 56×56vp，距安全区右边和下边各 12vp；播放波形的连续帧有可见变化。官方全屏视频层打开时隐藏音乐控件。题卡允许向下滚出浮标覆盖区域，组合线索浮标接近右下角时避让。未验带曲可编辑题的实机键盘状态、组合线索与 BGM 浮标同时出现的真机交互，也未触发系统减弱动效和其他应用的音频焦点中断。原生测试以 AVPlayer 日志和实际界面为据，没有做扬声器录音或耳机切换验收。
+- [最终包安装和窗口/TLS](../artifacts/validation/ui-gameplay-bgm-20261113/runtime-03.json) 的 5 项检查通过。[最终包补验](../artifacts/validation/ui-gameplay-bgm-20261113/native-bgm-final-02.json) 和 [播放器时序](../artifacts/validation/ui-gameplay-bgm-20261113/audio-state-final-01.json) 复核循环、视频等待静音及关闭恢复，慢请求开始约 4.4 秒点取消后该播放代次立即释放。约 10 秒后隔离网关仍完成 200，旧代次没有初始化或播放；再次点播走新读取并实际播放，不据此宣称转发链路已断开连接。
+- [曲目规则 2/2](../artifacts/validation/ui-gameplay-bgm-20261113/GameplayBgm-final/local-test-summary.json) 与 [线索 12/12](../artifacts/validation/ui-gameplay-bgm-20261113/GameplayClues-final/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-bgm-20261113/lint-final/lint.json) 命令退出 0、`filesChecked=0`，不算源码静态检查覆盖。
+
+已恢复[固定预览登录](../artifacts/validation/ui-gameplay-bgm-20261113/fixed-preview-restored-01.json)，[预览与最终隔离包的 ArkTS 字节码一致](../artifacts/validation/ui-gameplay-bgm-20261113/preview-package-equivalence-01.json)。[临时环境已移除](../artifacts/validation/ui-gameplay-bgm-20261113/disposable-cleanup-01.json)，独立对账确认三个专用账号没有新增入场、答题或经验写入，固定预览进度未变。
+
+### T02b 背景音乐浮标拖动与位置记忆
+
+按冻结 Web `4b7d1a0` 核对默认右下、跟手拖动、松手吸附最近的左右边、保留纵向位置及账号内恢复。
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 拖动与点击 | 使用原生单指拖动，约 5vp 起拖，保留 Web 的按压反馈和松手贴边。成功拖动和取消手势均不触发播放、暂停或重试，拖动结束后正常点击仍可切换。 |
+| 窗口与布局 | 浮标限制在页面实际安全区内，滚动题卡时固定于窗口。键盘及媒体关闭后恢复位置。减少动画时保留贴边结果。 |
+| 位置恢复 | 初次使用默认右下角，松手后保存边与纵向比例，切题、重进场次及重启应用后恢复。按账号和后端隔离，取消拖动不保存。 |
+| 直板验收 | 同数据 Web 对照左右贴边。用隔离账号核对拖动前后播放态、点按、返回和位置恢复。 |
+
+- [同数据 Web 触摸回放](../artifacts/validation/ui-gameplay-bgm-drag-20261113/web-reference-03.json) 覆盖日夜和减少动画。原生使用 ArkUI 的 [PanGesture](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-gestures-pangesture/) 和 Button 点击距离阈值。Chrome 触摸回放中 Web 会吞掉拖动后的首次主动点按，原生实测第一次点按就能切换。
+- [直板首轮](../artifacts/validation/ui-gameplay-bgm-drag-20261113/native-drag-01.json) 已实测播放中左贴边并限制顶部、暂停中右贴边并限制底部、暂停中左贴边且保持松手高度。三次拖动前后均无播放器状态切换或媒体读取。浮标实测 56vp，安全区边距 12vp。首轮滚动取样未得到位移证据，独立补验。
+- [同数据原图对照](../artifacts/validation/ui-gameplay-bgm-drag-20261113/visual-drag-01.json) 对照右下默认、左上、右下及左侧中段。相同的松手比例下，左侧中段纵向比例差约 0.0004。
+- [直板补验](../artifacts/validation/ui-gameplay-bgm-drag-20261113/native-drag-02.json) 覆盖真实键盘弹出隐藏、键盘收起恢复、滚动时窗口坐标固定、切回有音乐题、重进场次及杀进程重新登录恢复。另一个隔离账号使用自己的默认右下位置。[恢复状态原图](../artifacts/validation/ui-gameplay-bgm-drag-20261113/visual-drag-02.json) 已逐张与同数据 Web 对照。
+- [短拖补验](../artifacts/validation/ui-gameplay-bgm-drag-20261113/native-drag-near-01.json) 中，手指纵向拖约 12vp 后仍在按钮原本范围内松手。浮标移动，播放器无状态变化，无新媒体请求。随后首次正常点击暂停。系统中途取消、原生减少动画及两个浮标同时避让的场景本轮未在真机触发。
+- [签名安装与窗口/TLS](../artifacts/validation/ui-gameplay-bgm-drag-20261113/runtime-01.json) 5 项通过。[BGM 用例 3/3](../artifacts/validation/ui-gameplay-bgm-drag-20261113/GameplayBgm/local-test-summary.json) 通过，增加位置适配断言。[codelinter](../artifacts/validation/ui-gameplay-bgm-drag-20261113/lint/lint.json) 退出 0、`filesChecked=0`，不计源码静态检查覆盖。
+
+[固定预览](../artifacts/validation/ui-gameplay-bgm-drag-20261113/fixed-preview-restored-01.json) 已恢复登录，隔离验收包和预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-bgm-drag-20261113/preview-package-equivalence-01.json)。[临时环境已移除](../artifacts/validation/ui-gameplay-bgm-drag-20261113/disposable-cleanup-01.json)，三个隔离账号均无新增玩法写入，固定预览资料和进度保留。

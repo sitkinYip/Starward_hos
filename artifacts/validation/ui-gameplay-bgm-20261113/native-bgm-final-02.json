@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "hapSha256": "c73ddea1d4116dd8d35cc3e12ee25b635fe6f4edba7a09ffa8ad146eeec566c1",
+  "checks": [
+    "native isolated login",
+    "native silent current question has no control",
+    "tapped cancel on an active slow HTTPS read",
+    "BGM control hidden while existing video is visible",
+    "final HAP silent question has no control",
+    "server receipts, XP and progress unchanged across final HAP recheck"
+  ],
+  "originals": {
+    "light-playing": [
+      {
+        "name": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T034244550336Z/light-playing-00.png",
+        "sha256": "c7bbbbcc5a2196ff9645a26b2669daed03c6d48447e4c725ee2ee4c23246e78d"
+      },
+      {
+        "name": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T034244550336Z/light-playing-01.png",
+        "sha256": "4e647fa97f9466fddd43624ecdabba39e995450cf646f89a79e0e43a6c4773cb"
+      },
+      {
+        "name": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T034244550336Z/light-playing-02.png",
+        "sha256": "a13044fe3e7280f5e3103dcdfc75a1682d5a223b18925f6c6b95764e7c7d25b3"
+      }
+    ],
+    "loading-cancelled": [
+      {
+        "name": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T034244550336Z/loading-cancelled-00.png",
+        "sha256": "70d73b77a72a602431817b2fdd85accae7b37e23d83a00af4f3f76fe29338598"
+      }
+    ],
+    "video": [
+      {
+        "name": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T034244550336Z/video-00.png",
+        "sha256": "5ca06a94fad6c129b30401153cf7fa63dfbcc7e0986b93835aa643c19b5d846c"
+      }
+    ]
+  },
+  "traceCheckpoints": [
+    "final HAP inherited audio loop",
+    "final HAP slow HTTPS audio cancelled",
+    "final HAP custom audio plays after cancellation",
+    "final HAP video waited for BGM pause",
+    "final HAP video close resumed same player"
+  ],
+  "buttonBoundsPx": {
+    "light-playing": [
+      1039,
+      2408,
+      1221,
+      2590
+    ],
+    "loading-cancelled": [
+      1039,
+      2408,
+      1221,
+      2590
+    ]
+  },
+  "slowGatewayObservation": {
+    "completed": true,
+    "status": 200,
+    "durationMs": 10003
+  },
+  "disposableSessionCleared": true,
+  "privateTrace": {
+    "file": "artifacts/private/gameplay-bgm-20261113/entry-main-20261113T034244550336Z/audio-final.log",
+    "sha256": "3618f27796e3c9bb764f26f865a03de765720c68fbd4378d449b546cd4092bcb"
+  },
+  "driverSha256": "9ecbe49d82c687647b5a3e2545b1d0c54d7a4ede49d6ab79d2d4432bee911342",
+  "mediaEventsSha256": "cb716aff8eb307e700581401b32bdef65496e14703826d4c56d372b3663f1eeb"
+}

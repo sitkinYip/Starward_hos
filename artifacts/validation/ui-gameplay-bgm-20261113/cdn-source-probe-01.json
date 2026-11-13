@@ -1,0 +1,47 @@
+{
+  "status": "read_only_cdn_reachability_observed",
+  "scope": "Frozen production content inventory; small public HTTPS media range reads only, no player authentication, live backend reads/writes, native playback or production acceptance.",
+  "sourceSnapshotSha256": "0941afd3094c3702f1725c040b7eb50c48c7c7ed2ce83490387a2a28d5b400e7",
+  "observedAtUtc": "2026-11-13T03:35:43.011741+00:00",
+  "requestRange": "bytes=0-0",
+  "redirectsFollowed": false,
+  "responseBodiesRetained": false,
+  "webReferer": "https://sitkin.top/",
+  "withoutWebReferer": {
+    "403": {
+      "uniqueTracks": 6,
+      "questionInstancesBySessionStatus": {
+        "archived": 79,
+        "published": 20
+      },
+      "mimeTypes": {
+        "application/xml": 6
+      }
+    }
+  },
+  "withWebReferer": {
+    "206": {
+      "uniqueTracks": 5,
+      "questionInstancesBySessionStatus": {
+        "archived": 72,
+        "published": 20
+      },
+      "mimeTypes": {
+        "audio/mpeg": 5
+      },
+      "completeTrackLengthRangeBytes": [
+        2803302,
+        9898276
+      ]
+    },
+    "404": {
+      "uniqueTracks": 1,
+      "questionInstancesBySessionStatus": {
+        "archived": 7
+      },
+      "mimeTypes": {
+        "application/xml": 1
+      }
+    }
+  }
+}

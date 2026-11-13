@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "hapSha256": "7aa008488af4801cad8d4f59b420e85af6a72e0d2405af33536b49cd78a01abf",
+  "runtimeSha256": "01922bd2a8514007fcb084883f3f4a31071f822f84a7d2942c93fdf321f02585",
+  "driverSha256": "f836854c01350a7ac20fa8712b4ac89ae94085b8ae7bf66e50041a6e11babd96",
+  "checks": [
+    "native isolated login screen",
+    "The prior dock was restored",
+    "drag-released-inside-original-button docks as expected and preserves actual playback state",
+    "A short gesture above the drag threshold moved the button without toggling playback",
+    "A normal tap after dragging changes playback at the dock",
+    "All prepared actors retain exact SQLite facts and gameplay receipts"
+  ],
+  "originals": {
+    "drag-released-inside-original-button": [
+      {
+        "name": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T044230482068Z/drag-released-inside-original-button-00.png",
+        "sha256": "0d7d876896c2dd2d7474408b46975d4f86ba32c12bbc39556dfc5b55c6577e89"
+      }
+    ]
+  },
+  "geometry": {
+    "safeBoundsPx": [
+      0,
+      123,
+      1260,
+      2629
+    ],
+    "density": 3.25,
+    "drag-released-inside-original-button": [
+      39,
+      1223,
+      221,
+      1405
+    ]
+  },
+  "gestures": [
+    {
+      "name": "drag-released-inside-original-button",
+      "originPx": [
+        130,
+        1276
+      ],
+      "targetPx": [
+        130,
+        1315
+      ],
+      "beforeBoundsPx": [
+        39,
+        1185,
+        221,
+        1367
+      ],
+      "afterBoundsPx": [
+        39,
+        1223,
+        221,
+        1405
+      ],
+      "playbackState": "playing",
+      "newPlayerStateTransitions": 0,
+      "newMediaReads": 0
+    }
+  ],
+  "priorPositionReceiptSha256": "b80f55903e768c57dbe75e406d6c89da874b9248f9fbf934a51f0f5c18675863",
+  "traces": {
+    "drag-released-inside-original-button-before": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T044230482068Z/audio-drag-released-inside-original-button-before.log",
+      "sha256": "7136c9ca8d47f3e70fffd719995be66d51c4765e87b0e61b69fd176ca659cef9"
+    },
+    "drag-released-inside-original-button-after": {
+      "path": "artifacts/private/gameplay-bgm-drag-20261113/entry-main-20261113T044230482068Z/audio-drag-released-inside-original-button-after.log",
+      "sha256": "ed7a936ef25a1591969f9b43401cd3d7d5665bc3e74b020078e559dea199c8ae"
+    }
+  },
+  "preparedActorsUnchanged": true,
+  "disposableSessionCleared": true
+}

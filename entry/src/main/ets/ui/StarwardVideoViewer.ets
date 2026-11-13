@@ -26,19 +26,21 @@ export class StarwardVideoViewerState {
   private loader: ClueVideoFileLoader | null = null;
   private source: string = '';
   private ownerCurrent: () => boolean = () => false;
+  private playbackReady: (() => Promise<boolean>) | undefined;
   private finished: ((ended: boolean) => void) | undefined = undefined;
   private endedNaturally: boolean = false;
   private fullscreen: boolean = false;
   private lease: number = 0;
 
   open(source: string, cacheDir: string, ownerCurrent: () => boolean,
-    finished?: (ended: boolean) => void): boolean {
+    finished?: (ended: boolean) => void, playbackReady?: () => Promise<boolean>): boolean {
     if (this.visible || this.closing || source.length === 0 || !ownerCurrent()) { return false; }
     try { this.lease = ImmersiveSurfaces.acquireDark(); } catch { return false; }
     this.sessionId++;
     this.source = source;
     this.ownerCurrent = ownerCurrent;
     this.finished = finished;
+    this.playbackReady = playbackReady;
     this.endedNaturally = false;
     this.loader = new ClueVideoFileLoader(cacheDir);
     this.visible = true;
@@ -74,10 +76,18 @@ export class StarwardVideoViewerState {
     if (this.active(sessionId) && this.phase === 'failed') { this.load(sessionId); }
   }
 
-  prepared(sessionId: number, attempt: VideoAttempt): void {
+  async prepared(sessionId: number, attempt: VideoAttempt): Promise<void> {
     if (!this.current(sessionId, attempt) || this.phase !== 'loading') { return; }
-    this.phase = 'ready';
-    try { attempt.controller.start(); } catch { this.fail(sessionId, attempt); }
+    try {
+      const gate = this.playbackReady;
+      const ready: boolean = gate === undefined || await gate();
+      if (!this.current(sessionId, attempt) || this.phase !== 'loading') { return; }
+      if (!ready) { this.fail(sessionId, attempt); return; }
+      this.phase = 'ready';
+      attempt.controller.start();
+    } catch {
+      this.fail(sessionId, attempt);
+    }
   }
 
   fail(sessionId: number, attempt: VideoAttempt): void {
@@ -114,6 +124,7 @@ export class StarwardVideoViewerState {
     this.loader = null;
     this.source = '';
     this.ownerCurrent = () => false;
+    this.playbackReady = undefined;
     this.phase = 'idle';
     if (immediate) {
       this.finished = undefined;
@@ -200,7 +211,9 @@ export struct StarwardVideoViewer {
   @Builder
   player(attempt: VideoAttempt) {
     Video({ src: attempt.file?.uri, controller: attempt.controller, posterOptions: { showFirstFrame: true } })
-      .id('gameplay-video-player').width('100%').height('100%').objectFit(ImageFit.Contain).controls(true)
+      .id('gameplay-video-player').width('100%').height('100%').objectFit(ImageFit.Contain)
+      .controls(this.model.phase === 'ready')
+      .hitTestBehavior(this.model.phase === 'ready' ? HitTestMode.Default : HitTestMode.None)
       .onPrepared(() => this.model.prepared(this.sessionId, attempt))
       .onError(() => this.model.fail(this.sessionId, attempt))
       .onFinish(() => this.model.ended(this.sessionId, attempt))

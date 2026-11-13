@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checks": {
+    "inheritedLoop": true,
+    "cancelledAttemptNeverPreparedOrPlayed": true,
+    "cancelObservedBeforeSlowResponse": true,
+    "customPlaybackAfterCancel": true,
+    "videoGateWaitedUntilBgmPaused": true,
+    "resumeUsedSameAttempt": true,
+    "noReleaseFailure": true
+  },
+  "nativeReportSha256": "20c7b9f3919888f0d6bf10c1478dc6db6bb6aef9bf8d7cf532066d528e795be6",
+  "sourceHapSha256": "c73ddea1d4116dd8d35cc3e12ee25b635fe6f4edba7a09ffa8ad146eeec566c1",
+  "scope": "Official AVPlayer plus isolated HTTPS/UiTest, no external system focus injection.",
+  "rawCheckpointSha256": {
+    "final HAP inherited audio loop": "5883ca78e639b1c0be8082e5e4468dd57c32b05d261197e2c10d4c3e3a074fa0",
+    "final HAP slow HTTPS audio cancelled": "416da0121aa7cdef75389f78bcf2cc7d67cebfebbb65e3c0619c72707bf5ebea",
+    "final HAP custom audio plays after cancellation": "242e2191dbcbaf55a855d46719f806d9c9d5ed5b7aedaf91a5e6e569779264e9",
+    "final HAP video waited for BGM pause": "34a58924edd3d01ad0cce451bcc7452b71c7b401817e8c708d20703e811e73fc",
+    "final HAP video close resumed same player": "4807d85c3f7b8ba51585be25ad410c3e47b7c62bcc961373069dc01d445fee1c"
+  }
+}

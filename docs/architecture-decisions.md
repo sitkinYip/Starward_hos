@@ -92,6 +92,10 @@
 
 **验证：** 页面隐藏、后台、焦点抢占、耳机变化、动画中断、资源失败与进程重启分别验证。时间与服务端偏移由数据层提供，不能以播放器进度或本机时钟作为业务准入依据。
 
+答题页先实现前台 BGM。当前可读题的服务端配置决定继承、换曲与静音；页面保留用户播放意图，平台层持有单个有效播放代次，通过官方 [AVPlayer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-media-avplayer/) 读取真实播放状态。已知音频 CDN 依赖固定 Web 来源标头，采用 NetworkKit 严格 HTTPS 有界读取，不附玩家凭据或 Cookie。页面打开既有视频前暂停 BGM，视频退出后根据用户意图及焦点恢复；离场和失权销毁旧播放代次。账号加后端的本地偏好仅保存播放开关，不持久化音频或登录资料。见 [T02a](feature-acceptance-matrix.md#t02a-答题页背景音乐与视频互斥)。
+
+浮标位置和播放开关分别保存在同一个账号与后端的本地偏好下。ArkUI 处理拖动与点击，松手将水平坐标吸附至最近边缘，纵向按安全区可移动范围保存比例。取消手势恢复上次保存的位置。组合线索浮标按已保存的音乐浮标位置避让。见 [T02b](feature-acceptance-matrix.md#t02b-背景音乐浮标拖动与位置记忆)。
+
 ## ADR-010：桌面卡片与 Push 的边界
 
 **问题：** FormExtensionAbility 与 UIAbility 内存隔离；Push 需要后端账号绑定和发送能力，不能仅添加客户端 SDK 便称完成。

@@ -1,0 +1,2285 @@
+{
+  "status": "captured_frozen_web_bgm_drag_reference",
+  "scope": "Read-only frozen Web touch drag replay with verified isolated HTTPS DTOs and synthetic media",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "viewport": {
+    "width": 388,
+    "height": 771
+  },
+  "browserBusinessRequestsForwarded": 0,
+  "browserExternalRequestsForwarded": 0,
+  "syntheticBrowserAuthentication": true,
+  "nativeAcceptance": false,
+  "audioObserverOnly": true,
+  "samePublishedGameplayAsNative": true,
+  "inputSha256": {
+    "web": {
+      "dto": "8764bbeba83f46971fe5bac3095f202496db3a307fb17d6004a29d9ddbd6422b",
+      "proof": "d9f587d78ade9059a9d3869f796b5e7783aa5e2e5cce96186ca2c553fc44e115",
+      "fixture": "57d6d14632b5e348428f1fa557c211662f27e9900697856d5c99972cff47d75f"
+    },
+    "native": {
+      "dto": "12d9c3512c55ef2b45ba59596ca91ac50655dc57f6638a29622addc71b6594d9",
+      "proof": "7aabfc3c6823039678b174e6f6ec8f0a11c864f65f57e5be89f1908afeb221dc",
+      "fixture": "1a9839ed941fd17910ab410bab48e509d8304b20549665c5a5ca48219a4e4e15"
+    },
+    "secondary": {
+      "dto": "eaa4af4307c5c171a57ac7952edbd3284e4459c83c63a047b8a8941e986458f4",
+      "proof": "88be28e60d3ae1c9baa218e5feb54d129beb640cee19fa2f37119e5a7fce6410",
+      "fixture": "4145f946b962324ec90521ae55835a4ef74e943848ab161cbf915c7f262c78e1"
+    }
+  },
+  "sourceSha256": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/audio/BgmControls.tsx": "c9e3d7b62c4baabf377348d0f6eec4cd5aa6e8119f43f37d741ff3b6a5100496",
+    "src/features/audio/useQuestBgm.ts": "9187b5486df02baf580de946d5c14dcbe0045aaf0585dc8f33ef004318954f14",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/infrastructure/storage/audio.repository.ts": "cb814bc4bb87e60f02a4d789164f0af5fe30f4bc018e9b0b0bf8cd02d9491378",
+    "src/shared/media/play-audio.ts": "bb1213f2155477c50b703ca9b8708da7812b4615ef35d945b11f3fb4915d0fb9",
+    "src/styles/components/audio-control.css": "99208827782ecfee31e2ef91cf411db614d24eb8208e47466bb00daeaa17751b",
+    "src/shared/gestures/useDraggableFloatingControl.ts": "529b4cb5e327c319af7eabfd676b7013e460e0787937ea0b0159e6a85a22c97f"
+  },
+  "registeredMedia": {
+    "theme-a.mp3": {
+      "bytes": 17493,
+      "sha256": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+      "durationSeconds": 4.2,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    "theme-b.mp3": {
+      "bytes": 23109,
+      "sha256": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24",
+      "durationSeconds": 5.6,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    "clue.mp4": {
+      "bytes": 896832,
+      "sha256": "cde7940c83fd46219d1e7ddd7480c74faa37a591d9ea63529c6666cf7805d120",
+      "durationSeconds": 15.0,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video"
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ]
+    }
+  },
+  "captureScriptSha256": "be0ba84ea0c0b4a0433979319acfbeefab6ee515bad615a34a07a9c5609f1340",
+  "cases": [
+    {
+      "theme": "light",
+      "reducedMotion": false,
+      "frozenSourceChecks": 12,
+      "schemaChecks": 3,
+      "touchLeft": {
+        "origin": {
+          "x": 320,
+          "y": 703,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          97,
+          2
+        ],
+        "during": {
+          "x": 100.375,
+          "y": 65.125,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "playing",
+        "committedPosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "touchRight": {
+        "origin": {
+          "x": 12,
+          "y": 12,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          299,
+          769
+        ],
+        "during": {
+          "x": 238.625,
+          "y": 649.875,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "paused",
+        "committedPosition": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "touchMiddle": {
+        "origin": {
+          "x": 320,
+          "y": 703,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          101,
+          355
+        ],
+        "during": {
+          "x": 103.875,
+          "y": 374,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "paused",
+        "committedPosition": {
+          "x": 0,
+          "y": 0.4558610709117221
+        }
+      },
+      "firstTapAfterDragToggled": false,
+      "controlRemainedFixedOnScroll": true,
+      "noTrackOnSilent": true,
+      "positionRestoredAfterReload": true,
+      "registeredMediaResponseCount": 5,
+      "states": [
+        {
+          "label": "default-right-playing",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-default-right-playing.png",
+            "sha256": "f9c48378d1a9ea6718ca979de55a2a89abc6895be83369f3eaf12383cc416d16"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "color": "rgb(17, 105, 88)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(24, 123, 105)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 341.5,
+            "y": 717.5,
+            "width": 11,
+            "height": 25,
+            "right": 35.5,
+            "bottom": 28.5,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 352,
+            "y": 735,
+            "width": 18,
+            "height": 18,
+            "right": 18,
+            "bottom": 18,
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(24, 123, 105)",
+            "border": "rgb(13, 96, 82)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": {
+            "x": 321,
+            "y": 704,
+            "width": 54,
+            "height": 54,
+            "right": 13,
+            "bottom": 13,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "0.42",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "state": "playing",
+          "question": "第 4 题",
+          "buttonLabel": "暂停背景音乐",
+          "animations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 0,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 180,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 340,
+              "infinite": true
+            }
+          ],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": false,
+              "ready": 4,
+              "currentTime": 0.993669,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 1
+        },
+        {
+          "label": "snapped-left-playing",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-snapped-left-playing.png",
+            "sha256": "a860b99fd4d721de0a0ed840abb8b85eee8157d4e53f11e81ac40ee2e2024b87"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56,
+            "right": 320,
+            "bottom": 703,
+            "color": "rgb(17, 105, 88)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(24, 123, 105)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.5,
+            "y": 26.5,
+            "width": 11,
+            "height": 25,
+            "right": 343.5,
+            "bottom": 719.5,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44,
+            "y": 44,
+            "width": 18,
+            "height": 18,
+            "right": 326,
+            "bottom": 709,
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(24, 123, 105)",
+            "border": "rgb(13, 96, 82)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": {
+            "x": 13,
+            "y": 13,
+            "width": 54,
+            "height": 54,
+            "right": 321,
+            "bottom": 704,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "0.42",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "state": "playing",
+          "question": "第 4 题",
+          "buttonLabel": "暂停背景音乐",
+          "animations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 0,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 180,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 340,
+              "infinite": true
+            }
+          ],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": false,
+              "ready": 4,
+              "currentTime": 1.776215,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 1
+        },
+        {
+          "label": "left-tap-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-left-tap-paused.png",
+            "sha256": "797005d60ee05b3535ecee62524cf6e6f6a4dce42be9d92b9580d0b4c168451d"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 10.880392074584961,
+            "y": 8.880741119384766,
+            "width": 58.23921203613281,
+            "height": 58.23921585083008,
+            "right": 318.8803958892822,
+            "bottom": 703.8800430297852,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.03999, 0, 0, 1.03999, 0, -1.99965)"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.240089416503906,
+            "y": 23.960538864135742,
+            "width": 11.43984603881836,
+            "height": 25.999650955200195,
+            "right": 343.32006454467773,
+            "bottom": 721.0398101806641,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44.159942626953125,
+            "y": 42.16029357910156,
+            "width": 18.719749450683594,
+            "height": 18.719749450683594,
+            "right": 325.1203079223633,
+            "bottom": 710.1199569702148,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.646529,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "snapped-right-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-snapped-right-paused.png",
+            "sha256": "d205eb854dd5e35b453bc608c330e623ee7cff3eb1f33a3290058f60a67829bf"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 318.8800048828125,
+            "y": 699.8800048828125,
+            "width": 58.239990234375,
+            "height": 58.239990234375,
+            "right": 10.8800048828125,
+            "bottom": 12.8800048828125,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 341.239990234375,
+            "y": 714.9600219726562,
+            "width": 11.44000244140625,
+            "height": 26,
+            "right": 35.32000732421875,
+            "bottom": 30.03997802734375,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 352.1600036621094,
+            "y": 733.1600341796875,
+            "width": 18.720001220703125,
+            "height": 18.719970703125,
+            "right": 17.1199951171875,
+            "bottom": 19.1199951171875,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.646529,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "snapped-left-middle-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-snapped-left-middle-paused.png",
+            "sha256": "be664eca6d90f4725a5f72f701a0b94a0ed3acb509cc617d137eab3c42ee2ee1"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 10.880001068115234,
+            "y": 323.8800048828125,
+            "width": 58.239994049072266,
+            "height": 58.239990234375,
+            "right": 318.8800048828125,
+            "bottom": 388.8800048828125,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.23999786376953,
+            "y": 338.9599914550781,
+            "width": 11.44000244140625,
+            "height": 26,
+            "right": 343.3199996948242,
+            "bottom": 406.0400085449219,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44.15999984741211,
+            "y": 357.1600036621094,
+            "width": 18.720001220703125,
+            "height": 18.720001220703125,
+            "right": 325.11999893188477,
+            "bottom": 395.1199951171875,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.646529,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "silent",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-silent.png",
+            "sha256": "e18d3f9209fa3dc13a7b079e2a4083b4b2f16bd7764ebcfd38d2b84f37366563"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": null,
+          "controlLayout": null,
+          "note": null,
+          "badge": null,
+          "waves": null,
+          "state": null,
+          "question": "第 3 题",
+          "buttonLabel": null,
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.646529,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "reloaded-left-middle-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-no-preference-reloaded-left-middle-paused.png",
+            "sha256": "18f2875e30b7d717929b005441a7d4f444d8d97bd4a7e93159901b48aa353610"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56,
+            "right": 320,
+            "bottom": 388,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.5,
+            "y": 341.5,
+            "width": 11,
+            "height": 25,
+            "right": 343.5,
+            "bottom": 404.5,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44,
+            "y": 359,
+            "width": 18,
+            "height": 18,
+            "right": 326,
+            "bottom": 394,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "reducedMotion": false,
+      "frozenSourceChecks": 12,
+      "schemaChecks": 3,
+      "touchLeft": {
+        "origin": {
+          "x": 320,
+          "y": 703,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          97,
+          2
+        ],
+        "during": {
+          "x": 100.375,
+          "y": 65.125,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "playing",
+        "committedPosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "touchRight": {
+        "origin": {
+          "x": 12,
+          "y": 12,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          299,
+          769
+        ],
+        "during": {
+          "x": 238.625,
+          "y": 649.875,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "paused",
+        "committedPosition": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "touchMiddle": {
+        "origin": {
+          "x": 320,
+          "y": 703,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          101,
+          355
+        ],
+        "during": {
+          "x": 103.875,
+          "y": 374,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "paused",
+        "committedPosition": {
+          "x": 0,
+          "y": 0.4558610709117221
+        }
+      },
+      "firstTapAfterDragToggled": false,
+      "controlRemainedFixedOnScroll": true,
+      "noTrackOnSilent": true,
+      "positionRestoredAfterReload": true,
+      "registeredMediaResponseCount": 5,
+      "states": [
+        {
+          "label": "default-right-playing",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-default-right-playing.png",
+            "sha256": "ac9504529ee8892c363cc2d7d11a364a2dc6ff2ab74d026cb919f34126a435d1"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "color": "rgb(216, 196, 134)",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "border": "rgb(212, 188, 125)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 341.5,
+            "y": 717.5,
+            "width": 11,
+            "height": 25,
+            "right": 35.5,
+            "bottom": 28.5,
+            "color": "rgb(216, 196, 134)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(216, 196, 134)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 352,
+            "y": 735,
+            "width": 18,
+            "height": 18,
+            "right": 18,
+            "bottom": 18,
+            "color": "rgb(25, 24, 17)",
+            "background": "rgb(212, 188, 125)",
+            "border": "rgb(225, 203, 144)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": {
+            "x": 321,
+            "y": 704,
+            "width": 54,
+            "height": 54,
+            "right": 13,
+            "bottom": 13,
+            "color": "rgb(216, 196, 134)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(216, 196, 134)",
+            "borderRadius": "0px",
+            "opacity": "0.42",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "state": "playing",
+          "question": "第 4 题",
+          "buttonLabel": "暂停背景音乐",
+          "animations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 0,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 180,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 340,
+              "infinite": true
+            }
+          ],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": false,
+              "ready": 4,
+              "currentTime": 1.420552,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 1
+        },
+        {
+          "label": "snapped-left-playing",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-snapped-left-playing.png",
+            "sha256": "9aaf76fedca06283ab7e736cc9f68d74ed41ba6e73decf97e963203ddd17e473"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56,
+            "right": 320,
+            "bottom": 703,
+            "color": "rgb(216, 196, 134)",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "border": "rgb(212, 188, 125)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.5,
+            "y": 26.5,
+            "width": 11,
+            "height": 25,
+            "right": 343.5,
+            "bottom": 719.5,
+            "color": "rgb(216, 196, 134)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(216, 196, 134)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44,
+            "y": 44,
+            "width": 18,
+            "height": 18,
+            "right": 326,
+            "bottom": 709,
+            "color": "rgb(25, 24, 17)",
+            "background": "rgb(212, 188, 125)",
+            "border": "rgb(225, 203, 144)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": {
+            "x": 13,
+            "y": 13,
+            "width": 54,
+            "height": 54,
+            "right": 321,
+            "bottom": 704,
+            "color": "rgb(216, 196, 134)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(216, 196, 134)",
+            "borderRadius": "0px",
+            "opacity": "0.42",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "state": "playing",
+          "question": "第 4 题",
+          "buttonLabel": "暂停背景音乐",
+          "animations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 0,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 180,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "delay": 340,
+              "infinite": true
+            }
+          ],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": false,
+              "ready": 4,
+              "currentTime": 2.184329,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 1
+        },
+        {
+          "label": "left-tap-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-left-tap-paused.png",
+            "sha256": "ab2ae41ec1d5e07761e4dde2eb2f5f95bfb3726b94a3750f7a16623d47bcc75f"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 10.88039779663086,
+            "y": 8.880751609802246,
+            "width": 58.239200592041016,
+            "height": 58.23920440673828,
+            "right": 318.8804016113281,
+            "bottom": 703.8800439834595,
+            "color": "rgb(189, 166, 111)",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "border": "rgb(117, 104, 74)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.03999, 0, 0, 1.03999, 0, -1.99965)"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.24009323120117,
+            "y": 23.96054458618164,
+            "width": 11.439842224121094,
+            "height": 25.999645233154297,
+            "right": 343.32006454467773,
+            "bottom": 721.0398101806641,
+            "color": "rgb(189, 166, 111)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(189, 166, 111)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44.159942626953125,
+            "y": 42.16029739379883,
+            "width": 18.719745635986328,
+            "height": 18.719741821289062,
+            "right": 325.12031173706055,
+            "bottom": 710.1199607849121,
+            "color": "rgb(231, 230, 225)",
+            "background": "rgb(29, 30, 25)",
+            "border": "rgb(85, 87, 77)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 3.063353,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "snapped-right-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-snapped-right-paused.png",
+            "sha256": "be6c369b3ac8c9d4d8cbe3a6115f2f7fa8edc6005e96711982175590b7f715dd"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 318.8800048828125,
+            "y": 699.8800048828125,
+            "width": 58.239990234375,
+            "height": 58.239990234375,
+            "right": 10.8800048828125,
+            "bottom": 12.8800048828125,
+            "color": "rgb(189, 166, 111)",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "border": "rgb(117, 104, 74)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 341.239990234375,
+            "y": 714.9600219726562,
+            "width": 11.44000244140625,
+            "height": 26,
+            "right": 35.32000732421875,
+            "bottom": 30.03997802734375,
+            "color": "rgb(189, 166, 111)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(189, 166, 111)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 352.1600036621094,
+            "y": 733.1600341796875,
+            "width": 18.720001220703125,
+            "height": 18.719970703125,
+            "right": 17.1199951171875,
+            "bottom": 19.1199951171875,
+            "color": "rgb(231, 230, 225)",
+            "background": "rgb(29, 30, 25)",
+            "border": "rgb(85, 87, 77)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 3.063353,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "snapped-left-middle-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-snapped-left-middle-paused.png",
+            "sha256": "15a1e22fc5377b5573a31815a464a30ebdf92f0767571d0c9ce02179711cd3e5"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 10.880001068115234,
+            "y": 323.8800048828125,
+            "width": 58.239994049072266,
+            "height": 58.239990234375,
+            "right": 318.8800048828125,
+            "bottom": 388.8800048828125,
+            "color": "rgb(189, 166, 111)",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "border": "rgb(117, 104, 74)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.23999786376953,
+            "y": 338.9599914550781,
+            "width": 11.44000244140625,
+            "height": 26,
+            "right": 343.3199996948242,
+            "bottom": 406.0400085449219,
+            "color": "rgb(189, 166, 111)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(189, 166, 111)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44.15999984741211,
+            "y": 357.1600036621094,
+            "width": 18.720001220703125,
+            "height": 18.720001220703125,
+            "right": 325.11999893188477,
+            "bottom": 395.1199951171875,
+            "color": "rgb(231, 230, 225)",
+            "background": "rgb(29, 30, 25)",
+            "border": "rgb(85, 87, 77)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 3.063353,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "silent",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-silent.png",
+            "sha256": "ddba16ddd93e66f28297715d323c6d6f8db7425fabb2f74fcc0104915c1cda4b"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": null,
+          "controlLayout": null,
+          "note": null,
+          "badge": null,
+          "waves": null,
+          "state": null,
+          "question": "第 3 题",
+          "buttonLabel": null,
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 3.063353,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "reloaded-left-middle-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/dark-no-preference-reloaded-left-middle-paused.png",
+            "sha256": "9b91242f241a2cb24e47557b3cc5109ab8f4b70ff9c94464747f5fdee8dc2f4e"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "control": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56,
+            "right": 320,
+            "bottom": 388,
+            "color": "rgb(189, 166, 111)",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "border": "rgb(117, 104, 74)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.5,
+            "y": 341.5,
+            "width": 11,
+            "height": 25,
+            "right": 343.5,
+            "bottom": 404.5,
+            "color": "rgb(189, 166, 111)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(189, 166, 111)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44,
+            "y": 359,
+            "width": 18,
+            "height": 18,
+            "right": 326,
+            "bottom": 394,
+            "color": "rgb(231, 230, 225)",
+            "background": "rgb(29, 30, 25)",
+            "border": "rgb(85, 87, 77)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "reducedMotion": true,
+      "frozenSourceChecks": 12,
+      "schemaChecks": 3,
+      "touchLeft": {
+        "origin": {
+          "x": 320,
+          "y": 703,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          97,
+          2
+        ],
+        "during": {
+          "x": 100.375,
+          "y": 65.125,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "playing",
+        "committedPosition": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "touchRight": {
+        "origin": {
+          "x": 12,
+          "y": 12,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          299,
+          769
+        ],
+        "during": {
+          "x": 238.625,
+          "y": 649.875,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "paused",
+        "committedPosition": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "touchMiddle": {
+        "origin": {
+          "x": 320,
+          "y": 703,
+          "width": 56,
+          "height": 56
+        },
+        "fingerDestination": [
+          101,
+          355
+        ],
+        "during": {
+          "x": 103.875,
+          "y": 374,
+          "width": 56,
+          "height": 56
+        },
+        "stateDuring": "paused",
+        "committedPosition": {
+          "x": 0,
+          "y": 0.4558610709117221
+        }
+      },
+      "firstTapAfterDragToggled": false,
+      "controlRemainedFixedOnScroll": true,
+      "noTrackOnSilent": true,
+      "positionRestoredAfterReload": true,
+      "registeredMediaResponseCount": 5,
+      "states": [
+        {
+          "label": "default-right-playing",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-default-right-playing.png",
+            "sha256": "4da82508e175c2d1683e826a43ac9d3159e583d3def3ecb9cf4ec96cf654ecdc"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "color": "rgb(17, 105, 88)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(24, 123, 105)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 341.5,
+            "y": 717.5,
+            "width": 11,
+            "height": 25,
+            "right": 35.5,
+            "bottom": 28.5,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 352,
+            "y": 735,
+            "width": 18,
+            "height": 18,
+            "right": 18,
+            "bottom": 18,
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(24, 123, 105)",
+            "border": "rgb(13, 96, 82)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": {
+            "x": 321,
+            "y": 704,
+            "width": 54,
+            "height": 54,
+            "right": 13,
+            "bottom": 13,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "0.42",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "state": "playing",
+          "question": "第 4 题",
+          "buttonLabel": "暂停背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": false,
+              "ready": 4,
+              "currentTime": 0.78261,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 1
+        },
+        {
+          "label": "snapped-left-playing",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-snapped-left-playing.png",
+            "sha256": "fabd58f698573e0e66d638540d95abe2c971ca2174c361506d657392f8a3880e"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56,
+            "right": 320,
+            "bottom": 703,
+            "color": "rgb(17, 105, 88)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(24, 123, 105)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.5,
+            "y": 26.5,
+            "width": 11,
+            "height": 25,
+            "right": 343.5,
+            "bottom": 719.5,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44,
+            "y": 44,
+            "width": 18,
+            "height": 18,
+            "right": 326,
+            "bottom": 709,
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(24, 123, 105)",
+            "border": "rgb(13, 96, 82)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": {
+            "x": 13,
+            "y": 13,
+            "width": 54,
+            "height": 54,
+            "right": 321,
+            "bottom": 704,
+            "color": "rgb(17, 105, 88)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(17, 105, 88)",
+            "borderRadius": "0px",
+            "opacity": "0.42",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "state": "playing",
+          "question": "第 4 题",
+          "buttonLabel": "暂停背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": false,
+              "ready": 4,
+              "currentTime": 1.563147,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 1
+        },
+        {
+          "label": "left-tap-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-left-tap-paused.png",
+            "sha256": "16fb6c4d2e45ccba5c4127ec271c6c1b253910b8a5e0f1dd92b1b4f4093268f0"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": {
+            "x": 10.880001068115234,
+            "y": 8.880001068115234,
+            "width": 58.239994049072266,
+            "height": 58.239994049072266,
+            "right": 318.8800048828125,
+            "bottom": 703.8800048828125,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 12,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.23999786376953,
+            "y": 23.96000099182129,
+            "width": 11.44000244140625,
+            "height": 25.999998092651367,
+            "right": 343.3199996948242,
+            "bottom": 721.0400009155273,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44.15999984741211,
+            "y": 42.15999984741211,
+            "width": 18.720001220703125,
+            "height": 18.720001220703125,
+            "right": 325.11999893188477,
+            "bottom": 710.1199989318848,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.052349,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "snapped-right-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-snapped-right-paused.png",
+            "sha256": "532f59f11caaf176ae34e57d1a1db59ffb866f71885fe358cf8652d77ed44adf"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": {
+            "x": 318.8800048828125,
+            "y": 699.8800048828125,
+            "width": 58.239990234375,
+            "height": 58.239990234375,
+            "right": 10.8800048828125,
+            "bottom": 12.8800048828125,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 341.239990234375,
+            "y": 714.9600219726562,
+            "width": 11.44000244140625,
+            "height": 26,
+            "right": 35.32000732421875,
+            "bottom": 30.03997802734375,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 352.1600036621094,
+            "y": 733.1600341796875,
+            "width": 18.720001220703125,
+            "height": 18.719970703125,
+            "right": 17.1199951171875,
+            "bottom": 19.1199951171875,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.052349,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "snapped-left-middle-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-snapped-left-middle-paused.png",
+            "sha256": "72ddf794323289189fd162386710ec177fa45c5c6c37f464e846f63dcd4db4e1"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": {
+            "x": 10.880001068115234,
+            "y": 323.8800048828125,
+            "width": 58.239994049072266,
+            "height": 58.239990234375,
+            "right": 318.8800048828125,
+            "bottom": 388.8800048828125,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "matrix(1.04, 0, 0, 1.04, 0, -2)"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.23999786376953,
+            "y": 338.9599914550781,
+            "width": 11.44000244140625,
+            "height": 26,
+            "right": 343.3199996948242,
+            "bottom": 406.0400085449219,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44.15999984741211,
+            "y": 357.1600036621094,
+            "width": 18.720001220703125,
+            "height": 18.720001220703125,
+            "right": 325.11999893188477,
+            "bottom": 395.1199951171875,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.052349,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "silent",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-silent.png",
+            "sha256": "9cfc348d3eff830becc79fd3f91250c3af07ba6582793ac4e54f9fd9e4a5681a"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": null,
+          "controlLayout": null,
+          "note": null,
+          "badge": null,
+          "waves": null,
+          "state": null,
+          "question": "第 3 题",
+          "buttonLabel": null,
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 2.052349,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        },
+        {
+          "label": "reloaded-left-middle-paused",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-bgm-drag-20261113/web-capture-03/light-reduce-reloaded-left-middle-paused.png",
+            "sha256": "8cabe66eac776bb673accb9bdf5d7f9febf782c3f82408080b75e4c099c88504"
+          },
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "control": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56,
+            "right": 320,
+            "bottom": 388,
+            "color": "rgb(57, 123, 109)",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "border": "rgb(130, 175, 162)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "fixed",
+            "transform": "none"
+          },
+          "controlLayout": {
+            "x": 12,
+            "y": 327,
+            "width": 56,
+            "height": 56
+          },
+          "note": {
+            "x": 33.5,
+            "y": 341.5,
+            "width": 11,
+            "height": 25,
+            "right": 343.5,
+            "bottom": 404.5,
+            "color": "rgb(57, 123, 109)",
+            "background": "rgba(0, 0, 0, 0)",
+            "border": "rgb(57, 123, 109)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "position": "relative",
+            "transform": "matrix(1, 0, 0, 1, -1, -1)"
+          },
+          "badge": {
+            "x": 44,
+            "y": 359,
+            "width": 18,
+            "height": 18,
+            "right": 326,
+            "bottom": 394,
+            "color": "rgb(41, 60, 56)",
+            "background": "rgb(233, 242, 239)",
+            "border": "rgb(139, 166, 154)",
+            "borderRadius": "50%",
+            "opacity": "1",
+            "position": "absolute",
+            "transform": "none"
+          },
+          "waves": null,
+          "state": "paused",
+          "question": "第 4 题",
+          "buttonLabel": "播放背景音乐",
+          "animations": [],
+          "audios": [
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            },
+            {
+              "track": "theme-b",
+              "paused": true,
+              "ready": 4,
+              "currentTime": 0,
+              "duration": 5.6,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "activeCount": 0
+        }
+      ]
+    }
+  ]
+}

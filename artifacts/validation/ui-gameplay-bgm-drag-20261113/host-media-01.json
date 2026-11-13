@@ -1,0 +1,69 @@
+{
+  "status": "strict_host_synthetic_media_verified",
+  "mediaSha256": {
+    "themeA": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+    "themeB": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24",
+    "video": "cde7940c83fd46219d1e7ddd7480c74faa37a591d9ea63529c6666cf7805d120"
+  },
+  "range": true,
+  "head": true,
+  "exactPathAndMethods": true,
+  "strictRefererRequired": true,
+  "credentialsRejected": true,
+  "trustedCaAccepted": true,
+  "untrustedCaRejected": true,
+  "wrongHostRejected": true,
+  "persistentFaultAndManualRecovery": true,
+  "slowClientCancellationObserved": true,
+  "realDeviceInvoked": false,
+  "nativeAppTrustModified": false,
+  "scope": "Host-only strict HTTPS over exact synthetic media used by the draggable BGM fixture. No native playback credit.",
+  "hostProofSha256": "79d672c1bca2fa2fbafafdd54db71af1a41b32ffd9d49bd5c02495d56049b2e4",
+  "registeredMedia": {
+    "theme-a.mp3": {
+      "bytes": 17493,
+      "sha256": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+      "durationSeconds": 4.2,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    "theme-b.mp3": {
+      "bytes": 23109,
+      "sha256": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24",
+      "durationSeconds": 5.6,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "codec_type": "audio"
+        }
+      ]
+    },
+    "clue.mp4": {
+      "bytes": 896832,
+      "sha256": "cde7940c83fd46219d1e7ddd7480c74faa37a591d9ea63529c6666cf7805d120",
+      "durationSeconds": 15.0,
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video"
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ]
+    }
+  },
+  "gatewaySource": {
+    "status": "generated_private_tls_media_gateway",
+    "baseSha256": "7f78abde6de5b43986b8788cc97f32686b035599f908f36de4d258dc65d43b66",
+    "privateGatewaySha256": "e9ed6ce2a2419d3f0b669070dc0e66d4df9188b21ed2b47115f0433399a4c66f",
+    "exactMediaHandlerSha256": "b836976f88f240b1ae0eb6d83834be31c388c1012eba246774b892b1a9c48bac",
+    "gatewayPreparationUsedDevice": false,
+    "packagedConfigurationChanged": false
+  }
+}

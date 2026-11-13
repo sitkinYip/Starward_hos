@@ -1,4 +1,5 @@
 import { curves, UIUtils } from '@kit.ArkUI';
+import { QUEST_BGM_SIZE } from '../business/QuestBgmDock';
 import { CombinationLauncherPosition } from '../platform/CombinationLauncherPosition';
 
 @ComponentV2
@@ -7,6 +8,8 @@ export struct StarwardCombinationLauncher {
   @Require @Param viewportHeight: number;
   @Param topInset: number = 0;
   @Param bottomInset: number = 0;
+  @Param bgmLeft: number = -1;
+  @Param bgmTop: number = -1;
   @Param reducedMotion: boolean = true;
   @Event open: () => void = () => {};
   @Env(WritableEnvKey.FONT_SCALE) fontScale: number;
@@ -88,6 +91,24 @@ export struct StarwardCombinationLauncher {
       (this.compact() ? 4 : 0));
   }
 
+  private dockY(): number {
+    const top: number = this.topInset + 12;
+    const preferred: number = top + this.y * this.travelY();
+    const left: number = 12 + this.x * this.travelX();
+    const gap: number = 8;
+    if (this.bgmLeft < 0 || this.bgmTop < 0 ||
+      left >= this.bgmLeft + QUEST_BGM_SIZE + gap || left + this.buttonWidth() + gap <= this.bgmLeft) {
+      return preferred;
+    }
+    const above: number = this.bgmTop - this.buttonHeight() - gap;
+    const below: number = this.bgmTop + QUEST_BGM_SIZE + gap;
+    if (preferred <= above || preferred >= below) { return preferred; }
+    const canFitAbove: boolean = above >= top;
+    const canFitBelow: boolean = below <= top + this.travelY();
+    if (canFitAbove && (!canFitBelow || preferred - above <= below - preferred)) { return above; }
+    return canFitBelow ? below : preferred;
+  }
+
   private startDrag(): void {
     this.dragging = true;
     this.startX = this.x;
@@ -165,7 +186,7 @@ export struct StarwardCombinationLauncher {
             .onActionEnd((event: GestureEvent) => { this.updateDrag(event); this.endDrag(false); })
             .onActionCancel(() => this.endDrag(true)))
       }.width(this.buttonWidth()).height(this.buttonHeight())
-        .position({ x: 12 + this.x * this.travelX(), y: this.topInset + 12 + this.y * this.travelY() })
+        .position({ x: 12 + this.x * this.travelX(), y: this.dockY() })
         .opacity(this.entered ? 1 : 0).scale({ x: this.entered ? 1 : 0.78, y: this.entered ? 1 : 0.78 })
         .translate({ x: this.entered ? 0 : 18, y: this.entered ? 0 : 24 })
         .hitTestBehavior(HitTestMode.None).onAppear(() => this.appear())
