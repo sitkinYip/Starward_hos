@@ -1,0 +1,1113 @@
+{
+  "status": "reviewed_configured_background_web_native_originals",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "evidence": {
+    "web": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/web-background-03.json",
+      "sha256": "d12e60ead12cb802995ed06a5c380f829215ad86dc4d414154caddb96b1ea4da"
+    },
+    "native": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/native-background-final-01.json",
+      "sha256": "ec4b5ca4ef74b46122773a1f59b91bb767d365f1640414bbc732d1cfc8201f3f"
+    },
+    "runtime": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/runtime-02.json",
+      "sha256": "e95903f06852a4bfaa33b977393617969748d03d0e31a2e09854e76362fd3f1e"
+    },
+    "host": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/host-fixtures-01.json",
+      "sha256": "db52529072930a2cc7a1bca87980f5975f73d7359d4d9ce4af7638625aa0e58b"
+    },
+    "nativeSupplement": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/native-background-supplement-01.json",
+      "sha256": "f65cb7d4f1da263879dd1735c90cf20183e89159309d2a0275ba87ba3a68c639"
+    },
+    "guide_web": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/web-background-guide-visible-01.json",
+      "sha256": "7668c60aefaab9c05aebd1bd3c1370f33caef610f23f3addd242f1f9ca4d73b6"
+    },
+    "failure_web": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/web-background-failed-top-02.json",
+      "sha256": "533290e0ba96c6a047a36eace491210060a6f3d4421b0cf732dcd33e20e9f2ae"
+    },
+    "initialNativeLight": {
+      "path": "artifacts/validation/ui-gameplay-background-20261113/visual-review-initial-01.json",
+      "sha256": "5b039226563885071dc37e44aa8e9340485991fc8f92ddb2f00aa4f08d64a154"
+    }
+  },
+  "package": {
+    "sha256": "fe98c1a917593c2a8b81c474b2a1a5c43eb7848cc3c598e6be46ae5f0ab849b9",
+    "packagedDisplayFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "matchesReplayFont": true
+  },
+  "sameState": {
+    "hostDtoSha256": "de6ebfda7738c8408a51c28978557bf2c7cf8dd7c660af4599940289079cdedf",
+    "nativeDtoSha256": "858641597ea1c505c3d9849e1c38cb878e2674a24c3beefa870cf05a54caf66d",
+    "sameVisiblePlayerAndAssignmentContent": true
+  },
+  "viewport": {
+    "native": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "topInsetPx": 123,
+      "bottomInsetPx": 91,
+      "widthVp": 387.6923076923077,
+      "contentHeightVp": 771.0769230769231,
+      "fontScale": 1
+    },
+    "webCssPx": {
+      "width": 388,
+      "height": 771
+    }
+  },
+  "phase": "final_corrected_interaction_build",
+  "nativeReportStatus": "incomplete",
+  "pairs": [
+    {
+      "theme": "light",
+      "nativeState": "light-current-inherited-background",
+      "nativeSourceReport": "native",
+      "webState": "inherited-card-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-card-top.png",
+        "sha256": "6d2a94f07720f66b4ec36befd98ba7dadeaf7340b4e20e612b2892b8f73f2b9f"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-current-inherited-background.png",
+        "sha256": "edea2839c5ae9822663b47e864d05fb7ce954f212cfb35c4511169bdeda7fcf0"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-inherited-page-top",
+      "nativeSourceReport": "native",
+      "webState": "inherited-page-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-page-top.png",
+        "sha256": "175963cecd36fad29cfe0e97832680a93b0bca258db8ebc6562e004594e8c18c"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-inherited-page-top.png",
+        "sha256": "5d3c220d9327821f51462847fbbb4eb25613a319b1d753af0d168b28e96604e9"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-inherited-scrolled-input",
+      "nativeSourceReport": "native",
+      "webState": "inherited-card-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-card-top.png",
+        "sha256": "6d2a94f07720f66b4ec36befd98ba7dadeaf7340b4e20e612b2892b8f73f2b9f"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-inherited-scrolled-input.png",
+        "sha256": "524b0c60765cb77b74353e1d2532bc3ddbacff0db91ce9a61896d1bbdf39f4a5"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-inherited-ime-closed",
+      "nativeSourceReport": "native",
+      "webState": "inherited-scrolled-edit",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-scrolled-edit.png",
+        "sha256": "035541937afa7a32f0263409dd5e43c6238ba6243ebdc8ba45afea56d6d90f35"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-inherited-ime-closed.png",
+        "sha256": "3457f1753d2d6c7b41d1421719e28544d63fe61cd619527d605dd14c347e6de0"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-reentry-inherited-background",
+      "nativeSourceReport": "native",
+      "webState": "inherited-card-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-card-top.png",
+        "sha256": "6d2a94f07720f66b4ec36befd98ba7dadeaf7340b4e20e612b2892b8f73f2b9f"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-reentry-inherited-background.png",
+        "sha256": "a9f2c0d78036ba058c9eca101a5562167c0863d3e31a56481b2a69e048fd61ed"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-inherited-after-slow-late",
+      "nativeSourceReport": "native",
+      "webState": "inherited-card-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-card-top.png",
+        "sha256": "6d2a94f07720f66b4ec36befd98ba7dadeaf7340b4e20e612b2892b8f73f2b9f"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-inherited-after-slow-late.png",
+        "sha256": "e8dda0e60e6a995437d477ae70a211530138e6b9d439023647dd106b09a5f36d"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-first-inherits-session",
+      "nativeSourceReport": "native",
+      "webState": "same-inherited-source",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-same-inherited-source.png",
+        "sha256": "3cd37e587fe963c36dc2aa19de361977226cb67e3599485bf5e4ef18d8f5f69b"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-first-inherits-session.png",
+        "sha256": "a8b769b83c0dbe1cc3ba04edf043e86581ec3cff5c605cfdfc9f2ade3d0cb4e8"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-second-custom-image",
+      "nativeSourceReport": "native",
+      "webState": "custom-card-top",
+      "configuredImage": "level",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-custom-card-top.png",
+        "sha256": "39fc53fc5fe891bb8d96f58817b683610ee69213a330d159458503c2706405a1"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-second-custom-image.png",
+        "sha256": "f6c1c34000ca1cd23585261e031030f5ee7dfd787868c32be1bc09b9c18bc2c2"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-third-explicit-none",
+      "nativeSourceReport": "native",
+      "webState": "explicit-none-card-top",
+      "configuredImage": null,
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-explicit-none-card-top.png",
+        "sha256": "7d184eb50e3238bf8252e08327f45897bc4f8c68bc8eb5fab0ebe613d037699e"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-third-explicit-none.png",
+        "sha256": "4634d78429653bbbffd6bf88f3926b7e274c1830917f8c2a736bbe6c8db7acee"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-failed-theme-fallback",
+      "nativeSourceReport": "nativeSupplement",
+      "webState": "failed-image-card-top",
+      "configuredImage": "missing",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-failed-image-card-top.png",
+        "sha256": "0ec7f14aae3e701b23b0fd13f0874ca345bff664852cbddf0b76a77d6ea07c9c"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083852425716Z/light-failed-theme-fallback.png",
+        "sha256": "bcac0659fa029a7b6af3de77837917e340b85f288ca12bdce6cdfb5263cab20a"
+      }
+    },
+    {
+      "theme": "light",
+      "nativeState": "light-failed-after-manual-retry",
+      "nativeSourceReport": "nativeSupplement",
+      "webState": "failed-image-page-top",
+      "configuredImage": "missing",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-failed-top-02/light-failed-image-page-top.png",
+        "sha256": "fe90a92ed361c3da8e48629d3180bbd7fc5743a38e0b916b75f22f18756f9f2e"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083852425716Z/light-failed-after-manual-retry.png",
+        "sha256": "a388df8df955bfd1d95ef7073ba8831c87ef85d7d26866b439e7afdcf31e7dc7"
+      }
+    },
+    {
+      "theme": "dark",
+      "nativeState": "dark-current-inherited-background",
+      "nativeSourceReport": "nativeSupplement",
+      "webState": "inherited-card-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-inherited-card-top.png",
+        "sha256": "17a5f6572dd84465725d2d3a423380bceb1c41613602a1117b3eceba8eab71ae"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083852425716Z/dark-current-inherited-background.png",
+        "sha256": "a5277097eae4542aeb70eb51c135cf1c3ad278938120fd79fbff0315ba6f6901"
+      }
+    },
+    {
+      "theme": "dark",
+      "nativeState": "dark-inherited-page-top",
+      "nativeSourceReport": "nativeSupplement",
+      "webState": "inherited-page-top",
+      "configuredImage": "session",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-inherited-page-top.png",
+        "sha256": "2a33210f632aef08a39f3be1d543c0c886a7eecd79c24b574bcca0847e1eb9ee"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083852425716Z/dark-inherited-page-top.png",
+        "sha256": "b7abd0851d8ab5b2bfe5e9af497482973583cb4e3cc405a275e6a9cef9d3369e"
+      }
+    },
+    {
+      "theme": "dark",
+      "nativeState": "dark-second-custom-image",
+      "nativeSourceReport": "nativeSupplement",
+      "webState": "custom-card-top",
+      "configuredImage": "level",
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-custom-card-top.png",
+        "sha256": "8837c1d0af7f7789a10e491beb013cee17c6eee2599aaaad8a1a90382f4ecb8d"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083852425716Z/dark-second-custom-image.png",
+        "sha256": "985077b49e58205855ec4922afc2f7d3667febfdc1a087cf05733f966ac06efc"
+      }
+    },
+    {
+      "theme": "dark",
+      "nativeState": "dark-third-explicit-none",
+      "nativeSourceReport": "nativeSupplement",
+      "webState": "explicit-none-card-top",
+      "configuredImage": null,
+      "webOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-explicit-none-card-top.png",
+        "sha256": "3d4d2a4a7d70c254f50577724798465933c95ca2b6288a6883c58a3f318dbf8e"
+      },
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083852425716Z/dark-third-explicit-none.png",
+        "sha256": "60d22b0b6c1d08f1eb43c8704aa52da05c16769180d6846a12fc14e0b87419d7"
+      }
+    }
+  ],
+  "nativeOnly": [
+    {
+      "nativeState": "light-inherited-ime",
+      "nativeSourceReport": "native",
+      "original": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-inherited-ime.png",
+        "sha256": "065c0dfad17922739d7e31315d62c7496e95410e00264affc3401a35dcddac0b"
+      }
+    },
+    {
+      "nativeState": "light-home-background-cleared",
+      "nativeSourceReport": "native",
+      "original": {
+        "path": "artifacts/private/gameplay-background-20261113/entry-main-20261113T083251315589Z/light-home-background-cleared.png",
+        "sha256": "e9969d6059bba135350db13c69abbed54be2f1c963fafc831e924f11fe6ad76e"
+      }
+    }
+  ],
+  "marginColorDeltaAgainstExplicitNone": {
+    "light": {
+      "current-inherited-background": {
+        "web": [
+          -24.5,
+          -17.0,
+          -10.0
+        ],
+        "native": [
+          -29.0,
+          -19.5,
+          -11.5
+        ]
+      },
+      "second-custom-image": {
+        "web": [
+          -11.0,
+          -23.0,
+          -18.0
+        ],
+        "native": [
+          -12.5,
+          -26.0,
+          -20.0
+        ]
+      },
+      "failed-theme-fallback": {
+        "web": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "native": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "inherited-after-slow-late": {
+        "web": [
+          -24.5,
+          -17.0,
+          -10.0
+        ],
+        "native": [
+          -29.0,
+          -19.5,
+          -11.5
+        ]
+      }
+    },
+    "dark": {
+      "current-inherited-background": {
+        "web": [
+          -1.0,
+          3.5,
+          9.0
+        ],
+        "native": [
+          0.0,
+          7.0,
+          13.0
+        ]
+      },
+      "second-custom-image": {
+        "web": [
+          7.0,
+          0.0,
+          4.0
+        ],
+        "native": [
+          13.0,
+          2.0,
+          7.0
+        ]
+      }
+    }
+  },
+  "topGradientLeftRgbAtX5": {
+    "light-current-inherited-background": {
+      "web": {
+        "0": [
+          237,
+          243,
+          242
+        ],
+        "8": [
+          235,
+          243,
+          241
+        ],
+        "24": [
+          226,
+          236,
+          235
+        ],
+        "38": [
+          219,
+          232,
+          233
+        ],
+        "60": [
+          211,
+          226,
+          228
+        ],
+        "85": [
+          206,
+          222,
+          222
+        ],
+        "100": [
+          203,
+          220,
+          223
+        ],
+        "120": [
+          200,
+          219,
+          222
+        ],
+        "145": [
+          196,
+          216,
+          221
+        ],
+        "180": [
+          191,
+          215,
+          221
+        ],
+        "220": [
+          192,
+          214,
+          220
+        ],
+        "310": [
+          198,
+          218,
+          222
+        ]
+      },
+      "native": {
+        "0": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          255,
+          255,
+          255
+        ],
+        "24": [
+          251,
+          252,
+          253
+        ],
+        "38": [
+          248,
+          250,
+          252
+        ],
+        "60": [
+          243,
+          246,
+          250
+        ],
+        "85": [
+          237,
+          243,
+          248
+        ],
+        "100": [
+          234,
+          241,
+          247
+        ],
+        "120": [
+          230,
+          239,
+          246
+        ],
+        "145": [
+          226,
+          237,
+          245
+        ],
+        "180": [
+          220,
+          233,
+          243
+        ],
+        "220": [
+          222,
+          235,
+          245
+        ],
+        "310": [
+          225,
+          237,
+          245
+        ]
+      }
+    },
+    "light-inherited-page-top": {
+      "web": {
+        "0": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          255,
+          255,
+          255
+        ],
+        "24": [
+          249,
+          251,
+          251
+        ],
+        "38": [
+          242,
+          247,
+          249
+        ],
+        "60": [
+          211,
+          227,
+          229
+        ],
+        "85": [
+          231,
+          239,
+          244
+        ],
+        "100": [
+          232,
+          240,
+          245
+        ],
+        "120": [
+          228,
+          238,
+          244
+        ],
+        "145": [
+          220,
+          232,
+          240
+        ],
+        "180": [
+          209,
+          227,
+          234
+        ],
+        "220": [
+          198,
+          220,
+          226
+        ],
+        "310": [
+          197,
+          218,
+          222
+        ]
+      },
+      "native": {
+        "0": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          245,
+          246,
+          247
+        ],
+        "24": [
+          245,
+          246,
+          247
+        ],
+        "38": [
+          245,
+          246,
+          247
+        ],
+        "60": [
+          245,
+          246,
+          247
+        ],
+        "85": [
+          235,
+          240,
+          240
+        ],
+        "100": [
+          233,
+          240,
+          240
+        ],
+        "120": [
+          244,
+          245,
+          246
+        ],
+        "145": [
+          220,
+          230,
+          238
+        ],
+        "180": [
+          220,
+          233,
+          243
+        ],
+        "220": [
+          222,
+          235,
+          245
+        ],
+        "310": [
+          225,
+          237,
+          245
+        ]
+      }
+    },
+    "light-reentry-inherited-background": {
+      "web": {
+        "0": [
+          237,
+          243,
+          242
+        ],
+        "8": [
+          235,
+          243,
+          241
+        ],
+        "24": [
+          226,
+          236,
+          235
+        ],
+        "38": [
+          219,
+          232,
+          233
+        ],
+        "60": [
+          211,
+          226,
+          228
+        ],
+        "85": [
+          206,
+          222,
+          222
+        ],
+        "100": [
+          203,
+          220,
+          223
+        ],
+        "120": [
+          200,
+          219,
+          222
+        ],
+        "145": [
+          196,
+          216,
+          221
+        ],
+        "180": [
+          191,
+          215,
+          221
+        ],
+        "220": [
+          192,
+          214,
+          220
+        ],
+        "310": [
+          198,
+          218,
+          222
+        ]
+      },
+      "native": {
+        "0": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          255,
+          255,
+          255
+        ],
+        "24": [
+          251,
+          252,
+          253
+        ],
+        "38": [
+          248,
+          250,
+          252
+        ],
+        "60": [
+          243,
+          246,
+          250
+        ],
+        "85": [
+          237,
+          243,
+          248
+        ],
+        "100": [
+          234,
+          241,
+          247
+        ],
+        "120": [
+          230,
+          239,
+          246
+        ],
+        "145": [
+          226,
+          237,
+          245
+        ],
+        "180": [
+          220,
+          233,
+          243
+        ],
+        "220": [
+          222,
+          235,
+          245
+        ],
+        "310": [
+          225,
+          237,
+          245
+        ]
+      }
+    },
+    "dark-current-inherited-background": {
+      "web": {
+        "0": [
+          32,
+          29,
+          20
+        ],
+        "8": [
+          32,
+          30,
+          21
+        ],
+        "24": [
+          32,
+          30,
+          22
+        ],
+        "38": [
+          30,
+          30,
+          22
+        ],
+        "60": [
+          30,
+          29,
+          23
+        ],
+        "85": [
+          28,
+          29,
+          24
+        ],
+        "100": [
+          27,
+          28,
+          24
+        ],
+        "120": [
+          25,
+          29,
+          25
+        ],
+        "145": [
+          23,
+          28,
+          26
+        ],
+        "180": [
+          23,
+          29,
+          27
+        ],
+        "220": [
+          24,
+          29,
+          26
+        ],
+        "310": [
+          20,
+          25,
+          25
+        ]
+      },
+      "native": {
+        "0": [
+          16,
+          17,
+          15
+        ],
+        "8": [
+          16,
+          17,
+          15
+        ],
+        "24": [
+          16,
+          18,
+          17
+        ],
+        "38": [
+          16,
+          19,
+          18
+        ],
+        "60": [
+          16,
+          20,
+          20
+        ],
+        "85": [
+          16,
+          21,
+          23
+        ],
+        "100": [
+          17,
+          22,
+          25
+        ],
+        "120": [
+          17,
+          23,
+          27
+        ],
+        "145": [
+          17,
+          25,
+          29
+        ],
+        "180": [
+          17,
+          28,
+          33
+        ],
+        "220": [
+          17,
+          27,
+          33
+        ],
+        "310": [
+          17,
+          26,
+          30
+        ]
+      }
+    },
+    "dark-inherited-page-top": {
+      "web": {
+        "0": [
+          0,
+          0,
+          0
+        ],
+        "8": [
+          0,
+          0,
+          0
+        ],
+        "24": [
+          5,
+          6,
+          5
+        ],
+        "38": [
+          10,
+          11,
+          9
+        ],
+        "60": [
+          38,
+          36,
+          25
+        ],
+        "85": [
+          17,
+          19,
+          19
+        ],
+        "100": [
+          17,
+          20,
+          22
+        ],
+        "120": [
+          20,
+          25,
+          26
+        ],
+        "145": [
+          23,
+          28,
+          31
+        ],
+        "180": [
+          27,
+          35,
+          35
+        ],
+        "220": [
+          32,
+          37,
+          33
+        ],
+        "310": [
+          25,
+          29,
+          27
+        ]
+      },
+      "native": {
+        "0": [
+          78,
+          78,
+          78
+        ],
+        "8": [
+          20,
+          20,
+          20
+        ],
+        "24": [
+          20,
+          20,
+          20
+        ],
+        "38": [
+          20,
+          20,
+          20
+        ],
+        "60": [
+          20,
+          20,
+          20
+        ],
+        "85": [
+          31,
+          29,
+          25
+        ],
+        "100": [
+          33,
+          31,
+          25
+        ],
+        "120": [
+          21,
+          21,
+          21
+        ],
+        "145": [
+          17,
+          24,
+          28
+        ],
+        "180": [
+          17,
+          28,
+          33
+        ],
+        "220": [
+          17,
+          27,
+          33
+        ],
+        "310": [
+          17,
+          26,
+          30
+        ]
+      }
+    },
+    "initial-light-inherited-card-top": {
+      "native": {
+        "0": [
+          255,
+          255,
+          255
+        ],
+        "8": [
+          255,
+          255,
+          255
+        ],
+        "24": [
+          229,
+          230,
+          232
+        ],
+        "38": [
+          211,
+          213,
+          215
+        ],
+        "60": [
+          189,
+          192,
+          196
+        ],
+        "85": [
+          174,
+          180,
+          185
+        ],
+        "100": [
+          171,
+          178,
+          184
+        ],
+        "120": [
+          172,
+          181,
+          188
+        ],
+        "145": [
+          184,
+          195,
+          203
+        ],
+        "180": [
+          220,
+          233,
+          243
+        ],
+        "220": [
+          222,
+          235,
+          245
+        ],
+        "310": [
+          225,
+          237,
+          245
+        ],
+        "410": [
+          229,
+          237,
+          245
+        ],
+        "510": [
+          233,
+          237,
+          244
+        ],
+        "650": [
+          239,
+          242,
+          246
+        ],
+        "740": [
+          239,
+          243,
+          246
+        ]
+      }
+    }
+  },
+  "measurementNote": "Medians of 24 edge pixels per image relative to the same theme no-image reference. Native and browser window heights and ambient layers differ. No pixel equivalence asserted.",
+  "visibleReview": [
+    "日间场次继承图在题目导航和题卡两侧呈浅蓝，逐题覆盖呈浅粉。夜间同源素材各保留冷色和暖色边缘，标题、状态栏、题干、输入和提交依旧清晰。",
+    "首包日间灰带已消退。左缘 100 vp 由 RGB [171,178,184] 改为 [234,241,247]，180 vp 像素一致。",
+    "失败及下拉重试时题卡继续展示。对应同一主题下背景留白与显式关闭一致，迟到响应返回后当前继承图颜色一致。",
+    "Web 的独立轨道、光晕、微粒、半透明题卡与浏览器边缘共同影响对照颜色。原生保留沉浸顶栏和系统手势区，截图保留各自原始全画面。",
+    "两份真机报告绑定同一个修正版签名包。主轮保留未完成结果，失败和重试、夜间画面以补验来源为准。"
+  ]
+}

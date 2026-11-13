@@ -389,3 +389,29 @@ STARWARD_VALIDATION_DIR="$starward_reports/lint-final" scripts/hm.sh lint
 复现需要重新准备未消费引导的隔离玩家和对应的严格 HTTPS、设备及 HAP 绑定，并使用新的报告路径。
 
 定位使用 ArkUI `Scroller.scrollTo` 和窗口坐标。表单高亮使用不占布局的原生外描边。已对照固定 API 26 声明。[ArkUI Scroll](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-scroll/) · [ArkUI 外描边设置](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-outline/)
+
+## 答题场次与逐题背景图
+
+见 [T03a](feature-acceptance-matrix.md#t03a-答题场次与逐题背景图)。取冻结 Web `4b7d1a0` 的关卡覆盖规则和 388 × 771 CSS px 手机视口。隔离真实后端提供专用六题场次，前三种展示状态及故障、慢图均用同一份 DTO。合成 PNG 在独立测试 HTTPS 路径回放，原图、输入 DTO 和设备日志留在私有目录。
+
+```sh
+starward_private=artifacts/private/gameplay-background-20261113
+starward_reports=artifacts/validation/ui-gameplay-background-20261113
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-02.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-background-final.py" --runtime "$starward_reports/runtime-02.json" \
+  --case-ref "$starward_private/fixture-background-01.json" --device-ref "$starward_private/device-ref.json" \
+  --expected-hap "$starward_hap_sha" --output "$starward_reports/native-background-final-01.json"
+python3 "$starward_private/device-background-supplement.py" --runtime "$starward_reports/runtime-02.json" \
+  --case-ref "$starward_private/fixture-background-01.json" --device-ref "$starward_private/device-ref.json" \
+  --expected-hap "$starward_hap_sha" --output "$starward_reports/native-background-supplement-01.json"
+for suite in GameplayBackground QuestionImageLoaderTests QuestionImageCacheTests GameplayRefreshViewModel; do
+  STARWARD_VALIDATION_DIR="$starward_reports/$suite" scripts/hm.sh test "$suite"
+done
+STARWARD_VALIDATION_DIR="$starward_reports/lint" scripts/hm.sh lint
+```
+
+背景用 ArkUI `ImageFit.Cover`、原生颜色渐变和单独的渲染组。测试前先核对固定 API 26 声明。[ArkUI Image](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-image) · [ArkUI 颜色渐变](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-gradient-color)
+
+复现需重新创建隔离场次、媒体网关、HTTPS 与设备绑定，并使用新的报告路径。主轮未能把回页顶触发的额外媒体请求与静默轮询分开，补验先等待一次真实无操作轮询，再单独执行下拉动作。

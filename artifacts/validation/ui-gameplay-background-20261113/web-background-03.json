@@ -1,0 +1,3391 @@
+{
+  "status": "captured_frozen_web_mobile_background_reference",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "driverSha256": "3dda05adb112310cb02fd558ec0d87ee03b051646a08faafb0be41fb00f59d56",
+  "sourceSha256": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/components/effects/QuestAtmosphere.tsx": "e1f2cb3ed967817187c0d81411197534bf99ac9af59f44d773bc06c39f2f3886",
+    "src/styles/features/quest.css": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd",
+    "src/styles/effects/quest-atmosphere.css": "67f0a37bba06a1022a4891eaa23530b917b23e30f3f98a1ae20ac0961bc3575e",
+    "src/styles/effects/answer-feedback.css": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "src/styles/features/letter.css": "4c209d078b077df0708e8cb5f7999489c1bc9b82ff2bca24dd16f092483c90b6",
+    "src/styles/foundation/base.css": "3ca98dedb2518df3086e60ec6be9f9bacc04d41bef76e61e28f33f7d3cdd7b84",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d"
+  },
+  "fixtureDtoSha256": "de6ebfda7738c8408a51c28978557bf2c7cf8dd7c660af4599940289079cdedf",
+  "nativeSourceFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "viewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "syntheticAuthentication": true,
+  "browserBusinessRequestsForwarded": 0,
+  "browserMediaRequestsForwarded": 0,
+  "sameInput": "Exact local isolated HTTPS DTO and registered PNG bytes replayed",
+  "assetBytes": {
+    "level": {
+      "sha256": "f069651b3733e8b8fa02d3b792017296258306e92cb84c74af1135742e9ff3b0",
+      "bytes": 88588,
+      "width": 720,
+      "height": 1200
+    },
+    "session": {
+      "sha256": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a",
+      "bytes": 100732,
+      "width": 720,
+      "height": 1200
+    },
+    "slow": {
+      "sha256": "cf4dadb1342e992d81ea6a487a6852079357b463db65fdf0167271ab003f5afb",
+      "bytes": 97004,
+      "width": 720,
+      "height": 1200
+    }
+  },
+  "captureMethod": "Uncropped frozen Web mobile originals. Reduced-motion diagnostic explicitly hides only atmosphere.",
+  "cases": [
+    {
+      "theme": "light",
+      "reducedMotion": false,
+      "states": [
+        {
+          "case": "inherited-page-top",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-page-top.png",
+            "sha256": "175963cecd36fad29cfe0e97832680a93b0bca258db8ebc6562e004594e8c18c"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": 24,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": 190.578125,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 245.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 843.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 843.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 0,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-card-top",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-card-top.png",
+            "sha256": "6d2a94f07720f66b4ec36befd98ba7dadeaf7340b4e20e612b2892b8f73f2b9f"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 652.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-scrolled-edit",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-scrolled-edit.png",
+            "sha256": "035541937afa7a32f0263409dd5e43c6238ba6243ebdc8ba45afea56d6d90f35"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 651.3558349609375,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": true
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "same-inherited-source",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-same-inherited-source.png",
+            "sha256": "3cd37e587fe963c36dc2aa19de361977226cb67e3599485bf5e4ef18d8f5f69b"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 0,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "custom-card-top",
+          "imageLabel": "level",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-custom-card-top.png",
+            "sha256": "39fc53fc5fe891bb8d96f58817b683610ee69213a330d159458503c2706405a1"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 1,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "explicit-none-card-top",
+          "imageLabel": null,
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-explicit-none-card-top.png",
+            "sha256": "7d184eb50e3238bf8252e08327f45897bc4f8c68bc8eb5fab0ebe613d037699e"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": null,
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 2,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "failed-image-card-top",
+          "imageLabel": "missing",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-failed-image-card-top.png",
+            "sha256": "0ec7f14aae3e701b23b0fd13f0874ca345bff664852cbddf0b76a77d6ea07c9c"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 839.703125,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 76.03125
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 658.28125,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 658.28125,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 3,
+            "scrollY": 223,
+            "scrollHeight": 1066
+          }
+        },
+        {
+          "case": "slow-image-pending",
+          "imageLabel": "slow",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-slow-image-pending.png",
+            "sha256": "926ca5b02fb0d87f5847e39e50f3922eff60bfd102505fc43659703712422caf"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 16.181915283203125,
+              "y": 8.037933349609375,
+              "width": 355.63616943359375,
+              "height": 783.2667236328125,
+              "opacity": "0.0808996"
+            },
+            "title": {
+              "box": {
+                "x": 34.74534225463867,
+                "y": 67.74658203125,
+                "width": 318.50933837890625,
+                "height": 37.142120361328125
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 34.74534225463867,
+              "y": 651.319091796875,
+              "width": 318.50933837890625,
+              "height": 119.1966552734375
+            },
+            "field": {
+              "box": {
+                "x": 34.74534225463867,
+                "y": 651.319091796875,
+                "width": 318.50933837890625,
+                "height": 56.667236328125
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 4,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "none-after-slow-release",
+          "imageLabel": null,
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-none-after-slow-release.png",
+            "sha256": "3643aa2d76c6d9a65e91b15d4c681a233c97cd66efbc5eeca338c24656a257b3"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": null,
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 2,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "slow-image-loaded-on-return",
+          "imageLabel": "slow",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-slow-image-loaded-on-return.png",
+            "sha256": "7e286c7b9a21745272fea2e1a260f9aed967016fd2c4e16bbce12ebf0bb8827f"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -180,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -13.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 41.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 639.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 639.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 4,
+            "scrollY": 204,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-return",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/light-inherited-return.png",
+            "sha256": "09af7e8f4dee1cb44453b2ea00dff3e999d23b40960105ed598188b54764afbe"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        }
+      ],
+      "mediaResponses": [
+        {
+          "label": "session",
+          "status": 200
+        },
+        {
+          "label": "level",
+          "status": 200
+        },
+        {
+          "label": "missing",
+          "status": 503
+        },
+        {
+          "label": "slow",
+          "status": 200
+        }
+      ],
+      "slowRelease": "delivered_after_level_change"
+    },
+    {
+      "theme": "dark",
+      "reducedMotion": false,
+      "states": [
+        {
+          "case": "inherited-page-top",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-inherited-page-top.png",
+            "sha256": "2a33210f632aef08a39f3be1d543c0c886a7eecd79c24b574bcca0847e1eb9ee"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": 24,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": 190.578125,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 245.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 843.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 843.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 0,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-card-top",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-inherited-card-top.png",
+            "sha256": "17a5f6572dd84465725d2d3a423380bceb1c41613602a1117b3eceba8eab71ae"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 652.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-scrolled-edit",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-inherited-scrolled-edit.png",
+            "sha256": "46f95fae9ccbd59742e522efb9007b96266d09a21c9d7bcb495a0c0dadf64589"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 651.3760375976562,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": true
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "same-inherited-source",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-same-inherited-source.png",
+            "sha256": "765ea1cf7883bf86c47a0d2d998a8c9ffec87e1eb81c1a74bc1fb941403c16dc"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 0,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "custom-card-top",
+          "imageLabel": "level",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-custom-card-top.png",
+            "sha256": "8837c1d0af7f7789a10e491beb013cee17c6eee2599aaaad8a1a90382f4ecb8d"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 1,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "explicit-none-card-top",
+          "imageLabel": null,
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-explicit-none-card-top.png",
+            "sha256": "3d4d2a4a7d70c254f50577724798465933c95ca2b6288a6883c58a3f318dbf8e"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": null,
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 2,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "failed-image-card-top",
+          "imageLabel": "missing",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-failed-image-card-top.png",
+            "sha256": "face170fe2f2c17dae394047f70895ee5eec7b0ce735caac269da024f3262897"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 839.703125,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 76.03125
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 658.28125,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 658.28125,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 3,
+            "scrollY": 223,
+            "scrollHeight": 1066
+          }
+        },
+        {
+          "case": "slow-image-pending",
+          "imageLabel": "slow",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-slow-image-pending.png",
+            "sha256": "b1fcc18bcb1bdad9a6441e196c8890811aa1c253094c4fd151330c6d2aea823b"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 16.183013916015625,
+              "y": 8.0487060546875,
+              "width": 355.63397216796875,
+              "height": 783.2618408203125,
+              "opacity": "0.0806546"
+            },
+            "title": {
+              "box": {
+                "x": 34.74632263183594,
+                "y": 67.7633056640625,
+                "width": 318.50732421875,
+                "height": 37.141876220703125
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 34.74632263183594,
+              "y": 651.3321533203125,
+              "width": 318.50732421875,
+              "height": 119.19598388671875
+            },
+            "field": {
+              "box": {
+                "x": 34.74632263183594,
+                "y": 651.3321533203125,
+                "width": 318.50732421875,
+                "height": 56.66693115234375
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 4,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "none-after-slow-release",
+          "imageLabel": null,
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-none-after-slow-release.png",
+            "sha256": "0c0a9c3222a7b1ef8c62a652bb4f7371137e1dc1077bb174c582a4615cd724e8"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": null,
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 2,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "slow-image-loaded-on-return",
+          "imageLabel": "slow",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-slow-image-loaded-on-return.png",
+            "sha256": "f6770b170926b036bac3bd8d374c40440c4e9ee61cee01b3a98157ddbb4ab914"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -182,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -15.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 39.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 637.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 637.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 4,
+            "scrollY": 206,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-return",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/dark-inherited-return.png",
+            "sha256": "ad4ca748025eeaeeae233f2b18a86c4a252b5ed2883290e46bdd131bbcdd0566"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        }
+      ],
+      "mediaResponses": [
+        {
+          "label": "session",
+          "status": 200
+        },
+        {
+          "label": "level",
+          "status": 200
+        },
+        {
+          "label": "missing",
+          "status": 503
+        },
+        {
+          "label": "slow",
+          "status": 200
+        }
+      ],
+      "slowRelease": "delivered_after_level_change"
+    },
+    {
+      "theme": "dark",
+      "reducedMotion": true,
+      "states": [
+        {
+          "case": "inherited-page-top",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-inherited-page-top.png",
+            "sha256": "e2e248fb24485ae478116df2a63467f1139c40545d59f898236c23f03849da89"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": 24,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": 190.578125,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 245.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 843.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 843.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 0,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-card-top",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-inherited-card-top.png",
+            "sha256": "b83a83bbe71df6c46f52edd22892e023dd53a16c11b9f57b05266d64d93c8ab4"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 652.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-scrolled-edit",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-inherited-scrolled-edit.png",
+            "sha256": "6a1e40c921ab77f28ad98f2c77bd0e67a0f12e7f0cd468acecd5bd9d915648cc"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 651.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": true
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "same-inherited-source",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-same-inherited-source.png",
+            "sha256": "8acb47f3e539ab387ed74248fdea2a04d87229e212d097b452b56b264f0855d2"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 0,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "custom-card-top",
+          "imageLabel": "level",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-custom-card-top.png",
+            "sha256": "6be7ade8b4edd281a7e4109fd3dcd21991f51c339eecd02543c35d414faf3d55"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 1,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "explicit-none-card-top",
+          "imageLabel": null,
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-explicit-none-card-top.png",
+            "sha256": "dd3505da4ca0bc431c939dff1c45ba86e6002e2990fa1bd97e72a0292b9e2438"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": null,
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 2,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "failed-image-card-top",
+          "imageLabel": "missing",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-failed-image-card-top.png",
+            "sha256": "c37473c0491db52bc4a564bfcaaeb12e8e21828910afb7a8fc28f5630d482e75"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 839.703125,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 76.03125
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 658.28125,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 658.28125,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 3,
+            "scrollY": 223,
+            "scrollHeight": 1066
+          }
+        },
+        {
+          "case": "slow-image-pending",
+          "imageLabel": "slow",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-slow-image-pending.png",
+            "sha256": "1813c93ccd2fb702009ca437e10bc605d648755fdf4e5026b5e56fd7edae7d0f"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 4,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "none-after-slow-release",
+          "imageLabel": null,
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-none-after-slow-release.png",
+            "sha256": "dd3505da4ca0bc431c939dff1c45ba86e6002e2990fa1bd97e72a0292b9e2438"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": null,
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 2,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "slow-image-loaded-on-return",
+          "imageLabel": "slow",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-slow-image-loaded-on-return.png",
+            "sha256": "54fa9344a66a902e7443e16abf1a157ef4313cd8ba4b8f3a8f57a82f0ae922de"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 652.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 4,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "inherited-return",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-inherited-return.png",
+            "sha256": "038e42377127eed0b04414997ced31aa4531c8f830f749bf8de030e97b66842a"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        },
+        {
+          "case": "diagnostic-inherited-no-atmosphere",
+          "imageLabel": "session",
+          "diagnosticCssOnly": true,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-03/reduce/dark-diagnostic-inherited-no-atmosphere.png",
+            "sha256": "307b4db0d0f7601e5213a50ed3ecf6c8b2ba6836aca2e3eb8aa9330138824ccd"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": true,
+              "mobile": true,
+              "theme": "dark"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(0, 0, 0) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(16, 17, 15, 0.54), rgba(16, 17, 15, 0.92))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "1e-05s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "1",
+              "display": "block",
+              "motesDisplay": "none"
+            },
+            "body": {
+              "color": "rgb(231, 230, 225)",
+              "backgroundColor": "rgb(16, 17, 15)"
+            },
+            "header": {
+              "x": 12,
+              "y": -199,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -32.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 22.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 620.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 620.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(240, 236, 223)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 223,
+            "scrollHeight": 1028
+          }
+        }
+      ],
+      "mediaResponses": [
+        {
+          "label": "session",
+          "status": 200
+        },
+        {
+          "label": "level",
+          "status": 200
+        },
+        {
+          "label": "missing",
+          "status": 503
+        },
+        {
+          "label": "slow",
+          "status": 200
+        }
+      ],
+      "slowRelease": "delivered_after_level_change"
+    }
+  ],
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-background-20261113/web-reference-03/browser-private.json",
+    "sha256": "7de638b5421783cda53fba977a7801bc2c7896996f5052dec73c8bc4d05cbef8"
+  },
+  "blockedRequests": 15
+}

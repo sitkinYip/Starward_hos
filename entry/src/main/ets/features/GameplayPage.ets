@@ -5,6 +5,7 @@ import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, ordina
 import { GameplayClue, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
 import { gameplayBgmSource } from '../business/GameplayBgm';
+import { gameplayBackgroundSource } from '../business/GameplayBackground';
 import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, QuestBgmPosition, questBgmCoordinate } from '../business/QuestBgmDock';
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
@@ -38,6 +39,7 @@ import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { StarwardAnswerGuide } from '../ui/StarwardAnswerGuide';
+import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -140,6 +142,7 @@ export struct GameplayPage {
   private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
   @Local private dismissedSyncEpisode: number = 0;
+  @Local private backgroundRetryRevision: number = 0;
   @Local private guideAccount: string = '';
   @Local private guideSeen: boolean = true;
   @Local private guideHeight: number = 132;
@@ -275,6 +278,22 @@ export struct GameplayPage {
   private scrollOffset(): number {
     const offset: number = this.questionScroller.offset()?.yOffset ?? 0;
     return Number.isFinite(offset) ? Math.max(0, offset) : 0;
+  }
+
+  private backgroundSource(): string {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    if (this.playerId.length === 0 || snapshot?.detail.player !== this.playerId ||
+      this.imageCacheOwner().length === 0) { return ''; }
+    return gameplayBackgroundSource(snapshot, this.play.currentLevel());
+  }
+
+  private async refreshQuestion(): Promise<void> {
+    if (!this.play.canRefresh()) { return; }
+    const owner: string = this.imageCacheOwner();
+    await this.play.refresh();
+    if (owner.length > 0 && owner === this.imageCacheOwner()) {
+      this.backgroundRetryRevision++;
+    }
   }
 
   @Monitor('playerId')
@@ -1551,7 +1570,7 @@ export struct GameplayPage {
               InlineError({ message: this.play.refreshError, fieldId: 'gameplay-refresh-error' })
               Button('重新同步', { type: ButtonType.Normal }).id('gameplay-refresh-retry').height(44)
                 .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
-                .enabled(this.play.canRefresh()).onClick(() => { this.play.refresh(); })
+                .enabled(this.play.canRefresh()).onClick(() => { this.refreshQuestion(); })
             }.width('100%').alignItems(HorizontalAlign.Start)
           }
           if (this.play.snapshot.detail.totalLevels > 1) {
@@ -1586,10 +1605,11 @@ export struct GameplayPage {
       .bindContentCover(this.videoViewer.visible, this.clueVideoViewer(), this.videoViewerOptions())
   }
 
-  build() {
+  @Builder
+  gameplayForeground() {
     Stack() {
       StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
-        request: async () => { await this.play.refresh(); },
+        request: () => this.refreshQuestion(),
         content: () => { this.gameplayScroll() } })
         .bindContentCover(this.textClue === null && this.viewer.visible, this.imageViewer(), this.viewerOptions())
       if (this.showCombinationLauncher()) {
@@ -1632,8 +1652,19 @@ export struct GameplayPage {
           .hitTestBehavior(HitTestMode.Transparent)
       }
     }.width('100%').height('100%').alignContent(Alignment.Top)
-      // Keep the immersive page background outside the scrolling foreground's clip.
       .clipShape(this.foregroundClip())
       .bindContentCover(!!this.recoveryVisible, this.answerRecovery(), this.recoveryOptions())
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.Top }) {
+      if (this.backgroundSource().length > 0) {
+        StarwardQuestBackground({ source: this.backgroundSource(), ownerKey: this.imageCacheOwner(),
+          sourceIsCurrent: (owner: string, source: string) => owner === this.imageCacheOwner() &&
+            source === this.backgroundSource(),
+          imageCache: this.imageCache, retryRevision: this.backgroundRetryRevision })
+      }
+      this.gameplayForeground()
+    }.width('100%').height('100%')
   }
 }

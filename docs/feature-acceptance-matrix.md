@@ -962,3 +962,26 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [日夜原图对照](../artifacts/validation/ui-gameplay-answer-guide-20261113/visual-review-final-01.json) 包含最终版首次引导、定位、退去和实际点选。定位描边沿 ArkUI 表单外缘绘制，保持表单几何。Web 轮廓额外外扩 12 CSS px。减少动画使用系统设置，原生即时定位，Web 减少动画已重放。当前直板机未取得该设置生效的独立证据，也未录制连续入场动效。
 
 [固定预览账号](../artifacts/validation/ui-gameplay-answer-guide-20261113/fixed-preview-restored-01.json) 已恢复并停留在首页。预览包与修正版验收包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-answer-guide-20261113/preview-package-equivalence-01.json)。[临时验收环境已清理](../artifacts/validation/ui-gameplay-answer-guide-20261113/disposable-cleanup-01.json)，六个隔离账号的八个场次台账保持准备后的原值。
+
+### T03a 答题场次与逐题背景图
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 配置优先级 | 对照冻结 Web `4b7d1a0`。当前关卡可继承场次、覆盖自定义图或显式关闭。保留旧数据中的关卡 URL 覆盖和空自定义含义。未获授权的关卡不触发读取。 |
+| 日夜与布局 | 使用 ArkUI 固定铺底、居中裁切和主题渐变。按同数据、同内容宽度对照日夜题面及系统栏，验证滚动、输入、切题与浮动控件的命中和可读性。 |
+| 加载、失败与切换 | 等待图片、缺图或失败期间显示主题底色，不新增装饰层交互。切题、退出、后台或授权失效后，迟到图片不得恢复旧题背景。手动刷新后可重新请求失败的当前图。 |
+| 网络与范围 | 直板机使用隔离真实 HTTPS，背景图读取不发送业务鉴权或额外入场、答题写入。默认全屏氛围动效属于下一视觉切片。 |
+
+[冻结 Web 回放](../artifacts/validation/ui-gameplay-background-20261113/web-background-03.json) 覆盖继承、覆盖、显式关闭、真实失败输入和迟到资源。Web 在独立背景层上还有默认动态氛围。原生本轮覆盖已经进入的可读答题页面，未入场详情继续沿用当前主题底色。
+
+[首轮日间原图](../artifacts/validation/ui-gameplay-background-20261113/visual-review-initial-01.json) 观察到两种图片及主题回退。顶部渐变用透明黑作为结束色，日间画面出现灰带。修正版使用同主题的透明色。首轮采集器在写报告时被前一切片的路径校验拒绝，原始画面保留为观察记录。
+
+[最终包签名安装、窗口和 TLS](../artifacts/validation/ui-gameplay-background-20261113/runtime-02.json) 5 项通过。[背景规则 3/3](../artifacts/validation/ui-gameplay-background-20261113/GameplayBackground/local-test-summary.json)、[图片加载 4/4](../artifacts/validation/ui-gameplay-background-20261113/QuestionImageLoaderTests/local-test-summary.json)、[缓存 4/4](../artifacts/validation/ui-gameplay-background-20261113/QuestionImageCacheTests/local-test-summary.json) 和 [刷新 8/8](../artifacts/validation/ui-gameplay-background-20261113/GameplayRefreshViewModel/local-test-summary.json) 通过。DevEco ArkTS 检查对新增及相关源码无诊断。[codelinter](../artifacts/validation/ui-gameplay-background-20261113/lint/lint.json) 返回 `filesChecked=0`。
+
+[修正版直板主轮](../artifacts/validation/ui-gameplay-background-20261113/native-background-final-01.json) 验证日间的背景继承、覆盖和关闭，答题输入实例与草稿在键盘开合时保持一致，返回首页清除背景。切回原题的手势用时约 1.4 秒，旧图随后完成 12.006 秒的 HTTPS 200，当前画面边缘像素与原场次图一致。主轮执行回到页顶的手势后发现一次额外的 503 请求，无法单独归因于自动轮询，原报告保留 incomplete。
+
+[同包直板补验](../artifacts/validation/ui-gameplay-background-20261113/native-background-supplement-01.json) 先等待一次无操作的真实详情 GET 200，失败图片请求数维持 1。单独手动下拉后只多一次图片 GET，仍为 503 时保持主题底色与可读题面。夜间的继承、覆盖和无图状态均实际拍摄。主轮及补验的图片请求没有鉴权凭据，隔离台账无新增玩法写入。
+
+[同数据日夜视觉对照](../artifacts/validation/ui-gameplay-background-20261113/visual-review-final-01.json) 确认顶部灰带已去除，状态栏、题目和答题控件可读。原生保留官方顶栏材质与已有题卡表面，Web 仍有单独的全屏氛围。测试覆盖普通字号直板机。配置了 BGM 的场次与后台后授权变化未在该切片单独触发。
+
+[固定预览账号](../artifacts/validation/ui-gameplay-background-20261113/fixed-preview-restored-01.json) 已恢复登录。预览包与最终验收包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-background-20261113/preview-package-equivalence-01.json)，[临时隔离环境已清理](../artifacts/validation/ui-gameplay-background-20261113/disposable-cleanup-01.json)。

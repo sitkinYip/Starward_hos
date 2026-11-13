@@ -1,0 +1,169 @@
+{
+  "status": "captured_frozen_web_mobile_background_reference",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "driverSha256": "6d8207b99364881a63f0df3bd648eb6872178adf74cf55d968d55cac110af3d4",
+  "sourceSha256": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/components/effects/QuestAtmosphere.tsx": "e1f2cb3ed967817187c0d81411197534bf99ac9af59f44d773bc06c39f2f3886",
+    "src/styles/features/quest.css": "3a5ca5a3c6a18acbacbe751c14362f9c77a15bbcbaa1d9c10dee50787d796dfd",
+    "src/styles/effects/quest-atmosphere.css": "67f0a37bba06a1022a4891eaa23530b917b23e30f3f98a1ae20ac0961bc3575e",
+    "src/styles/effects/answer-feedback.css": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "src/styles/features/letter.css": "4c209d078b077df0708e8cb5f7999489c1bc9b82ff2bca24dd16f092483c90b6",
+    "src/styles/foundation/base.css": "3ca98dedb2518df3086e60ec6be9f9bacc04d41bef76e61e28f33f7d3cdd7b84",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d"
+  },
+  "fixtureDtoSha256": "de6ebfda7738c8408a51c28978557bf2c7cf8dd7c660af4599940289079cdedf",
+  "nativeSourceFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "viewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "syntheticAuthentication": true,
+  "browserBusinessRequestsForwarded": 0,
+  "browserMediaRequestsForwarded": 0,
+  "sameInput": "Exact local isolated HTTPS DTO and registered PNG bytes replayed",
+  "assetBytes": {
+    "level": {
+      "sha256": "f069651b3733e8b8fa02d3b792017296258306e92cb84c74af1135742e9ff3b0",
+      "bytes": 88588,
+      "width": 720,
+      "height": 1200
+    },
+    "session": {
+      "sha256": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a",
+      "bytes": 100732,
+      "width": 720,
+      "height": 1200
+    },
+    "slow": {
+      "sha256": "cf4dadb1342e992d81ea6a487a6852079357b463db65fdf0167271ab003f5afb",
+      "bytes": 97004,
+      "width": 720,
+      "height": 1200
+    }
+  },
+  "captureMethod": "Uncropped frozen Web mobile original with first-visit guide present.",
+  "cases": [
+    {
+      "theme": "light",
+      "reducedMotion": false,
+      "states": [
+        {
+          "case": "inherited-first-visit-guide",
+          "imageLabel": "session",
+          "diagnosticCssOnly": false,
+          "original": {
+            "path": "artifacts/private/gameplay-background-20261113/web-reference-guide-visible-01/light-inherited-first-visit-guide.png",
+            "sha256": "a2957e8eeddafd4873dbaa4a3212593838cc182dc9a9606bda33eff8258fd2c9"
+          },
+          "geometry": {
+            "viewport": {
+              "width": 388,
+              "height": 771,
+              "dpr": 1,
+              "reduced": false,
+              "mobile": true,
+              "theme": "light"
+            },
+            "background": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "size": "cover",
+              "placement": "50% 50%",
+              "opacity": "0.3",
+              "pointerEvents": "none",
+              "mask": "linear-gradient(rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgb(255, 255, 255) 180px)",
+              "ariaHidden": "true",
+              "scrim": "linear-gradient(rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.9))",
+              "animationName": "none",
+              "animationCount": 0,
+              "transitionDuration": "0s",
+              "hasImage": true,
+              "paintBeforeAtmosphere": true
+            },
+            "atmosphere": {
+              "x": 0,
+              "y": 0,
+              "width": 388,
+              "height": 771,
+              "position": "fixed",
+              "opacity": "0.96",
+              "display": "block",
+              "motesDisplay": "block"
+            },
+            "body": {
+              "color": "rgb(41, 60, 56)",
+              "backgroundColor": "rgb(255, 255, 255)"
+            },
+            "header": {
+              "x": 12,
+              "y": -167,
+              "width": 364,
+              "height": 69.578125
+            },
+            "card": {
+              "x": 12,
+              "y": -0.421875,
+              "width": 364,
+              "height": 801.6875,
+              "opacity": "1"
+            },
+            "title": {
+              "box": {
+                "x": 31,
+                "y": 54.96875,
+                "width": 326,
+                "height": 38.015625
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              }
+            },
+            "form": {
+              "x": 31,
+              "y": 652.265625,
+              "width": 326,
+              "height": 122
+            },
+            "field": {
+              "box": {
+                "x": 31,
+                "y": 652.265625,
+                "width": 326,
+                "height": 58
+              },
+              "style": {
+                "color": "rgb(22, 46, 40)",
+                "backgroundColor": "rgba(0, 0, 0, 0)"
+              },
+              "focused": false
+            },
+            "activeIndex": 5,
+            "scrollY": 191,
+            "scrollHeight": 1028
+          }
+        }
+      ],
+      "mediaResponses": [
+        {
+          "label": "session",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-background-20261113/web-reference-guide-visible-01/browser-private.json",
+    "sha256": "d88fdbc21ebd1ad105377c3861d1275460cbd31072b124c81c6ec4175fdccf3a"
+  },
+  "blockedRequests": 5
+}

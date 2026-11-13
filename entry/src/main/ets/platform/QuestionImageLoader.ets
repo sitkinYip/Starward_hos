@@ -11,12 +11,15 @@ const MAX_ORIGINAL_EDGE: number = 16384;
 const MAX_ORIGINAL_PIXELS: number = 40 * 1024 * 1024;
 const MAX_DECODED_EDGE: number = 2048;
 const IMAGE_FIXTURE_ORIGIN: string = 'https://127.0.0.1:18443';
+const IMAGE_FIXTURE_PATHS: string[] = [
+  'auto-clue-a.png', 'auto-clue-b.png',
+  'quest-bg-session.png', 'quest-bg-level.png', 'quest-bg-missing.png', 'quest-bg-slow.png'
+];
 
 function fixtureImageCa(target: string): string | undefined {
   if (AppEnvironment.endpoint === IMAGE_FIXTURE_ORIGIN && AppEnvironment.probeTls &&
     AppEnvironment.configurationError === '' && AppEnvironment.caData.length > 0 &&
-    (target === IMAGE_FIXTURE_ORIGIN + '/__starward_fixture_media/auto-clue-a.png' ||
-      target === IMAGE_FIXTURE_ORIGIN + '/__starward_fixture_media/auto-clue-b.png')) {
+    IMAGE_FIXTURE_PATHS.some((file: string) => target === IMAGE_FIXTURE_ORIGIN + '/__starward_fixture_media/' + file)) {
     return AppEnvironment.caData;
   }
   return undefined;
