@@ -1,0 +1,120 @@
+{
+  "status": "incomplete",
+  "stage": "correct-feedback",
+  "answerKind": "avatar-and-answer-motion",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+  "bindingSha256": {
+    "hap": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+    "runtime": "734838e93d819a9452032f21443203f9740f40f0f9e20e686256b79f06a0b7d3",
+    "caseReference": "25af0d1d84a3a8b62d0819848304d3e8ddb0ab336e1055512ce4a664460fc2c0",
+    "ca": "599c5417df6425f9a268a728fbd6d030ba03e24d93225455ab12de8490f780e3",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "c90667e85cea7d3953095f795f038e96e4cc0bff23a302e8c798150e5a58c783",
+    "gameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "65292e3e19e1b777e2f4c5094a5de05e5ef9c0d80ae57d3cf5a4b341a5aec3eb",
+    "answerMotionDriver": "9baa02dcf55c69adaf9f89dc853113c2837ae03ea741dfcf3630ba8284665047",
+    "headerMotion": "8aed778e3fdc25dbc5064e0513c17409cd8ab727243f4035676f316c939d6012",
+    "answerUI": {
+      "StarwardQuestionFrame": "cb28a4d1fc9f057aa5fbc9461cc7f212809e932d6528601f113e4694c279b091",
+      "StarwardQuestFeedback": "ddddf60c6203bf4c13311ab47d98719ae09cb3eb489b05a7b4f4b3b2c0848a74",
+      "StarwardQuestionNavigation": "7c3573de11229a2052f89b01f1d6972ac6c7bda53055a1bafbf440fbf17d238f",
+      "StarwardChoiceOption": "c2b4a0ba5ff9bcd130a51900f14116c4ac4c548bc94d11ab67fb24f6d98f7f73"
+    }
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Same isolated case had one incorrect and no successful settlement before resuming"
+  ],
+  "observations": {
+    "bursts": {
+      "correct": {
+        "controlBoundsPx": [
+          100,
+          1558,
+          439,
+          1708
+        ],
+        "samples": [
+          {
+            "requestedMs": 563,
+            "receivedMs": 2510,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-00.png",
+              "sha256": "941477f9320b419342703205197129e77b4149a2b68aecf30ec96b12f19f79de",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2510,
+            "receivedMs": 4613,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-01.png",
+              "sha256": "cead720135e76a6af92041f003c40bbc6f166a73a681ffa5847a3e904e3d8b93",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4613,
+            "receivedMs": 6759,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-02.png",
+              "sha256": "e9a46c294f8cae0afbbbe9a5b0ba83dd85d289b7f04a792ef44e451d2ac223ad",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 6759,
+            "receivedMs": 8861,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-03.png",
+              "sha256": "1f85e5fd715633e081258caba42f358869241bcb041234af6146564933ce353c",
+              "scope": "Private original"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-00.png",
+      "sha256": "941477f9320b419342703205197129e77b4149a2b68aecf30ec96b12f19f79de",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-01.png",
+      "sha256": "cead720135e76a6af92041f003c40bbc6f166a73a681ffa5847a3e904e3d8b93",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-02.png",
+      "sha256": "e9a46c294f8cae0afbbbe9a5b0ba83dd85d289b7f04a792ef44e451d2ac223ad",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T014947282614Z/correct-03.png",
+      "sha256": "1f85e5fd715633e081258caba42f358869241bcb041234af6146564933ce353c",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write.",
+  "failure": "UI expectation timed out: real correct answer"
+}

@@ -1,0 +1,48 @@
+{
+  "status": "incomplete",
+  "stage": "return-to-top-and-avatar-ring",
+  "answerKind": "avatar-and-answer-motion",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "776802e61580ef60a80e8a36f196a2af930dc8d37e27af6276683e2c4155d52a",
+  "bindingSha256": {
+    "hap": "776802e61580ef60a80e8a36f196a2af930dc8d37e27af6276683e2c4155d52a",
+    "runtime": "02ab0308a81a893ae21f36913f0461e0f1c2ca88f034a5be59cc71a54c26f0d1",
+    "caseReference": "25af0d1d84a3a8b62d0819848304d3e8ddb0ab336e1055512ce4a664460fc2c0",
+    "ca": "599c5417df6425f9a268a728fbd6d030ba03e24d93225455ab12de8490f780e3",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "7913cd97e1787c2e6fdd4570fd6fe2b92b43b94ac3adb989cde51cd27b412d70",
+    "gameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "65292e3e19e1b777e2f4c5094a5de05e5ef9c0d80ae57d3cf5a4b341a5aec3eb",
+    "answerMotionDriver": "5c3c48d664cb10518e361fdc67a40544aa01ba75c817da864d472ef3fb75bf03",
+    "headerMotion": "8aed778e3fdc25dbc5064e0513c17409cd8ab727243f4035676f316c939d6012",
+    "answerUI": {
+      "StarwardQuestionFrame": "cfd281389c87e50ce2e0e129be30687b1e576f92d3221249fc6054fb59c63e31",
+      "StarwardQuestFeedback": "6463acd1ba1d6b058ff71a351905c97f8d4594c62acdcb5dc2eb00f76fb93c93",
+      "StarwardQuestionNavigation": "7c3573de11229a2052f89b01f1d6972ac6c7bda53055a1bafbf440fbf17d238f",
+      "StarwardChoiceOption": "c2b4a0ba5ff9bcd130a51900f14116c4ac4c548bc94d11ab67fb24f6d98f7f73"
+    }
+  },
+  "checksPassed": 0,
+  "checks": [],
+  "observations": {},
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write.",
+  "failure": "Quest header did not return at the top"
+}

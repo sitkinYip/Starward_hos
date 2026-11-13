@@ -1,6 +1,7 @@
 import { window } from '@kit.ArkUI';
 import { ClueVideoFile, ClueVideoFileLoader } from '../platform/ClueVideoFile';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
+import { StarwardMediaAmbient, StarwardMediaFrame } from './StarwardClueMotion';
 
 class VideoAttempt {
   readonly controller: VideoController = new VideoController();
@@ -157,6 +158,7 @@ export struct StarwardVideoViewer {
   @Require @Param model: StarwardVideoViewerState;
   @Require @Param sessionId: number;
   @Param reducedMotion: boolean = true;
+  @Param motionEnabled: boolean = false;
 
   private safeTop(): number {
     return Math.max(this.avoidArea.statusBar.topRect.height, this.avoidArea.cutout.topRect.height);
@@ -223,8 +225,8 @@ export struct StarwardVideoViewer {
       Column().width('100%').height('100%').border({ width: 1, color: '#29ffebb3' })
         .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
       if (this.model.phase === 'ready') {
-        Column().width(Math.max(0, this.stageWidth() - 14)).height(Math.max(0, this.stageHeight() - 14))
-          .border({ width: 1, color: '#1fffecb8' }).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+        StarwardMediaFrame({ stageWidth: this.stageWidth(), stageHeight: this.stageHeight(),
+          reducedMotion: this.reducedMotion })
       }
     }.id('gameplay-video-stage').width(this.stageWidth()).height(this.stageHeight())
       .hitTestBehavior(HitTestMode.BLOCK_HIERARCHY)
@@ -234,6 +236,10 @@ export struct StarwardVideoViewer {
     Stack({ alignContent: Alignment.TopStart }) {
       Button('', { type: ButtonType.Normal }).id('gameplay-video-mask').width('100%').height('100%')
         .backgroundColor('#f0050605').accessibilityLevel('no').onClick(() => this.model.close(this.sessionId))
+      StarwardMediaAmbient({
+        diameter: Math.min(1180, this.availableWidth() * 1.5), motionEnabled: this.motionEnabled
+      }).position({ x: this.safeLeft() + (this.availableWidth() - Math.min(1180, this.availableWidth() * 1.5)) / 2,
+        y: this.safeTop() + (this.availableHeight() - Math.min(1180, this.availableWidth() * 1.5)) / 2 })
       Stack({ alignContent: Alignment.Center }) {
         this.stage()
         Button('×', { type: ButtonType.Circle }).id('gameplay-video-close').width(46).height(46)

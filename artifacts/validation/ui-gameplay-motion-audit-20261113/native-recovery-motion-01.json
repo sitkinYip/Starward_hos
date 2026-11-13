@@ -1,0 +1,248 @@
+{
+  "status": "passed",
+  "stage": "answer-503-complete",
+  "answerRecoveryKind": "503",
+  "scope": "Native first text-answer recovery only on a separate disposable manual case",
+  "hapSha256": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+  "bindingSha256": {
+    "hap": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+    "runtime": "734838e93d819a9452032f21443203f9740f40f0f9e20e686256b79f06a0b7d3",
+    "caseReference": "7fd7a551e53f058ba0caadbc22f1c7bd9ce6f8bab1444aa9e9f225bd252bfdd6",
+    "ca": "599c5417df6425f9a268a728fbd6d030ba03e24d93225455ab12de8490f780e3",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "c90667e85cea7d3953095f795f038e96e4cc0bff23a302e8c798150e5a58c783",
+    "gameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "65292e3e19e1b777e2f4c5094a5de05e5ef9c0d80ae57d3cf5a4b341a5aec3eb",
+    "answerRecoveryDriver": "cf4ac07e38960ca4a77acbc8a3be9a6f64422d1b7633743411dcd36b2d2826e5",
+    "recoveryMotionDriver": "60a86c9a7c792fd9c7cd45ffc2a685e4036484751716ff8172226d6b01e1dea5",
+    "recoveryMotionUI": "514b819a04b557b47da30e9ddd7dfa72aa4ab04c9e92e5a21a6f7f788dca6e52"
+  },
+  "checksPassed": 5,
+  "checks": [
+    "Pulse produces changing native panel pixels with no business settlement on 503",
+    "Retry reused identical request identity and returned strict HTTPS 200",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Native answer logout clears login inputs and private gameplay",
+    "Finally cleanup confirms empty login inputs and no private gameplay"
+  ],
+  "observations": {
+    "motion": {
+      "recovery-pulse": {
+        "nodeId": "gameplay-answer-retry-dialog",
+        "controlBoundsPx": [
+          65,
+          664,
+          1195,
+          2089
+        ],
+        "stableControlBounds": true,
+        "cropBoundsPx": [
+          65,
+          664,
+          1195,
+          2089
+        ],
+        "samples": [
+          {
+            "requestedMs": 0,
+            "receivedMs": 2239,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-00.png",
+              "sha256": "2554cd51ab3caba73316a5233637a6b70d8504d6a0bb4e474e458df9769accd7",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2239,
+            "receivedMs": 4464,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-01.png",
+              "sha256": "85f2376d9bff15b054983d00a6554206a7757cb73add910ecfb39bf0500ff0a3",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4464,
+            "receivedMs": 6617,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-02.png",
+              "sha256": "c75e36fd89d013100f6bac5334d0a0d823a480156cc68b987c39cb9af62f7e84",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 6617,
+            "receivedMs": 8712,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-03.png",
+              "sha256": "a6fab4e660d1174e6d6a4388e73764dd03aa40e58b7900996576611fa8baf8b3",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 8712,
+            "receivedMs": 10821,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-04.png",
+              "sha256": "35789bcad976bc23315e1b71f3457013ac0634d2620f280d8d6a04d00da612de",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 10821,
+            "receivedMs": 12913,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-05.png",
+              "sha256": "96841d17bda1a4d905d7a576d3425571e4b554d9dcf1f616f4fc20e593c0dbc7",
+              "scope": "Private original"
+            }
+          }
+        ],
+        "consecutiveChanges": [
+          {
+            "meanAbsoluteRgb": 0.21975,
+            "changedPixelFraction": 0.02109
+          },
+          {
+            "meanAbsoluteRgb": 0.3487,
+            "changedPixelFraction": 0.02813
+          },
+          {
+            "meanAbsoluteRgb": 0.2801,
+            "changedPixelFraction": 0.02229
+          },
+          {
+            "meanAbsoluteRgb": 0.21235,
+            "changedPixelFraction": 0.02156
+          },
+          {
+            "meanAbsoluteRgb": 0.2741,
+            "changedPixelFraction": 0.02833
+          }
+        ],
+        "maximumChangedPixelFraction": 0.02833
+      },
+      "recovery-pending": {
+        "nodeId": "gameplay-answer-retry",
+        "controlBoundsPx": [
+          146,
+          1676,
+          1114,
+          1826
+        ],
+        "stableControlBounds": true,
+        "cropBoundsPx": [
+          146,
+          1676,
+          1114,
+          1826
+        ],
+        "samples": [
+          {
+            "requestedMs": 0,
+            "receivedMs": 2066,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pending-00.png",
+              "sha256": "5f17ce36bddc44ea2adee3d3125561d252674e6b67410b8013c4aa87d48b69d5",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2066,
+            "receivedMs": 4091,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pending-01.png",
+              "sha256": "6a1f001e290e3e98e558c90545cf39f7a1d9a8db9a6908dd0d2ea529ea92e56d",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4091,
+            "receivedMs": 6184,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pending-02.png",
+              "sha256": "95135ed8fc6f71768c0ffdc6fee875603cf71d95738563c6b5d4332db5dcfe25",
+              "scope": "Private original"
+            }
+          }
+        ],
+        "consecutiveChanges": [
+          {
+            "meanAbsoluteRgb": 0.25823,
+            "changedPixelFraction": 0.00857
+          },
+          {
+            "meanAbsoluteRgb": 0.2969,
+            "changedPixelFraction": 0.00901
+          }
+        ],
+        "maximumChangedPixelFraction": 0.00901
+      }
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-00.png",
+      "sha256": "2554cd51ab3caba73316a5233637a6b70d8504d6a0bb4e474e458df9769accd7",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-01.png",
+      "sha256": "85f2376d9bff15b054983d00a6554206a7757cb73add910ecfb39bf0500ff0a3",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-02.png",
+      "sha256": "c75e36fd89d013100f6bac5334d0a0d823a480156cc68b987c39cb9af62f7e84",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-03.png",
+      "sha256": "a6fab4e660d1174e6d6a4388e73764dd03aa40e58b7900996576611fa8baf8b3",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-04.png",
+      "sha256": "35789bcad976bc23315e1b71f3457013ac0634d2620f280d8d6a04d00da612de",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pulse-05.png",
+      "sha256": "96841d17bda1a4d905d7a576d3425571e4b554d9dcf1f616f4fc20e593c0dbc7",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pending-00.png",
+      "sha256": "5f17ce36bddc44ea2adee3d3125561d252674e6b67410b8013c4aa87d48b69d5",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pending-01.png",
+      "sha256": "6a1f001e290e3e98e558c90545cf39f7a1d9a8db9a6908dd0d2ea529ea92e56d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015410756559Z/motion-recovery-pending-02.png",
+      "sha256": "95135ed8fc6f71768c0ffdc6fee875603cf71d95738563c6b5d4332db5dcfe25",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/text-answer only; Host authentication/read and exact disposable fault control. No creation/reset/choice/profile/password/reward/admin write."
+}

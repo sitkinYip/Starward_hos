@@ -3,6 +3,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
+import { StarwardMediaAmbient, StarwardMediaFrame } from './StarwardClueMotion';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
 
 /** UI-only cover/resource owner. It never changes gameplay or owns an application Window. */
@@ -167,6 +168,7 @@ export struct StarwardImageViewer {
   @Require @Param model: StarwardImageViewerState;
   @Require @Param sessionId: number;
   @Param reducedMotion: boolean = true;
+  @Param motionEnabled: boolean = false;
   @Event close: () => void = () => {};
   @Local private measuredWidth: number = 0;
   @Local private measuredHeight: number = 0;
@@ -333,6 +335,10 @@ export struct StarwardImageViewer {
         .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
       Column().width('100%').height('100%').border({ width: 1, color: '#29ffebb3' })
         .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+      if (this.model.loadState === 'ready') {
+        StarwardMediaFrame({ stageWidth: this.stageWidth(), stageHeight: this.actualStageHeight(),
+          reducedMotion: this.reducedMotion })
+      }
     }.id('image-viewer-stage').width('100%').height(this.stageHeight()).clip(true)
       .accessibilityDescription(`缩放${Math.round(this.model.zoom * 100)}%；水平偏移${this.model.x.toFixed(1)}vp；垂直偏移${this.model.y.toFixed(1)}vp`)
       .onAreaChange((_previous: Area, current: Area) => {
@@ -399,6 +405,10 @@ export struct StarwardImageViewer {
     Stack({ alignContent: Alignment.TopStart }) {
       Button('', { type: ButtonType.Normal }).id('image-viewer-mask').width('100%').height('100%')
         .backgroundColor('#f0050605').accessibilityText('关闭媒体预览').onClick(() => this.close())
+      StarwardMediaAmbient({
+        diameter: Math.min(1180, this.availableWidth() * 1.5), motionEnabled: this.motionEnabled
+      }).position({ x: this.safeLeft() + (this.availableWidth() - Math.min(1180, this.availableWidth() * 1.5)) / 2,
+        y: this.safeTop() + (this.availableHeight() - Math.min(1180, this.availableWidth() * 1.5)) / 2 })
       Stack({ alignContent: Alignment.TopEnd }) {
         Column({ space: 16 }) {
           this.stage()

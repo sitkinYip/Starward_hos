@@ -1,0 +1,56 @@
+{
+  "status": "native_daylight_motion_reviewed",
+  "reportSha256": {
+    "native-motion-01.json": "b6d1b5a14374e17f661d3cf31285f538f33ac38fa718309efc23068954d6d941",
+    "native-card-motion-02.json": "6cd591d2f20378f279e1a35a4d664bba98d1f4e016fa4431359a4d22966c4b49",
+    "web-motion-01.json": "cf0551ea4ebf0eda19bb7b2ef0a53b1475035b74fab23eb7e0983a6b84ffc475"
+  },
+  "questionCard": {
+    "sampleCount": 26,
+    "exclusiveCropXYWHPx": [
+      80,
+      360,
+      1100,
+      900
+    ],
+    "meanAbsoluteRgbDeltaOnConsecutiveFrames": [
+      0.0,
+      0.0,
+      0.0,
+      3.7915,
+      3.7915,
+      0.0,
+      0.0,
+      0.0007,
+      0.0007,
+      0.0007,
+      2.735,
+      2.7344,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      4.6423,
+      4.6423,
+      0.0,
+      0.0,
+      0.0007,
+      0.0007,
+      0.0007,
+      0.0178
+    ],
+    "diagonalSheenVisibleInOriginalSha256": "110b6c668fabb779d773c836b9770dfd359b39943c17a1a6fac851065e7c3c18"
+  },
+  "stableBounds": {
+    "completion-notice": {
+      "sampleCount": 8,
+      "maximumChangedPixelFraction": 0.28878
+    },
+    "combination-launcher": {
+      "sampleCount": 8,
+      "maximumChangedPixelFraction": 0.17932
+    }
+  },
+  "scope": "Native flat-phone daylight active effects and taps. Dark and reduced motion were reviewed in the frozen Web. Native transition duration and launcher drag were not independently measured in this slice."
+}

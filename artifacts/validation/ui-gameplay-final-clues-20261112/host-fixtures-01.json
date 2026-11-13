@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "scope": "real isolated PocketBase and synthetic media on the host",
+  "orderedAutomaticKinds": [
+    "text",
+    "video",
+    "image"
+  ],
+  "orderedCombinationTitles": [
+    "星图拼合",
+    "记录归航"
+  ],
+  "answerEffectsMatchNewlyAuthorizedClues": true,
+  "ordinaryReadReplaysNoTransitionEffect": true,
+  "hostSettlement": {
+    "readOnlyDiagnostic": true,
+    "assignmentStatus": "completed",
+    "startedAtPresent": true,
+    "completedAtPresent": true,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "answerSubmissionCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 100,
+    "playerTotalXp": 100,
+    "clueUnlockRows": 5,
+    "combinationUnlockRows": 2,
+    "unrelatedActorGameplayWrites": 0
+  },
+  "deviceActorPrefixes": {
+    "normal": {
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "privateProofSha256": "f50b06c0dfd31ba36e9fe6cab9d391d3d2e9a27c288b8fa4853de35940c83370"
+    },
+    "early": {
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      },
+      "privateProofSha256": "04e37d1a0c391db92c19145a6a78e09c2ebf2705596ae49a8f4535463f182f4e"
+    }
+  },
+  "media": {
+    "exactImagesAndHashes": true,
+    "imageRoutesRejectCredentialsAndUnexpectedInputs": true,
+    "range": true,
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true
+  },
+  "privateSourceSha256": {
+    "business": "19c88aaeee2162f1c73023f77a3827c2e91cba8cbab84ea5a51bc13ffbb345c6",
+    "media": "0aab884b8e7fe0f1ab48d55372deb6d7701d55dc660b481f65fcd0d3533a3dca"
+  }
+}

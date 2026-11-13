@@ -8,6 +8,7 @@ export struct StarwardPlayerAvatar {
   @Param name: string = '';
   @Param avatar: AvatarImage | null = null;
   @Param avatarSize: number = 44;
+  @Param outlineTint: ResourceColor = $r('app.color.border');
   @Event decodeFailed: (avatar: AvatarImage) => void = () => {};
   @Local private pixels: image.PixelMap | undefined = undefined;
   private generation: number = 0;
@@ -70,7 +71,7 @@ export struct StarwardPlayerAvatar {
           .maxLines(1).accessibilityLevel('no')
       }
     }.width(this.avatarSize).height(this.avatarSize).borderRadius(this.avatarSize / 2).clip(true)
-      .backgroundColor($r('app.color.surface')).border({ width: 1, color: $r('app.color.border') })
+      .backgroundColor($r('app.color.surface')).border({ width: 1, color: this.outlineTint })
       .accessibilityText(`${this.name || '冒险者'}的头像`).accessibilityLevel('no')
   }
 }

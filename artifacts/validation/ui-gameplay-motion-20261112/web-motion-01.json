@@ -1,0 +1,1905 @@
+{
+  "status": "captured_frozen_web_motion",
+  "scope": "Frozen Web rendered animation samples at controlled CSS timeline offsets",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "viewport": {
+    "width": 388,
+    "height": 771
+  },
+  "nativeAcceptance": false,
+  "browserBusinessRequestsForwarded": 0,
+  "browserExternalRequestsForwarded": 0,
+  "sourceSha256": {
+    "src/index.css": "36a1e8721ea2fd8e639173d395859c052e15214fcc20b3a4f0ca297e3565fed6",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/components/ui/Dialog.tsx": "3424d6686401869fe002c809d5a9b2c40c2080b127247aaf9815b0329acd63db",
+    "src/features/clues/CluePanel.tsx": "062fd7639af3a561fb84e3a2442a7e2b4f786652b2677420ea65a24a856eda09",
+    "src/features/game/GamePlayPage.tsx": "83a130e87b36108666b8ba5e45f7929afe2dec3b8d60d1aff056a60817cdd8cf",
+    "src/features/game/GamePlayScene.tsx": "b98b6ffd87cdaccf3b2b1f95773380af35050498c7f0dad2fcd2f217ae8bbad1",
+    "src/features/game/clue-presentation.ts": "fc3b4e189ec189300e487fd3ffafaccf534b2d7b288e40d65214648745dcc05e",
+    "src/features/game/useGamePresentation.ts": "e48cef4eca361a40aefa4d326ef033ccc4310ace74a5c9f35ef0d4b0d7e33367",
+    "src/features/media/MediaViewer.tsx": "d37ef115da63e7954f202ae6adfe7881504ca4b7d843dbbcaed364e57a498f4e",
+    "src/features/media/NativeVideo.tsx": "977b6ce8513aee2268372f052bec002aacc3872543c8ca23e2a54be1249e9ba1",
+    "src/styles/features/clues.css": "c7fcc898825ed13afc993c1302b218f1526dc359b8b90c73771b94de0dbe0dba",
+    "src/styles/components/media-backdrop.css": "e5f56b3d64c86f15f4a070112f5df421a8fe9800dccbcb0a169b26067fc3afc9",
+    "src/styles/components/media-viewer.css": "0b693cb0333ebae58cf3cb0da70b07ee13bb2e1ae8ae1365534d40d374c497a3",
+    "src/styles/effects/overlay-lighting.css": "78884afbc15fd742b2585dd66652f3ba7f11ad172c1b535f84cb1e129c572e27",
+    "src/features/quest/QuestCard.tsx": "02d106ad6b419225c212a0ce24ce57d2096fb559fa2db508be3dee9649d228d3",
+    "src/features/quest/useQuestNavigationPosition.ts": "cade645b1b9befdf044ee2b3acea4d4040941ee7af2790bd39249d8f99c183c2",
+    "src/features/clues/ClueTextDialog.tsx": "5f5ad69c909314f1cbb827862fcf6b31948fdc936b6b8d22c8db87055a02e049",
+    "src/features/content/RichContent.tsx": "3eb037ff18774f186fe77286f60df8c624c905edcc57466ab65dade8f46de8d8",
+    "src/domain/content/parser.ts": "4908c745e0c8202a6944f851b1a8f230289926f0c0eeaf955e09eb44d67b9f94",
+    "src/features/media/ZoomableImage.tsx": "76f0a402abb78ecdc3c8aeef09d72c9033a7088bd1b6510f1c9a1c4f57d20e3a",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d",
+    "src/styles/effects/archive-lighting.css": "c6b923dd400fb505cf29d27360294eec308a170c93c7aa1e4a31b936af6b4226",
+    "src/api/game.client.ts": "7a14111a47948a6c4b05fad838e508fa35944256a45ecbc8b2aeb7d447b0e880",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/features/clues/MultiClueLauncher.tsx": "f54582d349c641add227da93679be5244f788edd32e52ef9f759f405dd4f70ca",
+    "src/features/clues/MultiQuestClueDialog.tsx": "f197c5ec0c36635da0412e7249ae75615fe723ff55fe5e39f4d5461b9c0ced47",
+    "src/features/completion/CompletionFeedbackDialog.tsx": "d834abcb2d48e569062d00edf5cb7801185de1659a6758f51784befcf85cea66",
+    "src/shared/gestures/useDraggableFloatingControl.ts": "529b4cb5e327c319af7eabfd676b7013e460e0787937ea0b0159e6a85a22c97f",
+    "src/styles/components/multi-clue-launcher.css": "247a3178bb4e164a08840a89f4000ad17ef65a13ba72c7c535e25f0eea95be8a",
+    "src/styles/features/completion.css": "8c7b2b3167bc2be52f2b50744ce4e266586725ade720ce49fe199f7a2e935eb9",
+    "src/styles/layout/shell.css": "2dd77a6370f4b77641251c15e830cb2f635d4d637b220d9f786b026ec2c674a7",
+    "src/styles/effects/answer-feedback.css": "77acab95c1d9e751211f5099e18b0529748c6ae3a6ec838987f27ad426f1310e",
+    "src/styles/components/controls-and-overlays.css": "b8a30db097deb0d9b891b901d181a3f0537fe8d446abba9fe0dc4817a0a60cc3",
+    "src/components/ui/Button.tsx": "f274d208f1ed5c141e871929557a3d7429836c80da342579f12bab4001c04279",
+    "src/components/effects/RitualParticles.tsx": "48278265b36db8c22ba936171c5be1aa6c6d16a36710df41f4429d5855580698",
+    "src/features/quest/QuestAnswerForm.tsx": "6b1210fdb87a8103281dfa9fec85fabda0634e9610ffcb45303ad2d0f55cf0e5",
+    "src/styles/effects/quest-lighting.css": "9cc513f1ae41fec0f0ac6f291dbb48b19bf2e4c6ae034e4c53659164ef9633b9",
+    "src/styles/effects/keyframes.css": "32eaffd5ff73587063de50ca64984cd6105a8851f0d72dcb280e4625182f1964",
+    "src/styles/effects/archive-keyframes.css": "086e2e43b8c557bc2ced9d1576bf53233d7aa140d22173cc101ea6bbfa44e50c",
+    "src/styles/components/motion.css": "439587d92a54dc02726cfd8fc96cd0abe26bf0434b71a6f95badc58179e67ef9",
+    "src/styles/features/letter.css": "4c209d078b077df0708e8cb5f7999489c1bc9b82ff2bca24dd16f092483c90b6"
+  },
+  "inputSha256": {
+    "dto": "1395a16c1c2aff9d625a1891dc83f841bd98d8baed5557793d727ac400eaeabd",
+    "proof": "d8ebbfa231de45ebeb1cdf68c8068ed39b38826540a116f5c0fd8130d68f8d2a",
+    "fixture": "4988bdce5896097d0e9f72d69f174f6216eece68b1ee29f55daab66f8c21ef67",
+    "imageManifest": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86"
+  },
+  "captureScriptSha256": "3f97389574f08eaf34c7fe3f9cec0fbce56dd5b41d3e123309d47117e7171c81",
+  "reusedReplaySha256": "43f20668fab7be9eb17736740756c1f5598eea57437b148b380cc0681b79b8d6",
+  "cases": [
+    {
+      "theme": "light",
+      "branch": "video-natural-end",
+      "answerReplays": 1,
+      "automaticOrder": [
+        "text",
+        "video",
+        "image",
+        "completion",
+        "combination",
+        "combination"
+      ],
+      "inlineImageReturnedToText": false,
+      "galleryPositions": [
+        1,
+        2
+      ],
+      "completedAfterEarlyClose": false,
+      "completedAfterNaturalEnd": true,
+      "completionRequiresExplicitAction": true,
+      "combinationBackdropRetained": true,
+      "refreshSilent": true,
+      "manualReopenLatest": true,
+      "rankTransitionAfterScope": true,
+      "frozenSourceChecks": 42,
+      "schemaChecks": 4,
+      "registeredMediaResponses": [
+        {
+          "name": "ordinary.mp4",
+          "status": 206,
+          "range": true
+        },
+        {
+          "name": "auto-clue-a.png",
+          "status": 200,
+          "range": false
+        },
+        {
+          "name": "auto-clue-b.png",
+          "status": 200,
+          "range": false
+        }
+      ],
+      "motion": [
+        {
+          "effect": "card",
+          "animations": {
+            "quest-card-sheen": {
+              "count": 1,
+              "duration": 9000,
+              "delay": 1600,
+              "iterations": "infinite",
+              "direction": "normal"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 6900,
+              "values": {
+                "sheen": {
+                  "opacity": 0,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, -272.939, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-card-6900.png",
+                "sha256": "1ab81edb40502ee5708f6719b9126658e4934298ba8fad9cf3b5ab3f33636aae"
+              }
+            },
+            {
+              "cssTimelineMs": 7180,
+              "values": {
+                "sheen": {
+                  "opacity": 0.101287,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, -40.7895, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-card-7180.png",
+                "sha256": "564a6ac40cac234b7858e8e4ceca5de81948fc7a9d123f3e78f33f9a7a485020"
+              }
+            },
+            {
+              "cssTimelineMs": 7380,
+              "values": {
+                "sheen": {
+                  "opacity": 0.125031,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, 333.224, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-card-7380.png",
+                "sha256": "e727596fa9aeff5d1270892c75ff0ffaba59d15f1e5954c0c4b81ecf87c9fc8f"
+              }
+            },
+            {
+              "cssTimelineMs": 7600,
+              "values": {
+                "sheen": {
+                  "opacity": 0.1296,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, 548.241, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-card-7600.png",
+                "sha256": "276baaed72906d6b5725bab387fd8a97cf18f1c9603513d065476c68d3a6e8ed"
+              }
+            },
+            {
+              "cssTimelineMs": 9000,
+              "values": {
+                "sheen": {
+                  "opacity": 0,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, 692.845, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-card-9000.png",
+                "sha256": "45aa0410906a3beb730059df6ccfa1e903c6acbd0968bf5b9917ae222abdfc73"
+              }
+            }
+          ]
+        },
+        {
+          "effect": "completion",
+          "animations": {
+            "motion-backdrop-enter": {
+              "count": 1,
+              "duration": 320,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "completion-orbit": {
+              "count": 2,
+              "duration": 14000,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "motion-surface-enter": {
+              "count": 1,
+              "duration": 320,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "completion-edge": {
+              "count": 1,
+              "duration": 2600,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "alternate"
+            },
+            "completion-bloom": {
+              "count": 1,
+              "duration": 2800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "alternate"
+            },
+            "completion-rune": {
+              "count": 3,
+              "duration": 18000,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "ritual-particle": {
+              "count": 8,
+              "duration": 3800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "sigil-awaken": {
+              "count": 1,
+              "duration": 2800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "alternate"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 40,
+              "values": {
+                "overlay": {
+                  "opacity": 0.19858,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0.000878685, -0.000878685, 1, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 0.57718,
+                  "transform": "matrix(0.983087, 0, 0, 0.983087, 0, 5.91948)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.382668,
+                  "transform": "matrix(0.440543, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.470389,
+                  "transform": "matrix(0.851276, 0, 0, 0.851276, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.706633, 0.70758, -0.70758, 0.706633, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.00197, 0.00229675, -0.00229675, 1.00197, 0, -0.131335)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.148433,
+                  "transform": "matrix(0.235712, 0, 0, 0.235712, 8.27018, -6.3906)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-completion-0040.png",
+                "sha256": "1ac7f9ba882ef467418fc187451154182f6d1cc2e3a0f5b9aee704679c96514a"
+              }
+            },
+            {
+              "cssTimelineMs": 160,
+              "values": {
+                "overlay": {
+                  "opacity": 0.684643,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.99999, 0.00449204, -0.00449204, 0.99999, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 0.971779,
+                  "transform": "matrix(0.998871, 0, 0, 0.998871, 0, 0.395093)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.458101,
+                  "transform": "matrix(0.508904, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.603108,
+                  "transform": "matrix(0.933654, 0, 0, 0.933654, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.704792, 0.709414, -0.709414, 0.704792, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.00842, 0.00993864, -0.00993864, 1.00842, 0, -0.564668)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.549676,
+                  "transform": "matrix(0.34558, 0, 0, 0.34558, 33.7132, -26.0511)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-completion-0160.png",
+                "sha256": "8a59144750da8a08957e232bfc09da436dee20d13f256fe130e340ab9f27867e"
+              }
+            },
+            {
+              "cssTimelineMs": 440,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.999824, 0.0187416, -0.0187416, 0.999824, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.704424,
+                  "transform": "matrix(0.732134, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.80511,
+                  "transform": "matrix(1.05903, 0, 0, 1.05903, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.697978, 0.716119, -0.716119, 0.697978, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.02864, 0.0350085, -0.0350085, 1.02864, 0, -1.94924)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.809828,
+                  "transform": "matrix(0.603464, 0, 0, 0.603464, 93.4339, -72.1989)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-completion-0440.png",
+                "sha256": "d372b086c3d4d82807d8a3feb7ba4957be7f796df43d457df818b653a11891be"
+              }
+            },
+            {
+              "cssTimelineMs": 1350,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.99222, 0.1245, -0.1245, 0.99222, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.974235,
+                  "transform": "matrix(0.97665, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.981159,
+                  "transform": "matrix(1.16831, 0, 0, 1.16831, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.648835, 0.760929, -0.760929, 0.648835, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.05466, 0.0700317, -0.0700317, 1.05466, 0, -3.79898)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.380977,
+                  "transform": "matrix(1.02769, 0, 0, 1.02769, 191.677, -148.114)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-completion-1350.png",
+                "sha256": "2376627826205f41298d7c693e88e4983dce1b99db10e843bd2531c40dfb303e"
+              }
+            },
+            {
+              "cssTimelineMs": 2750,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.883657, 0.468134, -0.468134, 0.883657, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.99979,
+                  "transform": "matrix(0.999809, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 1,
+                  "transform": "matrix(1.18, 0, 0, 1.18, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.468881, 0.883261, -0.883261, 0.468881, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.05742, 0.0739395, -0.0739395, 1.05742, 0, -3.99988)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.220777,
+                  "transform": "matrix(1.13892, 0, 0, 1.13892, 217.434, -168.017)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-completion-2750.png",
+                "sha256": "5c0f77d73fb431f1efd02b27e795a1c3d27533fb1e5368dff8517e9f99455584"
+              }
+            }
+          ]
+        },
+        {
+          "effect": "launcher",
+          "animations": {
+            "clue-launcher-enter": {
+              "count": 1,
+              "duration": 720,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "clue-launcher-field": {
+              "count": 1,
+              "duration": 2800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "clue-launcher-orbit": {
+              "count": 1,
+              "duration": 7000,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 120,
+              "values": {
+                "button": {
+                  "opacity": 0.584201,
+                  "transform": "matrix(0.908524, 0, 0, 0.908524, 7.48438, 9.97918)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.421321,
+                  "transform": "matrix(0.97605, 0, 0, 0.97605, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(0.994205, 0.107504, -0.107504, 0.994205, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-launcher-0120.png",
+                "sha256": "d580ccfaf8aeb72d9390cd7bba03f7da158549ed4104807be7b0eae8914d475a"
+              }
+            },
+            {
+              "cssTimelineMs": 760,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.704954,
+                  "transform": "matrix(1.03203, 0, 0, 1.03203, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(0.776204, 0.630482, -0.630482, 0.776204, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-launcher-0760.png",
+                "sha256": "7a29c9a21e4ba31877bbb63a1de134df2251f39ee92f5b71aac32920871fea9c"
+              }
+            },
+            {
+              "cssTimelineMs": 1400,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.719946,
+                  "transform": "matrix(1.03499, 0, 0, 1.03499, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(0.309017, 0.951057, -0.951057, 0.309017, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-launcher-1400.png",
+                "sha256": "2e00d10fce5c011dcfdfaca79a19ca0d080f3419ff4b470233fb756b00b8f5c7"
+              }
+            },
+            {
+              "cssTimelineMs": 2760,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.340032,
+                  "transform": "matrix(0.960006, 0, 0, 0.960006, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(-0.787396, 0.616447, -0.616447, -0.787396, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-launcher-2760.png",
+                "sha256": "bcb2341f2c7931dec192201903ed2cc191ea637c6ae0e11db577ca9c499022fe"
+              }
+            },
+            {
+              "cssTimelineMs": 3850,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.716246,
+                  "transform": "matrix(1.03426, 0, 0, 1.03426, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(-0.951057, -0.309017, 0.309017, -0.951057, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-no-preference-launcher-3850.png",
+                "sha256": "a6b13d139e80238597fcfc7f1f724a66735c16cf11d3a759817d44f406416f21"
+              }
+            }
+          ]
+        }
+      ],
+      "reducedMotion": false
+    },
+    {
+      "theme": "dark",
+      "branch": "video-early-close",
+      "answerReplays": 1,
+      "automaticOrder": [
+        "text",
+        "video",
+        "image",
+        "completion",
+        "combination",
+        "combination"
+      ],
+      "inlineImageReturnedToText": false,
+      "galleryPositions": [
+        1,
+        2
+      ],
+      "completedAfterEarlyClose": true,
+      "completedAfterNaturalEnd": false,
+      "completionRequiresExplicitAction": true,
+      "combinationBackdropRetained": true,
+      "refreshSilent": true,
+      "manualReopenLatest": true,
+      "rankTransitionAfterScope": true,
+      "frozenSourceChecks": 42,
+      "schemaChecks": 4,
+      "registeredMediaResponses": [
+        {
+          "name": "ordinary.mp4",
+          "status": 206,
+          "range": true
+        },
+        {
+          "name": "auto-clue-a.png",
+          "status": 200,
+          "range": false
+        },
+        {
+          "name": "auto-clue-b.png",
+          "status": 200,
+          "range": false
+        }
+      ],
+      "motion": [
+        {
+          "effect": "card",
+          "animations": {
+            "quest-card-sheen": {
+              "count": 1,
+              "duration": 9000,
+              "delay": 1600,
+              "iterations": "infinite",
+              "direction": "normal"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 6900,
+              "values": {
+                "sheen": {
+                  "opacity": 0,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, -272.939, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-card-6900.png",
+                "sha256": "e813dafabcbeebe5654b787146092ffb20917a01cce72bbdf99ab43d2643d983"
+              }
+            },
+            {
+              "cssTimelineMs": 7180,
+              "values": {
+                "sheen": {
+                  "opacity": 0.101287,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, -40.7895, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-card-7180.png",
+                "sha256": "245a6fe2b17545ca4ff9214a530180b633746b3fb3cc3958ac08ea34cecedd5f"
+              }
+            },
+            {
+              "cssTimelineMs": 7380,
+              "values": {
+                "sheen": {
+                  "opacity": 0.125031,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, 333.224, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-card-7380.png",
+                "sha256": "bc71c718cdc569609732ce6e29770b409ad426a7ed115cccd8a6bf8000e75753"
+              }
+            },
+            {
+              "cssTimelineMs": 7600,
+              "values": {
+                "sheen": {
+                  "opacity": 0.1296,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, 548.241, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-card-7600.png",
+                "sha256": "4160d629b01064328c5347c80637649d3619fb58f04a16f6445f98fdea2803b5"
+              }
+            },
+            {
+              "cssTimelineMs": 9000,
+              "values": {
+                "sheen": {
+                  "opacity": 0,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, 692.845, 0)",
+                  "animation": "quest-card-sheen",
+                  "duration": "9s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-card-9000.png",
+                "sha256": "c56a8f392ea6b8ede67730f9216af7d735ec9bcd14240d348ef30d4206f6095f"
+              }
+            }
+          ]
+        },
+        {
+          "effect": "completion",
+          "animations": {
+            "motion-backdrop-enter": {
+              "count": 1,
+              "duration": 320,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "completion-orbit": {
+              "count": 2,
+              "duration": 14000,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "motion-surface-enter": {
+              "count": 1,
+              "duration": 320,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "completion-edge": {
+              "count": 1,
+              "duration": 2600,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "alternate"
+            },
+            "completion-bloom": {
+              "count": 1,
+              "duration": 2800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "alternate"
+            },
+            "completion-rune": {
+              "count": 3,
+              "duration": 18000,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "ritual-particle": {
+              "count": 8,
+              "duration": 3800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "sigil-awaken": {
+              "count": 1,
+              "duration": 2800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "alternate"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 40,
+              "values": {
+                "overlay": {
+                  "opacity": 0.19858,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0.000878685, -0.000878685, 1, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 0.57718,
+                  "transform": "matrix(0.983087, 0, 0, 0.983087, 0, 5.91948)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.382668,
+                  "transform": "matrix(0.440543, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.470389,
+                  "transform": "matrix(0.851276, 0, 0, 0.851276, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.706633, 0.70758, -0.70758, 0.706633, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.00197, 0.00229675, -0.00229675, 1.00197, 0, -0.131335)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.148433,
+                  "transform": "matrix(0.235712, 0, 0, 0.235712, 8.27018, -6.3906)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-completion-0040.png",
+                "sha256": "8209ac5f5cd8df46693e611ec8b415e40487d91049f6a6896c6055f6e0efdd4a"
+              }
+            },
+            {
+              "cssTimelineMs": 160,
+              "values": {
+                "overlay": {
+                  "opacity": 0.684643,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.99999, 0.00449204, -0.00449204, 0.99999, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 0.971779,
+                  "transform": "matrix(0.998871, 0, 0, 0.998871, 0, 0.395093)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.458101,
+                  "transform": "matrix(0.508904, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.603108,
+                  "transform": "matrix(0.933654, 0, 0, 0.933654, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.704792, 0.709414, -0.709414, 0.704792, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.00842, 0.00993864, -0.00993864, 1.00842, 0, -0.564668)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.549676,
+                  "transform": "matrix(0.34558, 0, 0, 0.34558, 33.7132, -26.0511)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-completion-0160.png",
+                "sha256": "c665f30772249c66a774e3f82465b232fe47379a2d710d3290dd6383cbc35f14"
+              }
+            },
+            {
+              "cssTimelineMs": 440,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.999824, 0.0187416, -0.0187416, 0.999824, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.704424,
+                  "transform": "matrix(0.732134, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.80511,
+                  "transform": "matrix(1.05903, 0, 0, 1.05903, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.697978, 0.716119, -0.716119, 0.697978, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.02864, 0.0350085, -0.0350085, 1.02864, 0, -1.94924)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.809828,
+                  "transform": "matrix(0.603464, 0, 0, 0.603464, 93.4339, -72.1989)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-completion-0440.png",
+                "sha256": "5dccd7be41c2d05e250a1e2181e12d66cbcff2ef27d6530a7e2f4519bb6aac72"
+              }
+            },
+            {
+              "cssTimelineMs": 1350,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.99222, 0.1245, -0.1245, 0.99222, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.974235,
+                  "transform": "matrix(0.97665, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 0.981159,
+                  "transform": "matrix(1.16831, 0, 0, 1.16831, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.648835, 0.760929, -0.760929, 0.648835, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.05466, 0.0700317, -0.0700317, 1.05466, 0, -3.79898)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.380977,
+                  "transform": "matrix(1.02769, 0, 0, 1.02769, 191.677, -148.114)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-completion-1350.png",
+                "sha256": "217f9fb08c83efa03efb35d8c15584e09f387170aafd766f84bbfa54d08c844a"
+              }
+            },
+            {
+              "cssTimelineMs": 2750,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "motion-backdrop-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "matrix(0.883657, 0.468134, -0.468134, 0.883657, 0, 0)",
+                  "animation": "completion-orbit",
+                  "duration": "14s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "motion-surface-enter",
+                  "duration": "0.32s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 0.99979,
+                  "transform": "matrix(0.999809, 0, 0, 1, 0, 0)",
+                  "animation": "completion-edge",
+                  "duration": "2.6s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 1,
+                  "transform": "matrix(1.18, 0, 0, 1.18, 0, 0)",
+                  "animation": "completion-bloom",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.468881, 0.883261, -0.883261, 0.468881, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "18s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "matrix(1.05742, 0.0739395, -0.0739395, 1.05742, 0, -3.99988)",
+                  "animation": "sigil-awaken",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "0s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "particle": {
+                  "opacity": 0.220777,
+                  "transform": "matrix(1.13892, 0, 0, 1.13892, 217.434, -168.017)",
+                  "animation": "ritual-particle",
+                  "duration": "3.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-completion-2750.png",
+                "sha256": "76043235f5211200b8b5d3ccb3b9f77cd287ba5d7b54f0d553e222e5f72277fe"
+              }
+            }
+          ]
+        },
+        {
+          "effect": "launcher",
+          "animations": {
+            "clue-launcher-enter": {
+              "count": 1,
+              "duration": 720,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "clue-launcher-field": {
+              "count": 1,
+              "duration": 2800,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            },
+            "clue-launcher-orbit": {
+              "count": 1,
+              "duration": 7000,
+              "delay": 0,
+              "iterations": "infinite",
+              "direction": "normal"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 120,
+              "values": {
+                "button": {
+                  "opacity": 0.584201,
+                  "transform": "matrix(0.908524, 0, 0, 0.908524, 7.48438, 9.97918)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.421321,
+                  "transform": "matrix(0.97605, 0, 0, 0.97605, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(0.994205, 0.107504, -0.107504, 0.994205, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-launcher-0120.png",
+                "sha256": "a32c83233a142ef9bb6d8e80a299af92c0ebae96e39a86e821771f4f8de60193"
+              }
+            },
+            {
+              "cssTimelineMs": 760,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.704954,
+                  "transform": "matrix(1.03203, 0, 0, 1.03203, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(0.776204, 0.630482, -0.630482, 0.776204, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-launcher-0760.png",
+                "sha256": "5aadc0a51f08c3063be2ff5472ab223a523ad4273529d65a78f610d9e3d74ff2"
+              }
+            },
+            {
+              "cssTimelineMs": 1400,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.719946,
+                  "transform": "matrix(1.03499, 0, 0, 1.03499, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(0.309017, 0.951057, -0.951057, 0.309017, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-launcher-1400.png",
+                "sha256": "0863dc5c90ec3589a67dd2b55569ed0b0c3a7baa184b02aec0bdc4eef462be60"
+              }
+            },
+            {
+              "cssTimelineMs": 2760,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.340032,
+                  "transform": "matrix(0.960006, 0, 0, 0.960006, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(-0.787396, 0.616447, -0.616447, -0.787396, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-launcher-2760.png",
+                "sha256": "2cfdb4fb140f7425bd91f7966c6aeb53e6aee4c61991f6181304ff1c1e4c9f96"
+              }
+            },
+            {
+              "cssTimelineMs": 3850,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "matrix(1, 0, 0, 1, 0, 0)",
+                  "animation": "clue-launcher-enter",
+                  "duration": "0.72s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.716246,
+                  "transform": "matrix(1.03426, 0, 0, 1.03426, 0, 0)",
+                  "animation": "clue-launcher-field",
+                  "duration": "2.8s",
+                  "iterations": "infinite",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "matrix(-0.951057, -0.309017, 0.309017, -0.951057, 0, 0)",
+                  "animation": "clue-launcher-orbit",
+                  "duration": "7s",
+                  "iterations": "infinite",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/dark-no-preference-launcher-3850.png",
+                "sha256": "906be152f31eaa3ecf72718d39745ce3a8609e4115040eb06ca8594a401897b9"
+              }
+            }
+          ]
+        }
+      ],
+      "reducedMotion": false
+    },
+    {
+      "theme": "light",
+      "branch": "video-early-close",
+      "answerReplays": 1,
+      "automaticOrder": [
+        "text",
+        "video",
+        "image",
+        "completion",
+        "combination",
+        "combination"
+      ],
+      "inlineImageReturnedToText": false,
+      "galleryPositions": [
+        1,
+        2
+      ],
+      "completedAfterEarlyClose": true,
+      "completedAfterNaturalEnd": false,
+      "completionRequiresExplicitAction": true,
+      "combinationBackdropRetained": true,
+      "refreshSilent": true,
+      "manualReopenLatest": true,
+      "rankTransitionAfterScope": true,
+      "frozenSourceChecks": 42,
+      "schemaChecks": 4,
+      "registeredMediaResponses": [
+        {
+          "name": "ordinary.mp4",
+          "status": 206,
+          "range": true
+        },
+        {
+          "name": "auto-clue-a.png",
+          "status": 200,
+          "range": false
+        },
+        {
+          "name": "auto-clue-b.png",
+          "status": 200,
+          "range": false
+        }
+      ],
+      "motion": [
+        {
+          "effect": "card",
+          "animations": {},
+          "frames": [
+            {
+              "cssTimelineMs": 0,
+              "values": {
+                "sheen": {
+                  "opacity": 0.07,
+                  "transform": "matrix(0.956305, 0.292372, -0.292372, 0.956305, -272.939, 0)",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-reduce-card-0000.png",
+                "sha256": "f6835148ef41f398e192a621abf6a8169fa0ab029a756587bd2b0f44430c39d7"
+              }
+            }
+          ]
+        },
+        {
+          "effect": "completion",
+          "animations": {
+            "completion-edge": {
+              "count": 1,
+              "duration": 0.01,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "alternate"
+            },
+            "completion-bloom": {
+              "count": 1,
+              "duration": 0.01,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "alternate"
+            },
+            "completion-rune": {
+              "count": 3,
+              "duration": 0.01,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "normal"
+            },
+            "sigil-awaken": {
+              "count": 1,
+              "duration": 0.01,
+              "delay": 0,
+              "iterations": 1,
+              "direction": "alternate"
+            }
+          },
+          "frames": [
+            {
+              "cssTimelineMs": 0,
+              "values": {
+                "overlay": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "ring": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "panel": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "edge": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "completion-edge",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "bloom": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "completion-bloom",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "rune": {
+                  "opacity": 1,
+                  "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+                  "animation": "completion-rune",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "sigil": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "sigil-awaken",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "particles": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "none"
+                },
+                "particle": {
+                  "opacity": 0,
+                  "transform": "none",
+                  "animation": "ritual-particle",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-reduce-completion-0000.png",
+                "sha256": "37ea8ac367db8e910401c01284412f11f041634079f2df2555cee7362594ecc6"
+              }
+            }
+          ]
+        },
+        {
+          "effect": "launcher",
+          "animations": {},
+          "frames": [
+            {
+              "cssTimelineMs": 0,
+              "values": {
+                "button": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "grid"
+                },
+                "halo": {
+                  "opacity": 0.55,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                },
+                "orbit": {
+                  "opacity": 1,
+                  "transform": "none",
+                  "animation": "none",
+                  "duration": "1e-05s",
+                  "iterations": "1",
+                  "display": "block"
+                }
+              },
+              "privateOriginal": {
+                "path": "artifacts/private/gameplay-motion-20261112/web-motion-01/light-reduce-launcher-0000.png",
+                "sha256": "99b1f56e768b3f5f91d529c741c8a8a5ae1325b49946accc3feddfac54cae7b8"
+              }
+            }
+          ]
+        }
+      ],
+      "reducedMotion": true
+    }
+  ]
+}

@@ -1,0 +1,623 @@
+{
+  "status": "passed_final_answer_clue_sequence",
+  "stage": "silent-read-only-history-reentry",
+  "scope": "final-answer-clues-normal",
+  "theme": "light",
+  "hapSha256": "bd5a6846d14b14ab1b8ae53dd6bd2c1c875ba868ee626ad07d0731d0cce9e74d",
+  "bindingSha256": {
+    "hap": "bd5a6846d14b14ab1b8ae53dd6bd2c1c875ba868ee626ad07d0731d0cce9e74d",
+    "runtime": "243d28a07cda0a65fea151e27d5a84f901994aa3709055274abccf933beee4fe",
+    "caseReference": "cc249259bc7cbe4d7c7bd16006aed47312a35c955b8a09a7f02fdef8031260dc",
+    "ca": "bc8bf83ff8f05192929c394e4e19aef39fe8fcf0fd7ecfb08f5a5117399367d1",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "finalClueDriver": "fa6e576fb886fedb1b0be94a6d931cfd10f89c9d3d52be5cab7172f327018b88",
+    "mixedClueDriver": "401082e62d7217c263c547044b978945d1652c141c710bbe7d7183e806bdb5bd",
+    "videoDriver": "df598c697cf4a0046edaf866628ddaf7fe54573a1f7930a77997a4351587537d",
+    "fixtureDriver": "6c0733984b819a0678298b2813ef68a1d895831d71d1f68b020b879a4e06b6d9",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "19c88aaeee2162f1c73023f77a3827c2e91cba8cbab84ea5a51bc13ffbb345c6",
+    "hostSnapshots": "5f1df035aedd91fda79e74a6ee02fe439cfa33dfc2bbebd5e522c05c239cb837",
+    "prefixProof": "f50b06c0dfd31ba36e9fe6cab9d391d3d2e9a27c288b8fa4853de35940c83370",
+    "prefixSnapshots": "8651241987a97fa663127b978e97a52991b7d34eb49de56ebb6fc80c7f960c61",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageRoute": "f497d53a3fed6456a90a4fadaff31d77c0ae4f5f94698920e5f6b69b57ca0817",
+    "imageMetadata": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "0adf0f4a38a5a69a1f60fbd6c2b9a8659b50bafef510552624356581949ce476",
+    "GameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "GameplayClues": "5928dd8dcfeaa49b6040f161757efe8f3ec68c7e1f25059d975b2d288fd99d3b",
+    "StarwardClueTextDialog": "4242847cca2e2157e44d975f06d61936bf5822cbd04e7ec83980065d7371dc3a",
+    "StarwardImageViewer": "2f03e208b4bbb322657505a312d1464960e12004d47595c715d1cd1275853017",
+    "StarwardVideoViewer": "f382fc06b2988a0e525c2ac2f63e9dba623296812dafd1086c6b1ad7c19a9da0",
+    "StarwardCombinationNotice": "e8da15ee77ab0fe4685e40b7b23227326495593cdef004ce4faa533ea0ec398a",
+    "StarwardCombinationDialog": "573310dc0bbfb40614e90632bddcee25017221fc6084dbfb3c3d92f60b5f1b84",
+    "QuestionImageLoader": "e4b95ffb0f9a2e6a14f218a5ec1b08eabdd02c46b5476700dd9a34af64506e43",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "auto-clue-a": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd"
+  },
+  "checksPassed": 5,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "One final answer settles both levels, then shows authorized ordinary text before media or completion",
+    "The video branch presents the two authorized gallery images before completion",
+    "Closing the gallery presents one completion notice, then both ordered combination clues after acknowledgement",
+    "Completed history uses a strict HTTPS GET without re-opening any presentation or repeating settlement"
+  ],
+  "states": [
+    {
+      "state": "final-ordinary-text",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          937,
+          1182,
+          1782
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1119,
+          523,
+          1245
+        ],
+        "gameplay-clue-text-content": [
+          172,
+          1391,
+          1088,
+          1688
+        ],
+        "gameplay-clue-text-close": [
+          984,
+          992,
+          1127,
+          1135
+        ]
+      },
+      "rawSha256": "dc9850d5e45a3f7551424041c168becd828d748d7795355ad8190c30b68ca777",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-ordinary-text.png",
+        "sha256": "7c9f6a8c70a3437431af857a5a8f7dfd7f5cd33dd7e08b649deae6f9d788036d",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-video-ready",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-player": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ]
+      },
+      "rawSha256": "806113bc747ba9c252a26635c8ad7857c16cfe67ca9fb573e509cfa1fb644e62"
+    },
+    {
+      "state": "final-video-rendered",
+      "playbackSecond": 5,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-video-rendered-0.png",
+        "sha256": "d81253b3d563692601970023aa0ab93df5d6293905ed020f3715d1e5b8b65ac2",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-video-late-rendered",
+      "playbackSecond": 25,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-video-late-rendered-0.png",
+        "sha256": "a1b45b016d0a11e792a2c9d791317634e5025194c1c610996e60bd3d13f9fa88",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-gallery-1",
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "image-viewer-stage": [
+          46,
+          354,
+          1215,
+          1983
+        ],
+        "image-viewer-pixels": [
+          46,
+          840,
+          1215,
+          1498
+        ],
+        "image-viewer-index": [
+          536,
+          2271,
+          725,
+          2343
+        ],
+        "image-viewer-close": [
+          1066,
+          354,
+          1216,
+          504
+        ]
+      },
+      "rawSha256": "4964d8a08d973307a0d9ce765da2ebe96591ba55363ccc9b70a0c6ab6a6b2f4c",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-gallery-1.png",
+        "sha256": "8655fe785a502f9439c45f7b3cf0c7b9a588d63e57b082b77938bbbe04fc7915",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-gallery-2",
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "image-viewer-stage": [
+          46,
+          354,
+          1215,
+          1983
+        ],
+        "image-viewer-pixels": [
+          85,
+          388,
+          1177,
+          1948
+        ],
+        "image-viewer-index": [
+          536,
+          2271,
+          725,
+          2343
+        ],
+        "image-viewer-close": [
+          1066,
+          354,
+          1216,
+          504
+        ]
+      },
+      "rawSha256": "b847125973e59eb048a78e8777108f7f7aea9f5eb989b50f480f7f91a05dc252",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-gallery-2.png",
+        "sha256": "8c933c66489cda3df74749eb0bbccc22421059f8209c010da5358d7d1f46a22e",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-completion-notice",
+      "geometryPx": {
+        "gameplay-combination-notice": [
+          78,
+          654,
+          1182,
+          2067
+        ],
+        "gameplay-combination-notice-title": [
+          158,
+          1268,
+          1102,
+          1568
+        ],
+        "gameplay-combination-notice-detail": [
+          237,
+          1617,
+          1023,
+          1711
+        ],
+        "gameplay-combination-notice-ack": [
+          409,
+          1786,
+          852,
+          1936
+        ]
+      },
+      "rawSha256": "97c8b6eb85517f60fbd151a9ac95a47fdb6c8fd26aeda6a077a4718b192a88c3",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-completion-notice.png",
+        "sha256": "2f13489eea9d80180474b1200b4d55fb297835c3c0e594ec2bfe482b8376ba4e",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-combination-1",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          569,
+          1108
+        ],
+        "gameplay-combination-content": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1782,
+          1104,
+          1932
+        ]
+      },
+      "rawSha256": "f3041c8fecdf31ae12c196ee5dc11da44091a91f2ec9936acb8b10170bf7c9a8",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-combination-1.png",
+        "sha256": "3c88dec59b0eecb1eb30a7f588df6a96cd823a522556830d50360436736ffa52",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-combination-2",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          827,
+          1182,
+          1894
+        ],
+        "gameplay-combination-title": [
+          178,
+          1067,
+          569,
+          1207
+        ],
+        "gameplay-combination-content": [
+          178,
+          1298,
+          1082,
+          1397
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1683,
+          1104,
+          1833
+        ]
+      },
+      "rawSha256": "29b54c6f6b91004a2c7139a575523e98ee8e9e1b02ec277d1c1d65871052b4a0",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-combination-2.png",
+        "sha256": "8833c457369d64222b74fca247b3301d0a4c36326538b6c3f452d5cb957747b6",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-after-queue",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ],
+        "gameplay-answer-input": [
+          100,
+          1311,
+          1161,
+          1500
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2103,
+          1189,
+          2298
+        ]
+      },
+      "rawSha256": "514e9c8064a065a942e34ddfdf2fe0276cc23b441385ff7605629d312be79800",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-after-queue.png",
+        "sha256": "2c5eb0a2247d5b8e8bb51e7271c74b32e7bbc50f7d72e0d9b8031d2e1cb05ada",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-history-reentry",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2318
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2103,
+          1189,
+          2298
+        ]
+      },
+      "rawSha256": "78b521cbad7a9a452c476a493d80cdc94b7681a19ec4c65e3cfeeeb6c29eccdc",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T101548548499Z/final-history-reentry.png",
+        "sha256": "8c7bba71ed97f9c31471124d2d5d6625423c2c5815dc6d68a7ae84fc5b235044",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "businessWrites": {
+      "starts": 0,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 5,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "deviceVideoOutcomes": [
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 3
+      }
+    ],
+    "deviceImageOutcomes": [
+      {
+        "label": "auto-clue-a",
+        "mode": "recover",
+        "status": 200,
+        "contentBytes": 2203,
+        "completed": true,
+        "durationMs": 1
+      },
+      {
+        "label": "auto-clue-b",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 2650,
+        "completed": true,
+        "durationMs": 0
+      }
+    ]
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "final-clues-before": {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-clues-before-web-dtos.json",
+      "sha256": "8de12f35020781a55bb33c1400e7099c652da149bfa9001834ab75efe3a5f90d"
+    },
+    "final-clues-settled": {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-clues-settled-web-dtos.json",
+      "sha256": "a46f833061c82f00d328f1dd4c0caea51fb49950a6422e74ee9266fb80c4b622"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-clues-unanswered.png",
+      "sha256": "64c63d8e855ee9089d40096c6e91f382585b4c85c5cdf3c86f2348d04345c819",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-ordinary-text.png",
+      "sha256": "7c9f6a8c70a3437431af857a5a8f7dfd7f5cd33dd7e08b649deae6f9d788036d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-video-rendered-0.png",
+      "sha256": "d81253b3d563692601970023aa0ab93df5d6293905ed020f3715d1e5b8b65ac2",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-video-late-rendered-0.png",
+      "sha256": "a1b45b016d0a11e792a2c9d791317634e5025194c1c610996e60bd3d13f9fa88",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-gallery-1.png",
+      "sha256": "8655fe785a502f9439c45f7b3cf0c7b9a588d63e57b082b77938bbbe04fc7915",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-gallery-2.png",
+      "sha256": "8c933c66489cda3df74749eb0bbccc22421059f8209c010da5358d7d1f46a22e",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-completion-notice.png",
+      "sha256": "2f13489eea9d80180474b1200b4d55fb297835c3c0e594ec2bfe482b8376ba4e",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-combination-1.png",
+      "sha256": "3c88dec59b0eecb1eb30a7f588df6a96cd823a522556830d50360436736ffa52",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-combination-2.png",
+      "sha256": "8833c457369d64222b74fca247b3301d0a4c36326538b6c3f452d5cb957747b6",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-after-queue.png",
+      "sha256": "2c5eb0a2247d5b8e8bb51e7271c74b32e7bbc50f7d72e0d9b8031d2e1cb05ada",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/final-history-reentry.png",
+      "sha256": "8c7bba71ed97f9c31471124d2d5d6625423c2c5815dc6d68a7ae84fc5b235044",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "final-clues-unanswered",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-clues-unanswered-cc629bdafa0843a5bf4205f87e689c98.json",
+      "remoteRemoved": true,
+      "sha256": "062ade732184b3c31da81907b0e5f11c4941dd8e2492ba7af6598a4c103d8f8a"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-followup-ready-submit-66da7f7d826f44b998ff2392a90fcfde.json",
+      "remoteRemoved": true,
+      "sha256": "c82274a4c9277f25d97f3a64afef3c8820ac75c6953b9fe077fe891ace91613a"
+    },
+    {
+      "label": "final-ordinary-text",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-ordinary-text-c829c59054ec4ef0b7d8f56447656024.json",
+      "remoteRemoved": true,
+      "sha256": "dc9850d5e45a3f7551424041c168becd828d748d7795355ad8190c30b68ca777"
+    },
+    {
+      "label": "final-video-ready",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-video-ready-85d5c2ba0306402a9776e918740052ac.json",
+      "remoteRemoved": true,
+      "sha256": "806113bc747ba9c252a26635c8ad7857c16cfe67ca9fb573e509cfa1fb644e62"
+    },
+    {
+      "label": "final-gallery-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-gallery-1-f07dde4ec5fa49f3b40356fbac49d878.json",
+      "remoteRemoved": true,
+      "sha256": "4964d8a08d973307a0d9ce765da2ebe96591ba55363ccc9b70a0c6ab6a6b2f4c"
+    },
+    {
+      "label": "final-gallery-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-gallery-2-fbc9affacb2542f18dccb24d1b5b7002.json",
+      "remoteRemoved": true,
+      "sha256": "b847125973e59eb048a78e8777108f7f7aea9f5eb989b50f480f7f91a05dc252"
+    },
+    {
+      "label": "final-completion-notice",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-completion-notice-2943435557304f5fab94d5cbb98a34f7.json",
+      "remoteRemoved": true,
+      "sha256": "97c8b6eb85517f60fbd151a9ac95a47fdb6c8fd26aeda6a077a4718b192a88c3"
+    },
+    {
+      "label": "final-combination-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-combination-1-8e7556e153304290bcf5551d22cd4cac.json",
+      "remoteRemoved": true,
+      "sha256": "f3041c8fecdf31ae12c196ee5dc11da44091a91f2ec9936acb8b10170bf7c9a8"
+    },
+    {
+      "label": "final-combination-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-combination-2-920f42713f3c4d3197aeadb4d9f10561.json",
+      "remoteRemoved": true,
+      "sha256": "29b54c6f6b91004a2c7139a575523e98ee8e9e1b02ec277d1c1d65871052b4a0"
+    },
+    {
+      "label": "final-after-queue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-after-queue-84681e1d118a4f98a703accb4beca0b9.json",
+      "remoteRemoved": true,
+      "sha256": "514e9c8064a065a942e34ddfdf2fe0276cc23b441385ff7605629d312be79800"
+    },
+    {
+      "label": "final-history-reentry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-history-reentry-2090ebcdb922473287a3e7618488cba1.json",
+      "remoteRemoved": true,
+      "sha256": "78b521cbad7a9a452c476a493d80cdc94b7681a19ec4c65e3cfeeeb6c29eccdc"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

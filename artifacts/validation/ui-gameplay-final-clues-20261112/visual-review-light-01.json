@@ -1,0 +1,673 @@
+{
+  "status": "same_data_originals_reviewed",
+  "scope": "末题文字、视频、双图、完成提示和两个组合线索的直板机与冻结 Web 同状态原图",
+  "nativeAcceptanceSeparate": true,
+  "webReplaySourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "webReferenceSha256": "d27e43444483d4d53a281197efb2adb79ea0eaceb749af7435034bed6aa1f6de",
+  "webReplayInputSha256": "1395a16c1c2aff9d625a1891dc83f841bd98d8baed5557793d727ac400eaeabd",
+  "webViewport": {
+    "width": 388,
+    "height": 771
+  },
+  "identicalMedia": {
+    "ordinary.mp4": {
+      "bytes": 258860,
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7"
+    },
+    "auto-clue-a.png": {
+      "bytes": 2203,
+      "sha256": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04"
+    },
+    "auto-clue-b.png": {
+      "bytes": 2650,
+      "sha256": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd"
+    }
+  },
+  "comparisonScriptSha256": "cfd98c9836851868b1c0842c02a90ab1ea6272ee729a19411b451ab2ee904e61",
+  "originalReview": [
+    "日间真机和冻结 Web 的 7 组未裁原图已逐张核对。文字高亮、换行及关闭，视频舞台和双图顺序，以及完成计数、两次组合文字与底部操作一致。",
+    "现有原生系统遮罩与状态栏、原生播控、浅色 100% 标签，以及组合标题字形的浏览器回退差异在原图可见。视频原图的播放秒数分别记录。"
+  ],
+  "pairs": [
+    {
+      "theme": "light",
+      "branch": "video-natural-end",
+      "nativeStatus": "passed_final_answer_clue_sequence",
+      "nativeReportSha256": "25e82befff545cadb6828b0c0bb9d16b1c2decdf4b3ae9df55ae5d7cf619c501",
+      "runtimeSha256": "243d28a07cda0a65fea151e27d5a84f901994aa3709055274abccf933beee4fe",
+      "nativeHapSha256": "bd5a6846d14b14ab1b8ae53dd6bd2c1c875ba868ee626ad07d0731d0cce9e74d",
+      "nativeWindow": {
+        "widthPx": 1260,
+        "heightPx": 2720,
+        "density": 3.25,
+        "fontScale": 1,
+        "widthVp": 387.6923076923077,
+        "contentHeightVp": 771.0769230769231,
+        "topInsetPx": 123,
+        "bottomInsetPx": 91
+      },
+      "displayFont": {
+        "testedHapAvailableForIndependentFontProof": true,
+        "notoSerifScSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9"
+      },
+      "nativeDtoOriginals": {
+        "second": {
+          "path": "artifacts/private/entry-main-20261112T101548548499Z/final-clues-before-web-dtos.json",
+          "sha256": "8de12f35020781a55bb33c1400e7099c652da149bfa9001834ab75efe3a5f90d"
+        },
+        "completed": {
+          "path": "artifacts/private/entry-main-20261112T101548548499Z/final-clues-settled-web-dtos.json",
+          "sha256": "a46f833061c82f00d328f1dd4c0caea51fb49950a6422e74ee9266fb80c4b622"
+        }
+      },
+      "sameNormalizedScene": true,
+      "states": {
+        "automaticText": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-ordinary-text.png",
+            "sha256": "7c9f6a8c70a3437431af857a5a8f7dfd7f5cd33dd7e08b649deae6f9d788036d"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-ordinary-text-c829c59054ec4ef0b7d8f56447656024.json",
+            "sha256": "dc9850d5e45a3f7551424041c168becd828d748d7795355ad8190c30b68ca777"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-text.png",
+            "sha256": "668fa7b657a58ba72bc912ebadd9ba121eceffff7f687c37596d0918d58c8e06"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-text.html",
+            "sha256": "b86f753f745a9a0ed90136cff1c9fb9c3429e476efc89ef0e4c49c1a3aa983f0"
+          },
+          "rectangles": {
+            "panel": {
+              "nativeRawPx": [
+                78,
+                937,
+                1182,
+                1782
+              ],
+              "nativeContentRelativeVp": [
+                24.0,
+                250.46153846153845,
+                339.6923076923077,
+                260.0
+              ],
+              "webCssPx": [
+                24,
+                254.71875,
+                340,
+                261.5625
+              ]
+            },
+            "title": {
+              "nativeRawPx": [
+                172,
+                1119,
+                523,
+                1245
+              ],
+              "nativeContentRelativeVp": [
+                52.92307692307692,
+                306.46153846153845,
+                108.0,
+                38.76923076923077
+              ],
+              "webCssPx": [
+                53,
+                313.109375,
+                282,
+                38
+              ]
+            },
+            "body": {
+              "nativeRawPx": [
+                172,
+                1391,
+                1088,
+                1688
+              ],
+              "nativeContentRelativeVp": [
+                52.92307692307692,
+                390.15384615384613,
+                281.84615384615387,
+                91.38461538461539
+              ],
+              "webCssPx": [
+                53,
+                396.109375,
+                282,
+                91.171875
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                984,
+                992,
+                1127,
+                1135
+              ],
+              "nativeContentRelativeVp": [
+                302.7692307692308,
+                267.38461538461536,
+                44.0,
+                44.0
+              ],
+              "webCssPx": [
+                305,
+                271.71875,
+                42,
+                42
+              ]
+            }
+          }
+        },
+        "automaticVideo": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-video-rendered-0.png",
+            "sha256": "d81253b3d563692601970023aa0ab93df5d6293905ed020f3715d1e5b8b65ac2"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-video-ready-85d5c2ba0306402a9776e918740052ac.json",
+            "sha256": "806113bc747ba9c252a26635c8ad7857c16cfe67ca9fb573e509cfa1fb644e62"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-video.png",
+            "sha256": "c51ae1d19f9567b3dfd02043eafd7be8d536f4e21b39a5db160b7a6ae223a812"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-video.html",
+            "sha256": "bb495cd49e881a04cf9c15798b134e371ab3f8b9d87cfce9b52c4a053991a5ae"
+          },
+          "rectangles": {
+            "stage": {
+              "nativeRawPx": [
+                46,
+                1047,
+                1215,
+                1705
+              ],
+              "nativeContentRelativeVp": [
+                14.153846153846153,
+                284.3076923076923,
+                359.6923076923077,
+                202.46153846153845
+              ],
+              "webCssPx": [
+                14,
+                284.25,
+                360,
+                202.5
+              ]
+            }
+          },
+          "playbackSeconds": {
+            "native": 5,
+            "web": 0.527033
+          }
+        },
+        "firstImage": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-gallery-1.png",
+            "sha256": "8655fe785a502f9439c45f7b3cf0c7b9a588d63e57b082b77938bbbe04fc7915"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-gallery-1-f07dde4ec5fa49f3b40356fbac49d878.json",
+            "sha256": "4964d8a08d973307a0d9ce765da2ebe96591ba55363ccc9b70a0c6ab6a6b2f4c"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-1.png",
+            "sha256": "38d98860c1c9827b51061557145d7c5c31564765177cebef6721a1ad45dd0176"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-1.html",
+            "sha256": "b24e3fa9a70e9349d9ae1e6886893b65c6b2140a46112e26c5b859cd71d1be9c"
+          },
+          "rectangles": {
+            "stage": {
+              "nativeRawPx": [
+                46,
+                354,
+                1215,
+                1983
+              ],
+              "nativeContentRelativeVp": [
+                14.153846153846153,
+                71.07692307692308,
+                359.6923076923077,
+                501.2307692307692
+              ],
+              "webCssPx": [
+                14,
+                70.921875,
+                360,
+                501.140625
+              ]
+            },
+            "picture": {
+              "nativeRawPx": [
+                46,
+                840,
+                1215,
+                1498
+              ],
+              "nativeContentRelativeVp": [
+                14.153846153846153,
+                220.6153846153846,
+                359.6923076923077,
+                202.46153846153845
+              ],
+              "webCssPx": [
+                14,
+                220.234375,
+                360,
+                202.5
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                1066,
+                354,
+                1216,
+                504
+              ],
+              "nativeContentRelativeVp": [
+                328.0,
+                71.07692307692308,
+                46.15384615384615,
+                46.15384615384615
+              ],
+              "webCssPx": [
+                328,
+                70.921875,
+                46,
+                46
+              ]
+            }
+          }
+        },
+        "secondImage": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-gallery-2.png",
+            "sha256": "8c933c66489cda3df74749eb0bbccc22421059f8209c010da5358d7d1f46a22e"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-gallery-2-fbc9affacb2542f18dccb24d1b5b7002.json",
+            "sha256": "b847125973e59eb048a78e8777108f7f7aea9f5eb989b50f480f7f91a05dc252"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-2.png",
+            "sha256": "43f7983f97f0b44bbd4d1a7851bd6699e065d8367cee855be957fa4441048d7d"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-image-2.html",
+            "sha256": "35569731748605ec8eb282c771405c29867d511b16f43c3338f39df97285331e"
+          },
+          "rectangles": {
+            "stage": {
+              "nativeRawPx": [
+                46,
+                354,
+                1215,
+                1983
+              ],
+              "nativeContentRelativeVp": [
+                14.153846153846153,
+                71.07692307692308,
+                359.6923076923077,
+                501.2307692307692
+              ],
+              "webCssPx": [
+                14,
+                70.921875,
+                360,
+                501.140625
+              ]
+            },
+            "picture": {
+              "nativeRawPx": [
+                85,
+                388,
+                1177,
+                1948
+              ],
+              "nativeContentRelativeVp": [
+                26.153846153846153,
+                81.53846153846153,
+                336.0,
+                480.0
+              ],
+              "webCssPx": [
+                26,
+                81.484375,
+                336,
+                480
+              ]
+            },
+            "close": {
+              "nativeRawPx": [
+                1066,
+                354,
+                1216,
+                504
+              ],
+              "nativeContentRelativeVp": [
+                328.0,
+                71.07692307692308,
+                46.15384615384615,
+                46.15384615384615
+              ],
+              "webCssPx": [
+                328,
+                70.921875,
+                46,
+                46
+              ]
+            }
+          }
+        },
+        "completion": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-completion-notice.png",
+            "sha256": "2f13489eea9d80180474b1200b4d55fb297835c3c0e594ec2bfe482b8376ba4e"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-completion-notice-2943435557304f5fab94d5cbb98a34f7.json",
+            "sha256": "97c8b6eb85517f60fbd151a9ac95a47fdb6c8fd26aeda6a077a4718b192a88c3"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-completion.png",
+            "sha256": "37ea8ac367db8e910401c01284412f11f041634079f2df2555cee7362594ecc6"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-completion.html",
+            "sha256": "a2313cc4134b51f7c3669cdab8881affae6ac7866a0cd931f867f0051b838a07"
+          },
+          "rectangles": {
+            "panel": {
+              "nativeRawPx": [
+                78,
+                654,
+                1182,
+                2067
+              ],
+              "nativeContentRelativeVp": [
+                24.0,
+                163.3846153846154,
+                339.6923076923077,
+                434.7692307692308
+              ],
+              "webCssPx": [
+                24,
+                167.8125,
+                340,
+                435.375
+              ]
+            },
+            "title": {
+              "nativeRawPx": [
+                158,
+                1268,
+                1102,
+                1568
+              ],
+              "nativeContentRelativeVp": [
+                48.61538461538461,
+                352.3076923076923,
+                290.46153846153845,
+                92.3076923076923
+              ],
+              "webCssPx": [
+                49,
+                357.203125,
+                290,
+                92.1875
+              ]
+            },
+            "detail": {
+              "nativeRawPx": [
+                237,
+                1617,
+                1023,
+                1711
+              ],
+              "nativeContentRelativeVp": [
+                72.92307692307692,
+                459.6923076923077,
+                241.84615384615384,
+                28.923076923076923
+              ],
+              "webCssPx": [
+                73.359375,
+                464.390625,
+                241.28125,
+                28.796875
+              ]
+            },
+            "action": {
+              "nativeRawPx": [
+                409,
+                1786,
+                852,
+                1936
+              ],
+              "nativeContentRelativeVp": [
+                125.84615384615384,
+                511.6923076923077,
+                136.30769230769232,
+                46.15384615384615
+              ],
+              "webCssPx": [
+                125,
+                516.1875,
+                138,
+                46
+              ]
+            }
+          }
+        },
+        "firstCombination": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-combination-1.png",
+            "sha256": "3c88dec59b0eecb1eb30a7f588df6a96cd823a522556830d50360436736ffa52"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-combination-1-8e7556e153304290bcf5551d22cd4cac.json",
+            "sha256": "f3041c8fecdf31ae12c196ee5dc11da44091a91f2ec9936acb8b10170bf7c9a8"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-combination-1.png",
+            "sha256": "bd60c2872f3c8bccf1f37ea8e2220d645534154ba1303043aab2dcc6721d9f34"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-combination-1.html",
+            "sha256": "5b3251af2e4cf83ea39472c764e28579c1bf062dfd4a02eac3a8dc89e4c853e4"
+          },
+          "rectangles": {
+            "panel": {
+              "nativeRawPx": [
+                78,
+                728,
+                1182,
+                1993
+              ],
+              "nativeContentRelativeVp": [
+                24.0,
+                186.15384615384616,
+                339.6923076923077,
+                389.2307692307692
+              ],
+              "webCssPx": [
+                24,
+                191.21875,
+                340,
+                388.5625
+              ]
+            },
+            "title": {
+              "nativeRawPx": [
+                178,
+                968,
+                569,
+                1108
+              ],
+              "nativeContentRelativeVp": [
+                54.76923076923077,
+                260.0,
+                120.3076923076923,
+                43.07692307692308
+              ],
+              "webCssPx": [
+                55,
+                265.609375,
+                278,
+                42
+              ]
+            },
+            "body": {
+              "nativeRawPx": [
+                178,
+                1199,
+                1082,
+                1496
+              ],
+              "nativeContentRelativeVp": [
+                54.76923076923077,
+                331.0769230769231,
+                278.15384615384613,
+                91.38461538461539
+              ],
+              "webCssPx": [
+                55,
+                335.609375,
+                278,
+                91.171875
+              ]
+            },
+            "action": {
+              "nativeRawPx": [
+                156,
+                1782,
+                1104,
+                1932
+              ],
+              "nativeContentRelativeVp": [
+                48.0,
+                510.46153846153845,
+                291.6923076923077,
+                46.15384615384615
+              ],
+              "webCssPx": [
+                48.265625,
+                514.78125,
+                291.46875,
+                46
+              ]
+            }
+          }
+        },
+        "secondCombination": {
+          "nativeOriginal": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/final-combination-2.png",
+            "sha256": "8833c457369d64222b74fca247b3301d0a4c36326538b6c3f452d5cb957747b6"
+          },
+          "nativeRawUiTest": {
+            "path": "artifacts/private/entry-main-20261112T101548548499Z/raw-final-combination-2-920f42713f3c4d3197aeadb4d9f10561.json",
+            "sha256": "29b54c6f6b91004a2c7139a575523e98ee8e9e1b02ec277d1c1d65871052b4a0"
+          },
+          "webOriginal": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-combination-2.png",
+            "sha256": "d16635b7821ed31f5080e9b85ba939620ce3e9642b64dd55002b934ba5e4e50a"
+          },
+          "webDom": {
+            "path": "artifacts/private/gameplay-final-clues-20261112/web-capture-01/light-video-natural-end-automatic-combination-2.html",
+            "sha256": "606cce020ec4b2d90e2ec197529f5458cc1458fd89c7565c7ebc7f4ea727a5b6"
+          },
+          "rectangles": {
+            "panel": {
+              "nativeRawPx": [
+                78,
+                827,
+                1182,
+                1894
+              ],
+              "nativeContentRelativeVp": [
+                24.0,
+                216.6153846153846,
+                339.6923076923077,
+                328.3076923076923
+              ],
+              "webCssPx": [
+                24,
+                221.609375,
+                340,
+                327.78125
+              ]
+            },
+            "title": {
+              "nativeRawPx": [
+                178,
+                1067,
+                569,
+                1207
+              ],
+              "nativeContentRelativeVp": [
+                54.76923076923077,
+                290.46153846153845,
+                120.3076923076923,
+                43.07692307692308
+              ],
+              "webCssPx": [
+                55,
+                296,
+                278,
+                42
+              ]
+            },
+            "body": {
+              "nativeRawPx": [
+                178,
+                1298,
+                1082,
+                1397
+              ],
+              "nativeContentRelativeVp": [
+                54.76923076923077,
+                361.53846153846155,
+                278.15384615384613,
+                30.46153846153846
+              ],
+              "webCssPx": [
+                55,
+                366,
+                278,
+                30.390625
+              ]
+            },
+            "action": {
+              "nativeRawPx": [
+                156,
+                1683,
+                1104,
+                1833
+              ],
+              "nativeContentRelativeVp": [
+                48.0,
+                480.0,
+                291.6923076923077,
+                46.15384615384615
+              ],
+              "webCssPx": [
+                46.07960510253906,
+                481.9076232910156,
+                295.8408203125,
+                46.690032958984375
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "measurement": "原生矩形取绑定的 UiTest 控件树，位置换算扣除状态栏避让。Web 矩形与同帧未裁原图绑定。"
+}

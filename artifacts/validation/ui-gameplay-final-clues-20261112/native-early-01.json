@@ -1,0 +1,609 @@
+{
+  "status": "passed_final_answer_clue_sequence",
+  "stage": "silent-read-only-history-reentry",
+  "scope": "final-answer-clues-early",
+  "theme": "dark",
+  "hapSha256": "bd5a6846d14b14ab1b8ae53dd6bd2c1c875ba868ee626ad07d0731d0cce9e74d",
+  "bindingSha256": {
+    "hap": "bd5a6846d14b14ab1b8ae53dd6bd2c1c875ba868ee626ad07d0731d0cce9e74d",
+    "runtime": "243d28a07cda0a65fea151e27d5a84f901994aa3709055274abccf933beee4fe",
+    "caseReference": "09b91331e17b533f38d93c50b36517e2a44c512b29192025ba8997911975ef49",
+    "ca": "bc8bf83ff8f05192929c394e4e19aef39fe8fcf0fd7ecfb08f5a5117399367d1",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "finalClueDriver": "fa6e576fb886fedb1b0be94a6d931cfd10f89c9d3d52be5cab7172f327018b88",
+    "mixedClueDriver": "401082e62d7217c263c547044b978945d1652c141c710bbe7d7183e806bdb5bd",
+    "videoDriver": "df598c697cf4a0046edaf866628ddaf7fe54573a1f7930a77997a4351587537d",
+    "fixtureDriver": "6c0733984b819a0678298b2813ef68a1d895831d71d1f68b020b879a4e06b6d9",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "19c88aaeee2162f1c73023f77a3827c2e91cba8cbab84ea5a51bc13ffbb345c6",
+    "hostSnapshots": "5f1df035aedd91fda79e74a6ee02fe439cfa33dfc2bbebd5e522c05c239cb837",
+    "prefixProof": "04e37d1a0c391db92c19145a6a78e09c2ebf2705596ae49a8f4535463f182f4e",
+    "prefixSnapshots": "816d323b2f180960b585b0fcfdee07fc6089fbc2a44168806314f8e46ca41989",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageRoute": "f497d53a3fed6456a90a4fadaff31d77c0ae4f5f94698920e5f6b69b57ca0817",
+    "imageMetadata": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "0adf0f4a38a5a69a1f60fbd6c2b9a8659b50bafef510552624356581949ce476",
+    "GameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "GameplayClues": "5928dd8dcfeaa49b6040f161757efe8f3ec68c7e1f25059d975b2d288fd99d3b",
+    "StarwardClueTextDialog": "4242847cca2e2157e44d975f06d61936bf5822cbd04e7ec83980065d7371dc3a",
+    "StarwardImageViewer": "2f03e208b4bbb322657505a312d1464960e12004d47595c715d1cd1275853017",
+    "StarwardVideoViewer": "f382fc06b2988a0e525c2ac2f63e9dba623296812dafd1086c6b1ad7c19a9da0",
+    "StarwardCombinationNotice": "e8da15ee77ab0fe4685e40b7b23227326495593cdef004ce4faa533ea0ec398a",
+    "StarwardCombinationDialog": "573310dc0bbfb40614e90632bddcee25017221fc6084dbfb3c3d92f60b5f1b84",
+    "QuestionImageLoader": "e4b95ffb0f9a2e6a14f218a5ec1b08eabdd02c46b5476700dd9a34af64506e43",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "auto-clue-a": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd"
+  },
+  "checksPassed": 5,
+  "checks": [
+    "One measured ready-submit touch creates exactly one new real answer200 before UI feedback is assessed",
+    "One final answer settles both levels, then shows authorized ordinary text before media or completion",
+    "The video branch presents the two authorized gallery images before completion",
+    "Closing the gallery presents one completion notice, then both ordered combination clues after acknowledgement",
+    "Completed history uses a strict HTTPS GET without re-opening any presentation or repeating settlement"
+  ],
+  "states": [
+    {
+      "state": "final-ordinary-text",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          937,
+          1182,
+          1782
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1119,
+          523,
+          1245
+        ],
+        "gameplay-clue-text-content": [
+          172,
+          1391,
+          1088,
+          1688
+        ],
+        "gameplay-clue-text-close": [
+          984,
+          992,
+          1127,
+          1135
+        ]
+      },
+      "rawSha256": "e5e9d2f3465e1be9ad7d41591c751d0fb9e4396eede4370fdf18e3e66b5ed486",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-ordinary-text.png",
+        "sha256": "ebf3cb6150047da0d6984c039162c37f3b2b0155f47a601e366ec2c8adf75f9a",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-video-ready",
+      "geometryPx": {
+        "gameplay-video-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-video-player": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-stage": [
+          46,
+          1047,
+          1215,
+          1705
+        ],
+        "gameplay-video-close": [
+          1066,
+          1047,
+          1216,
+          1197
+        ]
+      },
+      "rawSha256": "d6b42e2bd8ae356121ea34591116eda31c83bdae18054f428ef2c361336ba696"
+    },
+    {
+      "state": "final-video-rendered",
+      "playbackSecond": 6,
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-video-rendered-0.png",
+        "sha256": "ee92b8594b2ed7216ff75dae5f0f753dce311711d997d8d5063b4a58d20f9f3b",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-gallery-1",
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "image-viewer-stage": [
+          46,
+          354,
+          1215,
+          1983
+        ],
+        "image-viewer-pixels": [
+          46,
+          840,
+          1215,
+          1498
+        ],
+        "image-viewer-index": [
+          536,
+          2271,
+          725,
+          2343
+        ],
+        "image-viewer-close": [
+          1066,
+          354,
+          1216,
+          504
+        ]
+      },
+      "rawSha256": "f3f8827c2113681ee0c9c13f5cead5caa4004be2b55005f5d93eb3a2821ed4d4",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-gallery-1.png",
+        "sha256": "f753037ce2665fce2ac514bf7295322065e3cd829963dd4dadedee97d374b568",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-gallery-2",
+      "geometryPx": {
+        "image-viewer": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "image-viewer-stage": [
+          46,
+          354,
+          1215,
+          1983
+        ],
+        "image-viewer-pixels": [
+          85,
+          388,
+          1177,
+          1948
+        ],
+        "image-viewer-index": [
+          536,
+          2271,
+          725,
+          2343
+        ],
+        "image-viewer-close": [
+          1066,
+          354,
+          1216,
+          504
+        ]
+      },
+      "rawSha256": "e24a38a0b78e9581d01d45ac0940533d0b0fcae736ea67e218dfdb8daa50ea9b",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-gallery-2.png",
+        "sha256": "c20ea4e6643a37d65d5a75d088baab1357d84f817c846326da3472ccee2bb7cd",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-completion-notice",
+      "geometryPx": {
+        "gameplay-combination-notice": [
+          78,
+          654,
+          1182,
+          2067
+        ],
+        "gameplay-combination-notice-title": [
+          158,
+          1268,
+          1102,
+          1568
+        ],
+        "gameplay-combination-notice-detail": [
+          237,
+          1617,
+          1023,
+          1711
+        ],
+        "gameplay-combination-notice-ack": [
+          409,
+          1786,
+          852,
+          1936
+        ]
+      },
+      "rawSha256": "356b199318d87e698545cb3415c41d3aeaf0b079fd6a124567ca363ad0339f02",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-completion-notice.png",
+        "sha256": "c718956773fa7046fc5e6cf522ddb45b3d7827f9c7740c057cd3ad14614cff06",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-combination-1",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          728,
+          1182,
+          1993
+        ],
+        "gameplay-combination-title": [
+          178,
+          968,
+          569,
+          1108
+        ],
+        "gameplay-combination-content": [
+          178,
+          1199,
+          1082,
+          1496
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1782,
+          1104,
+          1932
+        ]
+      },
+      "rawSha256": "cf3859b5ab4ad8c356cbdbfd8581e104b691578e370c16fe816c52be7739a3d7",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-combination-1.png",
+        "sha256": "f22641c857b2d7bbbe62ccf45f4d711a18b72cae5a215bcc6f2ac59e013af890",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-combination-2",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          827,
+          1182,
+          1894
+        ],
+        "gameplay-combination-title": [
+          178,
+          1067,
+          569,
+          1207
+        ],
+        "gameplay-combination-content": [
+          178,
+          1298,
+          1082,
+          1397
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1683,
+          1104,
+          1833
+        ]
+      },
+      "rawSha256": "aedf51c4346db90e37847602bd5c6381052120e6202b37ddda3cc7808c3f0047",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-combination-2.png",
+        "sha256": "92679c80c74c8c9991b04afc161cf2e24b9f2f3b8a2ce8897741fa496211f7b9",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-after-queue",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2720
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ],
+        "gameplay-answer-input": [
+          100,
+          1311,
+          1161,
+          1500
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2103,
+          1189,
+          2298
+        ]
+      },
+      "rawSha256": "5463ef65ae2d84ff625f6709c100b0e2eb62d14ebe021da5f8116ac84eab283d",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-after-queue.png",
+        "sha256": "b237e8c1d3f8322ddb61aa9fd0138be530de3b47c471f5aa86182a020696df67",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-history-reentry",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2318
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2103,
+          1189,
+          2298
+        ]
+      },
+      "rawSha256": "9f5823e0d4cd5408864e8fdd5829b8f77b815dfd9ef5bfa6aab3d733b10d76f3",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T102020253025Z/final-history-reentry.png",
+        "sha256": "0daef286305e37ef2fe83251a9326b452cf7bea225f35eaabecbb47902da74c3",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "businessWrites": {
+      "starts": 0,
+      "answers": 1
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 5,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "deviceVideoOutcomes": [
+      {
+        "label": "ordinary",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 258860,
+        "completed": true,
+        "durationMs": 2
+      }
+    ],
+    "deviceImageOutcomes": [
+      {
+        "label": "auto-clue-a",
+        "mode": "recover",
+        "status": 200,
+        "contentBytes": 2203,
+        "completed": true,
+        "durationMs": 2
+      },
+      {
+        "label": "auto-clue-b",
+        "mode": "normal",
+        "status": 200,
+        "contentBytes": 2650,
+        "completed": true,
+        "durationMs": 1
+      }
+    ]
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "final-clues-before": {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-clues-before-web-dtos.json",
+      "sha256": "e0fe5b7c2751aff5aa3b59e604bbe408dddae64801607b98239b7b346a5a1780"
+    },
+    "final-clues-settled": {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-clues-settled-web-dtos.json",
+      "sha256": "bd513eebc014ad112bd244a7f1da60dd9c33e20b58d083f2ed56a613c3c98b9b"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-clues-unanswered.png",
+      "sha256": "f589cb84d265db14a5428669b34bd332f3dd41bad32016f1cce64840865e39da",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-ordinary-text.png",
+      "sha256": "ebf3cb6150047da0d6984c039162c37f3b2b0155f47a601e366ec2c8adf75f9a",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-video-rendered-0.png",
+      "sha256": "ee92b8594b2ed7216ff75dae5f0f753dce311711d997d8d5063b4a58d20f9f3b",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-gallery-1.png",
+      "sha256": "f753037ce2665fce2ac514bf7295322065e3cd829963dd4dadedee97d374b568",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-gallery-2.png",
+      "sha256": "c20ea4e6643a37d65d5a75d088baab1357d84f817c846326da3472ccee2bb7cd",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-completion-notice.png",
+      "sha256": "c718956773fa7046fc5e6cf522ddb45b3d7827f9c7740c057cd3ad14614cff06",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-combination-1.png",
+      "sha256": "f22641c857b2d7bbbe62ccf45f4d711a18b72cae5a215bcc6f2ac59e013af890",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-combination-2.png",
+      "sha256": "92679c80c74c8c9991b04afc161cf2e24b9f2f3b8a2ce8897741fa496211f7b9",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-after-queue.png",
+      "sha256": "b237e8c1d3f8322ddb61aa9fd0138be530de3b47c471f5aa86182a020696df67",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/final-history-reentry.png",
+      "sha256": "0daef286305e37ef2fe83251a9326b452cf7bea225f35eaabecbb47902da74c3",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "final-clues-unanswered",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-clues-unanswered-cb86b45146af44039aeefd18574c8006.json",
+      "remoteRemoved": true,
+      "sha256": "a66e8b9ebbe7774d0feeb4ce0170ac223e1bee3a6e24d0dcb25422a267604847"
+    },
+    {
+      "label": "followup-ready-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-followup-ready-submit-0a31b84912c344b29c28ad84be1a3fb4.json",
+      "remoteRemoved": true,
+      "sha256": "baa74befbe6b3d0727573fa96c5c24d266f0addaa35410e29a845ab3a6ade977"
+    },
+    {
+      "label": "final-ordinary-text",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-ordinary-text-fa90bd7de7a84ddb98220a6224d29352.json",
+      "remoteRemoved": true,
+      "sha256": "e5e9d2f3465e1be9ad7d41591c751d0fb9e4396eede4370fdf18e3e66b5ed486"
+    },
+    {
+      "label": "final-video-ready",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-video-ready-ae2781b954e248bfba086e16c8d7c909.json",
+      "remoteRemoved": true,
+      "sha256": "d6b42e2bd8ae356121ea34591116eda31c83bdae18054f428ef2c361336ba696"
+    },
+    {
+      "label": "final-gallery-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-gallery-1-f6886bed543f419fb7bc27adc40a57f2.json",
+      "remoteRemoved": true,
+      "sha256": "f3f8827c2113681ee0c9c13f5cead5caa4004be2b55005f5d93eb3a2821ed4d4"
+    },
+    {
+      "label": "final-gallery-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-gallery-2-a83d037d44ad4be8b4ff1efa71ebf4e0.json",
+      "remoteRemoved": true,
+      "sha256": "e24a38a0b78e9581d01d45ac0940533d0b0fcae736ea67e218dfdb8daa50ea9b"
+    },
+    {
+      "label": "final-completion-notice",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-completion-notice-2dd104c309e74345aef6be3ed6d07ae2.json",
+      "remoteRemoved": true,
+      "sha256": "356b199318d87e698545cb3415c41d3aeaf0b079fd6a124567ca363ad0339f02"
+    },
+    {
+      "label": "final-combination-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-combination-1-bf75198c76cd46ed893f0aed068d4475.json",
+      "remoteRemoved": true,
+      "sha256": "cf3859b5ab4ad8c356cbdbfd8581e104b691578e370c16fe816c52be7739a3d7"
+    },
+    {
+      "label": "final-combination-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-combination-2-9bf6a42a5e364705967de21a78fee6b1.json",
+      "remoteRemoved": true,
+      "sha256": "aedf51c4346db90e37847602bd5c6381052120e6202b37ddda3cc7808c3f0047"
+    },
+    {
+      "label": "final-after-queue",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-after-queue-35ef50a14294420f976118bee4e55bc8.json",
+      "remoteRemoved": true,
+      "sha256": "5463ef65ae2d84ff625f6709c100b0e2eb62d14ebe021da5f8116ac84eab283d"
+    },
+    {
+      "label": "final-history-reentry",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T102020253025Z/raw-final-history-reentry-6dc89f20aa9a48ae9ee2002d6221a574.json",
+      "remoteRemoved": true,
+      "sha256": "9f5823e0d4cd5408864e8fdd5829b8f77b815dfd9ef5bfa6aab3d733b10d76f3"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

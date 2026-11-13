@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "stage": "main-complete",
+  "answerKind": "native-success-impact",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+  "bindingSha256": {
+    "hap": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+    "runtime": "734838e93d819a9452032f21443203f9740f40f0f9e20e686256b79f06a0b7d3",
+    "caseReference": "99e7716f485e95ef55533e468ed098b079b0250f3269ef620eb2b1143cec69b4",
+    "ca": "599c5417df6425f9a268a728fbd6d030ba03e24d93225455ab12de8490f780e3",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "c90667e85cea7d3953095f795f038e96e4cc0bff23a302e8c798150e5a58c783",
+    "gameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "65292e3e19e1b777e2f4c5094a5de05e5ef9c0d80ae57d3cf5a4b341a5aec3eb",
+    "answerMotionDriver": "b19e6c53f8ead76c7abe78a8a8c597f32667e9e6314fa627d9c45c8403efc8b7",
+    "headerMotion": "8aed778e3fdc25dbc5064e0513c17409cd8ab727243f4035676f316c939d6012",
+    "answerUI": {
+      "StarwardQuestionFrame": "cb28a4d1fc9f057aa5fbc9461cc7f212809e932d6528601f113e4694c279b091",
+      "StarwardQuestFeedback": "ddddf60c6203bf4c13311ab47d98719ae09cb3eb489b05a7b4f4b3b2c0848a74",
+      "StarwardQuestionNavigation": "7c3573de11229a2052f89b01f1d6972ac6c7bda53055a1bafbf440fbf17d238f",
+      "StarwardChoiceOption": "c2b4a0ba5ff9bcd130a51900f14116c4ac4c548bc94d11ab67fb24f6d98f7f73"
+    }
+  },
+  "checksPassed": 4,
+  "checks": [
+    "Reviewed disposable actor has two prior incorrect answers and zero XP",
+    "One new correct request followed the two recorded prior wrong attempts",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Native answer logout clears login inputs and private gameplay"
+  ],
+  "observations": {
+    "deviceBurst": {
+      "originals": [
+        {
+          "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-0.png",
+          "sha256": "51eeaf7709fb275d90b676cd738c6788313880719f4ef34d142704424a5fd7f6",
+          "scope": "Original device PNG from snapshot_display at 630x1360"
+        },
+        {
+          "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-1.png",
+          "sha256": "203d8bac7ecc661aa5ccafb48f39f5c115b7a75fd2c7ffa7af61f811351c67ee",
+          "scope": "Original device PNG from snapshot_display at 630x1360"
+        },
+        {
+          "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-2.png",
+          "sha256": "0a0e1cc54b3d51e45614cb116368d54632c049c63892bb0b3ac63d293fbcf5e0",
+          "scope": "Original device PNG from snapshot_display at 630x1360"
+        },
+        {
+          "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-3.png",
+          "sha256": "0e7d675b98da69fe352f657b431db57451e551e16897738f2e67956ff08da003",
+          "scope": "Original device PNG from snapshot_display at 630x1360"
+        },
+        {
+          "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-4.png",
+          "sha256": "6b435e84d45401b92bd3bdbec72bbe5ea9f328301da05224d13dfd84ee647be5",
+          "scope": "Original device PNG from snapshot_display at 630x1360"
+        },
+        {
+          "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-5.png",
+          "sha256": "909999671d9aa363d3d37519bb1b01856d59959a955a2ef8c5b3988fda7a4fa9",
+          "scope": "Original device PNG from snapshot_display at 630x1360"
+        }
+      ],
+      "clickAndSixCapturesWallMs": 2964,
+      "exactFrameTimesMeasured": false
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-0.png",
+      "sha256": "51eeaf7709fb275d90b676cd738c6788313880719f4ef34d142704424a5fd7f6",
+      "scope": "Original device PNG from snapshot_display at 630x1360"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-1.png",
+      "sha256": "203d8bac7ecc661aa5ccafb48f39f5c115b7a75fd2c7ffa7af61f811351c67ee",
+      "scope": "Original device PNG from snapshot_display at 630x1360"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-2.png",
+      "sha256": "0a0e1cc54b3d51e45614cb116368d54632c049c63892bb0b3ac63d293fbcf5e0",
+      "scope": "Original device PNG from snapshot_display at 630x1360"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-3.png",
+      "sha256": "0e7d675b98da69fe352f657b431db57451e551e16897738f2e67956ff08da003",
+      "scope": "Original device PNG from snapshot_display at 630x1360"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-4.png",
+      "sha256": "6b435e84d45401b92bd3bdbec72bbe5ea9f328301da05224d13dfd84ee647be5",
+      "scope": "Original device PNG from snapshot_display at 630x1360"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015653112176Z/correct-fast-5.png",
+      "sha256": "909999671d9aa363d3d37519bb1b01856d59959a955a2ef8c5b3988fda7a4fa9",
+      "scope": "Original device PNG from snapshot_display at 630x1360"
+    }
+  ],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write."
+}

@@ -1,0 +1,400 @@
+{
+  "status": "incomplete",
+  "stage": "answer-feedback",
+  "answerKind": "avatar-and-answer-motion",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "a15216bceb84f4277c29a5a1d9d95c6ed0a76fe39440e52f61c845e6848d7ee6",
+  "bindingSha256": {
+    "hap": "a15216bceb84f4277c29a5a1d9d95c6ed0a76fe39440e52f61c845e6848d7ee6",
+    "runtime": "9b32ae1a25e2e8053d8c12c50f06cebbd536cc01252bf2ffe6ab38f532cb1515",
+    "caseReference": "99e7716f485e95ef55533e468ed098b079b0250f3269ef620eb2b1143cec69b4",
+    "ca": "599c5417df6425f9a268a728fbd6d030ba03e24d93225455ab12de8490f780e3",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "c90667e85cea7d3953095f795f038e96e4cc0bff23a302e8c798150e5a58c783",
+    "gameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "65292e3e19e1b777e2f4c5094a5de05e5ef9c0d80ae57d3cf5a4b341a5aec3eb",
+    "answerMotionDriver": "2ba162e57e510eb9e484ff48e82abed949c42e43093c24ea6859b8c42ef1b658",
+    "headerMotion": "8aed778e3fdc25dbc5064e0513c17409cd8ab727243f4035676f316c939d6012",
+    "answerUI": {
+      "StarwardQuestionFrame": "cb28a4d1fc9f057aa5fbc9461cc7f212809e932d6528601f113e4694c279b091",
+      "StarwardQuestFeedback": "ddddf60c6203bf4c13311ab47d98719ae09cb3eb489b05a7b4f4b3b2c0848a74",
+      "StarwardQuestionNavigation": "7c3573de11229a2052f89b01f1d6972ac6c7bda53055a1bafbf440fbf17d238f",
+      "StarwardChoiceOption": "c2b4a0ba5ff9bcd130a51900f14116c4ac4c548bc94d11ab67fb24f6d98f7f73"
+    }
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Day and night ring samples, stable button, menu opens and closes, authoritative 0/2"
+  ],
+  "observations": {
+    "motion": {
+      "avatar-light": {
+        "nodeId": "account-menu",
+        "controlBoundsPx": [
+          39,
+          241,
+          182,
+          384
+        ],
+        "stableControlBounds": true,
+        "cropBoundsPx": [
+          13,
+          215,
+          208,
+          410
+        ],
+        "samples": [
+          {
+            "requestedMs": 0,
+            "receivedMs": 2216,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-00.png",
+              "sha256": "271ad0f8a3b213d4abcd5b56e0068bc64b5aeff6821743ca9bd3e364b05a3303",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2216,
+            "receivedMs": 4410,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-01.png",
+              "sha256": "9cd3eae04ebe3f2953156fe73cd6f55316ee5b2dcad185d185c8963440303b66",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4410,
+            "receivedMs": 6392,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-02.png",
+              "sha256": "a5cd02f63ffd4e868848a6d899c3b1cb814adacb987b4de4af1b93171207dd8b",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 6392,
+            "receivedMs": 8610,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-03.png",
+              "sha256": "90bd06ad7edefaa3983c726d5673a4c038276ef6910b7cf0453a623baabe26ca",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 8610,
+            "receivedMs": 10921,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-04.png",
+              "sha256": "d7e4ccda6acf6f64ec4ca2b9988f39d5e9dfa54fde18424a3ab755e52c82c783",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 10921,
+            "receivedMs": 13129,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-05.png",
+              "sha256": "54b9871a9a0762aa25cbc448b79b81cd5090c4491da985d94f09934314f8f1ec",
+              "scope": "Private original"
+            }
+          }
+        ],
+        "consecutiveChanges": [
+          {
+            "meanAbsoluteRgb": 3.8178,
+            "changedPixelFraction": 0.14031
+          },
+          {
+            "meanAbsoluteRgb": 7.57124,
+            "changedPixelFraction": 0.18117
+          },
+          {
+            "meanAbsoluteRgb": 0.44706,
+            "changedPixelFraction": 0.07805
+          },
+          {
+            "meanAbsoluteRgb": 1.44569,
+            "changedPixelFraction": 0.11313
+          },
+          {
+            "meanAbsoluteRgb": 14.01586,
+            "changedPixelFraction": 0.33135
+          }
+        ],
+        "maximumChangedPixelFraction": 0.33135
+      },
+      "avatar-dark": {
+        "nodeId": "account-menu",
+        "controlBoundsPx": [
+          39,
+          241,
+          182,
+          384
+        ],
+        "stableControlBounds": true,
+        "cropBoundsPx": [
+          13,
+          215,
+          208,
+          410
+        ],
+        "samples": [
+          {
+            "requestedMs": 0,
+            "receivedMs": 2343,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-00.png",
+              "sha256": "106a727e36ea57fae7ffd995e4b32747bc70f1262b29adeda1c818bd4c576ddb",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2343,
+            "receivedMs": 4524,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-01.png",
+              "sha256": "024fadd9e823aaf90e135836b44696b90a783701eb2793b7133c27b6cb446478",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4524,
+            "receivedMs": 6589,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-02.png",
+              "sha256": "6fb5823293b9daf39d919510c0b9c7cfc9f7436b549d688901b451f7c989b298",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 6589,
+            "receivedMs": 8867,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-03.png",
+              "sha256": "8c2793c22c6456f0248428a39ad97b2d2e1a700832c12e47fe4e399100cdc60b",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 8867,
+            "receivedMs": 11136,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-04.png",
+              "sha256": "d71fde6decd94211e7b5180d0f68ccd5b4b20fa5298a3e4fcc9f6c16fc764302",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 11136,
+            "receivedMs": 13438,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-05.png",
+              "sha256": "2c37c03c3797419df2769b146c1181cf90b9fba5bf4bfc81cb9af64a60dd9854",
+              "scope": "Private original"
+            }
+          }
+        ],
+        "consecutiveChanges": [
+          {
+            "meanAbsoluteRgb": 4.4272,
+            "changedPixelFraction": 0.14906
+          },
+          {
+            "meanAbsoluteRgb": 4.4202,
+            "changedPixelFraction": 0.14724
+          },
+          {
+            "meanAbsoluteRgb": 0.17837,
+            "changedPixelFraction": 0.04659
+          },
+          {
+            "meanAbsoluteRgb": 2.36607,
+            "changedPixelFraction": 0.12648
+          },
+          {
+            "meanAbsoluteRgb": 10.24028,
+            "changedPixelFraction": 0.27586
+          }
+        ],
+        "maximumChangedPixelFraction": 0.27586
+      }
+    },
+    "bursts": {
+      "incorrect": {
+        "controlBoundsPx": [
+          100,
+          1558,
+          439,
+          1708
+        ],
+        "samples": [
+          {
+            "requestedMs": 1,
+            "receivedMs": 1676,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-00.png",
+              "sha256": "ca306fd9d80201554af691862411ec9d6476d14d484b5827c2d898cfea13fb80",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 1677,
+            "receivedMs": 3619,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-01.png",
+              "sha256": "6b91736b43f6c9ec58b9db9c0b1d30cf592d0d2ad0da4e3ebcb66b32a9bead56",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 3619,
+            "receivedMs": 5760,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-02.png",
+              "sha256": "70562bdf480df87234becc31c15dc210c1f0d687b5c4f2c3f271bce19e324aef",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 5760,
+            "receivedMs": 7712,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-03.png",
+              "sha256": "24b8f3b76d5b836accbffc72660975d53b99c8e4be3aaab24114f934b4e02b42",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 7712,
+            "receivedMs": 9797,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-04.png",
+              "sha256": "8076ea6e25d2e775885bb683530e4db1542efd4f8db65a9fd7b2ed7a5d643041",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 9797,
+            "receivedMs": 11953,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-05.png",
+              "sha256": "b386c0e6d96671b7a6a2876d4edb02b1bf7deec4cfc8b57a0c89f28f9c68ee30",
+              "scope": "Private original"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-00.png",
+      "sha256": "271ad0f8a3b213d4abcd5b56e0068bc64b5aeff6821743ca9bd3e364b05a3303",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-01.png",
+      "sha256": "9cd3eae04ebe3f2953156fe73cd6f55316ee5b2dcad185d185c8963440303b66",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-02.png",
+      "sha256": "a5cd02f63ffd4e868848a6d899c3b1cb814adacb987b4de4af1b93171207dd8b",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-03.png",
+      "sha256": "90bd06ad7edefaa3983c726d5673a4c038276ef6910b7cf0453a623baabe26ca",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-04.png",
+      "sha256": "d7e4ccda6acf6f64ec4ca2b9988f39d5e9dfa54fde18424a3ab755e52c82c783",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-light-05.png",
+      "sha256": "54b9871a9a0762aa25cbc448b79b81cd5090c4491da985d94f09934314f8f1ec",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-00.png",
+      "sha256": "106a727e36ea57fae7ffd995e4b32747bc70f1262b29adeda1c818bd4c576ddb",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-01.png",
+      "sha256": "024fadd9e823aaf90e135836b44696b90a783701eb2793b7133c27b6cb446478",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-02.png",
+      "sha256": "6fb5823293b9daf39d919510c0b9c7cfc9f7436b549d688901b451f7c989b298",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-03.png",
+      "sha256": "8c2793c22c6456f0248428a39ad97b2d2e1a700832c12e47fe4e399100cdc60b",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-04.png",
+      "sha256": "d71fde6decd94211e7b5180d0f68ccd5b4b20fa5298a3e4fcc9f6c16fc764302",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/motion-avatar-dark-05.png",
+      "sha256": "2c37c03c3797419df2769b146c1181cf90b9fba5bf4bfc81cb9af64a60dd9854",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-00.png",
+      "sha256": "ca306fd9d80201554af691862411ec9d6476d14d484b5827c2d898cfea13fb80",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-01.png",
+      "sha256": "6b91736b43f6c9ec58b9db9c0b1d30cf592d0d2ad0da4e3ebcb66b32a9bead56",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-02.png",
+      "sha256": "70562bdf480df87234becc31c15dc210c1f0d687b5c4f2c3f271bce19e324aef",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-03.png",
+      "sha256": "24b8f3b76d5b836accbffc72660975d53b99c8e4be3aaab24114f934b4e02b42",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-04.png",
+      "sha256": "8076ea6e25d2e775885bb683530e4db1542efd4f8db65a9fd7b2ed7a5d643041",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T013240213787Z/incorrect-05.png",
+      "sha256": "b386c0e6d96671b7a6a2876d4edb02b1bf7deec4cfc8b57a0c89f28f9c68ee30",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write.",
+  "failure": "One authoritative incorrect response and zero successful settlements"
+}

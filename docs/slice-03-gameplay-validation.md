@@ -295,3 +295,74 @@ python3 "$starward_private/device-auto-clues-02.py" --runtime "$starward_reports
 ```
 
 `early` 及 `interrupt` 分别指定独立真机报告。媒体请求台账与 SQLite 结算各自复核。冻结 Web 回放取独立账号的同场次响应与同一组媒体原文件，保持业务接口由测试拦截。
+
+## 普通多题末题演出
+
+逐状态结果见 [C01k](feature-acceptance-matrix.md#c01k-末题普通线索完成提示与组合线索)。本轮真机账号在真实隔离 HTTPS 后端各完成首题，再从当前第二题提交唯一的末题答题请求。复验使用新的预结算账号及报告名。
+
+```sh
+starward_private=artifacts/private/gameplay-final-clues-20261112
+starward_reports=artifacts/validation/ui-gameplay-final-clues-20261112
+scripts/hm.sh build
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayClues" scripts/hm.sh test GameplayClues
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayAnswerViewModel" scripts/hm.sh test GameplayAnswerViewModel
+STARWARD_VALIDATION_DIR="$starward_reports/lint-01" scripts/hm.sh lint
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-01.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-final-clues.py" --runtime "$starward_reports/runtime-01.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage normal --theme light --output "$starward_reports/native-normal-01.json"
+```
+
+提前关闭分支使用 `--usage early --theme dark` 与独立报告。驱动逐步核对浮层关闭、请求台账、SQLite 和已完成场次回访。冻结 Web 使用同场次结算响应和相同媒体原文件，浏览器请求由回放接管。
+
+## 题卡、浮标和完成提示的动态验收
+
+见 [C01l](feature-acceptance-matrix.md#c01l-题卡组合线索浮标与完成弹窗动效)。连续采样使用系统截屏、实测控件边界和原始 PNG。界面保持相同状态，采样期间没有触摸或布局轮询。
+
+```sh
+starward_private=artifacts/private/gameplay-motion-20261112
+starward_reports=artifacts/validation/ui-gameplay-motion-20261112
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-02.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-motion.py" --runtime "$starward_reports/runtime-02.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --usage normal --theme light --output "$starward_reports/native-motion-01.json"
+```
+
+扫光补拍从已完成场次读取同题，核对入场、答题、经验和授权台账。以下命令使用修正后的签名包与原隔离环境，保留首轮报告。
+
+```sh
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-03.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-motion-card-readonly.py" --runtime "$starward_reports/runtime-03.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --prior-report "$starward_reports/native-motion-01.json" --output "$starward_reports/native-card-motion-02.json"
+```
+
+## 答题与线索动效逐项复核（2026-11-13）
+
+见 [C01m](feature-acceptance-matrix.md#c01m-已迁移答题与线索动效复查2026-11-13)。两类隔离场次分开准备。普通多题场次验证答题、重连和选题，末题线索场次通过严格 HTTPS 验证文字、视频、图集、完成提示和组合线索的实际顺序。归档间距修正用该已结算场次只读补拍。原图及输入快照保存在私有目录，公开报告只记录哈希、控件坐标、状态和非私密对账结果。
+
+```sh
+starward_private=artifacts/private/gameplay-motion-audit-20261113
+starward_reports=artifacts/validation/ui-gameplay-motion-audit-20261113
+scripts/hm.sh run
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output "$starward_reports/runtime-06.json"
+starward_hap_sha=$(shasum -a 256 entry/build/default/outputs/default/entry-default-signed.hap | awk '{print $1}')
+python3 "$starward_private/device-archive-motion-readonly.py" --runtime "$starward_reports/runtime-06.json" \
+  --device-ref "$starward_private/device-ref.json" --expected-hap "$starward_hap_sha" \
+  --prior-report "$starward_reports/native-clue-motion-01.json" --output "$starward_reports/native-archive-motion-02.json"
+python3 "$starward_private/device-answer-navigation-readonly.py" --runtime "$starward_reports/runtime-06.json" \
+  --device-ref "$starward_private/device-ref.json" --case-ref "$starward_private/answer-actor-created.json" \
+  --expected-hap "$starward_hap_sha" --output "$starward_reports/native-navigation-motion-01.json"
+python3 "$starward_private/device-recovery-motion.py" --runtime "$starward_reports/runtime-06.json" \
+  --device-ref "$starward_private/device-ref.json" --case-ref "$starward_private/recovery-actor-created.json" \
+  --expected-hap "$starward_hap_sha" --output "$starward_reports/native-recovery-motion-01.json"
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayClues-final" scripts/hm.sh test GameplayClues
+STARWARD_VALIDATION_DIR="$starward_reports/GameplayAnswerViewModel-final" scripts/hm.sh test GameplayAnswerViewModel
+STARWARD_VALIDATION_DIR="$starward_reports/lint-final" scripts/hm.sh lint
+```

@@ -1,0 +1,334 @@
+{
+  "status": "passed",
+  "stage": "main-complete",
+  "answerKind": "avatar-and-answer-motion",
+  "scope": "Native answer slice only; entry/login are setup, no unexecuted followup credit",
+  "hapSha256": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+  "bindingSha256": {
+    "hap": "d1ef71d759a70998dc4c31b4b99fe12ae6e033e9c93f34d0af0bd3c2a9441a50",
+    "runtime": "734838e93d819a9452032f21443203f9740f40f0f9e20e686256b79f06a0b7d3",
+    "caseReference": "25af0d1d84a3a8b62d0819848304d3e8ddb0ab336e1055512ce4a664460fc2c0",
+    "ca": "599c5417df6425f9a268a728fbd6d030ba03e24d93225455ab12de8490f780e3",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "answerDriver": "623b7ecb4a5f3f9a07f87140660c9f9ced86e41b6420cbdb06aef3e49e1d3efc",
+    "gameplayPage": "c90667e85cea7d3953095f795f038e96e4cc0bff23a302e8c798150e5a58c783",
+    "gameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "httpsRepository": "97727e4c20be761a45ab5ceb4214ac3048de12b4f226cc787bb9f9ee23377b80",
+    "gameplayDecoder": "65292e3e19e1b777e2f4c5094a5de05e5ef9c0d80ae57d3cf5a4b341a5aec3eb",
+    "answerMotionDriver": "b19e6c53f8ead76c7abe78a8a8c597f32667e9e6314fa627d9c45c8403efc8b7",
+    "headerMotion": "8aed778e3fdc25dbc5064e0513c17409cd8ab727243f4035676f316c939d6012",
+    "answerUI": {
+      "StarwardQuestionFrame": "cb28a4d1fc9f057aa5fbc9461cc7f212809e932d6528601f113e4694c279b091",
+      "StarwardQuestFeedback": "ddddf60c6203bf4c13311ab47d98719ae09cb3eb489b05a7b4f4b3b2c0848a74",
+      "StarwardQuestionNavigation": "7c3573de11229a2052f89b01f1d6972ac6c7bda53055a1bafbf440fbf17d238f",
+      "StarwardChoiceOption": "c2b4a0ba5ff9bcd130a51900f14116c4ac4c548bc94d11ab67fb24f6d98f7f73"
+    }
+  },
+  "checksPassed": 7,
+  "checks": [
+    "Same isolated case has one successful settlement, one prior incorrect answer and 50 XP",
+    "Authoritative header updates to 1/2 on return to top",
+    "Captured stationary active navigation samples",
+    "Native Next reaches choice question and Radio is checked",
+    "Exactly one native start and two authorized real answer responses",
+    "Real native answer facts match expected submissions, receipts, completion, penalty and XP counts",
+    "Native answer logout clears login inputs and private gameplay"
+  ],
+  "observations": {
+    "motion": {
+      "navigation": {
+        "nodeId": "gameplay-level-0",
+        "controlBoundsPx": [
+          39,
+          508,
+          345,
+          712
+        ],
+        "stableControlBounds": true,
+        "cropBoundsPx": [
+          39,
+          508,
+          345,
+          712
+        ],
+        "samples": [
+          {
+            "requestedMs": 0,
+            "receivedMs": 2277,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-00.png",
+              "sha256": "043b35fca64cb9d775eec4324cbd566623bc4a08e6d31fe64fe10c40d96b9b8f",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2277,
+            "receivedMs": 4409,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-01.png",
+              "sha256": "cd01eae2936ad463eeb5ee75e05f76b410fe08e1052a696950b87580ab9689cc",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4409,
+            "receivedMs": 6633,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-02.png",
+              "sha256": "1e95ad174c769e4573912e1c8228bd8ac2b17291e4f98f8c24b5631fec23608d",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 6634,
+            "receivedMs": 8803,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-03.png",
+              "sha256": "88599acda66ebda4a658db6fe69b12a11f5a3385c75bcbdab2f8fdcae7d55db6",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 8803,
+            "receivedMs": 10952,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-04.png",
+              "sha256": "71dd3e9f48fd1bbd152db4bc2727505e5794f8bdbf057c1a13ded3508b5062ba",
+              "scope": "Private original"
+            }
+          }
+        ],
+        "consecutiveChanges": [
+          {
+            "meanAbsoluteRgb": 0.14201,
+            "changedPixelFraction": 0.01266
+          },
+          {
+            "meanAbsoluteRgb": 0.11444,
+            "changedPixelFraction": 0.0125
+          },
+          {
+            "meanAbsoluteRgb": 0.01984,
+            "changedPixelFraction": 0.01091
+          },
+          {
+            "meanAbsoluteRgb": 0.45049,
+            "changedPixelFraction": 0.01255
+          }
+        ],
+        "maximumChangedPixelFraction": 0.01266
+      }
+    },
+    "bursts": {
+      "next-question": {
+        "controlBoundsPx": [
+          100,
+          1558,
+          497,
+          1708
+        ],
+        "samples": [
+          {
+            "requestedMs": 1,
+            "receivedMs": 1934,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-00.png",
+              "sha256": "176d862993d75d5babfb8a9df5d1a890864150bfa14acf210718fafe689d6ea7",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 1934,
+            "receivedMs": 4046,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-01.png",
+              "sha256": "ed8631cbd070e3ad282a155cb0ca7e02149f946afae12fd7400c8a68840446b4",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4046,
+            "receivedMs": 6159,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-02.png",
+              "sha256": "ed8631cbd070e3ad282a155cb0ca7e02149f946afae12fd7400c8a68840446b4",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 6159,
+            "receivedMs": 8196,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-03.png",
+              "sha256": "ed8631cbd070e3ad282a155cb0ca7e02149f946afae12fd7400c8a68840446b4",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 8196,
+            "receivedMs": 10290,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-04.png",
+              "sha256": "cec08c6c61ba7bb9aee850ffc72641d2d0f603659ae60afe99f35eaf980efab6",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 10290,
+            "receivedMs": 12367,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-05.png",
+              "sha256": "797f961da9a6214fc31ade1bfb68089c00733b46fe8432dbc44be42aba621431",
+              "scope": "Private original"
+            }
+          }
+        ]
+      },
+      "choice": {
+        "controlBoundsPx": [
+          103,
+          660,
+          1157,
+          849
+        ],
+        "samples": [
+          {
+            "requestedMs": 517,
+            "receivedMs": 2609,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/choice-00.png",
+              "sha256": "9f2e70db21bec338933aef52b1a03704a13e8fb3dec8ec209737352378b32d85",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2609,
+            "receivedMs": 4682,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/choice-01.png",
+              "sha256": "dc99e97b7b02979014a554b54676d9c3f8c61e68bb9f69cfd9149e6b5571b7e2",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 4682,
+            "receivedMs": 6767,
+            "original": {
+              "file": "artifacts/private/entry-main-20261113T015212011614Z/choice-02.png",
+              "sha256": "dc99e97b7b02979014a554b54676d9c3f8c61e68bb9f69cfd9149e6b5571b7e2",
+              "scope": "Private original"
+            }
+          }
+        ]
+      }
+    },
+    "sqlite": {
+      "assignmentStatus": "active",
+      "startedAtPresent": true,
+      "completedAtPresent": false,
+      "progressRows": 2,
+      "completedProgressRows": 1,
+      "wrongCountTotal": 0,
+      "lockedProgressRows": 0,
+      "answerSubmissionCount": 2,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "xpLedgerCount": 1,
+      "xpDeltaSum": 50,
+      "playerTotalXp": 50,
+      "submissionResults": {
+        "correct": 1,
+        "incorrect": 1,
+        "manual": 0
+      }
+    }
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-00.png",
+      "sha256": "043b35fca64cb9d775eec4324cbd566623bc4a08e6d31fe64fe10c40d96b9b8f",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-01.png",
+      "sha256": "cd01eae2936ad463eeb5ee75e05f76b410fe08e1052a696950b87580ab9689cc",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-02.png",
+      "sha256": "1e95ad174c769e4573912e1c8228bd8ac2b17291e4f98f8c24b5631fec23608d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-03.png",
+      "sha256": "88599acda66ebda4a658db6fe69b12a11f5a3385c75bcbdab2f8fdcae7d55db6",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/motion-navigation-04.png",
+      "sha256": "71dd3e9f48fd1bbd152db4bc2727505e5794f8bdbf057c1a13ded3508b5062ba",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-00.png",
+      "sha256": "176d862993d75d5babfb8a9df5d1a890864150bfa14acf210718fafe689d6ea7",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-01.png",
+      "sha256": "ed8631cbd070e3ad282a155cb0ca7e02149f946afae12fd7400c8a68840446b4",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-02.png",
+      "sha256": "ed8631cbd070e3ad282a155cb0ca7e02149f946afae12fd7400c8a68840446b4",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-03.png",
+      "sha256": "ed8631cbd070e3ad282a155cb0ca7e02149f946afae12fd7400c8a68840446b4",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-04.png",
+      "sha256": "cec08c6c61ba7bb9aee850ffc72641d2d0f603659ae60afe99f35eaf980efab6",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/next-question-05.png",
+      "sha256": "797f961da9a6214fc31ade1bfb68089c00733b46fe8432dbc44be42aba621431",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/choice-00.png",
+      "sha256": "9f2e70db21bec338933aef52b1a03704a13e8fb3dec8ec209737352378b32d85",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/choice-01.png",
+      "sha256": "dc99e97b7b02979014a554b54676d9c3f8c61e68bb9f69cfd9149e6b5571b7e2",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261113T015212011614Z/choice-02.png",
+      "sha256": "dc99e97b7b02979014a554b54676d9c3f8c61e68bb9f69cfd9149e6b5571b7e2",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [],
+  "visualReview": "pending_root_original_review",
+  "fixedPreviewTouched": false,
+  "privateCredentialsOrRecordIdsPersisted": false,
+  "writeScope": "Native exact-case start/answer only; Host authentication/read and disposable fault control. No creation/reset/profile/password/reward/admin write."
+}

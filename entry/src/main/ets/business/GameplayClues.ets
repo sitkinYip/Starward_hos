@@ -8,8 +8,13 @@ export function clueImageSources(clue: GameplayClue): string[] {
   return clue.content.imageUrls.filter((source: string) => source.length > 0);
 }
 
-function clueOrder(left: GameplayClue, right: GameplayClue): number {
+function clueOrder(left: GameplayClue, right: GameplayClue, levelOrder?: Map<string, number>): number {
   if (left.source !== right.source) { return left.source === 'session' ? -1 : 1; }
+  if (left.source === 'question' && levelOrder !== undefined) {
+    const position: number = (levelOrder.get(left.sessionLevel) ?? Number.MAX_SAFE_INTEGER) -
+      (levelOrder.get(right.sessionLevel) ?? Number.MAX_SAFE_INTEGER);
+    if (position !== 0) { return position; }
+  }
   return left.position - right.position ||
     compareText(left.definitionId || left.id, right.definitionId || right.id) || compareText(left.id, right.id);
 }
@@ -38,6 +43,12 @@ export function completionCombinations(previous: GameplaySnapshot | null, settle
   return available.filter((clue: GameplayClue) => !known.has(clue.id));
 }
 
+function isOrdinaryClue(clue: GameplayClue, totalLevels: number): boolean {
+  return !isCombinationClue(clue, totalLevels) && (clue.kind === 'text' ||
+    (clue.kind === 'image' && clueImageSources(clue).length > 0) ||
+    (clue.kind === 'video' && clue.content.url.trim().length > 0));
+}
+
 /** Mobile archive projection. The server snapshot is the only source of grants. */
 export function ordinaryClues(snapshot: GameplaySnapshot | null, level: GameplayLevel | null): GameplayClue[] {
   if (snapshot === null || snapshot.detail.status === 'cancelled' || level === null ||
@@ -45,26 +56,34 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
     return [];
   }
   return snapshot.clues.filter((clue: GameplayClue) => {
-    const supported: boolean = clue.kind === 'text' ||
-      (clue.kind === 'image' && clueImageSources(clue).length > 0) ||
-      (clue.kind === 'video' && clue.content.url.trim().length > 0);
-    if (!supported) { return false; }
+    if (!isOrdinaryClue(clue, snapshot.detail.totalLevels)) { return false; }
     if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === level.id; }
-    if (clue.sessionLevel.length > 0) { return clue.sessionLevel === level.id; }
-    return !isCombinationClue(clue, snapshot.detail.totalLevels);
+    return clue.sessionLevel.length === 0 || clue.sessionLevel === level.id;
   }).sort(clueOrder);
 }
 
 /** Only the successful answer response can start automatic clues for the current question. */
 export function answerAutomaticClues(previous: GameplaySnapshot | null, settled: GameplaySnapshot,
   level: GameplayLevel, effects: GameplayEffect[] | undefined): GameplayClue[] {
-  if (settled.detail.status !== 'active') { return []; }
+  const normalCompletion: boolean = settled.detail.status === 'completed' &&
+    previous?.detail.status !== 'completed' && settled.presentation.completionStyle !== 'finale';
+  if (settled.detail.status !== 'active' && !normalCompletion) { return []; }
   const provided: Map<string, boolean | undefined> = new Map();
   for (const effect of effects || []) {
     if (effect.type === 'clue') { provided.set(effect.clueId, effect.autoPlay); }
   }
   const known: Set<string> = new Set((previous?.clues || []).map((clue: GameplayClue) => clue.id));
-  return ordinaryClues(settled, level).filter((clue: GameplayClue) => {
+  let available: GameplayClue[];
+  if (normalCompletion && effects !== undefined) {
+    // Completion can explicitly unlock a session clue filed under an earlier question.
+    const levelOrder: Map<string, number> = new Map();
+    settled.levels.forEach((entry: GameplayLevel, index: number) => levelOrder.set(entry.id, index));
+    available = settled.clues.filter((clue: GameplayClue) => isOrdinaryClue(clue, settled.detail.totalLevels))
+      .sort((left: GameplayClue, right: GameplayClue) => clueOrder(left, right, levelOrder));
+  } else {
+    available = ordinaryClues(settled, level);
+  }
+  return available.filter((clue: GameplayClue) => {
     return effects === undefined ? !known.has(clue.id) && clue.autoPlay :
       provided.has(clue.id) && (provided.get(clue.id) ?? clue.autoPlay);
   });

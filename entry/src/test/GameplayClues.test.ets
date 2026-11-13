@@ -77,8 +77,31 @@ export default function gameplayCluesTests(): void {
       expect(answerAutomaticClues(previous, settled, first,
         [optOut, effect('absent'), effect('other'), optIn])[0]?.id).assertEqual('session');
       expect(answerAutomaticClues(previous, settled, first, [optOut, optIn]).length).assertEqual(1);
+    });
+
+    it('finalEffectsCanExplicitlyPlayAnEarlierBoundOrdinaryClueBeforeTheCombination', 0, () => {
+      const first: GameplayLevel = level('first');
+      const last: GameplayLevel = level('last');
+      const lastText: GameplayClue = clue('last-text', 'text', 'session', 'last');
+      lastText.autoPlay = true;
+      const earlier: GameplayClue = clue('earlier', 'image', 'session', 'first', 'session_completed');
+      earlier.content.imageUrls = ['https://media.example/earlier.png'];
+      earlier.autoPlay = true;
+      earlier.position = 2;
+      const combination: GameplayClue = clue('combination', 'text', 'session', '', 'session_completed');
+      combination.autoPlay = true;
+      const previous: GameplaySnapshot = snapshot([first, level('last', false)], []);
+      const settled: GameplaySnapshot = snapshot([first, last], [earlier, combination, lastText]);
       settled.detail.status = 'completed';
-      expect(answerAutomaticClues(previous, settled, first, [optIn]).length).assertEqual(0);
+      const finalEffects: GameplayEffect[] = [effect('combination'), effect('earlier'), effect('last-text')];
+      expect(answerAutomaticClues(previous, settled, last, finalEffects).map((row: GameplayClue) =>
+        row.id).join(',')).assertEqual('last-text,earlier');
+      expect(answerAutomaticClues(previous, settled, last, undefined)[0]?.id).assertEqual('last-text');
+      expect(ordinaryClues(settled, last).length).assertEqual(1);
+      expect(completionCombinations(previous, settled, finalEffects)[0]?.id).assertEqual('combination');
+      expect(answerAutomaticClues(settled, settled, last, finalEffects).length).assertEqual(0);
+      settled.presentation.completionStyle = 'finale';
+      expect(answerAutomaticClues(previous, settled, last, finalEffects).length).assertEqual(0);
     });
 
     it('usesOnlyCurrentReadableCompletedLevelAndServerGrantedRows', 0, () => {

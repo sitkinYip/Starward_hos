@@ -22,6 +22,7 @@ import { StarwardSidePanel } from '../ui/StarwardSidePanel';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardMotion } from '../ui/StarwardMotion';
 import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
+import { StarwardQuestAvatar, StarwardQuestHeaderEntrance, StarwardQuestProgress } from '../ui/StarwardQuestHeaderMotion';
 import { StarwardAvatarCrop } from '../ui/StarwardAvatarCrop';
 import { StarwardPassport } from '../ui/StarwardPassport';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
@@ -56,12 +57,14 @@ struct Index {
   @Local lobbyAtlasWidth: number = 350;
   @Local detailAtlasWidth: number = 366;
   @Local private gameplayTitleHidden: boolean = false;
+  @Local private foreground: boolean = true;
   private motion: StarwardMotion = new StarwardMotion();
   private avatarEditor: AvatarEditor = new AvatarEditor();
   private avatarPickRevision: number = 0;
   private paths: NavPathStack = new NavPathStack();
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
+    this.foreground = foreground;
     if (foreground) {
       this.startClock();
       if (this.vm.gate === 'home') {
@@ -402,10 +405,16 @@ struct Index {
   }
 
   @Builder
-  avatar() {
+  avatar(quest: boolean = false) {
     Stack({ alignContent: Alignment.BottomEnd }) {
-      StarwardPlayerAvatar({ name: this.vm.player.displayName, avatar: this.vm.avatarImage, avatarSize: 44,
-        decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
+      if (quest) {
+        StarwardQuestAvatar({ name: this.vm.player.displayName, avatar: this.vm.avatarImage,
+          motionEnabled: this.foreground && !this.gameplayTitleHidden && !this.motion.reduced,
+          decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
+      } else {
+        StarwardPlayerAvatar({ name: this.vm.player.displayName, avatar: this.vm.avatarImage, avatarSize: 44,
+          decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
+      }
       Text('≡').fontSize(13).fontColor($r('app.color.accent')).width(21).height(21).textAlign(TextAlign.Center)
         .backgroundColor($r('app.color.raised')).border({ width: 1, color: $r('app.color.accent_border'), radius: 11 })
         .offset({ x: 5, y: 2 })
@@ -773,7 +782,7 @@ struct Index {
   @Builder
   sessionHeader() {
     Row({ space: 12 }) {
-      this.avatar()
+      this.avatar(true)
       Column() {
         Text('QUEST SESSION').fontFamily('monospace').fontSize(12).fontWeight(600).lineHeight('14.4fp')
           .letterSpacing(1.68).fontColor($r('app.color.accent_muted'))
@@ -785,13 +794,11 @@ struct Index {
       }.alignItems(HorizontalAlign.Start).layoutWeight(1)
       if (this.vm.play.visible ? this.vm.play.snapshot !== null && this.vm.play.error.length === 0 :
         this.vm.detail.id.length > 0) {
-        Column({ space: 6 }) {
-        Text(`${this.vm.play.visible ? this.vm.play.snapshot?.detail.completedLevels : this.vm.detail.completedLevels}/${
-          this.vm.play.visible ? this.vm.play.snapshot?.detail.totalLevels : this.vm.detail.totalLevels}`)
-          .fontFamily('monospace').fontSize(27)
-          .fontWeight(FontWeight.Medium).lineHeight('27fp').fontColor($r('app.color.strong'))
-        Text('已完成').fontSize(11).lineHeight('17fp').fontColor($r('app.color.subtle'))
-        }.id('detail-progress').alignItems(HorizontalAlign.End)
+        StarwardQuestProgress({
+          completed: this.vm.play.visible ? this.vm.play.snapshot?.detail.completedLevels ?? 0 : this.vm.detail.completedLevels,
+          total: this.vm.play.visible ? this.vm.play.snapshot?.detail.totalLevels ?? 0 : this.vm.detail.totalLevels,
+          motionEnabled: this.foreground && !this.gameplayTitleHidden && !this.motion.reduced
+        })
       }
     }.width('100%').constraintSize({ minHeight: this.detailTitleHeight() }).padding({ bottom: 10 })
       .alignItems(VerticalAlign.Center)
@@ -950,7 +957,13 @@ struct Index {
   @Builder
   detailTitle() {
     StarwardTitleSurface({ titleHeight: this.detailTitleHeight(), horizontalGutter: 12,
-      topInset: this.safeTop() + 24, titleContent: () => { this.sessionHeader() } })
+      topInset: this.safeTop() + 24, titleContent: () => { this.sessionTitleContent() } })
+  }
+
+  @Builder
+  sessionTitleContent() {
+    StarwardQuestHeaderEntrance({ motionEnabled: this.foreground && !this.gameplayTitleHidden && !this.motion.reduced,
+      content: () => { this.sessionHeader() } })
   }
 
   @Builder

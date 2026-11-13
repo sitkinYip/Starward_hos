@@ -41,9 +41,10 @@ function answerResult(result: string, assignment: GameplaySnapshot, totalXp: num
   return value;
 }
 
-function clueResult(kinds: string[], autoNext: boolean = true): GameplayAnswerResult {
-  const settled: GameplaySnapshot = choiceSnapshot();
-  settled.levels[0].autoNext = autoNext;
+function clueResult(kinds: string[], autoNext: boolean = true,
+  settled: GameplaySnapshot = choiceSnapshot()): GameplayAnswerResult {
+  const level = settled.detail.status === 'completed' ? settled.levels[settled.levels.length - 1] : settled.levels[0];
+  level.autoNext = autoNext;
   const result: GameplayAnswerResult = answerResult('correct', settled);
   result.effectsProvided = true;
   for (let index: number = 0; index < kinds.length; index++) {
@@ -54,13 +55,27 @@ function clueResult(kinds: string[], autoNext: boolean = true): GameplayAnswerRe
     clue.position = index;
     if (kind === 'video') { clue.content.url = 'https://media.example/clue.mp4'; }
     if (kind === 'image') { clue.content.imageUrls = ['https://media.example/clue.png']; }
-    clue.sessionLevel = settled.levels[0].id;
+    clue.sessionLevel = level.id;
     const effect: GameplayEffect = new GameplayEffect();
     effect.clueId = clue.id;
     effect.autoPlay = true;
     settled.clues.push(clue);
     result.effects.push(effect);
   }
+  return result;
+}
+
+function finalClueResult(): GameplayAnswerResult {
+  const result: GameplayAnswerResult = clueResult(['text', 'video', 'image'], false, completedSnapshot());
+  const combination: GameplayClue = new GameplayClue();
+  combination.id = 'final-combination';
+  combination.kind = 'text';
+  combination.trigger = 'session_completed';
+  result.assignment.clues.push(combination);
+  const effect: GameplayEffect = new GameplayEffect();
+  effect.clueId = combination.id;
+  effect.autoPlay = false;
+  result.effects.push(effect);
   return result;
 }
 
@@ -493,6 +508,55 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.draftAnswer).assertEqual('B');
       expect(vm.answerAllowed()).assertFalse();
       vm.leave();
+    });
+
+    it('finalAutomaticCluesDeferCompletionAndEarlyVideoCloseStillDeliversTheCombinationOnce', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      repository.server = choiceSnapshot();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('B');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = finalClueResult();
+      repository.answers[0].succeed(result);
+      await pending;
+      expect(vm.snapshot?.detail.status).assertEqual('completed');
+      expect(vm.completionRevision).assertEqual(0);
+      expect(vm.automaticClue?.kind).assertEqual('text');
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      expect(vm.automaticClue?.kind).assertEqual('video');
+      vm.finishAutomaticClue(result.assignment.clues[1], false);
+      expect(vm.automaticClue?.kind).assertEqual('image');
+      expect(vm.completionRevision).assertEqual(0);
+      vm.finishAutomaticClue(result.assignment.clues[2], true);
+      vm.finishAutomaticClue(result.assignment.clues[2], true);
+      expect(vm.automaticClue).assertNull();
+      expect(vm.completionRevision).assertEqual(1);
+      expect(vm.completionClues[0]?.id).assertEqual('final-combination');
+      expect(vm.activeIndex).assertEqual(1);
+      expect(repository.answers.length).assertEqual(1);
+    });
+
+    it('interruptedFinalCluesAndACompletedGetNeverPublishThePendingNotice', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      repository.server = choiceSnapshot();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('B');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = finalClueResult();
+      repository.answers[0].succeed(result);
+      await pending;
+      vm.cancelAutomaticClues();
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      expect(vm.completionRevision).assertEqual(0);
+      repository.server = result.assignment;
+      await vm.reload();
+      expect(vm.automaticClue).assertNull();
+      expect(vm.completionRevision).assertEqual(0);
+      expect(vm.completionClues.length).assertEqual(0);
+      expect(vm.snapshot?.detail.status).assertEqual('completed');
+      expect(repository.answers.length).assertEqual(1);
     });
 
     it('alreadyCompletedAndLatestCancelledSettlementDoNotCelebrate', 0, async () => {

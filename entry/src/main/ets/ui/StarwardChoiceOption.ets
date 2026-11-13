@@ -1,5 +1,5 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { curves } from '@kit.ArkUI';
+import { curves, UIUtils } from '@kit.ArkUI';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
@@ -69,10 +69,13 @@ export struct StarwardChoiceOption {
   private readonly loader: QuestionImageLoader = new QuestionImageLoader();
   private revision: number = 0;
   private motionRevision: number = 0;
+  private motionTimer: number = -1;
+  private motionSelected: boolean = false;
   private mounted: boolean = false;
 
   aboutToAppear(): void {
     this.mounted = true;
+    this.motionSelected = this.selected;
     this.motionX = this.selected ? 6 : 0;
     this.motionScale = this.selected ? 1.006 : 1;
     this.loadImage();
@@ -80,33 +83,35 @@ export struct StarwardChoiceOption {
 
   @Monitor('selected', 'reducedMotion')
   selectionChanged(): void {
+    clearTimeout(this.motionTimer);
     const revision: number = ++this.motionRevision;
-    if (!this.mounted || this.reducedMotion) {
-      this.motionX = this.selected ? 6 : 0;
-      this.motionScale = this.selected ? 1.006 : 1;
-      return;
-    }
-    if (!this.selected) {
-      this.getUIContext().animateTo({ duration: 520, curve: curves.cubicBezierCurve(0.22, 0.78, 0.18, 1) }, () => {
-        if (revision === this.motionRevision && !this.selected) { this.motionX = 0; this.motionScale = 1; }
-      });
-      return;
-    }
-    this.motionX = 0;
-    this.motionScale = 1;
-    // All callbacks update presentation only; the selection has already come from the ViewModel.
-    this.getUIContext().keyframeAnimateTo({ iterations: 1 }, [
-      { duration: 260, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1), event: () => {
-        if (this.mounted && revision === this.motionRevision && this.selected) {
-          this.motionX = 9; this.motionScale = 1.014;
-        }
-      } },
-      { duration: 360, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1), event: () => {
-        if (this.mounted && revision === this.motionRevision && this.selected) {
-          this.motionX = 6; this.motionScale = 1.006;
-        }
-      } }
-    ]);
+    const changedSelection: boolean = this.selected !== this.motionSelected;
+    this.motionSelected = this.selected;
+    this.motionTimer = setTimeout(() => {
+      this.motionTimer = -1;
+      if (!this.mounted || revision !== this.motionRevision) { return; }
+      const context = this.getUIContext();
+      if (this.reducedMotion || !changedSelection) {
+        context.animateTo({ duration: 0 }, () => this.setMotion(this.selected ? 6 : 0, this.selected ? 1.006 : 1));
+      } else if (!this.selected) {
+        context.animateTo({ duration: 520, curve: curves.cubicBezierCurve(0.22, 0.78, 0.18, 1) },
+          () => this.setMotion(0, 1));
+      } else {
+        context.animateTo({ duration: 0 }, () => this.setMotion(0, 1));
+        const curve = curves.cubicBezierCurve(0.16, 1, 0.3, 1);
+        context.keyframeAnimateTo({ iterations: 1 }, [
+          { duration: 260, curve, event: () => this.setMotion(9, 1.014) },
+          { duration: 360, curve, event: () => this.setMotion(6, 1.006) }
+        ]);
+      }
+    }, 0);
+  }
+
+  private setMotion(x: number, scale: number): void {
+    UIUtils.applySync(() => {
+      this.motionX = x;
+      this.motionScale = scale;
+    });
   }
 
   @Monitor('imageSource', 'ownerKey')
@@ -116,6 +121,7 @@ export struct StarwardChoiceOption {
     this.mounted = false;
     this.revision++;
     this.motionRevision++;
+    clearTimeout(this.motionTimer);
     this.loader.cancel();
     const previous: QuestionImageResult | undefined = this.image;
     this.image = undefined;
@@ -220,6 +226,9 @@ export struct StarwardChoiceOption {
             colors: [[$r('app.color.accent'), 0], [Color.Transparent, 0.62]] })
           .opacity(this.selected ? 0.24 : 0).position({ x: 1, y: 1 })
           .animation({ duration: this.reducedMotion ? 0 : 420, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
+          .translate({ x: this.selected ? 0 : -0.12 * this.frameWidth })
+          .scale({ x: this.selected ? 1 : 0.72, y: 1 })
+          .animation({ duration: this.reducedMotion ? 0 : 680, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) })
           .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
       }
       Radio({ value: this.optionKey, group: this.group }).id(this.radioId).checked(this.selected)

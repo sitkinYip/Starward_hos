@@ -71,7 +71,7 @@ Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版
 | 文本答题 | 已实现并完成新直板机/隔离HTTPS验证：空白、真实键盘、pending、错答200、正确结算和只读答案；首次发现的UI快照滞留已修复并用新玩家完整复验 |
 | 选择答题、处罚和答题重试 | 已实现并完成新直板机/隔离真实HTTPS验证：未选零POST、错答/正确、真实冷却到期、永久锁定及回访；503和提交后丢响应均以原命令重试且不重复结算，退出后的完整迟到答题响应被丢弃 |
 | 进度及普通完成 | 已实现并验证服务端进度、上一题只读、手动下一题和autoNext、普通单题内联/多题官方完成弹窗、历史2/2与GET回访不重复提交或庆祝；护照经验区未单独重跑，终章/出口不在此次完成范围 |
-| 线索/媒体/终章/出口/奖励领取 | 普通文字和图片线索见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)，组合线索的解锁、顺序、入口和回访见 [C01b](#c01b-组合线索2026-11-12)。正文外链见 [C01c](#c01c-线索正文外链2026-11-12)，普通视频手动播放及答后自动播放见 [C01f](#c01f-普通视频线索手动播放2026-11-12)、[C01i](#c01i-答对后自动播放视频线索)。非末题文字与图片演出见 [C01j](#c01j-答对后的文字与图片线索演出)。独立链接卡、其余自动演出、题面及选项视频、BGM、终章、出口和奖励领取另列。 |
+| 线索/媒体/终章/出口/奖励领取 | 普通文字和图片线索见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)，组合线索的解锁、顺序、入口和回访见 [C01b](#c01b-组合线索2026-11-12)。正文外链见 [C01c](#c01c-线索正文外链2026-11-12)，普通视频手动播放及答后自动播放见 [C01f](#c01f-普通视频线索手动播放2026-11-12)、[C01i](#c01i-答对后自动播放视频线索)。非末题演出见 [C01j](#c01j-答对后的文字与图片线索演出)，普通末题完成演出见 [C01k](#c01k-末题普通线索完成提示与组合线索)。独立链接卡、开场演出、题面及选项视频、BGM、终章、出口和奖励领取另列。 |
 
 具体包、源码和逐状态证据见本轮记录。此前首切片、资料头像、安全及底栏各自的历史验收保持原版本范围，不作为新增玩法通过的替代证据。
 
@@ -758,3 +758,73 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 自动文字中的外链回源及保留队列由本轮单测覆盖。正文内嵌图和外链仍沿用此前的阅读流程，本轮真机夹具覆盖独立图集。折叠屏和 1.3 倍字号留在专项验收。
 
 [固定预览交接](../artifacts/validation/ui-gameplay-auto-clues-20261112/fixed-preview-restored-01.json) 确认手机留在原账号的已登录首页，[预览包的 ArkTS 字节码](../artifacts/validation/ui-gameplay-auto-clues-20261112/preview-package-equivalence-01.json) 与隔离验收包一致。[清理回执](../artifacts/validation/ui-gameplay-auto-clues-20261112/disposable-cleanup-01.json) 确认五个一次性账号各结算一次，专用后端、数据库和 TLS 已移除。
+
+### C01k 末题普通线索、完成提示与组合线索
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 普通多题场次末题答对 | 按本次响应依序展示已授权自动普通线索。最后一个浮层关闭后，才打开既有完成提示。 |
+| 提前关闭视频与确认提示 | 提前关闭视频后继续余下普通线索，随后仍出现完成提示。确认完成提示后按既有顺序展示本次解锁的组合线索。 |
+| 空效果与回访 | 显式空效果保留普通完成提示，缺失效果沿用新增授权兼容规则。刷新、回访和重复回调不重播、不重复结算。 |
+| 退出及单题 | 离开场次、普通退后台或账号失效取消待显示演出。普通单题沿用内联完成状态，可展示末题普通线索。 |
+
+使用冻结 Web 的普通完成样式、同数据和真实隔离 HTTPS 验证。终章顺序另有独立切片。
+
+[隔离主机](../artifacts/validation/ui-gameplay-final-clues-20261112/host-fixtures-01.json) 核对一场两题、独立账号的真实 PocketBase 结算及同一组 PNG/MP4。两组真机账号预先各完成首题，均为 1/2、50 XP、零线索。主机走完两题后为 2/2、100 XP，新增三条普通线索和两条组合线索。GET 无过渡效果。
+
+[冻结 Web 回放](../artifacts/validation/ui-gameplay-final-clues-20261112/web-reference-01.json) 日夜两种主题、自然结束及提前关闭共四组通过。确认普通文字、视频、两张图、完成提示及两条组合线索的先后顺序。已完成场次回访静默，仍可手动打开组合档案。
+
+官方构建、签名、安装及启动成功。[实际窗口和严格 HTTPS](../artifacts/validation/ui-gameplay-final-clues-20261112/runtime-01.json) 5 项通过。[GameplayClues 12/12](../artifacts/validation/ui-gameplay-final-clues-20261112/GameplayClues/local-test-summary.json) 与 [GameplayAnswerViewModel 19/19](../artifacts/validation/ui-gameplay-final-clues-20261112/GameplayAnswerViewModel/local-test-summary.json) 包含跨题绑定的显式末题授权、提前关闭、重复消失回调与中断后回访。[ETS 目录 codelinter](../artifacts/validation/ui-gameplay-final-clues-20261112/lint-01/lint.json) 报告扫描文件数 0，[增量检查](../artifacts/validation/ui-gameplay-final-clues-20261112/lint-01/incremental.json) 仅列出已有启动图标的尺寸建议。
+
+[日间直板机自然结束](../artifacts/validation/ui-gameplay-final-clues-20261112/native-normal-01.json) 5 项通过。末题答对后依次打开普通文字、视频、两张图，关闭图集才出现完成提示。确认后依序展示两条组合线索，系统返回收起最后一条，回到 2/2 只读答题页。历史回访通过严格 HTTPS GET 同步，无新增媒体或答题请求。
+
+[夜间直板机提前关闭](../artifacts/validation/ui-gameplay-final-clues-20261112/native-early-01.json) 5 项通过。记录到视频第 6 秒的实际画面后点关闭，仍依序显示两张图、完成提示及两条组合线索，历史回访静默。每组真机各新增一次末题提交及一次 50 XP 结算，最终均为 2/2、100 XP，授权及回执与 SQLite 一致。
+
+[日夜同数据原图](../artifacts/validation/ui-gameplay-final-clues-20261112/visual-review-01.json) 逐张复核十四个配对状态。原生完成面板 339.69×434.77 vp，Web 为 340×435.38 CSS px。视频和图集舞台尺寸及位置差最大 0.31 个逻辑像素。文字和组合弹层的原生系统居中约高 4–5 个逻辑像素。对照记录了系统遮罩、平台播控及组合标题的 Web 回退字体。
+
+真机夹具为普通两题，跨题绑定的显式末题授权由单测核对。Web 夹具同时跨等级阈值，回放在组合线索之后收起独立的等级提升提示再采集回访。独立等级演出和终章顺序留在对应切片。
+
+[固定预览交接](../artifacts/validation/ui-gameplay-final-clues-20261112/fixed-preview-restored-01.json) 验证原账号已登录并停在首页，[预览包 ArkTS 字节码](../artifacts/validation/ui-gameplay-final-clues-20261112/preview-package-equivalence-01.json) 与隔离验收包一致。[环境清理](../artifacts/validation/ui-gameplay-final-clues-20261112/disposable-cleanup-01.json) 确认四个隔离账号各完成一次末题结算，专用后端、数据库和 TLS 已移除。
+
+### C01l 题卡、组合线索浮标与完成弹窗动效
+
+| 状态 | 验收目标 |
+| --- | --- |
+| 当前答题卡 | 前台活动题卡的内容背后有低对比度斜向扫光，保留冻结 Web 的周期和停顿。扫光裁在卡内，题面、输入、滑动和点击照常。 |
+| 组合线索浮标 | 归档入口轻量入场，外沿呼吸、内圈缓慢旋转。按钮仍可点击和拖动，光效不改变点击区域。 |
+| 组合完成提示 | 保留原生模态与原有确认顺序，恢复边沿扫亮、底纹、徽记起伏和装饰粒子。正文及确认键不跟随装饰缩放，仍可正常操作。 |
+| 减少动画、失焦和退出 | 系统减少动画时显示静态布局，退出前台、切换题卡或关闭弹层时停止相关装饰。以同状态连续画面及控件操作核验。 |
+
+[冻结 Web 动效](../artifacts/validation/ui-gameplay-motion-20261112/web-motion-01.json) 在 388×771 视口核对日夜及减少动画，共保存 33 张原始渲染帧。[同数据绑定](../artifacts/validation/ui-gameplay-motion-20261112/web-motion-input-binding-01.json) 核对第二题、末题响应、授权关系和三份媒体字节。
+
+[首轮直板机](../artifacts/validation/ui-gameplay-motion-20261112/native-motion-01.json) 在无触摸且控件坐标固定时，分别取得题卡 24 帧、完成提示 8 帧、浮标 8 帧。完成提示和浮标的对应区域有连续变化，题卡样本静止。该轮同时验证确认完成提示、点浮标再次查看、历史回访与末题单次结算。
+
+题卡扫光接入 ArkUI V2 同步刷新后，[直板机历史场次只读补拍](../artifacts/validation/ui-gameplay-motion-20261112/native-card-motion-02.json) 取得 26 帧，原图显示斜向光带。单独检查卡片上半部，取样区域位于浮标上方，连续帧最大平均 RGB 差为 4.6423（每通道 0–255）。补拍前后的入场、答题、授权及经验记录一致。[动态原图复核](../artifacts/validation/ui-gameplay-motion-20261112/visual-review-01.json) 关联两轮报告并核对浮标、弹窗和页面源码一致。真机覆盖日间效果与点击。夜间及减少动画仅有 Web 对照，弹窗进出场时长及浮标拖动未另做本轮实测。
+
+编译、签名、安装及[最终直板机窗口与 TLS](../artifacts/validation/ui-gameplay-motion-20261112/runtime-03.json) 5 项通过。[GameplayClues 12/12](../artifacts/validation/ui-gameplay-motion-20261112/GameplayClues/local-test-summary.json) 与 [GameplayAnswerViewModel 19/19](../artifacts/validation/ui-gameplay-motion-20261112/GameplayAnswerViewModel/local-test-summary.json) 通过。[ETS 目录 codelinter](../artifacts/validation/ui-gameplay-motion-20261112/lint-01/lint.json) 报告扫描文件数 0，[增量检查](../artifacts/validation/ui-gameplay-motion-20261112/lint-01/incremental.json) 仅列出已有启动图标的尺寸建议。
+
+[固定预览恢复](../artifacts/validation/ui-gameplay-motion-20261112/fixed-preview-restored-01.json) 已登录并保留在手机，[包内容核对](../artifacts/validation/ui-gameplay-motion-20261112/preview-package-equivalence-01.json) 确认预览版与隔离版的 ArkTS 字节码一致。[隔离环境清理](../artifacts/validation/ui-gameplay-motion-20261112/disposable-cleanup-01.json) 记录两个专用账号均只提交一次末题。
+
+### C01m 已迁移答题与线索动效复查（2026-11-13）
+
+| 小点 | 验收目标 |
+| --- | --- |
+| 答题顶栏 | 左上头像恢复主题色外圈和轻微起伏，44vp 按钮、菜单方向及顶栏显隐规则保持。核对进场和已完成计数变化时的动效，以及回顶、返回和菜单命中。 |
+| 题面与反馈 | 按冻结 Web 核对初次出现、切题、答案输入与选项、答错或答对及下一题。补齐可见缺漏，保留已确认的 Swiper、滚动定位及服务端状态。 |
+| 线索弹层 | 核对手动及自动线索出现和关闭、读图与组合线索。使用 ArkUI 还原适用的内容转场及反馈，验证关闭中断、队列顺序和回访无自动演出。 |
+| 动效边界 | 日夜对照，系统减少动画时装饰静止且操作可达。直板按小点采原图及连续帧，使用隔离真实 HTTPS，分别登记实际结果。 |
+
+冻结 Web `4b7d1a0` 的实测分为[头像和线索](../artifacts/validation/ui-gameplay-motion-audit-20261113/web-header-motion-02.json)、[答题反馈和选题](../artifacts/validation/ui-gameplay-motion-audit-20261113/web-answer-motion-03.json)及[下一题和手动关窗](../artifacts/validation/ui-gameplay-motion-audit-20261113/web-followup-motion-01.json)。头像按 44px 内容、5px 淡色带和外描边对照，减少动画静止时保留双圈。正式 Web 的图片查看器缩放模式不动图像本体，原生图库继续保留稳定像素和手势，新增边框与背景效果。弹窗遮罩沿用 ArkUI，Web 的全屏放射纹和遮罩呼吸留待独立复核，场次全屏氛围及尚未迁移的奖励和终章另记。
+
+| 小点 | 直板真机与验收证据 |
+| --- | --- |
+| 头像和答错 | 日间青绿、夜间金色各 6 张原图。头像外圈跟随头像起伏，菜单徽记原位，按钮固定且可打开和关闭左侧栏。原图看到错误粒子、反馈边线收短和消退后原答案仍在。在一次点击与截图并发的测试中观察到两条隔离错误记录，原因未确认，经验仍为 0。该轮单次提交断言保留为未通过，另一隔离场次只记录一条错误请求。[原图复核](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-header-incorrect-visual-01.json) |
+| 答对和进度 | 最终包原图显示 1/2 计数淡入、「验证通过」、只读答案和「前往下一题」。将连续截屏留在手机并在动作结束后统一拉取，补拍到青绿光晕和粒子扩散、消退。SQLite 核对一次正确答题和一笔 50 XP。原测试等待旧控件标识的超时保留为 incomplete。[快速补拍](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-success-visual-01.json) · [实测与对账](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-success-impact-01.json) |
+| 选题和选项 | 当前题号按钮的底部亮线在固定范围内连续变化。点击「前往下一题」进入选择题，真机原图显示选项的着色、横移和字母块轻倾，UiTest 读取选中 Radio。回访及本次切题未新增答题或经验。切题动画的精确时长未测。[导航实测](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-navigation-motion-01.json) |
+| 重连 | 专用场次首个请求注入 503，确认重连弹层的双圈脉冲。点击后拍到「正在重新连接…」左侧图标旋转，待原请求重试成功后弹层关闭，SQLite 只写入一条答题及一笔 50 XP。[重连动效与对账](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-recovery-motion-01.json) |
+| 自动线索与媒体 | 普通文字和组合文字面板的底纹随帧变化，视频播放和图集切到第 2 张均为真实授权，完成提示确认后才进入组合线索。初次驱动在档案内关闭弹层后直接等待屏幕外题名，报告保留为 incomplete。SQLite 记录一条原生末题提交、2/2、100 XP 和准确线索授权。[首轮](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-clue-motion-01.json) |
+| 归档回访 | 首轮原图发现装饰撑高档案标题区，修正后标题到第一张卡实测 20vp，标题范围内连续帧有轨道变化。已完成场次只读回访、点击第一条再关闭均实测，SQLite 台账一致。[修正版补拍](../artifacts/validation/ui-gameplay-motion-audit-20261113/native-archive-motion-02.json) |
+
+[最终隔离安装及窗口/TLS](../artifacts/validation/ui-gameplay-motion-audit-20261113/runtime-06.json) 5 项通过，真实直板 1260×2720、density 3.25、字号 1。[GameplayClues 12/12](../artifacts/validation/ui-gameplay-motion-audit-20261113/GameplayClues-final/local-test-summary.json) 和 [GameplayAnswerViewModel 19/19](../artifacts/validation/ui-gameplay-motion-audit-20261113/GameplayAnswerViewModel-final/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-motion-audit-20261113/lint-final/lint.json) 退出 0、`filesChecked=0`。源代码仍含两处 ArkTS 对同步动画工具的异常提示。夜间真机覆盖头像，线索和答题真机采样为日间。减少动画已做 Web 回放及原生策略审查，未切换手机系统开关实测。短时 ArkUI 入退场的精确时长不由逐帧截屏推定。
+
+[固定预览](../artifacts/validation/ui-gameplay-motion-audit-20261113/fixed-preview-restored-01.json) 已恢复登录，验证包和预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-motion-audit-20261113/preview-package-equivalence-01.json)。[隔离环境](../artifacts/validation/ui-gameplay-motion-audit-20261113/disposable-cleanup-01.json) 已移除，固定预览数据库及凭据文件通过身份核验。

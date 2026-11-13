@@ -11,16 +11,47 @@ export interface QuestionNavigationItem {
   locked: boolean;
 }
 
+@ComponentV2
+struct StarwardQuestionGlint {
+  @Local private bright: boolean = false;
+
+  build() {
+    Column() {}.width(64).height(1)
+      .linearGradient({ direction: GradientDirection.Right,
+        colors: [[Color.Transparent, 0], [$r('app.color.accent'), 0.5], [Color.Transparent, 1]] })
+      .scale({ x: this.bright ? 1 : 0.58, y: 1 })
+      .opacity(this.bright ? 1 : 0.46)
+      .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+      .onAppear(() => {
+        this.getUIContext().animateTo({ duration: 2800, iterations: -1, playMode: PlayMode.Alternate,
+          curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) }, () => UIUtils.applySync(() => {
+          this.bright = true;
+        }));
+      })
+  }
+}
+
 /** The session owns selection. This native strip only presents and reveals it. */
 @ComponentV2
 export struct StarwardQuestionNavigation {
   @Require @Param items: QuestionNavigationItem[];
   @Param activeIndex: number = 0;
   @Param reducedMotion: boolean = true;
+  @Param motionEnabled: boolean = false;
   @Event select: (index: number) => void = () => {};
   @Env(WritableEnvKey.FONT_SCALE) fontScale: number;
+  @Local private inView: boolean = false;
+  @Local private presented: boolean = true;
   private readonly scroller: Scroller = new Scroller();
   private viewportWidth: number = 0;
+
+  aboutToAppear(): void { this.presented = !this.motionEnabled; }
+
+  private present(): void {
+    if (this.presented) { return; }
+    this.getUIContext().animateTo({ duration: 840, delay: 80, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) },
+      () => UIUtils.applySync(() => { this.presented = true; }));
+  }
 
   @Monitor('activeIndex')
   activeQuestionChanged(): void {
@@ -63,15 +94,23 @@ export struct StarwardQuestionNavigation {
   question(position: Binding<number>) {
     Button({ type: ButtonType.Normal }) {
       Stack({ alignContent: Alignment.Bottom }) {
+        Column() {}.width('100%').height('100%')
+          .radialGradient({ center: ['50%', '110%'], radius: 54,
+            colors: [[$r('app.color.accent'), 0], [Color.Transparent, 1]] })
+          .opacity(position.value === this.activeIndex ? 0.28 : 0)
+          .animation({ duration: this.motionEnabled ? 480 : 0, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
+          .scale({ x: position.value === this.activeIndex ? 1 : 0.72, y: position.value === this.activeIndex ? 1 : 0.72 })
+          .animation({ duration: this.motionEnabled ? 680 : 0, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) })
+          .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
         if (position.value === this.activeIndex) {
-          Column() {}.width('100%').height('100%')
-            .radialGradient({ center: ['50%', '110%'], radius: 54,
-              colors: [[$r('app.color.accent'), 0], [Color.Transparent, 1]] })
-            .opacity(0.28).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
-          Column() {}.width(64).height(1)
-            .linearGradient({ direction: GradientDirection.Right,
-              colors: [[Color.Transparent, 0], [$r('app.color.accent'), 0.5], [Color.Transparent, 1]] })
-            .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+          if (this.motionEnabled && this.inView) {
+            StarwardQuestionGlint()
+          } else {
+            Column() {}.width(64).height(1)
+              .linearGradient({ direction: GradientDirection.Right,
+                colors: [[Color.Transparent, 0], [$r('app.color.accent'), 0.5], [Color.Transparent, 1]] })
+              .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+          }
         }
         Column({ space: 5 }) {
           Text((position.value + 1).toString().padStart(2, '0')).fontFamily('monospace').fontSize(18).lineHeight('18fp')
@@ -109,6 +148,12 @@ export struct StarwardQuestionNavigation {
         })
     }.id('gameplay-level-navigation').width('100%').align(Alignment.TopStart)
       .scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off).edgeEffect(EdgeEffect.None)
+      .opacity(this.presented || !this.motionEnabled ? 1 : 0)
+      .translate({ y: this.presented || !this.motionEnabled ? 0 : 16 })
+      .scale({ x: this.presented || !this.motionEnabled ? 1 : 0.985,
+        y: this.presented || !this.motionEnabled ? 1 : 0.985 })
+      .onAppear(() => this.present())
+      .onVisibleAreaChange([0], (_expanding: boolean, ratio: number) => { this.inView = ratio > 0; })
       .accessibilityText('题目导航')
       .onAreaChange((_previous: Area, current: Area) => {
         const width: number = Number(current.width);

@@ -80,6 +80,7 @@ export class GameplayViewModel {
   private serverOffset: number = 0;
   private advanceTimer: number = -1;
   private automaticClueQueue: GameplayClue[] = [];
+  private pendingCompletionClues: GameplayClue[] | null = null;
   private clueAdvanceIndex: number = -1;
   private clueGeneration: number = 0;
 
@@ -213,6 +214,7 @@ export class GameplayViewModel {
   cancelAutomaticClues(): void {
     this.clueGeneration++;
     this.automaticClueQueue = [];
+    this.pendingCompletionClues = null;
     this.clueAdvanceIndex = -1;
     this.automaticClue = null;
   }
@@ -223,11 +225,22 @@ export class GameplayViewModel {
     this.automaticClue = this.automaticClueQueue.shift() ?? null;
     if (this.automaticClue !== null) { return; }
     const index: number = this.clueAdvanceIndex;
+    const completion: GameplayClue[] | null = this.pendingCompletionClues;
     this.clueAdvanceIndex = -1;
+    this.pendingCompletionClues = null;
+    if (completion !== null && this.snapshot?.detail.status === 'completed') {
+      this.presentCompletion(completion);
+      return;
+    }
     if (this.snapshot?.detail.status === 'active' && index === this.snapshot.detail.currentIndex &&
       index > this.activeIndex) {
       this.moveTo(index);
     }
+  }
+
+  private presentCompletion(clues: GameplayClue[]): void {
+    this.completionClues = clues;
+    this.completionRevision++;
   }
 
   currentLevel(): GameplayLevel | null {
@@ -575,16 +588,18 @@ export class GameplayViewModel {
         const effects = result.effectsProvided ? result.effects : undefined;
         const automatic: GameplayClue[] = settled === undefined ? [] :
           answerAutomaticClues(previous, result.assignment, settled, effects);
-        if (completed && previous?.detail.status !== 'completed' && result.assignment.detail.totalLevels > 1 &&
-          result.assignment.presentation.completionStyle !== 'finale') {
-          this.completionClues = completionCombinations(previous, result.assignment, effects);
-          this.completionRevision++;
-        } else if (automatic.length > 0) {
+        const completion: GameplayClue[] | null = completed && previous?.detail.status !== 'completed' &&
+          result.assignment.detail.totalLevels > 1 && result.assignment.presentation.completionStyle !== 'finale' ?
+          completionCombinations(previous, result.assignment, effects) : null;
+        if (automatic.length > 0) {
           if (clueGeneration === this.clueGeneration) {
             this.automaticClueQueue = automatic;
-            this.clueAdvanceIndex = settled?.autoNext ? result.assignment.detail.currentIndex : -1;
+            this.pendingCompletionClues = completion;
+            this.clueAdvanceIndex = !completed && settled?.autoNext ? result.assignment.detail.currentIndex : -1;
             this.automaticClue = this.automaticClueQueue.shift() ?? null;
           }
+        } else if (completion !== null && clueGeneration === this.clueGeneration) {
+          this.presentCompletion(completion);
         } else if (!completed && settled?.autoNext && result.assignment.detail.status === 'active') {
           const nextIndex: number = result.assignment.detail.currentIndex;
           const delay: number = Number.isFinite(autoNextDelay) ? Math.max(0, Math.min(1500, autoNextDelay)) : 0;

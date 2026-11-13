@@ -278,6 +278,12 @@
 
 非末题的文字、图片与视频共用按授权顺序推进的演出队列。原生阅读弹层及独立图集通过各自的消失事件结束一步。文字内嵌图仍是当前阅读的一部分。普通后台中断使队列及迟到响应失效，正文主动外链交接保留阅读及队列，通过只读回源复核授权并沿用取消自动前进的规则。隔离包开启 TLS 探针时，仅在配置的精确本机 HTTPS origin 上为两条合成 PNG 路径使用打包 CA，外部图片继续使用系统信任。见 [C01j](feature-acceptance-matrix.md#c01j-答对后的文字与图片线索演出)。
 
+普通多题的末题成功响应在结算后登记本次组合授权，普通线索队列排空时才发出完成提示事件。提示确认后由原有组合队列接续。视频提前关闭只影响自动前进的资格，仍结束当前普通线索步骤。场次、账号或播放会话失效丢弃未展示的提示及队列，GET 不产生新的完成事件。见 [C01k](feature-acceptance-matrix.md#c01k-末题普通线索完成提示与组合线索)。
+
+题卡扫光、组合浮标呼吸和完成提示装饰按冻结 Web 周期接入原生属性动画。题卡仅在前台当前题卡可见时运行，浮标及弹窗的装饰随各自组件挂载并服从系统减少动画设置。装饰层退出布局测量和命中。完成提示通过 ArkUI 分别管理内容转场与系统遮罩，旋转底纹、边光和点粒子绘制于面板。验收见 [C01l](feature-acceptance-matrix.md#c01l-题卡组合线索浮标与完成弹窗动效)。[ArkUI 属性动画](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/arkts-attribute-animation-apis/) · [弹窗遮罩](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/arkts-dialog-mask/) · [粒子动画](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-particle-animation/)
+
+2026-11-13 答题顶栏的头像外圈、计数、题卡反馈和线索动效由 V2 UI 组件持有，计数与答题结果继续来自权威快照。头像的菜单徽记及点击区域固定。可复用的媒体装饰只动背景和边框，保留图库像素、手势坐标及官方播放器控制。ArkUI 弹层管理遮罩和退场，线索队列仍由原有弹层消失事件接续。持续动效由前后台、可见性及减少动画控制，装饰层不接收点击。验收见 [C01m](feature-acceptance-matrix.md#c01m-已迁移答题与线索动效复查2026-11-13)。
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

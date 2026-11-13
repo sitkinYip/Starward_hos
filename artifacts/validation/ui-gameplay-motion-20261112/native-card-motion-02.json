@@ -1,0 +1,654 @@
+{
+  "status": "captured_native_motion_and_interactions",
+  "stage": "record-completed-card-from-history",
+  "scope": "motion-question-card-history-readonly",
+  "theme": "light",
+  "hapSha256": "6a6c02f2c124c38ed99d1aaa99c8e27a941ee2d59191fabb3cf5b1e05208abb8",
+  "bindingSha256": {
+    "hap": "6a6c02f2c124c38ed99d1aaa99c8e27a941ee2d59191fabb3cf5b1e05208abb8",
+    "runtime": "a871a27f89627b635448f7057a2c68a2e2d01287f5b0487c4ed0daaf391eaf62",
+    "caseReference": "00273f4e358e4323ba090463fdd389302baf48a8f71fe4c16f151ba3d9283f34",
+    "ca": "8d3feaa0f8a4f632b61d7a45a8559d59118dffad84337f301f4731c92a5d3cf4",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "finalClueDriver": "14c57cc4c7d4ee850174391f8554f75866f85de3b6b160807a19692d8a65b915",
+    "mixedClueDriver": "401082e62d7217c263c547044b978945d1652c141c710bbe7d7183e806bdb5bd",
+    "videoDriver": "df598c697cf4a0046edaf866628ddaf7fe54573a1f7930a77997a4351587537d",
+    "fixtureDriver": "4b6203f351fea8e6bc1043fa9050faf12d17bfd1274255176879fc6615cfcd0a",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "e29e799c55c6881fadb14baca072d46a243448f91f1d7bbfd3ac7bf512714489",
+    "hostSnapshots": "58f34f2f97893e787d35399f2ed9c1ae726feb3f07d200ca2c138e6debd7c820",
+    "prefixProof": "cea5afe0ae6d49a0bba609dabd84271716fab08edcf922aaecfed1414de7e937",
+    "prefixSnapshots": "cf4e172db1a9196fd2e77a9f868c3b0b16ef1002777f4855d5b3af1689c46d08",
+    "clipAuthoring": "236244caa1cec0fc7443bc7a1af857f16e6075f0025b19741a6fbae69f4b8ff6",
+    "clipBytes": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7",
+    "clipMetadata": "951dc6c68dc38f99b07ab88b810b8ae1fb871368e3fb445f2a68d1141cb638a1",
+    "imageRoute": "f497d53a3fed6456a90a4fadaff31d77c0ae4f5f94698920e5f6b69b57ca0817",
+    "imageMetadata": "42df6d836928b469fee98a76f8acfaf289e7cbbd2f917d5a1453745da0384e86",
+    "tlsRunner": "d5e5771d6ac983f54b0ed38249a52ea8b99c28e54697326aee766edcff278024",
+    "GameplayPage": "b957e2e1996d539afcd4dfe7e51b085538b6ffb71faabae5fb178a73abfa44f9",
+    "GameplayViewModel": "6ced5607d2dc6a956dc33fcd161c1b0bf811c87d217000c9e2dbace092394054",
+    "GameplayClues": "5928dd8dcfeaa49b6040f161757efe8f3ec68c7e1f25059d975b2d288fd99d3b",
+    "StarwardClueTextDialog": "4242847cca2e2157e44d975f06d61936bf5822cbd04e7ec83980065d7371dc3a",
+    "StarwardImageViewer": "2f03e208b4bbb322657505a312d1464960e12004d47595c715d1cd1275853017",
+    "StarwardVideoViewer": "f382fc06b2988a0e525c2ac2f63e9dba623296812dafd1086c6b1ad7c19a9da0",
+    "StarwardQuestionFrame": "5d758569ebb1ea0405bfc8fef1df758b31bf250124d71dbf167d039a491b2321",
+    "StarwardCombinationLauncher": "fdace0d804a8681f0fc8ed4029ee36d341f38f62a3f8b957092d3791e293f82a",
+    "StarwardCombinationNotice": "9a236140b47881bf5b03db6f3a12dae980a51b91bb6b9ea330e5fee34336f006",
+    "StarwardCombinationDialog": "573310dc0bbfb40614e90632bddcee25017221fc6084dbfb3c3d92f60b5f1b84",
+    "QuestionImageLoader": "e4b95ffb0f9a2e6a14f218a5ec1b08eabdd02c46b5476700dd9a34af64506e43",
+    "ClueVideoFile": "4a5ff151f64de8409c5b3e8b4e823e8bb6b1f25ffa41e90305052ce0e9c5b055",
+    "auto-clue-a": "cc49261fcf189c5715cc9eb583c998e44cbc02f0def45b9ed3bc576451c3aa04",
+    "auto-clue-b": "a1a0e091d07e9959e3b8d0aaa6a5ad0edf53b79045877ba8b5456cb046149dfd",
+    "firstNativeMotionReport": "b6d1b5a14374e17f661d3cf31285f538f33ac38fa718309efc23068954d6d941",
+    "readOnlyCardDriver": "96e2cb030eda44f092d365dcce256fe30eaa044829b4361a33f2c48dc2ba13c0"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Read-only history retained the completed card and the exact SQLite settlement without autoplay or gameplay writes"
+  ],
+  "states": [
+    {
+      "state": "motion-card-completed-after",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          2318
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2382,
+          1189,
+          2577
+        ]
+      },
+      "rawSha256": "8410d6adeaea512773c3629b8bbe5a9b3de788cdba8891935d7a57c395c0c269",
+      "privateOriginal": {
+        "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-card-completed-after.png",
+        "sha256": "2c1de57d0b86c15ecf9b57e7cc9ced3afbda5b70a6ff909dcf2a154eefbe7823",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "businessWrites": {
+      "starts": 0,
+      "answers": 0
+    },
+    "sqliteSettlement": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 5,
+      "combinationUnlockRows": 2,
+      "unrelatedActorGameplayWrites": 0
+    },
+    "sqliteReceiptsUnchanged": true,
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "motion": {
+      "question-card": {
+        "nodeId": "gameplay-question-card",
+        "controlBoundsPx": [
+          39,
+          124,
+          1221,
+          2318
+        ],
+        "stableControlBounds": true,
+        "cropBoundsPx": [
+          39,
+          124,
+          1221,
+          2318
+        ],
+        "samples": [
+          {
+            "requestedMs": 0,
+            "receivedMs": 2777,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-00.png",
+              "sha256": "b371c83e1a2698b523d69902b69a01265e6e4aeb5f64aef777016ccc39afd280",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 2777,
+            "receivedMs": 5382,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-01.png",
+              "sha256": "16deb37becb8f182631871fdde146fbbaf6f9415ff5d304e2a37a6def227fab2",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 5382,
+            "receivedMs": 7954,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-02.png",
+              "sha256": "0e4f88b21575c951d1632a9a3bfe6dabc3766422141f031e10d8b0ed81362a9a",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 7954,
+            "receivedMs": 10539,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-03.png",
+              "sha256": "67622f1e3a5908402a3d6b296c644a3976ee1f44d8f719a6bee5001527ba109c",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 10539,
+            "receivedMs": 13175,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-04.png",
+              "sha256": "110b6c668fabb779d773c836b9770dfd359b39943c17a1a6fac851065e7c3c18",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 13175,
+            "receivedMs": 15737,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-05.png",
+              "sha256": "98d34bc720f121737766d03ca59caa35c92c7656d76095a5a6dd58a9fb9e8988",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 15737,
+            "receivedMs": 18373,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-06.png",
+              "sha256": "317ac6148740f05d44825baf4ee9b02bc1bb83a3e3883f8e55dd96071badb31f",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 18373,
+            "receivedMs": 20966,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-07.png",
+              "sha256": "6e8c3f1beb59169cc249399cb30eda5232c6c7e9bb26672b2bcef930226a5b31",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 20966,
+            "receivedMs": 23489,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-08.png",
+              "sha256": "571035604ec611c43df25cffda10f74fa5ce340d836633531c2fe07b073be614",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 23489,
+            "receivedMs": 25962,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-09.png",
+              "sha256": "930ee7b963a2c516b2b3225127d5ed084bda71214f40e153d58a0fcb955f0e90",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 25962,
+            "receivedMs": 28554,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-10.png",
+              "sha256": "d2931caa02ce83873c8ccca873a25e58e6fe586523d0f60ba50e53232a959be6",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 28555,
+            "receivedMs": 31070,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-11.png",
+              "sha256": "f42952d83bf40bdfa1a13c73c58cdd3a5ce534937f451670183ad5779f5eed2c",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 31070,
+            "receivedMs": 33560,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-12.png",
+              "sha256": "712fb8765b52cdff74416bfbdad01c1bf96c61e4ddf1afa413997119b8fe69d2",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 33560,
+            "receivedMs": 36059,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-13.png",
+              "sha256": "8d9eae9aa358e0bdfa61e5fc2f9d3646d88e1020586d390bc6337ee50a17485a",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 36059,
+            "receivedMs": 38744,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-14.png",
+              "sha256": "3b41bcc1df91ff5ee3aa15944fd4ce874b229b8aee9319d8af3f59ac97e07862",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 38744,
+            "receivedMs": 41436,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-15.png",
+              "sha256": "f9e093d2b9d1b920ffc46c99a2f807344ba3e40c259a1837860b3987ecbbdf65",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 41436,
+            "receivedMs": 44046,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-16.png",
+              "sha256": "6779e03f909b7b67aa5f95e822b1d8d29d836de4fccd38464544cce36f1f46d6",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 44046,
+            "receivedMs": 46626,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-17.png",
+              "sha256": "e15eec1550efb484967719b15b577a4bd4c2995152444a98b05d5bcc32577f51",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 46626,
+            "receivedMs": 49235,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-18.png",
+              "sha256": "536ea35905d659d0ca16e1cc8bd246902cc12ecd5287b2d54d9b2f06a6855f2e",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 49235,
+            "receivedMs": 51859,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-19.png",
+              "sha256": "79ba0bb3f7847a57a902256b3b062e00726b73e2267e24bc3889054b33d9dfad",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 51859,
+            "receivedMs": 54427,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-20.png",
+              "sha256": "cde1009a3a76a0c9487375b1222f0cdb920b87ccf985188149a7f31bfcbe756e",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 54427,
+            "receivedMs": 57019,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-21.png",
+              "sha256": "34b9998293f89971887f22fe29fcf19feba825becdcf9f017b4ce78165a74555",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 57019,
+            "receivedMs": 59620,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-22.png",
+              "sha256": "d64df28457a8e768021e2e406d8ec89403eaf0df2579781cc4c4a6bb8c591a14",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 59620,
+            "receivedMs": 62240,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-23.png",
+              "sha256": "0300c942f15ac892d734a72cf431190669f0cf0322fc143b22bdb5e0230e5bef",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 62240,
+            "receivedMs": 64840,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-24.png",
+              "sha256": "526c088bfde43fe066721c908ca2c441d61bc782acae63af42a6dd9b5462612d",
+              "scope": "Private original"
+            }
+          },
+          {
+            "requestedMs": 64840,
+            "receivedMs": 67386,
+            "original": {
+              "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-25.png",
+              "sha256": "20c5597c5f2e0fdc82faf5fa4b4f13b547cb01b6eac75675815508a98a4ec9ac",
+              "scope": "Private original"
+            }
+          }
+        ],
+        "consecutiveChanges": [
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 2.25779,
+            "changedPixelFraction": 0.26914
+          },
+          {
+            "meanAbsoluteRgb": 2.25783,
+            "changedPixelFraction": 0.26914
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.00026,
+            "changedPixelFraction": 5e-05
+          },
+          {
+            "meanAbsoluteRgb": 0.00026,
+            "changedPixelFraction": 5e-05
+          },
+          {
+            "meanAbsoluteRgb": 0.00027,
+            "changedPixelFraction": 5e-05
+          },
+          {
+            "meanAbsoluteRgb": 1.71343,
+            "changedPixelFraction": 0.23471
+          },
+          {
+            "meanAbsoluteRgb": 1.7123,
+            "changedPixelFraction": 0.23466
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 2.65747,
+            "changedPixelFraction": 0.31984
+          },
+          {
+            "meanAbsoluteRgb": 2.65659,
+            "changedPixelFraction": 0.31984
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.0,
+            "changedPixelFraction": 0.0
+          },
+          {
+            "meanAbsoluteRgb": 0.00026,
+            "changedPixelFraction": 5e-05
+          },
+          {
+            "meanAbsoluteRgb": 0.00026,
+            "changedPixelFraction": 5e-05
+          },
+          {
+            "meanAbsoluteRgb": 0.00028,
+            "changedPixelFraction": 5e-05
+          },
+          {
+            "meanAbsoluteRgb": 0.44418,
+            "changedPixelFraction": 0.05565
+          }
+        ],
+        "maximumChangedPixelFraction": 0.31984
+      }
+    },
+    "deviceVideoOutcomes": [],
+    "deviceImageOutcomes": []
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "motion-card-completed-before": {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-card-completed-before-web-dtos.json",
+      "sha256": "431813831f2776c83d9776daae4b8c7baa6e208b6b050af8e51efe2504a75bb1"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-00.png",
+      "sha256": "b371c83e1a2698b523d69902b69a01265e6e4aeb5f64aef777016ccc39afd280",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-01.png",
+      "sha256": "16deb37becb8f182631871fdde146fbbaf6f9415ff5d304e2a37a6def227fab2",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-02.png",
+      "sha256": "0e4f88b21575c951d1632a9a3bfe6dabc3766422141f031e10d8b0ed81362a9a",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-03.png",
+      "sha256": "67622f1e3a5908402a3d6b296c644a3976ee1f44d8f719a6bee5001527ba109c",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-04.png",
+      "sha256": "110b6c668fabb779d773c836b9770dfd359b39943c17a1a6fac851065e7c3c18",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-05.png",
+      "sha256": "98d34bc720f121737766d03ca59caa35c92c7656d76095a5a6dd58a9fb9e8988",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-06.png",
+      "sha256": "317ac6148740f05d44825baf4ee9b02bc1bb83a3e3883f8e55dd96071badb31f",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-07.png",
+      "sha256": "6e8c3f1beb59169cc249399cb30eda5232c6c7e9bb26672b2bcef930226a5b31",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-08.png",
+      "sha256": "571035604ec611c43df25cffda10f74fa5ce340d836633531c2fe07b073be614",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-09.png",
+      "sha256": "930ee7b963a2c516b2b3225127d5ed084bda71214f40e153d58a0fcb955f0e90",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-10.png",
+      "sha256": "d2931caa02ce83873c8ccca873a25e58e6fe586523d0f60ba50e53232a959be6",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-11.png",
+      "sha256": "f42952d83bf40bdfa1a13c73c58cdd3a5ce534937f451670183ad5779f5eed2c",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-12.png",
+      "sha256": "712fb8765b52cdff74416bfbdad01c1bf96c61e4ddf1afa413997119b8fe69d2",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-13.png",
+      "sha256": "8d9eae9aa358e0bdfa61e5fc2f9d3646d88e1020586d390bc6337ee50a17485a",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-14.png",
+      "sha256": "3b41bcc1df91ff5ee3aa15944fd4ce874b229b8aee9319d8af3f59ac97e07862",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-15.png",
+      "sha256": "f9e093d2b9d1b920ffc46c99a2f807344ba3e40c259a1837860b3987ecbbdf65",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-16.png",
+      "sha256": "6779e03f909b7b67aa5f95e822b1d8d29d836de4fccd38464544cce36f1f46d6",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-17.png",
+      "sha256": "e15eec1550efb484967719b15b577a4bd4c2995152444a98b05d5bcc32577f51",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-18.png",
+      "sha256": "536ea35905d659d0ca16e1cc8bd246902cc12ecd5287b2d54d9b2f06a6855f2e",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-19.png",
+      "sha256": "79ba0bb3f7847a57a902256b3b062e00726b73e2267e24bc3889054b33d9dfad",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-20.png",
+      "sha256": "cde1009a3a76a0c9487375b1222f0cdb920b87ccf985188149a7f31bfcbe756e",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-21.png",
+      "sha256": "34b9998293f89971887f22fe29fcf19feba825becdcf9f017b4ce78165a74555",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-22.png",
+      "sha256": "d64df28457a8e768021e2e406d8ec89403eaf0df2579781cc4c4a6bb8c591a14",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-23.png",
+      "sha256": "0300c942f15ac892d734a72cf431190669f0cf0322fc143b22bdb5e0230e5bef",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-24.png",
+      "sha256": "526c088bfde43fe066721c908ca2c441d61bc782acae63af42a6dd9b5462612d",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-question-card-25.png",
+      "sha256": "20c5597c5f2e0fdc82faf5fa4b4f13b547cb01b6eac75675815508a98a4ec9ac",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/motion-card-completed-after.png",
+      "sha256": "2c1de57d0b86c15ecf9b57e7cc9ced3afbda5b70a6ff909dcf2a154eefbe7823",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "motion-card-completed-after",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/entry-main-20261112T105513849526Z/raw-motion-card-completed-after-538de7952ad14718955ef872d8ff4e95.json",
+      "remoteRemoved": true,
+      "sha256": "8410d6adeaea512773c3629b8bbe5a9b3de788cdba8891935d7a57c395c0c269"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}
