@@ -1,6 +1,6 @@
 ---
 name: starward-ui-parity
-description: Migrate or review Starward HarmonyOS UI against the frozen questions-web layout and state behavior using native ArkUI wrappers, same-data visual comparison, and the user's confirmed native differences. Apply to this project's UI slices, not unrelated backend work or new visual directions.
+description: Migrate or review Starward HarmonyOS UI against the frozen questions-web layout, motion, and state behavior using native ArkUI wrappers, same-data comparison, and the user's confirmed native differences. Apply to this project's UI slices, not unrelated backend work or new visual directions.
 ---
 
 # Starward UI 还原
@@ -13,6 +13,7 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 
 - 保留Web的内容顺序、信息层级、中文文案、字体、字号/行高、内容宽度、留白、图标语义及状态行为。不能因使用系统组件而新增标题、摘要、进度块、常驻操作或空占位。
 - 官方ArkUI负责容器、材质、反馈、系统交互与动画；通过`ui/`内的V2薄封装定制内容与样式。官方组件的默认标题/间距不自动成为产品设计。
+- 动效和静态布局一起迁移。核对冻结 Web 在目标设备实际生效的入退场、状态切换、操作反馈和持续装饰，例如扫光、呼吸、粒子。ArkUI 能实现的随该切片尽量还原触发时机、顺序、节奏和中断行为。优先用官方组件自带能力，需要定制时组合 ArkUI 基础组件与动画 API。能力有差距时记录具体效果、原生处理和待验项。
 - 用户已认可外层顶底栏位置、官方悬浮Tabs、触摸主题色流光、玻璃侧栏和按头像位置左右进入。系统状态栏/手势区及官方材质是批准差异；内容排版差异要单独审查。
 - 沿用品牌令牌和已登记的NotoSerifSC展示字体。通用设计skill仅用于审查层级、换行、留白、对比度与可达性，不据其换字体、重配色或新增装饰。
 - 字号和行数相同仍可能换行不对。题卡标题的Web `text-wrap: balance`已用官方Text `lineBreakStrategy(BALANCED)`对应；保留默认BREAK_WORD，不插入换行或调小字体掩盖末字孤行，长短及隐藏题名均看实际原图。
@@ -21,7 +22,7 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 
 ## 每个小点如何推进
 
-1. 定义本次页面/状态与边界，先更新验收表。列出Web内容和已批准原生差异；不扩成无关的大回归。
+1. 定义本次页面/状态与边界，先更新验收表。列出 Web 内容、各状态的动效和已批准原生差异；不扩成无关的大回归。
 2. 用冻结Web源码及正式路由确认实际结构和手机媒体查询；checkout与线上版本分开记。正文、表单、选中/只读/错误等状态都从真实组件与契约确认，不从单张截图猜字段。
 3. 使用同数据：优先使用本轮已授权的完整内容快照，新增生产连接或凭据读取仍遵守实际授权范围；玩家状态和写入来自明确隔离环境。保留session→level→question关联及原始presentation，区分缺失、false和空值。真实题目不是数据库内部title的逐字展示。
 4. 基于官方组件实现，并按本次实际状态自审：元素是否多/少、字号/行高/换行、外内边距、安全区、键盘、返回/关闭、草稿/焦点及动画中断。保持账号代次、请求身份、重试与服务端权威边界。
@@ -37,7 +38,7 @@ description: Migrate or review Starward HarmonyOS UI against the frozen question
 - 本地独立headless浏览器可重放同一真实DTO，所有API/外部资源默认拦截；题图用显式登记且核对哈希的同一图片字节重放，分别记录Web重放与Native真实加载。无图截图不能证明图片还原。不要占用用户个人浏览器逐题抄文字。Web源码与后端仓库仍只读，Vite缓存留本仓private。
 - 保留产物、runtime、源码/采集器、输入DTO、PNG和报告的哈希绑定。运行中不改已冻结采集器；失败保留incomplete，后续用新报告/目录，不拼接旧计数。
 - 几何断言按实际density处理物理像素舍入，公开保留原始测量值，不用代码中的目标尺寸冒充实测。
-- 有动效的状态逐项核对实际生效的 Web 样式和 ArkUI 连续画面，覆盖进出场、持续效果和减少动画。短时反馈先记录动作附近的帧，业务断言单独取真实响应与台账。慢速逐帧截屏只用于确认可见变化，测时使用连续录屏。装饰层上线前同时量内容高度和原点击区。
+- 在直板真机逐项对照 Web 和 ArkUI 连续画面。按受影响状态核对动效的触发、停止和减少动画设置下的可操作性。短时反馈先记录动作附近的帧，业务断言单独取真实响应与台账。慢速逐帧截屏只用于确认可见变化，测时使用连续录屏。装饰层上线前同时量内容高度和原点击区。
 - 不假设bundle限定的原始UiTest树含有离屏节点。本机选择题采集中，第四个Radio离屏时未出现在raw dump；跨滚动控件须分次实际定位、采集并保存原图/树的来源，不能以缺节点判产品失败，也不能用ViewModel摘要代替控件实态。弹出查看器时不滚动其后方页面；关闭后再核完整实例与选择。采集文件名须按操作轮次唯一，A→B→A不能复用首次A的文件名。
 - 区分官方CLI归一化布局与原始UiTest属性。固定CLI的布局转换只保留部分交互字段，不能从其缺失的`checked/enabled`判断Radio状态；选择及禁用断言读取真实raw值（含字符串布尔），CLI只用于存在性、定位和操作。新增采集器先核实际字段，避免重现选择题前两轮的工具错误。
 - 长容器raw bounds可能被窗口裁剪；题卡top等于顶栏bottom时不能据此推算真实滚动偏移或距页顶只有几像素。需要页顶几何时须实际露出顶部锚点并测量；验证Refresh时可明确记录“滚回顶部并下拉”的官方手势序列，以首个新真实GET、唯一请求和前后控件实例核验，不伪称单次手势或天然页顶已测。

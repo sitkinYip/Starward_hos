@@ -57,7 +57,7 @@ UI采用V2与Navigation，保留品牌、文案、业务语义和既定信息布
 
 按 [ADR-015](docs/architecture-decisions.md#adr-015真实业务事实与页面级键盘避让)，详情不存在时不显示空模型进度，认证页使用官方页面级RESIZE键盘避让。修复后1.3字号验证了密码显隐、普通账号及密码焦点下完整CTA可滚动到达、浮栏/末句、详情返回和退出；普通账号IME有截图，密码焦点只保留脱敏UiTest几何，未将历史黑图计为主题通过。修复前正常字号22项及22图归档到 `artifacts/native-pre-final-fixes/`；新正常字号22项已重新验证透明系统区、真实避让、Scroll到物理底、末句完整露出、Refresh/503恢复及返回/退出。主视觉18图全新单次捕获，404两主题均隐藏默认进度，经各自真实GET200后恢复服务端进度。
 
-Web继续提供业务、布局和逐状态对照；官方材质、反馈及动效属于已批准的平台差异。最终来源配对为主18/18、显式404故障2/2、原生普通账号IME2/2，包含系统区的完整原图已逐图查看；菱形在原生编号栏顶部与01轻微重叠，以及404按钮“重试”对Web“重新尝试”，均是待调整的非官方差异。预览HTTP14/14及22状态图片加载通过，0页面/CSP/非favicon HTTP错误；这些框架检查不计原生UI用例。浏览器回放实际DTO快照只用于视觉，实际网络另查TLS和请求台账。详见 [视觉对照](docs/web-native-visual-comparison.md) 和 [并排报告](artifacts/visual-comparison/index.html)；安全本机预览为 `python3 scripts/serve-visual-report.py`。
+Web 继续提供业务、布局、动效和逐状态对照。能用 ArkUI 实现的 Web 动效随切片尽量还原，保留已明确批准的原生差异。实施和验收见 [starward-ui-parity](.agents/skills/starward-ui-parity/SKILL.md)。最终来源配对为主18/18、显式404故障2/2、原生普通账号IME2/2，包含系统区的完整原图已逐图查看；菱形在原生编号栏顶部与01轻微重叠，以及404按钮“重试”对Web“重新尝试”，均是待调整的非官方差异。预览HTTP14/14及22状态图片加载通过，0页面/CSP/非favicon HTTP错误；这些框架检查不计原生UI用例。浏览器回放实际DTO快照只用于视觉，实际网络另查TLS和请求台账。详见 [视觉对照](docs/web-native-visual-comparison.md) 和 [并排报告](artifacts/visual-comparison/index.html)；安全本机预览为 `python3 scripts/serve-visual-report.py`。
 
 ## 代码入口
 

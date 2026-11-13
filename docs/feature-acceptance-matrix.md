@@ -186,7 +186,7 @@ Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版
 | 后端契约 | `/Users/sitkin/my_code/sitkin-pb-backend-management/backend/contracts/game.ts`；HEAD `c28f488d6b682ae213713ccdd2d992595a941ae3`；该文件 SHA-256 `7264d8e16a65a64c8de8f39088327647bdfb5c1c635cb9393ebf80ae085c43bf` | DTO 权威。Web `src/api/game.contracts.ts` 为生成物，运行校验在 `src/api/game.schema.ts` |
 | 本地既有 dist | `dist/version.json` 为 `0.0.0-local`、`channel: local`，commit `671c062210a3564335ad7be8f3f5a28352f573a4`，builtAt `2026-10-27T01:54:57.939Z` | 早于当前 HEAD，不能作当前视觉或正式发布证据 |
 | 生产版本探测 | 无凭据 GET `https://sitkin.top/questions/version.json` 返回 HTTP 403 | 本轮未能确认线上 release commit。不得把当前 checkout 声称为线上同版；未读取私人业务数据，未执行生产写操作 |
-| 视觉与交互基线 | 冻结源码390×844深浅12图、同Noto字体12图已捕获；迁移前391×777登录配对及认证4图留存 | 历史登录主要控件纵向差小于0.6vp、星中心差约0.41/0.09vp；旧主页等18项捕获仅incomplete/count5，键盘图主题校验失败。以上不是新系统UI通过证据；Web材质与动效不再是逐像素目标。详见 [视觉对照](web-native-visual-comparison.md) |
+| 视觉与交互基线 | 冻结源码390×844深浅12图、同Noto字体12图已捕获；迁移前391×777登录配对及认证4图留存 | 历史登录主要控件纵向差小于0.6vp、星中心差约0.41/0.09vp；旧主页等18项捕获仅incomplete/count5，键盘图主题校验失败。以上是历史截图证据。已批准的原生材质和系统动效差异按下文验收准则处理。详见 [视觉对照](web-native-visual-comparison.md) |
 
 正式路由权威是 Web `src/app/App.tsx`：`/login`、`/`、`/profile`、`/rewards`、`/notifications`、`/play/:id`、`/play/:id/content/:contentId`。旧 `?qa/?qas`、独立 Letter/Bless、clearCache 和编辑器预览不属于本次玩家正式入口；正式解锁剧情中的 letter/bless 仍须迁移。PWA 安装机制由原生安装机制承接，无需复制浏览器 Service Worker。
 
@@ -195,6 +195,8 @@ Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版
 ## 原生体验验收准则（2026-10-27、2026-10-28更新）
 
 按 [ADR-013](architecture-decisions.md#adr-013官方-arkui-组件与沉浸光感优先)，保留品牌、文案、业务语义和既定信息布局，通用容器、材质、反馈及动效优先采用官方ArkUI并封装于 `ui/`。Web继续决定业务、布局和逐状态对照；官方沉浸光感、浮动容器及平台交互是已批准差异，分别记录实际支持、降级和设备表现。
+
+每个 UI 切片在实施前列出冻结 Web 实际生效的动效及其触发状态。ArkUI 能实现的随切片还原，并用直板真机连续画面对照。按该切片实际范围记录触发、进出场、循环、中断和系统「减少动画」下的表现。平台能力差异、暂缓项及未实测状态写入对应验收项。操作成功和静态截图分别作为交互与布局证据，动效通过以实际动态证据为准。详见 [starward-ui-parity](../.agents/skills/starward-ui-parity/SKILL.md)。
 
 顶栏布局保持，使用官方Navigation及真实通用沉浸材质；底栏采用官方浮动Tabs，分类采用Tabs/SubTabBarStyle，Sheet、Refresh、Toast和动画使用相应原生能力。首页移除固定同步块，列表延伸到浮栏下方，原句“场次与进度会自动同步，放心去探索。”作为自然滚动内容的最后一项，只保留浮栏和安全区所需间距。Refresh动画独立持有UI状态，不能与 `vm.listBusy` 双向绑定或由动画结束驱动业务写入。
 
@@ -828,3 +830,14 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [最终隔离安装及窗口/TLS](../artifacts/validation/ui-gameplay-motion-audit-20261113/runtime-06.json) 5 项通过，真实直板 1260×2720、density 3.25、字号 1。[GameplayClues 12/12](../artifacts/validation/ui-gameplay-motion-audit-20261113/GameplayClues-final/local-test-summary.json) 和 [GameplayAnswerViewModel 19/19](../artifacts/validation/ui-gameplay-motion-audit-20261113/GameplayAnswerViewModel-final/local-test-summary.json) 通过。[codelinter](../artifacts/validation/ui-gameplay-motion-audit-20261113/lint-final/lint.json) 退出 0、`filesChecked=0`。源代码仍含两处 ArkTS 对同步动画工具的异常提示。夜间真机覆盖头像，线索和答题真机采样为日间。减少动画已做 Web 回放及原生策略审查，未切换手机系统开关实测。短时 ArkUI 入退场的精确时长不由逐帧截屏推定。
 
 [固定预览](../artifacts/validation/ui-gameplay-motion-audit-20261113/fixed-preview-restored-01.json) 已恢复登录，验证包和预览包的 [ArkTS 字节码一致](../artifacts/validation/ui-gameplay-motion-audit-20261113/preview-package-equivalence-01.json)。[隔离环境](../artifacts/validation/ui-gameplay-motion-audit-20261113/disposable-cleanup-01.json) 已移除，固定预览数据库及凭据文件通过身份核验。
+
+### Q04a 答题后的等级提升演出
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 普通多题末题正确并跨级 | 用服务端新旧等级比较触发一次，依次结束普通线索、完成提示及组合线索后展示升级弹窗。弹窗显示新等级编号和名称，确认或系统返回后回到已完成场次。 |
+| 非末题跨级 | 有自动下一题时沿用 Web 的顺序，先结束线索与自动切题，再展示升级。提前关闭视频仍取消自动切题，升级提示仍可展示。 |
+| 未跨级、回访与中断 | 同级或错误结果、已完成响应、刷新和历史回访不展示升级。离场、退后台或账号失效清除本次演出，回源仍读到实际等级和进度。 |
+| 外观与动态验收 | 用同一隔离服务端快照对照冻结 Web，核对徽章、名称、状态、按钮与生效的进退场、光环和粒子。直板机核对正常动画及系统「减少动画」下的操作可达性，逐项记录实际证据。 |
+
+本片范围为普通场次的新答题结果。使用专用隔离真实 HTTPS 场次验证跨级与未跨级；检查答题回执、经验账本和只读回访。终章、剧情、奖励和 BGM 属于各自切片。
