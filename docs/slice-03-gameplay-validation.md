@@ -652,3 +652,30 @@ Web 收件箱对照 `7f7c789` 的已确认分卡样式，答题队列与归档�
 真机旧包从信封中心用官方 UiTest `uiInput drag` 送出停留后再移动的手势，浮标位置不变。ArkUI `Image` 默认开启系统拖出。将浮标信封和数字角标设为 `draggable(false)`，由按钮原有的 `PanGesture` 处理浮标位置和贴边。[华为 ArkUI 图片拖拽排障](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/arkui-kit-troubleshooting-0002/)
 
 通过 `scripts/hm.sh run` 安装签名包，使用固定隔离账号已收下的来信验证官方 UiTest `drag` 和 `swipe`。两种手势都能移动并贴边，题目稳定，归档只在单击时打开，重新进入场次后位置一致。对账确认试拖与回看没有新增已读回执和玩法写入。`scripts/hm.sh test` 通过 198 项，`scripts/hm.sh lint` 的错误与警告均为零。[直板手势补验](../artifacts/validation/ui-gameplay-journey-mail-20261116/floating-drag-fix.json)
+
+## 旧富文本、玩家同步与入场前来信（2026-11-16）
+
+冻结 Web `4b7d1a0` 在 388 × 771 CSS px 重放同一隔离 PocketBase DTO 和图片、视频字节，记录日夜题面、提示、两类线索、同步与入场前队列。直板使用独立验收账号，使用同一内容和 HTTPS 媒体。隔离后端采用正式路由，合成内容用于复现长正文及失败重试。[隔离后端](../artifacts/validation/ui-gameplay-parity-completion-20261116/host-fixture-01.json) · [冻结 Web 对照](../artifacts/validation/ui-gameplay-parity-completion-20261116/web-reference.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-parity-completion-20261116/final-tools
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output artifacts/validation/ui-gameplay-parity-completion-20261116/runtime-isolated-03.json
+```
+
+定版官方 CLI 完成编译、调试签名、直板 USB 安装与启动。运行时验证沉浸窗口、透明系统栏、一倍字号及可信 CA、未知 CA、错误主机名三种 HTTPS 结果。Hypium 202 项通过。codelinter 检查 1 个文件，零错误、零警告，保留信纸模糊性能建议。原图、回放脚本及脱敏前的本机验收日志保留在 `artifacts/private/gameplay-parity-completion-20261116/`。[定版运行时](../artifacts/validation/ui-gameplay-parity-completion-20261116/runtime-isolated-03.json) · [Hypium](../artifacts/validation/ui-gameplay-parity-completion-20261116/final-tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-parity-completion-20261116/final-tools/lint.json)
+
+`device-parity.py briefing brief 02` 使用首个集成包验证入场前的两封来信。已读一次 503 后同一封重试成功，系统返回处理第二封。小列表能回访，浮标长按拖动贴边且未误打开列表。最终只执行一次入场，已收下的信在答题页保持静默。定版的来信与入场实现沿用该版本。[直板入场说明](../artifacts/validation/ui-gameplay-parity-completion-20261116/native-briefing-01.json)
+
+`device-parity.py game sync 03` 对现有原生场次同步及新增资料同步分别注入 503。两路故障共用一个可关闭的提示，恢复后下一次故障可以再次显示。隔离后端更新昵称后，在原答题页打开侧栏可见新昵称。退后台暂停定时读取，回前台草稿保留。同一隔离账号在此阶段的答题、入场、经验与进度台账一致。[直板玩家资料](../artifacts/validation/ui-gameplay-parity-completion-20261116/native-profile-01.json)
+
+`device-parity.py game media 06` 和继续当前弹层的 `device-parity.py game combo 07 live` 使用同一定版包。真机打开题面高亮与链接、题面和提示的图片，以及四处视频的正文播控和独立展开。题面媒体的严格 HTTPS 读取一次 503 后，在原位重试成功。返回前后四个展开按钮的纵向位移为 0 px。题面视频恢复并停在 00:12，提示视频停在 00:19，两处都在间隔取样的两张原图上保持同一帧时间。普通和组合线索回到同一正文与封面。设备的 BGM 状态日志记录了开始题面视频后暂停、切离后恢复及开始提示视频后再次暂停。网关与 SQLite 对账保留一次准备入场、两次实际正确提交、两条进度和两笔共 20 XP。组合线索续测只改用弹层自己的 Scroll 触发滚动，答题请求无重复。[直板富文本与媒体](../artifacts/validation/ui-gameplay-parity-completion-20261116/native-rich-media-01.json)
+
+日间同数据原图核对来信、同步提示、题面、提示、普通和组合线索。原生来信框在安全内容区居中，宽约 340 vp，与 Web 的 340 CSS px 对齐，状态栏和手势条背景连续。题面插图约 326 × 184 vp，与同数据 Web 幅面一致。原生沿用项目高亮和链接色、ArkUI 播控、已有来信视觉和音频互斥策略。关闭组合视频后，底部说明和确认按钮完整可达。[六组原图测量](../artifacts/validation/ui-gameplay-parity-completion-20261116/visual-review-01.json)
+
+夜间定版改用另一隔离账号。入场前收下两封信后，入场自动文字线索先出现。线索播放期间通过正式管理入口仅向该账号发一封信，答题页收到后先保持原线索，关闭后才弹新来信。三封信均收下，SQLite 只有一次入场、零次答题。说明页同数据 Web 与原生夜间原图保留相同标题断行和金色确认按钮，原生遮罩延伸至系统栏。测试结束恢复原主题。[直板夜间验收](../artifacts/validation/ui-gameplay-parity-completion-20261116/native-briefing-night-01.json) · [日夜视觉记录](../artifacts/validation/ui-gameplay-parity-completion-20261116/visual-review-01.json)
+
+临时后端及其 USB 映射已释放，固定预览沿用原数据库、账号和 CA。固定预览包与定版隔离包的 ArkTS 字节码一致。重新安装后直板机通过严格 HTTPS 直接登录，进度与经验一致，手机保持在已登录首页。[环境恢复](../artifacts/validation/ui-gameplay-parity-completion-20261116/restore-config-01.json) · [预览直登](../artifacts/validation/ui-gameplay-parity-completion-20261116/fixed-preview-home-01.json) · [包字节码核对](../artifacts/validation/ui-gameplay-parity-completion-20261116/preview-package-equivalence-01.json)

@@ -1,10 +1,9 @@
 import { UIUtils } from '@kit.ArkUI';
-import { ClueTextPart, clueTextParts } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
-import { StarwardClueParagraph } from './StarwardClueParagraph';
+import { StarwardRichContent } from './StarwardRichContent';
+import { StarwardVideoViewerState } from './StarwardVideoViewer';
 import { clueRevealAnimation, StarwardClueDialogDecoration } from './StarwardClueMotion';
-import { StarwardQuestionImages } from './StarwardQuestionImages';
 
 /** Only the reading viewport shrinks when the dialog reaches its height limit. */
 @ComponentV2
@@ -13,6 +12,8 @@ export struct StarwardCombinationDialog {
   @Require @Param ownerKey: string;
   @Require @Param ownerIsCurrent: (key: string) => boolean;
   @Require @Param imageCache: QuestionImageCache;
+  @Require @Param inlineVideo: StarwardVideoViewerState;
+  @Param inlineVideoSlot: string = '';
   @Require @Param panelWidth: number;
   @Require @Param maxHeight: number;
   @Param displayFont: string = 'serif';
@@ -20,6 +21,8 @@ export struct StarwardCombinationDialog {
   @Param motionEnabled: boolean = false;
   @Event acknowledge: () => void = () => {};
   @Event openImage: (partIndex: number) => void = () => {};
+  @Event openVideo: (partIndex: number) => void = () => {};
+  @Event playVideo: (partIndex: number) => void = () => {};
   @Event openLink: (href: string) => void = () => {};
   @Local private panelHeight: number = 0;
   @Local private revealed: boolean = true;
@@ -63,18 +66,14 @@ export struct StarwardCombinationDialog {
             .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
             .animation(clueRevealAnimation(this.motionEnabled, 70))
           Column() {
-            ForEach(clueTextParts(this.clue.content.text), (part: ClueTextPart, index: number) => {
-              if (part.image.length > 0) {
-                StarwardQuestionImages({ sources: [part.image], ownerKey: this.ownerKey, imageCache: this.imageCache,
-                  ownerIsCurrent: this.ownerIsCurrent, groupId: `gameplay-combination-inline-${index}`,
-                  imageLabel: '线索图片', maxHeight: Math.min(660, (this.maxHeight + 48) * 0.58),
-                  reducedMotion: this.reducedMotion, opened: () => this.openImage(index) })
-                  .margin({ top: 20, bottom: 20 })
-              } else {
-                StarwardClueParagraph({ part: part, paragraphId: `gameplay-combination-paragraph-${index}`,
-                  color: $r('app.color.combination_body'), openLink: (href: string) => this.openLink(href) })
-              }
-            }, (_part: ClueTextPart, index: number) => index.toString())
+            StarwardRichContent({ content: this.clue.content.text, nodeId: 'gameplay-combination',
+              ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent, imageCache: this.imageCache,
+              inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
+              color: $r('app.color.combination_body'), clueBody: true, maxMediaHeight: Math.min(660, (this.maxHeight + 48) * 0.58),
+              mediaMargin: 20, reducedMotion: this.reducedMotion,
+              openImage: (index: number) => this.openImage(index),
+              openVideo: (index: number) => this.openVideo(index), playVideo: (index: number) => this.playVideo(index),
+              openLink: (href: string) => this.openLink(href) })
           }.id('gameplay-combination-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 28 })
             .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
             .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })

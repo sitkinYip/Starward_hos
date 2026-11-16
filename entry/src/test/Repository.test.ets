@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { AvatarImage, AvatarUpload, GameFailure, Player } from '../main/ets/business/models';
+import { ReadCancellation } from '../main/ets/business/ReadCancellation';
 import { HttpsGameRepository } from '../main/ets/data/HttpsGameRepository';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
 import { HttpTransport, TransportRequest, TransportResponse } from '../main/ets/platform/HttpTransport';
@@ -105,6 +106,25 @@ function queueAvatarLogin(transport: StubTransport): void {
 
 export default function repositoryTests(): void {
   describe('Repository', () => {
+    it('aCancelledPlayerReadCannotRevokeTheCurrentSession', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://preview.example.test', transport);
+      queueAvatarLogin(transport);
+      await repository.login('alice', 'test-password');
+      transport.deferNext();
+      const read: ReadCancellation = new ReadCancellation();
+      const pending: Promise<Player> = repository.me(read);
+      expect(transport.requests[2].cancellation === read).assertTrue();
+      read.cancel();
+      transport.complete(401, '{"error":{"code":"UNAUTHORIZED"}}');
+      let code: string = '';
+      try { await pending; } catch (error) { code = (error as GameFailure).code; }
+      expect(code).assertEqual('CANCELLED');
+      transport.reply(200, AVATAR_PLAYER_JSON);
+      expect((await repository.me()).id).assertEqual('playeralice');
+      expect(transport.requests[3].token).assertEqual('test-token');
+    });
+
     it('normalizesIdentityAndCommitsOnlyValidatedPlayer', 0, async () => {
       const transport: StubTransport = new StubTransport();
       const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport);

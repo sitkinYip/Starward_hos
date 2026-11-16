@@ -5,6 +5,16 @@ import { GameFailure } from '../business/models';
 
 const POLL_MS: number = 5000;
 
+class RouteArchiveNote {
+  readonly assignmentId: string;
+  readonly noteId: string;
+
+  constructor(assignmentId: string, noteId: string) {
+    this.assignmentId = assignmentId;
+    this.noteId = noteId;
+  }
+}
+
 @ObservedV2
 export class JourneyNotificationsViewModel {
   @Trace entries: GameNotification[] = [];
@@ -15,6 +25,7 @@ export class JourneyNotificationsViewModel {
   @Trace readErrorId: string = '';
   @Trace readErrorMessage: string = '';
   @Trace gameplayReady: boolean = false;
+  @Trace routeArchive: RouteArchiveNote | null = null;
   private owner: string = '';
   private generation: number = 0;
   private pending: ReadCancellation | null = null;
@@ -71,6 +82,7 @@ export class JourneyNotificationsViewModel {
   suspend(): void {
     this.pauseReads();
     this.close();
+    this.clearRouteArchive();
   }
 
   pauseReads(): void {
@@ -86,6 +98,33 @@ export class JourneyNotificationsViewModel {
 
   close(): void {
     this.activeNotificationId = '';
+  }
+
+  archivedOnRoute(assignmentId: string): GameNotification | null {
+    const selection: RouteArchiveNote | null = this.routeArchive;
+    if (selection === null || selection.assignmentId !== assignmentId) { return null; }
+    return this.entries.find((note: GameNotification) => note.id === selection.noteId) ?? null;
+  }
+
+  openRouteArchive(assignmentId: string, id: string): void {
+    if (this.owner.length === 0 || assignmentId.length === 0 ||
+      !this.entries.some((note: GameNotification) => note.id === id)) { return; }
+    this.routeArchive = new RouteArchiveNote(assignmentId, id);
+    this.markRead(id);
+  }
+
+  clearRouteArchive(): void {
+    this.routeArchive = null;
+  }
+
+  async closeRouteNote(assignmentId: string, id: string, retry: boolean): Promise<void> {
+    const selection: RouteArchiveNote | null = this.routeArchive;
+    if (selection === null || selection.assignmentId !== assignmentId || selection.noteId !== id) {
+      if (this.oldestUnread?.id === id) { await this.markRead(id); }
+      return;
+    }
+    if (retry && this.readErrorId === id && !await this.markRead(id)) { return; }
+    if (this.routeArchive === selection) { this.clearRouteArchive(); }
   }
 
   async refresh(): Promise<void> {

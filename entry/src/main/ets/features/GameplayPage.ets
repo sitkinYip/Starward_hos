@@ -2,7 +2,7 @@ import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { curves, PromptAction, promptAction, RectShape } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
-import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, isNarrativeClue,
+import { clueImageSources, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
 import { GameplayClue, GameplayCompletionTarget, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
@@ -19,6 +19,8 @@ import { QuestAnswerGuidePreference } from '../platform/QuestAnswerGuidePreferen
 import { QuestNarrativeAttentionPreference } from '../platform/QuestNarrativeAttentionPreference';
 import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
+import { isLegacyInternalLink, LegacyRichBlock, LegacyRichSpan, legacyImageSources,
+  legacyRichBlocks } from '../business/LegacyRichContent';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
 import { PrimaryAction } from '../ui/PrimaryAction';
@@ -32,6 +34,7 @@ import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVid
 import { StarwardVideoPoster } from '../ui/StarwardVideoPoster';
 import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
 import { StarwardQuestHint } from '../ui/StarwardQuestHint';
+import { StarwardRichContent } from '../ui/StarwardRichContent';
 import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
 import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
 import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
@@ -125,6 +128,7 @@ class RankDialogRequest {
 @ComponentV2
 export struct GameplayPage {
   @Event journeyBackHandlerChanged: (handler: (() => boolean) | null) => void = () => {};
+  @Event profilePollingChanged: (active: boolean) => void = () => {};
   @Require @Param play: GameplayViewModel;
   @Require @Param journey: JourneyNotificationsViewModel;
   @Require @Param playerId: string;
@@ -155,16 +159,17 @@ export struct GameplayPage {
   private readonly imageCache: QuestionImageCache = new QuestionImageCache(() => this.imageCacheOwner());
   @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState(this.imageCache);
   @Local private videoViewer: StarwardVideoViewerState = new StarwardVideoViewerState();
+  @Local private inlineVideo: StarwardVideoViewerState = new StarwardVideoViewerState(true);
+  @Local private inlineVideoSlot: string = '';
+  private inlineVideoRevision: number = 0;
   @Local private textClue: GameplayClue | null = null;
   @Local private combinationSequenceActive: boolean = false;
   @Local private completionNotice: CompletionNoticeRequest | null = null;
   @Local private destinationHeight: number = 0;
   @Local private destinationLaunching: boolean = false;
   @Local private rankNotice: RankDialogRequest | null = null;
-  @Local private manualJourneyId: string = '';
   @Local private journeyVideoOpen: boolean = false;
   @Local private combinationDock: JourneyDockObstacle | null = null;
-  private manualJourneyOwner: string = '';
   private clueDialog: ClueDialogRequest | null = null;
   private combinationQueue: GameplayClue[] = [];
   private combinationOwner: string = '';
@@ -193,6 +198,7 @@ export struct GameplayPage {
     this.foreground = foreground;
     if (!foreground) {
       this.play.setPollingActive(false);
+      this.stopInlineVideo();
       this.clearAnswerGuideHighlight();
       this.updateBgm();
     }
@@ -259,7 +265,7 @@ export struct GameplayPage {
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
     this.play.setPollingActive(this.foreground && !this.narrativeCovered);
-    this.updateJourneyPolling();
+    this.updateProfilePolling();
     this.updateBgm();
   }
 
@@ -267,10 +273,10 @@ export struct GameplayPage {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
     this.play.setPollingActive(false);
-    this.journey.setPolling(false);
+    this.profilePollingChanged(false);
     this.bgmMounted = false;
     this.bgm.release();
-    this.clearManualJourney();
+    this.stopInlineVideo();
     this.journeyVideoOpen = false;
     this.bgmPreferenceOwner = '';
     this.bgmEnabled = true;
@@ -293,8 +299,6 @@ export struct GameplayPage {
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error', 'playerId')
   imageOwnerChanged(): void {
-    if (this.manualJourneyOwner.length > 0 && (!this.journeyOwnerCurrent() ||
-      this.manualJourneyOwner !== this.play.imageOwnerKey())) { this.clearManualJourney(); }
     if (this.attentionReserveOwner !== this.positionKey()) { this.attentionReserveOwner = ''; }
     if (this.guideHighlightOwner.length > 0 && this.guideHighlightOwner !== this.positionKey()) {
       this.clearAnswerGuideHighlight();
@@ -308,6 +312,7 @@ export struct GameplayPage {
     this.imageCache.validateOwner();
     this.viewer.validateOwner();
     this.videoViewer.validateOwner();
+    this.inlineVideo.validateOwner();
     if (this.combinationSequenceActive && (this.combinationOwner !== this.play.imageOwnerKey() ||
       this.currentCombinations().length === 0)) { this.interruptCombinationSequence(); }
     if (this.completionNotice !== null && !this.isCompletionNoticeCurrent(this.completionNotice)) {
@@ -345,6 +350,7 @@ export struct GameplayPage {
 
   private async refreshQuestion(): Promise<void> {
     if (!this.play.canRefresh()) { return; }
+    this.stopInlineVideo();
     const owner: string = this.imageCacheOwner();
     await this.play.refresh();
     if (owner.length > 0 && owner === this.imageCacheOwner()) {
@@ -453,7 +459,7 @@ export struct GameplayPage {
   }
 
   @Monitor('play.visible', 'play.snapshot', 'play.error', 'play.activeIndex', 'playerId', 'foreground',
-    'videoViewer.visible', 'videoViewer.closing', 'journeyVideoOpen')
+    'videoViewer.visible', 'videoViewer.closing', 'inlineVideo.visible', 'journeyVideoOpen')
   bgmInputsChanged(): void { this.updateBgm(); }
 
   @Monitor('narrativeCovered')
@@ -464,6 +470,13 @@ export struct GameplayPage {
       this.rankChanged();
       this.scheduleQuestionPosition();
     }
+  }
+
+  @Monitor('journeyPollingAllowed', 'foreground', 'narrativeCovered', 'play.visible', 'play.refreshing',
+    'play.loading', 'play.starting', 'play.error')
+  private updateProfilePolling(): void {
+    this.profilePollingChanged(this.journeyPollingAllowed && this.foreground && !this.narrativeCovered &&
+      this.play.visible && !this.play.refreshing && !this.play.loading && !this.play.starting && this.play.error.length === 0);
   }
 
   private updateBgm(videoOpening: boolean = false): void {
@@ -479,13 +492,14 @@ export struct GameplayPage {
     const source: string = this.bgmSource();
     const owner: string = source.length > 0 ? this.play.imageOwnerKey() : '';
     this.bgm.update(owner, source, this.foreground && !this.narrativeCovered,
-      videoOpening || this.videoViewer.visible || this.videoViewer.closing || this.journeyVideoOpen, this.bgmEnabled);
+      videoOpening || this.videoViewer.visible || this.videoViewer.closing || this.inlineVideo.visible ||
+      this.journeyVideoOpen, this.bgmEnabled);
   }
 
   private showBgmControl(): boolean {
     const minimum: number = QUEST_BGM_SIZE + 2 * QUEST_BGM_MARGIN;
     return this.foreground && !this.keyboardVisible && !this.videoViewer.visible && !this.videoViewer.closing &&
-      !this.viewer.visible && !this.viewer.closing && this.bgmSource().length > 0 &&
+      !this.inlineVideo.visible && !this.viewer.visible && !this.viewer.closing && this.bgmSource().length > 0 &&
       this.viewportWidth - this.leftInset - this.rightInset >= minimum &&
       this.viewportHeight - this.foregroundTopInset() - this.bgmLayoutBottomInset() >= minimum;
   }
@@ -590,7 +604,7 @@ export struct GameplayPage {
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
     'play.refreshing', 'play.advancing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
     'textClue', 'completionNotice', 'combinationSequenceActive', 'rankNotice', 'journey.entries',
-    'journey.gameplayReady', 'manualJourneyId', 'accountCovered')
+    'journey.gameplayReady', 'journey.routeArchive', 'accountCovered')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -629,6 +643,7 @@ export struct GameplayPage {
     if (!this.play.visible || this.play.snapshot === null || block === undefined || block.videoUrl.trim().length > 0) { return; }
     const sources: string[] = this.blockImages(block);
     const owner: string = this.imageOwner();
+    this.stopInlineVideo();
     StarwardKeyboard.dismiss(this.getUIContext());
     this.viewer.open(sources, index, () => {
       const current: GameplayContentBlock | undefined = this.play.currentLevel()?.question?.content[blockIndex];
@@ -652,16 +667,80 @@ export struct GameplayPage {
     });
   }
 
-  private openManualVideo(source: string, posterSource: string, mediaIsCurrent: () => boolean): void {
+  private legacyQuestionText(levelId: string, index: number, hint: boolean): string {
+    const block: GameplayContentBlock | undefined = this.contentBlocks(levelId)[index];
+    return (hint ? block?.hint : block?.text) ?? '';
+  }
+
+  private questionLegacyNodeId(levelId: string, index: number, hint: boolean): string {
+    return hint ? `question-hint-content-${index}` : levelId === this.readableQuestionId() ?
+      `question-content-text-${index}` : `question-rich-preview-${this.levelById(levelId)?.position || 0}-${index}`;
+  }
+
+  private openQuestionLegacyMedia(levelId: string, index: number, hint: boolean, partIndex: number,
+    inline: boolean = false): void {
+    if (!this.foreground || this.accountCovered || levelId !== this.readableQuestionId() || !this.questionInteractionReady(true) ||
+      this.play.automaticClue !== null) { return; }
+    const source: string = this.legacyQuestionText(levelId, index, hint);
+    const blocks: LegacyRichBlock[] = legacyRichBlocks(source);
+    const part: LegacyRichBlock | undefined = blocks[partIndex];
+    if (part === undefined) { return; }
+    const owner: string = this.imageOwner();
+    const current = (): boolean => this.foreground && this.play.visible && owner === this.imageOwner() &&
+      levelId === this.readableQuestionId() && source === this.legacyQuestionText(levelId, index, hint);
+    if (part.kind === 'image' && !inline) {
+      this.stopInlineVideo();
+      StarwardKeyboard.dismiss(this.getUIContext());
+      this.viewer.open(legacyImageSources(blocks), legacyImageSources(blocks.slice(0, partIndex)).length, current);
+    } else if (part.kind === 'video') {
+      const slot: string = `${this.questionLegacyNodeId(levelId, index, hint)}-video-${partIndex}`;
+      this.openManualVideo(part.url, part.poster, current, inline ? slot : '', inline ? '' : slot);
+    }
+  }
+
+  private openQuestionLegacyLink(levelId: string, index: number, hint: boolean, href: string): void {
+    if (!this.foreground || levelId !== this.readableQuestionId() || !this.questionInteractionReady(true) ||
+      this.play.automaticClue !== null) { return; }
+    const source: string = this.legacyQuestionText(levelId, index, hint);
+    if (!legacyRichBlocks(source).some((part: LegacyRichBlock) =>
+      part.spans.some((span: LegacyRichSpan) => span.linkTarget === href))) { return; }
+    const owner: string = this.imageOwner();
+    StarwardKeyboard.dismiss(this.getUIContext());
+    if (isLegacyInternalLink(href)) {
+      this.stopInlineVideo();
+      if (!this.openJourneyLink(href)) { this.showClueLinkFailure(); }
+    } else {
+      this.launchClueLink(href, null, () => this.play.visible && owner === this.imageOwner() &&
+        levelId === this.readableQuestionId() && source === this.legacyQuestionText(levelId, index, hint));
+    }
+  }
+
+  private openManualVideo(source: string, posterSource: string, mediaIsCurrent: () => boolean,
+    inlineSlot: string = '', returnSlot: string = ''): void {
     if (!this.questionInteractionReady(true) || this.play.automaticClue !== null || source.length === 0) { return; }
     const current = (): boolean => this.imageCacheOwner().length > 0 && this.play.snapshot?.detail.player === this.playerId &&
       mediaIsCurrent();
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
     if (!context || !current()) { return; }
+    const position: number = returnSlot.length > 0 && returnSlot === this.inlineVideoSlot ?
+      this.inlineVideo.pausePosition() : 0;
+    let returnRevision: number = -1;
+    const restore: ((ended: boolean) => void) | undefined = position > 0 ? (): void => {
+      if (returnRevision !== this.inlineVideoRevision || this.accountCovered || !current() ||
+        !this.questionInteractionReady(true) || this.play.automaticClue !== null) { return; }
+      const cached: QuestionImageResult | undefined = posterSource.length > 0 ? this.imageCache.acquire(posterSource) : undefined;
+      try {
+        this.openVideoWithBgmSuspended(source, context.cacheDir, current, undefined, cached, returnSlot, position);
+      } finally {
+        cached?.release();
+      }
+    } : undefined;
     const poster: QuestionImageResult | undefined = posterSource.length > 0 ? this.imageCache.acquire(posterSource) : undefined;
     try {
       StarwardKeyboard.dismiss(this.getUIContext());
-      this.openVideoWithBgmSuspended(source, context.cacheDir, current, undefined, poster);
+      if (this.openVideoWithBgmSuspended(source, context.cacheDir, current, restore, poster, inlineSlot)) {
+        returnRevision = this.inlineVideoRevision;
+      }
     } finally {
       poster?.release();
     }
@@ -891,11 +970,34 @@ export struct GameplayPage {
   }
 
   private openVideoWithBgmSuspended(source: string, cacheDir: string, ownerCurrent: () => boolean,
-    finished?: (ended: boolean) => void, poster?: QuestionImageResult): boolean {
+    finished?: (ended: boolean) => void, poster?: QuestionImageResult, inlineSlot: string = '', pausedAt: number = 0): boolean {
+    if (inlineSlot.length > 0 && this.inlineVideo.visible && this.inlineVideoSlot === inlineSlot) { return false; }
     this.updateBgm(true);
-    const opened: boolean = this.videoViewer.open(source, cacheDir, ownerCurrent, finished, () => this.bgm.whenQuiet(), poster);
+    this.stopInlineVideo();
+    this.inlineVideoSlot = inlineSlot;
+    const model: StarwardVideoViewerState = inlineSlot.length > 0 ? this.inlineVideo : this.videoViewer;
+    const opened: boolean = model.open(source, cacheDir, ownerCurrent, finished, () => this.bgm.whenQuiet(), poster, pausedAt);
     if (!opened) { this.updateBgm(); }
     return opened;
+  }
+
+  private stopInlineVideo(): void {
+    this.inlineVideoRevision++;
+    this.inlineVideo.close(this.inlineVideo.sessionId, true);
+    this.inlineVideoSlot = '';
+  }
+
+  private stopHintInlineVideo(levelId: string, index: number): void {
+    const prefix: string = `${this.questionLegacyNodeId(levelId, index, true)}-video-`;
+    if (levelId === this.readableQuestionId() && this.inlineVideoSlot.startsWith(prefix)) { this.stopInlineVideo(); }
+  }
+
+  @Monitor('accountCovered', 'narrativeCovered', 'recoveryVisible', 'viewer.visible', 'viewer.closing',
+    'completionNotice', 'rankNotice', 'journey.entries', 'journey.gameplayReady', 'journey.routeArchive')
+  inlineVideoOverlayChanged(): void {
+    if (this.inlineVideo.visible && (this.accountCovered || this.narrativeCovered || this.recoveryVisible ||
+      this.viewer.visible || this.viewer.closing || this.completionNotice !== null || this.rankNotice !== null ||
+      this.displayedJourneyNotification() !== null)) { this.stopInlineVideo(); }
   }
 
   private clueDialogWidth(combination: boolean = false): number {
@@ -920,6 +1022,7 @@ export struct GameplayPage {
       onClosed?.(false);
       return;
     }
+    this.stopInlineVideo();
     this.clueDialog = request;
     this.textClue = clue;
     const fade: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.asymmetric(
@@ -942,9 +1045,8 @@ export struct GameplayPage {
       dialogTransition, maskTransition: fade,
       onWillDismiss: (action: DismissDialogAction) => {
         if (combination && action.reason === DismissReason.TOUCH_OUTSIDE) { return; }
-        if (this.clueDialog === request && (this.viewer.visible || this.viewer.closing)) {
-          if (this.viewer.visible) { this.viewer.close(this.viewer.sessionId); }
-        } else {
+        if (this.clueDialog !== request || !this.closeClueMedia()) {
+          if (this.clueDialog === request) { this.stopInlineVideo(); }
           request.closing = true;
           request.nativeDismissed = true;
           action.dismiss();
@@ -975,23 +1077,36 @@ export struct GameplayPage {
   private closeClueDialog(invalidOwner: boolean = false): void {
     const request: ClueDialogRequest | null = this.clueDialog;
     if (request === null) { return; }
-    if (!invalidOwner && (this.viewer.visible || this.viewer.closing)) {
-      if (this.viewer.visible) { this.viewer.close(this.viewer.sessionId); }
-      return;
-    }
+    if (!invalidOwner && this.closeClueMedia()) { return; }
+    this.stopInlineVideo();
     const closing: boolean = request.closing;
     request.closing = true;
     if (invalidOwner) {
       if (request.sequence) { this.interruptCombinationSequence(); }
       this.viewer.close(this.viewer.sessionId, true);
       this.viewer.disappeared(this.viewer.sessionId);
+      this.videoViewer.close(this.videoViewer.sessionId, true);
+      this.videoViewer.disappeared(this.videoViewer.sessionId);
       this.releaseClueDialog(request);
     }
     if (!closing) { this.finishClueDialogClose(request); }
   }
 
+  private closeClueMedia(): boolean {
+    if (this.inlineVideo.exitFullscreen(this.inlineVideo.sessionId)) { return true; }
+    if (this.videoViewer.visible || this.videoViewer.closing) {
+      const sessionId: number = this.videoViewer.sessionId;
+      if (this.videoViewer.visible && !this.videoViewer.exitFullscreen(sessionId)) { this.videoViewer.close(sessionId); }
+      return true;
+    }
+    if (!this.viewer.visible && !this.viewer.closing) { return false; }
+    if (this.viewer.visible) { this.viewer.close(this.viewer.sessionId); }
+    return true;
+  }
+
   private releaseClueDialog(request: ClueDialogRequest, dismissed: boolean = false): void {
     if (this.clueDialog === request) {
+      this.stopInlineVideo();
       if (this.clueLinkHandoff?.dialog === request) { this.clearClueLinkHandoff(); }
       this.clueDialog = null;
       this.textClue = null;
@@ -1012,7 +1127,7 @@ export struct GameplayPage {
   }
 
   private openClueLink(request: ClueDialogRequest, href: string): void {
-    if (this.viewer.visible || this.viewer.closing) { return; }
+    if (this.viewer.visible || this.viewer.closing || this.videoViewer.visible || this.videoViewer.closing) { return; }
     this.launchClueLink(href, request, () => this.clueDialog === request && this.currentTextClueOwner(request.owner));
   }
 
@@ -1023,6 +1138,7 @@ export struct GameplayPage {
   private async launchClueLink(href: string, dialog: ClueDialogRequest | null,
     isCurrent: () => boolean, destination: boolean = false): Promise<void> {
     if (!this.foreground || this.clueLinkHandoff !== null || !isCurrent()) { return; }
+    this.stopInlineVideo();
     const handoff: ClueLinkHandoff = new ClueLinkHandoff(dialog, isCurrent);
     this.clueLinkHandoff = handoff;
     this.destinationLaunching = destination;
@@ -1048,42 +1164,64 @@ export struct GameplayPage {
     }
   }
 
-  private openInlineClueImage(partIndex: number): void {
+  private openInlineClueMedia(request: ClueDialogRequest, partIndex: number, inline: boolean = false): void {
     const clue: GameplayClue | null = this.textClue;
-    const owner: string = this.clueDialog?.owner || '';
-    if (clue === null || !this.currentTextClueOwner(owner)) { return; }
-    const parts: ClueTextPart[] = clueTextParts(clue.content.text);
-    if ((parts[partIndex]?.image || '').length === 0) { return; }
-    const sources: string[] = parts.filter((part: ClueTextPart) => part.image.length > 0)
-      .map((part: ClueTextPart) => part.image);
-    const index: number = parts.slice(0, partIndex).filter((part: ClueTextPart) => part.image.length > 0).length;
-    this.viewer.open(sources, index, () => this.textClue === clue && this.currentTextClueOwner(owner));
+    const current = (): boolean => this.foreground && this.clueDialog === request && this.textClue === clue &&
+      this.currentTextClueOwner(request.owner);
+    if (clue === null || !current() || this.viewer.visible || this.viewer.closing ||
+      this.videoViewer.visible || this.videoViewer.closing) { return; }
+    const parts: LegacyRichBlock[] = legacyRichBlocks(clue.content.text, 'clueBody');
+    const part: LegacyRichBlock | undefined = parts[partIndex];
+    if (part?.kind === 'image' && !inline) {
+      this.stopInlineVideo();
+      this.viewer.open(legacyImageSources(parts), legacyImageSources(parts.slice(0, partIndex)).length, current);
+    } else if (part?.kind === 'video') {
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+      if (!context) { return; }
+      const poster: QuestionImageResult | undefined =
+        part.poster.length > 0 ? this.imageCache.acquire(part.poster) : undefined;
+      try {
+        const slot: string = inline ? `gameplay-${request.combination ? 'combination' : 'clue'}-video-${partIndex}` : '';
+        this.openVideoWithBgmSuspended(part.url, context.cacheDir, current, undefined, poster, slot);
+      } finally {
+        poster?.release();
+      }
+    }
   }
 
   @Builder
   clueDialogContent(request: ClueDialogRequest) {
     if (this.clueDialog === request && this.textClue !== null) {
-      if (request.combination) {
-        StarwardCombinationDialog({ clue: this.textClue, ownerKey: request.owner,
-          ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
-          imageCache: this.imageCache,
-          panelWidth: this.clueDialogWidth(true), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
-          motionEnabled: this.foreground && !this.reducedMotion && !this.viewer.visible && !this.viewer.closing,
-          reducedMotion: this.reducedMotion, acknowledge: () => this.closeClueDialog(),
-          openImage: (index: number) => this.openInlineClueImage(index),
-          openLink: (href: string) => this.openClueLink(request, href) })
-          .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
-      } else {
-        StarwardClueTextDialog({ clue: this.textClue, ownerKey: request.owner,
-          ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
-          imageCache: this.imageCache,
-          panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
-          motionEnabled: this.foreground && !this.reducedMotion && !this.viewer.visible && !this.viewer.closing,
-          reducedMotion: this.reducedMotion, close: () => this.closeClueDialog(),
-          openImage: (index: number) => this.openInlineClueImage(index),
-          openLink: (href: string) => this.openClueLink(request, href) })
-          .bindContentCover(!!this.viewer.visible, this.imageViewer(), this.viewerOptions())
-      }
+      Stack() {
+        if (request.combination) {
+          StarwardCombinationDialog({ clue: this.textClue, ownerKey: request.owner,
+            ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
+            imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
+            panelWidth: this.clueDialogWidth(true), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
+            motionEnabled: this.foreground && !this.reducedMotion && !this.viewer.visible && !this.viewer.closing &&
+              !this.videoViewer.visible && !this.videoViewer.closing,
+            reducedMotion: this.reducedMotion, acknowledge: () => this.closeClueDialog(),
+            openImage: (index: number) => this.openInlineClueMedia(request, index),
+            openVideo: (index: number) => this.openInlineClueMedia(request, index),
+            playVideo: (index: number) => this.openInlineClueMedia(request, index, true),
+            openLink: (href: string) => this.openClueLink(request, href) })
+        } else {
+          StarwardClueTextDialog({ clue: this.textClue, ownerKey: request.owner,
+            ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
+            imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
+            panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
+            motionEnabled: this.foreground && !this.reducedMotion && !this.viewer.visible && !this.viewer.closing &&
+              !this.videoViewer.visible && !this.videoViewer.closing,
+            reducedMotion: this.reducedMotion, close: () => this.closeClueDialog(),
+            openImage: (index: number) => this.openInlineClueMedia(request, index),
+            openVideo: (index: number) => this.openInlineClueMedia(request, index),
+            playVideo: (index: number) => this.openInlineClueMedia(request, index, true),
+            openLink: (href: string) => this.openClueLink(request, href) })
+        }
+        Column() {}.width(0).height(0).bindContentCover(this.viewer.visible, this.imageViewer(), this.viewerOptions())
+        Column() {}.width(0).height(0)
+          .bindContentCover(this.videoViewer.visible, this.gameplayVideoViewer(), this.videoViewerOptions())
+      }.width(this.clueDialogWidth(request.combination))
     }
   }
 
@@ -1456,6 +1594,7 @@ export struct GameplayPage {
       return;
     }
     if (directAction) { this.requestQuestionSettle(index); }
+    if (index !== this.play.activeIndex) { this.stopInlineVideo(); }
     StarwardKeyboard.dismiss(this.getUIContext());
     this.play.moveTo(index);
     this.trackQuestionPosition(true);
@@ -1525,6 +1664,7 @@ export struct GameplayPage {
     const owner: string = this.optionOwner(key);
     if (!this.play.visible || this.play.snapshot === null || !this.play.answerEditable() || source.length === 0 ||
       this.optionVideo(key).length > 0) { return; }
+    this.stopInlineVideo();
     StarwardKeyboard.dismiss(this.getUIContext());
     this.viewer.open([source], 0, () => this.play.visible && this.play.snapshot !== null && this.play.answerEditable() &&
       this.optionOwner(key) === owner && this.optionImage(key) === source && this.optionVideo(key).length === 0);
@@ -1565,14 +1705,9 @@ export struct GameplayPage {
       snapshot !== null && snapshot.detail.player === this.playerId && snapshot.detail.status !== 'cancelled';
   }
 
-  @Monitor('journeyPollingAllowed', 'foreground', 'narrativeCovered', 'play.visible', 'play.refreshing', 'play.error')
-  private updateJourneyPolling(): void {
-    this.journey.setPolling(this.journeyPollingAllowed && this.foreground && !this.narrativeCovered &&
-      this.play.visible && !this.play.refreshing && this.play.error.length === 0);
-  }
-
   private journeyPresentationReady(): boolean {
-    return this.foreground && !this.accountCovered && this.journey.gameplayReady && this.journeyOwnerCurrent() &&
+    return this.journeyPollingAllowed && this.foreground && !this.accountCovered && this.journey.gameplayReady &&
+      this.journeyOwnerCurrent() &&
       this.gameplayOverlayReady() && !this.play.advancing && this.play.automaticClue === null &&
       this.play.finaleStage === 'idle' &&
       this.play.rankUp === null && this.seenCompletionRevision === this.play.completionRevision &&
@@ -1581,8 +1716,7 @@ export struct GameplayPage {
   }
 
   private manualJourneyNotification(): GameNotification | null {
-    if (this.manualJourneyId.length === 0 || this.manualJourneyOwner !== this.play.imageOwnerKey()) { return null; }
-    return this.journey.entries.find((note: GameNotification) => note.id === this.manualJourneyId) ?? null;
+    return this.journey.archivedOnRoute(this.play.snapshot?.detail.id ?? '');
   }
 
   private displayedJourneyNotification(): GameNotification | null {
@@ -1614,37 +1748,20 @@ export struct GameplayPage {
   }
 
   private openManualJourney(id: string): void {
-    if (!this.showJourneyLauncher() || !this.journey.entries.some((entry: GameNotification) => entry.id === id)) {
-      return;
+    if (this.showJourneyLauncher()) {
+      this.stopInlineVideo();
+      this.journey.openRouteArchive(this.play.snapshot?.detail.id ?? '', id);
     }
-    this.manualJourneyOwner = this.play.imageOwnerKey();
-    this.manualJourneyId = id;
-    this.journey.markRead(id);
-  }
-
-  private clearManualJourney(): void {
-    this.manualJourneyId = '';
-    this.manualJourneyOwner = '';
   }
 
   private async closeJourneyNotification(id: string, retry: boolean): Promise<void> {
     if (this.displayedJourneyNotification()?.id !== id) { return; }
-    if (this.manualJourneyNotification()?.id !== id) {
-      await this.journey.markRead(id);
-      return;
-    }
-    if (retry && this.journey.readErrorId === id) {
-      const owner: string = this.manualJourneyOwner;
-      if (!await this.journey.markRead(id) || this.manualJourneyOwner !== owner || this.manualJourneyId !== id) {
-        return;
-      }
-    }
-    this.clearManualJourney();
+    await this.journey.closeRouteNote(this.play.snapshot?.detail.id ?? '', id, retry);
   }
 
   private openGameplayJourneyLink(href: string): boolean {
     if (this.displayedJourneyNotification() === null || !this.openJourneyLink(href)) { return false; }
-    this.clearManualJourney();
+    this.journey.clearRouteArchive();
     return true;
   }
 
@@ -1786,6 +1903,24 @@ export struct GameplayPage {
   }
 
   @Builder
+  questionLegacyBody(levelId: string, index: number, hint: boolean) {
+    StarwardRichContent({ content: this.legacyQuestionText(levelId, index, hint),
+      nodeId: this.questionLegacyNodeId(levelId, index, hint),
+      ownerKey: this.questionImageOwner(levelId), ownerIsCurrent: (key: string) =>
+        this.imageCacheOwner().length > 0 && this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
+      imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
+      color: hint ? $r('app.color.muted') : $r('app.color.text'),
+      lineHeight: hint ? '27.2fp' : '27.52fp', active: levelId === this.readableQuestionId(),
+      interactive: this.questionInteractionReady(true) && this.play.automaticClue === null,
+      showMedia: this.showsQuestionImages(levelId), availableWidth: hint ? 0 : this.questionContentWidth,
+      maxMediaHeight: this.viewportWidth <= 620 ? 340 : 420, reducedMotion: this.reducedMotion,
+      openImage: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex),
+      openVideo: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex),
+      playVideo: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex, true),
+      openLink: (href: string) => this.openQuestionLegacyLink(levelId, index, hint, href) })
+  }
+
+  @Builder
   questionCard(levelId: string) {
     StarwardQuestionFrame({
       frameId: levelId === this.readableQuestionId() ? 'gameplay-question-card' : '',
@@ -1840,11 +1975,12 @@ export struct GameplayPage {
                   } })
               }
               if (block.text.length > 0) {
-                Text(block.text).id(levelId === this.readableQuestionId() ? `question-content-text-${index}` : '').width('100%')
-                  .fontSize(16).lineHeight('27.52fp').fontColor($r('app.color.text'))
+                this.questionLegacyBody(levelId, index, false)
               }
               if (levelId === this.readableQuestionId() && block.hint.length > 0) {
-                StarwardQuestHint({ text: block.hint, contentIndex: index, reducedMotion: this.reducedMotion })
+                StarwardQuestHint({ contentIndex: index, reducedMotion: this.reducedMotion,
+                  collapse: () => this.stopHintInlineVideo(levelId, index),
+                  content: () => { this.questionLegacyBody(levelId, index, true); } })
               }
             }.width('100%').alignItems(HorizontalAlign.Start)
           }, (block: GameplayContentBlock, index: number) => `${index}:${JSON.stringify(block)}`)
@@ -1975,7 +2111,8 @@ export struct GameplayPage {
         }
         this.scheduleQuestionPosition();
       })
-      .bindContentCover(this.videoViewer.visible, this.gameplayVideoViewer(), this.videoViewerOptions())
+      .bindContentCover(this.textClue === null && this.videoViewer.visible,
+        this.gameplayVideoViewer(), this.videoViewerOptions())
   }
 
   @Builder

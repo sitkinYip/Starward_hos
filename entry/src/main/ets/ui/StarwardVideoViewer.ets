@@ -15,7 +15,7 @@ class VideoAttempt {
   }
 }
 
-/** Owns one authorized playback and reports its outcome after the cover disappears. */
+/** Owns one authorized playback. Cover playbacks report their outcome after dismissal. */
 @ObservedV2
 export class StarwardVideoViewerState {
   @Trace visible: boolean = false;
@@ -33,18 +33,29 @@ export class StarwardVideoViewerState {
   private endedNaturally: boolean = false;
   private fullscreen: boolean = false;
   private lease: number = 0;
+  private readonly embedded: boolean;
+  private pausedAt: number = 0;
+  private playbackTime: number = 0;
+
+  constructor(embedded: boolean = false) {
+    this.embedded = embedded;
+  }
 
   open(source: string, cacheDir: string, ownerCurrent: () => boolean,
     finished?: (ended: boolean) => void, playbackReady?: () => Promise<boolean>,
-    poster?: QuestionImageResult): boolean {
+    poster?: QuestionImageResult, pausedAt: number = 0): boolean {
     if (this.visible || this.closing || source.length === 0 || !ownerCurrent()) { return false; }
-    try { this.lease = ImmersiveSurfaces.acquireDark(); } catch { return false; }
+    if (!this.embedded) {
+      try { this.lease = ImmersiveSurfaces.acquireDark(); } catch { return false; }
+    }
     this.sessionId++;
     this.source = source;
     this.ownerCurrent = ownerCurrent;
     this.finished = finished;
     this.playbackReady = playbackReady;
     this.poster = poster?.retain();
+    this.pausedAt = this.embedded ? pausedAt : 0;
+    this.playbackTime = 0;
     this.endedNaturally = false;
     this.loader = new ClueVideoFileLoader(cacheDir);
     this.visible = true;
@@ -80,18 +91,35 @@ export class StarwardVideoViewerState {
     if (this.active(sessionId) && this.phase === 'failed') { this.load(sessionId); }
   }
 
-  async prepared(sessionId: number, attempt: VideoAttempt): Promise<void> {
+  async prepared(sessionId: number, attempt: VideoAttempt, duration: number): Promise<void> {
     if (!this.current(sessionId, attempt) || this.phase !== 'loading') { return; }
     try {
       const gate = this.playbackReady;
       const ready: boolean = gate === undefined || await gate();
       if (!this.current(sessionId, attempt) || this.phase !== 'loading') { return; }
       if (!ready) { this.fail(sessionId, attempt); return; }
-      this.phase = 'ready';
-      attempt.controller.start();
+      if (this.restoringPaused()) {
+        this.playbackTime = Number.isFinite(duration) && duration > 0 ? Math.min(this.pausedAt, duration) : this.pausedAt;
+        attempt.controller.setCurrentTime(this.playbackTime, SeekMode.Accurate);
+        this.phase = 'ready';
+      } else {
+        this.phase = 'ready';
+        attempt.controller.start();
+      }
     } catch {
       this.fail(sessionId, attempt);
     }
+  }
+
+  restoringPaused(): boolean { return this.pausedAt > 0; }
+
+  pausePosition(): number {
+    return this.embedded && this.phase === 'ready' && this.active(this.sessionId) ? this.playbackTime : 0;
+  }
+
+  positionChanged(sessionId: number, attempt: VideoAttempt, time: number): void {
+    if (this.embedded && this.phase === 'ready' && this.current(sessionId, attempt) &&
+      Number.isFinite(time) && time >= 0) { this.playbackTime = time; }
   }
 
   fail(sessionId: number, attempt: VideoAttempt): void {
@@ -103,7 +131,7 @@ export class StarwardVideoViewerState {
   ended(sessionId: number, attempt: VideoAttempt): void {
     if (!this.current(sessionId, attempt) || this.phase !== 'ready') { return; }
     this.endedNaturally = true;
-    this.close(sessionId);
+    this.close(sessionId, this.embedded);
   }
 
   fullscreenChanged(sessionId: number, attempt: VideoAttempt, fullscreen: boolean): void {
@@ -132,6 +160,8 @@ export class StarwardVideoViewerState {
     this.source = '';
     this.ownerCurrent = () => false;
     this.playbackReady = undefined;
+    this.pausedAt = 0;
+    this.playbackTime = 0;
     this.phase = 'idle';
     if (immediate) {
       this.finished = undefined;
@@ -166,6 +196,62 @@ export class StarwardVideoViewerState {
     const lease: number = this.lease;
     this.lease = 0;
     if (lease > 0) { ImmersiveSurfaces.releaseDark(lease); }
+  }
+}
+
+@ComponentV2
+struct StarwardNativeVideo {
+  @Require @Param model: StarwardVideoViewerState;
+  @Require @Param sessionId: number;
+  @Require @Param attempt: VideoAttempt;
+  @Require @Param nodeId: string;
+
+  build() {
+    Video({ src: this.attempt.file?.uri, controller: this.attempt.controller, previewUri: this.model.poster?.pixels,
+      posterOptions: { showFirstFrame: this.model.poster === undefined || this.model.restoringPaused() } })
+      .id(this.nodeId).width('100%').height('100%').objectFit(ImageFit.Contain)
+      .autoPlay(false)
+      .controls(this.model.phase === 'ready')
+      .hitTestBehavior(this.model.phase === 'ready' ? HitTestMode.Default : HitTestMode.None)
+      .onPrepared((event: PreparedInfo) => this.model.prepared(this.sessionId, this.attempt, event.duration))
+      .onUpdate((event: PlaybackInfo) => this.model.positionChanged(this.sessionId, this.attempt, event.time))
+      .onSeeked((event: PlaybackInfo) => this.model.positionChanged(this.sessionId, this.attempt, event.time))
+      .onError(() => this.model.fail(this.sessionId, this.attempt))
+      .onFinish(() => this.model.ended(this.sessionId, this.attempt))
+      .onFullscreenChange((event: FullscreenInfo) =>
+        this.model.fullscreenChanged(this.sessionId, this.attempt, event.fullscreen))
+  }
+}
+
+@ComponentV2
+export struct StarwardInlineVideo {
+  @Require @Param model: StarwardVideoViewerState;
+  @Require @Param sessionId: number;
+  @Require @Param nodeId: string;
+  @Param reducedMotion: boolean = true;
+
+  build() {
+    Stack() {
+      if (this.model.attempt !== null) {
+        StarwardNativeVideo({ model: this.model, sessionId: this.sessionId, attempt: this.model.attempt,
+          nodeId: `${this.nodeId}-player` })
+      } else if (this.model.phase === 'loading' && this.model.poster !== undefined) {
+        Image(this.model.poster.pixels).width('100%').height('100%').objectFit(ImageFit.Contain)
+          .draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+      }
+      if (this.model.phase === 'loading') {
+        LoadingProgress().id(`${this.nodeId}-loading`).width(28).height(28).color($r('app.color.accent'))
+          .enableLoading(!this.reducedMotion).accessibilityText('正在载入视频')
+      } else if (this.model.phase === 'failed') {
+        Column({ space: 4 }) {
+          Text('视频加载失败').id(`${this.nodeId}-error`).fontSize(13).fontColor($r('app.color.muted'))
+          Button('重新加载', { type: ButtonType.Capsule }).id(`${this.nodeId}-retry`)
+            .constraintSize({ minHeight: 44, minWidth: 88 }).fontSize(13).fontColor($r('app.color.accent_text'))
+            .backgroundColor(Color.Transparent).onClick(() => this.model.retry(this.sessionId))
+        }
+      }
+    }.width('100%').height('100%').backgroundColor($r('app.color.media_surface'))
+      .border({ width: 1, color: $r('app.color.border_strong') }).clip(true)
   }
 }
 
@@ -216,26 +302,16 @@ export struct StarwardVideoViewer {
   private stageHeight(): number { return this.stageWidth() / this.aspect(); }
 
   @Builder
-  player(attempt: VideoAttempt) {
-    Video({ src: attempt.file?.uri, controller: attempt.controller, previewUri: this.model.poster?.pixels,
-      posterOptions: { showFirstFrame: this.model.poster === undefined } })
-      .id('gameplay-video-player').width('100%').height('100%').objectFit(ImageFit.Contain)
-      .controls(this.model.phase === 'ready')
-      .hitTestBehavior(this.model.phase === 'ready' ? HitTestMode.Default : HitTestMode.None)
-      .onPrepared(() => this.model.prepared(this.sessionId, attempt))
-      .onError(() => this.model.fail(this.sessionId, attempt))
-      .onFinish(() => this.model.ended(this.sessionId, attempt))
-      .onFullscreenChange((event: FullscreenInfo) => this.model.fullscreenChanged(this.sessionId, attempt, event.fullscreen))
-  }
-
-  @Builder
   stage() {
     Stack() {
       if (this.model.phase === 'loading' && this.model.poster !== undefined && this.model.attempt === null) {
         Image(this.model.poster.pixels).width('100%').height('100%').objectFit(ImageFit.Contain)
           .draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
       }
-      if (this.model.attempt !== null) { this.player(this.model.attempt) }
+      if (this.model.attempt !== null) {
+        StarwardNativeVideo({ model: this.model, sessionId: this.sessionId, attempt: this.model.attempt,
+          nodeId: 'gameplay-video-player' })
+      }
       if (this.model.phase === 'loading') {
         LoadingProgress().id('gameplay-video-loading').width(28).height(28).color('#d4bc7d')
           .enableLoading(!this.reducedMotion).accessibilityText('正在载入视频')

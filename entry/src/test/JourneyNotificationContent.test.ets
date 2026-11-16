@@ -1,9 +1,20 @@
 import { describe, expect, it } from '@ohos/hypium';
+import { LegacyRichBlock, legacyImageSources, legacyRichBlocks } from '../main/ets/business/LegacyRichContent';
 import { JourneyNotificationBlock, journeyNotificationBlocks,
   journeyNotificationPreview } from '../main/ets/business/JourneyNotificationContent';
 
 export default function journeyNotificationContentTests(): void {
   describe('JourneyNotificationContent', () => {
+    it('groups images from one quest body in authored order and retains repeated image locations', 0, () => {
+      const blocks: LegacyRichBlock[] = legacyRichBlocks('题面\r\n\n[[重点]]((护照||/profile))' +
+        '{{/图一.png}}<<https://media.example/show.mp4||javascript:alert(1)>>{{/图二.png}}{{/图一.png}}');
+      expect(blocks[0].spans[0].text).assertEqual('题面\n\n');
+      expect(blocks[0].spans[2].linkTarget).assertEqual('/profile');
+      expect(blocks[2].kind).assertEqual('video');
+      expect(blocks[2].poster).assertEqual('');
+      expect(legacyImageSources(blocks)).assertDeepEquals(['/图一.png', '/图二.png', '/图一.png']);
+    });
+
     it('retains rich spans and ordered media without exposing URLs in the row preview', 0, () => {
       const content: string = '信件\r\n[[关键]]((查看||/profile)){{/photo.png}}' +
         '<<https://media.example/reply.mp4||/cover.png>> 后续';

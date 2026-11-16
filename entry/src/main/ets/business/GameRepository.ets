@@ -7,7 +7,7 @@ import { GameNotification } from './GameNotification';
 export interface GameRepository {
   readonly mode: string;
   login(account: string, password: string): Promise<Player>;
-  me(): Promise<Player>;
+  me(cancellation?: ReadCancellation): Promise<Player>;
   changePassword(oldPassword: string, password: string, confirmation: string): Promise<Player>;
   updateProfile(displayName: string, avatar?: AvatarUpload | null): Promise<Player>;
   avatar(forceRefresh?: boolean): Promise<AvatarImage | null>;

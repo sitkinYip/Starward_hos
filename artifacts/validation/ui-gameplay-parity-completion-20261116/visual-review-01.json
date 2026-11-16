@@ -1,0 +1,217 @@
+{
+  "status": "reviewed_available_originals",
+  "scope": "Same-data visual review of six day-theme state groups and the pre-entry night-theme notice on a straight-phone ArkUI build against frozen Web originals.",
+  "webSource": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "webManifest": "web-reference.json",
+  "webViewportCssPx": [
+    388,
+    771
+  ],
+  "device": {
+    "source": "runtime-isolated-03.json",
+    "screenPx": [
+      1260,
+      2720
+    ],
+    "density": 3.25,
+    "fontScale": 1,
+    "systemInsetsPx": {
+      "top": 123,
+      "bottom": 91
+    },
+    "contentVp": [
+      387.6923,
+      771.0769
+    ]
+  },
+  "measurements": "Frame edges read from original pixels. Web excludes system bars. Native positions are in physical pixels unless converted to vp.",
+  "briefing": {
+    "nativeOriginals": [
+      "unread-before-entry.png",
+      "archive-before-entry.png"
+    ],
+    "webOriginals": [
+      "light-briefing-first-letter.png",
+      "light-briefing-archive.png"
+    ],
+    "letterFrameNativePx": {
+      "left": 78,
+      "top": 769,
+      "width": 1104,
+      "height": 1215
+    },
+    "letterFrameNativeContentVp": {
+      "left": 24.0,
+      "top": 198.8,
+      "width": 339.7,
+      "height": 373.8
+    },
+    "letterFrameWebCssPx": {
+      "left": 24,
+      "top": 192,
+      "width": 340,
+      "height": 387
+    },
+    "observations": [
+      "Both letters sit at the same center in the content area and wrap the last title character to a second line. The eyebrow, subtitle, highlighted body, remaining count and right-aligned action follow the same order.",
+      "The native lavender scrim continues behind the visible status and gesture bars. The Web preview has heavier backdrop blur and autofocus rings. The native panel has more visible orbit decoration and stronger gold highlight contrast.",
+      "Both archives show the same two notices newest first. Native uses the established white and green Journey Mail panel and envelope. Web uses the purple signal archive and a star glyph. The native capture follows a drag to the right, so it cannot establish relative default launcher positions."
+    ]
+  },
+  "profile": {
+    "nativeOriginals": [
+      "profile-sync-notice.png",
+      "profile-server-update.png"
+    ],
+    "webOriginals": [
+      "light-me-temporary-sync-failure.png",
+      "light-me-sync-restored-profile.png"
+    ],
+    "toastFrameNativePx": {
+      "left": 52,
+      "top": 123,
+      "width": 1156,
+      "height": 284
+    },
+    "toastFrameNativeContentVp": {
+      "left": 16.0,
+      "top": 0,
+      "width": 355.7,
+      "height": 87.4
+    },
+    "toastFrameWebCssPx": {
+      "left": 16,
+      "top": 16,
+      "width": 356,
+      "height": 86
+    },
+    "observations": [
+      "Same bordered, non-modal notice, title hierarchy, two-line body, right close action and visible answer draft. Native begins at the status-bar safe boundary. Web has 16 CSS px additional top margin.",
+      "The profile rename appears in the native passport side panel and in the refreshed Web header. These are different surfaces for checking the same server change.",
+      "The retained drafts were captured at different scroll offsets and background music states."
+    ]
+  },
+  "legacyQuestionBody": {
+    "nativeOriginals": [
+      "question-rich-top.png",
+      "question-inline-image.png",
+      "question-body-inline.png",
+      "question-body-inline-error.png",
+      "question-body-expanded.png",
+      "question-body-restored-paused-a.png",
+      "question-body-restored-paused-b.png"
+    ],
+    "webOriginals": [
+      "light-question-highlights.png",
+      "light-question-video-entry.png",
+      "light-question-image-viewer.png",
+      "light-question-video-viewer.png"
+    ],
+    "inlineImageSizeNativeVpApprox": [
+      326.2,
+      184.0
+    ],
+    "inlineImageSizeWebCssPxApprox": [
+      326,
+      184
+    ],
+    "videoViewerFrameNativeContentVpApprox": {
+      "left": 14.2,
+      "top": 284.3,
+      "width": 359.7,
+      "height": 202.5
+    },
+    "videoViewerFrameWebCssPx": {
+      "left": 14,
+      "top": 284,
+      "width": 360,
+      "height": 203
+    },
+    "observations": [
+      "Same statement, emphasis, link wrapping to its last character, inline image, and next prose/video order. The native image matches the Web size and uses the same visible artwork. The top-of-question capture is after native automatic scroll and cannot be used for comparing window-level content offsets.",
+      "Inline native video displays a central themed play action and a separate expand button. The Web shows browser controls at the bottom of its taller, full-width portrait poster. Native preserves its media height through poster, playback and the explicit retry state.",
+      "The expanded video frame and aspect match. Native uses larger ArkUI player controls and stronger background orbit decoration. Its dark scrim extends behind both visible system bars. The large image also matches frame alignment and uses the previously approved light zoom percentage for day mode.",
+      "Two native frames show paused playback at 00:12 after closing the expanded viewer. The device driver reports zero vertical pixel delta for this return.",
+      "The inline expand button is part of scroll content and can enter the vertical band of the gesture bar. The button and bar do not overlap horizontally in these captures."
+    ]
+  },
+  "legacyHint": {
+    "nativeOriginals": [
+      "hint-inline-image.png",
+      "question-hint-inline.png",
+      "question-hint-expanded.png",
+      "question-hint-restored-paused-a.png",
+      "question-hint-restored-paused-b.png"
+    ],
+    "webOriginals": [
+      "light-hint-open.png",
+      "light-hint-video-entry.png",
+      "light-hint-video-viewer.png"
+    ],
+    "portraitImageSizeNativeVpApprox": [
+      238.5,
+      340.0
+    ],
+    "portraitImageWidthWebCssPxApprox": 310,
+    "observations": [
+      "Both show the hint disclosure with a left border, followed by inline text, highlighted phrase, external link, portrait image, inline video, expand action and trailing paragraph.",
+      "Native uses the theme green for the emphasis and the underlined link where the Web hint shows browser-default yellow and blue. The native portrait image is centered, height-capped and spaced away from the next media. The Web portrait takes the full hint width and meets the video edge.",
+      "The no-poster video uses native controls. Returning from the expanded player leaves the hint open with the inline player paused, the draft and submit action still visible, and zero vertical pixel delta in the device report."
+    ]
+  },
+  "ordinaryClue": {
+    "nativeOriginals": [
+      "ordinary-clue-top.png",
+      "ordinary-clue-inline.png",
+      "ordinary-clue-expanded.png"
+    ],
+    "webOriginals": [
+      "light-ordinary-dialog.png",
+      "light-ordinary-video-entry.png",
+      "light-ordinary-video-viewer.png"
+    ],
+    "frameWidthNativeVpApprox": 339.7,
+    "frameWidthWebCssPx": 340,
+    "imageWidthNativeVpApprox": 281.8,
+    "imageWidthWebCssPx": 282,
+    "observations": [
+      "The same eyebrow, serif title, fixed right close, line, rich paragraph, landscape image and video follow the same order. Native and Web horizontal placements and widths agree closely.",
+      "Native has more vertical room at the top and bottom of the system-safe content, approximately 34 vp and 43 vp. Web reserves 24 CSS px above and below. The native backdrop remains visible behind both system bars.",
+      "Web shows a blue link and browser native poster controls. Native uses a theme green underlined link and themed central play before inline playback. The native inline playback frame is visible inside the same ordinary clue panel.",
+      "The standalone viewer shows the same media with the established fixed close action and branded frame. The native driver reports zero vertical pixel delta on return."
+    ]
+  },
+  "combinationClue": {
+    "nativeOriginals": [
+      "combination-clue-top.png",
+      "combination-clue-inline.png",
+      "combination-clue-expanded.png"
+    ],
+    "webOriginals": [
+      "light-combination-dialog.png",
+      "light-combination-video-entry.png",
+      "light-combination-video-viewer.png"
+    ],
+    "imageWidthNativeVpApprox": 278.2,
+    "imageWidthWebCssPx": 278,
+    "buttonBottomGapNativeVpApprox": 18.8,
+    "buttonBottomGapWebCssPx": 18,
+    "observations": [
+      "The same eyebrow, serif title, highlighted phrase, wrapped link, portrait image and fixed footer order are visible. Native theme green replaces the browser blue external link, and the native orbit decoration is more visible.",
+      "The portrait width matches. The information line and full close/action button remain visible below the scroll area on both surfaces. Native button bottom gap is approximately 19 vp, which matches the Web 18 CSS px. The modal scrim reaches both system bars.",
+      "The no-poster video plays in the scrolling clue body with ArkUI controls and a separate expand action. Both remain above the fixed footer. The expanded state uses the same frame as the other native media surfaces. The device report records the return to the combination clue without resuming inline playback and zero vertical pixel delta."
+    ]
+  },
+  "pendingVisuals": [
+    "Dark-theme native originals for the rich-text and profile states were outside this day-theme visual review."
+  ],
+  "briefingNight": {
+    "nativeSha256": "8793a189434e980e22bc2eeab71d061949c0797b7e66909d2ec9492b711029ce",
+    "webSha256": "186783613282f1b50286ffdcea2151ed24450b70e9603ddc31fd5742d4d2e1ba",
+    "sameData": true,
+    "observations": [
+      "Both first notifications wrap the title at the same character and keep the dark panel, subtitle, text and gold acknowledge button in the same order.",
+      "The native dim layer reaches both system bars. The status icons and gesture indicator remain visible. Native orbit decoration is stronger and the action has no browser focus outline."
+    ]
+  }
+}

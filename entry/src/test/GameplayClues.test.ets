@@ -297,15 +297,18 @@ export default function gameplayCluesTests(): void {
 
     it('retainsLinkTargetOnlyForTheDialogAndPreservesHighlightsAndLineBreaks', 0, () => {
       const source: string = '起始\r\n[[重点]]\n{{ https://images.example/clue.png }}\n结尾' +
-        '((查看说明||https://links.example/read))<<https://video.example/movie>>{{http://images.example/insecure.png}}';
+        '((查看说明||https://links.example/read))<<https://video.example/movie||/poster.png>>' +
+        '{{http://images.example/insecure.png}}';
       const parts: ClueTextPart[] = clueTextParts(source);
-      expect(parts.length).assertEqual(3);
+      expect(parts.length).assertEqual(4);
       expect(plainText(parts[0])).assertEqual('起始\n重点');
       expect(parts[0].spans.find((span: ClueSpan) => span.highlight)?.text).assertEqual('重点');
       expect(parts[1].image).assertEqual('https://images.example/clue.png');
       expect(plainText(parts[2])).assertEqual('结尾查看说明');
       expect(parts[2].spans.find((span: ClueSpan) => span.text === '查看说明')?.linkTarget)
         .assertEqual('https://links.example/read');
+      expect(parts[3].video).assertEqual('https://video.example/movie');
+      expect(parts[3].poster).assertEqual('/poster.png');
       const preview: ClueTextPart[] = clueTextParts(source, true);
       expect(preview.length).assertEqual(1);
       expect(preview[0].image).assertEqual('');

@@ -1,4 +1,6 @@
+import { LegacyRichBlock, LegacyRichSpan, legacyRichBlocks } from './LegacyRichContent';
 import { GameplayClue, GameplayEffect, GameplayLevel, GameplaySnapshot } from './GameplayModels';
+export { LegacyRichSpan as ClueSpan } from './LegacyRichContent';
 
 function compareText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -138,67 +140,20 @@ export function clueTitle(clue: GameplayClue): string {
   return clue.kind === 'video' ? '时空回溯' : '古老密卷';
 }
 
-export class ClueSpan {
-  text: string;
-  highlight: boolean;
-  linkTarget: string;
-
-  constructor(text: string, highlight: boolean = false, linkTarget: string = '') {
-    this.text = text;
-    this.highlight = highlight;
-    this.linkTarget = linkTarget;
-  }
-}
-
 export class ClueTextPart {
-  spans: ClueSpan[] = [];
+  spans: LegacyRichSpan[] = [];
   image: string = '';
+  video: string = '';
+  poster: string = '';
 }
 
-/**
- * Native reading subset of the frozen RichContent tokens. Inline images go through
- * the existing image loader policy. Link targets are retained only in the reading body;
- * videos and their posters are not fetched by the text dialog.
- */
 export function clueTextParts(source: string, preview: boolean = false): ClueTextPart[] {
-  const tokens: RegExp = /\[\[[\s\S]*?\]\]|\(\([\s\S]*?\|\|[\s\S]*?\)\)(?!\))|\{\{[\s\S]*?\}\}|<<[\s\S]*?>>/g;
-  const parts: ClueTextPart[] = [];
-  let paragraph: ClueTextPart = new ClueTextPart();
-  let from: number = 0;
-  const append = (text: string, highlight: boolean = false, linkTarget: string = ''): void => {
-    if (text.length > 0) { paragraph.spans.push(new ClueSpan(text.replace(/\r\n/g, '\n'), highlight, linkTarget)); }
-  };
-  let match: RegExpExecArray | null = tokens.exec(source);
-  while (match !== null) {
-    const token: string = match[0];
-    const isImage: boolean = token.startsWith('{{');
-    const image: string = isImage ? token.slice(2, -2).trim() : '';
-    const showImage: boolean = isImage && !preview &&
-      (/^https:\/\//i.test(image) || (image.startsWith('/') && !image.startsWith('//')));
-    const before: string = source.slice(from, match.index);
-    // A rendered image is already a block. Its enclosing line breaks would add two blank lines.
-    append(showImage ? before.replace(/\r?\n$/, '') : before);
-    if (token.startsWith('[[')) {
-      append(token.slice(2, -2), true);
-    } else if (token.startsWith('((')) {
-      const separator: number = token.indexOf('||');
-      const label: string = token.slice(2, separator);
-      append(label || token, false, !preview && label.length > 0 ? token.slice(separator + 2, -2).trim() : '');
-    } else if (showImage) {
-      if (paragraph.spans.length > 0) { parts.push(paragraph); }
-      const picture: ClueTextPart = new ClueTextPart();
-      picture.image = image;
-      parts.push(picture);
-      paragraph = new ClueTextPart();
-    }
-    from = match.index + token.length;
-    if (showImage || ((isImage || token.startsWith('<<')) && /\r?\n$/.test(before))) {
-      // When a media-only line is omitted, keep its preceding break for the text preview.
-      if (source.startsWith('\r\n', from)) { from += 2; } else if (source.startsWith('\n', from)) { from++; }
-    }
-    match = tokens.exec(source);
-  }
-  append(source.slice(from));
-  if (paragraph.spans.length > 0) { parts.push(paragraph); }
-  return parts;
+  return legacyRichBlocks(source, preview ? 'cluePreview' : 'clueBody').map((block: LegacyRichBlock) => {
+    const part: ClueTextPart = new ClueTextPart();
+    part.spans = block.spans;
+    part.image = block.kind === 'image' ? block.url : '';
+    part.video = block.kind === 'video' ? block.url : '';
+    part.poster = block.poster;
+    return part;
+  });
 }

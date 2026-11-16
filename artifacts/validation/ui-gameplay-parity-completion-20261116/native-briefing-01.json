@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": [
+    "first notice is before any entry write",
+    "before-entry acknowledge error keeps the same notification",
+    "same before-entry note retries before the next one",
+    "before-entry held drag moves and docks",
+    "before-entry held drag does not open archive",
+    "entry retains prior acknowledgement and does not replay read mail",
+    "two existing note acknowledgements and a single explicit start retain exact settlement"
+  ],
+  "originals": [
+    {
+      "state": "unread-before-entry",
+      "file": "unread-before-entry.png",
+      "sha256": "74ecd3e63866656355049eef350bd308b7616e56bfa5ed1676be34d88cc3ffa1"
+    },
+    {
+      "state": "archive-before-entry",
+      "file": "archive-before-entry.png",
+      "sha256": "a9cfd18ed24dc68d32c9f0af75896b8fe78028c1a0df7dfd08520bbd720e5f58"
+    }
+  ]
+}

@@ -174,10 +174,11 @@ export class HttpsGameRepository implements GameRepository {
     return player;
   }
 
-  async me(): Promise<Player> {
+  async me(cancellation?: ReadCancellation): Promise<Player> {
     const generation: number = this.requireSession();
     const revision: number = this.profileRevision;
-    const player: Player = decodePlayer(await this.request('/api/questions/v1/me', 'GET', '', this.token, generation));
+    const player: Player = decodePlayer(await this.request('/api/questions/v1/me', 'GET', '', this.token, generation,
+      cancellation));
     if (revision !== this.profileRevision) {
       throw new GameFailure('CANCELLED', '资料已更新，本次同步已取消。');
     }

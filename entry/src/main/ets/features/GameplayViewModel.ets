@@ -118,6 +118,8 @@ export class GameplayViewModel {
   private pendingRankUp: GameplayRankUp | null = null;
   private rankCompletionRevision: number = 0;
   private syncEpisodeSequence: number = 0;
+  private assignmentSyncFailed: boolean = false;
+  private playerSyncFailed: boolean = false;
   private pollingActive: boolean = false;
   private pollTimer: number = -1;
   private pollRead: ReadCancellation | null = null;
@@ -160,7 +162,8 @@ export class GameplayViewModel {
     this.loading = false;
     this.refreshing = false;
     this.refreshError = '';
-    this.syncEpisode = 0;
+    this.assignmentSyncFailed = false;
+    this.setPlayerSyncFailed(false);
     this.starting = false;
     this.error = '';
     this.errorCode = '';
@@ -213,6 +216,24 @@ export class GameplayViewModel {
       error.status === 429 || (error.status >= 500 && error.status < 600);
   }
 
+  setPlayerSyncFailed(failed: boolean): void {
+    this.playerSyncFailed = failed;
+    this.updateSyncEpisode();
+  }
+
+  private setAssignmentSyncFailed(failed: boolean): void {
+    this.assignmentSyncFailed = failed;
+    this.updateSyncEpisode();
+  }
+
+  private updateSyncEpisode(): void {
+    if (!this.assignmentSyncFailed && !this.playerSyncFailed) {
+      this.syncEpisode = 0;
+    } else if (this.syncEpisode === 0) {
+      this.syncEpisode = ++this.syncEpisodeSequence;
+    }
+  }
+
   private clearRefreshFacts(): void {
     this.cancelAutomaticClues();
     this.cancelAutoAdvance();
@@ -224,7 +245,8 @@ export class GameplayViewModel {
     this.answers = this.answers.filter((item: AnswerIntent) => item.assignmentId !== this.assignmentId);
     this.retryAnswer = false;
     this.refreshError = '';
-    this.syncEpisode = 0;
+    this.assignmentSyncFailed = false;
+    this.setPlayerSyncFailed(false);
     this.answerError = '';
     this.feedback = '';
     this.feedbackDanger = false;
@@ -241,7 +263,7 @@ export class GameplayViewModel {
     this.error = '';
     this.errorCode = '';
     this.refreshError = '';
-    this.syncEpisode = 0;
+    this.setAssignmentSyncFailed(false);
     this.serverOffset = Date.parse(snapshot.detail.serverTime) - Date.now();
     this.tick();
     this.accepted(snapshot);
@@ -588,7 +610,7 @@ export class GameplayViewModel {
     this.error = '';
     this.errorCode = '';
     this.refreshError = '';
-    this.syncEpisode = 0;
+    this.setAssignmentSyncFailed(false);
     this.answerError = '';
     this.feedback = '';
     this.completionRevision = 0;
@@ -670,7 +692,7 @@ export class GameplayViewModel {
 
   private reportRefreshFailure(error: Object, manual: boolean): void {
     if (this.transientRefreshFailure(error)) {
-      if (this.syncEpisode === 0) { this.syncEpisode = ++this.syncEpisodeSequence; }
+      this.setAssignmentSyncFailed(true);
       if (manual) { this.refreshError = error instanceof Error ? error.message : '同步失败，请稍后重试。'; }
       return;
     }

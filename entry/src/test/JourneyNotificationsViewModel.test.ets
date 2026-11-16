@@ -100,5 +100,33 @@ export default function journeyNotificationsViewModelTests(): void {
       expect(model.unreadCount).assertEqual(1);
       expect(repository.readIds.length).assertEqual(1);
     });
+
+    it('sharesAssignmentMailAcrossEntryWithoutRewritingAcknowledgedReceipts', 0, async () => {
+      const repository = new NotificationRepository();
+      repository.entries = [note('next'), note('first'), note('archived', READ_AT)];
+      const model = new JourneyNotificationsViewModel(repository, () => {});
+      model.bindOwner('owner');
+      await model.refresh();
+      await model.closeRouteNote('assignment', 'next', false);
+      expect(repository.readIds.length).assertEqual(0);
+      expect(model.oldestUnread?.id).assertEqual('first');
+
+      await model.closeRouteNote('assignment', 'first', false);
+      await model.closeRouteNote('assignment', 'first', true);
+      expect(repository.readIds.length).assertEqual(1);
+      expect(model.oldestUnread?.id).assertEqual('next');
+
+      model.openRouteArchive('assignment', 'archived');
+      expect(model.archivedOnRoute('assignment')?.id).assertEqual('archived');
+      expect(model.archivedOnRoute('other')).assertNull();
+      expect(model.current).assertNull();
+      await model.closeRouteNote('assignment', 'archived', true);
+      expect(model.archivedOnRoute('assignment')).assertNull();
+      expect(repository.readIds.length).assertEqual(1);
+
+      model.openRouteArchive('assignment', 'archived');
+      model.bindOwner('replacement');
+      expect(model.archivedOnRoute('assignment')).assertNull();
+    });
   });
 }

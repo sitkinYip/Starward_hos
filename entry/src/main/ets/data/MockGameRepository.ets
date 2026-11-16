@@ -139,7 +139,7 @@ export class MockGameRepository implements GameRepository {
     return this.generation;
   }
 
-  private async pause(operation: string, generation: number): Promise<void> {
+  private async pause(operation: string, generation: number, cancellation?: ReadCancellation): Promise<void> {
     this.calls.push(operation);
     const failure: GameFailure | null = this.nextFailure;
     this.nextFailure = null;
@@ -147,6 +147,7 @@ export class MockGameRepository implements GameRepository {
       setTimeout(resolve, this.delayMs);
     });
     this.assertCurrent(generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '读取已取消。'); }
     if (failure !== null) {
       if (failure.status === 401) {
         this.logout();
@@ -166,9 +167,9 @@ export class MockGameRepository implements GameRepository {
     return this.player();
   }
 
-  async me(): Promise<Player> {
+  async me(cancellation?: ReadCancellation): Promise<Player> {
     const generation: number = this.requireSession();
-    await this.pause('me', generation);
+    await this.pause('me', generation, cancellation);
     return this.player();
   }
 

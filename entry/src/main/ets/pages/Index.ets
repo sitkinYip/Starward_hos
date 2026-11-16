@@ -2,10 +2,13 @@ import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
 import { GameplayPage } from '../features/GameplayPage';
+import { GameplayViewModel } from '../features/GameplayViewModel';
+import { JourneyNotificationsViewModel } from '../features/JourneyNotificationsViewModel';
 import { NarrativePage } from '../features/NarrativePage';
-import { NarrativeRoute } from '../features/NarrativeViewModel';
+import { NarrativeRoute, NarrativeViewModel } from '../features/NarrativeViewModel';
 import { StarLettersPage } from '../features/StarLettersPage';
 import { StarLetterEntry } from '../business/StarLetters';
+import { GameNotification } from '../business/GameNotification';
 import { createSliceViewModel } from '../features/createSliceViewModel';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
@@ -32,7 +35,36 @@ import { StarwardAvatarCrop } from '../ui/StarwardAvatarCrop';
 import { StarwardPassport } from '../ui/StarwardPassport';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
 import { StarwardFinaleBackdrop } from '../ui/StarwardCombinationNotice';
+import { JOURNEY_LAUNCHER_SIZE, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
+import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
+/** One polling owner spans the briefing and gameplay branches of the assignment destination. */
+@ComponentV2
+struct AssignmentJourneyPolling {
+  @Require @Param journey: JourneyNotificationsViewModel;
+  @Require @Param play: GameplayViewModel;
+  @Require @Param narrative: NarrativeViewModel;
+  @Require @Param assignmentId: string;
+  @Require @Param authorized: boolean;
+  @Require @Param assigned: boolean;
+
+  aboutToAppear(): void { this.update(); }
+
+  aboutToDisappear(): void { this.journey.setPolling(false); }
+
+  @Monitor('assignmentId', 'authorized', 'assigned', 'narrative.route', 'play.visible', 'play.snapshot',
+    'play.error', 'play.refreshing')
+  private update(): void {
+    this.journey.setPolling(this.authorized && this.narrative.route === null && !this.play.refreshing &&
+      (this.play.visible ? this.play.snapshot?.detail.id === this.assignmentId &&
+        this.play.snapshot?.detail.status !== 'cancelled' && this.play.error.length === 0 : this.assigned));
+  }
+
+  build() {
+    Column() {}.width(0).height(0).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+  }
+}
 
 @Entry
 @ComponentV2
@@ -66,11 +98,15 @@ struct Index {
   @Local private showFinaleBackdrop: boolean = false;
   @Local private foreground: boolean = true;
   @Local private gameplayDestinationShown: boolean = false;
+  @Local private briefViewportWidth: number = 0;
+  @Local private briefViewportHeight: number = 0;
+  @Local private briefViewportTop: number = 0;
   private motion: StarwardMotion = new StarwardMotion();
   private avatarEditor: AvatarEditor = new AvatarEditor();
   private avatarPickRevision: number = 0;
   private starLettersInterrupted: boolean = false;
   private gameplayJourneyBack: (() => boolean) | null = null;
+  private briefJourneyBack: (() => boolean) | null = null;
   private paths: NavPathStack = new NavPathStack();
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -167,6 +203,17 @@ struct Index {
     }
   }
 
+  private assignmentJourneyAuthorized(): boolean {
+    return this.foreground && this.gameplayDestinationShown && this.vm.gate === 'home' &&
+      !this.vm.securityUnconfirmed && this.selectedId.length > 0 && this.vm.detail.id === this.selectedId &&
+      this.vm.detail.player === this.vm.player.id && this.vm.detail.status !== 'cancelled';
+  }
+
+  private handleAssignmentJourneyBack(): boolean {
+    if (!this.gameplayDestinationShown) { return false; }
+    return (this.vm.play.visible ? this.gameplayJourneyBack?.() : this.briefJourneyBack?.()) ?? false;
+  }
+
   onBackPress(): boolean {
     const keyboardHeight: number = Math.max(this.avoidArea.keyboard.bottomRect.height,
       this.avoidArea.keyboard.topRect.height, this.avoidArea.keyboard.leftRect.height, this.avoidArea.keyboard.rightRect.height);
@@ -185,7 +232,7 @@ struct Index {
       return true;
     }
     if (this.closeNarrative()) { return true; }
-    if (this.gameplayJourneyBack?.()) { return true; }
+    if (this.handleAssignmentJourneyBack()) { return true; }
     if (this.vm.gate === 'home' && this.paths.size() === 0 && this.mainIndex !== 0) {
       this.goMain(0);
       return true;
@@ -255,6 +302,7 @@ struct Index {
     this.vm.narrative.close();
     this.vm.play.leave();
     this.vm.journey.setPolling(false);
+    this.vm.journey.clearRouteArchive();
     this.paths.clear();
     this.selectMain(index);
     if (gameplayVisible) {
@@ -284,6 +332,8 @@ struct Index {
   private leaveGameplay(popPath: boolean = true): void {
     const gameplayVisible: boolean = this.vm.play.visible;
     this.gameplayTitleHidden = false;
+    this.vm.journey.setPolling(false);
+    this.vm.journey.clearRouteArchive();
     this.vm.play.leave();
     if (popPath) {
       this.paths.pop();
@@ -483,6 +533,8 @@ struct Index {
     }
     this.selectMain(0);
     this.selectedId = id;
+    this.vm.journey.setPolling(false);
+    this.vm.journey.clearRouteArchive();
     this.vm.narrative.close();
     this.vm.play.leave();
     this.paths.pushPath({ name: 'assignment' });
@@ -977,15 +1029,15 @@ struct Index {
               .fontSize(16).fontWeight(600).letterSpacing(0.96)
             this.icon($r('app.media.icon_arrow_right'), 20, $r('app.color.on_accent'))
           }.width('100%').justifyContent(FlexAlign.Center)
-        }.id('start-assignment').enabled(!this.vm.play.starting && !this.vm.detailBusy &&
+        }.id('start-assignment').enabled(!this.vm.play.starting && !this.vm.detailBusy && this.briefJourneyNote() === null &&
           assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'ready')
           .height(52).width('100%').borderRadius(10)
           .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
           .opacity(assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'ready' ? 1 : 0.45)
           .accessibilityText(this.vm.play.starting ? '正在进入本场冒险' : '开始本场冒险')
-          .onClick(() => this.vm.play.enter(this.selectedId, this.vm.detail.clueIds))
+          .onClick(() => this.enterBriefing())
         ErrorNotice({ message: this.vm.play.error, retryable: this.vm.play.retryEntry && !this.vm.play.starting,
-          retry: () => this.vm.play.enter(this.selectedId, this.vm.detail.clueIds),
+          retry: () => this.enterBriefing(),
           returnHome: () => { this.vm.play.leave(); this.paths.clear(); } })
         if (assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'expired') {
           Button({ type: ButtonType.Normal }) {
@@ -1013,6 +1065,105 @@ struct Index {
       })
   }
 
+  private enterBriefing(): void {
+    if (this.briefJourneyNote() === null && this.vm.detail.id === this.selectedId) {
+      this.vm.play.enter(this.selectedId, this.vm.detail.clueIds);
+    }
+  }
+
+  private briefJourneyReady(): boolean {
+    return !this.vm.play.visible && this.assignmentJourneyAuthorized() && this.vm.detail.status === 'assigned' &&
+      this.vm.narrative.route === null && !this.vm.detailBusy && !this.vm.play.starting && !this.vm.play.retryEntry &&
+      !this.showAccount && !this.showAvatarCrop &&
+      !this.keyboardOccupiesViewport() && this.vm.journey.gameplayReady &&
+      this.briefViewportWidth - this.safeLeft() - this.safeRight() >= 160 &&
+      this.briefViewportHeight - this.briefJourneyTopInset() >= 120;
+  }
+
+  private briefJourneyNote(): GameNotification | null {
+    return this.briefJourneyReady() ? this.vm.journey.archivedOnRoute(this.selectedId) ??
+      this.vm.journey.oldestUnread : null;
+  }
+
+  private briefJourneyTopInset(): number {
+    return Math.max(0, this.safeTop() - this.briefViewportTop);
+  }
+
+  private showBriefJourneyLauncher(): boolean {
+    return this.briefJourneyReady() && this.vm.journey.entries.length > 0 && this.briefJourneyNote() === null &&
+      this.briefViewportHeight - this.briefJourneyTopInset() - this.safeBottom() >= JOURNEY_LAUNCHER_SIZE + 24;
+  }
+
+  private async closeBriefJourneyNote(id: string, retry: boolean): Promise<void> {
+    if (this.briefJourneyNote()?.id === id) { await this.vm.journey.closeRouteNote(this.selectedId, id, retry); }
+  }
+
+  private measureBriefViewport(area: Area): void {
+    const width: number = Number(area.width);
+    const height: number = Number(area.height);
+    const top: number = Number(area.globalPosition.y);
+    if (Number.isFinite(width) && width > 0) { this.briefViewportWidth = width; }
+    if (Number.isFinite(height) && height > 0) { this.briefViewportHeight = height; }
+    if (Number.isFinite(top) && top >= 0) { this.briefViewportTop = top; }
+  }
+
+  @Builder
+  assignmentBrief() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll() {
+        Column({ space: 16 }) {
+          if (this.vm.gate === 'home') {
+            if (this.vm.detailBusy && this.vm.detail.id.length === 0) {
+              Text('正在准备本场冒险…').fontSize(13).fontColor($r('app.color.muted')).width('100%')
+            }
+            ErrorNotice({ message: this.vm.detailError, retryable: !this.vm.detailBusy,
+              retry: () => {
+                if (this.selectedId.length > 0) { this.vm.openAssignment(this.selectedId); }
+              }, returnHome: () => this.paths.clear() })
+            if (this.vm.detail.id.length > 0) {
+              if (this.vm.detail.extraDisplay.length > 0) {
+                StarwardQuestMessages({ groupId: 'assignment-extra', items: this.vm.detail.extraDisplay })
+              }
+              this.detailCard()
+            }
+            // Native return control supplements the frozen Web expired-state action inside the brief.
+            Button({ type: ButtonType.Normal }) {
+              Row({ space: 8 }) {
+                this.icon($r('app.media.icon_arrow_left'), 18, $r('app.color.accent_text'))
+                Text('回到首页').fontSize(13).fontColor($r('app.color.accent_text'))
+              }
+            }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => this.leaveGameplay())
+          }
+        }.width('100%').constraintSize({ maxWidth: 720 }).alignItems(HorizontalAlign.Start)
+          .padding({ left: 12, right: 12, top: 16, bottom: this.showBriefJourneyLauncher() ?
+            24 + JOURNEY_LAUNCHER_SIZE + this.safeBottom() : 24 })
+      }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
+      if (this.showBriefJourneyLauncher()) {
+        StarwardJourneyLauncher({ entries: this.vm.journey.entries, unreadCount: this.vm.journey.unreadCount,
+          viewportWidth: this.briefViewportWidth, viewportHeight: this.briefViewportHeight,
+          topInset: this.briefJourneyTopInset(), bottomInset: 24 + this.safeBottom(),
+          leftInset: this.safeLeft(), rightInset: this.safeRight(), displayFont: this.displayFont,
+          reducedMotion: this.motion.reduced, select: (id: string) => {
+            if (this.showBriefJourneyLauncher()) { this.vm.journey.openRouteArchive(this.selectedId, id); }
+          } })
+      }
+      StarwardJourneyNotificationDialog({ note: this.briefJourneyNote(), playerId: this.vm.player.id,
+        active: this.briefJourneyReady(), displayFont: this.displayFont, reducedMotion: this.motion.reduced,
+        queuedCount: this.vm.journey.archivedOnRoute(this.selectedId) === null ? this.vm.journey.unreadCount : 1,
+        pending: this.vm.journey.readingId.length > 0,
+        error: this.briefJourneyNote()?.id === this.vm.journey.readErrorId ? this.vm.journey.readErrorMessage : '',
+        close: (id: string) => { this.closeBriefJourneyNote(id, false); },
+        acknowledge: (id: string) => { this.closeBriefJourneyNote(id, true); },
+        openInternalLink: (href: string) => {
+          if (this.briefJourneyNote() === null || !this.openJourneyLink(href)) { return false; }
+          this.vm.journey.clearRouteArchive();
+          return true;
+        },
+        backHandlerChanged: (handler: (() => boolean) | null) => { this.briefJourneyBack = handler; } })
+    }.width('100%').height('100%')
+      .onAreaChange((_oldArea: Area, area: Area) => this.measureBriefViewport(area))
+  }
+
   @Builder
   destination(name: string) {
     if (name === 'assignment') {
@@ -1022,16 +1173,14 @@ struct Index {
             playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
             displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
             titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
-            leftInset: Math.max(0, this.avoidArea.cutout.leftRect.width, this.avoidArea.statusBar.leftRect.width,
-              this.avoidArea.navigationIndicator.leftRect.width),
-            rightInset: Math.max(0, this.avoidArea.cutout.rightRect.width, this.avoidArea.statusBar.rightRect.width,
-              this.avoidArea.navigationIndicator.rightRect.width),
+            leftInset: this.safeLeft(), rightInset: this.safeRight(),
             keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
             narrativeCovered: this.vm.narrative.route !== null, accountCovered: this.showAccount,
             journeyPollingAllowed: this.gameplayDestinationShown && this.vm.gate === 'home' &&
               !this.vm.securityUnconfirmed,
             openJourneyLink: (href: string) => this.openJourneyLink(href),
             journeyBackHandlerChanged: (handler: (() => boolean) | null) => { this.gameplayJourneyBack = handler; },
+            profilePollingChanged: (active: boolean) => { this.vm.setGameplayPlayerPolling(active); },
             openNarrative: (assignmentId: string, contentId: string) => this.openFinaleNarrative(assignmentId, contentId),
             openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) =>
               this.openQuestClue(assignmentId, clueId, contentId),
@@ -1039,43 +1188,13 @@ struct Index {
             finaleBackdropChanged: (visible: boolean) => { this.showFinaleBackdrop = visible; },
             leave: () => this.leaveGameplay() })
         } else {
-        Scroll() {
-          Column({ space: 16 }) {
-            if (this.vm.gate === 'home') {
-              if (this.vm.detailBusy && this.vm.detail.id.length === 0) {
-                Text('正在准备本场冒险…').fontSize(13).fontColor($r('app.color.muted')).width('100%')
-              }
-              ErrorNotice({ message: this.vm.detailError, retryable: !this.vm.detailBusy,
-                retry: () => {
-                  if (this.selectedId.length > 0) {
-                    this.vm.openAssignment(this.selectedId);
-                  }
-                }, returnHome: () => this.paths.clear() })
-              if (this.vm.detail.id.length > 0) {
-                if (this.vm.detail.extraDisplay.length > 0) {
-                  StarwardQuestMessages({ groupId: 'assignment-extra', items: this.vm.detail.extraDisplay })
-                }
-                this.detailCard()
-              }
-              // Native return control supplements the frozen Web expired-state action inside the brief.
-              Button({ type: ButtonType.Normal }) {
-                Row({ space: 8 }) {
-                  this.icon($r('app.media.icon_arrow_left'), 18, $r('app.color.accent_text'))
-                  Text('回到首页').fontSize(13).fontColor($r('app.color.accent_text'))
-                }
-              }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => {
-                this.vm.play.leave(); this.paths.pop();
-              })
-            }
-          }.width('100%').constraintSize({ maxWidth: 720 }).alignItems(HorizontalAlign.Start)
-            .padding({ left: 12, right: 12, top: 16, bottom: 24 })
-        }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
+          this.assignmentBrief()
         }
       }.title({ builder: this.detailTitle, height: this.detailTitleHeight() + 24 + this.safeTop() },
         StarwardMaterial.titleOptions(this.vm.play.visible ? BarStyle.STACK : BarStyle.STANDARD))
         .hideTitleBar(this.vm.play.visible && this.gameplayTitleHidden, !this.motion.reduced)
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
-        .onBackPressed(() => this.gameplayJourneyBack?.() ?? false)
+        .onBackPressed(() => this.handleAssignmentJourneyBack())
         .onShown((reason: VisibilityChangeReason) => {
           if (reason !== VisibilityChangeReason.CONTENT_COVER) { this.gameplayDestinationShown = true; }
         })
@@ -1084,6 +1203,7 @@ struct Index {
           if (reason === VisibilityChangeReason.CONTENT_COVER) { return; }
           this.gameplayDestinationShown = false;
           this.vm.journey.setPolling(false);
+          if (reason === VisibilityChangeReason.TRANSITION) { this.vm.journey.clearRouteArchive(); }
         })
     } else if (name === 'narrative') {
       NavDestination() {
@@ -1125,6 +1245,16 @@ struct Index {
   private safeBottom(): number {
     return Math.max(0, this.avoidArea.statusBar.bottomRect.height, this.avoidArea.cutout.bottomRect.height,
       this.avoidArea.navigationIndicator.bottomRect.height);
+  }
+
+  private safeLeft(): number {
+    return Math.max(0, this.avoidArea.cutout.leftRect.width, this.avoidArea.statusBar.leftRect.width,
+      this.avoidArea.navigationIndicator.leftRect.width);
+  }
+
+  private safeRight(): number {
+    return Math.max(0, this.avoidArea.cutout.rightRect.width, this.avoidArea.statusBar.rightRect.width,
+      this.avoidArea.navigationIndicator.rightRect.width);
   }
 
   private detailTitleHeight(): number {
@@ -1269,6 +1399,9 @@ struct Index {
       StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
         anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
       }).width('100%').height('100%')
+      AssignmentJourneyPolling({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
+        assignmentId: this.selectedId, authorized: this.assignmentJourneyAuthorized(),
+        assigned: this.vm.detail.status === 'assigned' })
       if (this.showFinaleBackdrop && this.foreground && this.vm.gate === 'home') {
         StarwardFinaleBackdrop({ reducedMotion: this.motion.reduced }).zIndex(1)
       }

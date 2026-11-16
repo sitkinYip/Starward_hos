@@ -73,6 +73,32 @@ async function waitForReads(repository: RefreshRepository, count: number): Promi
 
 export default function gameplayRefreshViewModelTests(): void {
   describe('GameplayRefreshViewModel', () => {
+    it('oneSyncNoticeSpansBothFailedReadsAndKeepsTheLatestDraft', 0, async () => {
+      const repository: RefreshRepository = new RefreshRepository();
+      const vm: GameplayViewModel = new GameplayViewModel(repository);
+      vm.bindOwner('playeralice');
+      await open(vm, repository);
+      vm.editAnswer('仍在作答');
+      vm.setPlayerSyncFailed(true);
+      const episode: number = vm.syncEpisode;
+      expect(episode > 0).assertTrue();
+      const failed: Promise<void> = vm.refresh();
+      repository.reads[1].fail(new GameFailure('UNAVAILABLE', '场次服务暂不可用', 503));
+      await failed;
+      expect(vm.syncEpisode).assertEqual(episode);
+      const recovered: Promise<void> = vm.refresh();
+      repository.reads[2].succeed(snapshot());
+      await recovered;
+      expect(vm.syncEpisode).assertEqual(episode);
+      expect(vm.draftAnswer).assertEqual('仍在作答');
+      vm.setPlayerSyncFailed(false);
+      expect(vm.syncEpisode).assertEqual(0);
+      vm.setPlayerSyncFailed(true);
+      expect(vm.syncEpisode > episode).assertTrue();
+      vm.leave();
+      expect(vm.syncEpisode).assertEqual(0);
+    });
+
     it('pullSupersedesAnInFlightPollAndIgnoresItsLateFatalResponse', 0, async () => {
       const repository: RefreshRepository = new RefreshRepository();
       let authenticationFailures: number = 0;

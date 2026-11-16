@@ -1,0 +1,165 @@
+{
+  "status": "passed",
+  "deviceMode": "API 26 straight USB phone, normal text, light theme",
+  "installedHapSha256": "805a1c635bf275bfdd44066caa3fa925b02af21b8a643694056e9ef0d7b9ed92",
+  "checks": [
+    "tapping the authored link hands off to the system browser and returns to the question",
+    "question-body inline HTTPS failure exposes retry in the same place",
+    "question-body first plays with the official controls in the body",
+    "question-body expands after removing the inline player",
+    "question-body returns to an inline player after the expanded viewer closes",
+    "question-body restores the enclosing question or clue view",
+    "question-hint first plays with the official controls in the body",
+    "question-hint expands after removing the inline player",
+    "question-hint returns to an inline player after the expanded viewer closes",
+    "question-hint restores the enclosing question or clue view",
+    "question and hint media preserve the answer draft",
+    "ordinary-clue first plays with the official controls in the body",
+    "ordinary-clue expands after removing the inline player",
+    "ordinary-clue closes back to the clue without resuming inline",
+    "ordinary-clue restores the enclosing question or clue view",
+    "combination-clue first plays with the official controls in the body",
+    "combination-clue expands after removing the inline player",
+    "combination-clue closes back to the clue without resuming inline",
+    "combination-clue restores the enclosing question or clue view",
+    "only the two deliberate correct answers award gameplay XP"
+  ],
+  "returnVerticalDeltaPx": {
+    "question-body": 0,
+    "question-hint": 0,
+    "ordinary-clue": 0,
+    "combination-clue": 0
+  },
+  "pausedFrameReadingsSeconds": {
+    "questionBodyTwoFrames": [
+      12,
+      12
+    ],
+    "questionHintTwoFrames": [
+      19,
+      19
+    ]
+  },
+  "bgmStateTransitionsObserved": [
+    "playing",
+    "paused",
+    "playing",
+    "paused"
+  ],
+  "gameplayLedger": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 2,
+    "correctAnswerCount": 2,
+    "completedProgressRows": 2,
+    "xpLedgerCount": 2,
+    "xpDeltaSum": 20
+  },
+  "stages": [
+    {
+      "directory": "native-06-media",
+      "captureHashes": [
+        {
+          "state": "question-rich-top",
+          "file": "question-rich-top.png",
+          "sha256": "569edee0e21d4320cd5f0d109c03471b200763c7c6e92f1cd8a6a03e89c78988"
+        },
+        {
+          "state": "question-inline-image",
+          "file": "question-inline-image.png",
+          "sha256": "109ad8189f5d4007322ae775c165f7e9d047f073e2fb8d489f81bed5dfa2119d"
+        },
+        {
+          "state": "question-body-inline-error",
+          "file": "question-body-inline-error.png",
+          "sha256": "18760f38a4a007be211b84b87caf64d52f67e68d7a982fff854c33a92df9c98d"
+        },
+        {
+          "state": "question-body-inline",
+          "file": "question-body-inline.png",
+          "sha256": "84a0688a054c7dda35d34f5e686bc248d366c6839cca52cc2ba9c53c91036f48"
+        },
+        {
+          "state": "question-body-expanded",
+          "file": "question-body-expanded.png",
+          "sha256": "56462b8e242a819ddb1f93b123c075385f65baa66777a720c490727e8f8cb9db"
+        },
+        {
+          "state": "question-body-restored-paused-a",
+          "file": "question-body-restored-paused-a.png",
+          "sha256": "4de79f6bcec4da9d594b141902bc81e109b96c3dd2e77305a988010e4c281841"
+        },
+        {
+          "state": "question-body-restored-paused-b",
+          "file": "question-body-restored-paused-b.png",
+          "sha256": "38647b57d9b32acfb3eeb0cfac83747891a0d63d1d18af2ea7cce824d5daca49"
+        },
+        {
+          "state": "hint-inline-image",
+          "file": "hint-inline-image.png",
+          "sha256": "aa9094a73f5b920de63f09cf42bfae9e960114e99db00ebee957588b1384177b"
+        },
+        {
+          "state": "question-hint-inline",
+          "file": "question-hint-inline.png",
+          "sha256": "b528c7ff9f7ccfc9ee2c1b862f37d29460aad15064240b3aac2b749fec9417c3"
+        },
+        {
+          "state": "question-hint-expanded",
+          "file": "question-hint-expanded.png",
+          "sha256": "b2711d76897d4f808bbdbd05f68c6c9a821444bbef78bc79ad533c4d084435f1"
+        },
+        {
+          "state": "question-hint-restored-paused-a",
+          "file": "question-hint-restored-paused-a.png",
+          "sha256": "1a1bd0b7d2c2c7ae7ec172479064f205492d5c109c00049ecde95a308c8bc698"
+        },
+        {
+          "state": "question-hint-restored-paused-b",
+          "file": "question-hint-restored-paused-b.png",
+          "sha256": "a75da000b8e0804968e1e7013eedf85ba7a3e890dd3a56f7667e21afbe25cae7"
+        },
+        {
+          "state": "ordinary-clue-top",
+          "file": "ordinary-clue-top.png",
+          "sha256": "7d13a6fda28d52fa1c67cdb443cf3076741ca357ee3b629f577d365648f0c6d9"
+        },
+        {
+          "state": "ordinary-clue-inline",
+          "file": "ordinary-clue-inline.png",
+          "sha256": "d076b433049e3647b5989e07c7f3729ea81cf519cd818cd3de8f30bd86e68904"
+        },
+        {
+          "state": "ordinary-clue-expanded",
+          "file": "ordinary-clue-expanded.png",
+          "sha256": "957198ebeb19a9d3064e57ddb9e015df52dbf0cd3952dbac82916f8bbadf0398"
+        },
+        {
+          "state": "combination-clue-top",
+          "file": "combination-clue-top.png",
+          "sha256": "98d4130c6a1adcf63c279608e1dd6d89eef2825e395dad8ef93dde473aa78eb7"
+        }
+      ]
+    },
+    {
+      "directory": "native-07-combo",
+      "captureHashes": [
+        {
+          "state": "combination-clue-top",
+          "file": "combination-clue-top.png",
+          "sha256": "82ce7182844e7a2c23030a1899bd7b8559722a5aaaf431dfbd06541643c71b9f"
+        },
+        {
+          "state": "combination-clue-inline",
+          "file": "combination-clue-inline.png",
+          "sha256": "be8da2bc68986608bd663547e3a8e6a17a93b5c1779a70fbcd146c4c26cb4f53"
+        },
+        {
+          "state": "combination-clue-expanded",
+          "file": "combination-clue-expanded.png",
+          "sha256": "ad43f544ba45fac9168f9abb81bb12743452039e8bd71241d930ccca762b315d"
+        }
+      ]
+    }
+  ],
+  "captureNote": "Ordinary clue, question, and hint share the first run. The combination was already open and its own Scroll was used in the second run. No answer was repeated."
+}

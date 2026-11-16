@@ -8,6 +8,9 @@ import { NarrativeViewModel } from './NarrativeViewModel';
 import { StarLettersViewModel } from './StarLettersViewModel';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
+import { ReadCancellation } from '../business/ReadCancellation';
+
+const GAMEPLAY_PLAYER_POLL_MS: number = 5000;
 
 @ObservedV2
 export class SliceViewModel {
@@ -50,6 +53,9 @@ export class SliceViewModel {
   private profileDirty: boolean = false;
   private profileRevision: number = 0;
   private avatarRequest: number = 0;
+  private gameplayPlayerPolling: boolean = false;
+  private playerPollTimer: number = -1;
+  private playerPollRead: ReadCancellation | null = null;
 
   constructor(repository: GameRepository = new MockGameRepository()) {
     this.repository = repository;
@@ -84,7 +90,9 @@ export class SliceViewModel {
       if (this.gate === 'home' && player.id === this.player.id) {
         // A full answer settlement supersedes an older in-flight player read.
         this.profileRevision++;
+        this.interruptPlayerPoll();
         this.acceptPlayer(player);
+        this.schedulePlayerPoll();
       }
     }, () => this.gate === 'home' ? this.player : null);
   }
@@ -102,7 +110,15 @@ export class SliceViewModel {
 
   private fatalPlayer(error: Object): boolean {
     return error instanceof GameFailure && (error.status === 401 || error.status === 403 ||
-      error.status === 404 || error.status === 410 || error.code === 'SESSION_OFFLINE');
+      error.status === 404 || error.status === 410 || error.code === 'SESSION_OFFLINE' ||
+      error.code === 'ACCOUNT_DISABLED' || error.code === 'PASSWORD_CHANGE_REQUIRED');
+  }
+
+  private rejectPlayerSession(error: Object): void {
+    const message: string = this.message(error);
+    this.logout();
+    this.error = message;
+    this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
   }
 
   private passwordMessage(error: Object): string {
@@ -127,6 +143,7 @@ export class SliceViewModel {
     }
     this.gate = player.mustChangePassword ? 'password' : 'home';
     this.play.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.play.setPlayerSyncFailed(false);
     this.narrative.bindOwner(player.mustChangePassword ? '' : player.id);
     this.starLetters.bindOwner(player.mustChangePassword ? '' : player.id);
     this.journey.bindOwner(player.mustChangePassword ? '' : player.id);
@@ -137,6 +154,7 @@ export class SliceViewModel {
       this.avatarError = '';
     }
     if (player.mustChangePassword) {
+      this.setGameplayPlayerPolling(false);
       this.items = [];
       this.detail = new AssignmentDetail();
       this.detailRequest++;
@@ -259,6 +277,7 @@ export class SliceViewModel {
     }
     const generation: number = this.generation;
     this.profileRevision++;
+    this.interruptPlayerPoll();
     this.profileBusy = true;
     this.profileError = '';
     this.profileSaved = false;
@@ -286,6 +305,7 @@ export class SliceViewModel {
     } finally {
       if (generation === this.generation) {
         this.profileBusy = false;
+        this.schedulePlayerPoll();
       }
     }
   }
@@ -311,6 +331,7 @@ export class SliceViewModel {
     }
     let generation: number = this.generation;
     this.profileRevision++;
+    this.interruptPlayerPoll();
     this.securityBusy = true;
     this.securityError = '';
     this.securitySaved = false;
@@ -348,6 +369,7 @@ export class SliceViewModel {
     } finally {
       if (generation === this.generation) {
         this.securityBusy = false;
+        this.schedulePlayerPoll();
       }
     }
   }
@@ -437,11 +459,14 @@ export class SliceViewModel {
     }
     const generation: number = this.generation;
     const profileRevision: number = this.profileRevision;
+    this.interruptPlayerPoll();
     this.listBusy = true;
     this.listError = '';
     this.tick();
+    let readingPlayer: boolean = true;
     try {
       const player: Player = await this.repository.me();
+      readingPlayer = false;
       if (generation !== this.generation || profileRevision !== this.profileRevision) {
         return;
       }
@@ -456,18 +481,72 @@ export class SliceViewModel {
       this.items = items;
     } catch (error) {
       if (generation === this.generation && profileRevision === this.profileRevision) {
-        const message: string = this.message(error as Object);
         if (this.fatalPlayer(error as Object)) {
-          this.logout();
-          this.error = message;
-          this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
-        } else {
-          this.listError = message;
+          this.rejectPlayerSession(error as Object);
+        } else if (!(error instanceof GameFailure && error.code === 'CANCELLED')) {
+          this.listError = this.message(error as Object);
+          if (readingPlayer && this.play.visible) { this.play.setPlayerSyncFailed(true); }
         }
       }
     } finally {
       if (generation === this.generation) {
         this.listBusy = false;
+        this.schedulePlayerPoll();
+      }
+    }
+  }
+
+  setGameplayPlayerPolling(active: boolean): void {
+    this.gameplayPlayerPolling = active;
+    if (active) { this.schedulePlayerPoll(); } else { this.interruptPlayerPoll(); }
+  }
+
+  private canPollPlayer(): boolean {
+    return this.gameplayPlayerPolling && this.gate === 'home' && this.play.visible && this.play.error.length === 0 &&
+      !this.listBusy && !this.profileBusy && !this.securityBusy && !this.securityUnconfirmed &&
+      !this.play.refreshing && !this.play.loading && !this.play.starting;
+  }
+
+  private interruptPlayerPoll(): void {
+    if (this.playerPollTimer !== -1) { clearTimeout(this.playerPollTimer); this.playerPollTimer = -1; }
+    const read: ReadCancellation | null = this.playerPollRead;
+    this.playerPollRead = null;
+    read?.cancel();
+  }
+
+  private schedulePlayerPoll(): void {
+    if (this.playerPollTimer !== -1 || this.playerPollRead !== null || !this.canPollPlayer()) { return; }
+    this.playerPollTimer = setTimeout(() => {
+      this.playerPollTimer = -1;
+      void this.pollPlayer();
+    }, GAMEPLAY_PLAYER_POLL_MS);
+  }
+
+  private async pollPlayer(): Promise<void> {
+    if (!this.canPollPlayer()) { return; }
+    const read: ReadCancellation = new ReadCancellation();
+    this.playerPollRead = read;
+    const generation: number = this.generation;
+    const revision: number = this.profileRevision;
+    try {
+      const player: Player = await this.repository.me(read);
+      if (this.playerPollRead === read && generation === this.generation && revision === this.profileRevision &&
+        this.canPollPlayer()) {
+        this.acceptPlayer(player);
+      }
+    } catch (error) {
+      if (this.playerPollRead === read && generation === this.generation && revision === this.profileRevision &&
+        this.canPollPlayer()) {
+        if (this.fatalPlayer(error as Object)) {
+          this.rejectPlayerSession(error as Object);
+        } else if (!(error instanceof GameFailure && error.code === 'CANCELLED')) {
+          this.play.setPlayerSyncFailed(true);
+        }
+      }
+    } finally {
+      if (this.playerPollRead === read) {
+        this.playerPollRead = null;
+        this.schedulePlayerPoll();
       }
     }
   }
@@ -523,6 +602,7 @@ export class SliceViewModel {
   }
 
   logout(): void {
+    this.setGameplayPlayerPolling(false);
     this.play.reset();
     this.narrative.bindOwner('');
     this.starLetters.bindOwner('');

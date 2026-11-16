@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "checks": [
+    "explicit entry opens the automatic text clue",
+    "a newly received note waits while the entry clue is visible",
+    "entry clue and all three notes maintain one start and zero answer writes"
+  ],
+  "originals": [
+    {
+      "state": "night-unread-before-entry",
+      "file": "night-unread-before-entry.png",
+      "sha256": "8793a189434e980e22bc2eeab71d061949c0797b7e66909d2ec9492b711029ce"
+    },
+    {
+      "state": "night-entry-clue-before-note",
+      "file": "night-entry-clue-before-note.png",
+      "sha256": "4172b5f90de5f31c087e126aca1b3bddc31d47606e57842ee5b8bbb3c35d803a"
+    },
+    {
+      "state": "night-post-entry-letter",
+      "file": "night-post-entry-letter.png",
+      "sha256": "8412c921db85b0bfc2cdad27a736968891134bb1c4da59c3627731bca6b4fec9"
+    }
+  ],
+  "previousThemeRestored": true,
+  "installedHapSha256": "805a1c635bf275bfdd44066caa3fa925b02af21b8a643694056e9ef0d7b9ed92"
+}

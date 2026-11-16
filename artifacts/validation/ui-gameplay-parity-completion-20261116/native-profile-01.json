@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": [
+    "503 while refreshing the player keeps the answer draft",
+    "the same outage stays dismissed while either read fails",
+    "automatic player recovery and nickname update preserve the draft",
+    "a fresh outage can show the notice again after recovery",
+    "background stops gameplay player polling",
+    "foreground resumes with the original draft",
+    "profile reads and failures produce no gameplay writes"
+  ],
+  "originals": [
+    {
+      "state": "profile-sync-notice",
+      "file": "profile-sync-notice.png",
+      "sha256": "a7b9e8334d3ad99717e82b884c9f9260c85e7637a5bb7534b54e359212911e17"
+    },
+    {
+      "state": "profile-server-update",
+      "file": "profile-server-update.png",
+      "sha256": "a8831d6333ab55293bd54fd6d991afcd1981b6f94e44824a66400dcf2fb8d1e2"
+    }
+  ]
+}
