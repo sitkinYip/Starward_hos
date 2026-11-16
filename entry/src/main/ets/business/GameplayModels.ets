@@ -1,4 +1,4 @@
-import { AssignmentDetail, Player } from './models';
+import { AssignmentDetail, ExtraDisplay, Player } from './models';
 
 // Platform-independent gameplay projection of backend/contracts/game.ts.
 // URLs and effects are data boundaries; decoding them does not implement media or clue playback.
@@ -47,6 +47,7 @@ export class GameplayLevel {
   presentationOverride: GameplayPresentation = new GameplayPresentation();
   question: GameplayQuestion | null = null;
   lastAnswer: string = '';
+  extraDisplay: ExtraDisplay[] = [];
 }
 
 export class GameplayEffect {

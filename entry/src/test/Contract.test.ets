@@ -105,6 +105,21 @@ export default function contractTests(): void {
       });
     });
 
+    it('decodesOptionalAssignmentAnnouncementsWithoutWeakeningCoreDetails', 0, () => {
+      const body: string = ASSIGNMENT_JSON.slice(0, -1) +
+        ',"extraDisplay":[null,{"key":"notice","label":"启程","text":"原样保留\\n  第二行"},' +
+        '{"key":"notice","label":"重复","text":"忽略"},{"key":"broken","label":23,"text":"忽略"}]}';
+      const detail = decodeAssignment(body);
+      expect(detail.extraDisplay.length).assertEqual(1);
+      expect(detail.extraDisplay[0].key).assertEqual('notice');
+      expect(detail.extraDisplay[0].label).assertEqual('启程');
+      expect(detail.extraDisplay[0].text).assertEqual('原样保留\n  第二行');
+      expect(decodeAssignment(ASSIGNMENT_JSON).extraDisplay.length).assertEqual(0);
+      expect(decodeAssignment(ASSIGNMENT_JSON.slice(0, -1) + ',"extraDisplay":{}' + '}')
+        .extraDisplay.length).assertEqual(0);
+      expectContractFailure(() => { decodeAssignment(body.replace('"currentIndex":0', '"currentIndex":"0"')); });
+    });
+
     it('preservesServerDisplayFieldsOnMeProfileAndPasswordPlayerDecoding', 0, () => {
       const body: string = playerWithDisplay('[{"key":"team","label":"所属队伍","text":"追星组\\n第二行","ignored":"extension"},' +
         '{"key":"","label":"","text":""}]');

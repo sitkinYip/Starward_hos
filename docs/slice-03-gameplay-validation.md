@@ -609,3 +609,26 @@ python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
 动效定版的 Hypium 仍为 189 项通过，codelinter 零错误和警告。组件已接原生系统减少动画状态，本轮直板机采集使用系统普通动效设置。Web 已用减少动画媒体查询核对停止，真机开启系统减少动画的交互仍待单测。[动效定版 Hypium](../artifacts/validation/ui-gameplay-narrative-clues-20261116/motion/local-test-summary.json) · [动效定版 codelinter](../artifacts/validation/ui-gameplay-narrative-clues-20261116/motion/lint.json)
 
 验收后清理一次性后端与 USB 映射，恢复固定预览数据库、账号与 CA。预览包与动效定版的 ArkTS 字节码和展示字体一致，严格 HTTPS 与直接登录通过，真机留在固定预览首页。核验前后预览进度与经验一致。[清理与恢复](../artifacts/validation/ui-gameplay-narrative-clues-20261116/restore-config-02.json) · [预览直登](../artifacts/validation/ui-gameplay-narrative-clues-20261116/fixed-preview-home-02.json) · [包等价](../artifacts/validation/ui-gameplay-narrative-clues-20261116/preview-package-equivalence-02.json)
+
+## 场次公告与关卡提示（2026-11-16）
+
+见 [Q01b](feature-acceptance-matrix.md#q01b-场次公告与关卡提示)。独立 PocketBase 真实发布两题场次，通过正式管理端配置场次公告和两种关卡提示。未入场、第二题锁定、首题结算后解锁、更新第二题文案和撤销全部文案五种数据均由真实详情接口核对。冻结 Web `4b7d1a0` 使用同数据离线重放，宽 388 CSS px，日夜各五种业务状态。独立直板机窗口宽 387.69 vp、内容高 771.08 vp，字号 1 倍。[后端与夹具](../artifacts/validation/ui-gameplay-extra-display-20261116/host-fixture-01.json) · [冻结 Web](../artifacts/validation/ui-gameplay-extra-display-20261116/web-reference-01.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-extra-display-20261116/final-tools
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output artifacts/validation/ui-gameplay-extra-display-20261116/runtime-02.json
+```
+
+官方 CLI 完成调试构建、签名、安装与启动，真机严格验证 CA、未知 CA 与错误主机名。Hypium 192 项通过，含三项新增验证，覆盖可选字段清洗和锁题保护以及答题回执，并扩展现有刷新测试，验证更新通知和草稿保留。codelinter 错误及警告均为零，保留阅读器既有的模糊性能建议。[定版运行时](../artifacts/validation/ui-gameplay-extra-display-20261116/runtime-02.json) · [Hypium](../artifacts/validation/ui-gameplay-extra-display-20261116/final-tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-extra-display-20261116/final-tools/lint.json)
+
+日间首轮 `device-extra.py` 实际入场并正确提交一次首题。真机逐项观察未入场公告、未解锁题控件、首题原有换行、第二题长串折行、点题号、横滑回前一题和「前往下一题」。两次下拉前各使旧的自然读取延迟，此后约 1.98 秒和 1.69 秒收到新的 200。相同 key 的第二题文案正确替换，撤掉全部公告与提示后，题号至题卡的间距回到 16 vp，输入框内原草稿一致。网关及 SQLite 仅有验证实际触发的一次入场、一次正确答题、一次关卡进度和一笔 10 XP。[直板日间首轮](../artifacts/validation/ui-gameplay-extra-display-20261116/native-01.json)
+
+定版补齐 Web 公告外部留白。夜间用独立账号实测未入场详情、回访直接定位到第二题提示、页顶顺序、点首题后横滑回第二题、从长提示滚到输入框、下拉更新与撤销、退出场次及退出账号。两次下拉约 1.91 秒及 1.84 秒收到新的 HTTP 200，草稿仍在。该轮首题由隔离宿主预先完成，真机阶段未改动 SQLite 进度或经验。[定版直板夜间](../artifacts/validation/ui-gameplay-extra-display-20261116/native-dark-final.json)
+
+日夜分别对照冻结 Web 原图。定版场次公告实测约 363.69 × 104 vp，Web 为 364 × 104.125 CSS px。夜间边线和底色像素值一致。长英文串在 ArkUI 系统字体折成三行，Web 折成四行，两端保留完整文案与明确换行。验收覆盖直板机普通字号。[同数据视觉复核](../artifacts/validation/ui-gameplay-extra-display-20261116/visual-review-01.json)
+
+隔离后端与临时 USB 映射已清理。固定预览沿用原账号、数据库及 CA，重新安装并完成真实 HTTPS 直登。预览包和定版隔离包的 ArkTS 字节码一致，手机留在已登录首页。[清理与恢复](../artifacts/validation/ui-gameplay-extra-display-20261116/restore-config-01.json) · [真机预览](../artifacts/validation/ui-gameplay-extra-display-20261116/fixed-preview-home-01.json) · [包等价](../artifacts/validation/ui-gameplay-extra-display-20261116/preview-package-equivalence-01.json)

@@ -100,6 +100,17 @@ export default function gameplayAnswerDataTests(): void {
       expect(already.effects.length).assertEqual(0);
     });
 
+    it('projectsAssignmentAndLevelNoticesFromTheAuthoritativeAnswerSnapshot', 0, () => {
+      const assignment: string = GAMEPLAY_COMPLETED_JSON
+        .replace('"id":"assignment1"', '"id":"assignment1","extraDisplay":' +
+          '[{"key":"notice","label":"场次","text":"完成公告"}]')
+        .replace('"id":"step1"', '"id":"step1","extraDisplay":[{"key":"notice","label":"第二题","text":"完成提示"}]');
+      const result: GameplayAnswerResult = decodeGameplayAnswer(gameplayAnswerFixture('correct', assignment));
+      expect(result.assignment.detail.extraDisplay[0].text).assertEqual('完成公告');
+      expect(result.assignment.levels[0].extraDisplay.length).assertEqual(0);
+      expect(result.assignment.levels[1].extraDisplay[0].text).assertEqual('完成提示');
+    });
+
     it('rejectsMissingOrMalformedAnswerFactsInsteadOfAnEmptySuccess', 0, () => {
       const body: string = gameplayAnswerFixture('correct');
       contractRejected(body.replace('"result":"correct"', '"result":"success"'));

@@ -73,9 +73,9 @@ function decodeRank(value: Object): Rank {
   return rank;
 }
 
-function decodeExtraDisplay(value: Object): ExtraDisplay[] {
+export function decodeExtraDisplay(value: Object): ExtraDisplay[] {
   // Match the formal Web extra.schema.ts optional-namespace compatibility:
-  // isolate malformed historical extensions while keeping core player strict.
+  // isolate malformed historical extensions while keeping required DTO fields strict.
   const result: ExtraDisplay[] = [];
   if (!Array.isArray(value)) {
     return result;
@@ -193,6 +193,7 @@ export function decodeAssignment(body: string): AssignmentDetail {
   fillSummary(detail, source);
   detail.currentIndex = intField(source, 'currentIndex');
   detail.serverTime = dateField(source, 'serverTime', true);
+  detail.extraDisplay = decodeExtraDisplay(source['extraDisplay']);
   // Legacy start receipts can omit effects, so retain only the pre-entry grant identities here.
   const clues: Object = source['clues'];
   if (clues !== undefined) {

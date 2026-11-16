@@ -2,7 +2,7 @@ import { GameFailure } from '../business/models';
 import { GameplayAnswerResult, GameplayClue, GameplayClueContent, GameplayCompletionTarget, GameplayContentBlock,
   GameplayEffect, GameplayLevel, GameplayOption, GameplayPresentation, GameplayQuestion,
   GameplaySnapshot } from '../business/GameplayModels';
-import { decodeAssignment, decodePlayer } from './DtoDecoder';
+import { decodeAssignment, decodeExtraDisplay, decodePlayer } from './DtoDecoder';
 
 function invalid(): GameFailure {
   return new GameFailure('CONTRACT_ERROR', '服务返回了不兼容的冒险数据，请重试或联系管理员。');
@@ -146,6 +146,9 @@ function level(value: Object): GameplayLevel {
   result.presentationOverride = presentation(source['presentationOverride']);
   result.question = source['question'] === null ? null : question(source['question']);
   result.lastAnswer = text(source, 'lastAnswer');
+  if (result.question !== null) {
+    result.extraDisplay = decodeExtraDisplay(source['extraDisplay']);
+  }
   return result;
 }
 

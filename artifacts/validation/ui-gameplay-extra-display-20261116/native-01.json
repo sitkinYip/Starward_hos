@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "installedHapSha256": "08f2af9023dcc7bb3d27c28c3cc47eb51b395c3ac5507467cd9a4652d2c515d4",
+  "checks": [
+    "assigned detail shows only its authoritative announcement",
+    "opening the detail was read-only",
+    "first question notice preserves exact line breaks",
+    "entered assignment keeps notice and second question is truly locked",
+    "only the intended start and first answer have settled",
+    "long second notice wraps and preserves its complete multiline body",
+    "horizontal swipe restores the previous question notice",
+    "manual next reaches the first line of the second notice",
+    "replacement refresh retains the current question and unsent draft",
+    "revoked notices collapse without removing the draft",
+    "notices, two selections and two refreshes were read-only after answer",
+    "gateway confirms no extra start or answer requests"
+  ],
+  "originals": [
+    {
+      "state": "light-assigned",
+      "sha256": "72ddd90ad0a839ceac36e15a9aeb984f25af7cb7328649f232d9f78fd23bca98"
+    },
+    {
+      "state": "light-active-locked",
+      "sha256": "00b316e8ab1882352553dcf11e6800459927d23ebce5cef50ca9e256b9da3c72"
+    },
+    {
+      "state": "light-active-unlocked",
+      "sha256": "45b9ba32aaf54a5437c5fe38838975f8a218f64144a76f1af36a310dcec36a67"
+    },
+    {
+      "state": "light-active-refreshed",
+      "sha256": "e93021aeed40af9e7c0cd0a66d3465ef86bd2e53cb32866d57782f27ec16e475"
+    },
+    {
+      "state": "light-empty",
+      "sha256": "0208c21b5c913a2867efd386671e7f353d229fee576a5c06913f42a66d3e1f6e"
+    }
+  ],
+  "measured": {
+    "assignedAnnouncementPx": [
+      39,
+      508,
+      1221,
+      846
+    ],
+    "q1ReadingStartPx": {
+      "label": [
+        97,
+        496,
+        1169,
+        567
+      ],
+      "text": [
+        97,
+        580,
+        1169,
+        844
+      ],
+      "headerAvatar": [
+        39,
+        241,
+        182,
+        384
+      ]
+    },
+    "q2ReadingStartPx": {
+      "label": [
+        97,
+        496,
+        1169,
+        567
+      ],
+      "text": [
+        97,
+        580,
+        1169,
+        1548
+      ],
+      "headerAvatar": [
+        39,
+        241,
+        182,
+        384
+      ]
+    },
+    "emptyRailAndCardPx": {
+      "rail": [
+        39,
+        508,
+        1221,
+        725
+      ],
+      "card": [
+        39,
+        777,
+        1221,
+        1794
+      ]
+    }
+  },
+  "refreshReceipts": [
+    {
+      "operation": "update",
+      "oldAutomaticResponseWasHeld": true,
+      "freshManualGet": 200,
+      "millisecondsFromPullToResponse": 1977,
+      "newReadFollowedPull": true
+    },
+    {
+      "operation": "empty",
+      "oldAutomaticResponseWasHeld": true,
+      "freshManualGet": 200,
+      "millisecondsFromPullToResponse": 1690,
+      "newReadFollowedPull": true
+    }
+  ],
+  "settlement": {
+    "readOnlyDiagnostic": true,
+    "assignmentStatus": "active",
+    "startedAtPresent": true,
+    "completedAtPresent": false,
+    "startReceiptCount": 1,
+    "answerReceiptCount": 1,
+    "answerSubmissionCount": 1,
+    "correctAnswerCount": 1,
+    "completedProgressRows": 1,
+    "xpLedgerCount": 1,
+    "xpDeltaSum": 10,
+    "playerTotalXp": 10,
+    "clueUnlockRows": 0,
+    "combinationUnlockRows": 0,
+    "unrelatedActorGameplayWrites": 0
+  }
+}

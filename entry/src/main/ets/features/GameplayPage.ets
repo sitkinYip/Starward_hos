@@ -35,6 +35,7 @@ import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
 import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
 import { StarwardQuestionSwiper } from '../ui/StarwardQuestionSwiper';
 import { StarwardClueArchive } from '../ui/StarwardClueArchive';
+import { StarwardQuestMessages } from '../ui/StarwardQuestMessages';
 import { StarwardNarrativeAttention } from '../ui/StarwardNarrativeAttention';
 import { StarwardClueTextDialog } from '../ui/StarwardClueTextDialog';
 import { StarwardCombinationDialog } from '../ui/StarwardCombinationDialog';
@@ -226,6 +227,7 @@ export struct GameplayPage {
   @Local private explicitQuestionTarget: string = '';
   @Local private explicitQuestionRevision: number = 0;
   private cardContentTop: number = -1;
+  private readingContentTop: number = -1;
   private questionRegionHeight: number = 0;
   private titleHidden: boolean = false;
   private positionOwner: string = '';
@@ -296,6 +298,7 @@ export struct GameplayPage {
       !this.isDialogClueCurrent(this.clueDialog, this.textClue)) { this.closeClueDialog(true); }
     if (!this.play.currentLevel()?.question) {
       this.cardContentTop = -1;
+      this.readingContentTop = -1;
       this.questionRegionHeight = 0;
       this.setTitleHidden(false, this.scrollOffset(), 0);
     }
@@ -523,12 +526,22 @@ export struct GameplayPage {
 
   private measureCard(area: Area): void {
     const top: number = Number(area.globalPosition.y);
+    if (!Number.isFinite(top)) { return; }
+    this.cardContentTop = top + this.scrollOffset();
+    this.syncTitle();
+  }
+
+  private measureReadingRegion(area: Area): void {
+    const top: number = Number(area.globalPosition.y);
     const height: number = Number(area.height);
     if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) { return; }
-    this.cardContentTop = top + this.scrollOffset();
+    this.readingContentTop = top + this.scrollOffset();
     this.questionRegionHeight = height;
-    this.syncTitle();
     this.scheduleQuestionPosition();
+  }
+
+  private hasLevelMessages(): boolean {
+    return this.readableQuestionId().length > 0 && (this.play.currentLevel()?.extraDisplay.length ?? 0) > 0;
   }
 
   private positionKey(): string {
@@ -563,7 +576,10 @@ export struct GameplayPage {
     this.positionTimer = setTimeout(() => {
       this.positionTimer = -1;
       if (!this.questionPositionReady() || this.positionOwner !== this.positionKey()) { return; }
-      const y: number = Math.max(0, this.cardContentTop - Math.max(this.viewportTop, this.statusInset));
+      const safeTop: number = Math.max(this.viewportTop, this.statusInset);
+      const visibleTop: number = this.hasLevelMessages() && !this.titleHidden ?
+        Math.max(safeTop, this.titleBottom) : safeTop;
+      const y: number = Math.max(0, this.readingContentTop - visibleTop);
       this.positionPending = false;
       this.questionScroller.scrollTo({ xOffset: 0, yOffset: y,
         animation: this.reducedMotion ? false : { duration: 240, curve: Curve.EaseOut } });
@@ -571,7 +587,7 @@ export struct GameplayPage {
   }
 
   private questionPositionReady(): boolean {
-    return this.positionPending && this.viewportHeight > 0 && this.cardContentTop >= 0 &&
+    return this.positionPending && this.viewportHeight > 0 && this.readingContentTop >= 0 &&
       this.questionRegionHeight + 0.5 >= this.minimumQuestionRegionHeight() && this.questionInteractionReady();
   }
 
@@ -1731,7 +1747,7 @@ export struct GameplayPage {
   }
 
   @Builder
-  questionRegion() {
+  questionBody() {
     Column({ space: 16 }) {
       if (this.readableQuestionId().length > 0) {
         if ((this.play.snapshot?.detail.totalLevels || 0) > 1) {
@@ -1752,11 +1768,24 @@ export struct GameplayPage {
           .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.accent_text'))
       }
     }.width('100%').alignItems(HorizontalAlign.Start)
+      .onAreaChange((_previous: Area, current: Area) => {
+        if (this.readableQuestionId().length > 0) { this.measureCard(current); }
+      })
+  }
+
+  @Builder
+  questionRegion() {
+    Column({ space: 16 }) {
+      if (this.hasLevelMessages()) {
+        StarwardQuestMessages({ groupId: 'gameplay-level-extra', items: this.play.currentLevel()?.extraDisplay ?? [] })
+      }
+      this.questionBody()
+    }.width('100%').alignItems(HorizontalAlign.Start)
       // Short cards still need enough scroll range to reach the safe reading position.
       .constraintSize({ minHeight: this.readableQuestionId().length > 0 ?
         this.minimumQuestionRegionHeight() : 0 })
       .onAreaChange((_previous: Area, current: Area) => {
-        if (this.readableQuestionId().length > 0) { this.measureCard(current); }
+        if (this.readableQuestionId().length > 0) { this.measureReadingRegion(current); }
       })
   }
 
@@ -1764,6 +1793,10 @@ export struct GameplayPage {
   gameplayScroll() {
     Scroll(this.questionScroller) {
       Column({ space: 16 }) {
+        if (!this.play.loading && this.play.error.length === 0 && this.play.snapshot !== null &&
+          this.play.snapshot.detail.extraDisplay.length > 0) {
+          StarwardQuestMessages({ groupId: 'assignment-extra', items: this.play.snapshot.detail.extraDisplay })
+        }
         if (this.play.loading) {
           Text('正在展开你的旅程…').id('gameplay-loading').width('100%')
             .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))

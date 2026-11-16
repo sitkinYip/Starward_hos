@@ -7,7 +7,7 @@ import { HttpsGameRepository } from '../main/ets/data/HttpsGameRepository';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
 import { HttpTransport, TransportRequest, TransportResponse } from '../main/ets/platform/HttpTransport';
 import { PLAYER_JSON } from './Contract.test';
-import { GAMEPLAY_CHOICE_JSON, GAMEPLAY_STARTED_JSON, GAMEPLAY_TEXT_QUESTION_JSON,
+import { GAMEPLAY_CANCELLED_STARTED_JSON, GAMEPLAY_CHOICE_JSON, GAMEPLAY_STARTED_JSON, GAMEPLAY_TEXT_QUESTION_JSON,
   GAMEPLAY_UNSTARTED_JSON } from './fixtures/GameplayFixture';
 
 class GameplayTransport implements HttpTransport {
@@ -116,6 +116,30 @@ export default function gameplayDataTests(): void {
       expect(snapshot.levels[1].question?.kind).assertEqual('choice');
       expect(snapshot.levels[1].question?.options[1].key).assertEqual('B');
       expect(snapshot.levels[1].question?.options[1].text).assertEqual('北极星');
+    });
+
+    it('withholdsExtraNoticesWhenTheServerWithholdsTheQuestion', 0, () => {
+      const first: string = '"id":"step0","extraDisplay":[{"key":"hint","label":"第一题","text":"第一行\\n第二行"},' +
+        '{"key":"hint","label":"重复","text":"忽略"}]';
+      const second: string = '"id":"step1","extraDisplay":[{"key":"hint","label":"第二题","text":"本题提示"}]';
+      const unstarted: GameplaySnapshot = decodeGameplay(GAMEPLAY_UNSTARTED_JSON
+        .replace('"id":"step0"', first).replace('"id":"step1"', second));
+      const started: GameplaySnapshot = decodeGameplay(GAMEPLAY_STARTED_JSON
+        .replace('"id":"step0"', first).replace('"id":"step1"', second).replace('"locked":false', '"locked":true'));
+      const next: GameplaySnapshot = decodeGameplay(GAMEPLAY_CHOICE_JSON
+        .replace('"id":"step0"', first).replace('"id":"step1"', second));
+      const cancelled: GameplaySnapshot = decodeGameplay(GAMEPLAY_CANCELLED_STARTED_JSON
+        .replace('"id":"step0"', first).replace('"id":"step1"', second));
+
+      expect(unstarted.levels[0].extraDisplay.length).assertEqual(0);
+      expect(unstarted.levels[1].extraDisplay.length).assertEqual(0);
+      expect(started.levels[0].extraDisplay.length).assertEqual(1);
+      expect(started.levels[0].extraDisplay[0].text).assertEqual('第一行\n第二行');
+      expect(started.levels[1].extraDisplay.length).assertEqual(0);
+      expect(next.levels[0].extraDisplay[0].label).assertEqual('第一题');
+      expect(next.levels[1].extraDisplay[0].label).assertEqual('第二题');
+      expect(cancelled.levels[0].extraDisplay.length).assertEqual(0);
+      expect(cancelled.levels[1].extraDisplay.length).assertEqual(0);
     });
 
     it('rejectsMissingOrMalformedGameplayDataWithoutAnEmptySuccess', 0, () => {

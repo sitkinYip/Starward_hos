@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "backend": "disposable real PocketBase",
+  "scope": "host HTTPS and administrative dispatch only",
+  "strictHostTlsChecks": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true
+  },
+  "publicGameplayWritesByPreparation": 0,
+  "webFixtureCommands": {
+    "start": 1,
+    "correctAnswers": 1
+  },
+  "temporaryAdministratorsRetired": true,
+  "settlementUnaffectedByAdminChanges": true,
+  "nativePristine": {
+    "assignmentStatus": "assigned",
+    "completedLevels": 0,
+    "assignmentNoticeCount": 1,
+    "visibleQuestions": [
+      false,
+      false
+    ],
+    "perLevelNoticeCount": [
+      0,
+      0
+    ],
+    "levelsWithoutExtensionFields": [
+      true,
+      true
+    ]
+  },
+  "webPhases": {
+    "assigned": {
+      "assignmentStatus": "assigned",
+      "completedLevels": 0,
+      "assignmentNoticeCount": 1,
+      "visibleQuestions": [
+        false,
+        false
+      ],
+      "perLevelNoticeCount": [
+        0,
+        0
+      ],
+      "levelsWithoutExtensionFields": [
+        true,
+        true
+      ]
+    },
+    "activeLocked": {
+      "assignmentStatus": "active",
+      "completedLevels": 0,
+      "assignmentNoticeCount": 1,
+      "visibleQuestions": [
+        true,
+        false
+      ],
+      "perLevelNoticeCount": [
+        1,
+        0
+      ],
+      "levelsWithoutExtensionFields": [
+        false,
+        true
+      ]
+    },
+    "activeUnlocked": {
+      "assignmentStatus": "active",
+      "completedLevels": 1,
+      "assignmentNoticeCount": 1,
+      "visibleQuestions": [
+        true,
+        true
+      ],
+      "perLevelNoticeCount": [
+        1,
+        1
+      ],
+      "levelsWithoutExtensionFields": [
+        false,
+        false
+      ]
+    },
+    "activeRefreshed": {
+      "assignmentStatus": "active",
+      "completedLevels": 1,
+      "assignmentNoticeCount": 1,
+      "visibleQuestions": [
+        true,
+        true
+      ],
+      "perLevelNoticeCount": [
+        1,
+        1
+      ],
+      "levelsWithoutExtensionFields": [
+        false,
+        false
+      ]
+    },
+    "empty": {
+      "assignmentStatus": "active",
+      "completedLevels": 1,
+      "assignmentNoticeCount": 0,
+      "visibleQuestions": [
+        true,
+        true
+      ],
+      "perLevelNoticeCount": [
+        0,
+        0
+      ],
+      "levelsWithoutExtensionFields": [
+        false,
+        false
+      ]
+    }
+  },
+  "privateDtoSha256": "9b3cf45230ea615ae900407f6f140996240034064a09a24eacefbca62f063454",
+  "fixtureScriptSha256": "45fbc644d35336fa4a5f1f8dbcd910e80aa931c199c7044df49d4a4cfce80bde"
+}

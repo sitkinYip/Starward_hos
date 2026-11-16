@@ -27,6 +27,7 @@ import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardMotion } from '../ui/StarwardMotion';
 import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
 import { StarwardQuestAvatar, StarwardQuestHeaderEntrance, StarwardQuestProgress } from '../ui/StarwardQuestHeaderMotion';
+import { StarwardQuestMessages } from '../ui/StarwardQuestMessages';
 import { StarwardAvatarCrop } from '../ui/StarwardAvatarCrop';
 import { StarwardPassport } from '../ui/StarwardPassport';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
@@ -1005,6 +1006,9 @@ struct Index {
                   }
                 }, returnHome: () => this.paths.clear() })
               if (this.vm.detail.id.length > 0) {
+                if (this.vm.detail.extraDisplay.length > 0) {
+                  StarwardQuestMessages({ groupId: 'assignment-extra', items: this.vm.detail.extraDisplay })
+                }
                 this.detailCard()
               }
               // Native return control supplements the frozen Web expired-state action inside the brief.

@@ -111,7 +111,10 @@ export default function gameplayRefreshViewModelTests(): void {
       let identities: number = 0;
       const vm: GameplayViewModel = new GameplayViewModel(repository, () => {}, () => {}, () => `id-${++identities}`);
       vm.bindOwner('playeralice');
-      const before: GameplaySnapshot = snapshot();
+      const before: GameplaySnapshot = snapshot(GAMEPLAY_STARTED_JSON
+        .replace('"id":"assignment1"', '"id":"assignment1","extraDisplay":' +
+          '[{"key":"notice","label":"场次","text":"旧公告"}]')
+        .replace('"id":"step0"', '"id":"step0","extraDisplay":[{"key":"notice","label":"第一题","text":"旧提示"}]'));
       await open(vm, repository, before);
       vm.editAnswer(' 原草稿 ');
       const pending: Promise<void> = vm.refresh();
@@ -121,6 +124,8 @@ export default function gameplayRefreshViewModelTests(): void {
       expect(repository.reads.length).assertEqual(2);
       expect(repository.entries.length).assertEqual(0);
       expect(vm.snapshot === before).assertTrue();
+      expect(vm.snapshot?.detail.extraDisplay[0].text).assertEqual('旧公告');
+      expect(vm.currentLevel()?.extraDisplay[0].text).assertEqual('旧提示');
       expect(vm.refreshing).assertTrue();
       expect(vm.loading).assertFalse();
       expect(vm.visible).assertTrue();
@@ -130,10 +135,15 @@ export default function gameplayRefreshViewModelTests(): void {
       await vm.submitAnswer();
       expect(repository.answerWrites).assertEqual(0);
       expect(identities).assertEqual(0);
-      repository.reads[1].succeed(snapshot());
+      const updated: GameplaySnapshot = snapshot(GAMEPLAY_STARTED_JSON
+        .replace('"id":"assignment1"', '"id":"assignment1","extraDisplay":' +
+          '[{"key":"notice","label":"场次","text":"新公告"}]'));
+      repository.reads[1].succeed(updated);
       await pending;
       expect(vm.refreshing).assertFalse();
       expect(vm.currentLevel()?.id).assertEqual(before.levels[0].id);
+      expect(vm.snapshot?.detail.extraDisplay[0].text).assertEqual('新公告');
+      expect(vm.currentLevel()?.extraDisplay.length).assertEqual(0);
       expect(vm.draftAnswer).assertEqual(' 最新 草稿 ');
       expect(vm.answerAllowed()).assertTrue();
       vm.leave();

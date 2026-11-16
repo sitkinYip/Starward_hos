@@ -1,0 +1,826 @@
+{
+  "status": "verified_frozen_web_reference",
+  "fixtureSha256": "9b3cf45230ea615ae900407f6f140996240034064a09a24eacefbca62f063454",
+  "sourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "driverSha256": "58a49eb61af24c0bcd42234c4dcf41a21480d9b570eeef9b7a4e8d34392f0bf5",
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "viewport": {
+    "width": 388,
+    "height": 771
+  },
+  "network": "pinned Web renderer and intercepted fixture reads; no requests sent to a backend",
+  "sourceCheckoutCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "sourceProductionBasis": "Recorded 1.17.1 frozen release, docs/ui-parity-review-2026-11-04.md",
+  "sameAsHostIsolatedPayload": true,
+  "nativeBehaviorComparison": "Web focuses the card on question navigation. For this fixture the scroll limit leaves the preceding level notice visible.",
+  "reportSha256": "e0e2d9cfd593d44ba447445b30cf473ec0e8df5cf78938e8312ffc444a6923fa",
+  "originalScreenshots": {
+    "dark-activeLocked.png": "e152293739af5edbc401639a81e2a7f3927f0c11c503eadcdb08508be9d8ae76",
+    "dark-activeRefreshed.png": "dba15a8fd44e55b8d3d1306a0ccd071b178c3359b8ec8fe052bec7fcdc388a8d",
+    "dark-activeUnlocked-switch-back-notice.png": "72f4863232e97e5a38f87bb16cdc4c6b184781770ee42aef8356c577f50a1ac7",
+    "dark-activeUnlocked-switch-back.png": "cc304df269ec61fd898afc9c70f87ad281a02ebd97fbaf2beb3b5dfe71937a2f",
+    "dark-activeUnlocked-switch-other-notice.png": "91e41ed243481596c660e4e156a49e463188627b01aff1f61f0429ad108ff15e",
+    "dark-activeUnlocked-switch-other.png": "91e41ed243481596c660e4e156a49e463188627b01aff1f61f0429ad108ff15e",
+    "dark-activeUnlocked.png": "2ebd00b1b039c37eec348818722b68bce37ffac119795696fa50f63f86cf2eb2",
+    "dark-assigned.png": "286652757742d7fa63a3cddf8af55905b2553df3a7645ebfb45c1109f59da9a7",
+    "dark-empty.png": "2477dc89c2b7036f9d3497203aad13ca33ad3d049d54f64986d3bfe85a2960fb",
+    "light-activeLocked.png": "8a4eed9b7f54754371675113069759177ba92d11d8e0ee7f96b83493a3186972",
+    "light-activeRefreshed.png": "dff382ed5143d3a93e9ec418cd9c9e06393674c4dbe7d416f84fb975757419cd",
+    "light-activeUnlocked-switch-back-notice.png": "6d753d7c2e7a8d2a0520f489c70d8a9c36ca1a26c35f3e42597628b0d0a51a1a",
+    "light-activeUnlocked-switch-back.png": "32c60c539533679607d0e7529bffa4e7ff6cd29ef25e28709e3912a744d8cd81",
+    "light-activeUnlocked-switch-other-notice.png": "4cf1aa81fd0b7280c54b76fa523eff23cb351c911fcab5814edac3207504203c",
+    "light-activeUnlocked-switch-other.png": "b3dce466a325b5cc184872fe68ed098c40a2e0d0da1a4a6b825e1c50f691c45d",
+    "light-activeUnlocked.png": "e7a78df96c66178791609772caf7adf8cdd270b0d6fbb751ec60106941df889e",
+    "light-assigned.png": "36acd7a5ad0b2d51f6fe43b20264b9a1d58a125238c829d627b229b0fe003951",
+    "light-empty.png": "4803a8f26db951a0b3fef3cb845466482abd3f9a9407500336deb29d9f97cc0c"
+  },
+  "observations": {
+    "light-assigned": {
+      "visibleScopes": [
+        "session"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 2
+      },
+      "blockedExternalRequests": 0,
+      "computedStyle": {
+        "group": {
+          "fontFamily": "\"Avenir Next\", \"Segoe UI Variable\", \"Noto Sans SC\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "color": "rgb(41, 60, 56)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "paddingTop": "0px",
+          "paddingInlineStart": "0px",
+          "paddingBottom": "0px",
+          "paddingInlineEnd": "0px",
+          "marginTop": "12px",
+          "marginBottom": "12px",
+          "borderInlineStartWidth": "0px",
+          "borderInlineStartColor": "rgb(41, 60, 56)",
+          "borderInlineStartStyle": "none",
+          "display": "block",
+          "whiteSpace": "normal",
+          "overflowWrap": "normal",
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionProperty": "all",
+          "transitionDuration": "0s"
+        },
+        "card": {
+          "fontFamily": "\"Avenir Next\", \"Segoe UI Variable\", \"Noto Sans SC\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "27.2px",
+          "color": "rgb(41, 60, 56)",
+          "backgroundColor": "rgb(247, 249, 248)",
+          "paddingTop": "12px",
+          "paddingInlineStart": "16px",
+          "paddingBottom": "12px",
+          "paddingInlineEnd": "16px",
+          "marginTop": "0px",
+          "marginBottom": "12px",
+          "borderInlineStartWidth": "2px",
+          "borderInlineStartColor": "rgb(130, 175, 162)",
+          "borderInlineStartStyle": "solid",
+          "display": "block",
+          "whiteSpace": "pre-wrap",
+          "overflowWrap": "anywhere",
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionProperty": "all",
+          "transitionDuration": "0s"
+        },
+        "label": {
+          "fontFamily": "\"Avenir Next\", \"Segoe UI Variable\", \"Noto Sans SC\", system-ui, sans-serif",
+          "fontSize": "12.8px",
+          "fontWeight": "400",
+          "lineHeight": "21.76px",
+          "color": "rgb(83, 107, 99)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "paddingTop": "0px",
+          "paddingInlineStart": "0px",
+          "paddingBottom": "0px",
+          "paddingInlineEnd": "0px",
+          "marginTop": "0px",
+          "marginBottom": "4px",
+          "borderInlineStartWidth": "0px",
+          "borderInlineStartColor": "rgb(83, 107, 99)",
+          "borderInlineStartStyle": "none",
+          "display": "block",
+          "whiteSpace": "pre-wrap",
+          "overflowWrap": "anywhere",
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionProperty": "all",
+          "transitionDuration": "0s"
+        }
+      }
+    },
+    "dark-assigned": {
+      "visibleScopes": [
+        "session"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 2
+      },
+      "blockedExternalRequests": 0,
+      "computedStyle": {
+        "group": {
+          "fontFamily": "\"Avenir Next\", \"Segoe UI Variable\", \"Noto Sans SC\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "color": "rgb(231, 230, 225)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "paddingTop": "0px",
+          "paddingInlineStart": "0px",
+          "paddingBottom": "0px",
+          "paddingInlineEnd": "0px",
+          "marginTop": "12px",
+          "marginBottom": "12px",
+          "borderInlineStartWidth": "0px",
+          "borderInlineStartColor": "rgb(231, 230, 225)",
+          "borderInlineStartStyle": "none",
+          "display": "block",
+          "whiteSpace": "normal",
+          "overflowWrap": "normal",
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionProperty": "all",
+          "transitionDuration": "0s"
+        },
+        "card": {
+          "fontFamily": "\"Avenir Next\", \"Segoe UI Variable\", \"Noto Sans SC\", system-ui, sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "27.2px",
+          "color": "rgb(231, 230, 225)",
+          "backgroundColor": "rgb(21, 22, 18)",
+          "paddingTop": "12px",
+          "paddingInlineStart": "16px",
+          "paddingBottom": "12px",
+          "paddingInlineEnd": "16px",
+          "marginTop": "0px",
+          "marginBottom": "12px",
+          "borderInlineStartWidth": "2px",
+          "borderInlineStartColor": "rgb(117, 104, 74)",
+          "borderInlineStartStyle": "solid",
+          "display": "block",
+          "whiteSpace": "pre-wrap",
+          "overflowWrap": "anywhere",
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionProperty": "all",
+          "transitionDuration": "0s"
+        },
+        "label": {
+          "fontFamily": "\"Avenir Next\", \"Segoe UI Variable\", \"Noto Sans SC\", system-ui, sans-serif",
+          "fontSize": "12.8px",
+          "fontWeight": "400",
+          "lineHeight": "21.76px",
+          "color": "rgb(170, 169, 159)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "paddingTop": "0px",
+          "paddingInlineStart": "0px",
+          "paddingBottom": "0px",
+          "paddingInlineEnd": "0px",
+          "marginTop": "0px",
+          "marginBottom": "4px",
+          "borderInlineStartWidth": "0px",
+          "borderInlineStartColor": "rgb(170, 169, 159)",
+          "borderInlineStartStyle": "none",
+          "display": "block",
+          "whiteSpace": "pre-wrap",
+          "overflowWrap": "anywhere",
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionProperty": "all",
+          "transitionDuration": "0s"
+        }
+      }
+    },
+    "light-activeLocked": {
+      "visibleScopes": [
+        "session",
+        "level"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        },
+        "level": {
+          "outer": {
+            "x": 12,
+            "y": 358.703125,
+            "width": 364,
+            "height": 143.3125,
+            "bottom": 502.015625
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 358.703125,
+                "width": 364,
+                "height": 131.3125,
+                "bottom": 490.015625
+              },
+              "label": {
+                "x": 30,
+                "y": 370.703125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 392.453125
+              },
+              "copySha256": "c4eaa21a0a4f0a4eb5c7b8cec08fb331b0ed9bde34730faadc43a7135947f9bf",
+              "renderedLineCount": 3,
+              "explicitLineCount": 2,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 2
+      },
+      "blockedExternalRequests": 0,
+      "lockedQuestionCount": 1
+    },
+    "dark-activeLocked": {
+      "visibleScopes": [
+        "session",
+        "level"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        },
+        "level": {
+          "outer": {
+            "x": 12,
+            "y": 358.703125,
+            "width": 364,
+            "height": 143.3125,
+            "bottom": 502.015625
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 358.703125,
+                "width": 364,
+                "height": 131.3125,
+                "bottom": 490.015625
+              },
+              "label": {
+                "x": 30,
+                "y": 370.703125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 392.453125
+              },
+              "copySha256": "c4eaa21a0a4f0a4eb5c7b8cec08fb331b0ed9bde34730faadc43a7135947f9bf",
+              "renderedLineCount": 3,
+              "explicitLineCount": 2,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 2,
+        "assignment": 3,
+        "notifications": 1
+      },
+      "blockedExternalRequests": 0,
+      "lockedQuestionCount": 1
+    },
+    "light-activeUnlocked": {
+      "visibleScopes": [
+        "session",
+        "level"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        },
+        "level": {
+          "outer": {
+            "x": 12,
+            "y": 358.703125,
+            "width": 364,
+            "height": 388,
+            "bottom": 746.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 358.703125,
+                "width": 364,
+                "height": 376,
+                "bottom": 734.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 370.703125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 392.453125
+              },
+              "copySha256": "bb9d63bf202b7ebb2d1bf099f61f57e8354bdbe97fd468fcc56d5dac756b2644",
+              "renderedLineCount": 11,
+              "explicitLineCount": 5,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 3,
+        "notifications": 1
+      },
+      "blockedExternalRequests": 0,
+      "realQuestionNavigation": {
+        "switch-other": {
+          "cardHasFocus": true,
+          "windowScrollY": 109,
+          "card": {
+            "x": 12.033645629882812,
+            "y": 421.2960205078125,
+            "width": 363.9327392578125,
+            "height": 313.8638916015625,
+            "bottom": 735.159912109375
+          },
+          "levelGroup": {
+            "x": 12,
+            "y": 249.703125,
+            "width": 364,
+            "height": 143.3125,
+            "bottom": 393.015625
+          },
+          "levelFirstLabelVisible": true
+        },
+        "switch-back": {
+          "cardHasFocus": true,
+          "windowScrollY": 354,
+          "card": {
+            "x": 12.095596313476562,
+            "y": 421.5,
+            "width": 363.808837890625,
+            "height": 313.7569580078125,
+            "bottom": 735.2569580078125
+          },
+          "levelGroup": {
+            "x": 12,
+            "y": 4.703125,
+            "width": 364,
+            "height": 388,
+            "bottom": 392.703125
+          },
+          "levelFirstLabelVisible": true
+        }
+      }
+    },
+    "dark-activeUnlocked": {
+      "visibleScopes": [
+        "session",
+        "level"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        },
+        "level": {
+          "outer": {
+            "x": 12,
+            "y": 358.703125,
+            "width": 364,
+            "height": 388,
+            "bottom": 746.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 358.703125,
+                "width": 364,
+                "height": 376,
+                "bottom": 734.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 370.703125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 392.453125
+              },
+              "copySha256": "bb9d63bf202b7ebb2d1bf099f61f57e8354bdbe97fd468fcc56d5dac756b2644",
+              "renderedLineCount": 11,
+              "explicitLineCount": 5,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 3,
+        "notifications": 1
+      },
+      "blockedExternalRequests": 0,
+      "realQuestionNavigation": {
+        "switch-other": {
+          "cardHasFocus": true,
+          "windowScrollY": 109,
+          "card": {
+            "x": 12.095611572265625,
+            "y": 421.8126220703125,
+            "width": 363.80877685546875,
+            "height": 313.7569580078125,
+            "bottom": 735.569580078125
+          },
+          "levelGroup": {
+            "x": 12,
+            "y": 249.703125,
+            "width": 364,
+            "height": 143.3125,
+            "bottom": 393.015625
+          },
+          "levelFirstLabelVisible": true
+        },
+        "switch-back": {
+          "cardHasFocus": true,
+          "windowScrollY": 354,
+          "card": {
+            "x": 12.046966552734375,
+            "y": 421.09454345703125,
+            "width": 363.90606689453125,
+            "height": 313.84088134765625,
+            "bottom": 734.9354248046875
+          },
+          "levelGroup": {
+            "x": 12,
+            "y": 4.703125,
+            "width": 364,
+            "height": 388,
+            "bottom": 392.703125
+          },
+          "levelFirstLabelVisible": true
+        }
+      }
+    },
+    "light-activeRefreshed": {
+      "visibleScopes": [
+        "session",
+        "level"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        },
+        "level": {
+          "outer": {
+            "x": 12,
+            "y": 358.703125,
+            "width": 364,
+            "height": 143.3125,
+            "bottom": 502.015625
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 358.703125,
+                "width": 364,
+                "height": 131.3125,
+                "bottom": 490.015625
+              },
+              "label": {
+                "x": 30,
+                "y": 370.703125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 392.453125
+              },
+              "copySha256": "cd49d1d57fa71262742e08a04f20a5ec4a93c5d2a7a0adab9b193e1da34de897",
+              "renderedLineCount": 3,
+              "explicitLineCount": 2,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 2
+      },
+      "blockedExternalRequests": 0
+    },
+    "dark-activeRefreshed": {
+      "visibleScopes": [
+        "session",
+        "level"
+      ],
+      "groups": {
+        "session": {
+          "outer": {
+            "x": 12,
+            "y": 121.578125,
+            "width": 364,
+            "height": 116.125,
+            "bottom": 237.703125
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 121.578125,
+                "width": 364,
+                "height": 104.125,
+                "bottom": 225.703125
+              },
+              "label": {
+                "x": 30,
+                "y": 133.578125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 155.328125
+              },
+              "copySha256": "c8fcd8d25a190235b7f99cccc31c2f4c771dd27cd409ec0f9404dd8f4262336f",
+              "renderedLineCount": 2,
+              "explicitLineCount": 1,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        },
+        "level": {
+          "outer": {
+            "x": 12,
+            "y": 358.703125,
+            "width": 364,
+            "height": 143.3125,
+            "bottom": 502.015625
+          },
+          "cards": [
+            {
+              "box": {
+                "x": 12,
+                "y": 358.703125,
+                "width": 364,
+                "height": 131.3125,
+                "bottom": 490.015625
+              },
+              "label": {
+                "x": 30,
+                "y": 370.703125,
+                "width": 330,
+                "height": 21.75,
+                "bottom": 392.453125
+              },
+              "copySha256": "cd49d1d57fa71262742e08a04f20a5ec4a93c5d2a7a0adab9b193e1da34de897",
+              "renderedLineCount": 3,
+              "explicitLineCount": 2,
+              "textWithinHorizontalBounds": true
+            }
+          ]
+        }
+      },
+      "offlineReads": {
+        "me": 3,
+        "assignment": 1
+      },
+      "blockedExternalRequests": 0
+    },
+    "light-empty": {
+      "visibleScopes": [],
+      "groups": {},
+      "offlineReads": {
+        "me": 1,
+        "assignment": 1
+      },
+      "blockedExternalRequests": 0
+    },
+    "dark-empty": {
+      "visibleScopes": [],
+      "groups": {},
+      "offlineReads": {
+        "me": 3,
+        "assignment": 1
+      },
+      "blockedExternalRequests": 0
+    }
+  }
+}

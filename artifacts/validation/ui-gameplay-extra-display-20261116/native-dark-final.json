@@ -1,0 +1,161 @@
+{
+  "status": "passed",
+  "installedHapSha256": "9f5baaee0261b205a043361ee10838e34c3a60594245b4d62821cba821b5111b",
+  "checks": [
+    "restorable app appearance was identified",
+    "day/night do not affect announcement authorization",
+    "direct active reopening starts at the right long notice",
+    "at full top the session notice, question rail and level notice follow Web ordering",
+    "forward horizontal swipe preserves the correct notice reading start",
+    "long dark notice leaves the question form reachable",
+    "release build refresh keeps the second question draft",
+    "release build collapses both revoked notice spaces",
+    "draft remains after both messages are removed",
+    "leaving clears both reading groups",
+    "original appearance restored",
+    "sign-out clears both reading groups",
+    "dark native geometry and switches make no additional gameplay writes"
+  ],
+  "originals": [
+    {
+      "state": "dark-assigned",
+      "sha256": "d13a961564aba55c7461681b71b43f55aad3a0efc4f3141975e2d4216b318daf"
+    },
+    {
+      "state": "dark-active-unlocked-reading",
+      "sha256": "f73ac049b0841382d6174f52021de4bc09456696511c64bfe2078ddc79f437f7"
+    },
+    {
+      "state": "dark-active-unlocked-top",
+      "sha256": "37bcddb6065f9c75a021b0c55ab2b3178e3763920d21092bc371d9b209994961"
+    },
+    {
+      "state": "dark-active-refreshed",
+      "sha256": "af162950704a418e27259fca08db6e968238dfb88662a6bd536398dfed0b5f7f"
+    },
+    {
+      "state": "dark-empty",
+      "sha256": "bcee67599ef3edc29afbf2a6af2ce0ae27519fd8122c696e715d8ba6114d3868"
+    }
+  ],
+  "measured": {
+    "assignedBoxPx": [
+      39,
+      547,
+      1221,
+      885
+    ],
+    "assignedLabelPx": [
+      97,
+      586,
+      1169,
+      657
+    ],
+    "assignedBodyPx": [
+      97,
+      670,
+      1169,
+      846
+    ],
+    "briefTitle": [
+      120,
+      1195,
+      1140,
+      1341
+    ],
+    "q2ReadingStartPx": {
+      "label": [
+        97,
+        535,
+        1169,
+        606
+      ],
+      "text": [
+        97,
+        619,
+        1169,
+        1587
+      ],
+      "headerAvatar": [
+        39,
+        241,
+        182,
+        384
+      ]
+    },
+    "activeTopOrderedPx": {
+      "announcement": [
+        39,
+        547,
+        1221,
+        885
+      ],
+      "rail": [
+        39,
+        1015,
+        1221,
+        1232
+      ],
+      "level": [
+        39,
+        1323,
+        1221,
+        2453
+      ],
+      "levelLabel": [
+        97,
+        1362,
+        1169,
+        1433
+      ],
+      "levelText": [
+        97,
+        1446,
+        1169,
+        2414
+      ],
+      "questionCard": [
+        39,
+        2583,
+        1221,
+        2720
+      ]
+    },
+    "q1ReadingStartPx": {
+      "label": [
+        97,
+        535,
+        1169,
+        606
+      ],
+      "text": [
+        97,
+        619,
+        1169,
+        883
+      ],
+      "headerAvatar": [
+        39,
+        241,
+        182,
+        384
+      ]
+    }
+  },
+  "refreshReceipts": [
+    {
+      "operation": "update",
+      "oldAutomaticResponseWasHeld": true,
+      "freshManualGet": 200,
+      "millisecondsFromPullToResponse": 1912,
+      "newReadFollowedPull": true
+    },
+    {
+      "operation": "empty",
+      "oldAutomaticResponseWasHeld": true,
+      "freshManualGet": 200,
+      "millisecondsFromPullToResponse": 1844,
+      "newReadFollowedPull": true
+    }
+  ]
+}
