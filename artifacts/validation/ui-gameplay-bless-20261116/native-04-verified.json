@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "installedHapSha256": "911d5779aafec3a861ba46f38efc68c1e60cae3bbc36e1a9f650092dde42abd8",
+  "publishedSourceSha256": "0941afd3094c3702f1725c040b7eb50c48c7c7ed2ce83490387a2a28d5b400e7",
+  "scope": "straight phone with strict isolated HTTPS",
+  "priorFinaleEntryHapSha256": "cfd4a69a3f1078741835ef0c8dceb48884040b33e2a8ca9263c3b71ebbd51995",
+  "priorFinaleEntryObserved": true,
+  "mandatoryUiAndAudioChecks": [
+    "blessing-is-silent-before-explicit-launch",
+    "all-four-phrases-and-their-voice-tracks-played-in-order",
+    "all-ten-credit-lines-are-read-in-order-and-last-clip-completes",
+    "last-credit-exposed-as-original-line",
+    "bgm-can-pause-and-resume-with-credits-open",
+    "finishing-and-returning-releases-bgm",
+    "archive-replay-starts-at-first-phrase-and-early-exit-stops-both-tracks"
+  ],
+  "orderedSceneEvents": [
+    [
+      "phrase",
+      0
+    ],
+    [
+      "disperse",
+      0
+    ],
+    [
+      "phrase",
+      1
+    ],
+    [
+      "disperse",
+      1
+    ],
+    [
+      "phrase",
+      2
+    ],
+    [
+      "disperse",
+      2
+    ],
+    [
+      "phrase",
+      3
+    ],
+    [
+      "credits",
+      0
+    ],
+    [
+      "credit",
+      0
+    ],
+    [
+      "credit",
+      1
+    ],
+    [
+      "credit",
+      2
+    ],
+    [
+      "credit",
+      3
+    ],
+    [
+      "credit",
+      4
+    ],
+    [
+      "credit",
+      5
+    ],
+    [
+      "credit",
+      6
+    ],
+    [
+      "credit",
+      7
+    ],
+    [
+      "credit",
+      8
+    ],
+    [
+      "credit",
+      9
+    ],
+    [
+      "phrase",
+      0
+    ]
+  ],
+  "allFourPhraseAndTenCreditClipsPlayed": true,
+  "checkedBothPlayersReleasedMidFirstReplayedClip": true,
+  "archiveAuthorizationDiscovery": {
+    "status": 200,
+    "delayFromAssignmentReadMs": 23
+  },
+  "archiveOpens": [
+    {
+      "status": 200,
+      "secondsAfterInitialDiscovery": 3.151
+    },
+    {
+      "status": 200,
+      "secondsAfterInitialDiscovery": 91.872
+    }
+  ],
+  "gameplayWritesDuringFinalReplay": 0,
+  "settlementUnchanged": {
+    "extraStarts": 0,
+    "extraAnswers": 1,
+    "readOnlySqliteCompared": true,
+    "observed": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 0,
+      "combinationUnlockRows": 0,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "rawReportSha256": "525e1bd1204ce34e85fadcccffc7e68e5de7d2107c3b5514814657cb1db6b56b",
+  "reconciliation": "The original request assertion expected only the two user opens and omitted the existing archive authorization discovery read. The raw report is preserved.",
+  "nativeScreenshotHashes": {
+    "launch.png": "131950d57582a9eae0072d26cfa20769a7c50394d76b151cc91460d4649e9db7",
+    "phrase-assembled.png": "ee1ce13ced3d26d0aae03d14d0769118b5d15d49ac42c797fe4f59564239c0b8",
+    "phrase-scatter.png": "82aa58ee9f84b983a1f7631a21aa8e06439fb9965ebef469bc5628f584e6e89e",
+    "phrase-final.png": "be25f6996833402ccf4f86e50c77173af9b9ba2dc9f620cb99fcbdf9dac23b73",
+    "credits-ready.png": "cc058aad7d2dd3571a4214204ded269a647464ea2fca7d63b674138b8e82a0ff",
+    "credit-first.png": "f803ed1a1d35d4d66cc852fb4df2d05d190c4e59f5c5db20ebf9499bc19dfcf7",
+    "last-credit.png": "da3cee6de400c0c3e551238fdf2e7c435884778b2fe4bf58e104f0ce4d641845",
+    "archive-card.png": "ed891bfe230e8cf9a6c327c94dd5f41f8576ad5918dbc7687ef3278f8f3e3664",
+    "archive-returned.png": "a17d56966424cf1a5113d05ae2e2e7fc3eeb5d8440dce44103bee05415b7d230"
+  }
+}

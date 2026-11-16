@@ -1,0 +1,260 @@
+{
+  "status": "reviewed_same_data_portrait_originals",
+  "scope": "冻结 Web 日间原图和直板机定版原图。Web 夜间原图提供单独参照。",
+  "deviceRuntimeSha256": "3bf43ec36ba4f21f58ffedc53c032e259eb4eccf687c028569404a213c4263f4",
+  "modes": {
+    "modern": {
+      "nativeStatus": "passed",
+      "nativeReport": "modern-native-01.json",
+      "webReport": "web-modern-03.json",
+      "nativeEnvelopeVp": [
+        20.92,
+        291.08,
+        345.85,
+        219.08
+      ],
+      "webEnvelopeCssPx": [
+        21,
+        291,
+        346,
+        218.98
+      ],
+      "nativePaperVp": [
+        13.85,
+        48.0,
+        360.0,
+        573.54
+      ],
+      "webPaperCssPx": [
+        14,
+        48,
+        360,
+        575
+      ],
+      "nativePages": 5,
+      "webPages": 6,
+      "paperImageEvidence": {
+        "typing-first": {
+          "likelySourceIndex": 1,
+          "medianAbsoluteError": [
+            0.9,
+            9.88,
+            9.46,
+            11.99
+          ]
+        },
+        "typing-later": {
+          "likelySourceIndex": 2,
+          "medianAbsoluteError": [
+            10.83,
+            0.88,
+            11.13,
+            18.34
+          ]
+        },
+        "full-first": {
+          "likelySourceIndex": 4,
+          "medianAbsoluteError": [
+            16.13,
+            21.32,
+            13.78,
+            5.04
+          ]
+        },
+        "full-second": {
+          "likelySourceIndex": 2,
+          "medianAbsoluteError": [
+            14.44,
+            6.85,
+            13.2,
+            17.77
+          ]
+        },
+        "music-paused": {
+          "likelySourceIndex": 1,
+          "medianAbsoluteError": [
+            5.16,
+            17.43,
+            13.18,
+            18.94
+          ]
+        }
+      },
+      "nativeReportSha256": "35013cb61d083133d5a09d19e1f864b9eef188d2ab46dedae5d5487e53dba900",
+      "webReportSha256": "b0862b9446007239e08c39261ab26b1d1cd179c908ab4cdc3ad970b41b652a91"
+    },
+    "classical": {
+      "nativeStatus": "passed",
+      "nativeReport": "classical-native-r2-01.json",
+      "webReport": "web-classical-03.json",
+      "nativeEnvelopeVp": [
+        20.92,
+        309.54,
+        345.85,
+        182.15
+      ],
+      "webEnvelopeCssPx": [
+        21,
+        309.45,
+        346,
+        182.09
+      ],
+      "nativePaperVp": [
+        13.85,
+        48.0,
+        360.0,
+        573.54
+      ],
+      "webPaperCssPx": [
+        14,
+        48,
+        360,
+        575
+      ],
+      "nativePages": 6,
+      "webPages": 6,
+      "paperImageEvidence": {
+        "typing-first": {
+          "likelySourceIndex": 1,
+          "medianAbsoluteError": [
+            0.84,
+            11.38,
+            5.16
+          ]
+        },
+        "typing-later": {
+          "likelySourceIndex": 2,
+          "medianAbsoluteError": [
+            10.92,
+            1.14,
+            11.38
+          ]
+        },
+        "full-first": {
+          "likelySourceIndex": 1,
+          "medianAbsoluteError": [
+            3.35,
+            14.94,
+            9.74
+          ]
+        },
+        "full-second": {
+          "likelySourceIndex": 3,
+          "medianAbsoluteError": [
+            8.82,
+            15.86,
+            4.46
+          ]
+        },
+        "music-paused": {
+          "likelySourceIndex": 1,
+          "medianAbsoluteError": [
+            1.4,
+            12.58,
+            6.8
+          ]
+        }
+      },
+      "nativeReportSha256": "991c1de10315fbe4a846d36a321d6d78f3e0b9f742653665f5cc3400bc1e332e",
+      "webReportSha256": "95c317d16053c2e5d954250dac7b9ea1453a5359e1a6aaa043ba2efeafa7789d"
+    },
+    "magic": {
+      "nativeStatus": "passed",
+      "nativeReport": "magic-native-01.json",
+      "webReport": "web-magic-03.json",
+      "nativeEnvelopeVp": [
+        20.92,
+        291.08,
+        345.85,
+        219.08
+      ],
+      "webEnvelopeCssPx": [
+        21,
+        291,
+        346,
+        218.98
+      ],
+      "nativePaperVp": [
+        13.85,
+        48.0,
+        360.0,
+        573.54
+      ],
+      "webPaperCssPx": [
+        14,
+        48,
+        360,
+        575
+      ],
+      "nativePages": 4,
+      "webPages": 4,
+      "paperImageEvidence": {
+        "typing-first": {
+          "likelySourceIndex": 1,
+          "medianAbsoluteError": [
+            0.72,
+            7.68,
+            8.32,
+            6.32
+          ]
+        },
+        "typing-later": {
+          "likelySourceIndex": 2,
+          "medianAbsoluteError": [
+            7.92,
+            0.88,
+            8.5,
+            8.51
+          ]
+        },
+        "full-first": {
+          "likelySourceIndex": 4,
+          "medianAbsoluteError": [
+            12.0,
+            12.78,
+            13.2,
+            7.67
+          ]
+        },
+        "full-second": {
+          "likelySourceIndex": 2,
+          "medianAbsoluteError": [
+            12.08,
+            2.56,
+            12.07,
+            15.25
+          ]
+        },
+        "music-paused": {
+          "likelySourceIndex": 4,
+          "medianAbsoluteError": [
+            6.41,
+            8.11,
+            8.4,
+            0.42
+          ]
+        }
+      },
+      "nativeReportSha256": "6e6240d9f6e4b981132bff6fc825d08285861c749fcd2bc2548261a85fd38b22",
+      "webReportSha256": "c72f2d8e53c43e9397ec4391c40f83395f1115caca1e9c4ea4b565b21dee8a29"
+    }
+  },
+  "observed": [
+    "古风上红下浅金，竖排正文从右侧起列。原生 6 页全部拼接与正式内容一致。",
+    "现代为暖色横排，魔法保留深青纸面和已确认的浅金折面。魔法 4 页拼接与正式内容一致。",
+    "三封的读时首图及切换后的第二图均与原素材像素特征匹配。现有截图不是连续录屏。",
+    "打字阶段「显示全文」在左，「收起信件」和 48 vp 配乐按钮各有独立点击区域。全文后收起在左。"
+  ],
+  "differences": [
+    "定版原生纸面宽 360 vp，高约 573.54 vp。浏览器为 360 × 575 CSS px。系统区扣除已实测的 123 px 顶部避让。",
+    "原生现代 5 页，冻结 Web 6 页，横排测量和段末留白会影响断页。古风 6 页及魔法 4 页与 Web 相同。",
+    "原生古风及现代场景照比 Web 更清晰。原生卷边采用渐变及关键帧，浏览器曲面更弯。",
+    "古风金色信封标题经过阴影增清晰度，浅金折面上仍较淡。说明和开信提示使用更深色。"
+  ],
+  "pendingNative": [
+    "减少动画系统设置实测",
+    "轮播每帧与卷页连续时序",
+    "原始长配乐播到曲尾回环",
+    "背景远程失败的独立故障"
+  ]
+}

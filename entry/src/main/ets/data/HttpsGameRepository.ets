@@ -1,7 +1,9 @@
 import { GameRepository } from '../business/GameRepository';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { GameplayAnswerResult, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
+import { NarrativeContent } from '../business/NarrativeModels';
 import { decodeGameplay, decodeGameplayAnswer } from './GameplayDecoder';
+import { decodeNarrative } from './NarrativeDecoder';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, avatarMimeType, GameFailure, Player,
   validateAvatarUpload, validateDisplayName, validatePasswordChange } from '../business/models';
 import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, TransportResponse } from '../platform/HttpTransport';
@@ -306,10 +308,10 @@ export class HttpsGameRepository implements GameRepository {
     return result;
   }
 
-  async assignments(): Promise<AssignmentSummary[]> {
+  async assignments(cancellation?: ReadCancellation): Promise<AssignmentSummary[]> {
     const generation: number = this.requireSession();
     const items: AssignmentSummary[] = decodeAssignments(await this.request('/api/questions/v1/assignments',
-      'GET', '', this.token, generation));
+      'GET', '', this.token, generation, cancellation));
     for (let i: number = 0; i < items.length; i++) {
       if (items[i].player !== this.playerId) {
         throw new GameFailure('CONTRACT_ERROR', '服务返回的场次身份不一致。');
@@ -364,6 +366,23 @@ export class HttpsGameRepository implements GameRepository {
     const body: string = await this.request('/api/questions/v1/assignments/' + encodeURIComponent(id),
       'GET', '', this.token, generation, cancellation);
     return this.acceptGameplay(body, id, generation);
+  }
+
+  async narrative(assignmentId: string, contentId: string, cancellation?: ReadCancellation): Promise<NarrativeContent> {
+    const generation: number = this.requireSession();
+    const routeId: RegExp = /^[A-Za-z0-9_-]{1,100}$/;
+    if (!routeId.test(assignmentId) || !routeId.test(contentId)) {
+      throw new GameFailure('VALIDATION_ERROR', '缺少有效的场次或剧情，请返回后重试。');
+    }
+    const body: string = await this.request('/api/questions/v1/assignments/' + encodeURIComponent(assignmentId) +
+      '/narratives/' + encodeURIComponent(contentId), 'GET', '', this.token, generation, cancellation);
+    this.assertCurrent(generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '剧情读取已取消。'); }
+    const content: NarrativeContent = decodeNarrative(body);
+    if (content.id !== contentId) {
+      throw new GameFailure('CONTRACT_ERROR', '服务返回的剧情身份不一致。');
+    }
+    return content;
   }
 
   async answerAssignment(id: string, sessionLevelId: string, rawAnswer: string,

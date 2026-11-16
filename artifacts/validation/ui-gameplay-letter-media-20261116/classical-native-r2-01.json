@@ -1,0 +1,971 @@
+{
+  "variant": "classical",
+  "hapSha256": "429878cada405905a4fac2a2f68493f982867405b28f0d6528bab4cb33fc7307",
+  "fixtureSha256": "dae4169b92288f60a4a254eff9500df319f49ea19de0ff1380e25f5b6760eb99",
+  "checks": [
+    "sealed-no-reading-audio",
+    "open-autoplays-music-and-narration-with-duck",
+    "full-text-and-web-swipe-axis",
+    "vertical-columns-preserve-entire-original-letter-in-right-first-order",
+    "no-new-voice-on-show-all-or-manual-paging",
+    "music-control-reseal-release-and-gameplay-return",
+    "one-expected-answer-one-authorized-letter-read"
+  ],
+  "states": [
+    {
+      "name": "sealed",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/sealed.png",
+        "sha256": "79228836384056d6ab6c60bb3a06c60381f9949a493e49085fb6d91571900901",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-open": [
+          68,
+          1129,
+          1192,
+          1721
+        ]
+      },
+      "page": null,
+      "visibleBodyCharacters": 0
+    },
+    {
+      "name": "typing-first",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/typing-first.png",
+        "sha256": "f68de07b9f25a2a207056445868547f92d5abb9b54adcd20ce8f53b062cfd5f9",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2143
+        ],
+        "narrative-letter-close": [
+          679,
+          2390,
+          998,
+          2533
+        ],
+        "narrative-letter-show-all": [
+          80,
+          2390,
+          399,
+          2533
+        ],
+        "narrative-letter-audio": [
+          1024,
+          2383,
+          1180,
+          2539
+        ]
+      },
+      "page": [
+        1,
+        6
+      ],
+      "visibleBodyCharacters": 4
+    },
+    {
+      "name": "typing-later",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/typing-later.png",
+        "sha256": "a7e393331579e74b392416a8d401382496d18e45b632dc4b6e1d92baab5d7277",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2143
+        ],
+        "narrative-letter-close": [
+          679,
+          2390,
+          998,
+          2533
+        ],
+        "narrative-letter-show-all": [
+          80,
+          2390,
+          399,
+          2533
+        ],
+        "narrative-letter-audio": [
+          1024,
+          2383,
+          1180,
+          2539
+        ]
+      },
+      "page": [
+        1,
+        6
+      ],
+      "visibleBodyCharacters": 21
+    },
+    {
+      "name": "full-first",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/full-first.png",
+        "sha256": "83b9d75ae5649ea81567d221233c269e94f877f41a50c21c6282293429ee2088",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2143
+        ],
+        "narrative-letter-close": [
+          80,
+          2390,
+          399,
+          2533
+        ],
+        "narrative-letter-audio": [
+          1024,
+          2383,
+          1180,
+          2539
+        ]
+      },
+      "page": [
+        1,
+        6
+      ],
+      "visibleBodyCharacters": 109
+    },
+    {
+      "name": "full-second",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/full-second.png",
+        "sha256": "cd8912448e915297edde46282cfd3b5e61254e337450a5b117e0aa657feafbd9",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2143
+        ],
+        "narrative-letter-close": [
+          80,
+          2390,
+          399,
+          2533
+        ],
+        "narrative-letter-audio": [
+          1024,
+          2383,
+          1180,
+          2539
+        ]
+      },
+      "page": [
+        2,
+        6
+      ],
+      "visibleBodyCharacters": 127
+    },
+    {
+      "name": "music-paused",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/music-paused.png",
+        "sha256": "156fd759b68583b010b9a0f919c16cddecb9a3b7c1db2e27ea41016592a2155f",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2143
+        ],
+        "narrative-letter-close": [
+          80,
+          2390,
+          399,
+          2533
+        ],
+        "narrative-letter-audio": [
+          1024,
+          2383,
+          1180,
+          2539
+        ]
+      },
+      "page": [
+        6,
+        6
+      ],
+      "visibleBodyCharacters": 65
+    },
+    {
+      "name": "resealed",
+      "source": {
+        "file": "artifacts/private/gameplay-letter-media-20261116/native/classical-native-r2-01/resealed.png",
+        "sha256": "6589440641f41427f8e32ef60982d7b633c1277f16f89d6243634d01b139f495",
+        "scope": "Private original"
+      },
+      "bounds": {
+        "narrative-letter-open": [
+          68,
+          1129,
+          1192,
+          1721
+        ]
+      },
+      "page": null,
+      "visibleBodyCharacters": 0
+    }
+  ],
+  "fullBodyEvidence": {
+    "pageCount": 6,
+    "nativeContentLength": 651,
+    "webSourceContentLength": 651
+  },
+  "requests": {
+    "answers": 1,
+    "starts": 0,
+    "letterGetStatuses": [
+      200
+    ]
+  },
+  "status": "passed",
+  "stage": "check-real-requests",
+  "audioEvents": [
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "begin",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "begin",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "initialized",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "prepared",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "duration",
+      "value": 2710
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "playing",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "position",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "initialized",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "prepared",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "duration",
+      "value": 220813
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "volume",
+      "value": 18
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "playing",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "position",
+      "value": 1045
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 1044
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "position",
+      "value": 2049
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 2050
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "completed",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "begin",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "volume",
+      "value": 50
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "volume",
+      "value": 18
+    },
+    {
+      "stream": "voice",
+      "attempt": 1,
+      "event": "released",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "initialized",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "prepared",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "duration",
+      "value": 28181
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "playing",
+      "value": 0
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 3058
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 1011
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 4047
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 2019
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 5056
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 3024
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 6064
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 4033
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 7080
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 5041
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 8090
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 6045
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 9098
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 7093
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 10003
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 8058
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 11011
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 9067
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 12017
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 10073
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 13024
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 11080
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 14030
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 12086
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 15037
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 13095
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 16042
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 14099
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 17059
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 15004
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 18066
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 16010
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 19071
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 17014
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 20074
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 18019
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 21079
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 19023
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 22086
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 20029
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 23092
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 21031
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 24096
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 22035
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 25003
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 23043
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 26012
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 24052
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 27017
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 25057
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 28023
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 26064
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 29032
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 27076
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 30041
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "position",
+      "value": 28181
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "completed",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "volume",
+      "value": 50
+    },
+    {
+      "stream": "voice",
+      "attempt": 2,
+      "event": "released",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 31047
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 32052
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 33058
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 34066
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 35072
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 36081
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 37090
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 38098
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 39006
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 40013
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 41024
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 42029
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 43043
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 44050
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 45055
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 46062
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 47066
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 48076
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 49081
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 50087
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 51099
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 52004
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 53011
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 54018
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 55023
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 56029
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 57034
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 58041
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 59047
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 60053
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "paused",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "playing",
+      "value": 0
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 61070
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "position",
+      "value": 62080
+    },
+    {
+      "stream": "music",
+      "attempt": 1,
+      "event": "released",
+      "value": 0
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "status": "captured_frozen_web_narrative_errors",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "viewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "rendererSha256": "59ed1d268740c7c31f7a851fd2203f5ffe969fbe41d1a3683748134048570b89",
+  "successfulRendererSha256": "14f7687375c823a008f4fd7bb8f462678c5c211c32414e25c600a990ba91c4a6",
+  "inputSha256": [
+    "91fafbd309b7e240192eb5cdcbd50b47a513f48e36c63e3c01af11190e9f039f",
+    "788f34804ea256d71cc78fb0df8597cd6c82a602c2e4a51e35cae752a5152e2c"
+  ],
+  "nativeFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "businessRequestsForwarded": 0,
+  "externalRequestsForwarded": 0,
+  "cases": [
+    {
+      "case": "locked",
+      "localNarrativeReplyStatuses": [
+        404
+      ],
+      "states": [
+        {
+          "state": "locked-error",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-errors-attempt-01/locked-error.png",
+            "sha256": "0a685d3fdb1955f343ba5804f4e0589466b7784c3f5cb86678d08f340ede79a1"
+          },
+          "geometryCssPx": {
+            "notice": {
+              "x": 0,
+              "y": 109.578125,
+              "width": 388,
+              "height": 113.1875
+            },
+            "actions": {
+              "x": 51,
+              "y": 165.765625,
+              "width": 206,
+              "height": 40
+            },
+            "copy": {
+              "x": 51,
+              "y": 126.578125,
+              "width": 206,
+              "height": 27.1875
+            },
+            "retry": {
+              "x": 51,
+              "y": 165.765625,
+              "width": 86,
+              "height": 40
+            },
+            "home": {
+              "x": 145,
+              "y": 165.765625,
+              "width": 112,
+              "height": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case": "temporary",
+      "localNarrativeReplyStatuses": [
+        503,
+        503,
+        503,
+        503,
+        503,
+        200
+      ],
+      "states": [
+        {
+          "state": "temporary-error",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-errors-attempt-01/temporary-error.png",
+            "sha256": "4185fce5044656f3152c0e87bfb17559707e87c6880bcb1d647d2edc59dbe035"
+          },
+          "geometryCssPx": {
+            "notice": {
+              "x": 0,
+              "y": 109.578125,
+              "width": 388,
+              "height": 113.1875
+            },
+            "actions": {
+              "x": 51,
+              "y": 165.765625,
+              "width": 206,
+              "height": 40
+            },
+            "copy": {
+              "x": 51,
+              "y": 126.578125,
+              "width": 206,
+              "height": 27.1875
+            },
+            "retry": {
+              "x": 51,
+              "y": 165.765625,
+              "width": 86,
+              "height": 40
+            },
+            "home": {
+              "x": 145,
+              "y": 165.765625,
+              "width": 112,
+              "height": 40
+            }
+          }
+        },
+        {
+          "state": "temporary-retry-sealed",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-errors-attempt-01/temporary-retry-sealed.png",
+            "sha256": "8a3c6c7c2230bf1f3ccffc5f0d7be5f004ce5cddf2707d31baac74f29c1f99a1"
+          },
+          "geometryCssPx": {
+            "letter": {
+              "x": 21,
+              "y": 291,
+              "width": 346,
+              "height": 218.984375
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-errors-attempt-01/observations.json",
+    "sha256": "6702f58560232b2476a7e6f55feb427194844a438b11c345c025ef4e4ad03c4e"
+  }
+}

@@ -1,6 +1,8 @@
 import { GameRepository } from '../business/GameRepository';
 import { GameplayAnswerResult, GameplayContentBlock, GameplayLevel, GameplayOption, GameplayQuestion,
   GameplaySnapshot } from '../business/GameplayModels';
+import { NarrativeContent } from '../business/NarrativeModels';
+import { ReadCancellation } from '../business/ReadCancellation';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player, Rank,
   validateAvatarUpload, validateDisplayName, validatePasswordChange } from '../business/models';
 import { decodeAssignment } from './DtoDecoder';
@@ -233,10 +235,11 @@ export class MockGameRepository implements GameRepository {
     return result;
   }
 
-  async assignments(): Promise<AssignmentSummary[]> {
+  async assignments(cancellation?: ReadCancellation): Promise<AssignmentSummary[]> {
     const generation: number = this.requireSession();
     this.ensureChanged();
     await this.pause('assignments', generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '场次读取已取消。'); }
     if (this.emptyAssignments) {
       return [];
     }
@@ -300,14 +303,23 @@ export class MockGameRepository implements GameRepository {
     return this.demoSnapshot();
   }
 
-  async gameplay(id: string): Promise<GameplaySnapshot> {
+  async gameplay(id: string, cancellation?: ReadCancellation): Promise<GameplaySnapshot> {
     const generation: number = this.requireSession();
     this.ensureChanged();
     await this.pause('gameplay', generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '场次读取已取消。'); }
     if (id !== this.fixture.id) {
       throw new GameFailure('NOT_FOUND', '这段旅程暂时无法访问。', 404);
     }
     return this.demoSnapshot();
+  }
+
+  async narrative(_assignmentId: string, _contentId: string, cancellation?: ReadCancellation): Promise<NarrativeContent> {
+    const generation: number = this.requireSession();
+    this.ensureChanged();
+    await this.pause('narrative', generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '剧情读取已取消。'); }
+    throw new GameFailure('NOT_FOUND', '内容尚未解锁', 404);
   }
 
   private ensureDemoProgress(): void {

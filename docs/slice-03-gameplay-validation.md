@@ -535,3 +535,77 @@ python3 "$starward_private/device-question-video.py" --runtime "$starward_runtim
 [已完成题](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-completed-01.json) 3 项通过，题面视频仍可播放并返回原处，两处选项均保持禁用。[锁定题](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-locked-01.json) 2 项通过，分别实点两个选项仍无视频请求。[夜间同数据对照](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-final-dark-01.json) 核对 6 对原图。提交中、冷却及播放时授权撤销没有在本切片独立注入真机。
 
 [恢复预览后的实际窗口及 TLS](../artifacts/validation/ui-gameplay-question-video-20261113/preview-restored-runtime-01.json) 5 项通过，[固定预览只读登录](../artifacts/validation/ui-gameplay-question-video-20261113/fixed-preview-restored-01.json) 7 项通过。[预览包字节码](../artifacts/validation/ui-gameplay-question-video-20261113/preview-package-equivalence-01.json) 与定版隔离包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-question-video-20261113/disposable-cleanup-01.json) 验证全部四个隔离账号零新增入场、答题和经验写入，专用资源已关闭。
+
+## 三种信纸的版式与媒体（2026-11-16）
+
+验收边界见 [N01b](feature-acceptance-matrix.md#n01b-三种信纸的版式与媒体)。同数据 Web 页面来自冻结 `4b7d1a0`。登录、分配、入场和末题结算使用真实隔离 PocketBase。手工预览和故障注入账户独立。真机用 API 26、普通字号、内容窗口约 388 × 771 vp。测试包以真实窗口和严格 TLS 正反例绑定。[定版运行时](../artifacts/validation/ui-gameplay-letter-media-20261116/runtime-02.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-letter-media-20261116
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output "$STARWARD_VALIDATION_DIR/runtime-02.json"
+```
+
+定版调试构建、签名、安装、启动各有官方 CLI 输出。Hypium 共 177 项通过，包含 4 项信件音频会话测试。codelinter 有 1 项场景图模糊实现的性能建议，错误和警告均为 0。私有 `artifacts/private/gameplay-letter-media-20261116/` 保留 `install-04.log`、`test-03.log`、签名 HAP 和真机驱动。该目录的 `letter-media-fixture.py`、`device-letter-media.py` 与 `compare-letter-visual.py` 分别用于独立夹具、直板机验收及原图几何复核。[Hypium](../artifacts/validation/ui-gameplay-letter-media-20261116/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-letter-media-20261116/lint.json)
+
+## 星海信笺的信纸回访（2026-11-16）
+
+验收目标见 [M02a](feature-acceptance-matrix.md#m02a-星海信笺的信纸回访)。独立真实后端通过 `scripts/isolated-tls.mjs` 接直板机，定版用 `scripts/hm.sh run` 调试构建、签名、安装并启动。窗口实测约 388 × 771 vp、密度 3.25、字号 1 倍，严格 TLS 的信任链和主机名正反例通过。[定版运行时](../artifacts/validation/ui-gameplay-star-letters-20261116/runtime-02.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-star-letters-20261116
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output "$STARWARD_VALIDATION_DIR/runtime-02.json"
+```
+
+Hypium 共 182 项通过，其中五项覆盖信笺筛选和去重、局部重试、授权撤销、换账号后迟到读取及空列表。codelinter 错误、警告为零，保留现有阅读器模糊的性能建议。真机驱动在私有 `artifacts/private/gameplay-star-letters-20261116/device-star-letters.py`，定版使用 `--run 02 --exercise-refresh --density 3.25 --hap-sha <定版签名包 SHA256>`。[Hypium](../artifacts/validation/ui-gameplay-star-letters-20261116/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-star-letters-20261116/lint.json)
+
+## 原生祝福演出与星海信笺（2026-11-16）
+
+[N02](feature-acceptance-matrix.md#n02-原生祝福演出与星海信笺回访) 使用已授权快照的现成祝福。冻结 Web 使用相同 DTO 与 15 个原始音频文件重放，保留 388 × 771 原图及浏览器连续画面。真机宽 387.69 vp，内容高 771.08 vp，密度 3.25，字号 1 倍。系统栏与手势区仍由原生安全区承接。真机动效以官方截图序列与隔离版时序日志核对。[末题入口运行时](../artifacts/validation/ui-gameplay-bless-20261116/runtime-03.json) · [最终回访运行时](../artifacts/validation/ui-gameplay-bless-20261116/runtime-04.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-bless-20261116/acceptance-tools
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output <新报告>
+```
+
+官方 CLI 分别完成调试构建、签名、安装及启动，最终包对应 `run-04.log`。Hypium 186 项通过，失败和忽略均为零。codelinter 无错误或警告，有一条现有阅读器的模糊性能建议。签名包、原图、冻结 Web 对照及采集器保留在本机 `artifacts/private/gameplay-bless-20261116/`。[Hypium](../artifacts/validation/ui-gameplay-bless-20261116/acceptance-tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-bless-20261116/acceptance-tools/lint.json)
+
+末题隔离轮从第二题提交成功后进入演出。台账仅新增一次答题收据、一次提交、一次完成进度与该题经验记录。回访定版修正了片尾对粒子字的遮盖和末行无障碍定位，使用同一已结算的隔离玩家。定版完整播放及再次打开后提前退出均有真机与 AVPlayer 证据，播放前后入场、答题、进度和经验台账一致。[隔离末题准备](../artifacts/validation/ui-gameplay-bless-20261116/host-native-r2-01.json)
+
+真机驱动 `device-bless.py` 的 `--run 03` 用新隔离玩家验证末题进入。`--run 04 --from-completed-archive` 用定版包验证两次回访。第一次收集到的定版台账有三次授权 GET 200，驱动原先只预期两次。保留原始采集结果，以同一轮请求时间戳与原图重核为一次归档分类读取、首次打开和再次打开各一次。隔离 HTTP 台账无玩法写入，SQLite 回访前后逐项相同。[同轮定版复核](../artifacts/validation/ui-gameplay-bless-20261116/native-04-verified.json)
+
+验收后关闭一次性服务，恢复原固定预览 CA、账户与数据库。固定预览包装有定版相同 ArkTS 字节码，独立 CA 的严格 HTTPS 验证及真机直登均通过，设备留在固定预览首页。[真机预览恢复](../artifacts/validation/ui-gameplay-bless-20261116/fixed-preview-home-01.json) · [包字节码核对](../artifacts/validation/ui-gameplay-bless-20261116/preview-package-equivalence-01.json)
+
+## 题内信纸、祝福与跨题提醒（2026-11-16）
+
+见 [C01r](feature-acceptance-matrix.md#c01r-题内信纸与祝福线索及待开启提醒)。使用已授权的现代信纸与祝福内容，在真实隔离 PocketBase 配置两题场次。直板机与冻结 Web 重放使用独立账号，重新采集时使用新隔离账号。首题完成放行两份剧情，第二题可保留未交草稿。宿主侧复用后端正式路由，两份剧情在解锁前返回 404，授予后返回 200。[隔离后端对照](../artifacts/validation/ui-gameplay-narrative-clues-20261116/host-01.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-narrative-clues-20261116/tools
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output artifacts/validation/ui-gameplay-narrative-clues-20261116/runtime-03.json
+```
+
+官方 CLI 完成调试构建、签名、安装和 Ability 启动。真机宽 387.69 vp，内容区高 771.08 vp，普通字号，隔离 CA、未知 CA 和错误主机名分别核验。Hypium 189 项通过，含三项新回归，覆盖题卡与跨题排序、剧情不自动播放、当前账号与授权及草稿。codelinter 错误和警告均为零，保留阅读器现有的模糊性能建议。原始日志、签名包和验收脚本保留在本机私有目录 `artifacts/private/gameplay-narrative-clues-20261116/`。[定版真机运行时](../artifacts/validation/ui-gameplay-narrative-clues-20261116/runtime-03.json) · [Hypium](../artifacts/validation/ui-gameplay-narrative-clues-20261116/tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-narrative-clues-20261116/tools/lint.json)
+
+私有 `device-final.py` 对应夜间真机定版。首题从未答状态实际提交一次，出现两张可手动打开的线索卡。对信纸用测试代理单次注入 503，点重试后获得 200。返回首题后卡片上缘保持原坐标。切到第二题，从提醒打开祝福，返回后输入框坐标和草稿一致。原题可以再次打开祝福，退出再进入后待开启状态保持已读。收集器初版漏计了宿主为这一账号预先执行的入场请求，保留原报告，并用同轮网关时间与 requestId 哈希对上 SQLite 的一条入场、一条答题回执，以及唯一的进度与经验变更。[同轮定版验收](../artifacts/validation/ui-gameplay-narrative-clues-20261116/native-final-04-verified.json)
+
+切换到另一隔离账号后，首题的两张卡仍是待开启状态，次题仍首先提醒信纸。该账号的 SQLite 台账前后一致。冻结 Web `4b7d1a0` 用同一 DTO 离线呈现，日夜模式分别核对卡片、已打开样式及当时的信纸或祝福提醒。原生序号、预览、主题色实心图标和短状态沿用对应顺序，已打开的手机卡收起状态小字。原生保留项目图标、ArkUI 材质和答题自动定位。跨题提醒优先于答题引导，避免冻结 Web 两者重叠时遮住提醒。[独立账号日间验收](../artifacts/validation/ui-gameplay-narrative-clues-20261116/native-root-05.json) · [日夜视觉对照](../artifacts/validation/ui-gameplay-narrative-clues-20261116/visual-review-01.json)
+
+动效复验将装饰移到已测内容尺寸的零尺寸容器内，保持点击和布局。定版直板机运行 `artifacts/private/gameplay-narrative-motion-20261116/device-motion-final.py`，题卡和提醒按各六张连续原图观察呼吸、扫光及提醒环的轮廓变化。真机采得卡宽 326.15 vp、高 88.62 vp，提醒宽 355.69 vp、高 72 vp，上下边框均完整。动效开启时两类入口各触发一次真实授权 GET，SQLite 台账一致。[动效定版运行时](../artifacts/validation/ui-gameplay-narrative-clues-20261116/runtime-motion-02.json) · [动效和点击复验](../artifacts/validation/ui-gameplay-narrative-clues-20261116/native-root-motion-final.json) · [连续帧取样](../artifacts/validation/ui-gameplay-narrative-clues-20261116/motion-observation-01.json)
+
+动效定版的 Hypium 仍为 189 项通过，codelinter 零错误和警告。组件已接原生系统减少动画状态，本轮直板机采集使用系统普通动效设置。Web 已用减少动画媒体查询核对停止，真机开启系统减少动画的交互仍待单测。[动效定版 Hypium](../artifacts/validation/ui-gameplay-narrative-clues-20261116/motion/local-test-summary.json) · [动效定版 codelinter](../artifacts/validation/ui-gameplay-narrative-clues-20261116/motion/lint.json)
+
+验收后清理一次性后端与 USB 映射，恢复固定预览数据库、账号与 CA。预览包与动效定版的 ArkTS 字节码和展示字体一致，严格 HTTPS 与直接登录通过，真机留在固定预览首页。核验前后预览进度与经验一致。[清理与恢复](../artifacts/validation/ui-gameplay-narrative-clues-20261116/restore-config-02.json) · [预览直登](../artifacts/validation/ui-gameplay-narrative-clues-20261116/fixed-preview-home-02.json) · [包等价](../artifacts/validation/ui-gameplay-narrative-clues-20261116/preview-package-equivalence-02.json)

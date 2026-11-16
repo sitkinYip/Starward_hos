@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "hapSha256": "091eb92b22e1f03ac217320c559f59a3ad08255ff8090622e423da89f42a13d6",
+  "steps": [
+    "partial-failure-leaves-other-letters-visible",
+    "the-failed-detail-alone-retries-through-real-https",
+    "native-refresh-list-503-retains-rows-and-retries",
+    "all-eight-entries-match-the-authoritative-order-and-deduplication",
+    "reader-reports-503-and-successful-manual-retry",
+    "letter-link-restores-the-same-card-and-scroll-position",
+    "system-back-restores-position-with-no-finale-replay",
+    "switching-accounts-clears-letters-and-only-locked-shows-empty",
+    "archive-revisit-and-retry-produce-zero-gameplay-writes"
+  ],
+  "captures": [
+    {
+      "label": "partial-detail-error",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/partial-detail-error.png",
+      "sha256": "ffd34932a75294767783de65591738c1ded0c81b3fa71e9d33fb976498d927c8",
+      "scope": "Private original"
+    },
+    {
+      "label": "refresh-error",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/refresh-error.png",
+      "sha256": "0dfca2472570d03a5c1e90cf9296be30c4b5b7988ffa2b39d94d1b9ff6c413c9",
+      "scope": "Private original"
+    },
+    {
+      "label": "archive-start",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/archive-start.png",
+      "sha256": "d31799153d8859c4615189cdea6f536fdf713faf5acc6a2ceb2692f1a696e929",
+      "scope": "Private original"
+    },
+    {
+      "label": "archive-before-read",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/archive-before-read.png",
+      "sha256": "d9e68096c418ee5fee0f95c187fb1eb085412088730b1ae82bede05132d102d8",
+      "scope": "Private original"
+    },
+    {
+      "label": "reader-error",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/reader-error.png",
+      "sha256": "67c7c260a788bcd5f172aa6a24d98d242ec6279fb9fafce3c49f8e22fe28ce09",
+      "scope": "Private original"
+    },
+    {
+      "label": "reader-sealed",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/reader-sealed.png",
+      "sha256": "808a5fe472a46077560af7e4ceb2e9b7f2d678fb2c693177474584099eff3682",
+      "scope": "Private original"
+    },
+    {
+      "label": "reader-opened",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/reader-opened.png",
+      "sha256": "5335d3abd4594ee95f5293edffab6c5796c9312d6f50fd4b976830e328e2d5e5",
+      "scope": "Private original"
+    },
+    {
+      "label": "archive-after-link-return",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/archive-after-link-return.png",
+      "sha256": "5eed8a21c6a46a185583c71ca9be152ec701cd7f16549b24966009e2c0de486f",
+      "scope": "Private original"
+    },
+    {
+      "label": "empty-archive",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-02/empty-archive.png",
+      "sha256": "71266867612802f3b4dc2eba54ad97ca7a51af4c2b862ea8457e65781264b1ce",
+      "scope": "Private original"
+    }
+  ],
+  "scrollBoundsPx": {
+    "before": [
+      84,
+      2591,
+      1176,
+      2720
+    ],
+    "after": [
+      84,
+      2591,
+      1176,
+      2720
+    ]
+  },
+  "ledger": {
+    "gameplayWrites": 0,
+    "archiveReadCount": 58,
+    "explicitLogins": 2
+  },
+  "stage": "read-only-ledger"
+}

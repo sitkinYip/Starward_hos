@@ -1,5 +1,6 @@
 import { GameRepository } from '../business/GameRepository';
-import { answerAutomaticClues, completionCombinations, entryAutomaticClues } from '../business/GameplayClues';
+import { answerAutomaticClues, completionCombinations, entryAutomaticClues,
+  isNarrativeClue } from '../business/GameplayClues';
 import { GameplayAnswerResult, GameplayClue, GameplayCompletionTarget, GameplayLevel,
   GameplaySnapshot } from '../business/GameplayModels';
 import { GameFailure, Player } from '../business/models';
@@ -351,7 +352,7 @@ export class GameplayViewModel {
   }
 
   private presentFinale(clues: GameplayClue[], combinations: GameplayClue[], target: GameplayCompletionTarget | null): void {
-    this.finaleTarget = target?.kind === 'link' && target.url.trim().length > 0 ? target : null;
+    this.finaleTarget = target;
     this.automaticClueQueue = clues;
     this.finaleStage = 'notice';
     this.presentCompletion(combinations);
@@ -366,8 +367,29 @@ export class GameplayViewModel {
 
   currentFinaleTarget(): GameplayCompletionTarget | null {
     const current: GameplayCompletionTarget | null = this.snapshot?.completionTarget ?? null;
-    return this.snapshot?.detail.status === 'completed' && current?.kind === 'link' &&
-      this.finaleTarget?.url === current.url ? current : null;
+    const accepted: GameplayCompletionTarget | null = this.finaleTarget;
+    if (this.snapshot?.detail.status !== 'completed' || accepted === null || current?.kind !== accepted.kind) {
+      return null;
+    }
+    if (current.kind === 'narrative' && current.id.length > 0 && current.id === accepted.id) { return current; }
+    return current.kind === 'link' && current.url.trim().length > 0 && current.url === accepted.url ? current : null;
+  }
+
+  canOpenFinaleNarrative(assignmentId: string, contentId: string): boolean {
+    const target: GameplayCompletionTarget | null = this.currentFinaleTarget();
+    return this.visible && this.error.length === 0 && this.finaleStage === 'destination' &&
+      this.snapshot?.detail.id === assignmentId && target?.kind === 'narrative' && target.id === contentId;
+  }
+
+  canOpenNarrativeClue(assignmentId: string, clueId: string, contentId: string): boolean {
+    const snapshot: GameplaySnapshot | null = this.snapshot;
+    if (!this.visible || this.owner.length === 0 || snapshot === null || this.error.length > 0 ||
+      this.loading || this.starting || this.submitting || this.refreshing || this.retryAnswer ||
+      this.automaticClue !== null || this.rankUp !== null ||
+      snapshot.detail.id !== assignmentId || snapshot.detail.player !== this.owner ||
+      (snapshot.detail.status !== 'active' && snapshot.detail.status !== 'completed')) { return false; }
+    return snapshot.clues.some((clue: GameplayClue) =>
+      isNarrativeClue(clue) && clue.id === clueId && clue.narrative === contentId);
   }
 
   dismissFinaleDestination(revision: number): void {

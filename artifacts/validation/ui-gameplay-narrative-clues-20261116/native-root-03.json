@@ -1,0 +1,82 @@
+{
+  "status": "incomplete",
+  "checks": [
+    "answered first question shows both manual cards without auto-opening",
+    "isolated SQLite records one correct answer and two grants",
+    "return from letter preserves first question scroll",
+    "opened letter card status leaves mobile layout",
+    "return from reminder preserves second question draft and scroll",
+    "opened blessing reminder stays hidden",
+    "story opens retry and returns do not add game writes"
+  ],
+  "captures": [
+    {
+      "label": "light-cards",
+      "sha256": "ab5f0f918017ca99c5b470288fa58a415fcfe7f3af4634a975b55d7723578dfc"
+    },
+    {
+      "label": "light-retry",
+      "sha256": "e50f56f7c3cea5abfee3ab37775c3ddd56f632250296dc134a23598bb774ba74"
+    },
+    {
+      "label": "light-letter",
+      "sha256": "f575b91f49e95d7ae2526718b28bf498c535c2cab17f54b6ccc98eee47e23242"
+    },
+    {
+      "label": "light-attention",
+      "sha256": "9579b16894c5337d55009ff49451461d5a637ba376ce4d0556e57bbb748aedb9"
+    },
+    {
+      "label": "light-bless",
+      "sha256": "5a98da01344dd25f91bb62d19d36e07b9b25b7584f70080a0ea7475533767908"
+    },
+    {
+      "label": "incomplete-last-view",
+      "sha256": "1268fa213abed4960eb877dd58ace437f476af5ca37a4bfddf32d27804c55ad2"
+    }
+  ],
+  "installedHapSha256": "e680f3e6f11988285b8063169c72cf85400062ae2295a8c09bed2186efe6e996",
+  "settlement": {
+    "startReceipts": 1,
+    "answerReceipts": 1,
+    "otherCommands": 0,
+    "answerResults": [
+      "correct"
+    ],
+    "completedLevels": 1,
+    "xpWrites": [
+      10
+    ],
+    "grants": 2
+  },
+  "letterReturnBounds": {
+    "beforePx": [
+      100,
+      1626,
+      1160,
+      1914
+    ],
+    "afterPx": [
+      100,
+      1626,
+      1160,
+      1888
+    ]
+  },
+  "blessReturnBounds": {
+    "beforePx": [
+      100,
+      1311,
+      1161,
+      1500
+    ],
+    "afterPx": [
+      100,
+      1311,
+      1161,
+      1500
+    ]
+  },
+  "blockedAfter": 7,
+  "errorType": "SafeFailure"
+}

@@ -1,0 +1,235 @@
+{
+  "status": "verified_original_letter_host_fixtures",
+  "strictHostTls": true,
+  "sourceSnapshotSha256": "0941afd3094c3702f1725c040b7eb50c48c7c7ed2ce83490387a2a28d5b400e7",
+  "deviceInvoked": false,
+  "variants": [
+    "classical",
+    "modern",
+    "magic"
+  ],
+  "fixtures": {
+    "classical-native": {
+      "phases": [
+        "before",
+        "second"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "8e6871c52f73083460cf730eb0ca8ba86e9a720f064dc8ffbce1f35aa968138a",
+      "fixtureSha256": "027e69634dc63ae5ecf91aaa122526ac0cc346789351c6b269ac598ca811834b",
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "classical-web": {
+      "phases": [
+        "before",
+        "second",
+        "completed",
+        "answerResponse",
+        "narrative"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "4702db1d9e3efdb3206260422429c8369951d309d22d5bba9a5837c2f5b0ace4",
+      "fixtureSha256": "ee0eb1d1eaa7c92bd2f872294474e40ebf62e3b7f8d06cb1064ca2b544b9e510",
+      "authorization": {
+        "crossActorCompleted": 404,
+        "anonymousCompleted": 401,
+        "ownerCompleted": 200,
+        "isolatedExactReadFault": [
+          503,
+          200
+        ]
+      },
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "modern-native": {
+      "phases": [
+        "before",
+        "second"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "52f6a57bdc98b0aed315f5458d67c4aa0944e0ab6e1f42191ffd21a5449e1daf",
+      "fixtureSha256": "23a4b04094673ae79fa5c5c7ae1e04dfd42216b7fb4ef258ca5d0a3f90107188",
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "modern-web": {
+      "phases": [
+        "before",
+        "second",
+        "completed",
+        "answerResponse",
+        "narrative"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "66894b31d3c3675f4624d9fa5db92a531f0cd4aeef96c72bf741e63df5dfec32",
+      "fixtureSha256": "ff8d1dfc550795bb26385bbcb608d5dc28fa161761fc3b5d9f0098d28eb39aef",
+      "authorization": {
+        "crossActorCompleted": 404,
+        "anonymousCompleted": 401,
+        "ownerCompleted": 200,
+        "isolatedExactReadFault": [
+          503,
+          200
+        ]
+      },
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "magic-native": {
+      "phases": [
+        "before",
+        "second"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "a8d3b09b42bf807cc9682d21b76953bc80474ec8038798dc9ea8c57fdb4d586c",
+      "fixtureSha256": "20f85f27c7387eca2d72bdc53f41fdce2c33ce536b9dcbb3c937c3315a5ee1c6",
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "magic-web": {
+      "phases": [
+        "before",
+        "second",
+        "completed",
+        "answerResponse",
+        "narrative"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "fece7e3061f63daf093c14fcfe5b2efedb82ea879b98f47284983495eed6e9f6",
+      "fixtureSha256": "f30a80ca186297a8bb53029bd468d6427bedd2ff9fb44096b89a3a03c898224e",
+      "authorization": {
+        "crossActorCompleted": 404,
+        "anonymousCompleted": 401,
+        "ownerCompleted": 200,
+        "isolatedExactReadFault": [
+          503,
+          200
+        ]
+      },
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "modern-fault": {
+      "phases": [
+        "before",
+        "second"
+      ],
+      "ungrantedAfterStart": 404,
+      "dtoSha256": "98b0f3eb31da102d6266af4969ceb2de9809025488e8c6e810f602a503299efd",
+      "fixtureSha256": "d1e5f634f91b4e414a544bf68695f9d14de85711504917ea7622f533e2d13f23",
+      "ledger": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    }
+  },
+  "productionAndFixedPreviewUntouched": true,
+  "narrativeGetAddsStartAnswerXp": false,
+  "negativeVoiceReachedExactCdnStatus": 404,
+  "readOnlyLedgerReconciliation": true
+}

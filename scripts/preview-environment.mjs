@@ -315,7 +315,7 @@ async function prepare() {
 }
 function permitted(method, pathname) {
   return (method === 'GET' && ['/api/health', '/api/questions/v1/me', '/api/questions/v1/notifications', '/api/questions/v1/rewards', '/api/questions/v1/assignments'].includes(pathname)) ||
-    (method === 'GET' && /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}$/.test(pathname)) ||
+    (method === 'GET' && /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}(?:\/narratives\/[a-z0-9]{15})?$/.test(pathname)) ||
     (method === 'GET' && /^\/api\/files\/game_players\/[a-z0-9]{15}\/[a-zA-Z0-9._%-]+$/.test(pathname)) ||
     (method === 'POST' && ['/api/collections/game_players/auth-with-password', '/api/questions/v1/me/change-password', '/api/files/token'].includes(pathname)) ||
     (method === 'POST' && /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}\/(start|answers)$/.test(pathname)) ||

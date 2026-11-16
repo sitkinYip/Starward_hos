@@ -49,6 +49,24 @@ function isPlayableClue(clue: GameplayClue, totalLevels: number): boolean {
     (clue.kind === 'video' && clue.content.url.trim().length > 0));
 }
 
+export function isNarrativeClue(clue: GameplayClue): boolean {
+  return (clue.kind === 'letter' || clue.kind === 'bless') && clue.narrative.trim().length > 0;
+}
+
+/** Only a current, granted cue that is absent from the visible archive needs a reminder. */
+export function nextNarrativeAttention(snapshot: GameplaySnapshot | null, visibleClues: GameplayClue[],
+  openedIds: string[]): GameplayClue | null {
+  if (snapshot === null || (snapshot.detail.status !== 'active' && snapshot.detail.status !== 'completed')) {
+    return null;
+  }
+  const omitted: Set<string> = new Set(openedIds);
+  visibleClues.forEach((clue: GameplayClue) => omitted.add(clue.id));
+  const levelOrder: Map<string, number> = new Map();
+  snapshot.levels.forEach((level: GameplayLevel, index: number) => levelOrder.set(level.id, index));
+  return snapshot.clues.filter((clue: GameplayClue) => isNarrativeClue(clue) && !omitted.has(clue.id))
+    .sort((left: GameplayClue, right: GameplayClue) => clueOrder(left, right, levelOrder))[0] ?? null;
+}
+
 function autoplayEffects(effects: GameplayEffect[]): Map<string, boolean | undefined> {
   const result: Map<string, boolean | undefined> = new Map();
   for (const effect of effects) {
@@ -80,7 +98,7 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
     return [];
   }
   return snapshot.clues.filter((clue: GameplayClue) => {
-    if (!isPlayableClue(clue, snapshot.detail.totalLevels) &&
+    if (!isPlayableClue(clue, snapshot.detail.totalLevels) && !isNarrativeClue(clue) &&
       !(clue.kind === 'link' && clue.content.url.trim().length > 0)) { return false; }
     if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === level.id; }
     return clue.sessionLevel.length === 0 || clue.sessionLevel === level.id;
@@ -102,7 +120,8 @@ export function answerAutomaticClues(previous: GameplaySnapshot | null, settled:
     available = settled.clues.filter((clue: GameplayClue) => isPlayableClue(clue, settled.detail.totalLevels))
       .sort((left: GameplayClue, right: GameplayClue) => clueOrder(left, right, levelOrder));
   } else {
-    available = ordinaryClues(settled, level).filter((clue: GameplayClue) => clue.kind !== 'link');
+    available = ordinaryClues(settled, level).filter((clue: GameplayClue) =>
+      isPlayableClue(clue, settled.detail.totalLevels));
   }
   return available.filter((clue: GameplayClue) => {
     return effects === undefined ? !known.has(clue.id) && clue.autoPlay :
@@ -114,6 +133,8 @@ export function clueTitle(clue: GameplayClue): string {
   if (clue.content.title.length > 0) { return clue.content.title; }
   if (clue.kind === 'image') { return '神谕影像'; }
   if (clue.kind === 'link') { return '位面传送'; }
+  if (clue.kind === 'letter') { return '星海情笺'; }
+  if (clue.kind === 'bless') { return '星辉祝福'; }
   return clue.kind === 'video' ? '时空回溯' : '古老密卷';
 }
 

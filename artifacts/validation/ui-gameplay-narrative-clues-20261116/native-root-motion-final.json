@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "checks": [
+    "animated reminder opens authorized letter and advances to blessing",
+    "animated blessing card opens and returns in opened state",
+    "motion and linked narrative replay leave isolated SQLite gameplay unchanged",
+    "animated controls make two real authorized reads"
+  ],
+  "captures": [
+    {
+      "label": "motion-beacon-0",
+      "sha256": "13de2ded9953d085fd506591e8ca049febf868226a5ae93d229c765fc98d7e31"
+    },
+    {
+      "label": "motion-beacon-1",
+      "sha256": "ed096f7214039350cc3ebf340dcec4bc0231de0cd6c50bbd78f112948c40e002"
+    },
+    {
+      "label": "motion-beacon-2",
+      "sha256": "143bfc53a0fae3d08c8760d870c38332871f4fa9cab56e501ae5ecaf6b8622a9"
+    },
+    {
+      "label": "motion-beacon-3",
+      "sha256": "e613c6113ae9c22729b4a4677b195759356764ded064f9562c3aab957ee0219c"
+    },
+    {
+      "label": "motion-beacon-4",
+      "sha256": "c6f4ec810024b57c7f850033acb06bdb69e87d6a344e1dc5fa4e118775830c6e"
+    },
+    {
+      "label": "motion-beacon-5",
+      "sha256": "0fe60bc133972bc54da9d8b042a13a102741790e80e8bb17c9d57e7c0de6f322"
+    },
+    {
+      "label": "motion-cards-0",
+      "sha256": "338175aedb280747b8d75993a351540e1588d0bd012070bf34e831f02587017b"
+    },
+    {
+      "label": "motion-cards-1",
+      "sha256": "31bfcf075d5dd2294fc153f66c9b6c1134734dea37d2779766389f0485c00f83"
+    },
+    {
+      "label": "motion-cards-2",
+      "sha256": "d5253747b4dffb9045688e2f49c94973a9bc1c9e6bc97724f628a25ee1390099"
+    },
+    {
+      "label": "motion-cards-3",
+      "sha256": "6001b8f986807a31ae03af1ac469eca43bc0fc0ee322b0feef158a5945234178"
+    },
+    {
+      "label": "motion-cards-4",
+      "sha256": "8352bbac65f0d5444aaee3eb934177f3a74b4b6ab7e815e8ae461481a81d6c66"
+    },
+    {
+      "label": "motion-cards-5",
+      "sha256": "7b686bf31b1dfd2226cb8ca1ef922c391e8af1a99e629861cd20b5c2048bcd60"
+    },
+    {
+      "label": "both-opened",
+      "sha256": "d935c0f0097ba7d938eb5b96be740060847121ffdf396cc5d7578341ea749915"
+    }
+  ],
+  "installedHapSha256": "78a4be4e64ad8694ae83d5983eacbf6da8a5b670200b8d0daad66566a18f9cdc",
+  "beaconPx": [
+    52,
+    2370,
+    1208,
+    2604
+  ],
+  "cardPx": {
+    "letter": [
+      100,
+      1496,
+      1160,
+      1758
+    ],
+    "bless": [
+      100,
+      1793,
+      1160,
+      2081
+    ]
+  }
+}

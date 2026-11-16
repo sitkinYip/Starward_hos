@@ -1,0 +1,443 @@
+{
+  "status": "incomplete",
+  "stage": "letter-reader",
+  "role": "final-light",
+  "theme": "light",
+  "hapSha256": "7f132d8ede351bf390bf6d560214247c526d67764fb7466e0c9af29460cbf7d1",
+  "bindingSha256": {
+    "hap": "7f132d8ede351bf390bf6d560214247c526d67764fb7466e0c9af29460cbf7d1",
+    "runtime": "77f8b2ec51d152f88ca5d991e20b1f08ab8b7119ccd4c9ca37c1f64011e83465",
+    "caseReference": "5c137ec7e145ecc1367b2d02791ec4e71ec13045aeaedc72cde0a57f69573efe",
+    "ca": "58ce7761053ae6500302ef9aa088d07929d044b42975b48abc6f46cbf9dd9ad6",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "a91bc66a95f13f7f5073e268df10d6b8b1a8431f3ab19f70517fe46ce8cff330",
+    "letterDriver": "5ae28377887540b93f877e19c0eaf3f4641189ab9b4d6d548ad3d197422384fb",
+    "letterFixture": "4f0c146968d163ba01539520e5f793429f87d9462d5eee51b77b2625ab4eb4df",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "bad314a582b64adb64152a531cd1c64d62dc6104644ab2e19ab064dcf4f80703",
+    "hostDTO": "844d1b7bac63a39d78e27b83d5af7ec7f08fba81541897954133ff6b13b3d427",
+    "baseline": "ce7d4da6342273f148b5a45bac2509624001c13379d01584b98f70e2130ed8c3",
+    "priorDriver": "f1cf5a7484e3900da907552e91421f8fabaa4ab621694b5527f4bcb7714dbaca",
+    "exactArchive": "7f132d8ede351bf390bf6d560214247c526d67764fb7466e0c9af29460cbf7d1",
+    "StarwardNarrativeLetter": "fc314a2aca3977a67bc34527ad9a0959e1fec4588f449586fbbd6e9339f648ce",
+    "NarrativePage": "f4dc3e7c8541adab8c7415f12b375a2da553f2d26cc26041c8ebbd1ec14111ac",
+    "NarrativeViewModel": "462d22ad8585fc4d2fb8129e387748e9faa044ab3ba884048bff8e21dc391f90",
+    "GameplayPage": "20f4912cd78958632c32ed5ae4569185e2b0eb55b0c96cfbded9789edf4a9886",
+    "Index": "3ea81f2253293d19bcf721e389b37b57a971a03e953b9bbb6da4f079f9c76e8e"
+  },
+  "states": [
+    {
+      "state": "internal-destination-before-open",
+      "visibleBoundsPx": {
+        "gameplay-final-destination": [
+          46,
+          2083,
+          1215,
+          2584
+        ],
+        "gameplay-final-destination-continue": [
+          808,
+          2374,
+          1147,
+          2524
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ]
+      },
+      "rawSha256": "6aa835ec688809c83e1b01dc7373c78828ff1ced4ce37adf8ac875fbff6015d2",
+      "pageCountLabel": null,
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/internal-destination-before-open.png",
+        "sha256": "1841974f4a1e9bb7e215d465d9af3535afcf2b0267c2aecd968c593ff39afa26",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "narrative-sealed",
+      "visibleBoundsPx": {
+        "narrative-letter": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "narrative-letter-open": [
+          68,
+          1069,
+          1192,
+          1781
+        ],
+        "narrative-letter-return": [
+          46,
+          162,
+          417,
+          305
+        ]
+      },
+      "rawSha256": "5fb0eec210c46dd6ceb1f34ddeddc62f2b9f37ede3b748510d1ce554bb44b31a",
+      "pageCountLabel": null,
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-sealed.png",
+        "sha256": "8fbd900457c4e97b3781cf39e1bbc884fa55a5e2927deb3a24abc62670ada6d1",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "narrative-open-typing",
+      "visibleBoundsPx": {
+        "narrative-letter": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2137
+        ],
+        "narrative-letter-page-count": [
+          571,
+          2256,
+          689,
+          2309
+        ],
+        "narrative-letter-show-all": [
+          80,
+          2393,
+          399,
+          2536
+        ],
+        "narrative-letter-close": [
+          861,
+          2393,
+          1180,
+          2536
+        ]
+      },
+      "rawSha256": "f6e32d5d40355850f26bd8721af828a20484ab1a78c4e975c316372df1057a43",
+      "pageCountLabel": [
+        3,
+        5
+      ],
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-typing.png",
+        "sha256": "eb64332e96af3bfe64cc22bf7769c037a0f02e68f281962970d60bca417971a7",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "narrative-open-page-1",
+      "visibleBoundsPx": {
+        "narrative-letter": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2137
+        ],
+        "narrative-letter-page-count": [
+          571,
+          2256,
+          689,
+          2309
+        ],
+        "narrative-letter-previous": [
+          80,
+          2211,
+          347,
+          2354
+        ],
+        "narrative-letter-next": [
+          913,
+          2211,
+          1180,
+          2354
+        ],
+        "narrative-letter-close": [
+          80,
+          2393,
+          399,
+          2536
+        ]
+      },
+      "rawSha256": "25f82884ff0b66b63d90cbd5e7d40726b66d60801a3f7001e30ae5ef3888f13d",
+      "pageCountLabel": [
+        1,
+        5
+      ],
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-page-1.png",
+        "sha256": "aefaa3162b604c9c2f73052229aa1312d1c21e73abb7f9978896ee108314a4db",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "narrative-open-page-2",
+      "visibleBoundsPx": {
+        "narrative-letter": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "narrative-letter-paper": [
+          45,
+          279,
+          1215,
+          2137
+        ],
+        "narrative-letter-page-count": [
+          571,
+          2256,
+          689,
+          2309
+        ],
+        "narrative-letter-previous": [
+          80,
+          2211,
+          347,
+          2354
+        ],
+        "narrative-letter-next": [
+          913,
+          2211,
+          1180,
+          2354
+        ],
+        "narrative-letter-close": [
+          80,
+          2393,
+          399,
+          2536
+        ]
+      },
+      "rawSha256": "2f711df81c2e693a4ccce475d498323430408c15d4ea4f178c01eb1607d9090e",
+      "pageCountLabel": [
+        2,
+        5
+      ],
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-page-2.png",
+        "sha256": "6d46703ce2481f1e511dfc5068ba816c16eedc26c02ad2da7324d392927fb666",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "checksPassed": 3,
+  "checks": [
+    "Unfinished quest reveals neither narrative entry nor narrative GET",
+    "One authentic last submission settles and offers the internal story after finale",
+    "Exact authenticated letter resolves inside the original App; expected status path recorded"
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "topInsetPx": 123,
+      "bottomInsetPx": 91,
+      "widthVp": 387.6923076923077,
+      "contentHeightVp": 771.0769230769231,
+      "fontScale": 1,
+      "appColorMode": 1,
+      "leftInsetPx": 0,
+      "rightInsetPx": 0,
+      "cutoutTopPx": 72,
+      "cutoutBottomPx": 0,
+      "immersiveLayout": "enabled",
+      "systemBarPropertiesObserved": true,
+      "statusBarColor": "#00FFFFFF",
+      "navigationBarColor": "#00FFFFFF",
+      "statusBarContentColor": "#FF000000",
+      "navigationBarContentColor": "#FF000000"
+    },
+    "letterGetStatuses": [
+      200
+    ],
+    "settlement": {
+      "addedStartWrites": 0,
+      "addedAnswerWrites": 1,
+      "addedXpWrites": 1,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ]
+  },
+  "cleanup": {
+    "faultNeutralised": true,
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "appThemeRestored": true,
+    "zeroUnexpectedWrites": true
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/internal-destination-before-open.png",
+      "sha256": "1841974f4a1e9bb7e215d465d9af3535afcf2b0267c2aecd968c593ff39afa26",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-sealed.png",
+      "sha256": "8fbd900457c4e97b3781cf39e1bbc884fa55a5e2927deb3a24abc62670ada6d1",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-typing.png",
+      "sha256": "eb64332e96af3bfe64cc22bf7769c037a0f02e68f281962970d60bca417971a7",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-page-1.png",
+      "sha256": "aefaa3162b604c9c2f73052229aa1312d1c21e73abb7f9978896ee108314a4db",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-page-2.png",
+      "sha256": "6d46703ce2481f1e511dfc5068ba816c16eedc26c02ad2da7324d392927fb666",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "before-gameplay-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-gameplay-submit-0f67ec29753b4007bd57aaa705b4aad4.json",
+      "remoteRemoved": true,
+      "sha256": "28e7a30c49fb926bc9411f6aeef667cd3e73fd6feea366e9754d61988fd5c841"
+    },
+    {
+      "label": "internal-destination-before-open",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-internal-destination-before-open-65136edb483c4ed390ba5fc7f9891bc3.json",
+      "remoteRemoved": true,
+      "sha256": "6aa835ec688809c83e1b01dc7373c78828ff1ced4ce37adf8ac875fbff6015d2"
+    },
+    {
+      "label": "narrative-sealed",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-narrative-sealed-4363836929d540e8b3bf02533fc70957.json",
+      "remoteRemoved": true,
+      "sha256": "5fb0eec210c46dd6ceb1f34ddeddc62f2b9f37ede3b748510d1ce554bb44b31a"
+    },
+    {
+      "label": "narrative-open-typing",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-narrative-open-typing-c3bf0bc36c514e559a6e37dd47e0ef6d.json",
+      "remoteRemoved": true,
+      "sha256": "f6e32d5d40355850f26bd8721af828a20484ab1a78c4e975c316372df1057a43"
+    },
+    {
+      "label": "before-narrative-letter-previous",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-previous-f92a9b0d2db146dfb07657317a34807d.json",
+      "remoteRemoved": true,
+      "sha256": "34d868a18ffcc375cd16ed05d9156437539668a2230d221004450f9a03f6003b"
+    },
+    {
+      "label": "before-narrative-letter-previous",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-previous-5b1d9674988e4de19b94cb96fdeeaf6f.json",
+      "remoteRemoved": true,
+      "sha256": "51f883f7c3bf4783280c5cb97da8d17c1013b54ff5d41ee35ee4038a0cb89616"
+    },
+    {
+      "label": "before-narrative-letter-previous",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-previous-96ac0bd1956e4684959fb5d37250199c.json",
+      "remoteRemoved": true,
+      "sha256": "2f711df81c2e693a4ccce475d498323430408c15d4ea4f178c01eb1607d9090e"
+    },
+    {
+      "label": "narrative-open-page-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-narrative-open-page-1-5715a69a6b444fde89504a32c81ce335.json",
+      "remoteRemoved": true,
+      "sha256": "25f82884ff0b66b63d90cbd5e7d40726b66d60801a3f7001e30ae5ef3888f13d"
+    },
+    {
+      "label": "narrative-open-page-2",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-narrative-open-page-2-8d998bb074934154b05ba14fe663d5b6.json",
+      "remoteRemoved": true,
+      "sha256": "2f711df81c2e693a4ccce475d498323430408c15d4ea4f178c01eb1607d9090e"
+    },
+    {
+      "label": "before-narrative-letter-previous",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-previous-20b11dc4a2cc4d33a7e92d608b62f323.json",
+      "remoteRemoved": true,
+      "sha256": "2f711df81c2e693a4ccce475d498323430408c15d4ea4f178c01eb1607d9090e"
+    },
+    {
+      "label": "before-narrative-letter-next",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-next-df10124828d94707a4c87cc2170b24ed.json",
+      "remoteRemoved": true,
+      "sha256": "25f82884ff0b66b63d90cbd5e7d40726b66d60801a3f7001e30ae5ef3888f13d"
+    },
+    {
+      "label": "before-narrative-letter-next",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-next-7114a4f928fe4937baafbfe37bcb143f.json",
+      "remoteRemoved": true,
+      "sha256": "2f711df81c2e693a4ccce475d498323430408c15d4ea4f178c01eb1607d9090e"
+    },
+    {
+      "label": "before-narrative-letter-next",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-next-5ea5ec8eb09b4221aad39824f7afd2f6.json",
+      "remoteRemoved": true,
+      "sha256": "51f883f7c3bf4783280c5cb97da8d17c1013b54ff5d41ee35ee4038a0cb89616"
+    },
+    {
+      "label": "before-narrative-letter-next",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-before-narrative-letter-next-9983739a435c418d8aaa48cfbab159dc.json",
+      "remoteRemoved": true,
+      "sha256": "34d868a18ffcc375cd16ed05d9156437539668a2230d221004450f9a03f6003b"
+    }
+  ],
+  "visualReview": "pending_separate_review",
+  "fixedPreviewTouched": false,
+  "failure": "The final authorized signature was missing from the final page"
+}

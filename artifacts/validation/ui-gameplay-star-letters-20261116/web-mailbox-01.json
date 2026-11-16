@@ -1,0 +1,929 @@
+{
+  "status": "incomplete",
+  "frozenSourceCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "deviceCompared": false,
+  "noRequestForwardingToBackendOrMedia": true,
+  "syntheticReplayAuthentication": true,
+  "dtoSha256": {
+    "native": "7fcb87180cc8b56e35ed98fa85c332e15d9db0e4fab85cf309b4322ca5245a7e",
+    "empty": "6f6893cef3093d3dc5f4492b04c9cf14a3b3eb0c2dde3a5b2beb6c75cd63ca3a"
+  },
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "sourceSha256": {
+    "src/features/game/pages/GameNotificationsPage.tsx": "6bee2d6fbf3db245663266ce2521bda7e9e6a51119bd33ba5506d85f5d2fe93f",
+    "src/features/mailbox/StarLetters.tsx": "7f3579bbf1555b760cd4d54fa29551eb7d0bb1e1d957cd3e36d03cc4d52ea72d",
+    "src/features/mailbox/StarLettersView.tsx": "fafd84e2af3b9b2f503daf4077dc740fa4efaa91ceb51e58d524c2c49e817761",
+    "src/features/mailbox/star-letters.ts": "e990f59daef7853c235b6aff46fca2851fc74a534157ce43c5fa87a7cf383853",
+    "src/features/mailbox/MailboxRow.tsx": "193486f77b15847e80bc97bf6a4078688f09e246edf2c55c46a7356f5493f9ff",
+    "src/styles/features/notifications.css": "610e3d736f5ed2425658c94d90a45008351167daf986f8375bd1437b122e6912"
+  },
+  "runs": [
+    {
+      "role": "native",
+      "theme": "light",
+      "intendedDetailFaults": 0,
+      "unexpectedApi": 0,
+      "writeRequests": 0,
+      "readerGet": 1,
+      "blockedRemoteResources": 1,
+      "exceptions": [],
+      "states": [
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(17, 105, 88)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": 283.1875,
+              "width": 336,
+              "height": 975.375,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": 289.8916931152344,
+              "width": 336,
+              "height": 121.79690551757812,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": 335.7823181152344,
+              "width": 36,
+              "height": 30.000030517578125,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(24, 123, 105)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": 309.8916931152344,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": 334.3916931152344,
+              "width": 216,
+              "height": 28.500030517578125,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": 370.8917236328125,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            }
+          },
+          "rowCount": 8,
+          "windowScrollY": 0,
+          "theme": "light",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "populated",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/light-native-populated.png",
+            "sha256": "3785ec403b174d802516f1d09eac437ca6996a6cc7fed474c65edaecbbf01adc"
+          }
+        },
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(17, 105, 88)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": -319.8125,
+              "width": 336,
+              "height": 975.375,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": -318.8125,
+              "width": 336,
+              "height": 121.796875,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": -272.921875,
+              "width": 36,
+              "height": 30,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(24, 123, 105)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": -298.8125,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": -274.3125,
+              "width": 216,
+              "height": 28.5,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": -237.8125,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            }
+          },
+          "rowCount": 8,
+          "windowScrollY": 0,
+          "theme": "light",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "scrolled",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/light-native-scrolled.png",
+            "sha256": "1599daa07c1c3e704b678dde0cbd945b85e0f4efc39bfb2eed8154c4285c49c7"
+          }
+        },
+        {
+          "geometry": {
+            "reader": {
+              "x": 19.47032928466797,
+              "y": 324.7781066894531,
+              "width": 349.059326171875,
+              "height": 187.97616577148438,
+              "font": "16px",
+              "padding": "34px",
+              "foreground": "rgb(67, 60, 46)",
+              "background": "rgb(185, 57, 49)",
+              "border": "1px"
+            },
+            "readerReturn": {
+              "x": 14,
+              "y": 12,
+              "width": 112.1875,
+              "height": 45,
+              "font": "16px",
+              "padding": "10px 14px",
+              "foreground": "rgb(183, 181, 172)",
+              "background": "rgba(17, 18, 15, 0.82)",
+              "border": "1px"
+            }
+          },
+          "rowCount": 0,
+          "windowScrollY": 0,
+          "theme": "light",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "sealed",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/light-native-sealed.png",
+            "sha256": "d336c5fec3f94e490ab7e789a8743f369a7f7f105e41067db058d2b6b58c3179"
+          }
+        },
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(17, 105, 88)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": 283.1875,
+              "width": 336,
+              "height": 975.375,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": 284.599365234375,
+              "width": 336,
+              "height": 121.796875,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": 330.489990234375,
+              "width": 36,
+              "height": 30,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(24, 123, 105)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": 304.599365234375,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": 329.099365234375,
+              "width": 216,
+              "height": 28.5,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(41, 60, 56)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": 365.599365234375,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(100, 121, 112)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            }
+          },
+          "rowCount": 8,
+          "windowScrollY": 0,
+          "theme": "light",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "returned",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/light-native-returned.png",
+            "sha256": "b93f4824fd6966b1189d84c62ed85d7fe26e0d0862ffed31c8887264ec8c2513"
+          }
+        }
+      ]
+    },
+    {
+      "role": "native",
+      "theme": "dark",
+      "intendedDetailFaults": 4,
+      "unexpectedApi": 0,
+      "writeRequests": 0,
+      "readerGet": 2,
+      "blockedRemoteResources": 1,
+      "exceptions": [],
+      "states": [
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(216, 196, 134)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": 428.375,
+              "width": 336,
+              "height": 853.578125,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": 429.375,
+              "width": 336,
+              "height": 121.796875,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": 475.265625,
+              "width": 36,
+              "height": 30,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(212, 188, 125)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": 449.375,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": 473.875,
+              "width": 216,
+              "height": 28.5,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": 510.375,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "error": {
+              "x": 26,
+              "y": 299.1875,
+              "width": 336,
+              "height": 113.1875,
+              "font": "16px",
+              "padding": "16px",
+              "foreground": "rgb(219, 166, 161)",
+              "background": "rgba(102, 49, 44, 0.12)",
+              "border": "1px"
+            }
+          },
+          "rowCount": 7,
+          "windowScrollY": 0,
+          "theme": "dark",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "partial-failure",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/dark-native-partial-failure.png",
+            "sha256": "aa9ce70ad37145564166c16543f1cbbeea46176fb59b790d38e990337efcf32c"
+          }
+        },
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(216, 196, 134)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": 283.1875,
+              "width": 336,
+              "height": 975.375,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": 296.02435302734375,
+              "width": 336,
+              "height": 121.796875,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": 341.91497802734375,
+              "width": 36,
+              "height": 30,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(212, 188, 125)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": 316.02435302734375,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": 340.52435302734375,
+              "width": 216,
+              "height": 28.5,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": 377.02435302734375,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            }
+          },
+          "rowCount": 8,
+          "windowScrollY": 0,
+          "theme": "dark",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "populated",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/dark-native-populated.png",
+            "sha256": "0790746a3d28d7e7d5ce53982457b98d27b5339b7642b001610183262a76bb78"
+          }
+        },
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(216, 196, 134)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": -319.8125,
+              "width": 336,
+              "height": 975.375,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": -315.54150390625,
+              "width": 336,
+              "height": 121.796875,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": -269.65087890625,
+              "width": 36,
+              "height": 30,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(212, 188, 125)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": -295.54150390625,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": -271.04150390625,
+              "width": 216,
+              "height": 28.5,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": -234.54150390625,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            }
+          },
+          "rowCount": 8,
+          "windowScrollY": 0,
+          "theme": "dark",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "scrolled",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/dark-native-scrolled.png",
+            "sha256": "7eeb7e6204bab19d077c98bc6da1ecd4c26063c481b76b530bb5891ac8e2f08b"
+          }
+        },
+        {
+          "geometry": {
+            "reader": {
+              "x": 19.4697208404541,
+              "y": 324.7843017578125,
+              "width": 349.060546875,
+              "height": 187.97857666015625,
+              "font": "16px",
+              "padding": "34px",
+              "foreground": "rgb(67, 60, 46)",
+              "background": "rgb(185, 57, 49)",
+              "border": "1px"
+            },
+            "readerReturn": {
+              "x": 14,
+              "y": 12,
+              "width": 112.1875,
+              "height": 45,
+              "font": "16px",
+              "padding": "10px 14px",
+              "foreground": "rgb(183, 181, 172)",
+              "background": "rgba(17, 18, 15, 0.82)",
+              "border": "1px"
+            }
+          },
+          "rowCount": 0,
+          "windowScrollY": 0,
+          "theme": "dark",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "sealed",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/dark-native-sealed.png",
+            "sha256": "b2828d5c6490ab5e2361b5337eed7338d1359e8287d73a7d82b47f01b9328d84"
+          }
+        },
+        {
+          "geometry": {
+            "heading": {
+              "x": 20,
+              "y": 100,
+              "width": 348,
+              "height": 107.1875,
+              "font": "16px",
+              "padding": "0px 0px 16px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tabs": {
+              "x": 20,
+              "y": 207.1875,
+              "width": 348,
+              "height": 56,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "tab": {
+              "x": 104,
+              "y": 207.1875,
+              "width": 60,
+              "height": 55,
+              "font": "15px",
+              "padding": "16px 0px",
+              "foreground": "rgb(216, 196, 134)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "rows": {
+              "x": 26,
+              "y": 283.1875,
+              "width": 336,
+              "height": 975.375,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "1px"
+            },
+            "first": {
+              "x": 26,
+              "y": 284.5216979980469,
+              "width": 336,
+              "height": 121.796875,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "icon": {
+              "x": 42,
+              "y": 330.4123229980469,
+              "width": 36,
+              "height": 30,
+              "font": "16px",
+              "padding": "0px",
+              "foreground": "rgb(212, 188, 125)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "meta": {
+              "x": 94,
+              "y": 304.5216979980469,
+              "width": 216,
+              "height": 16.5,
+              "font": "11px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "title": {
+              "x": 94,
+              "y": 329.0216979980469,
+              "width": 216,
+              "height": 28.5,
+              "font": "19px",
+              "padding": "0px",
+              "foreground": "rgb(231, 230, 225)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            },
+            "summary": {
+              "x": 94,
+              "y": 365.5216979980469,
+              "width": 216,
+              "height": 20.796875,
+              "font": "13px",
+              "padding": "0px",
+              "foreground": "rgb(140, 142, 133)",
+              "background": "rgba(0, 0, 0, 0)",
+              "border": "0px"
+            }
+          },
+          "rowCount": 8,
+          "windowScrollY": 0,
+          "theme": "dark",
+          "width": 388,
+          "height": 771,
+          "coarse": true,
+          "state": "returned",
+          "screenshot": {
+            "path": "artifacts/private/gameplay-star-letters-20261116/web-01/dark-native-returned.png",
+            "sha256": "8ff51d589a6a3c6f60cf38f384bd7ad582d93053a623da5197be3126c4f6e854"
+          }
+        }
+      ]
+    }
+  ]
+}

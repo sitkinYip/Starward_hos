@@ -207,6 +207,8 @@ const { createTestServer } = await import(harness.moduleUrl);
 const server = await createTestServer();
 let proxy, localControl, closing = false, fault = null, requests = [], caseCreationBusy = false;
 const requestIdentities = new Map();
+const narrativeReadRoutes = new Set();
+const allowNarrativeFixtures = process.env.STARWARD_NARRATIVE_FIXTURES === '1';
 const state = { pid: process.pid, backendBase: server.base, proxyBase: '', controlBase: '', controlToken: secret(), account: 'hm_' + randomBytes(5).toString('hex'), initialPassword: secret(), newPassword: secret(), playerId: '', assignmentId: '', assignments: {}, version, mode: 'real isolated PocketBase', backendSourceCommit: exec('git', ['rev-parse', 'HEAD'], { cwd: path.dirname(backend) }).trim(), imageId, sourceDirectory: server.directory };
 async function api(route, body, token = server.adminToken, method = body ? 'POST' : 'GET') {
   const result = await server.request(route, { token, body, method });
@@ -408,6 +410,32 @@ function ownedClaim(authorization) {
 function permitted(method, pathname) {
   return (method === 'GET' && (pathname === '/api/health' || pathname === '/api/questions/v1/me' || pathname === '/api/questions/v1/notifications' || pathname === '/api/questions/v1/rewards' || pathname === '/api/questions/v1/assignments' || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}$/.test(pathname) || /^\/api\/files\/game_players\/[a-z0-9]{15}\/[a-zA-Z0-9._%-]+$/.test(pathname))) || (method === 'POST' && (['/api/collections/game_players/auth-with-password', '/api/questions/v1/me/change-password', '/api/files/token'].includes(pathname) || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}\/(start|answers)$/.test(pathname))) || (method === 'PATCH' && pathname === '/api/questions/v1/me/profile');
 }
+
+async function registerNarrativeRead({ caseId, assignmentId, narrativeId }) {
+  const recordId = /^[a-z0-9]{15}$/;
+  const actor = Object.hasOwn(state.gameplay.cases, caseId) ? state.gameplay.cases[caseId] : undefined;
+  if (!allowNarrativeFixtures || !actor?.ordinaryLoginPrepared ||
+      !recordId.test(assignmentId || '') || !recordId.test(narrativeId || '') || narrativeReadRoutes.size >= 24) {
+    throw new Error('Only exact owned narrative fixtures may be registered');
+  }
+  const assignment = await api('/api/collections/game_assignments/records/' + assignmentId, undefined, server.superToken);
+  if (assignment.player !== actor.playerId || !recordId.test(assignment.session || '')) {
+    throw new Error('The narrative assignment is not owned by the chosen fixture actor');
+  }
+  const session = await api('/api/collections/game_sessions/records/' + assignment.session, undefined, server.superToken);
+  if (session.status !== 'published') throw new Error('The narrative fixture session must be published');
+  if (session.completionTarget?.kind !== 'narrative' || session.completionTarget.id !== narrativeId) {
+    const filter = `session="${assignment.session}" && narrative="${narrativeId}" && (kind="letter" || kind="bless")`;
+    const clues = await api('/api/collections/game_clues/records?perPage=1&filter=' + encodeURIComponent(filter),
+      undefined, server.superToken);
+    const clue = clues.items?.[0];
+    if (clue?.session !== assignment.session || clue.narrative !== narrativeId ||
+        (clue.kind !== 'letter' && clue.kind !== 'bless')) {
+      throw new Error('The published session does not name the exact narrative target');
+    }
+  }
+  narrativeReadRoutes.add(`/api/questions/v1/assignments/${assignmentId}/narratives/${narrativeId}`);
+}
 function reply(res, status, body) {
   if (res.destroyed || res.writableEnded) return;
   try { res.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(body)); }
@@ -423,7 +451,8 @@ async function listener(req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, Accept'); res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   } else if (origin) { reply(res, 403, { error: { code: 'ORIGIN_DENIED', message: '隔离环境来源受限' } }); return; }
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
-  if (!permitted(req.method, url.pathname)) { reply(res, 404, { error: { code: 'NOT_FOUND', message: '隔离玩家代理不提供此接口' } }); return; }
+  const narrativeRead = req.method === 'GET' && !url.search && narrativeReadRoutes.has(url.pathname);
+  if (!narrativeRead && !permitted(req.method, url.pathname)) { reply(res, 404, { error: { code: 'NOT_FOUND', message: '隔离玩家代理不提供此接口' } }); return; }
   const row = { method: req.method, path: url.pathname, authenticated: !!req.headers.authorization, bearer: /^Bearer /i.test(req.headers.authorization || ''), fault: false, status: 0, time: new Date().toISOString() };
   requests.push(row); requests = requests.slice(-1000);
   try {
@@ -503,6 +532,11 @@ try {
       const body = JSON.parse((await jsonBody(req)).toString('utf8') || '{}');
       if (req.url === '/requests') { reply(res, 200, { requests }); return; }
       if (req.url === '/fault') { fault = body; reply(res, 200, { configured: true }); return; }
+      if (req.url === '/register-narrative-read' && allowNarrativeFixtures) {
+        await registerNarrativeRead(body);
+        reply(res, 200, { registered: true });
+        return;
+      }
       if (req.url === '/new-case') { reply(res, 200, await newGameplayCase(body)); return; }
       if (req.url === '/new-ui-content-case') {
         if (caseCreationBusy) throw new Error('Owned case creation is busy');

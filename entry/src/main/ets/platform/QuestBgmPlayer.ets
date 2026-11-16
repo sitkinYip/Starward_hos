@@ -56,6 +56,19 @@ export function isQuestBgmSource(source: string): boolean {
 }
 
 export type QuestBgmState = 'idle' | 'loading' | 'playing' | 'paused' | 'error';
+export type ForegroundAudioRole = 'quest-music' | 'letter-music' | 'letter-voice' | 'bless-music' | 'bless-voice';
+
+const AUDIO_LOG_TAGS: Record<ForegroundAudioRole, string> = {
+  'quest-music': 'StarwardBgm', 'letter-music': 'StarwardLetterMusic', 'letter-voice': 'StarwardLetterVoice',
+  'bless-music': 'StarwardBlessMusic', 'bless-voice': 'StarwardBlessVoice'
+};
+
+export interface ForegroundAudioChannel {
+  update(owner: string, source: string, foreground: boolean, videoVisible: boolean, wantsPlayback: boolean): void;
+  setPlaybackVolume(volume: number): void;
+  retry(): void;
+  release(): void;
+}
 
 type BgmFocus = 'clear' | 'temporary' | 'manual';
 type BgmCommand = '' | 'prepare' | 'play' | 'pause';
@@ -94,9 +107,14 @@ class BgmAttempt {
   }
 }
 
-/** Owns exactly one quest's foreground audio; UI preference remains separate from SDK state. */
-export class QuestBgmPlayer {
+/** Owns one foreground media stream; UI preference remains separate from SDK state. */
+export class QuestBgmPlayer implements ForegroundAudioChannel {
   private readonly changed: (state: QuestBgmState) => void;
+  private readonly role: ForegroundAudioRole;
+  private readonly spoken: boolean;
+  private readonly ended?: () => void;
+  private readonly logTag: string;
+  private volume: number;
   private state: QuestBgmState = 'idle';
   private owner: string = '';
   private target?: BgmTarget;
@@ -111,7 +129,28 @@ export class QuestBgmPlayer {
   private retired: Promise<boolean> = Promise.resolve(true);
   private quietWaiters: Array<(quiet: boolean) => void> = [];
 
-  constructor(changed: (state: QuestBgmState) => void) { this.changed = changed; }
+  constructor(changed: (state: QuestBgmState) => void, role: ForegroundAudioRole = 'quest-music', ended?: () => void) {
+    this.changed = changed;
+    this.role = role;
+    this.spoken = role === 'letter-voice' || role === 'bless-voice';
+    this.ended = ended;
+    this.volume = role === 'quest-music' ? VOLUME : role === 'letter-music' ? 0.5 : role === 'bless-music' ? 0.15 : 1;
+    this.logTag = AUDIO_LOG_TAGS[role];
+  }
+
+  setPlaybackVolume(volume: number): void {
+    if (this.volume === volume) { return; }
+    this.volume = volume;
+    const player: media.AVPlayer | undefined = this.attempt?.player;
+    if (player !== undefined &&
+      (player.state === 'prepared' || player.state === 'playing' || player.state === 'paused')) {
+      try { this.applyVolume(player); } catch { /* The native stream may be transitioning. */ }
+    }
+  }
+
+  private applyVolume(player: media.AVPlayer): void {
+    player.setVolume(this.volume * (this.ducked ? 0.2 : 1));
+  }
 
   update(owner: string, source: string, foreground: boolean, videoVisible: boolean, wantsPlayback: boolean): void {
     const target: BgmTarget | undefined = owner.length > 0 ? bgmTarget(source) : undefined;
@@ -127,6 +166,10 @@ export class QuestBgmPlayer {
     this.foreground = foreground;
     this.videoVisible = videoVisible;
     this.wantsPlayback = wantsPlayback;
+    if (target === undefined && owner.length > 0 && source.length > 0 && this.role !== 'quest-music') {
+      this.publish('error');
+      return;
+    }
     this.reconcile();
   }
 
@@ -209,7 +252,7 @@ export class QuestBgmPlayer {
       this.publish('idle');
       return;
     }
-    if (!this.foreground) {
+    if (!this.foreground && (this.role === 'quest-music' || this.attempt?.ready !== true)) {
       if (this.focus === 'temporary') { this.focus = 'manual'; }
       this.ducked = false;
       this.retire();
@@ -232,6 +275,10 @@ export class QuestBgmPlayer {
     }
     const state: media.AVPlayerState = player.state;
     if (!this.canPlay()) {
+      if (!this.foreground && this.spoken) {
+        clearTimeout(attempt.watchdog);
+        attempt.watchdog = -1;
+      }
       if (state === 'playing' && attempt.command === '') {
         this.run(attempt, player, 'pause');
       } else if (state !== 'playing' && attempt.command !== 'play') {
@@ -240,9 +287,15 @@ export class QuestBgmPlayer {
       return;
     }
     if (state === 'playing') {
+      if (this.spoken && attempt.watchdog < 0) {
+        this.voiceDeadline(attempt, player);
+      }
       this.publish('playing');
     } else if (attempt.ready && (state === 'prepared' || state === 'paused' || state === 'completed') &&
       attempt.command === '') {
+      if (this.spoken && attempt.watchdog < 0) {
+        attempt.watchdog = setTimeout(() => this.fail(attempt), 12000);
+      }
       this.run(attempt, player, 'play');
     }
   }
@@ -250,6 +303,10 @@ export class QuestBgmPlayer {
   private async start(target: BgmTarget): Promise<void> {
     const attempt: BgmAttempt = new BgmAttempt(++this.nextAttempt);
     this.attempt = attempt;
+    if (this.spoken) {
+      // Whole-load deadline includes HTTP, waiting for previous release, and native preparation.
+      attempt.watchdog = setTimeout(() => this.fail(attempt), AppEnvironment.timeoutMs * 2 + 12000);
+    }
     this.publish('loading');
     this.trace(attempt, 'begin');
     try {
@@ -287,7 +344,9 @@ export class QuestBgmPlayer {
       if (!this.live(attempt)) { return; }
       if (!drainOk) { this.fail(attempt); return; }
       attempt.bytes = new Uint8Array(response.result);
-      attempt.watchdog = setTimeout(() => this.fail(attempt), 12000);
+      if (!this.spoken) {
+        attempt.watchdog = setTimeout(() => this.fail(attempt), 12000);
+      }
       attempt.creation = media.createAVPlayer();
       const player: media.AVPlayer = await attempt.creation;
       if (!this.live(attempt)) { return; }
@@ -304,6 +363,11 @@ export class QuestBgmPlayer {
       });
       if (AppEnvironment.probeTls) {
         player.on('timeUpdate', (time: number) => this.position(attempt, player, time));
+        if (this.role === 'letter-music' || this.role === 'bless-music') {
+          player.on('volumeChange', (volume: number) => {
+            if (this.live(attempt)) { this.trace(attempt, 'volume', Math.round(volume * 100)); }
+          });
+        }
       }
       player.dataSrc = {
         fileSize: attempt.bytes.byteLength,
@@ -327,10 +391,16 @@ export class QuestBgmPlayer {
         clearTimeout(attempt.watchdog);
         attempt.watchdog = -1;
         player.audioInterruptMode = audio.InterruptMode.SHARE_MODE;
-        player.loop = true;
-        player.setVolume(VOLUME);
+        player.loop = !this.spoken;
+        this.applyVolume(player);
         attempt.ready = true;
         this.trace(attempt, 'duration', player.duration);
+      } else if (state === 'playing' && this.spoken && this.canPlay()) {
+        this.voiceDeadline(attempt, player);
+      } else if (state === 'completed' && this.spoken) {
+        this.release();
+        this.ended?.();
+        return;
       } else if (state === 'stopped') {
         // No RESUME notification follows a forced stop; an explicit play action can re-arm it.
         this.focus = 'manual';
@@ -345,6 +415,13 @@ export class QuestBgmPlayer {
     } catch {
       this.fail(attempt);
     }
+  }
+
+  private voiceDeadline(attempt: BgmAttempt, player: media.AVPlayer): void {
+    clearTimeout(attempt.watchdog);
+    const remaining: number = Number.isFinite(player.duration) && player.duration > 0 ?
+      Math.max(0, player.duration - Math.max(0, player.currentTime)) : 120000;
+    attempt.watchdog = setTimeout(() => this.fail(attempt), Math.min(2000000000, remaining + 10000));
   }
 
   private async run(attempt: BgmAttempt, player: media.AVPlayer, command: BgmCommand): Promise<void> {
@@ -395,7 +472,7 @@ export class QuestBgmPlayer {
       info.forceType === audio.InterruptForceType.INTERRUPT_SHARE &&
       (player.state === 'playing' || player.state === 'paused' || player.state === 'prepared')) {
       this.ducked = hint === audio.InterruptHint.INTERRUPT_HINT_DUCK;
-      try { player.setVolume(this.ducked ? VOLUME * 0.2 : VOLUME); } catch { /* An advisory change is optional. */ }
+      try { this.applyVolume(player); } catch { /* An advisory change is optional. */ }
     }
   }
 
@@ -460,7 +537,7 @@ export class QuestBgmPlayer {
 
   private trace(attempt: BgmAttempt, event: string, value: number = 0): void {
     if (AppEnvironment.probeTls) {
-      hilog.info(0x0000, 'StarwardBgm', 'attempt=%{public}d event=%{public}s value=%{public}d',
+      hilog.info(0x0000, this.logTag, 'attempt=%{public}d event=%{public}s value=%{public}d',
         attempt.number, event, value);
     }
   }

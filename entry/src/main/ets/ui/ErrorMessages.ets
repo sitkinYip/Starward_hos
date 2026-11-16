@@ -16,6 +16,8 @@ export struct InlineError {
 export struct ErrorNotice {
   @Param message: string = '';
   @Param retryable: boolean = false;
+  @Param topMargin: number = 16;
+  @Param returnLabel: string = '回到首页';
   @Event retry: () => void = () => {};
   @Event returnHome: () => void = () => {};
 
@@ -38,14 +40,14 @@ export struct ErrorNotice {
               Row({ space: 8 }) {
                 Image($r('app.media.icon_house')).width(18).height(18).fillColor($r('app.color.on_accent'))
                   .objectFit(ImageFit.Contain).accessibilityLevel('no')
-                Text('回到首页').fontSize(13).fontWeight(600)
+                Text(this.returnLabel).fontSize(13).fontWeight(600)
               }
             }.id('error-return-home').height(40).padding({ left: 14, right: 14 }).borderRadius(10)
               .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
               .onClick(() => this.returnHome())
           }.width('100%')
         }.layoutWeight(1).alignItems(HorizontalAlign.Start)
-      }.width('100%').alignItems(VerticalAlign.Top).padding(16).margin({ top: 16, bottom: 16 })
+      }.width('100%').alignItems(VerticalAlign.Top).padding(16).margin({ top: this.topMargin, bottom: 16 })
         .backgroundColor($r('app.color.danger_surface'))
         .border({ width: 1, color: $r('app.color.danger_border'), radius: 10 })
     }

@@ -1,7 +1,8 @@
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { curves, PromptAction, promptAction, RectShape } from '@kit.ArkUI';
-import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, ordinaryClues } from '../business/GameplayClues';
+import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, isNarrativeClue,
+  nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
 import { GameplayClue, GameplayCompletionTarget, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
 import { gameplayBgmSource } from '../business/GameplayBgm';
@@ -14,6 +15,7 @@ import { externalClueLinkHref, openExternalClueLink } from '../platform/External
 import { isQuestBgmSource, QuestBgmPlayer, QuestBgmState } from '../platform/QuestBgmPlayer';
 import { QuestBgmPreference } from '../platform/QuestBgmPreference';
 import { QuestAnswerGuidePreference } from '../platform/QuestAnswerGuidePreference';
+import { QuestNarrativeAttentionPreference } from '../platform/QuestNarrativeAttentionPreference';
 import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
@@ -33,6 +35,7 @@ import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
 import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
 import { StarwardQuestionSwiper } from '../ui/StarwardQuestionSwiper';
 import { StarwardClueArchive } from '../ui/StarwardClueArchive';
+import { StarwardNarrativeAttention } from '../ui/StarwardNarrativeAttention';
 import { StarwardClueTextDialog } from '../ui/StarwardClueTextDialog';
 import { StarwardCombinationDialog } from '../ui/StarwardCombinationDialog';
 import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
@@ -127,7 +130,10 @@ export struct GameplayPage {
   @Param rightInset: number = 0;
   @Param keyboardVisible: boolean = false;
   @Param reducedMotion: boolean = true;
+  @Param narrativeCovered: boolean = false;
   @Event leave: () => void = () => {};
+  @Event openNarrative: (assignmentId: string, contentId: string) => void = () => {};
+  @Event openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) => boolean = () => false;
   @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
   @Event finaleBackdropChanged: (visible: boolean) => void = () => {};
   @Local seenCompletionRevision: number = 0;
@@ -156,6 +162,11 @@ export struct GameplayPage {
   @Local private guideSeen: boolean = true;
   @Local private guideHeight: number = 132;
   @Local private guideHighlightOwner: string = '';
+  @Local private openedNarrativeIds: string[] = [];
+  @Local private attentionHeight: number = 80;
+  @Local private attentionReserveOwner: string = '';
+  private attentionAccount: string = '';
+  private attentionAssignment: string = '';
   private guideHighlightTimer: number = -1;
   @Local private bgmState: QuestBgmState = 'idle';
   @Local private bgmPosition: QuestBgmPosition = new QuestBgmPosition();
@@ -186,7 +197,7 @@ export struct GameplayPage {
     this.viewer.validateOwner();
     if (foreground) {
       this.clearClueLinkHandoff();
-      if (this.play.visible) {
+      if (this.play.visible && !this.narrativeCovered) {
         if (keepHandoff) {
           this.play.refresh(keepReading ? this.textClue ?? undefined : undefined);
           if (handoff?.failed) { this.showClueLinkFailure(); }
@@ -197,7 +208,7 @@ export struct GameplayPage {
           if (this.play.retryAnswer) { this.play.reload(); }
         }
       }
-      this.play.setPollingActive(true);
+      this.play.setPollingActive(!this.narrativeCovered);
     } else if (keepHandoff && handoff !== null) {
       // Preserve the current reading state until the system returns to the app.
       clearTimeout(handoff.timeout);
@@ -229,9 +240,10 @@ export struct GameplayPage {
     this.seenCompletionRevision = this.play.completionRevision;
     this.recoveryChanged();
     this.answerGuideAccountChanged();
+    this.loadNarrativeAttention();
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
-    this.play.setPollingActive(this.foreground);
+    this.play.setPollingActive(this.foreground && !this.narrativeCovered);
     this.updateBgm();
   }
 
@@ -262,6 +274,7 @@ export struct GameplayPage {
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error')
   imageOwnerChanged(): void {
+    if (this.attentionReserveOwner !== this.positionKey()) { this.attentionReserveOwner = ''; }
     if (this.guideHighlightOwner.length > 0 && this.guideHighlightOwner !== this.positionKey()) {
       this.clearAnswerGuideHighlight();
     }
@@ -338,7 +351,7 @@ export struct GameplayPage {
 
   private showAnswerGuide(): boolean {
     return this.hasPendingAnswerGuide() && this.foreground && this.questionInteractionReady() &&
-      this.play.automaticClue === null;
+      this.play.automaticClue === null && this.attentionClue() === null;
   }
 
   private consumeAnswerGuide(): void {
@@ -399,7 +412,11 @@ export struct GameplayPage {
 
   private scrollBottomClearance(): number {
     const baseline: number = this.bottomClearance + (this.bgmSource().length > 0 ? QUEST_BGM_SIZE : 0);
-    if (this.finalDestinationHref().length > 0) { return baseline + this.destinationHeight + 14; }
+    if (this.finalDestination() !== null) { return baseline + this.destinationHeight + 14; }
+    if (this.attentionClue() !== null || (this.attentionReserveOwner.length > 0 &&
+      this.attentionReserveOwner === this.positionKey())) {
+      return baseline + this.attentionInset() + this.attentionHeight - this.bgmBottomInset();
+    }
     return this.showAnswerGuide() ? Math.max(baseline, this.guideBottomInset() + this.guideHeight + 12) : baseline;
   }
 
@@ -415,6 +432,16 @@ export struct GameplayPage {
     'videoViewer.visible', 'videoViewer.closing')
   bgmInputsChanged(): void { this.updateBgm(); }
 
+  @Monitor('narrativeCovered')
+  narrativeCoverChanged(): void {
+    this.play.setPollingActive(this.foreground && !this.narrativeCovered);
+    this.updateBgm();
+    if (!this.narrativeCovered) {
+      this.rankChanged();
+      this.scheduleQuestionPosition();
+    }
+  }
+
   private updateBgm(videoOpening: boolean = false): void {
     if (!this.bgmMounted) { return; }
     const account: string = this.playerId;
@@ -427,7 +454,7 @@ export struct GameplayPage {
     }
     const source: string = this.bgmSource();
     const owner: string = source.length > 0 ? this.play.imageOwnerKey() : '';
-    this.bgm.update(owner, source, this.foreground,
+    this.bgm.update(owner, source, this.foreground && !this.narrativeCovered,
       videoOpening || this.videoViewer.visible || this.videoViewer.closing, this.bgmEnabled);
   }
 
@@ -442,7 +469,8 @@ export struct GameplayPage {
   private bgmBottomInset(): number { return Math.max(0, this.bottomClearance - 24); }
 
   private bgmLayoutBottomInset(): number {
-    if (this.finalDestinationHref().length > 0) { return this.destinationBottomInset() + this.destinationHeight + 10; }
+    if (this.finalDestination() !== null) { return this.destinationBottomInset() + this.destinationHeight + 10; }
+    if (this.attentionClue() !== null) { return this.attentionInset() + this.attentionHeight + 10; }
     return this.showAnswerGuide() ? this.guideBottomInset() + this.guideHeight : this.bgmBottomInset();
   }
 
@@ -646,6 +674,54 @@ export struct GameplayPage {
       ordinaryClues(this.play.snapshot, this.play.currentLevel()) : [];
   }
 
+  @Monitor('playerId', 'play.snapshot', 'play.visible')
+  private loadNarrativeAttention(): void {
+    const assignment = this.play.snapshot?.detail;
+    const account: string = this.playerId;
+    const id: string = this.play.visible && assignment?.player === account ? assignment.id : '';
+    if (this.attentionAccount === account && this.attentionAssignment === id) { return; }
+    this.attentionAccount = account;
+    this.attentionAssignment = id;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    this.openedNarrativeIds = context && account.length > 0 && id.length > 0 ?
+      QuestNarrativeAttentionPreference.load(context, account, id) : [];
+  }
+
+  private pendingNarrativeIds(): string[] {
+    return this.currentClues().filter((clue: GameplayClue) =>
+      isNarrativeClue(clue) && !this.openedNarrativeIds.includes(clue.id)).map((clue: GameplayClue) => clue.id);
+  }
+
+  private attentionInset(): number { return Math.max(18, this.bgmBottomInset() + 8); }
+
+  private attentionClue(): GameplayClue | null {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    if (!this.foreground || this.narrativeCovered || this.playerId.length === 0 ||
+      snapshot?.detail.player !== this.playerId || !this.play.visible || this.play.error.length > 0 ||
+      !this.questionInteractionReady() || this.play.automaticClue !== null || this.play.finaleStage !== 'idle' ||
+      this.viewportWidth - this.leftInset - this.rightInset < 250 || this.viewportHeight <= 0) { return null; }
+    return nextNarrativeAttention(snapshot, this.currentClues(), this.openedNarrativeIds);
+  }
+
+  private openPendingNarrative(id: string): void {
+    const pending: GameplayClue | null = this.attentionClue();
+    if (pending?.id === id) { this.openGrantedNarrative(pending, true); }
+  }
+
+  private openGrantedNarrative(clue: GameplayClue, fromAttention: boolean): void {
+    const assignment = this.play.snapshot?.detail;
+    const account: string = this.playerId;
+    if (!this.foreground || this.narrativeCovered || assignment === undefined || account.length === 0 ||
+      assignment.player !== account || !this.openNarrativeClue(assignment.id, clue.id, clue.narrative)) { return; }
+    if (fromAttention) { this.attentionReserveOwner = this.positionKey(); }
+    this.loadNarrativeAttention();
+    if (!this.openedNarrativeIds.includes(clue.id)) {
+      this.openedNarrativeIds = this.openedNarrativeIds.concat([clue.id]).slice(-128);
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+      if (context) { QuestNarrativeAttentionPreference.save(context, account, assignment.id, this.openedNarrativeIds); }
+    }
+  }
+
   private isClueCurrent(owner: string, clue: GameplayClue): boolean {
     if (this.imageOwner() !== owner || !this.play.visible || this.play.error.length > 0) { return false; }
     const snapshot: GameplaySnapshot | null = this.play.snapshot;
@@ -729,6 +805,8 @@ export struct GameplayPage {
       this.viewer.open(clueImageSources(clue), 0, () => this.isClueCurrent(owner, clue));
     } else if (clue.kind === 'link') {
       this.launchClueLink(clue.content.url, null, () => this.isClueCurrent(owner, clue));
+    } else if (isNarrativeClue(clue)) {
+      this.openGrantedNarrative(clue, false);
     } else if (clue.kind === 'video' && this.foreground) {
       const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
       if (context && this.openVideoWithBgmSuspended(clue.content.url.trim(), context.cacheDir,
@@ -1162,7 +1240,7 @@ export struct GameplayPage {
     if (!this.foreground || !this.play.visible || this.play.error.length > 0 ||
       this.play.snapshot?.detail.status !== 'completed') { return; }
     const revision: number = this.play.completionRevision;
-    if (this.play.finaleStage === 'destination' && this.finalDestinationHref().length === 0) {
+    if (this.play.finaleStage === 'destination' && this.finalDestination() === null) {
       this.play.dismissFinaleDestination(revision);
     }
     if (this.play.finaleStage !== 'combination' || this.combinationSequenceActive) { return; }
@@ -1176,19 +1254,26 @@ export struct GameplayPage {
 
   private destinationBottomInset(): number { return 14 + this.bgmBottomInset(); }
 
-  private finalDestinationHref(): string {
+  private finalDestination(): GameplayCompletionTarget | null {
+    if (this.play.finaleStage !== 'destination' || !this.play.visible || this.play.error.length > 0) { return null; }
     const target: GameplayCompletionTarget | null = this.play.currentFinaleTarget();
-    return this.play.finaleStage === 'destination' && this.play.visible && this.play.error.length === 0 &&
-      target !== null ? externalClueLinkHref(target.url) : '';
+    return target?.kind === 'narrative' || (target?.kind === 'link' && externalClueLinkHref(target.url).length > 0) ?
+      target : null;
   }
 
   private openFinalDestination(): void {
-    const href: string = this.finalDestinationHref();
+    const target: GameplayCompletionTarget | null = this.finalDestination();
+    if (target === null) { return; }
+    if (target.kind === 'narrative') {
+      const assignmentId: string = this.play.snapshot?.detail.id ?? '';
+      this.openNarrative(assignmentId, target.id);
+      return;
+    }
+    const href: string = externalClueLinkHref(target.url);
     const revision: number = this.play.completionRevision;
     const owner: string = this.play.imageOwnerKey();
-    if (href.length === 0) { return; }
     this.launchClueLink(href, null, () => this.play.completionRevision === revision &&
-      this.play.imageOwnerKey() === owner && this.finalDestinationHref() === href, true);
+      this.play.imageOwnerKey() === owner && externalClueLinkHref(this.finalDestination()?.url ?? '') === href, true);
   }
 
   @Monitor('play.rankUp', 'play.visible', 'play.error', 'play.snapshot', 'play.automaticClue',
@@ -1425,7 +1510,8 @@ export struct GameplayPage {
   }
 
   private questionInteractionReady(allowsKeyboard: boolean = false): boolean {
-    return this.interactionReady() && (allowsKeyboard || !this.keyboardVisible) && !this.recoveryVisible &&
+    return !this.narrativeCovered && this.interactionReady() && (allowsKeyboard || !this.keyboardVisible) &&
+      !this.recoveryVisible &&
       this.textClue === null && !this.viewer.visible && !this.viewer.closing &&
       !this.videoViewer.visible && !this.videoViewer.closing &&
       !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
@@ -1634,7 +1720,8 @@ export struct GameplayPage {
           if (this.currentClues().length > 0) {
             StarwardClueArchive({ clues: this.currentClues(), displayFont: this.displayFont,
               motionEnabled: this.foreground && !this.reducedMotion && this.questionInteractionReady(),
-              reducedMotion: this.reducedMotion,
+              reducedMotion: this.reducedMotion, compact: this.viewportWidth <= 620,
+              pendingNarrativeIds: this.pendingNarrativeIds(),
               opened: (id: string) => this.openClue(id) })
           }
         }
@@ -1768,7 +1855,22 @@ export struct GameplayPage {
             right: Math.max(12, this.rightInset) })
           .hitTestBehavior(HitTestMode.None)
       }
-      if (this.foreground && this.finalDestinationHref().length > 0 && this.viewportWidth - this.leftInset - this.rightInset > 28) {
+      if (this.attentionClue() !== null) {
+        Column() {
+          StarwardNarrativeAttention({ clue: this.attentionClue() as GameplayClue,
+            reducedMotion: this.reducedMotion, opened: (id: string) => this.openPendingNarrative(id) })
+            .constraintSize({ maxWidth: 430 })
+            .onAreaChange((_previous: Area, area: Area) => {
+              const height: number = Number(area.height);
+              if (Number.isFinite(height) && height > 0 && this.attentionHeight !== height) {
+                this.attentionHeight = height;
+              }
+            })
+        }.width('100%').height('100%').alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.End)
+          .padding({ bottom: this.attentionInset(), left: Math.max(16, this.leftInset), right: Math.max(16, this.rightInset) })
+          .hitTestBehavior(HitTestMode.None)
+      }
+      if (this.foreground && this.finalDestination() !== null && this.viewportWidth - this.leftInset - this.rightInset > 28) {
         Column() {
           StarwardFinalDestination({ panelWidth: Math.min(760, this.viewportWidth - 28 - this.leftInset - this.rightInset),
             displayFont: this.displayFont, launching: this.destinationLaunching,

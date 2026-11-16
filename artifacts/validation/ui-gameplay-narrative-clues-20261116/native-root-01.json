@@ -1,0 +1,21 @@
+{
+  "status": "incomplete",
+  "checks": [
+    "pre-grant SQLite clean after host entry",
+    "pre-grant UI withholds cards and reminder",
+    "actual submit control is enabled"
+  ],
+  "captures": [
+    {
+      "label": "light-locked",
+      "sha256": "5578a2aef209260dab6bad7450e3e9f689871ffdf3ca4428ef61868f11010613"
+    },
+    {
+      "label": "incomplete-last-view",
+      "sha256": "8d15af5e6bcd36f87e466a83f053c9478295d645dbe05dfbd4a6f83e1c533db0"
+    }
+  ],
+  "installedHapSha256": "e680f3e6f11988285b8063169c72cf85400062ae2295a8c09bed2186efe6e996",
+  "blockedAfter": 3,
+  "errorType": "SafeFailure"
+}

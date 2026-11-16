@@ -1,6 +1,17 @@
 import { curves, UIUtils } from '@kit.ArkUI';
-import { ClueSpan, clueTextParts, clueTitle } from '../business/GameplayClues';
+import { ClueSpan, clueTextParts, clueTitle, isNarrativeClue } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
+import { narrativeAttentionLabel, StarwardNarrativeSignal } from './StarwardNarrativeAttention';
+
+class ClueCardFrame {
+  readonly width: number;
+  readonly height: number;
+
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
+}
 
 /** Mobile archive below the completed answer. */
 @ComponentV2
@@ -9,11 +20,14 @@ export struct StarwardClueArchive {
   @Param displayFont: string = 'serif';
   @Param motionEnabled: boolean = false;
   @Param reducedMotion: boolean = true;
+  @Param compact: boolean = true;
+  @Param pendingNarrativeIds: string[] = [];
   @Event opened: (id: string) => void = () => {};
   @Local private revealed: boolean = true;
   @Local private ringAngle: number = 0;
   @Local private cornerTurned: boolean = false;
   @Local private headingWidth: number = 0;
+  @Local private narrativeFrames: Map<string, ClueCardFrame> = new Map();
   @Local private inView: boolean = false;
   private mounted: boolean = false;
 
@@ -46,6 +60,29 @@ export struct StarwardClueArchive {
 
   private atmosphereDiameter(): number { return Math.min(360, this.headingWidth * 0.82); }
 
+  private narrativeStatus(clue: GameplayClue): string {
+    return this.pendingNarrativeIds.includes(clue.id) ? narrativeAttentionLabel(clue.kind) : '叙事内容已解锁';
+  }
+
+  @Builder
+  narrativeSignal(clue: GameplayClue) {
+    if (this.pendingNarrativeIds.includes(clue.id) && this.narrativeFrames.has(clue.id)) {
+      StarwardNarrativeSignal({ running: this.motionEnabled && this.inView && !this.reducedMotion,
+        frameWidth: this.narrativeFrames.get(clue.id)?.width ?? 0,
+        frameHeight: this.narrativeFrames.get(clue.id)?.height ?? 0 })
+    }
+  }
+
+  private measureNarrativeCard(clue: GameplayClue, area: Area): void {
+    if (!isNarrativeClue(clue)) { return; }
+    const width: number = Number(area.width);
+    const height: number = Number(area.height);
+    const previous: ClueCardFrame | undefined = this.narrativeFrames.get(clue.id);
+    if (width > 0 && height > 0 && (previous?.width !== width || previous?.height !== height)) {
+      this.narrativeFrames.set(clue.id, new ClueCardFrame(width, height));
+    }
+  }
+
   @Builder
   atmosphere() {
     Stack() {
@@ -67,51 +104,74 @@ export struct StarwardClueArchive {
   @Builder
   card(clue: GameplayClue, index: number) {
     Button({ type: ButtonType.Normal }) {
-      Row({ space: 11 }) {
-        Column({ space: 7 }) {
-          Text(this.number(index + 1)).fontFamily('monospace').fontSize(18).lineHeight('18fp')
-            .fontWeight(FontWeight.Medium).letterSpacing('-1.44fp').fontColor($r('app.color.accent_text'))
-          Text(clue.kind.toUpperCase()).fontFamily('monospace').fontSize(8).lineHeight('9.6fp')
-            .letterSpacing('1.12fp').fontColor($r('app.color.accent_muted'))
-        }.width(52).constraintSize({ minHeight: 50 }).justifyContent(FlexAlign.Center)
-          .border({ width: { right: 1 }, color: $r('app.color.border') })
-          .accessibilityLevel('no-hide-descendants')
-        Column({ space: 5 }) {
-          Text(clueTitle(clue)).id(`gameplay-clue-title-${index}`).width('100%')
-            .fontSize(15).fontWeight(600).letterSpacing('0.15fp').fontColor($r('app.color.strong'))
-          if (this.preview(clue).length > 0) {
-            Text() {
-              ForEach(this.preview(clue), (span: ClueSpan) => {
-                if (span.highlight) {
-                  Span(span.text).fontColor($r('app.color.clue_mark_text'))
-                    .textBackgroundStyle({ color: $r('app.color.clue_mark_surface') })
-                } else {
-                  Span(span.text)
-                }
-              }, (span: ClueSpan, segment: number) => `${segment}:${span.highlight}:${span.text}`)
-            }.width('100%').fontSize(13).lineHeight('20.8fp').fontColor($r('app.color.muted'))
-              .maxLines(2).textOverflow({ overflow: TextOverflow.Clip })
-          }
-        }.layoutWeight(1).alignItems(HorizontalAlign.Start)
-        Stack() {
-          Circle().id(`gameplay-clue-action-ring-${index}`).width(24).height(24)
-            .fill(Color.Transparent).stroke($r('app.color.accent_soft'))
-            .strokeWidth(1).strokeDashArray([2, 2]).rotate({ angle: this.ringAngle })
-          Image(clue.kind === 'link' ? $r('app.media.icon_arrow_up_right') : $r('app.media.icon_arrow_right'))
-            .width(18).height(18).fillColor($r('app.color.accent_text'))
-        }.width(34).height(34).borderRadius(17).backgroundColor($r('app.color.accent_faint'))
-          .border({ width: 1, color: $r('app.color.accent_border') }).margin({ left: 4 })
-          .accessibilityLevel('no-hide-descendants')
-      }.width('100%').padding({ top: 14, right: 12, bottom: 15, left: 8 })
-        .opacity(this.revealed ? 1 : 0).translate({ x: this.revealed ? 0 : -30, y: this.revealed ? 0 : 18 })
-        .scale({ x: this.revealed ? 1 : 0.97, y: this.revealed ? 1 : 0.97, centerX: 0 })
-        .animation(this.revealAnimation(700, Math.min(280, index * 70)))
-    }.id(`gameplay-clue-${index}`).width('100%').padding(0).borderRadius(0).clip(true)
-      .backgroundColor($r('app.color.inset')).border({ width: 1, color: $r('app.color.border_strong') })
-      .radialGradient(clue.kind === 'link' ? { center: ['0%', '50%'], radius: '34%',
-        colors: [[$r('app.color.accent_faint'), 0], [Color.Transparent, 1]] } : undefined)
-      .clickEffect(clue.kind === 'link' && !this.reducedMotion ? { level: ClickEffectLevel.LIGHT, scale: 0.99 } : null)
-      .accessibilityText(clueTitle(clue)).onClick(() => this.opened(clue.id))
+      Stack({ alignContent: Alignment.TopStart }) {
+        Row({ space: 11 }) {
+          Column({ space: 7 }) {
+            Text(this.number(index + 1)).fontFamily('monospace').fontSize(18).lineHeight('18fp')
+              .fontWeight(FontWeight.Medium).letterSpacing('-1.44fp').fontColor($r('app.color.accent_text'))
+            Text(clue.kind.toUpperCase()).fontFamily('monospace').fontSize(8).lineHeight('9.6fp')
+              .letterSpacing('1.12fp').fontColor($r('app.color.accent_muted'))
+          }.width(52).constraintSize({ minHeight: 50 }).justifyContent(FlexAlign.Center)
+            .border({ width: { right: 1 }, color: $r('app.color.border') })
+            .accessibilityLevel('no-hide-descendants')
+          Column({ space: 5 }) {
+            if (isNarrativeClue(clue) && (!this.compact || this.pendingNarrativeIds.includes(clue.id))) {
+              Text(this.narrativeStatus(clue)).id(`gameplay-narrative-status-${clue.id}`).width('100%')
+                .fontFamily('monospace').fontSize(8).lineHeight('9.6fp').letterSpacing('1.28fp')
+                .fontColor(this.pendingNarrativeIds.includes(clue.id) ?
+                  $r('app.color.accent_text') : $r('app.color.muted'))
+            }
+            Text(clueTitle(clue)).id(`gameplay-clue-title-${index}`).width('100%')
+              .fontSize(15).fontWeight(600).letterSpacing('0.15fp').fontColor($r('app.color.strong'))
+            if (this.preview(clue).length > 0) {
+              Text() {
+                ForEach(this.preview(clue), (span: ClueSpan) => {
+                  if (span.highlight) {
+                    Span(span.text).fontColor($r('app.color.clue_mark_text'))
+                      .textBackgroundStyle({ color: $r('app.color.clue_mark_surface') })
+                  } else {
+                    Span(span.text)
+                  }
+                }, (span: ClueSpan, segment: number) => `${segment}:${span.highlight}:${span.text}`)
+              }.width('100%').fontSize(13).lineHeight('20.8fp').fontColor($r('app.color.muted'))
+                .maxLines(2).textOverflow({ overflow: TextOverflow.Clip })
+            }
+          }.layoutWeight(1).alignItems(HorizontalAlign.Start)
+          Stack() {
+            Circle().id(`gameplay-clue-action-ring-${index}`).width(24).height(24)
+              .fill(Color.Transparent).stroke($r('app.color.accent_soft'))
+              .strokeWidth(1).strokeDashArray([2, 2]).rotate({ angle: this.ringAngle })
+            Image(clue.kind === 'letter' ? $r('app.media.icon_envelope') : clue.kind === 'bless' ?
+              $r('app.media.icon_sparkle') : clue.kind === 'link' ? $r('app.media.icon_arrow_up_right') :
+              $r('app.media.icon_arrow_right'))
+              .width(18).height(18).fillColor(this.pendingNarrativeIds.includes(clue.id) ?
+                $r('app.color.on_accent') : $r('app.color.accent_text'))
+          }.width(34).height(34).borderRadius(17).backgroundColor(this.pendingNarrativeIds.includes(clue.id) ?
+            $r('app.color.accent') : $r('app.color.accent_faint'))
+            .border({ width: 1, color: this.pendingNarrativeIds.includes(clue.id) ?
+              $r('app.color.accent') : $r('app.color.accent_border') }).margin({ left: 4 })
+            .accessibilityLevel('no-hide-descendants')
+        }.width('100%').padding({ top: 14, right: 12, bottom: 15, left: 8 })
+          .onAreaChange((_previous: Area, area: Area) => this.measureNarrativeCard(clue, area))
+          .opacity(this.revealed ? 1 : 0).translate({ x: this.revealed ? 0 : -30, y: this.revealed ? 0 : 18 })
+          .scale({ x: this.revealed ? 1 : 0.97, y: this.revealed ? 1 : 0.97, centerX: 0 })
+          .animation(this.revealAnimation(700, Math.min(280, index * 70)))
+        Stack({ alignContent: Alignment.TopStart }) {
+          this.narrativeSignal(clue)
+        }.width(0).height(0).clip(false).position({ x: 0, y: 0 }).hitTestBehavior(HitTestMode.None)
+      }.width('100%')
+    }.id(isNarrativeClue(clue) ? `gameplay-clue-${clue.id}` : `gameplay-clue-${index}`)
+      .width('100%').padding(0).borderRadius(0).clip(true)
+      .backgroundColor($r('app.color.inset')).border({ width: 1, color: this.pendingNarrativeIds.includes(clue.id) ?
+        $r('app.color.accent') : isNarrativeClue(clue) ? $r('app.color.accent_border') : $r('app.color.border_strong') })
+      .radialGradient(clue.kind === 'link' || isNarrativeClue(clue) ? { center: ['0%', '50%'],
+        radius: isNarrativeClue(clue) ? '42%' : '34%',
+        colors: [[isNarrativeClue(clue) ? $r('app.color.accent_soft') : $r('app.color.accent_faint'), 0],
+          [Color.Transparent, 1]] } : undefined)
+      .clickEffect((clue.kind === 'link' || isNarrativeClue(clue)) && !this.reducedMotion ?
+        { level: ClickEffectLevel.LIGHT, scale: 0.99 } : null)
+      .accessibilityText(isNarrativeClue(clue) ? `${clueTitle(clue)}，${this.narrativeStatus(clue)}` : clueTitle(clue))
+      .onClick(() => this.opened(clue.id))
   }
 
   build() {

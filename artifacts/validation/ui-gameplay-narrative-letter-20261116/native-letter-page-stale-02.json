@@ -1,0 +1,40 @@
+{
+  "status": "native_page_indicator_changed_but_visible_paper_text_stayed_stale",
+  "hapSha256": "7f132d8ede351bf390bf6d560214247c526d67764fb7466e0c9af29460cbf7d1",
+  "runtimeReportSha256": "77f8b2ec51d152f88ca5d991e20b1f08ab8b7119ccd4c9ca37c1f64011e83465",
+  "states": [
+    {
+      "selectedPageNumber": 1,
+      "recordedPageCount": 5,
+      "visiblePaperTextSha256": "d0dd3d04f69cc736ad99044a4f9e312cd63dec3b035e47d8f0b8247ad28036c3",
+      "visibleTextRowsOnPaper": 6,
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-page-1.png",
+        "sha256": "aefaa3162b604c9c2f73052229aa1312d1c21e73abb7f9978896ee108314a4db"
+      },
+      "nativeRawUiTest": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-narrative-open-page-1-5715a69a6b444fde89504a32c81ce335.json",
+        "sha256": "25f82884ff0b66b63d90cbd5e7d40726b66d60801a3f7001e30ae5ef3888f13d"
+      }
+    },
+    {
+      "selectedPageNumber": 2,
+      "recordedPageCount": 5,
+      "visiblePaperTextSha256": "d0dd3d04f69cc736ad99044a4f9e312cd63dec3b035e47d8f0b8247ad28036c3",
+      "visibleTextRowsOnPaper": 6,
+      "nativeOriginal": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/narrative-open-page-2.png",
+        "sha256": "6d46703ce2481f1e511dfc5068ba816c16eedc26c02ad2da7324d392927fb666"
+      },
+      "nativeRawUiTest": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/entry-main-20261116T020902267925Z/raw-narrative-open-page-2-8d998bb074934154b05ba14fe663d5b6.json",
+        "sha256": "2f711df81c2e693a4ccce475d498323430408c15d4ea4f178c01eb1607d9090e"
+      }
+    }
+  ],
+  "evidence": [
+    "Same authored text visually remained in the two untouched phone screenshots.",
+    "Official raw UiTest paper subtree confirmed the same ordered text digest while the selected page indicator changed."
+  ],
+  "verificationScope": "Failed pagination rendering candidate only. Does not certify a later corrected package."
+}

@@ -1,0 +1,1781 @@
+{
+  "status": "incomplete",
+  "frozenWebCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "viewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "rendererSha256": "03c7d0fb8bef09336542ae1ecba95494e9599364e8402c06578164218801c6e8",
+  "nativeFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "helperSourceSha256": "12f9b6563ebb95cc141043e966c009375873de0b8de764df9a0308ecf4ae520f",
+  "inputSha256": [
+    "91fafbd309b7e240192eb5cdcbd50b47a513f48e36c63e3c01af11190e9f039f",
+    "ac17dcfbcd52edf5cf9d18a4a1dbe70d348bb2386445d6f8c6a676087e64982f"
+  ],
+  "frozenSourceSha256": {
+    "src/app/App.tsx": "dd996c4254edb1aae550af38c53204daa5dc1d2d35a4bd065c98de832e4b4a16",
+    "src/api/game.client.ts": "7a14111a47948a6c4b05fad838e508fa35944256a45ecbc8b2aeb7d447b0e880",
+    "src/api/game.schema.ts": "b675ec32471c295a00bf070e0bed6dfdf951624d2bf0af32a75a7578cb45f835",
+    "src/api/narrative.schema.ts": "df23b3a72f2901df983abaecbd5252b31657c4ee4e25147e30d2a5320bb52a27",
+    "src/config/ui-copy.ts": "03759284cd7c0b6d1293c39b300856fa3217eab89ebda278c425c09d97bac27b",
+    "src/features/game/GameNarrativePage.tsx": "4650c072772d03cff99778711e277543f50362c4b3a4454c4cc7bd9410697e44",
+    "src/features/game/components/GameLoadingScreen.tsx": "d311f3666ffa19e0071a5ef30333d490afffbfa55e70130d668a42f1012c2988",
+    "src/features/game/session-presentation.ts": "248c9380f1ef916f66c2ff981b72b5d21ea61cc3338c48496a9afd7627bb3d40",
+    "src/features/completion/FinalDestinationPrompt.tsx": "b2c36adaef27b722e68482bfac5a77c63361ca9d1c16c2781fa44359b7c827aa",
+    "src/features/completion/CompletionFeedbackDialog.tsx": "d834abcb2d48e569062d00edf5cb7801185de1659a6758f51784befcf85cea66",
+    "src/features/letter/LetterExperience.tsx": "73c910b3e4917582befd901267b26eb08634a994581bed8f63d12f461870dc9a",
+    "src/features/letter/LetterControls.tsx": "a73212b8d583632e3fe665fd9df6d9ad2180228efa8233ad44879a383df9face",
+    "src/features/letter/letterPagination.ts": "77cdc255517d22e2cc31ed421dcb51c4454c1b3ff6c05c34de223fbbb6a6b05b",
+    "src/styles/features/letter.css": "4c209d078b077df0708e8cb5f7999489c1bc9b82ff2bca24dd16f092483c90b6",
+    "src/styles/features/letter-page-turn.css": "42896ebe2005156f47af3b617c84a08e8174dc25127e3a334e84c6d94ba6e5bc",
+    "src/styles/effects/letter-keyframes.css": "3c3f9f2dca6fcdbe266d170bab98373d1dd65abc0ff3d763e7fbd13204160c26",
+    "src/styles/desktop/letter.css": "3b00135d60933da0b6aa75462e661c2604280a76ee0c9b1815682ac5fa6ebd48",
+    "src/styles/foundation/tokens.css": "31fb8ffa5b770132cb7aff57a216f521cfea76f88df408958ddbd723b3ffc22d"
+  },
+  "checks": [
+    {
+      "case": "light-motion",
+      "exactFixtureSchemas": 4,
+      "pageCount": 5,
+      "swipeAxis": "vertical",
+      "auditedStoryReadCount": 1,
+      "syntheticAnswerReplayCount": 1,
+      "verifiedLoading": true,
+      "revealUnlocksPaging": true,
+      "buttonsAndTouchSwipe": true,
+      "resealRestarts": true,
+      "returnToCompletedAssignmentWithoutReplay": true,
+      "openingAnimations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        },
+        {
+          "name": "cursor-blink",
+          "durationMs": 900,
+          "infinite": true
+        }
+      ],
+      "pageTurnAnimations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        },
+        {
+          "name": "letter-page-reveal",
+          "durationMs": 920,
+          "infinite": false
+        },
+        {
+          "name": "letter-sheet-vertical-next",
+          "durationMs": 920,
+          "infinite": false
+        },
+        {
+          "name": "letter-curl-vertical-next",
+          "durationMs": 920,
+          "infinite": false
+        }
+      ]
+    }
+  ],
+  "states": [
+    {
+      "case": "light-motion",
+      "state": "internal-exit",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-internal-exit.png",
+        "sha256": "ac0193804e1cb315610d2d21e1d4351e5a4c44d96379071c9c9b50c3d9125eb8"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "gameplayExit": {
+          "x": 14,
+          "y": 602.609375,
+          "width": 360,
+          "height": 154.390625,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(255, 255, 255)",
+          "padding": "18px 20px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [],
+      "swipeAxis": "",
+      "pageNote": "",
+      "bodyCharacters": 0
+    },
+    {
+      "case": "light-motion",
+      "state": "loading",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-loading.png",
+        "sha256": "e8800e0262a6c0f1408546e99e9c568de4b1f13d12bb69a9526885cc5ed54d85"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "loading": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(255, 255, 255)",
+          "padding": "24px 20px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "loadingArt": {
+          "x": 74.5,
+          "y": 195.4375,
+          "width": 239,
+          "height": 239,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [],
+      "swipeAxis": "",
+      "pageNote": "",
+      "bodyCharacters": 0
+    },
+    {
+      "case": "light-motion",
+      "state": "sealed-intro",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-sealed-intro.png",
+        "sha256": "0e6bf7498aa152edba8222d17dbbadf991846ef524e3902fa84aef994c407cfa"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "envelope": {
+          "x": 18.438461303710938,
+          "y": 312.4101257324219,
+          "width": 351.123046875,
+          "height": 227.17208862304688,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 43, 40)",
+          "padding": "34px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "flap": {
+          "x": 19.462020874023438,
+          "y": 313.4336853027344,
+          "width": 346.90283203125,
+          "height": 134.01028442382812,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(21, 58, 53)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "seal": {
+          "x": 156.2932891845703,
+          "y": 353.15045166015625,
+          "width": 73.6962890625,
+          "height": 73.69631958007812,
+          "color": "rgb(214, 243, 233)",
+          "fontSize": "28px",
+          "lineHeight": "normal",
+          "background": "rgb(35, 103, 93)",
+          "padding": "0px",
+          "borderRadius": "50%",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "title": {
+          "x": 117.37936401367188,
+          "y": 439.14813232421875,
+          "width": 154.69537353515625,
+          "height": 34.66314697265625,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "22px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "intro": {
+          "x": 97.791259765625,
+          "y": 476.6485290527344,
+          "width": 195.3975830078125,
+          "height": 23.6441650390625,
+          "color": "rgb(137, 175, 166)",
+          "fontSize": "13px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "hint": {
+          "x": 181.5430450439453,
+          "y": 500.6543273925781,
+          "width": 166.5952606201172,
+          "height": 17.149688720703125,
+          "color": "rgb(137, 175, 166)",
+          "fontSize": "11px",
+          "lineHeight": "13.2px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "return": {
+          "x": 14,
+          "y": 12,
+          "width": 112.1875,
+          "height": 45,
+          "color": "rgb(183, 181, 172)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(17, 18, 15, 0.82)",
+          "padding": "10px 14px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "letter-arrive",
+          "durationMs": 700,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "",
+      "pageNote": "",
+      "bodyCharacters": 0
+    },
+    {
+      "case": "light-motion",
+      "state": "sealed",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-sealed.png",
+        "sha256": "1571fb2371e50380546c6c19eff6bc88888e3eb3b0718481dca90bb3a36a3215"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "envelope": {
+          "x": 21,
+          "y": 291,
+          "width": 346,
+          "height": 218.984375,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 43, 40)",
+          "padding": "34px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "flap": {
+          "x": 22,
+          "y": 292,
+          "width": 344,
+          "height": 125.84375,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(21, 58, 53)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "seal": {
+          "x": 158,
+          "y": 328.484375,
+          "width": 72,
+          "height": 72,
+          "color": "rgb(214, 243, 233)",
+          "fontSize": "28px",
+          "lineHeight": "normal",
+          "background": "rgb(35, 103, 93)",
+          "padding": "0px",
+          "borderRadius": "50%",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "title": {
+          "x": 117,
+          "y": 415.484375,
+          "width": 154,
+          "height": 31,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "22px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "intro": {
+          "x": 96.5,
+          "y": 453.484375,
+          "width": 195,
+          "height": 19,
+          "color": "rgb(137, 175, 166)",
+          "fontSize": "13px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "hint": {
+          "x": 179.671875,
+          "y": 478.796875,
+          "width": 166.328125,
+          "height": 13.1875,
+          "color": "rgb(137, 175, 166)",
+          "fontSize": "11px",
+          "lineHeight": "13.2px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "return": {
+          "x": 14,
+          "y": 12,
+          "width": 112.1875,
+          "height": 45,
+          "color": "rgb(183, 181, 172)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(17, 18, 15, 0.82)",
+          "padding": "10px 14px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "letter-arrive",
+          "durationMs": 700,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "",
+      "pageNote": "",
+      "bodyCharacters": 0
+    },
+    {
+      "case": "light-motion",
+      "state": "opening",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-opening.png",
+        "sha256": "d724a5c305ef8f524dbfebd04aa3ae116668b8b632119e7d63b8ef5689e8690d"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "reader": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 705,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paper": {
+          "x": 22.4083251953125,
+          "y": 94.12899780273438,
+          "width": 343.183349609375,
+          "height": 548.1400146484375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "layers": {
+          "x": 22.4083251953125,
+          "y": 94.12899780273438,
+          "width": 343.183349609375,
+          "height": 548.1400146484375,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paperTitle": {
+          "x": 51.96022415161133,
+          "y": 165.99789428710938,
+          "width": 284.07952880859375,
+          "height": 29.894500732421875,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "32px",
+          "lineHeight": "31.36px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paragraphs": {
+          "x": 51.96022415161133,
+          "y": 254.99618530273438,
+          "width": 284.07952880859375,
+          "height": 355.8143615722656,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "30px 0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "cursor": {
+          "x": 70.43016052246094,
+          "y": 289.16558837890625,
+          "width": 1.2958755493164062,
+          "height": 17.01019287109375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "17px",
+          "lineHeight": "32.3px",
+          "background": "rgb(220, 235, 229)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "controls": {
+          "x": 14,
+          "y": 635,
+          "width": 360,
+          "height": 118,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(14, 15, 12, 0.78)",
+          "padding": "10px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "pageNav": {
+          "x": 25,
+          "y": 646,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "navActions": {
+          "x": 25,
+          "y": 700,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "previous": {
+          "x": 25,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        },
+        "next": {
+          "x": 281,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        },
+        {
+          "name": "cursor-blink",
+          "durationMs": 900,
+          "infinite": true
+        }
+      ],
+      "swipeAxis": "vertical",
+      "pageNote": "1 / 5",
+      "bodyCharacters": 1
+    },
+    {
+      "case": "light-motion",
+      "state": "typing",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-typing.png",
+        "sha256": "df03af3c4c8782d0ef6c2a9c244f79d6b8aa91f8a878de5ca8c48376b79601f1"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "reader": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 705,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paper": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "layers": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paperTitle": {
+          "x": 45,
+          "y": 123.390625,
+          "width": 298,
+          "height": 31.359375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "32px",
+          "lineHeight": "31.36px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paragraphs": {
+          "x": 45,
+          "y": 216.75,
+          "width": 298,
+          "height": 373.25,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "30px 0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "cursor": {
+          "x": 98.375,
+          "y": 340.125,
+          "width": 1.359375,
+          "height": 17.84375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "17px",
+          "lineHeight": "32.3px",
+          "background": "rgb(220, 235, 229)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "controls": {
+          "x": 14,
+          "y": 635,
+          "width": 360,
+          "height": 118,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(14, 15, 12, 0.78)",
+          "padding": "10px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "pageNav": {
+          "x": 25,
+          "y": 646,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "navActions": {
+          "x": 25,
+          "y": 700,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "previous": {
+          "x": 25,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        },
+        "next": {
+          "x": 281,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        },
+        {
+          "name": "cursor-blink",
+          "durationMs": 900,
+          "infinite": true
+        }
+      ],
+      "swipeAxis": "vertical",
+      "pageNote": "1 / 5",
+      "bodyCharacters": 32
+    },
+    {
+      "case": "light-motion",
+      "state": "full-first-page",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-full-first-page.png",
+        "sha256": "0b2e1a674bc63242c1c3ac5101a4d98b9bb3e99862fc7d59a0b577fc2247c05c"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "reader": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 705,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paper": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "layers": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paperTitle": {
+          "x": 45,
+          "y": 123.390625,
+          "width": 298,
+          "height": 31.359375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "32px",
+          "lineHeight": "31.36px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paragraphs": {
+          "x": 45,
+          "y": 216.75,
+          "width": 298,
+          "height": 373.25,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "30px 0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "controls": {
+          "x": 14,
+          "y": 635,
+          "width": 360,
+          "height": 118,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(14, 15, 12, 0.78)",
+          "padding": "10px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "pageNav": {
+          "x": 25,
+          "y": 646,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "navActions": {
+          "x": 25,
+          "y": 700,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "previous": {
+          "x": 25,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        },
+        "next": {
+          "x": 281,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "vertical",
+      "pageNote": "1 / 5",
+      "bodyCharacters": 119
+    },
+    {
+      "case": "light-motion",
+      "state": "turning-to-second",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-turning-to-second.png",
+        "sha256": "5d0b5312267d8b9b77ada6c774641e397691f1d6fc1ed423c6c5ca90b79e4456"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "reader": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 705,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paper": {
+          "x": 17.009502410888672,
+          "y": 54.6645622253418,
+          "width": 353.98101806640625,
+          "height": 565.3863525390625,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "layers": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paperTitle": {
+          "x": 47.4911994934082,
+          "y": 128.79470825195312,
+          "width": 293.017578125,
+          "height": 30.835052490234375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "32px",
+          "lineHeight": "31.36px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paragraphs": {
+          "x": 47.4911994934082,
+          "y": 220.59315490722656,
+          "width": 293.017578125,
+          "height": 367.00946044921875,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "30px 0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "controls": {
+          "x": 14,
+          "y": 635,
+          "width": 360,
+          "height": 118,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(14, 15, 12, 0.78)",
+          "padding": "10px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "pageNav": {
+          "x": 25,
+          "y": 646,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "navActions": {
+          "x": 25,
+          "y": 700,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "turnSheet": {
+          "x": 13.741777420043945,
+          "y": 47.40762710571289,
+          "width": 360.51641845703125,
+          "height": 575.6403198242188,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "curl": {
+          "x": 5.640030860900879,
+          "y": 530.3428955078125,
+          "width": 376.71990966796875,
+          "height": 39.811767578125,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "8% 8% 3% 3% / 52% 52% 18% 18%",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "previous": {
+          "x": 25,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        },
+        "next": {
+          "x": 281,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        },
+        {
+          "name": "letter-page-reveal",
+          "durationMs": 920,
+          "infinite": false
+        },
+        {
+          "name": "letter-sheet-vertical-next",
+          "durationMs": 920,
+          "infinite": false
+        },
+        {
+          "name": "letter-curl-vertical-next",
+          "durationMs": 920,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "vertical",
+      "pageNote": "2 / 5",
+      "bodyCharacters": 104
+    },
+    {
+      "case": "light-motion",
+      "state": "full-second-page",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-full-second-page.png",
+        "sha256": "d846a5490e4eca2a5bffc63b5c406f5afc11a8d31abebc29d9a4e89dcefd73cc"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "reader": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 705,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paper": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "layers": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paperTitle": {
+          "x": 45,
+          "y": 123.390625,
+          "width": 298,
+          "height": 31.359375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "32px",
+          "lineHeight": "31.36px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paragraphs": {
+          "x": 45,
+          "y": 216.75,
+          "width": 298,
+          "height": 373.25,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "30px 0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "controls": {
+          "x": 14,
+          "y": 635,
+          "width": 360,
+          "height": 118,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(14, 15, 12, 0.78)",
+          "padding": "10px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "pageNav": {
+          "x": 25,
+          "y": 646,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "navActions": {
+          "x": 25,
+          "y": 700,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "previous": {
+          "x": 25,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "next": {
+          "x": 281,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(225, 220, 209)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "oklab(0.683447 -0.0758579 0.0000319481 / 0.0134264)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "transition",
+          "durationMs": 180,
+          "infinite": false
+        },
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "vertical",
+      "pageNote": "2 / 5",
+      "bodyCharacters": 104
+    },
+    {
+      "case": "light-motion",
+      "state": "swipe-back-to-first",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-swipe-back-to-first.png",
+        "sha256": "708a810644854872945a64b28b153af0f27fdd79f5c565a3f79490eac35fa3a1"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "reader": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 705,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paper": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 33, 31)",
+          "padding": "48px 30px 32px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "layers": {
+          "x": 14,
+          "y": 48,
+          "width": 360,
+          "height": 575,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paperTitle": {
+          "x": 45,
+          "y": 123.390625,
+          "width": 298,
+          "height": 31.359375,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "32px",
+          "lineHeight": "31.36px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "paragraphs": {
+          "x": 45,
+          "y": 216.75,
+          "width": 298,
+          "height": 373.25,
+          "color": "rgb(220, 235, 229)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "30px 0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "controls": {
+          "x": 14,
+          "y": 635,
+          "width": 360,
+          "height": 118,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(14, 15, 12, 0.78)",
+          "padding": "10px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "pageNav": {
+          "x": 25,
+          "y": 646,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "navActions": {
+          "x": 25,
+          "y": 700,
+          "width": 338,
+          "height": 42,
+          "color": "rgb(217, 212, 200)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "previous": {
+          "x": 25,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(222, 217, 206)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": true,
+          "fullyVisible": true
+        },
+        "next": {
+          "x": 281,
+          "y": 646,
+          "width": 82,
+          "height": 42,
+          "color": "rgb(255, 253, 247)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "color(srgb 0.380392 0.662745 0.607843 / 0.16)",
+          "padding": "0px 16px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "paper-open",
+          "durationMs": 650,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "vertical",
+      "pageNote": "1 / 5",
+      "bodyCharacters": 119
+    },
+    {
+      "case": "light-motion",
+      "state": "resealed",
+      "screenshot": {
+        "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/light-motion-resealed.png",
+        "sha256": "973d4a1b41f6925895c2eb92b45f04400d1b442cd83d70a2cc1439ed97f72921"
+      },
+      "viewport": {
+        "width": 388,
+        "height": 771,
+        "dpr": 1,
+        "pointerCoarse": true,
+        "theme": "light",
+        "reduced": false
+      },
+      "geometry": {
+        "letter": {
+          "x": 0,
+          "y": 0,
+          "width": 388,
+          "height": 771,
+          "color": "rgb(41, 60, 56)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(7, 13, 13)",
+          "padding": "48px 14px 18px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "envelope": {
+          "x": 21,
+          "y": 291,
+          "width": 346,
+          "height": 218.984375,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(16, 43, 40)",
+          "padding": "34px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "flap": {
+          "x": 22,
+          "y": 292,
+          "width": 344,
+          "height": 125.84375,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgb(21, 58, 53)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "seal": {
+          "x": 158,
+          "y": 328.484375,
+          "width": 72,
+          "height": 72,
+          "color": "rgb(214, 243, 233)",
+          "fontSize": "28px",
+          "lineHeight": "normal",
+          "background": "rgb(35, 103, 93)",
+          "padding": "0px",
+          "borderRadius": "50%",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "title": {
+          "x": 117,
+          "y": 415.484375,
+          "width": 154,
+          "height": 31,
+          "color": "rgb(214, 232, 225)",
+          "fontSize": "22px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "intro": {
+          "x": 96.5,
+          "y": 453.484375,
+          "width": 195,
+          "height": 19,
+          "color": "rgb(137, 175, 166)",
+          "fontSize": "13px",
+          "lineHeight": "normal",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "hint": {
+          "x": 179.671875,
+          "y": 478.796875,
+          "width": 166.328125,
+          "height": 13.1875,
+          "color": "rgb(137, 175, 166)",
+          "fontSize": "11px",
+          "lineHeight": "13.2px",
+          "background": "rgba(0, 0, 0, 0)",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        },
+        "return": {
+          "x": 14,
+          "y": 12,
+          "width": 112.1875,
+          "height": 45,
+          "color": "rgb(183, 181, 172)",
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "background": "rgba(17, 18, 15, 0.82)",
+          "padding": "10px 14px",
+          "borderRadius": "0px",
+          "disabled": false,
+          "fullyVisible": true
+        }
+      },
+      "animations": [
+        {
+          "name": "letter-arrive",
+          "durationMs": 700,
+          "infinite": false
+        }
+      ],
+      "swipeAxis": "",
+      "pageNote": "",
+      "bodyCharacters": 0
+    }
+  ],
+  "exactIsolatedReplay": true,
+  "syntheticAuthentication": true,
+  "forwardedBackendNetworkRequests": 0,
+  "forwardedExternalNetworkRequests": 0,
+  "privateRemoteMediaRequests": 0,
+  "letterPayloadMedia": "none",
+  "verifiedServedSourceCount": 18,
+  "privateBrowserEvidence": {
+    "path": "artifacts/private/gameplay-narrative-letter-20261116/web-letter-attempt-01/observations.json",
+    "sha256": "e854531b322c32b648c0b1aac55283264110fd6e0485dff7171990434781cc41"
+  }
+}

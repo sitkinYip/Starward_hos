@@ -6,6 +6,7 @@ import { StarwardMaterial } from './StarwardMaterial';
 @ComponentV2
 export struct StarwardBottomTabs {
   @BuilderParam journeys: () => void;
+  @BuilderParam letters: () => void;
   @BuilderParam passport: () => void;
   @Param selectedIndex: number = 0;
   @Event selected: (index: number) => void = () => {};
@@ -21,6 +22,8 @@ export struct StarwardBottomTabs {
   private acceptingInput: boolean = false;
   @Local private barInputModifier: CommonModifier = UIUtils.makeObserved(new CommonModifier());
   @Local private material: uiMaterial.ImmersiveMaterial | undefined = undefined;
+
+  private available(index: number): boolean { return index === 0 || index === 2 || index === 3; }
 
   aboutToAppear(): void {
     this.mounted = true;
@@ -100,9 +103,9 @@ export struct StarwardBottomTabs {
         return;
       }
       hilog.info(0x0000, 'StarwardNavigation', 'intent index=%{public}d param=%{public}d', requested, this.selectedIndex);
-      if (requested === 0 || requested === 3) {
+      if (this.available(requested)) {
         this.selected(requested);
-      } else if (requested === 1 || requested === 2) {
+      } else if (requested === 1) {
         this.unavailableSelected(requested);
       }
     }, 0);
@@ -115,7 +118,7 @@ export struct StarwardBottomTabs {
     this.pendingIndex = -1;
     this.acceptingInput = false;
     hilog.info(0x0000, 'StarwardNavigation', 'param selected=%{public}d active=%{public}d', this.selectedIndex, this.activeIndex);
-    if (this.selectedIndex === 0 || this.selectedIndex === 3) {
+    if (this.available(this.selectedIndex)) {
       this.activeIndex = this.selectedIndex;
     }
   }
@@ -140,10 +143,9 @@ export struct StarwardBottomTabs {
         $r('app.media.icon_nav_sparkle_fill'), '收藏', 'nav-rewards'))
         .accessibilityText('收藏，暂未开放')
       TabContent() {
-        Column()
+        this.letters()
       }.tabBar(this.tabStyle(2, $r('app.media.icon_nav_envelope_regular'),
         $r('app.media.icon_nav_envelope_fill'), '来信', 'nav-notifications'))
-        .accessibilityText('来信，暂未开放')
       TabContent() {
         this.passport()
       }.tabBar(this.tabStyle(3, $r('app.media.icon_nav_passport_regular'),
@@ -160,7 +162,7 @@ export struct StarwardBottomTabs {
       .onContentWillChange((current: number, coming: number): boolean => {
         hilog.info(0x0000, 'StarwardNavigation', 'will current=%{public}d coming=%{public}d active=%{public}d param=%{public}d',
           current, coming, this.activeIndex, this.selectedIndex);
-        if ((coming === 0 || coming === 3) && coming === this.selectedIndex) {
+        if (this.available(coming) && coming === this.selectedIndex) {
           return true;
         }
         this.requestSelection(coming);

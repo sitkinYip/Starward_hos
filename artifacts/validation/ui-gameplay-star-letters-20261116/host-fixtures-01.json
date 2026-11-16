@@ -1,0 +1,41 @@
+{
+  "status": "verified_host_fixtures",
+  "strictHostTls": true,
+  "sourceSnapshotSha256": "0941afd3094c3702f1725c040b7eb50c48c7c7ed2ce83490387a2a28d5b400e7",
+  "roles": {
+    "native": {
+      "preexistingAssignmentCount": 4,
+      "visibleArchiveCards": 8,
+      "ownedAuthVerified": true,
+      "sqlite": {
+        "starts": 8,
+        "answers": 8,
+        "xpRows": 8,
+        "xp": 320,
+        "grants": 2
+      }
+    },
+    "empty": {
+      "preexistingAssignmentCount": 4,
+      "visibleArchiveCards": 0,
+      "ownedAuthVerified": true,
+      "sqlite": {
+        "starts": 0,
+        "answers": 0,
+        "xpRows": 0,
+        "xp": 0,
+        "grants": 0
+      }
+    }
+  },
+  "completedOwnerRead": 200,
+  "foreignRead": 404,
+  "anonymousRead": 401,
+  "ungrantedRead": 404,
+  "exactReadFault": [
+    503,
+    200
+  ],
+  "deviceInvoked": false,
+  "fixedPreviewWritten": false
+}

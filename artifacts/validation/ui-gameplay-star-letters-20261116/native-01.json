@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "hapSha256": "475521f036d64cd5fa3e218cfa7e38a67e22d88d8b5a0e8caee90ade96b8e30d",
+  "steps": [
+    "partial-failure-leaves-other-letters-visible",
+    "the-failed-detail-alone-retries-through-real-https",
+    "all-eight-entries-match-the-authoritative-order-and-deduplication",
+    "reader-reports-503-and-successful-manual-retry",
+    "letter-link-restores-the-same-card-and-scroll-position",
+    "system-back-restores-position-with-no-finale-replay",
+    "switching-accounts-clears-letters-and-only-locked-shows-empty",
+    "archive-revisit-and-retry-produce-zero-gameplay-writes"
+  ],
+  "captures": [
+    {
+      "label": "partial-detail-error",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/partial-detail-error.png",
+      "sha256": "d6e8d989e322494bae7a59fd10d2f08872ed675914601e048fb1f0bb11af3271",
+      "scope": "Private original"
+    },
+    {
+      "label": "archive-start",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/archive-start.png",
+      "sha256": "7152d092aa5b7af36688090333860cbcba2b4a7cf80ba267bf173460e4f61170",
+      "scope": "Private original"
+    },
+    {
+      "label": "archive-before-read",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/archive-before-read.png",
+      "sha256": "413c28d695e0270bbba15ca713c2b0a51bb347f1d875da0e50fe67f2e33675ed",
+      "scope": "Private original"
+    },
+    {
+      "label": "reader-error",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/reader-error.png",
+      "sha256": "bd1f596b2dbdc49dae3b3861b7ed42498b723caba75f72604837b495b7475aff",
+      "scope": "Private original"
+    },
+    {
+      "label": "reader-sealed",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/reader-sealed.png",
+      "sha256": "752f5ef1f7bdf4925c99355056120a4e59ffe279491a78c90e17e4ae2b5f4803",
+      "scope": "Private original"
+    },
+    {
+      "label": "reader-opened",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/reader-opened.png",
+      "sha256": "4c9f72c190529dd8ad33af4900069ea1051eb55d7a8b98cf8692c23b4a36a685",
+      "scope": "Private original"
+    },
+    {
+      "label": "archive-after-link-return",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/archive-after-link-return.png",
+      "sha256": "6e8ab16535e13b9d51f5c179b28e9863335ad57ee9b432ba39f330f4c4c859bc",
+      "scope": "Private original"
+    },
+    {
+      "label": "empty-archive",
+      "file": "artifacts/private/gameplay-star-letters-20261116/device-01/empty-archive.png",
+      "sha256": "3608880db05bd84c8cac3a63a849cbbc4b151368b59bfd80445379b089fb66d3",
+      "scope": "Private original"
+    }
+  ],
+  "scrollBoundsPx": {
+    "before": [
+      65,
+      2635,
+      1195,
+      2720
+    ],
+    "after": [
+      65,
+      2635,
+      1195,
+      2720
+    ]
+  },
+  "ledger": {
+    "gameplayWrites": 0,
+    "archiveReadCount": 37,
+    "explicitLogins": 2
+  },
+  "stage": "read-only-ledger"
+}

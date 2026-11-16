@@ -2,6 +2,10 @@ import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
 import { GameplayPage } from '../features/GameplayPage';
+import { NarrativePage } from '../features/NarrativePage';
+import { NarrativeRoute } from '../features/NarrativeViewModel';
+import { StarLettersPage } from '../features/StarLettersPage';
+import { StarLetterEntry } from '../business/StarLetters';
 import { createSliceViewModel } from '../features/createSliceViewModel';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
@@ -63,6 +67,7 @@ struct Index {
   private motion: StarwardMotion = new StarwardMotion();
   private avatarEditor: AvatarEditor = new AvatarEditor();
   private avatarPickRevision: number = 0;
+  private starLettersInterrupted: boolean = false;
   private paths: NavPathStack = new NavPathStack();
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -71,12 +76,16 @@ struct Index {
       this.startClock();
       if (this.vm.gate === 'home') {
         this.vm.refresh();
-        if (this.paths.size() > 0 && this.selectedId.length > 0 && !this.vm.play.visible) {
+        if (this.paths.getAllPathName().includes('assignment') && this.selectedId.length > 0 && !this.vm.play.visible) {
           this.vm.openAssignment(this.selectedId);
+        }
+        if (this.mainIndex === 2 && this.paths.size() === 0 && !this.vm.securityUnconfirmed) {
+          this.vm.starLetters.refresh();
         }
       }
     } else {
       this.stopClock();
+      this.vm.starLetters.suspend();
       if (this.vm.play.starting) { this.vm.play.cancelAutomaticClues(); }
     }
   };
@@ -95,6 +104,7 @@ struct Index {
     if (id.length === 0) {
       return;
     }
+    this.vm.narrative.close();
     this.paths.clear();
     this.openAssignment(id);
   }
@@ -116,6 +126,8 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.vm.narrative.close();
+    this.vm.starLetters.suspend();
     this.vm.play.leave();
     this.showAccount = false;
     this.motion.stop();
@@ -166,6 +178,7 @@ struct Index {
       this.showAccount = false;
       return true;
     }
+    if (this.closeNarrative()) { return true; }
     if (this.vm.gate === 'home' && this.paths.size() === 0 && this.mainIndex !== 0) {
       this.goMain(0);
       return true;
@@ -220,23 +233,38 @@ struct Index {
       return;
     }
     const gameplayVisible: boolean = this.vm.play.visible;
-    if (index === 1 || index === 2) {
-      StarwardFeedback.toast(this.getUIContext(), index === 1 ? '收藏暂未开放' : '来信暂未开放');
+    if (index === 1) {
+      StarwardFeedback.toast(this.getUIContext(), '收藏暂未开放');
+      return;
+    }
+    if (index === 2 && this.vm.securityUnconfirmed) {
+      StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
       return;
     }
     if (this.paths.size() > 0 && this.selectedId.length > 0) {
       this.returnAssignmentId = this.selectedId;
     }
     this.showAccount = false;
+    this.vm.narrative.close();
     this.vm.play.leave();
     this.paths.clear();
-    this.mainIndex = index;
-    if (index === 3) {
-      this.vm.openProfile();
-    }
+    this.selectMain(index);
     if (gameplayVisible) {
       this.vm.refresh();
     }
+  }
+
+  private selectMain(index: number): void {
+    if (index === 2 && this.vm.securityUnconfirmed) {
+      StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
+      return;
+    }
+    if (this.mainIndex !== index) {
+      if (this.mainIndex === 2) { this.vm.starLetters.suspend(); }
+      this.mainIndex = index;
+      if (index === 2 && this.foreground) { this.vm.starLetters.refresh(); }
+    }
+    if (index === 3) { this.vm.openProfile(); }
   }
 
   private leaveGameplay(popPath: boolean = true): void {
@@ -249,6 +277,61 @@ struct Index {
     if (gameplayVisible) {
       this.vm.refresh();
     }
+  }
+
+  private openFinaleNarrative(assignmentId: string, contentId: string): void {
+    if (this.vm.gate !== 'home' || this.vm.securityUnconfirmed ||
+      !this.vm.play.canOpenFinaleNarrative(assignmentId, contentId)) { return; }
+    const route: NarrativeRoute = new NarrativeRoute(assignmentId, contentId);
+    if (!this.vm.narrative.open(route)) { return; }
+    this.vm.play.cancelAutomaticClues();
+    this.paths.pushPath({ name: 'narrative', param: route }, !this.motion.reduced);
+  }
+
+  private openStarLetter(entry: StarLetterEntry): void {
+    if (!this.foreground || this.vm.gate !== 'home' || this.vm.securityUnconfirmed || this.mainIndex !== 2 ||
+      this.paths.size() !== 0 || !this.vm.starLetters.canOpen(entry.assignmentId, entry.contentId)) { return; }
+    const route: NarrativeRoute = new NarrativeRoute(entry.assignmentId, entry.contentId, 'star-letters');
+    if (!this.vm.narrative.open(route)) { return; }
+    this.starLettersInterrupted = this.vm.starLetters.loading;
+    this.vm.starLetters.suspend();
+    this.paths.pushPath({ name: 'narrative', param: route }, !this.motion.reduced);
+  }
+
+  private openQuestClue(assignmentId: string, clueId: string, contentId: string): boolean {
+    const names: string[] = this.paths.getAllPathName();
+    if (!this.foreground || this.vm.gate !== 'home' || this.vm.securityUnconfirmed ||
+      names[names.length - 1] !== 'assignment' ||
+      !this.vm.play.canOpenNarrativeClue(assignmentId, clueId, contentId)) { return false; }
+    const route: NarrativeRoute = new NarrativeRoute(assignmentId, contentId, 'quest-clue');
+    if (!this.vm.narrative.open(route)) { return false; }
+    this.vm.play.cancelAutoAdvance();
+    this.paths.pushPath({ name: 'narrative', param: route }, !this.motion.reduced);
+    return true;
+  }
+
+  private closeNarrative(): boolean {
+    const names: string[] = this.paths.getAllPathName();
+    if (names[names.length - 1] !== 'narrative') { return false; }
+    const route: NarrativeRoute | null = this.vm.narrative.route;
+    const lost: boolean = this.vm.narrative.accessLost;
+    const interrupted: boolean = this.starLettersInterrupted;
+    this.starLettersInterrupted = false;
+    this.vm.narrative.close();
+    this.paths.pop(!this.motion.reduced);
+    if (route?.source === 'star-letters') {
+      if (lost) { this.vm.starLetters.hideEntry(route.assignmentId, route.contentId); }
+      if (this.foreground && this.vm.gate === 'home') {
+        if (interrupted) {
+          this.vm.starLetters.refresh();
+        } else if (lost) {
+          this.vm.starLetters.retryAssignment(route.assignmentId);
+        }
+      }
+    } else if (route?.source === 'quest-clue' && lost && this.foreground && this.vm.gate === 'home') {
+      this.vm.play.refresh();
+    }
+    return true;
   }
 
   private startClock(): void {
@@ -356,8 +439,9 @@ struct Index {
       StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
       return;
     }
-    this.mainIndex = 0;
+    this.selectMain(0);
     this.selectedId = id;
+    this.vm.narrative.close();
     this.vm.play.leave();
     this.paths.pushPath({ name: 'assignment' });
     await this.vm.openAssignment(id);
@@ -763,16 +847,21 @@ struct Index {
         if (this.vm.gate !== 'home' || this.paths.size() > 0) {
           return;
         }
-        this.mainIndex = index;
-        if (index === 3) {
-          this.vm.openProfile();
-        }
-      }, journeys: () => { this.journeys() }, passport: () => { this.profile() },
+        this.selectMain(index);
+      }, journeys: () => { this.journeys() }, letters: () => { this.starLetters() }, passport: () => { this.profile() },
       unavailableSelected: (index: number) => {
         const names: string[] = ['启程', '收藏', '来信', '护照'];
         StarwardFeedback.toast(this.getUIContext(), `${names[index]}暂未开放`);
       }
     })
+  }
+
+  @Builder
+  starLetters() {
+    StarLettersPage({ model: this.vm.starLetters, displayFont: this.displayFont,
+      bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced,
+      active: this.foreground && this.mainIndex === 2 && this.vm.narrative.route === null && !this.vm.securityUnconfirmed,
+      openLetter: (entry: StarLetterEntry) => this.openStarLetter(entry), returnHome: () => this.goMain(0) })
   }
 
   @Builder
@@ -783,7 +872,7 @@ struct Index {
   }
 
   @Builder
-  sessionHeader() {
+  sessionHeader(showProgress: boolean = true) {
     Row({ space: 12 }) {
       this.avatar(true)
       Column() {
@@ -795,8 +884,8 @@ struct Index {
           .fontSize(11).lineHeight('13.2fp').letterSpacing(0.88).fontColor($r('app.color.accent_muted')).margin({ top: 5 })
           .maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis })
       }.alignItems(HorizontalAlign.Start).layoutWeight(1)
-      if (this.vm.play.visible ? this.vm.play.snapshot !== null && this.vm.play.error.length === 0 :
-        this.vm.detail.id.length > 0) {
+      if (showProgress && (this.vm.play.visible ? this.vm.play.snapshot !== null && this.vm.play.error.length === 0 :
+        this.vm.detail.id.length > 0)) {
         StarwardQuestProgress({
           completed: this.vm.play.visible ? this.vm.play.snapshot?.detail.completedLevels ?? 0 : this.vm.detail.completedLevels,
           total: this.vm.play.visible ? this.vm.play.snapshot?.detail.totalLevels ?? 0 : this.vm.detail.totalLevels,
@@ -895,6 +984,10 @@ struct Index {
             rightInset: Math.max(0, this.avoidArea.cutout.rightRect.width, this.avoidArea.statusBar.rightRect.width,
               this.avoidArea.navigationIndicator.rightRect.width),
             keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
+            narrativeCovered: this.vm.narrative.route !== null,
+            openNarrative: (assignmentId: string, contentId: string) => this.openFinaleNarrative(assignmentId, contentId),
+            openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) =>
+              this.openQuestClue(assignmentId, clueId, contentId),
             titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
             finaleBackdropChanged: (visible: boolean) => { this.showFinaleBackdrop = visible; },
             leave: () => this.leaveGameplay() })
@@ -932,6 +1025,26 @@ struct Index {
         StarwardMaterial.titleOptions(this.vm.play.visible ? BarStyle.STACK : BarStyle.STANDARD))
         .hideTitleBar(this.vm.play.visible && this.gameplayTitleHidden, !this.motion.reduced)
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
+    } else if (name === 'narrative') {
+      NavDestination() {
+        if (this.vm.gate === 'home' && this.vm.narrative.route !== null) {
+          NarrativePage({ model: this.vm.narrative, displayFont: this.displayFont, foreground: this.foreground,
+            reducedMotion: this.motion.reduced, topInset: this.safeTop(), bottomInset: this.safeBottom(),
+            returnToQuest: () => { this.closeNarrative(); }, returnHome: () => {
+              if (this.vm.narrative.route?.source !== 'quest') {
+                this.closeNarrative();
+              } else {
+                this.goMain(0);
+              }
+            } })
+        }
+      }.title({ builder: this.narrativeTitle, height: (this.vm.narrative.route?.source === 'star-letters' ?
+        84 : this.detailTitleHeight() + 24) + this.safeTop() },
+        StarwardMaterial.titleOptions())
+        .hideTitleBar(this.vm.narrative.content !== null).hideBackButton(true)
+        .backgroundColor($r('app.color.canvas'))
+        .onBackPressed(() => this.closeNarrative())
+        .onWillDisappear(() => this.vm.narrative.close())
     }
   }
 
@@ -971,6 +1084,16 @@ struct Index {
   }
 
   @Builder
+  narrativeTitle() {
+    if (this.vm.narrative.route?.source === 'star-letters') {
+      this.rootTitle()
+    } else {
+      StarwardTitleSurface({ titleHeight: this.detailTitleHeight(), horizontalGutter: 12,
+        topInset: this.safeTop() + 24, titleContent: () => { this.sessionHeader(false) } })
+    }
+  }
+
+  @Builder
   sessionTitleContent() {
     StarwardQuestHeaderEntrance({ motionEnabled: this.foreground && !this.gameplayTitleHidden && !this.motion.reduced,
       content: () => { this.sessionHeader() } })
@@ -997,7 +1120,7 @@ struct Index {
           Text(description).fontSize(15).fontColor($r('app.color.text'))
           Text(hint).fontSize(11).fontColor($r('app.color.muted'))
         }.layoutWeight(1).alignItems(HorizontalAlign.Start)
-        if (index === 1 || index === 2) {
+        if (index === 1) {
           Text('暂未开放').fontSize(10).fontColor($r('app.color.subtle'))
         }
         this.icon($r('app.media.icon_arrow_right'), 17, $r('app.color.subtle'))
@@ -1006,7 +1129,7 @@ struct Index {
       .width('100%').constraintSize({ minHeight: 64 }).borderRadius(10).padding({ left: 12, right: 12 })
       .backgroundColor(this.paths.size() === 0 && this.mainIndex === index ? $r('app.color.accent_faint') : Color.Transparent)
       .accessibilitySelected(this.paths.size() === 0 && this.mainIndex === index)
-      .accessibilityText(`${label}，${description}，${hint}${index === 1 || index === 2 ? '，暂未开放' : ''}`)
+      .accessibilityText(`${label}，${description}，${hint}${index === 1 ? '，暂未开放' : ''}`)
       .onClick(() => this.goMain(index))
   }
 

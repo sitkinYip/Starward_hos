@@ -1,0 +1,93 @@
+{
+  "status": "incomplete",
+  "checks": [
+    "native dark theme can be selected",
+    "pre-grant SQLite clean after host entry",
+    "pre-grant UI withholds cards and reminder",
+    "actual submit control is enabled",
+    "answered first question shows both manual cards without auto-opening",
+    "isolated SQLite records one correct answer and two grants",
+    "return from letter preserves first question scroll",
+    "opened letter card status leaves mobile layout",
+    "return from reminder preserves second question draft and scroll",
+    "opened blessing reminder stays hidden",
+    "story opens retry and returns do not add game writes",
+    "both opened reminders stay hidden after leaving and reentering",
+    "strict HTTPS uses authorized read-only 503 then retry and two blessing reads"
+  ],
+  "captures": [
+    {
+      "label": "dark-locked",
+      "sha256": "f2ff9eaa496b376bb2063f3281bc6e0a2b6f17abd27bf83a51c6d3fadead972c"
+    },
+    {
+      "label": "dark-cards",
+      "sha256": "f05b01b2b8085f802833a313cc2fe21b91d2b171c73ea3d77172657021842c61"
+    },
+    {
+      "label": "dark-retry",
+      "sha256": "3d043b804511ab89fcbf7f1b423cc95cdfa0c090ac8221fd117bca6ff25ab4bf"
+    },
+    {
+      "label": "dark-letter",
+      "sha256": "f194242448ccd7e3d98ed8ef66743cb61dc0f7cf8996e4b802d716ce40b685c1"
+    },
+    {
+      "label": "dark-attention",
+      "sha256": "5593b0a59d6ac16296dcaef9f99bfaf534dd069e2f50e2c9cd6cb41ec07943a5"
+    },
+    {
+      "label": "dark-bless",
+      "sha256": "078af217fb232be258348fd6cd8f4567c0aac2bb478541ca6d6605e189424d85"
+    },
+    {
+      "label": "incomplete-last-view",
+      "sha256": "49209a0933e15018b1bc4d0022d96ac8bf5c00010dc19107d9f049ae01dd3a71"
+    }
+  ],
+  "installedHapSha256": "2b048715583edb13a1b95b3fcab806fe3bf01011791b9442d28482532b6b4183",
+  "previousAppTheme": "system",
+  "settlement": {
+    "startReceipts": 1,
+    "answerReceipts": 1,
+    "otherCommands": 0,
+    "answerResults": [
+      "correct"
+    ],
+    "completedLevels": 1,
+    "xpWrites": [
+      10
+    ],
+    "grants": 2
+  },
+  "letterReturnBounds": {
+    "beforePx": [
+      100,
+      1626,
+      1160,
+      1914
+    ],
+    "afterPx": [
+      100,
+      1626,
+      1160,
+      1888
+    ]
+  },
+  "blessReturnBounds": {
+    "beforePx": [
+      100,
+      1311,
+      1161,
+      1500
+    ],
+    "afterPx": [
+      100,
+      1311,
+      1161,
+      1500
+    ]
+  },
+  "blockedAfter": 13,
+  "errorType": "SafeFailure"
+}

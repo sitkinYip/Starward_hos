@@ -1098,3 +1098,117 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 预览程序沿用独立外链的系统错误提示和显式重试。单独调试包仅对隔离目标第一次调用官方 `appLinkingOnly`；已到达旅程条并核对一次末题结算，但 HDC 在失败采集阶段报错。失败提示、重试和普通后台中断专项待真机确认，定版日夜正常分支已独立通过。临时变体源码已恢复。[故障变体审计](../artifacts/validation/ui-gameplay-finale-20261113/failure-variant-01.json) · [故障中止记录](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-failure-01.json)
 
 固定预览以定版 ArkTS 字节码重新签名安装并恢复登录，原预览场次进度经读回核对保持原样。临时 HTTPS 和 PocketBase 资源已清理。安装日志采集曾在工具记录显示 USB 设备标识，公开证据已按已知标识和敏感字段扫描。[固定预览](../artifacts/validation/ui-gameplay-finale-20261113/fixed-preview-restored-01.json) · [字节码对照](../artifacts/validation/ui-gameplay-finale-20261113/preview-package-equivalence-01.json) · [临时环境清理](../artifacts/validation/ui-gameplay-finale-20261113/disposable-cleanup-01.json) · [公开产物扫描](../artifacts/validation/ui-gameplay-finale-20261113/public-artifact-scan-final-01.json)
+
+### N01a 终章接续与原生信纸
+
+2026-11-16。冻结 Web `4b7d1a0` 的 `/play/:id/content/:contentId`、`GameNarrativePage` 和 `LetterExperience` 为基准。先完成终章站内路由和信纸阅读，信件配音、配乐及祝福场景按独立小片验收。用户确认保留魔法信封的浅金折面，并加深说明和开信提示文字。
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 入口和权限 | 仅当前终章回执及最新授权快照中一致的站内目标出现「继续旅程」，由主动点按进入原生路由。剧情 GET 绑定玩家和场次，未解锁、其他玩家和失效场次返回错误，旧账号或旧页面的迟到响应不能展示内容。 |
+| 加载和恢复 | 加载中不显示旧信件。真实失败后留在当前剧情路径，可重试当前 GET。返回场次不再发送入场、答题、领取或已读命令。 |
+| 信封和信纸 | 同数据与同内容宽度对照日夜信封、信纸与控件。验收入场与开合转场、逐字显示、跳过到全文、分页及按信纸样式滑动。系统减少动画后正文及按钮可用。 |
+| 返回和资源 | 关信后可重新打开，从信封返回保留原题与滚动位置。系统返回退出剧情，停止演出并清理已取回的信件内容，回到场次时保持已完成状态。 |
+
+隔离夹具复用正式 PocketBase 路由，四个独立玩家共用同一份原始魔法信纸。未结算及跨账号读取均为 404，匿名为 401，结算后的本人读取为 200。代理只给本轮登记的只读路径注入一次 503，原路线再次读取为 200。Web 回放和真机验收取同一信件内容，未使用生产账号。[隔离后端证据](../artifacts/validation/ui-gameplay-narrative-letter-20261116/host-fixtures-01.json)
+
+冻结 Web 在 388×771 内容区重放同一真实 DTO，覆盖日夜、减少动画、拆封、逐字显示、跳过、纵向滑动、收信重开和返回。Web 查询库先自动重试读请求，原生沿用原有网络错误处理，显示明确的重试按钮。拒绝和错误状态的 Web 画面另取证。[同数据 Web 回放](../artifacts/validation/ui-gameplay-narrative-letter-20261116/web-letter-02.json) · [Web 错误画面](../artifacts/validation/ui-gameplay-narrative-letter-20261116/web-letter-errors-01.json)
+
+验收命令使用 `scripts/hm.sh run`、`scripts/hm.sh test`、`scripts/hm.sh lint` 及 `python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls`。首个真机候选签名、安装启动和窗口/TLS 五项通过。本地全量重跑 173 项均通过，前一次 Hypium 原始报告的总计虽写 173 项通过，逐用例少一条结果，因此保留为不完整。codelinter 报告检查 1 个文件。0 个错误、0 个警告、1 条可选模糊实现建议。[真机窗口与 TLS](../artifacts/validation/ui-gameplay-narrative-letter-20261116/runtime-01.json) · [本地测试重跑](../artifacts/validation/ui-gameplay-narrative-letter-20261116/unit-final-retry/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-narrative-letter-20261116/lint/lint.json)
+
+日间首包证明站内路线只在末题结算后出现，点按后原生页面取得唯一授权剧情 GET。一次自动翻页尚未结束时采集器试图点上一页，首包未完成。第二包确认前后翻页可改变页码，也发现 ArkUI 私有构建器按值捕获页索引，导致两页正文一致。修复后验收逐页比对真实正文及末页落款。[首包运行](../artifacts/validation/ui-gameplay-narrative-letter-20261116/native-letter-day-01.json) · [第二包页码与正文证据](../artifacts/validation/ui-gameplay-narrative-letter-20261116/native-letter-page-stale-02.json)
+
+定版重新执行官方构建、签名、安装启动和 5 项窗口/TLS 检查。`scripts/hm.sh test` 173 项全部通过，官方 lint 报告同一条模糊实现建议，已有 DevEco LSP 对 8 个相关 ArkTS 文件逐文件检查无诊断。[定版窗口与 TLS](../artifacts/validation/ui-gameplay-narrative-letter-20261116/runtime-03.json) · [定版测试](../artifacts/validation/ui-gameplay-narrative-letter-20261116/unit-release/local-test-summary.json) · [定版 lint](../artifacts/validation/ui-gameplay-narrative-letter-20261116/lint-release/lint.json) · [LSP](../artifacts/validation/ui-gameplay-narrative-letter-20261116/lsp-release.json)
+
+夜间直板机用同一条已获授权的剧情请求重现 503。点按重试后可见加载，随后收到真实 HTTP 200 并到达信封。上一页、下一页及纵向滑动的 5 页正文拼接后等于整封信，收信、重开和系统返回均已实测。退出信纸回到同一进程、原题和控件位置，无终章或等级提示重播。真实 SQLite 新增一次末题答题和一次 50 XP 结算，读取、重试和返回未新增其他玩法写入。[夜间直板机与故障恢复](../artifacts/validation/ui-gameplay-narrative-letter-20261116/native-letter-night-01.json)
+
+日间在同一定版上用独立玩家完成 7 项，与夜间逐页核对方式相同。剧情只有一次授权 GET 200，从信封点「返回冒险」后保留原题及滚动位置。真实 SQLite 同样只新增一次末题答题和一次经验结算。设备交互使用 `python3 -B artifacts/private/gameplay-narrative-letter-20261116/device-letter.py --runtime <定版报告> --device-ref <专用设备引用> --output <新报告> --expected-hap <签名包 SHA256> --usage <已登记角色> --theme <日夜>`，同版使用 `release-day/light` 和 `night-fault/dark` 两组，角色账本分别收尾。[日间直板机](../artifacts/validation/ui-gameplay-narrative-letter-20261116/native-letter-release-day-01.json)
+
+本轮真机夹具使用无媒体的魔法信纸，现代、古典、背景图和系统「减少动画」尚无独立真机证据。翻页使用 ArkUI 纸面旋转、位移和淡出，对应 Web 的方向、时长配置和触发条件。连续录屏时序尚未核验。配乐、配音、祝福和星海信笺入口留待各自切片。
+
+定版日夜共核对 14 对同宽原图。魔法信封保留浅金折面和深色说明，暗青折面交界处的提示字对比度仍低于金色区域。纸面同为约 360 vp 宽，原生因 44 vp 按钮略缩短信纸高度。前两页断行与 Web 一致，夜间原生英文小标固定为青色，Web 为金色。读时截图确认了正文递进和页面切换，独立截图与布局树时间点略有间隔。[定版同数据原图对照](../artifacts/validation/ui-gameplay-narrative-letter-20261116/visual-review-final-01.json) · [冻结 Web 最终回放](../artifacts/validation/ui-gameplay-narrative-letter-20261116/web-letter-03.json)
+
+固定预览已恢复登录到首页，原有记录经读回保持一致。预览包的 ArkTS 字节码与隔离定版一致，临时测试后端和设备映射已清理。[固定预览](../artifacts/validation/ui-gameplay-narrative-letter-20261116/fixed-preview-restored-01.json) · [字节码对照](../artifacts/validation/ui-gameplay-narrative-letter-20261116/preview-package-equivalence-01.json) · [临时环境清理](../artifacts/validation/ui-gameplay-narrative-letter-20261116/disposable-cleanup-01.json)
+
+### N01b 三种信纸的版式与媒体
+
+2026-11-16。按冻结 Web `4b7d1a0` 对照古风、现代和魔法信纸。使用已有正式信件内容，在隔离后端以专用测试玩家验证。
+
+| 状态 | 直板机与隔离后端验收项 |
+| --- | --- |
+| 三种信封与信纸 | 同数据、同宽度对照封面、纸面、正文及控件。古风字符自上而下、列从右向左，按 Web 方向横向翻页。现代和魔法横排、纵向翻页。打字、全文、手势和按钮翻页保留正文顺序。 |
+| 场景与纸面背景 | 页面背景覆盖信封和读信状态。读信从首张纸面开始，每五秒循环切换。检查加载、已缓存的切换、纸面回退和背景失败。减少动画时检查内容及切换仍可用。 |
+| 信件配乐 | 开信后自动循环，控件可暂停、继续和重试。与答题页配乐互斥。收起、返回与账号切换释放播放器，前后台切换只恢复当前阅读会话的播放意图。 |
+| 段落配音 | 按该段延迟进入，打字和配音并行。配音期间降低配乐音量，当前段需等读音结束才自动进入下一段。配音失败后继续打字与后续配音。显示全文时允许当前读音结束，手动翻页不补播。 |
+| 阅读会话与后端 | 开合、翻页、音频切换及媒体失败只改变阅读状态。通过隔离真实 HTTPS 读取已授权信件和媒体，区分后端授权、原生行为和同数据视觉证据。 |
+
+三封信来自已授权的正式内容快照。古风有 3 张轮播图和 10 段配音，现代有 4 张和 10 段，魔法有 4 张和 8 段。每封各有配乐，古风与现代另外各有独立的封面背景。原图和原音频用严格 HTTPS 验证，测试口令与媒体地址留在私有目录。[正式素材校验](../artifacts/validation/ui-gameplay-letter-media-20261116/original-media-01.json)
+
+独立 PocketBase 上，未结算或非本人读信为 404，匿名为 401，本人结算后为 200。同一登记读路线的 503 一次故障可重试恢复。Web 回放采用相同的授权剧情 DTO 和同字节图片、音频，视口 388 × 771 CSS px。三版日夜均观察到背景轮换、播放暂停和恢复。古风减少动画时仍能翻页、切图和播放，浏览器不再播放卷页、光标和配乐光圈动效。[隔离后端](../artifacts/validation/ui-gameplay-letter-media-20261116/host-fixtures-01.json) · [古风 Web](../artifacts/validation/ui-gameplay-letter-media-20261116/web-classical-03.json) · [现代 Web](../artifacts/validation/ui-gameplay-letter-media-20261116/web-modern-03.json) · [魔法 Web](../artifacts/validation/ui-gameplay-letter-media-20261116/web-magic-03.json) · [古风 Web 减少动画](../artifacts/validation/ui-gameplay-letter-media-20261116/web-classical-reduced-01.json)
+
+定版直板机实测三封信均从真实隔离末题进入。同宽原图核对封面、正在打字、全文及翻页，三版真机首张和切换后的第二张纸面图与对应原图匹配。古风右起竖排、左滑下一页，6 页正文顺序与完整原信一致。现代及魔法按 Web 纵向翻页，魔法 4 页正文拼接与完整原信一致。现代原生为 5 页，Web 为 6 页。原生页脚给收起和配乐各自留出点击区，场景照模糊和卷边曲面与浏览器有可见差异。[真机古风](../artifacts/validation/ui-gameplay-letter-media-20261116/classical-native-r2-01.json) · [真机现代](../artifacts/validation/ui-gameplay-letter-media-20261116/modern-native-01.json) · [真机魔法](../artifacts/validation/ui-gameplay-letter-media-20261116/magic-native-01.json) · [同数据原图复核](../artifacts/validation/ui-gameplay-letter-media-20261116/visual-review-final-01.json)
+
+三版开信启动原配乐和段落配音，配音期间 AVPlayer 实报配乐音量为 0.18。现代信件验证了第一段自然结束、配乐恢复 0.5、下一段开始，以及退到桌面暂停两路后回来恢复同一段。显示全文与手动翻页没有发起新配音，收起释放播放器并可回到原题。三版各收到一次末题提交成功和一次授权剧情 GET。真机减少动画、背景加载故障、完整轮播时序与长配乐播到曲尾尚未单独采集。[真机音频事件与业务请求](../artifacts/validation/ui-gameplay-letter-media-20261116/modern-native-01.json)
+
+现代独立故障场次的首段配音真实返回 HTTP 404。真机保持信纸可读，后续段落用原音频成功播放。原始三封正式信纸的媒体地址保持不变。[首段配音故障](../artifacts/validation/ui-gameplay-letter-media-20261116/modern-fault-01.json)
+
+隔离 SQLite 确认每位定版测试玩家只新增一次末题答题，未新增入场或额外经验。四位玩家的累计记录分别为一次入场、两次正确答案和两笔 50 XP。读信、切页、配乐操作及故障恢复期间未调用其他玩法写入。[真机后端台账](../artifacts/validation/ui-gameplay-letter-media-20261116/native-settlement-01.json)
+
+临时真机 TLS 映射和隔离后端已停止。固定预览重新安装同版代码并登录首页，已保存的场次进度一致。应用包中的 ArkTS 字节码与定版验收包一致。[固定预览](../artifacts/validation/ui-gameplay-letter-media-20261116/fixed-preview-restored-01.json) · [字节码对照](../artifacts/validation/ui-gameplay-letter-media-20261116/preview-package-equivalence-01.json)
+
+### M02a 星海信笺的信纸回访
+
+沿用冻结 Web `4b7d1a0` 的「来信 → 星海信笺」标题、卡片内容层级和顺序，复用原生信纸阅读器。首片覆盖信纸，祝福播放和旅途来信后续接入。
+
+| 状态 | 验收目标 |
+| --- | --- |
+| 首次打开、加载和空态 | 底栏和账号菜单可进入星海信笺。列表以真实归属和授权为准。加载、空态、局部读取失败和重试显示与回源一致。 |
+| 信件来源和次序 | 已发放的信纸线索、已完成且授权的信纸终章都可打开。按 Web 的解锁或完成时间倒序排列，同一场次同一内容去重。未授权、已取消或已失效的内容不展示。 |
+| 阅读和返回 | 点卡片回源授权读取正文，沿用开信、配乐和阅读控件。系统返回和信封返回按钮都回到原列表与滚动位置，回访不启动答题相关演出。 |
+| 同步与隔离 | 手动刷新、短暂错误、重试、离开和换账号均不暴露过期或其他玩家的内容。固定预览既有三封信保持原进度，独立账号验收零新增入场、答题和经验。 |
+
+星海信笺使用既有「来信」底栏和账号菜单入口。页面只呈现已接通的「星海信笺」子页。进入列表、回前台和下拉时回源，覆盖为阅读页时取消尚未完成的列表读请求，返回时续取。冻结 Web 每五秒轮询场次详情，原生首片按上述时机更新。已确认授权的行在短暂网络错误时仍能展示。再次打开正文仍由正式接口校验授权。
+
+独立 PocketBase 准备出八张信笺，其中有一张来自尚未完成场次中已发放的线索，同场次同剧情的线索和终章去重。匿名读为 401，未解锁及跨账号读为 404，自己的已授权剧情为 200。冻结 Web 在同数据的 388 × 771 视口对照列表、滚动、空态、局部读取错误和阅读。浏览器实测从阅读页返回会重新显示列表顶部，原生保持用户要求的返回位置。[隔离 HTTPS](../artifacts/validation/ui-gameplay-star-letters-20261116/host-fixtures-01.json) · [冻结 Web 原图](../artifacts/validation/ui-gameplay-star-letters-20261116/web-mailbox-02.json)
+
+定版直板机验证了两处入口、八张卡片的次序和去重、详情局部失败、下拉刷新失败，以及读取正文后手动重试。三种故障均由隔离真实 HTTPS 返回 503，相关路线重试返回 200。已有卡片在暂时失败时仍保留。滚动后开信，从信封或系统返回均回到原卡片位置。换到独立未解锁账号后列表为空。真机请求和 SQLite 前后对账均无新增的入场、答题和经验。[真机定版](../artifacts/validation/ui-gameplay-star-letters-20261116/native-02.json) · [隔离 SQLite](../artifacts/validation/ui-gameplay-star-letters-20261116/device-settlement-01.json)
+
+同数据日间原图中，定版列表左缘约 25.85 vp、宽 336 vp，Web 分别为 26 和 336 CSS px。日期按 Web 的 24 小时格式。原生保留官方悬浮底栏，只显示已接通的页签，图标笔画稍厚。原生夜间同数据截图和系统减少动画连续录屏待专项复核。[定版同数据对照](../artifacts/validation/ui-gameplay-star-letters-20261116/visual-review-final-01.json)
+
+固定预览三封均已由用户完成。隔离验收结束后恢复原固定预览服务，安装相同 ArkTS 字节码。真机从「星海信笺」逐封打开正确的原信封，返回后三次保持列表位置，场次进度与经验前后相同。手机留在星海信笺列表供本人继续阅读。[固定预览回访](../artifacts/validation/ui-gameplay-star-letters-20261116/fixed-preview-archive-01.json) · [验收包与预览包字节码](../artifacts/validation/ui-gameplay-star-letters-20261116/preview-package-equivalence-01.json)
+
+### 星海信笺列表样式复核
+
+按用户要求采用原生独立信笺卡片。验收关注短列表和连续滚动时的卡片间距、同名终章的场次辨识、日夜可读性、整卡点击和阅读返回的位置。新版用固定预览既有信件做只读对照。
+
+同机、同账号的三封信做了改版前后原图复核。新版在日夜两种主题的卡片宽均为 336 vp，高约 72.62 vp，两个间距分别实测 10.15 和 9.85 vp。终章卡以场次名为主标题，普通信件仍以信名为主标题。有独立内容的摘要继续显示。点击中间卡打开对应原信封，返回后卡片位置一致，固定预览进度经真实 HTTPS 读回无变化。手机恢复跟随系统主题并停在星海信笺。182 项 Hypium 测试通过。本轮的真机视觉样本为现有三封信。[直板机复核](../artifacts/validation/ui-gameplay-star-letters-card-20261116/preview-cards-01.json)
+
+### N02 原生祝福演出与星海信笺回访
+
+2026-11-16，实施前验收计划。参照冻结 Web `4b7d1a0` 的 `BlessExperience`、`canvas-engine` 与 `BlessClosingCredits`。同一份现成祝福数据用于 Web 对照与隔离 HTTPS 真机。
+
+同数据 Web 手机原图显示，十行片尾会将当前行推入底部渐隐区。用户确认原生将当前行保留在下半屏的可读区域，保持滚动、渐隐和相邻行的层级。
+
+| 状态 | 验收要求 |
+| --- | --- |
+| 授权读取与开场 | 已解锁线索或已完成终章经正式剧情读接口打开。开场标题和按钮沿用暗色星空版式。点击开始前无配音或 BGM。 |
+| 正常播放 | 保留 Web 等待、逐句聚字、按配置停留、散开和最后一句留场。BGM 独立循环、可暂停，逐句配音按 Web 节奏切换。片尾有配音时由用户点播，按音频结束或故障时按配置时长推进。 |
+| 退出与中断 | 前台变化时暂停演出时钟和音频。返回立即清理绘制、时钟和两路音频。失败不阻塞后续文案。系统减少动画时保留顺序、文字和可操作控件。 |
+| 星海信笺 | 同场次同剧情去重，已授权祝福可打开与重播，返回保留原列表。锁定及跨账号返回权威拒绝。完成、退出、回访前后核对隔离台账，仅原答题触发一次结算。 |
+
+冻结 Web 以已授权的同一剧情 DTO 和 15 个原始音频文件重放。388 × 771 视口核对开场、四次聚字、三次散开、十句片尾、两路音频停止和回访重播。独立 PocketBase 的正式接口返回未授权 404、匿名 401 和本人完成后 200。Web 浏览器参考使用本地拦截和合成认证驱动，原生使用直板机真实隔离 HTTPS。
+
+直板机以相同内容核对开场、聚字、散开、首末片尾原图。调整后的渐隐只作用于片尾文字，保留最后一句粒子字。最终包从已结算的星海信笺完整播放，14 段配音均有实际播放进度，末段自然结束，BGM 暂停和恢复通过。再次打开时从静音开场重播，中途返回后两路播放器释放，随后七秒没有继续启动播放。首次末题实测与定版回访的答题及经验台账见 [构建与真机验收](slice-03-gameplay-validation.md#原生祝福演出与星海信笺2026-11-16)。本轮真机减少动画和媒体故障注入未单独验收。
+
+### C01r 题内信纸与祝福线索及待开启提醒
+
+2026-11-16，实施前对照冻结 Web `4b7d1a0` 的 `CluePanel`、`NarrativeAttentionBeacon` 与 `GamePlayPage`。先接入题内剧情线索卡，再补此前题目尚未打开的剧情提醒。两者复用正式剧情 GET 和现有信纸、祝福页面。
+
+| 状态 | 本轮核对 |
+| --- | --- |
+| 线索未发放、已撤回或账号切换 | 仅使用当前账号的服务器快照。无授权时入口隐藏，正式剧情读取仍由后端核验。 |
+| 非末题解锁，主动点开 | 已完成题目内呈现该题及全场已发放的信纸、祝福卡。已发放的剧情由玩家点开，仍按现有顺序展示其他自动线索。 |
+| 切题后的待开启提醒 | 当前看不到的未打开剧情按 Web 顺序显示一个待开启入口。玩家主动打开后，记忆按后端、账号、场次和线索隔离。返回后仍可在原题打开。 |
+| 返回与对账 | 从卡与提醒分别进入并返回，当前题、滚动位置和未提交草稿保留。读取失败可在剧情页重试。除实际解锁答题外，两种打开、返回及回看均无玩法写入。 |
+
+隔离真实后端在首题完成前拒绝两种剧情读取。直板机首题答对后解锁两张卡，手动重试信纸、从下一题的提醒打开祝福、返回保留原题和草稿、原题回看、退出重进不再提醒均有实测。换到独立账号后，同场次的待开启状态仍独立。答题前后的真实 SQLite 结算与 HTTPS 对账见 [验收记录](slice-03-gameplay-validation.md#题内信纸祝福与跨题提醒2026-11-16)。

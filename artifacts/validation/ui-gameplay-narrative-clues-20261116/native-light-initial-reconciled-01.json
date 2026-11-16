@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "originalReportSha256": "2b4b18084c297d34b894f7da6be7f15abc90c353770e1e61880330b5d12c5701",
+  "priorReportFailure": "The recorder omitted host preparation from gateway counts. The same epoch provides complete reconciliation.",
+  "rawRunChecks": [
+    "answered first question shows both manual cards without auto-opening",
+    "isolated SQLite records one correct answer and two grants",
+    "return from letter preserves first question scroll",
+    "opened letter card status leaves mobile layout",
+    "return from reminder preserves second question draft and scroll",
+    "opened blessing reminder stays hidden",
+    "story opens retry and returns do not add game writes"
+  ],
+  "ledger": {
+    "hostLetterBeforeGrant": 404,
+    "hostBlessBeforeGrant": 404,
+    "nativeLetter": [
+      503,
+      200
+    ],
+    "nativeBless": [
+      200,
+      200
+    ],
+    "hostStart": [
+      200
+    ],
+    "nativeAnswer": [
+      200
+    ]
+  },
+  "settlement": {
+    "startReceipts": 1,
+    "answerReceipts": 1,
+    "otherCommands": 0,
+    "answerResults": [
+      "correct"
+    ],
+    "completedLevels": 1,
+    "xpWrites": [
+      10
+    ],
+    "grants": 2
+  },
+  "returnGeometryPixels": {
+    "letter": {
+      "beforePx": [
+        100,
+        1626,
+        1160,
+        1914
+      ],
+      "afterPx": [
+        100,
+        1626,
+        1160,
+        1888
+      ]
+    },
+    "bless": {
+      "beforePx": [
+        100,
+        1311,
+        1161,
+        1500
+      ],
+      "afterPx": [
+        100,
+        1311,
+        1161,
+        1500
+      ]
+    }
+  }
+}

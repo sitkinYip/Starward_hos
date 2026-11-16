@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { answerAutomaticClues, clueImageSources, ClueSpan, ClueTextPart, clueTextParts, clueTitle, combinationClues, completionCombinations,
-  entryAutomaticClues, ordinaryClues } from '../main/ets/business/GameplayClues';
+  entryAutomaticClues, nextNarrativeAttention, ordinaryClues } from '../main/ets/business/GameplayClues';
 import { GameplayClue, GameplayEffect, GameplayLevel, GameplayQuestion,
   GameplaySnapshot } from '../main/ets/business/GameplayModels';
 
@@ -50,6 +50,45 @@ function effect(clueId: string): GameplayEffect {
 
 export default function gameplayCluesTests(): void {
   describe('GameplayClues', () => {
+    it('only reminds about valid unopened narrative grants missing from the current archive', 0, () => {
+      const first: GameplayLevel = level('first');
+      const second: GameplayLevel = level('second', false);
+      const letter: GameplayClue = clue('letter', 'letter', 'question', first.id);
+      const bless: GameplayClue = clue('bless', 'bless', 'question', first.id);
+      const invalid: GameplayClue = clue('invalid', 'letter', 'question', first.id);
+      letter.narrative = 'orig-letter';
+      bless.narrative = 'orig-bless';
+      bless.position = 1;
+      const settled: GameplaySnapshot = snapshot([first, second], [bless, invalid, letter]);
+      expect(visibleIds(settled, first)).assertEqual('letter,bless');
+      expect(visibleIds(settled, second)).assertEqual('');
+      expect(nextNarrativeAttention(settled, ordinaryClues(settled, first), [])).assertNull();
+      expect(nextNarrativeAttention(settled, [], [])?.id).assertEqual('letter');
+      expect(nextNarrativeAttention(settled, [], ['letter'])?.id).assertEqual('bless');
+      expect(nextNarrativeAttention(settled, [], ['letter', 'bless'])).assertNull();
+      settled.detail.status = 'cancelled';
+      expect(nextNarrativeAttention(settled, [], [])).assertNull();
+    });
+
+    it('keeps authorized narratives in the archive and outside both autoplay queues', 0, () => {
+      const first: GameplayLevel = level('first');
+      const letter: GameplayClue = clue('letter', 'letter', 'question', first.id);
+      const bless: GameplayClue = clue('bless', 'bless', 'session', '', 'start');
+      const text: GameplayClue = clue('text', 'text', 'question', first.id);
+      letter.narrative = 'orig-letter';
+      bless.narrative = 'orig-bless';
+      letter.autoPlay = true;
+      bless.autoPlay = true;
+      text.autoPlay = true;
+      const settled: GameplaySnapshot = snapshot([first, level('second', false)], [letter, bless, text]);
+      expect(visibleIds(settled, first)).assertEqual('bless,letter,text');
+      expect(entryAutomaticClues([], settled).map((row: GameplayClue) => row.id).join(',')).assertEqual('text');
+      const effects: GameplayEffect[] = [effect(letter.id), effect(bless.id), effect(text.id)];
+      effects.forEach((row: GameplayEffect) => { row.autoPlay = true; });
+      expect(answerAutomaticClues(null, settled, first, effects).map((row: GameplayClue) => row.id).join(','))
+        .assertEqual('text');
+    });
+
     it('matchesStartReceiptOrderAndAutoplayBeforeTheFirstQuestionIsSolved', 0, () => {
       const first: GameplayLevel = level('first', false);
       const later: GameplayLevel = level('later', false);

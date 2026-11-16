@@ -4,6 +4,8 @@ import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFai
 import { MockGameRepository } from '../data/MockGameRepository';
 import { GameplaySnapshot } from '../business/GameplayModels';
 import { GameplayViewModel } from './GameplayViewModel';
+import { NarrativeViewModel } from './NarrativeViewModel';
+import { StarLettersViewModel } from './StarLettersViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 
 @ObservedV2
@@ -36,6 +38,8 @@ export class SliceViewModel {
   @Trace now: number = Date.now();
   readonly mode: string;
   readonly play: GameplayViewModel;
+  readonly narrative: NarrativeViewModel;
+  readonly starLetters: StarLettersViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
   private detailRequest: number = 0;
@@ -48,6 +52,14 @@ export class SliceViewModel {
   constructor(repository: GameRepository = new MockGameRepository()) {
     this.repository = repository;
     this.mode = repository.mode;
+    this.narrative = new NarrativeViewModel(repository, (message: string) => {
+      this.logout();
+      this.error = message;
+    });
+    this.starLetters = new StarLettersViewModel(repository, (message: string) => {
+      this.logout();
+      this.error = message;
+    });
     this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
       if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
         this.detail = snapshot.detail;
@@ -109,6 +121,8 @@ export class SliceViewModel {
     }
     this.gate = player.mustChangePassword ? 'password' : 'home';
     this.play.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.narrative.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.starLetters.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
       this.avatarImage = null;
@@ -300,6 +314,8 @@ export class SliceViewModel {
       }
       generation = ++this.generation;
       this.play.reset();
+      this.narrative.close();
+      this.starLetters.bindOwner('');
       this.detailRequest++;
       this.listBusy = false;
       this.detailBusy = false;
@@ -500,6 +516,8 @@ export class SliceViewModel {
 
   logout(): void {
     this.play.reset();
+    this.narrative.bindOwner('');
+    this.starLetters.bindOwner('');
     this.generation++;
     this.detailRequest++;
     this.profileRevision++;

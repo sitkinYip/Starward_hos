@@ -1,6 +1,7 @@
 import { HttpsGameRepository } from '../data/HttpsGameRepository';
 import { GameRepository } from '../business/GameRepository';
 import { GameplayAnswerResult, GameplaySnapshot } from '../business/GameplayModels';
+import { NarrativeContent } from '../business/NarrativeModels';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player } from '../business/models';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { NativeHttpTransport } from '../platform/HttpTransport';
@@ -41,6 +42,10 @@ class UnavailableRepository implements GameRepository {
   }
 
   async gameplay(id: string): Promise<GameplaySnapshot> {
+    throw new GameFailure('CONFIG_ERROR', this.reason);
+  }
+
+  async narrative(assignmentId: string, contentId: string): Promise<NarrativeContent> {
     throw new GameFailure('CONFIG_ERROR', this.reason);
   }
 

@@ -657,6 +657,64 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(repository.answers.length).assertEqual(1);
     });
 
+    it('narrativeClueOpenRequiresTheCurrentOwnersExactGrantAndDoesNotConsumeTheDraft', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      expect(vm.canOpenNarrativeClue('assignment1', 'cue-letter', 'letter')).assertFalse();
+      const granted: GameplaySnapshot = choiceSnapshot();
+      const clue: GameplayClue = new GameplayClue();
+      clue.id = 'cue-letter';
+      clue.kind = 'letter';
+      clue.narrative = 'letter';
+      clue.sessionLevel = granted.levels[0].id;
+      granted.clues = [clue];
+      repository.server = granted;
+      await vm.refresh();
+      vm.moveTo(1);
+      vm.editAnswer('B');
+      expect(vm.canOpenNarrativeClue('assignment1', 'cue-letter', 'letter')).assertTrue();
+      expect(vm.canOpenNarrativeClue('assignment1', 'cue-letter', 'other-letter')).assertFalse();
+      expect(vm.canOpenNarrativeClue('assignment1', 'other-cue', 'letter')).assertFalse();
+      expect(vm.canOpenNarrativeClue('other-assignment', 'cue-letter', 'letter')).assertFalse();
+      expect(vm.draftAnswer).assertEqual('B');
+      repository.server = choiceSnapshot();
+      await vm.refresh();
+      expect(vm.canOpenNarrativeClue('assignment1', 'cue-letter', 'letter')).assertFalse();
+      vm.bindOwner('another-player');
+      expect(vm.canOpenNarrativeClue('assignment1', 'cue-letter', 'letter')).assertFalse();
+      expect(repository.answers.length).assertEqual(0);
+    });
+
+    it('finaleNarrativeRequiresTheCurrentSettlementAndItsStillAuthorizedTarget', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      repository.server = choiceSnapshot();
+      const vm: GameplayViewModel = viewModelWithRank(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('B');
+      const pending: Promise<void> = vm.submitAnswer();
+      const settled: GameplaySnapshot = completedSnapshot();
+      settled.presentation.completionStyle = 'finale';
+      const target: GameplayCompletionTarget = new GameplayCompletionTarget();
+      target.kind = 'narrative';
+      target.id = 'letter';
+      settled.completionTarget = target;
+      repository.answers[0].succeed(withRank(answerResult('correct', settled)));
+      await pending;
+      expect(vm.canOpenFinaleNarrative('assignment1', 'letter')).assertFalse();
+      vm.acknowledgeFinale(vm.completionRevision);
+      vm.finishCompletionPresentation(vm.completionRevision);
+      expect(vm.canOpenFinaleNarrative('assignment1', 'letter')).assertTrue();
+      expect(vm.canOpenFinaleNarrative('another-assignment', 'letter')).assertFalse();
+      expect(vm.canOpenFinaleNarrative('assignment1', 'another-letter')).assertFalse();
+      vm.cancelAutomaticClues();
+      repository.server = settled;
+      await vm.refresh();
+      expect(vm.canOpenFinaleNarrative('assignment1', 'letter')).assertFalse();
+      expect(vm.rankUp).assertNull();
+      expect(repository.answers.length).assertEqual(1);
+    });
+
     it('interruptedFinalCluesAndACompletedGetNeverPublishThePendingNotice', 0, async () => {
       const repository: AnswerRepository = new AnswerRepository();
       repository.server = choiceSnapshot();

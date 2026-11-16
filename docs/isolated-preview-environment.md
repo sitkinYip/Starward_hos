@@ -116,3 +116,13 @@ python3 scripts/device-preview-smoke.py run --runtime-report <该预览HAP的run
 运行后的主机报告是 `artifacts/validation/profile/preview-environment.json`，只记录模式、来源摘要、实际 TLS 正反校验和直接登录状态。它不包含口令、token、受保护文件地址或设备标识。原生构建、签名、安装、登录和视觉检查另记当前 HAP/runtime 证据；固定预览的准备和启动不得替换此前一次性验收报告的归属。
 
 2026-11-06选择题小点收尾：沿用原固定预览数据库、CA和账号，未重置凭据或重新导入数据。USB入口改回固定预览，官方CLI重建、安装并启动，直板机直接登录读列表并保留首页。见[恢复回执](../artifacts/validation/ui-choice-options-20261105/fixed-preview-restored-01.json)、[运行时](../artifacts/validation/profile/runtime-choice-preview-restored-20261106-01.json)及[真机直接登录](../artifacts/validation/gameplay-answer-20261104/preview-choice-restored-20261106-01.json)。恢复前的[主机报告](../artifacts/validation/profile/preview-environment-before-choice-20261106-01.json)独立归档；一次性验收使用的原HAP与台账也保留各自绑定。
+
+### 2026-11-16 三封信纸的人工预览
+
+从已授权的正式内容快照复制古风、现代、魔法三封信的原始内容与媒体配置到固定预览。每个场次保留正式的单个终章剧情入口。验收分别核对三组场次均未入场、玩家只读代理转发正式剧情详情、未解锁仍由后端拒绝，以及手机首页三张预览卡可见。保留原有场次进度、账号及 CA。
+
+「待赴之约」顶部的三张「信纸预览」卡各有一道题，输入「开信」并提交后，依次点击「揭示最终线索」「继续旅程」和信封。每道题为 0 XP。可在阅读页点「收起信件」后再次开信。退出到场次列表后，已完成场次暂无信件回访入口。
+
+固定预览代理允许正式的场次内剧情 GET。严格 HTTPS 验证三封均可读到场次详情，本人未解锁返回 404，匿名返回 401。原始信纸正文和媒体由隔离 PocketBase 的管理员发布回读逐字段核对。[预览路由与锁态](../artifacts/validation/ui-gameplay-letter-preview-20261116/host-preview-01.json)
+
+直板机逐张看到三张卡，交付前停到首页第一张。前后读回场次进度与经验一致，三张都留给本人首次体验。本轮复用已验收的签名 HAP，重启了固定预览代理，账号、数据库和 CA 沿用原身份。[真机交付](../artifacts/validation/ui-gameplay-letter-preview-20261116/native-handoff-02.json)
