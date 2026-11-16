@@ -1,0 +1,183 @@
+{
+  "status": "incomplete",
+  "packageSha256": "7ea1e644f23750f895c249c8627f5e63d07e37ef75ed810713935a655827f450",
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "device": "reviewed straight phone",
+  "theme": "light",
+  "strictTLS": true,
+  "states": {
+    "unanswered-no-clue-panel": {
+      "originalSha256": "8ca94c5a1e4163b5f32f90524cbc4ef14d4fcda16b8451f49bf76a3628f0011c",
+      "uiTestSha256": "91394a467196011d5d434d3387f9d8abcfb76f2023e3583a2d5b4aea82904fb8",
+      "boundsPx": {}
+    },
+    "finale-first": {
+      "originalSha256": "47f057c6dbfe1c0e1a765e003df371333be7f7d094546929a66015d77728515a",
+      "uiTestSha256": "2e74f6d08c30fb594bdd04d941e8c561c56232e41c6ca8be8c26185108b7a15b",
+      "boundsPx": {
+        "gameplay-finale-notice": [
+          78,
+          633,
+          1182,
+          2088
+        ],
+        "gameplay-finale-notice-title": [
+          158,
+          1195,
+          1102,
+          1495
+        ],
+        "gameplay-finale-notice-ack": [
+          409,
+          1807,
+          852,
+          1957
+        ]
+      }
+    },
+    "finale-after-system-back": {
+      "originalSha256": "0e2e409f414f9baa0c8beda3348569d15d3a65ab5dd451a35c45e877f5e6047a",
+      "uiTestSha256": "2e74f6d08c30fb594bdd04d941e8c561c56232e41c6ca8be8c26185108b7a15b",
+      "boundsPx": {
+        "gameplay-finale-notice": [
+          78,
+          633,
+          1182,
+          2088
+        ],
+        "gameplay-finale-notice-title": [
+          158,
+          1195,
+          1102,
+          1495
+        ],
+        "gameplay-finale-notice-ack": [
+          409,
+          1807,
+          852,
+          1957
+        ]
+      }
+    },
+    "finale-after-outside-touch": {
+      "originalSha256": "2519b786b4875b5a4c1ad6b3e8005d8bbc75edf8e750d2bec70e7620a495800d",
+      "uiTestSha256": "2e74f6d08c30fb594bdd04d941e8c561c56232e41c6ca8be8c26185108b7a15b",
+      "boundsPx": {
+        "gameplay-finale-notice": [
+          78,
+          633,
+          1182,
+          2088
+        ],
+        "gameplay-finale-notice-title": [
+          158,
+          1195,
+          1102,
+          1495
+        ],
+        "gameplay-finale-notice-ack": [
+          409,
+          1807,
+          852,
+          1957
+        ]
+      }
+    },
+    "finale-ordinary-text": {
+      "originalSha256": "5d7b0bbc523bb0c05ce6708c1a5cd5f7627eb7bee1fc4441f0468355729ed0a4",
+      "uiTestSha256": "7ca8c8f7fff24b088038ef28ca3e9c8a898e20ab1676356bbce8d56b2fb0d920",
+      "boundsPx": {
+        "gameplay-clue-text-title": [
+          172,
+          1119,
+          523,
+          1245
+        ]
+      }
+    },
+    "final-combination-1": {
+      "originalSha256": "2bdcf859ce3b55ef0870c423f7164eb72bf5ae61b842b1f422788fbac575ee47",
+      "uiTestSha256": "1aea000890a9dd650c6c9268f4860aec695b05c08aaa02b11bc026f50d0d7d8a",
+      "boundsPx": {
+        "gameplay-combination-title": [
+          178,
+          1017,
+          569,
+          1157
+        ]
+      }
+    },
+    "destination-before-browser": {
+      "originalSha256": "ca289830e8e1a989e0f05dccd02f7a5fb25007d20440250210a7d69f4f9443d0",
+      "uiTestSha256": "694f85cb330166f1aec510da03e58d7ac27328cf141630a4439cfb48b0874f54",
+      "boundsPx": {
+        "gameplay-final-destination": [
+          46,
+          124,
+          1215,
+          494
+        ],
+        "gameplay-final-destination-title": [
+          114,
+          128,
+          700,
+          212
+        ],
+        "gameplay-final-destination-later": [
+          477,
+          290,
+          776,
+          433
+        ],
+        "gameplay-final-destination-continue": [
+          808,
+          290,
+          1147,
+          433
+        ]
+      }
+    }
+  },
+  "verified": [
+    "Unanswered final question has no clues, final covenant, rank or destination.",
+    "One measured final answer settles once; final covenant appears first and survives System Back and safe outside touch.",
+    "Explicit acknowledgement reveals ordinary clue then authorized combination.",
+    "Destination node after combination is actually top-aligned and obscured by header in unchanged original."
+  ],
+  "unverified": [
+    "Reliable system browser handoff and return",
+    "Rank after Later",
+    "Read-only completed history",
+    "Clean logout after driver interruption"
+  ],
+  "settlement": {
+    "baselineProxyReceiptsMatchSqlite": true,
+    "addedStartWrites": 0,
+    "addedAnswerWrites": 1,
+    "addedXpWrites": 1,
+    "facts": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 2,
+      "combinationUnlockRows": 1,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "fixedPreviewTouched": false,
+  "interruptionAfterLayoutDefect": true
+}

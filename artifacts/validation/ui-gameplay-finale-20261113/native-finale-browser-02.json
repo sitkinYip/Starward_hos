@@ -1,0 +1,129 @@
+{
+  "status": "confirmed_browser_handoff_with_read_only_return",
+  "packageSha256": "38cab0529ca0bfb9f333439b08fde2452c5fd0beb511a2772b2a2b645c7df224",
+  "originalDriverReportSha256": "bedad720d230b53cd9967f3dd8be929ba4199ad21ad0e7d4525d0f5b38ee60e2",
+  "originalDriverStoppedAfterBrowserForReadCountAssumption": true,
+  "browserObservedAfterExplicitContinue": true,
+  "sameAppProcessAfterReturn": true,
+  "sourceOfBrowserAndProcessResult": "Actual window/PID checks precede the exact failing GET count guard in the bound driver",
+  "geometryBeforeAndAfterIdentical": {
+    "geometryPx": {
+      "gameplay-final-destination": [
+        46,
+        2083,
+        1215,
+        2584
+      ],
+      "gameplay-final-destination-title": [
+        114,
+        2211,
+        700,
+        2296
+      ],
+      "gameplay-final-destination-continue": [
+        808,
+        2374,
+        1147,
+        2524
+      ],
+      "gameplay-final-destination-later": [
+        437,
+        2374,
+        776,
+        2524
+      ]
+    },
+    "questionGeometryPx": {
+      "gameplay-question-card": [
+        39,
+        777,
+        1221,
+        2676
+      ],
+      "question-title": [
+        100,
+        956,
+        1160,
+        1079
+      ],
+      "gameplay-answer-input": [
+        100,
+        1311,
+        1161,
+        1500
+      ]
+    },
+    "appRootPx": [
+      0,
+      124,
+      1260,
+      2720
+    ]
+  },
+  "beforeOriginal": {
+    "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T104913476950Z/destination-before-browser.png",
+    "sha256": "dfc81fcb2301404bd087b2361c8bde494f2a800fe2f3e39650a0d2a1366a892a",
+    "scope": "Private original"
+  },
+  "afterOriginal": {
+    "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T104913476950Z/destination-after-browser.png",
+    "sha256": "d083ece8d7c91da7d16addb3f62c10a4f939ac9889938025db7d859af4fabf7b",
+    "scope": "Private original"
+  },
+  "verifiedExactCaseReadsBetweenBeforeAndAfterUiTestCaptures": [
+    {
+      "elapsedFromBeforeCaptureSeconds": 9.009,
+      "status": 200,
+      "authenticated": true,
+      "bearer": false
+    },
+    {
+      "elapsedFromBeforeCaptureSeconds": 14.052,
+      "status": 200,
+      "authenticated": true,
+      "bearer": false
+    },
+    {
+      "elapsedFromBeforeCaptureSeconds": 19.088,
+      "status": 200,
+      "authenticated": true,
+      "bearer": false
+    }
+  ],
+  "readAttribution": "The normal refresh and periodic gameplay polling may both read the same case; the scope is their combined strict HTTPS read-only ledger.",
+  "settlement": {
+    "baselineProxyReceiptsMatchSqlite": true,
+    "addedStartWrites": 0,
+    "addedAnswerWrites": 1,
+    "addedXpWrites": 1,
+    "facts": {
+      "readOnlyDiagnostic": true,
+      "assignmentStatus": "completed",
+      "startedAtPresent": true,
+      "completedAtPresent": true,
+      "startReceiptCount": 1,
+      "answerReceiptCount": 2,
+      "answerSubmissionCount": 2,
+      "correctAnswerCount": 2,
+      "completedProgressRows": 2,
+      "xpLedgerCount": 2,
+      "xpDeltaSum": 100,
+      "playerTotalXp": 100,
+      "clueUnlockRows": 2,
+      "combinationUnlockRows": 1,
+      "unrelatedActorGameplayWrites": 0
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "notCoveredByThisSupplement": [
+    "rank after explicit Later",
+    "history reentry"
+  ]
+}

@@ -1,11 +1,14 @@
 import { GameRepository } from '../business/GameRepository';
 import { answerAutomaticClues, completionCombinations, entryAutomaticClues } from '../business/GameplayClues';
-import { GameplayAnswerResult, GameplayClue, GameplayLevel, GameplaySnapshot } from '../business/GameplayModels';
+import { GameplayAnswerResult, GameplayClue, GameplayCompletionTarget, GameplayLevel,
+  GameplaySnapshot } from '../business/GameplayModels';
 import { GameFailure, Player } from '../business/models';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 
 const GAMEPLAY_POLL_INTERVAL_MS: number = 5000;
+
+export type FinaleStage = 'idle' | 'notice' | 'clues' | 'combination' | 'destination';
 
 class EntryIntent {
   readonly assignmentId: string;
@@ -81,6 +84,7 @@ export class GameplayViewModel {
   @Trace feedbackVersion: number = 0;
   @Trace feedbackTransient: boolean = false;
   @Trace completionRevision: number = 0;
+  @Trace finaleStage: FinaleStage = 'idle';
   completionClues: GameplayClue[] = [];
   @Trace automaticClue: GameplayClue | null = null;
   @Trace rankUp: GameplayRankUp | null = null;
@@ -103,6 +107,7 @@ export class GameplayViewModel {
   private serverOffset: number = 0;
   private advanceTimer: number = -1;
   private automaticClueQueue: GameplayClue[] = [];
+  private finaleTarget: GameplayCompletionTarget | null = null;
   private entryClueSequence: boolean = false;
   private pendingCompletionClues: GameplayClue[] | null = null;
   private completionSequence: number = 0;
@@ -255,14 +260,22 @@ export class GameplayViewModel {
     this.advancing = false;
   }
 
-  cancelAutomaticClues(): void {
+  cancelAutomaticClues(keepDestination: boolean = false): void {
     this.clueGeneration++;
     this.automaticClueQueue = [];
     this.entryClueSequence = false;
     this.pendingCompletionClues = null;
     this.clueAdvanceIndex = -1;
     this.automaticClue = null;
-    this.cancelRankUpPresentation();
+    if (!keepDestination || this.finaleStage !== 'destination') {
+      this.clearFinale();
+      this.cancelRankUpPresentation();
+    }
+  }
+
+  private clearFinale(): void {
+    this.finaleStage = 'idle';
+    this.finaleTarget = null;
   }
 
   cancelRankUpPresentation(): void {
@@ -285,6 +298,13 @@ export class GameplayViewModel {
 
   /** The page calls this after the completion notice and the last automatic combination disappear. */
   finishCompletionPresentation(revision: number): void {
+    if (revision > 0 && revision === this.completionRevision && this.finaleStage === 'combination') {
+      if (this.currentFinaleTarget() !== null) {
+        this.finaleStage = 'destination';
+        return;
+      }
+      this.clearFinale();
+    }
     if (revision <= 0 || revision !== this.rankCompletionRevision) { return; }
     this.rankCompletionRevision = 0;
     this.presentPendingRankUp();
@@ -295,6 +315,10 @@ export class GameplayViewModel {
     if (!allowAdvance) { this.clueAdvanceIndex = -1; }
     this.automaticClue = this.automaticClueQueue.shift() ?? null;
     if (this.automaticClue !== null) { return; }
+    if (this.finaleStage === 'clues') {
+      this.finaleStage = 'combination';
+      return;
+    }
     this.entryClueSequence = false;
     const index: number = this.clueAdvanceIndex;
     const completion: GameplayClue[] | null = this.pendingCompletionClues;
@@ -324,6 +348,32 @@ export class GameplayViewModel {
     const revision: number = ++this.completionSequence;
     this.rankCompletionRevision = this.pendingRankUp === null ? 0 : revision;
     this.completionRevision = revision;
+  }
+
+  private presentFinale(clues: GameplayClue[], combinations: GameplayClue[], target: GameplayCompletionTarget | null): void {
+    this.finaleTarget = target?.kind === 'link' && target.url.trim().length > 0 ? target : null;
+    this.automaticClueQueue = clues;
+    this.finaleStage = 'notice';
+    this.presentCompletion(combinations);
+  }
+
+  acknowledgeFinale(revision: number): void {
+    if (this.finaleStage !== 'notice' || revision !== this.completionRevision ||
+      this.snapshot?.detail.status !== 'completed') { return; }
+    this.automaticClue = this.automaticClueQueue.shift() ?? null;
+    this.finaleStage = this.automaticClue === null ? 'combination' : 'clues';
+  }
+
+  currentFinaleTarget(): GameplayCompletionTarget | null {
+    const current: GameplayCompletionTarget | null = this.snapshot?.completionTarget ?? null;
+    return this.snapshot?.detail.status === 'completed' && current?.kind === 'link' &&
+      this.finaleTarget?.url === current.url ? current : null;
+  }
+
+  dismissFinaleDestination(revision: number): void {
+    if (revision !== this.completionRevision || this.finaleStage !== 'destination') { return; }
+    this.clearFinale();
+    this.finishCompletionPresentation(revision);
   }
 
   currentLevel(): GameplayLevel | null {
@@ -416,6 +466,7 @@ export class GameplayViewModel {
 
   canMoveTo(index: number): boolean {
     return !this.presentingEntryClues() && !this.loading && !this.submitting && !this.retryAnswer &&
+      (this.finaleStage === 'idle' || this.finaleStage === 'destination') &&
       this.rankUp === null && this.snapshot !== null &&
       index >= 0 && index < this.snapshot.levels.length && this.snapshot.levels[index].question !== null;
   }
@@ -424,7 +475,7 @@ export class GameplayViewModel {
     if (this.refreshing || !this.canMoveTo(index)) {
       return;
     }
-    this.cancelAutomaticClues();
+    this.cancelAutomaticClues(this.finaleStage === 'destination');
     this.cancelAutoAdvance();
     this.selectQuestion(index);
   }
@@ -752,9 +803,11 @@ export class GameplayViewModel {
           (settled?.cooldownUntil || '').length > 0 ? '回答错误，已进入惩罚时间。' : '答案不正确，可以继续尝试。';
       } else if (result.result === 'correct') {
         const completed: boolean = result.assignment.detail.status === 'completed';
+        const newCompletion: boolean = completed && previous?.detail.status !== 'completed';
+        const finale: boolean = newCompletion && result.assignment.presentation.completionStyle === 'finale';
         this.feedback = completed ? '全部题目已经完成。' : '回答正确，当前题目已完成。';
         if (intent.rankGeneration === this.rankGeneration && intent.rankOrder >= 0 &&
-          result.assignment.presentation.completionStyle !== 'finale' && settled !== undefined &&
+          settled !== undefined &&
           settled.completedAt.length > 0 &&
           result.player.level.order > intent.rankOrder && result.player.level.name.trim().length > 0) {
           this.pendingRankUp = new GameplayRankUp(result.player.level.order, result.player.level.name);
@@ -762,10 +815,13 @@ export class GameplayViewModel {
         const effects = result.effectsProvided ? result.effects : undefined;
         const automatic: GameplayClue[] = settled === undefined ? [] :
           answerAutomaticClues(previous, result.assignment, settled, effects);
-        const completion: GameplayClue[] | null = completed && previous?.detail.status !== 'completed' &&
-          result.assignment.detail.totalLevels > 1 && result.assignment.presentation.completionStyle !== 'finale' ?
+        const completion: GameplayClue[] | null = newCompletion && result.assignment.detail.totalLevels > 1 ?
           completionCombinations(previous, result.assignment, effects) : null;
-        if (automatic.length > 0) {
+        if (finale) {
+          if (clueGeneration === this.clueGeneration) {
+            this.presentFinale(automatic, completion ?? [], result.assignment.completionTarget);
+          }
+        } else if (automatic.length > 0) {
           if (clueGeneration === this.clueGeneration) {
             this.automaticClueQueue = automatic;
             this.pendingCompletionClues = completion;

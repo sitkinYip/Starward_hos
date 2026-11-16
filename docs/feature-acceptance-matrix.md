@@ -71,7 +71,7 @@ Root亲看4张新原图，8b验收时相关UI/Page/VM/Index字节与ddc已验版
 | 文本答题 | 已实现并完成新直板机/隔离HTTPS验证：空白、真实键盘、pending、错答200、正确结算和只读答案；首次发现的UI快照滞留已修复并用新玩家完整复验 |
 | 选择答题、处罚和答题重试 | 已实现并完成新直板机/隔离真实HTTPS验证：未选零POST、错答/正确、真实冷却到期、永久锁定及回访；503和提交后丢响应均以原命令重试且不重复结算，退出后的完整迟到答题响应被丢弃 |
 | 进度及普通完成 | 已实现并验证服务端进度、上一题只读、手动下一题和autoNext、普通单题内联/多题官方完成弹窗、历史2/2与GET回访不重复提交或庆祝；护照经验区未单独重跑，终章/出口不在此次完成范围 |
-| 线索/媒体/终章/出口/奖励领取 | 普通文字和图片线索见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)，组合线索的解锁、顺序、入口和回访见 [C01b](#c01b-组合线索2026-11-12)。正文外链见 [C01c](#c01c-线索正文外链2026-11-12)，普通视频手动播放及答后自动播放见 [C01f](#c01f-普通视频线索手动播放2026-11-12)、[C01i](#c01i-答对后自动播放视频线索)。非末题演出见 [C01j](#c01j-答对后的文字与图片线索演出)，普通末题完成演出见 [C01k](#c01k-末题普通线索完成提示与组合线索)。独立链接卡、开场演出、题面及选项视频、BGM、终章、出口和奖励领取另列。 |
+| 线索/媒体/终章/出口/奖励领取 | 普通文字和图片线索见 [C01a](#c01a-普通文字与图片线索2026-11-11实施前)，组合线索的解锁、顺序、入口和回访见 [C01b](#c01b-组合线索2026-11-12)。正文外链见 [C01c](#c01c-线索正文外链2026-11-12)，普通视频手动播放及答后自动播放见 [C01f](#c01f-普通视频线索手动播放2026-11-12)、[C01i](#c01i-答对后自动播放视频线索)。非末题演出见 [C01j](#c01j-答对后的文字与图片线索演出)，普通末题完成演出见 [C01k](#c01k-末题普通线索完成提示与组合线索)。终章及系统浏览器出口见 [Q04b](#q04b-终章演出与旅程出口)。独立链接卡、开场演出、题面及选项视频、BGM 和奖励领取另列。 |
 
 具体包、源码和逐状态证据见本轮记录。此前首切片、资料头像、安全及底栏各自的历史验收保持原版本范围，不作为新增玩法通过的替代证据。
 
@@ -1069,3 +1069,32 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 [锁定题直板](../artifacts/validation/ui-gameplay-question-video-20261113/native-final-locked-01.json) 2 项通过。实点两个原生禁用按钮均无播放和视频请求，SQLite 与准备阶段一致。[夜间同数据原图](../artifacts/validation/ui-gameplay-question-video-20261113/visual-review-final-dark-01.json) 核对已完成题面和两组禁用状态，共 6 对。提交中和冷却沿用同一个答题可编辑门槛，相关答题测试已运行，本轮未在真机单独触发这两个状态。
 
 [固定预览恢复](../artifacts/validation/ui-gameplay-question-video-20261113/fixed-preview-restored-01.json) 7 项通过，手机停在原账号首页。[预览包字节码](../artifacts/validation/ui-gameplay-question-video-20261113/preview-package-equivalence-01.json) 与定版隔离包一致。[隔离环境清理](../artifacts/validation/ui-gameplay-question-video-20261113/disposable-cleanup-01.json) 核对四个隔离账号台账无变化，专用 TLS、数据库、容器和控制入口均已关闭。[公开产物扫描](../artifacts/validation/ui-gameplay-question-video-20261113/public-artifact-scan-01.json) 无敏感发现。
+
+### Q04b 终章演出与旅程出口
+
+用户确认本轮迁移终章和外链，站内剧情接续留到下一小片。场次状态、发放线索、出口地址与等级均取自当前服务端授权。主动外跳由 ArkUI 应用交接，原题和滚动位置留在本地，外部地址保留服务端提供的查询参数。
+
+| 场景 | 验收目标 |
+| --- | --- |
+| 正确结算 | 首次正确完成终章场次时先显示「所有迷雾已经消散」。只能通过「揭示最终线索」继续，返回与点遮罩不跳过。日夜按 Web 对照星纹、金色装饰、文案、尺寸和动效。 |
+| 顺序及空效果 | 确认后依次展示本次普通自动线索、组合线索、有效出口。视频提前关闭仍继续。无出口则直接走到符合条件的等级提升，显式空效果不重放旧线索。 |
+| 外链 | 显示底部「最终旅程入口已经开启」。点「继续旅程」才交给系统打开，返回保留提示与题卡，「稍后前往」收起并继续等级提升。系统打开失败允许再次点按。 |
+| 回访与中断 | 下拉、轮询、退出回访不新建演出。普通后台、离场、失去授权与账号更换清理未展示步骤。隔离真实 HTTPS 与 SQLite 确认末题只结算一次，全部展示和外跳没有附加玩法写入。 |
+
+[隔离真实 HTTPS 夹具](../artifacts/validation/ui-gameplay-finale-20261113/host-fixtures-03.json) 覆盖双题、文本普通线索、组合线索、有无外链及跨级。冻结 Web `4b7d1a0` 在 388×771 内容区重放同数据，覆盖日间、夜间、减少动画、外链打开后保留原页、无目标和历史回访。[Web 回放](../artifacts/validation/ui-gameplay-finale-20261113/web-finale-01.json)
+
+首包确认真实末题结算和终章遮罩约束，原图显示非模态旅程条被顶栏遮住，首包判为不完整。修复沿用原生 Stack/Column，按实际安全区底部放置入口，并保持页面可滚动；终章在官方弹层内添加淡金环纹及减少动画下的静态装饰。[首包真机记录](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-light-01.json)
+
+第二包确认浏览器真实接管和返回同一 App 进程、题卡位置与底部旅程条，期间有三次有效 GET，用户主动回源及后台轮询均可产生读取。驱动原先将这一期间限制为一次读取，导致提前结束；写台账复核无附加玩法写入。第二包系统弹层外框出现色带，定版把外环、光晕及主题遮罩移至根页面的无交互装饰层，官方居中弹窗继续管理焦点、遮罩命中、系统返回和退场。夜间第二包采集因测试夹具追加期间触发隔离账本保护，在提交末题前终止。[浏览器证据](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-browser-02.json) · [夜间中止记录](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-dark-01.json) · [官方弹窗](https://developer.huawei.com/consumer/en/doc/harmonyos-references/arkts-uicontext-custom-dialog/)
+
+定版执行 `scripts/hm.sh run`，官方 ArkTS 构建、调试签名、安装和启动成功。`python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output artifacts/validation/ui-gameplay-finale-20261113/runtime-03.json` 的 5 项窗口和独立 TLS 检查通过。`scripts/hm.sh test` 全量 164 项通过。`scripts/hm.sh lint` 报告 `filesChecked=0`，未作 lint 覆盖凭据。DevEco LSP 逐文件分析 6 个 ArkTS 文件，0 错误、2 条原有动效 API 异常处理提示。[安装和窗口报告](../artifacts/validation/ui-gameplay-finale-20261113/runtime-03.json) · [全量测试](../artifacts/validation/ui-gameplay-finale-20261113/unit-release/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-finale-20261113/lint-release/lint.json) · [LSP](../artifacts/validation/ui-gameplay-finale-20261113/lsp-release.json)
+
+日间定版在直板机与隔离真实 HTTPS 完成 6 项。正确答复只新增一次答题、一次 50 XP 记账和两条线索发放，进度由 1/2 变为 2/2。确认终章后先读普通线索，再读组合线索。浏览器由「继续旅程」打开，返回后原任务进程、题卡和旅程条坐标一致，期间三次授权详情读取均为 200。「稍后前往」关闭旅程条后才显示等级提升。回访保留已提交答案和组合线索入口，无演出重放。新增入场写入为零，其余玩家的业务账本无变化。[日间直板机](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-final-light-01.json)
+
+夜间定版 5 项通过。系统返回和点遮罩都保留终章，用户确认后依次阅读普通线索和组合线索。空目标跳过底部旅程条并直接展示待发的等级提升。回访保持权威完成态和只读答案。隔离账本同样只新增一次答题和一次 50 XP 记账。[夜间直板机](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-final-dark-01.json)
+
+日夜同内容宽度核对 10 对原图，定版金色星纹、两行标题和正文、可点按钮与底部旅程条完整显示，原生面板相对 Web 内容区中心高约 4.5 vp，外环柔光较轻。浏览器返回配对保留题卡和旅程条。原生静态截图可确认装饰呈现和动作结果，尚未采集连续动画时序或真机减少动画设置的专项结果。终章队列含视频且提前关闭时仍接下一条，由本地 ViewModel 用例覆盖；本轮真机终章场次使用文字普通线索。[同数据原图对照](../artifacts/validation/ui-gameplay-finale-20261113/visual-review-final-01.json)
+
+预览程序沿用独立外链的系统错误提示和显式重试。单独调试包仅对隔离目标第一次调用官方 `appLinkingOnly`；已到达旅程条并核对一次末题结算，但 HDC 在失败采集阶段报错。失败提示、重试和普通后台中断专项待真机确认，定版日夜正常分支已独立通过。临时变体源码已恢复。[故障变体审计](../artifacts/validation/ui-gameplay-finale-20261113/failure-variant-01.json) · [故障中止记录](../artifacts/validation/ui-gameplay-finale-20261113/native-finale-failure-01.json)
+
+固定预览以定版 ArkTS 字节码重新签名安装并恢复登录，原预览场次进度经读回核对保持原样。临时 HTTPS 和 PocketBase 资源已清理。安装日志采集曾在工具记录显示 USB 设备标识，公开证据已按已知标识和敏感字段扫描。[固定预览](../artifacts/validation/ui-gameplay-finale-20261113/fixed-preview-restored-01.json) · [字节码对照](../artifacts/validation/ui-gameplay-finale-20261113/preview-package-equivalence-01.json) · [临时环境清理](../artifacts/validation/ui-gameplay-finale-20261113/disposable-cleanup-01.json) · [公开产物扫描](../artifacts/validation/ui-gameplay-finale-20261113/public-artifact-scan-final-01.json)

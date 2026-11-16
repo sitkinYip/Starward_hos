@@ -160,7 +160,10 @@ export default function gameplayCluesTests(): void {
       expect(completionCombinations(previous, settled, finalEffects)[0]?.id).assertEqual('combination');
       expect(answerAutomaticClues(settled, settled, last, finalEffects).length).assertEqual(0);
       settled.presentation.completionStyle = 'finale';
-      expect(answerAutomaticClues(previous, settled, last, finalEffects).length).assertEqual(0);
+      expect(answerAutomaticClues(previous, settled, last, finalEffects).map((row: GameplayClue) =>
+        row.id).join(',')).assertEqual('last-text,earlier');
+      expect(answerAutomaticClues(previous, settled, last, []).length).assertEqual(0);
+      expect(answerAutomaticClues(settled, settled, last, finalEffects).length).assertEqual(0);
     });
 
     it('usesOnlyCurrentReadableCompletedLevelAndServerGrantedRows', 0, () => {

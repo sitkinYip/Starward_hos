@@ -2,7 +2,7 @@ import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { curves, PromptAction, promptAction, RectShape } from '@kit.ArkUI';
 import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, ordinaryClues } from '../business/GameplayClues';
-import { GameplayClue, GameplayContentBlock, GameplayLevel, GameplayOption,
+import { GameplayClue, GameplayCompletionTarget, GameplayContentBlock, GameplayLevel, GameplayOption,
   GameplaySnapshot } from '../business/GameplayModels';
 import { gameplayBgmSource } from '../business/GameplayBgm';
 import { gameplayBackgroundSource } from '../business/GameplayBackground';
@@ -10,7 +10,7 @@ import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, QuestBgmPosition, questBgmCoordinate 
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
-import { openExternalClueLink } from '../platform/ExternalClueLink';
+import { externalClueLinkHref, openExternalClueLink } from '../platform/ExternalClueLink';
 import { isQuestBgmSource, QuestBgmPlayer, QuestBgmState } from '../platform/QuestBgmPlayer';
 import { QuestBgmPreference } from '../platform/QuestBgmPreference';
 import { QuestAnswerGuidePreference } from '../platform/QuestAnswerGuidePreference';
@@ -37,6 +37,7 @@ import { StarwardClueTextDialog } from '../ui/StarwardClueTextDialog';
 import { StarwardCombinationDialog } from '../ui/StarwardCombinationDialog';
 import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
 import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
+import { StarwardFinalDestination } from '../ui/StarwardFinalDestination';
 import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
@@ -85,13 +86,15 @@ class CompletionNoticeRequest {
   readonly count: number;
   readonly hasResults: boolean;
   readonly revision: number;
+  readonly finale: boolean;
 
-  constructor(action: PromptAction, owner: string, count: number, hasResults: boolean, revision: number) {
+  constructor(action: PromptAction, owner: string, count: number, hasResults: boolean, revision: number, finale: boolean) {
     this.action = action;
     this.owner = owner;
     this.count = count;
     this.hasResults = hasResults;
     this.revision = revision;
+    this.finale = finale;
   }
 }
 
@@ -126,6 +129,7 @@ export struct GameplayPage {
   @Param reducedMotion: boolean = true;
   @Event leave: () => void = () => {};
   @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
+  @Event finaleBackdropChanged: (visible: boolean) => void = () => {};
   @Local seenCompletionRevision: number = 0;
   @Local private recoveryVisible: boolean = false;
   @Local private recoveryDismissed: boolean = false;
@@ -138,6 +142,8 @@ export struct GameplayPage {
   @Local private textClue: GameplayClue | null = null;
   @Local private combinationSequenceActive: boolean = false;
   @Local private completionNotice: CompletionNoticeRequest | null = null;
+  @Local private destinationHeight: number = 0;
+  @Local private destinationLaunching: boolean = false;
   @Local private rankNotice: RankDialogRequest | null = null;
   private clueDialog: ClueDialogRequest | null = null;
   private combinationQueue: GameplayClue[] = [];
@@ -169,7 +175,11 @@ export struct GameplayPage {
     const keepHandoff: boolean = handoff !== null && handoff.isCurrent();
     const keepReading: boolean = keepHandoff && handoff?.dialog !== null;
     if (!foreground) {
-      if (keepReading) { this.play.cancelRankUpPresentation(); } else { this.play.cancelAutomaticClues(); }
+      if (keepReading) {
+        if (this.play.finaleStage === 'idle') { this.play.cancelRankUpPresentation(); }
+      } else {
+        this.play.cancelAutomaticClues(keepHandoff);
+      }
       this.cancelRankNotice();
     }
     this.imageCache.validateOwner();
@@ -389,6 +399,7 @@ export struct GameplayPage {
 
   private scrollBottomClearance(): number {
     const baseline: number = this.bottomClearance + (this.bgmSource().length > 0 ? QUEST_BGM_SIZE : 0);
+    if (this.finalDestinationHref().length > 0) { return baseline + this.destinationHeight + 14; }
     return this.showAnswerGuide() ? Math.max(baseline, this.guideBottomInset() + this.guideHeight + 12) : baseline;
   }
 
@@ -431,6 +442,7 @@ export struct GameplayPage {
   private bgmBottomInset(): number { return Math.max(0, this.bottomClearance - 24); }
 
   private bgmLayoutBottomInset(): number {
+    if (this.finalDestinationHref().length > 0) { return this.destinationBottomInset() + this.destinationHeight + 10; }
     return this.showAnswerGuide() ? this.guideBottomInset() + this.guideHeight : this.bgmBottomInset();
   }
 
@@ -660,7 +672,8 @@ export struct GameplayPage {
   }
 
   private showCombinationLauncher(): boolean {
-    return this.foreground && this.play.automaticClue === null && this.questionInteractionReady() &&
+    return this.foreground && this.play.finaleStage !== 'notice' && this.play.finaleStage !== 'combination' &&
+      this.play.automaticClue === null && this.questionInteractionReady() &&
       this.clueDialogWidth(true) >= 160 && this.clueDialogHeight() >= 120 && this.currentCombinations().length > 0;
   }
 
@@ -672,7 +685,11 @@ export struct GameplayPage {
   }
 
   private interruptCombinationSequence(): void {
-    if (this.combinationRevision > 0) { this.play.cancelRankUpPresentation(); }
+    if (this.play.finaleStage === 'combination') {
+      this.play.cancelAutomaticClues();
+    } else if (this.combinationRevision > 0) {
+      this.play.cancelRankUpPresentation();
+    }
     this.clearCombinationSequence();
   }
 
@@ -875,6 +892,7 @@ export struct GameplayPage {
   private clearClueLinkHandoff(): void {
     if (this.clueLinkHandoff !== null) { clearTimeout(this.clueLinkHandoff.timeout); }
     this.clueLinkHandoff = null;
+    this.destinationLaunching = false;
   }
 
   private openClueLink(request: ClueDialogRequest, href: string): void {
@@ -887,10 +905,11 @@ export struct GameplayPage {
   }
 
   private async launchClueLink(href: string, dialog: ClueDialogRequest | null,
-    isCurrent: () => boolean): Promise<void> {
+    isCurrent: () => boolean, destination: boolean = false): Promise<void> {
     if (!this.foreground || this.clueLinkHandoff !== null || !isCurrent()) { return; }
     const handoff: ClueLinkHandoff = new ClueLinkHandoff(dialog, isCurrent);
     this.clueLinkHandoff = handoff;
+    this.destinationLaunching = destination;
     this.play.cancelAutoAdvance();
     try {
       const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
@@ -1002,8 +1021,8 @@ export struct GameplayPage {
   private isCompletionNoticeCurrent(request: CompletionNoticeRequest): boolean {
     return this.completionNotice === request && this.foreground && this.play.visible && this.play.error.length === 0 &&
       this.play.snapshot?.detail.status === 'completed' && this.play.imageOwnerKey() === request.owner &&
-      (!request.hasResults || this.combinationQueue.some((clue: GameplayClue) =>
-        this.isCombinationCurrent(request.owner, clue)));
+      (request.finale ? this.play.finaleStage === 'notice' : !request.hasResults ||
+        this.combinationQueue.some((clue: GameplayClue) => this.isCombinationCurrent(request.owner, clue)));
   }
 
   @Builder
@@ -1011,33 +1030,36 @@ export struct GameplayPage {
     if (this.completionNotice === request) {
       StarwardCombinationNotice({ completedCount: request.count, hasResults: request.hasResults,
         panelWidth: width, maxHeight: height, viewportWidth: this.viewportWidth, displayFont: this.displayFont,
+        finale: request.finale,
         motionEnabled: this.foreground && !this.reducedMotion,
         acknowledge: () => {
           if (request.closing || !this.isCompletionNoticeCurrent(request)) { return; }
-          request.acknowledged = request.hasResults;
+          request.acknowledged = request.hasResults || request.finale;
           request.closing = true;
           this.closeCompletionNotice(request);
         } })
     }
   }
 
-  private async openCompletionNotice(owner: string, count: number, hasResults: boolean, revision: number): Promise<void> {
+  private async openCompletionNotice(owner: string, count: number, hasResults: boolean, revision: number,
+    finale: boolean = false): Promise<void> {
     const width: number = Math.min(680, this.viewportWidth - 48);
     const height: number = this.clueDialogHeight();
     if (width < 160 || height < 120) {
       this.interruptCombinationSequence();
-      this.play.cancelRankUpPresentation();
+      if (finale) { this.play.cancelAutomaticClues(); } else { this.play.cancelRankUpPresentation(); }
       return;
     }
     let request: CompletionNoticeRequest;
     try {
-      request = new CompletionNoticeRequest(this.getUIContext().getPromptAction(), owner, count, hasResults, revision);
+      request = new CompletionNoticeRequest(this.getUIContext().getPromptAction(), owner, count, hasResults, revision, finale);
     } catch {
       this.interruptCombinationSequence();
-      this.play.cancelRankUpPresentation();
+      if (finale) { this.play.cancelAutomaticClues(); } else { this.play.cancelRankUpPresentation(); }
       return;
     }
     this.completionNotice = request;
+    if (finale) { this.finaleBackdropChanged(true); }
     const fade: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.asymmetric(
       TransitionEffect.opacity(0).animation({ duration: 320, curve: Curve.EaseOut }),
       TransitionEffect.opacity(0).animation({ duration: 240, curve: Curve.EaseIn }));
@@ -1054,8 +1076,9 @@ export struct GameplayPage {
         builder: () => { this.combinationNoticeContent(request, width, height); },
         alignment: DialogAlignment.Center, width: width, cornerRadius: 0, isModal: true, showInSubWindow: false,
         backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
-        maskColor: $r('app.color.completion_mask'), dialogTransition: dialogTransition, maskTransition: fade,
-        autoCancel: !hasResults, onWillDismiss: hasResults ? () => {} : undefined,
+        maskColor: finale ? Color.Transparent : $r('app.color.completion_mask'), dialogTransition: dialogTransition,
+        maskTransition: fade,
+        autoCancel: !hasResults && !finale, onWillDismiss: hasResults || finale ? () => {} : undefined,
         onDidDisappear: () => this.releaseCompletionNotice(request, true)
       });
       if (request.closing || !this.isCompletionNoticeCurrent(request)) { this.closeCompletionNotice(request); }
@@ -1082,6 +1105,12 @@ export struct GameplayPage {
     if (this.completionNotice !== request) { return; }
     const completed: boolean = dismissed && this.isCompletionNoticeCurrent(request);
     this.completionNotice = null;
+    if (request.finale) {
+      this.finaleBackdropChanged(false);
+      if (completed && request.acknowledged) { this.play.acknowledgeFinale(request.revision); }
+      else { this.play.cancelAutomaticClues(); }
+      return;
+    }
     if (completed && request.acknowledged) {
       this.showNextCombination();
     } else {
@@ -1094,21 +1123,26 @@ export struct GameplayPage {
     }
   }
 
-  @Monitor('play.completionRevision')
+  @Monitor('play.completionRevision', 'viewportWidth', 'viewportHeight', 'play.submitting', 'recoveryVisible',
+    'foreground', 'keyboardVisible')
   completionChanged(): void {
     const revision: number = this.play.completionRevision;
     if (revision <= 0 || revision === this.seenCompletionRevision) {
       this.seenCompletionRevision = revision;
       return;
     }
-    this.seenCompletionRevision = revision;
     const snapshot: GameplaySnapshot | null = this.play.snapshot;
     if (!this.foreground || !this.play.visible || snapshot === null || snapshot.detail.status !== 'completed') {
       return;
     }
-    if (snapshot.presentation.completionStyle === 'finale') {
-      StarwardFeedback.notice(this.getUIContext(), '本次场次已完成', '全部题目已经完成。终章内容尚未迁移。');
+    if (this.play.finaleStage === 'notice') {
+      if (!this.questionInteractionReady() || this.viewportWidth - 48 < 160 || this.clueDialogHeight() < 120) { return; }
+      this.seenCompletionRevision = revision;
+      this.openCompletionNotice(this.play.imageOwnerKey(), snapshot.detail.completedLevels, false, revision, true);
+    } else if (snapshot.presentation.completionStyle === 'finale') {
+      this.seenCompletionRevision = revision;
     } else if (snapshot.detail.totalLevels > 1) {
+      this.seenCompletionRevision = revision;
       this.cancelCompletionNotice();
       const owner: string = this.play.imageOwnerKey();
       this.combinationQueue = this.play.completionClues.filter((clue: GameplayClue) =>
@@ -1121,6 +1155,40 @@ export struct GameplayPage {
       }
       this.openCompletionNotice(owner, snapshot.detail.completedLevels, hasResults, revision);
     }
+  }
+
+  @Monitor('play.finaleStage', 'play.snapshot', 'foreground')
+  finaleAdvanced(): void {
+    if (!this.foreground || !this.play.visible || this.play.error.length > 0 ||
+      this.play.snapshot?.detail.status !== 'completed') { return; }
+    const revision: number = this.play.completionRevision;
+    if (this.play.finaleStage === 'destination' && this.finalDestinationHref().length === 0) {
+      this.play.dismissFinaleDestination(revision);
+    }
+    if (this.play.finaleStage !== 'combination' || this.combinationSequenceActive) { return; }
+    this.combinationOwner = this.play.imageOwnerKey();
+    this.combinationRevision = revision;
+    this.combinationQueue = this.play.completionClues.filter((clue: GameplayClue) =>
+      this.isCombinationCurrent(this.combinationOwner, clue));
+    this.combinationSequenceActive = true;
+    this.showNextCombination();
+  }
+
+  private destinationBottomInset(): number { return 14 + this.bgmBottomInset(); }
+
+  private finalDestinationHref(): string {
+    const target: GameplayCompletionTarget | null = this.play.currentFinaleTarget();
+    return this.play.finaleStage === 'destination' && this.play.visible && this.play.error.length === 0 &&
+      target !== null ? externalClueLinkHref(target.url) : '';
+  }
+
+  private openFinalDestination(): void {
+    const href: string = this.finalDestinationHref();
+    const revision: number = this.play.completionRevision;
+    const owner: string = this.play.imageOwnerKey();
+    if (href.length === 0) { return; }
+    this.launchClueLink(href, null, () => this.play.completionRevision === revision &&
+      this.play.imageOwnerKey() === owner && this.finalDestinationHref() === href, true);
   }
 
   @Monitor('play.rankUp', 'play.visible', 'play.error', 'play.snapshot', 'play.automaticClue',
@@ -1595,11 +1663,6 @@ export struct GameplayPage {
       if (this.play.snapshot?.detail.status === 'completed') {
         Text('本次场次已完成。').id('gameplay-completed-state').width('100%')
           .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.accent_text'))
-        if (this.play.snapshot?.presentation.completionStyle === 'finale' ||
-          this.play.snapshot?.completionTarget !== null) {
-          Text('终章与旅程出口尚未迁移。').id('gameplay-completion-pending').width('100%')
-            .fontSize(13).lineHeight('22.1fp').fontColor($r('app.color.muted'))
-        }
       }
     }.width('100%').alignItems(HorizontalAlign.Start)
       // Short cards still need enough scroll range to reach the safe reading position.
@@ -1678,7 +1741,7 @@ export struct GameplayPage {
         .bindContentCover(this.textClue === null && this.viewer.visible, this.imageViewer(), this.viewerOptions())
       if (this.showCombinationLauncher()) {
         StarwardCombinationLauncher({ viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
-          topInset: this.foregroundTopInset(), bottomInset: this.bgmBottomInset(),
+          topInset: this.foregroundTopInset(), bottomInset: this.bgmLayoutBottomInset(),
           bgmLeft: this.showBgmControl() ? this.bgmLeft() : -1,
           bgmTop: this.showBgmControl() ? this.bgmTop() : -1,
           reducedMotion: this.reducedMotion, open: () => this.openLatestCombination() })
@@ -1703,6 +1766,24 @@ export struct GameplayPage {
         }.width('100%').height('100%').justifyContent(FlexAlign.End)
           .padding({ bottom: this.guideBottomInset(), left: Math.max(12, this.leftInset),
             right: Math.max(12, this.rightInset) })
+          .hitTestBehavior(HitTestMode.None)
+      }
+      if (this.foreground && this.finalDestinationHref().length > 0 && this.viewportWidth - this.leftInset - this.rightInset > 28) {
+        Column() {
+          StarwardFinalDestination({ panelWidth: Math.min(760, this.viewportWidth - 28 - this.leftInset - this.rightInset),
+            displayFont: this.displayFont, launching: this.destinationLaunching,
+            later: () => {
+              this.clearClueLinkHandoff();
+              this.play.dismissFinaleDestination(this.play.completionRevision);
+            }, proceed: () => this.openFinalDestination() })
+            .onAreaChange((_previous: Area, area: Area) => {
+              const height: number = Number(area.height);
+              if (height > 0 && Number.isFinite(height) && this.destinationHeight !== height) {
+                this.destinationHeight = height;
+              }
+            })
+        }.width('100%').height('100%').justifyContent(FlexAlign.End)
+          .padding({ bottom: this.destinationBottomInset(), left: this.leftInset, right: this.rightInset })
           .hitTestBehavior(HitTestMode.None)
       }
       if (this.foreground && this.play.syncEpisode > 0 && this.play.syncEpisode !== this.dismissedSyncEpisode &&

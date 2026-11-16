@@ -1,0 +1,585 @@
+{
+  "status": "passed_native_finale_destination",
+  "stage": "read-only-completed-history",
+  "scope": "finale-destination-final-light",
+  "theme": "light",
+  "hapSha256": "103245b41510ecd39fbaf8f60b0178921e609a2fc377e825a05d3ca57ae1ac36",
+  "bindingSha256": {
+    "hap": "103245b41510ecd39fbaf8f60b0178921e609a2fc377e825a05d3ca57ae1ac36",
+    "runtime": "2ccaac53b47fdab36e6be63cf28bae6b723d0a0dc261d1b994946368c543c365",
+    "caseReference": "d83a7cd8909dfdfda7a6b2297cb6a0ae4969eaff463b285c077ae0d4a335f896",
+    "ca": "34ed5583a0028d0b22e8a2d33dde834954b5bebf86276be2cd9b9fa8d489395c",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "finaleDriver": "9e85e965ee487334026b2dc807cbda4928f9211358c0ed74b33eedebb8585938",
+    "finaleFixtureDriver": "e0bab73a9654b8b95dbc5a7790379727ee583b0225bcfbdf652c65a0f3130187",
+    "priorClueDriver": "fa6e576fb886fedb1b0be94a6d931cfd10f89c9d3d52be5cab7172f327018b88",
+    "priorOpeningDriver": "efe6e5f86e40f4676540da9e1beb48f6fc45c06d846e986cf3ff6db93b938db7",
+    "priorBrowserDriver": "cd042c51721cb3f754d678bd135766354667041460ccac6eb9fdc4905db08bdf",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "4729dd101d08104d6a40b9b55267536999c9554ed9021acfbc108d34c79a6aab",
+    "preparedDtos": "be755f4f79319e905f7e806bfa935b5422ee908fea44fbdf931b16713cfb5342",
+    "baseline": "9920af5bfa0348a82b14eeba9c8379ef5cc2ae4a9b4314b9d759c7f41cad21f6",
+    "GameplayPage": "427d12e37b7eb03f21397102013d5bf470eecdf39fdc6009033a9493a30a0879",
+    "GameplayViewModel": "168fbe40f93cacf138d1fcda0061f6cd3bf39915f890b025cce018ebaccbed89",
+    "GameplayClues": "f80caf49140b4a8b853f587ba4c32ec3bc31439a210b6df823583621e8a98aed",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "StarwardClueTextDialog": "f1366c29103f2efe84b0acbbae8ae94da5402e7ddc68cc70fd5390d9cc1b5d58",
+    "StarwardCombinationDialog": "d656ae66bdc7d5bc0a699916363d9872c8ff36f03b711c32ca15581e800fd5d9",
+    "StarwardRankUpDialog": "81d381d5a7278e73c8a7b25331b39fcf1b8fc75580d2e87b5e7e8ac520f6e0c2",
+    "StarwardFinalDestination": "86d0faa6758a0fad7b34a7cb06167a4973c9bae9cbc4773b07bc6a16097e2972"
+  },
+  "checksPassed": 6,
+  "checks": [
+    "Unanswered final question hides finalé, all clues, rank, and destination",
+    "One authenticated final answer settles once and shows the required finalé before all clues",
+    "Explicit acknowledgement reveals the ordinary clue and then the combination",
+    "Destination opens by explicit touch, then remains on the original question until Later",
+    "The rank follows the destination decision or immediately follows clues when the target is null",
+    "Completed history uses the exact authenticated GET without replay or gameplay writes"
+  ],
+  "states": [
+    {
+      "state": "finale-first",
+      "geometryPx": {
+        "gameplay-finale-notice": [
+          78,
+          607,
+          1182,
+          2114
+        ],
+        "gameplay-finale-notice-title": [
+          158,
+          1221,
+          1102,
+          1521
+        ],
+        "gameplay-finale-notice-detail": [
+          162,
+          1570,
+          1099,
+          1758
+        ],
+        "gameplay-finale-notice-ack": [
+          409,
+          1833,
+          852,
+          1983
+        ]
+      },
+      "rawSha256": "66c1e950e843c7371ced9da3323a349d8a098251349a7ba0d83233d6f99b5a18",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-first.png",
+        "sha256": "8d627c1d51247727e43feff6af5cf76b8e633d9fa18a4b609f46c2fa2c1ddb18",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "finale-ordinary-text",
+      "geometryPx": {
+        "gameplay-clue-text-dialog": [
+          78,
+          937,
+          1182,
+          1782
+        ],
+        "gameplay-clue-text-title": [
+          172,
+          1119,
+          523,
+          1245
+        ],
+        "gameplay-clue-text-content": [
+          172,
+          1391,
+          1088,
+          1688
+        ],
+        "gameplay-clue-text-close": [
+          984,
+          992,
+          1127,
+          1135
+        ]
+      },
+      "rawSha256": "47706f35e3cf44fda79e099306c9c5e25c3e87b4d47d23d3b6444d646a60b930",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-ordinary-text.png",
+        "sha256": "108edead2a020ff69f3f00e00b3d7f920cc70a1d374783e49daa62aa8e2be3c0",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "final-combination-1",
+      "geometryPx": {
+        "gameplay-combination-dialog": [
+          78,
+          777,
+          1182,
+          1943
+        ],
+        "gameplay-combination-title": [
+          178,
+          1017,
+          569,
+          1157
+        ],
+        "gameplay-combination-content": [
+          178,
+          1248,
+          1082,
+          1446
+        ],
+        "gameplay-combination-ack": [
+          156,
+          1732,
+          1104,
+          1882
+        ]
+      },
+      "rawSha256": "76747837a8eedd4e7394a226a9f781290a657657b372ebd394777aac88f1fe5e",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/final-combination-1.png",
+        "sha256": "e2b0ab864a2e559577b9687c56f9f3c312e3f619f20a567ae06b299644e61428",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "destination-before-browser",
+      "geometryPx": {
+        "gameplay-final-destination": [
+          46,
+          2083,
+          1215,
+          2584
+        ],
+        "gameplay-final-destination-title": [
+          114,
+          2211,
+          700,
+          2296
+        ],
+        "gameplay-final-destination-continue": [
+          808,
+          2374,
+          1147,
+          2524
+        ],
+        "gameplay-final-destination-later": [
+          437,
+          2374,
+          776,
+          2524
+        ]
+      },
+      "rawSha256": "6d448f8434b8d160881525483bbae881e7d9825e27d353557c6f3d7c4418998a",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/destination-before-browser.png",
+        "sha256": "4da4fd9e5e271c22afad77207bc6a739a6433fd2e03230d5b77c3ae7d8d96af1",
+        "scope": "Private original"
+      },
+      "appRootPx": [
+        0,
+        124,
+        1260,
+        2720
+      ],
+      "validatedBottomAnchor": true,
+      "questionGeometryPx": {
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2676
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ],
+        "gameplay-answer-input": [
+          100,
+          1311,
+          1161,
+          1500
+        ]
+      }
+    },
+    {
+      "state": "destination-after-browser",
+      "geometryPx": {
+        "gameplay-final-destination": [
+          46,
+          2083,
+          1215,
+          2584
+        ],
+        "gameplay-final-destination-title": [
+          114,
+          2211,
+          700,
+          2296
+        ],
+        "gameplay-final-destination-continue": [
+          808,
+          2374,
+          1147,
+          2524
+        ],
+        "gameplay-final-destination-later": [
+          437,
+          2374,
+          776,
+          2524
+        ]
+      },
+      "rawSha256": "97bbfa0b4879a3d6210228884652ca5afc2f9dd467cbc79e569b550ccba8b79f",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/destination-after-browser.png",
+        "sha256": "7aa2d4cfb3ce2b653e8830e08e9aaaeffc983c687fb7579f83075b386a50a14e",
+        "scope": "Private original"
+      },
+      "appRootPx": [
+        0,
+        124,
+        1260,
+        2720
+      ],
+      "validatedBottomAnchor": true,
+      "questionGeometryPx": {
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2676
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ],
+        "gameplay-answer-input": [
+          100,
+          1311,
+          1161,
+          1500
+        ]
+      }
+    },
+    {
+      "state": "rank-after-destination-or-no-target",
+      "geometryPx": {
+        "gameplay-rank-up": [
+          46,
+          598,
+          1215,
+          2122
+        ],
+        "gameplay-rank-up-title": [
+          120,
+          1314,
+          1141,
+          1471
+        ],
+        "gameplay-rank-up-ack": [
+          338,
+          1886,
+          923,
+          2036
+        ]
+      },
+      "rawSha256": "8b2e5b71fb44f18ffdd7f3dd2173057d910166db6f465a79cb8d54594c0c7539",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/rank-after-destination-or-no-target.png",
+        "sha256": "02622e24ec8b27161c7b30b44796452b497d2d9362efef0960f2a370dac0257c",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "settled-without-replay",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          777,
+          1221,
+          2676
+        ],
+        "question-title": [
+          100,
+          956,
+          1160,
+          1079
+        ],
+        "gameplay-answer-input": [
+          100,
+          1311,
+          1161,
+          1500
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2093,
+          1189,
+          2288
+        ]
+      },
+      "rawSha256": "c3da8e312028b8fb787d66aa32ca5974c448d9c3afa6a640870047fcd22569da",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/settled-without-replay.png",
+        "sha256": "5788b88cfb1ea60903cd04311e86574b23f337d03200ffaf6f62e2d4989a3da0",
+        "scope": "Private original"
+      }
+    },
+    {
+      "state": "history-no-replay",
+      "viewedQuestion": 2,
+      "answerEditable": false,
+      "geometryPx": {
+        "gameplay-question-card": [
+          39,
+          124,
+          1221,
+          1723
+        ],
+        "question-title": [
+          100,
+          302,
+          1160,
+          425
+        ],
+        "gameplay-answer-input": [
+          100,
+          657,
+          1161,
+          846
+        ],
+        "gameplay-combination-launcher": [
+          656,
+          2093,
+          1189,
+          2288
+        ]
+      },
+      "rawSha256": "a3a92124afea9f2e2d950c2847da819dbca8f5e9e60d73c8788e130e25c724fa",
+      "privateOriginal": {
+        "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/history-no-replay.png",
+        "sha256": "03b946f5cf9e146e31ee60dfab6b486e026f6053e4d68f8cf84830f6f2478b86",
+        "scope": "Private original"
+      }
+    }
+  ],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "settlement": {
+      "baselineProxyReceiptsMatchSqlite": true,
+      "addedStartWrites": 0,
+      "addedAnswerWrites": 1,
+      "addedXpWrites": 1,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "completed",
+        "startedAtPresent": true,
+        "completedAtPresent": true,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 2,
+        "answerSubmissionCount": 2,
+        "correctAnswerCount": 2,
+        "completedProgressRows": 2,
+        "xpLedgerCount": 2,
+        "xpDeltaSum": 100,
+        "playerTotalXp": 100,
+        "clueUnlockRows": 2,
+        "combinationUnlockRows": 1,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "appThemeActions": [
+      {
+        "mode": "light",
+        "selectedFlagsObserved": true
+      },
+      {
+        "mode": "system",
+        "selectedFlagsObserved": true
+      }
+    ],
+    "browser": {
+      "openedOnExplicitContinue": true,
+      "sameAppProcessAndGeometry": true,
+      "systemBackPresses": 1,
+      "returnRoute": "existing-app-ability-activation",
+      "authenticatedDetailReads": 3,
+      "rankHeldUntilLater": true
+    }
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "loginInputsEmpty": true,
+    "privateGameplayAbsent": true,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": true,
+    "appThemeRestored": true
+  },
+  "sameDataWebFixtures": {
+    "finale-before": {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-before-dtos.json",
+      "sha256": "2bae1f709075fbdfdf8feef161849478e326c16c38393cc8a937f6cada378ea3"
+    },
+    "finale-completed": {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-completed-dtos.json",
+      "sha256": "55918c44fb24c97a2ad0fbbc27f0b265d005bdd2c66cd0ea8d2f7b02bfcbd36d"
+    },
+    "finale-history": {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-history-dtos.json",
+      "sha256": "5921544dde6e940703dff12f0bc7954718564b4dd348915b4f7e9fe05ba0a4c8"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/unanswered-no-clue-panel.png",
+      "sha256": "d19505016eee076e460af3bf3b605c8e5bd9dd6a8968f149683e13aeb6606ba9",
+      "scope": "Private original; may show the dedicated test account"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-first.png",
+      "sha256": "8d627c1d51247727e43feff6af5cf76b8e633d9fa18a4b609f46c2fa2c1ddb18",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-ordinary-text.png",
+      "sha256": "108edead2a020ff69f3f00e00b3d7f920cc70a1d374783e49daa62aa8e2be3c0",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/final-combination-1.png",
+      "sha256": "e2b0ab864a2e559577b9687c56f9f3c312e3f619f20a567ae06b299644e61428",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/destination-before-browser.png",
+      "sha256": "4da4fd9e5e271c22afad77207bc6a739a6433fd2e03230d5b77c3ae7d8d96af1",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/destination-after-browser.png",
+      "sha256": "7aa2d4cfb3ce2b653e8830e08e9aaaeffc983c687fb7579f83075b386a50a14e",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/rank-after-destination-or-no-target.png",
+      "sha256": "02622e24ec8b27161c7b30b44796452b497d2d9362efef0960f2a370dac0257c",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/settled-without-replay.png",
+      "sha256": "5788b88cfb1ea60903cd04311e86574b23f337d03200ffaf6f62e2d4989a3da0",
+      "scope": "Private original"
+    },
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/history-no-replay.png",
+      "sha256": "03b946f5cf9e146e31ee60dfab6b486e026f6053e4d68f8cf84830f6f2478b86",
+      "scope": "Private original"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "unanswered-no-clue-panel",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-unanswered-no-clue-panel-e934e1312f2947c1a2fb9de6b3c67955.json",
+      "remoteRemoved": true,
+      "sha256": "405819109797feba79b908587a85b90fa10819bc621cfcae7c6b226a5dead750"
+    },
+    {
+      "label": "before-gameplay-submit",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-before-gameplay-submit-3380dd8dfe0c4e4689a35fd3ce0f62bb.json",
+      "remoteRemoved": true,
+      "sha256": "152671aaacbc2bcb04d1e08bef37d6a2a61ad74eed1df590823fa2f0fb46bc9d"
+    },
+    {
+      "label": "finale-first",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-finale-first-6dea140ef467483f8b1845e10f08368f.json",
+      "remoteRemoved": true,
+      "sha256": "66c1e950e843c7371ced9da3323a349d8a098251349a7ba0d83233d6f99b5a18"
+    },
+    {
+      "label": "finale-ordinary-text",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-finale-ordinary-text-edb46c01c66843d29fe4cbc01aacd8e5.json",
+      "remoteRemoved": true,
+      "sha256": "47706f35e3cf44fda79e099306c9c5e25c3e87b4d47d23d3b6444d646a60b930"
+    },
+    {
+      "label": "final-combination-1",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-final-combination-1-1750998265ba4992b0171e65588baea7.json",
+      "remoteRemoved": true,
+      "sha256": "76747837a8eedd4e7394a226a9f781290a657657b372ebd394777aac88f1fe5e"
+    },
+    {
+      "label": "destination-before-browser",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-destination-before-browser-1f53c78b17534059b95529762c1824fd.json",
+      "remoteRemoved": true,
+      "sha256": "6d448f8434b8d160881525483bbae881e7d9825e27d353557c6f3d7c4418998a"
+    },
+    {
+      "label": "destination-before-browser-question-background",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-destination-before-browser-question-background-c186edbd680348b58180254fdaf872d5.json",
+      "remoteRemoved": true,
+      "sha256": "6d448f8434b8d160881525483bbae881e7d9825e27d353557c6f3d7c4418998a"
+    },
+    {
+      "label": "destination-after-browser",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-destination-after-browser-fcdcd112158144769c6888c1076c6e4a.json",
+      "remoteRemoved": true,
+      "sha256": "97bbfa0b4879a3d6210228884652ca5afc2f9dd467cbc79e569b550ccba8b79f"
+    },
+    {
+      "label": "destination-after-browser-question-background",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-destination-after-browser-question-background-8308c0d5ed5741609d99c0054653c386.json",
+      "remoteRemoved": true,
+      "sha256": "97bbfa0b4879a3d6210228884652ca5afc2f9dd467cbc79e569b550ccba8b79f"
+    },
+    {
+      "label": "rank-after-destination-or-no-target",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-rank-after-destination-or-no-target-b713fe7265c84c05b797f1b7d3695eb5.json",
+      "remoteRemoved": true,
+      "sha256": "8b2e5b71fb44f18ffdd7f3dd2173057d910166db6f465a79cb8d54594c0c7539"
+    },
+    {
+      "label": "settled-without-replay",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-settled-without-replay-b1fe44a7be764934a5dccb338362d542.json",
+      "remoteRemoved": true,
+      "sha256": "c3da8e312028b8fb787d66aa32ca5974c448d9c3afa6a640870047fcd22569da"
+    },
+    {
+      "label": "history-no-replay",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-history-no-replay-35b4af42f9794eacb12df4f14a876770.json",
+      "remoteRemoved": true,
+      "sha256": "a3a92124afea9f2e2d950c2847da819dbca8f5e9e60d73c8788e130e25c724fa"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": null
+}

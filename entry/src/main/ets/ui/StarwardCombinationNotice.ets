@@ -1,10 +1,35 @@
 import { curves, UIUtils } from '@kit.ArkUI';
 
+@ComponentV2
+export struct StarwardFinaleBackdrop {
+  @Param reducedMotion: boolean = true;
+
+  build() {
+    Stack() {
+      Column() {}
+        .width('118%').aspectRatio(1)
+        .radialGradient({ center: ['50%', '50%'], radius: '50%',
+          colors: [['#28CBAA58', 0], ['#1ECBAA58', 0.55], [Color.Transparent, 1]] })
+        .border({ width: 1, radius: '50%', color: '#57E5C87D' })
+      Column() {}
+        .width('86%').aspectRatio(1).border({ width: 1, radius: '50%', color: '#57E5C87D' })
+    }.width('100%').height('100%').backgroundColor($r('app.color.completion_mask'))
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+      .transition(this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.asymmetric(
+        TransitionEffect.opacity(0).animation({ duration: 320, curve: Curve.EaseOut }),
+        TransitionEffect.opacity(0).animation({ duration: 240, curve: Curve.EaseIn })))
+      .hitTestBehavior(HitTestMode.None)
+      .accessibilityLevel('no-hide-descendants')
+  }
+}
+
 /** The moving panel decoration has the same lifetime as the native dialog content. */
 @ComponentV2
 struct StarwardCompletionDecoration {
   @Require @Param panelWidth: number;
   @Require @Param panelHeight: number;
+  @Param finale: boolean = false;
+  @Param motionEnabled: boolean = true;
   @Local private edgeLit: boolean = false;
   @Local private bloomExpanded: boolean = false;
   @Local private outerAngle: number = 45;
@@ -46,21 +71,23 @@ struct StarwardCompletionDecoration {
       this.rune(this.diameter() * 0.82, this.outerAngle, BorderStyle.Solid)
       this.rune(this.diameter() * 0.54, this.middleAngle, BorderStyle.Dashed)
       this.rune(this.diameter() * 0.28, this.innerAngle, BorderStyle.Solid)
-      Particle({
-        particles: [{
-          emitter: {
-            particle: { type: ParticleType.POINT, config: { radius: 1.5 }, count: -1, lifetime: 3800 },
-            emitRate: 2, position: ['50%', '54%'], size: [1, 1]
-          },
-          color: { range: ['#9ACDBD', '#9ACDBD'] },
-          velocity: { speed: [42, 64], angle: [0, 360] },
-          opacity: { range: [0, 0], updater: { type: ParticleUpdater.CURVE, config: [
-            { from: 0, to: 0.85, startMillis: 0, endMillis: 836, curve: Curve.EaseOut },
-            { from: 0.85, to: 0.22, startMillis: 836, endMillis: 2964, curve: Curve.EaseOut },
-            { from: 0.22, to: 0, startMillis: 2964, endMillis: 3800, curve: Curve.EaseIn }
-          ] } }
-        }]
-      }).width('100%').height('100%')
+      if (this.motionEnabled) {
+        Particle({
+          particles: [{
+            emitter: {
+              particle: { type: ParticleType.POINT, config: { radius: 1.5 }, count: -1, lifetime: 3800 },
+              emitRate: 2, position: ['50%', '54%'], size: [1, 1]
+            },
+            color: { range: this.finale ? ['#E0C67D', '#E0C67D'] : ['#9ACDBD', '#9ACDBD'] },
+            velocity: { speed: [42, 64], angle: [0, 360] },
+            opacity: { range: [0, 0], updater: { type: ParticleUpdater.CURVE, config: [
+              { from: 0, to: 0.85, startMillis: 0, endMillis: 836, curve: Curve.EaseOut },
+              { from: 0.85, to: 0.22, startMillis: 836, endMillis: 2964, curve: Curve.EaseOut },
+              { from: 0.22, to: 0, startMillis: 2964, endMillis: 3800, curve: Curve.EaseIn }
+            ] } }
+          }]
+        }).width('100%').height('100%')
+      }
       Column() {}
         .id('gameplay-combination-notice-edge')
         .width(this.panelWidth * 0.76).height(2)
@@ -71,7 +98,7 @@ struct StarwardCompletionDecoration {
         .opacity(this.edgeLit ? 1 : 0.36)
     }.id('gameplay-combination-notice-decoration').width(this.panelWidth).height(this.panelHeight)
       .clip(true).hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
-      .onAppear(() => this.start())
+      .onAppear(() => { if (this.motionEnabled) { this.start(); } })
   }
 }
 
@@ -83,6 +110,7 @@ export struct StarwardCombinationNotice {
   @Require @Param panelWidth: number;
   @Require @Param maxHeight: number;
   @Require @Param viewportWidth: number;
+  @Param finale: boolean = false;
   @Param displayFont: string = 'serif';
   @Param motionEnabled: boolean = false;
   @Event acknowledge: () => void = () => {};
@@ -104,6 +132,7 @@ export struct StarwardCombinationNotice {
   }
 
   private compact(): boolean { return this.viewportWidth <= 620; }
+  private nodeId(): string { return this.finale ? 'gameplay-finale-notice' : 'gameplay-combination-notice'; }
   private wideInset(): number { return Math.max(38, Math.min(78, this.viewportWidth * 0.08)); }
   private titleSize(): number {
     const width: number = this.viewportWidth;
@@ -115,27 +144,28 @@ export struct StarwardCombinationNotice {
     Column() {
       Scroll() {
         Column({ space: this.compact() ? 15 : 18 }) {
-          Text(`${this.completedCount}`).id('gameplay-combination-notice-count')
+          Text(this.finale ? '✦' : `${this.completedCount}`).id(this.nodeId() + '-count')
             .width(82).height(82).fontSize(34).fontFamily('serif').textAlign(TextAlign.Center)
-            .fontColor($r('app.color.completion_sigil_text'))
+            .fontColor(this.finale ? $r('app.color.finale_sigil_text') : $r('app.color.completion_sigil_text'))
             .radialGradient({ center: ['50%', '50%'], radius: 41,
               colors: [[$r('app.color.completion_sigil_center'), 0], [$r('app.color.completion_sigil_edge'), 0.7]] })
-            .border({ width: 1, radius: 41, color: $r('app.color.completion_sigil_border') })
+            .border({ width: 1, radius: 41, color: this.finale ? '#776744' : $r('app.color.completion_sigil_border') })
             .scale({ x: this.sigilAwake ? 1.06 : 1, y: this.sigilAwake ? 1.06 : 1 })
             .rotate({ angle: this.sigilAwake ? 4 : 0 }).translate({ y: this.sigilAwake ? -4 : 0 })
             .accessibilityLevel('no')
-          Text('QUEST SET COMPLETE').id('gameplay-combination-notice-eyebrow')
+          Text(this.finale ? 'FINAL COVENANT' : 'QUEST SET COMPLETE').id(this.nodeId() + '-eyebrow')
             .fontFamily('monospace').fontWeight(600).fontSize(12).lineHeight('14.4fp').letterSpacing('1.68fp')
             .fontColor($r('app.color.accent_muted')).textAlign(TextAlign.Center).accessibilityLevel('no')
-          Text('组合谜题全部破解').id('gameplay-combination-notice-title').width('100%')
+          Text(this.finale ? '所有迷雾已经消散' : '组合谜题全部破解').id(this.nodeId() + '-title').width('100%')
             .fontFamily(this.displayFont).fontWeight(FontWeight.Medium).fontSize(this.titleSize())
             .lineHeight(`${this.titleSize() * 1.08}fp`).letterSpacing(`${-0.035 * this.titleSize()}fp`)
             .fontColor($r('app.color.strong')).textAlign(TextAlign.Center).lineBreakStrategy(LineBreakStrategy.BALANCED)
-          Text(`你已完成本次组合中的 ${this.completedCount} 道谜题。`).id('gameplay-combination-notice-detail')
+          Text(this.finale ? '最终契约已经达成。接下来将依次揭示通关线索与旅程出口。' :
+            `你已完成本次组合中的 ${this.completedCount} 道谜题。`).id(this.nodeId() + '-detail')
             .constraintSize({ maxWidth: 500 }).fontSize(16).lineHeight('28.8fp').textAlign(TextAlign.Center)
             .fontColor($r('app.color.muted')).margin({ bottom: 8 })
-          Button(this.hasResults ? '查看组合结果' : '知晓了', { type: ButtonType.Capsule })
-            .id('gameplay-combination-notice-ack').constraintSize({ minHeight: 46, maxWidth: '100%' })
+          Button(this.finale ? '揭示最终线索' : this.hasResults ? '查看组合结果' : '知晓了', { type: ButtonType.Capsule })
+            .id(this.nodeId() + '-ack').constraintSize({ minHeight: 46, maxWidth: '100%' })
             .padding({ left: 20, right: 20, top: 8, bottom: 8 }).fontSize(16).fontWeight(600)
             .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
             .defaultFocus(true).onClick(() => this.acknowledge())
@@ -152,13 +182,16 @@ export struct StarwardCombinationNotice {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.motionEnabled && this.panelHeight > 16) {
-        StarwardCompletionDecoration({ panelWidth: this.panelWidth - 2, panelHeight: this.panelHeight - 2 })
-          .position({ x: 0, y: 0 })
+        StarwardCompletionDecoration({ panelWidth: this.panelWidth - 2, panelHeight: this.panelHeight - 2,
+          finale: this.finale }).position({ x: 0, y: 0 })
+      } else if (this.finale && this.panelHeight > 16) {
+        StarwardCompletionDecoration({ panelWidth: this.panelWidth - 2, panelHeight: this.panelHeight - 2,
+          finale: true, motionEnabled: false }).position({ x: 0, y: 0 })
       }
       this.panelContent()
-    }.id('gameplay-combination-notice').width(this.panelWidth)
+    }.id(this.nodeId()).width(this.panelWidth)
       .backgroundColor($r('app.color.completion_surface'))
-      .border({ width: 1, color: $r('app.color.completion_frame_outer') })
+      .border({ width: 1, color: this.finale ? $r('app.color.accent_border') : $r('app.color.completion_frame_outer') })
       .onAppear(() => this.animateSigil())
       .onAreaChange((_previous: Area, current: Area) => {
         const height: number = Number(current.height);

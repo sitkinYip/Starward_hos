@@ -1,0 +1,20 @@
+{
+  "status": "isolated_os_openlink_failure_variant_installed",
+  "checks": {
+    "normalPackageBound": true,
+    "faultPackageBound": true,
+    "arkTSBytecodeDiffers": true,
+    "privateVariantHasOfficialOpenLinkOnlyOption": true,
+    "workspacePlatformSourceRestored": true
+  },
+  "normalHapSha256": "103245b41510ecd39fbaf8f60b0178921e609a2fc377e825a05d3ca57ae1ac36",
+  "faultHapSha256": "71f1a5c738e4489b15ba239395dd99a7f809f458fab4b23e270b27fd4f07d843",
+  "normalRuntimeSha256": "2ccaac53b47fdab36e6be63cf28bae6b723d0a0dc261d1b994946368c543c365",
+  "faultRuntimeSha256": "d9bc334a901ffbd87cf31e22fd07c982bfd0658668c200e0fa9afa73298ca83e",
+  "differingMembers": [
+    "ets/modules.abc",
+    "ets/sourceMaps.map",
+    "ets/symbolMap.map"
+  ],
+  "method": "Official appLinkingOnly on the first request to the exact isolated example URL. The next request uses the existing browser-capable options."
+}

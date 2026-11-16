@@ -1,0 +1,476 @@
+{
+  "status": "reviewed_same_data_still_images",
+  "scope": "direct visual review of the final debug HAP",
+  "installedHapSha256": "103245b41510ecd39fbaf8f60b0178921e609a2fc377e825a05d3ca57ae1ac36",
+  "nativeRuntime": {
+    "path": "artifacts/validation/ui-gameplay-finale-20261113/runtime-03.json",
+    "sha256": "2ccaac53b47fdab36e6be63cf28bae6b723d0a0dc261d1b994946368c543c365"
+  },
+  "frozenWeb": {
+    "path": "artifacts/validation/ui-gameplay-finale-20261113/web-finale-01.json",
+    "sha256": "6eaffb40dc985660da3fc917d29cbb119ea01e3278357b97b7e4efaf59f62f3a"
+  },
+  "darkSameCaseMotionWebReference": {
+    "path": "artifacts/private/gameplay-finale-20261113/web-dark-no-target/reference.json",
+    "sha256": "44a1387989cca79d2254503f8c8ae7178bc69a276b4832b67c435d9d7d28fd9b"
+  },
+  "nativeLightInteractionEvidence": {
+    "path": "artifacts/validation/ui-gameplay-finale-20261113/native-finale-final-light-01.json",
+    "sha256": "2394d80f09dd1cdc9ba7498bb27e9dc26301a6b4304775abc935ec38c1ffdc3b"
+  },
+  "nativeDarkInteractionEvidence": {
+    "path": "artifacts/validation/ui-gameplay-finale-20261113/native-finale-final-dark-01.json",
+    "sha256": "8f538120cfab339e6b8c883cef8635527ab0feecbb04e1a08da96067e862c092"
+  },
+  "webViewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "nativeWindow": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "fontScale": 1
+  },
+  "geometryAxes": [
+    "left",
+    "top",
+    "width",
+    "height"
+  ],
+  "nativeGeometryUnit": "vp, relative to status-bar-safe content",
+  "webGeometryUnit": "CSS px",
+  "stillImageReviewOnly": true,
+  "nativeAnimationTimingCertified": false,
+  "nativeReducedMotionMeasuredForThesePairs": false,
+  "webReducedMotionControlReviewedSeparately": true,
+  "lightLink": [
+    {
+      "state": "finale",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-capture-attempt-02/link-light-motion-finale.png",
+        "sha256": "9443f9a0e96da26df082a0a076f7565a464e29c4e0c764442588d908c2d18145"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-first.png",
+        "sha256": "8d627c1d51247727e43feff6af5cf76b8e633d9fa18a4b609f46c2fa2c1ddb18"
+      },
+      "nativeTree": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-finale-first-6dea140ef467483f8b1845e10f08368f.json",
+        "sha256": "66c1e950e843c7371ced9da3323a349d8a098251349a7ba0d83233d6f99b5a18"
+      },
+      "geometry": {
+        "finalPanel": {
+          "web": [
+            24,
+            153.4,
+            340,
+            464.2
+          ],
+          "native": [
+            24.0,
+            148.9,
+            339.7,
+            463.7
+          ]
+        },
+        "finalEyebrow": {
+          "web": [
+            131.7,
+            313.4,
+            124.7,
+            14.4
+          ],
+          "native": [
+            131.7,
+            308.3,
+            124.6,
+            14.5
+          ]
+        },
+        "finalTitle": {
+          "web": [
+            49,
+            342.8,
+            290,
+            92.2
+          ],
+          "native": [
+            48.6,
+            337.8,
+            290.5,
+            92.3
+          ]
+        },
+        "finalBody": {
+          "web": [
+            49,
+            450.0,
+            290,
+            57.6
+          ],
+          "native": [
+            49.8,
+            445.2,
+            288.3,
+            57.8
+          ]
+        },
+        "finalAction": {
+          "web": [
+            125,
+            530.6,
+            138,
+            46
+          ],
+          "native": [
+            125.8,
+            526.2,
+            136.3,
+            46.2
+          ]
+        }
+      }
+    },
+    {
+      "state": "ordinary",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-capture-attempt-02/link-light-motion-ordinary.png",
+        "sha256": "dfb38ab6a24ffd186adc70fdfe383858c3e9c4f662feaa7a7e5314ab77c24e0c"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/finale-ordinary-text.png",
+        "sha256": "108edead2a020ff69f3f00e00b3d7f920cc70a1d374783e49daa62aa8e2be3c0"
+      }
+    },
+    {
+      "state": "combination",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-capture-attempt-02/link-light-motion-combination.png",
+        "sha256": "c0105997c78606472ddc62e8bf0b6990433669ae1853b9838c1b032455b44ac2"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/final-combination-1.png",
+        "sha256": "e2b0ab864a2e559577b9687c56f9f3c312e3f619f20a567ae06b299644e61428"
+      }
+    },
+    {
+      "state": "destination",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-capture-attempt-02/link-light-motion-destination.png",
+        "sha256": "b6166a22caa0c7b467bf3d7689268861eda68cfbbfcd785932f8ba8e23a35de1"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/destination-before-browser.png",
+        "sha256": "4da4fd9e5e271c22afad77207bc6a739a6433fd2e03230d5b77c3ae7d8d96af1"
+      },
+      "nativeTree": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-destination-before-browser-1f53c78b17534059b95529762c1824fd.json",
+        "sha256": "6d448f8434b8d160881525483bbae881e7d9825e27d353557c6f3d7c4418998a"
+      },
+      "geometry": {
+        "launcher": {
+          "web": [
+            204.8,
+            506.2,
+            161.2,
+            59.0
+          ],
+          "native": [
+            201.5,
+            451.1,
+            164.0,
+            60.0
+          ]
+        },
+        "exit": {
+          "web": [
+            14,
+            602.6,
+            360,
+            154.4
+          ],
+          "native": [
+            14.2,
+            603.1,
+            359.7,
+            154.2
+          ]
+        },
+        "exitTitle": {
+          "web": [
+            35,
+            642,
+            318,
+            26
+          ],
+          "native": [
+            35.1,
+            642.5,
+            180.3,
+            26.2
+          ]
+        },
+        "exitLater": {
+          "web": [
+            133,
+            692,
+            104,
+            46
+          ],
+          "native": [
+            134.5,
+            692.6,
+            104.3,
+            46.2
+          ]
+        },
+        "exitContinue": {
+          "web": [
+            247,
+            692,
+            106,
+            46
+          ],
+          "native": [
+            248.6,
+            692.6,
+            104.3,
+            46.2
+          ]
+        }
+      }
+    },
+    {
+      "state": "destination-after-external-return",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-capture-attempt-02/link-light-motion-destination-after-external-return.png",
+        "sha256": "ca496fa2c14aab9850750f64fe9187c0910a4e24b9f8bba3e66f2ce03c00bd92"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/destination-after-browser.png",
+        "sha256": "7aa2d4cfb3ce2b653e8830e08e9aaaeffc983c687fb7579f83075b386a50a14e"
+      },
+      "nativeTree": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/raw-destination-after-browser-fcdcd112158144769c6888c1076c6e4a.json",
+        "sha256": "97bbfa0b4879a3d6210228884652ca5afc2f9dd467cbc79e569b550ccba8b79f"
+      },
+      "geometry": {
+        "launcher": {
+          "web": [
+            202.2,
+            503.9,
+            163.8,
+            59.9
+          ],
+          "native": [
+            201.8,
+            451.1,
+            164.0,
+            60.0
+          ]
+        },
+        "exit": {
+          "web": [
+            14,
+            602.6,
+            360,
+            154.4
+          ],
+          "native": [
+            14.2,
+            603.1,
+            359.7,
+            154.2
+          ]
+        },
+        "exitTitle": {
+          "web": [
+            35,
+            642,
+            318,
+            26
+          ],
+          "native": [
+            35.1,
+            642.5,
+            180.3,
+            26.2
+          ]
+        },
+        "exitLater": {
+          "web": [
+            133,
+            692,
+            104,
+            46
+          ],
+          "native": [
+            134.5,
+            692.6,
+            104.3,
+            46.2
+          ]
+        },
+        "exitContinue": {
+          "web": [
+            247,
+            692,
+            106,
+            46
+          ],
+          "native": [
+            248.6,
+            692.6,
+            104.3,
+            46.2
+          ]
+        }
+      }
+    },
+    {
+      "state": "rank",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-capture-attempt-02/link-light-motion-rank.png",
+        "sha256": "843b4e90cce02cd02f2f6103fa020ed399ccd910774f04636d2864bc3bbf7d5c"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105642912881Z/rank-after-destination-or-no-target.png",
+        "sha256": "02622e24ec8b27161c7b30b44796452b497d2d9362efef0960f2a370dac0257c"
+      }
+    }
+  ],
+  "darkNoTarget": [
+    {
+      "state": "finale",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-dark-no-target/none-dark-motion-finale.png",
+        "sha256": "f4110c035cd8e985c155f380c0b405d84979cc2e03f53bc781aec5a86a7747b9"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T110132085278Z/finale-first.png",
+        "sha256": "792c808605f36ab2205f7a1fa686c2e90107e81ebef6fa8eeea634aeecd9114e"
+      },
+      "nativeTree": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T110132085278Z/raw-finale-first-7787ab1372c84f269e656fe704958444.json",
+        "sha256": "146ae560a9c9304c3d3d9504059dfa4a2a0a5aff8fb87014850c0440125717ca"
+      },
+      "geometry": {
+        "finalPanel": {
+          "web": [
+            24,
+            153.4,
+            340,
+            464.2
+          ],
+          "native": [
+            24.0,
+            148.9,
+            339.7,
+            463.7
+          ]
+        },
+        "finalEyebrow": {
+          "web": [
+            131.7,
+            313.4,
+            124.7,
+            14.4
+          ],
+          "native": [
+            131.7,
+            308.3,
+            124.6,
+            14.5
+          ]
+        },
+        "finalTitle": {
+          "web": [
+            49,
+            342.8,
+            290,
+            92.2
+          ],
+          "native": [
+            48.6,
+            337.8,
+            290.5,
+            92.3
+          ]
+        },
+        "finalBody": {
+          "web": [
+            49,
+            450.0,
+            290,
+            57.6
+          ],
+          "native": [
+            49.8,
+            445.2,
+            288.3,
+            57.8
+          ]
+        },
+        "finalAction": {
+          "web": [
+            125,
+            530.6,
+            138,
+            46
+          ],
+          "native": [
+            125.8,
+            526.2,
+            136.3,
+            46.2
+          ]
+        }
+      }
+    },
+    {
+      "state": "ordinary",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-dark-no-target/none-dark-motion-ordinary.png",
+        "sha256": "a028b6e1d2a3aba82e9ffe1b36fb63041d40bc65d3afee63d3c7e07bf440fa18"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T110132085278Z/finale-ordinary-text.png",
+        "sha256": "00fcb4fc2c688fda583aaec7211a3b7858149a07f6c644d420316abae2b6bade"
+      }
+    },
+    {
+      "state": "combination",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-dark-no-target/none-dark-motion-combination.png",
+        "sha256": "74e57325402045ea6e7c8a99bb79ddc8a87daf31b59bb9133112d9b6d52402d0"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T110132085278Z/final-combination-1.png",
+        "sha256": "91896c9bb0cfc4e1b81c653049d878fbe41a24fa6aad62e0e2c40cf369beb4c8"
+      }
+    },
+    {
+      "state": "rank",
+      "web": {
+        "path": "artifacts/private/gameplay-finale-20261113/web-dark-no-target/none-dark-motion-rank.png",
+        "sha256": "f3223319d36cc0a7ae6817ca4a60d6b24ac21feac4ddc281044c117ba4684f6b"
+      },
+      "native": {
+        "path": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T110132085278Z/rank-after-destination-or-no-target.png",
+        "sha256": "1059c5671750092d723bb26d66c8a5480bde8a2115e72490e7275c295ec9e5de"
+      }
+    }
+  ],
+  "observed": {
+    "lightFinale": "暖色全屏遮罩连续，外圈、金色边光、星徽和面板内纹可见。两行标题和两行说明完整，主操作可见。整体上移约 4.5 vp，原生与 Web 弹层中心参考不同。Web 外阴影更强。",
+    "darkFinale": "暗色遮罩和金色星徽、文字与主动作层次清楚。保留系统状态栏和手势条。",
+    "destination": "条幅位于安全区底部，标题和两按钮完整。组合同入口在上方保有间距，原生避让区域使该浮标较 Web 约高 55 vp。",
+    "return": "回到同一题的画面时出口条仍完整，位置与进入浏览器前一致。",
+    "cluesAndRank": "两种线索的内容、正文重点和操作顺序可辨识。等级提示继续使用已迁移的 ArkUI 组件。"
+  }
+}

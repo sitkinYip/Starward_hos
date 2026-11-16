@@ -90,13 +90,12 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
 /** Only the successful answer response can start automatic clues for the current question. */
 export function answerAutomaticClues(previous: GameplaySnapshot | null, settled: GameplaySnapshot,
   level: GameplayLevel, effects: GameplayEffect[] | undefined): GameplayClue[] {
-  const normalCompletion: boolean = settled.detail.status === 'completed' &&
-    previous?.detail.status !== 'completed' && settled.presentation.completionStyle !== 'finale';
-  if (settled.detail.status !== 'active' && !normalCompletion) { return []; }
+  const newCompletion: boolean = settled.detail.status === 'completed' && previous?.detail.status !== 'completed';
+  if (settled.detail.status !== 'active' && !newCompletion) { return []; }
   const provided = autoplayEffects(effects || []);
   const known: Set<string> = new Set((previous?.clues || []).map((clue: GameplayClue) => clue.id));
   let available: GameplayClue[];
-  if (normalCompletion && effects !== undefined) {
+  if (newCompletion && effects !== undefined) {
     // Completion can explicitly unlock a session clue filed under an earlier question.
     const levelOrder: Map<string, number> = new Map();
     settled.levels.forEach((entry: GameplayLevel, index: number) => levelOrder.set(entry.id, index));

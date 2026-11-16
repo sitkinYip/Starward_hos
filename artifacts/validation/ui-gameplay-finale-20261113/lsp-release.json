@@ -1,0 +1,45 @@
+{
+  "tool": "DevEco MCP check",
+  "checkedFiles": 6,
+  "errors": 0,
+  "warnings": 2,
+  "results": [
+    {
+      "file": "entry/src/main/ets/business/GameplayClues.ets",
+      "diagnostics": []
+    },
+    {
+      "file": "entry/src/main/ets/features/GameplayViewModel.ets",
+      "diagnostics": []
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardCombinationNotice.ets",
+      "diagnostics": [
+        {
+          "severity": 2,
+          "message": "Function may throw exceptions. Special handling is required.",
+          "line": 123,
+          "code": "addTryCatch"
+        },
+        {
+          "severity": 2,
+          "message": "Function may throw exceptions. Special handling is required.",
+          "line": 129,
+          "code": "addTryCatch"
+        }
+      ]
+    },
+    {
+      "file": "entry/src/main/ets/ui/StarwardFinalDestination.ets",
+      "diagnostics": []
+    },
+    {
+      "file": "entry/src/main/ets/features/GameplayPage.ets",
+      "diagnostics": []
+    },
+    {
+      "file": "entry/src/main/ets/pages/Index.ets",
+      "diagnostics": []
+    }
+  ]
+}

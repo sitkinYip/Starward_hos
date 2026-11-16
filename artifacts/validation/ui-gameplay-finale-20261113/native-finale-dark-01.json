@@ -1,0 +1,110 @@
+{
+  "status": "incomplete",
+  "stage": "one-native-final-answer-and-required-covenant",
+  "scope": "finale-destination-none",
+  "theme": "dark",
+  "hapSha256": "38cab0529ca0bfb9f333439b08fde2452c5fd0beb511a2772b2a2b645c7df224",
+  "bindingSha256": {
+    "hap": "38cab0529ca0bfb9f333439b08fde2452c5fd0beb511a2772b2a2b645c7df224",
+    "runtime": "8f401e304801b711c7381a0cd57ea983ffdf7a1904c0e242a5b6eb1b972f43ef",
+    "caseReference": "735a520f54f402de2124ed760800dc583bb85d9b3b249de53a5797e89cf1da31",
+    "ca": "34ed5583a0028d0b22e8a2d33dde834954b5bebf86276be2cd9b9fa8d489395c",
+    "config": "e4dc59ae78ae929b3f9115e1696c18d60477eedd6faf2ebf8afe55030e12704a",
+    "driver": "43015c32b30535d9ab814b3fd34ce94a23a7ca9e1eb08ba37028f7612ee69275",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "runner": "3efd8392ffc8952ecf9686b16e094f241b15f06d486e1368d94d6dff0bdfebd9",
+    "finaleDriver": "151fb4dde2a0e4e1a523c94b3567697b092e6204f9ca77ecebad39889e68969f",
+    "finaleFixtureDriver": "7071ce942629d6917cc16ae79fcb6a6c779ec172863aefc67f4586bc88027f03",
+    "priorClueDriver": "fa6e576fb886fedb1b0be94a6d931cfd10f89c9d3d52be5cab7172f327018b88",
+    "priorOpeningDriver": "efe6e5f86e40f4676540da9e1beb48f6fc45c06d846e986cf3ff6db93b938db7",
+    "priorBrowserDriver": "cd042c51721cb3f754d678bd135766354667041460ccac6eb9fdc4905db08bdf",
+    "deviceReference": "2141f635641b34101fcd2b0591cd4c2161833b32e2db44ff3559785fba8d833e",
+    "hostProof": "48424d383df4904bb5e24d43914c06127df399b5b5e6f79b0c53a20374629c07",
+    "preparedDtos": "53d6a1393794c4b1a93642b8b8cba7322eb4281b454d472249c8844e7208fb34",
+    "baseline": "714eb8616989f8471ee42c30c959288b83720829eaced1d1d6c5900975c53bc0",
+    "GameplayPage": "019bb658eec28218a986b01b2e458b8b0326ef1d9c3783bdb7a7459759f43f24",
+    "GameplayViewModel": "168fbe40f93cacf138d1fcda0061f6cd3bf39915f890b025cce018ebaccbed89",
+    "GameplayClues": "f80caf49140b4a8b853f587ba4c32ec3bc31439a210b6df823583621e8a98aed",
+    "ExternalClueLink": "27b7e860517a10e9b64b78c0c60a065f70cf2f93c71ce2d095503e34e866433c",
+    "StarwardClueTextDialog": "f1366c29103f2efe84b0acbbae8ae94da5402e7ddc68cc70fd5390d9cc1b5d58",
+    "StarwardCombinationDialog": "d656ae66bdc7d5bc0a699916363d9872c8ff36f03b711c32ca15581e800fd5d9",
+    "StarwardRankUpDialog": "81d381d5a7278e73c8a7b25331b39fcf1b8fc75580d2e87b5e7e8ac520f6e0c2",
+    "StarwardFinalDestination": "86d0faa6758a0fad7b34a7cb06167a4973c9bae9cbc4773b07bc6a16097e2972"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Unanswered final question hides finalé, all clues, rank, and destination"
+  ],
+  "states": [],
+  "observations": {
+    "window": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "fontScale": 1
+    },
+    "settlement": {
+      "baselineProxyReceiptsMatchSqlite": true,
+      "addedStartWrites": 0,
+      "addedAnswerWrites": 0,
+      "addedXpWrites": 0,
+      "facts": {
+        "readOnlyDiagnostic": true,
+        "assignmentStatus": "active",
+        "startedAtPresent": true,
+        "completedAtPresent": false,
+        "startReceiptCount": 1,
+        "answerReceiptCount": 1,
+        "answerSubmissionCount": 1,
+        "correctAnswerCount": 1,
+        "completedProgressRows": 1,
+        "xpLedgerCount": 1,
+        "xpDeltaSum": 50,
+        "playerTotalXp": 50,
+        "clueUnlockRows": 0,
+        "combinationUnlockRows": 0,
+        "unrelatedActorGameplayWrites": 0
+      }
+    },
+    "appThemeActions": [
+      {
+        "mode": "dark",
+        "selectedFlagsObserved": true
+      }
+    ]
+  },
+  "cleanup": {
+    "loggedOut": false,
+    "loginInputsEmpty": false,
+    "privateGameplayAbsent": false,
+    "remoteRawFilesRemoved": true,
+    "zeroUnexpectedWrites": false,
+    "appThemeRestored": false
+  },
+  "sameDataWebFixtures": {
+    "finale-before": {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105345395537Z/finale-before-dtos.json",
+      "sha256": "cbafd25b22bd90f271b40275a4e6b5b536bd1bd138538776b7e79ffdd017ac06"
+    }
+  },
+  "privateScreenshots": [
+    {
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105345395537Z/unanswered-no-clue-panel.png",
+      "sha256": "2b0c3463041bcd76dc7271f773fb41f00f1732ac057f92b1760dd6247c65d624",
+      "scope": "Private original; may show the dedicated test account"
+    }
+  ],
+  "privateRawEvidence": [
+    {
+      "label": "unanswered-no-clue-panel",
+      "source": "Official bundle-scoped HDC UiTest raw dumpLayout",
+      "file": "artifacts/private/gameplay-finale-20261113/entry-main-20261113T105345395537Z/raw-unanswered-no-clue-panel-8c24e2f63b1147e5a8ec633e8c13ea4e.json",
+      "remoteRemoved": true,
+      "sha256": "a40ac905a109b33aac7a7bbeb016f869033bcbb3d8011abf8081c3b57df47bbf"
+    }
+  ],
+  "visualReview": "pending_original_review",
+  "fixedPreviewTouched": false,
+  "failure": "Unexpected business route, status or test fault"
+}

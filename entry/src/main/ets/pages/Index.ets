@@ -26,6 +26,7 @@ import { StarwardQuestAvatar, StarwardQuestHeaderEntrance, StarwardQuestProgress
 import { StarwardAvatarCrop } from '../ui/StarwardAvatarCrop';
 import { StarwardPassport } from '../ui/StarwardPassport';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
+import { StarwardFinaleBackdrop } from '../ui/StarwardCombinationNotice';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
@@ -57,6 +58,7 @@ struct Index {
   @Local lobbyAtlasWidth: number = 350;
   @Local detailAtlasWidth: number = 366;
   @Local private gameplayTitleHidden: boolean = false;
+  @Local private showFinaleBackdrop: boolean = false;
   @Local private foreground: boolean = true;
   private motion: StarwardMotion = new StarwardMotion();
   private avatarEditor: AvatarEditor = new AvatarEditor();
@@ -894,6 +896,7 @@ struct Index {
               this.avoidArea.navigationIndicator.rightRect.width),
             keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
             titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
+            finaleBackdropChanged: (visible: boolean) => { this.showFinaleBackdrop = visible; },
             leave: () => this.leaveGameplay() })
         } else {
         Scroll() {
@@ -1083,6 +1086,9 @@ struct Index {
       StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
         anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
       }).width('100%').height('100%')
+      if (this.showFinaleBackdrop && this.foreground && this.vm.gate === 'home') {
+        StarwardFinaleBackdrop({ reducedMotion: this.motion.reduced }).zIndex(1)
+      }
     }.width('100%').height('100%').backgroundColor($r('app.color.canvas'))
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }

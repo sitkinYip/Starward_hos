@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { GameplayAnswerResult, GameplayClue, GameplayEffect, GameplaySnapshot } from '../main/ets/business/GameplayModels';
+import { GameplayAnswerResult, GameplayClue, GameplayCompletionTarget, GameplayEffect,
+  GameplaySnapshot } from '../main/ets/business/GameplayModels';
 import { GameFailure, Player } from '../main/ets/business/models';
 import { decodeGameplay } from '../main/ets/data/GameplayDecoder';
 import { decodePlayer } from '../main/ets/data/DtoDecoder';
@@ -602,6 +603,56 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.rankUp).assertNull();
       repository.server = result.assignment;
       await vm.refresh();
+      expect(vm.rankUp).assertNull();
+      expect(repository.answers.length).assertEqual(1);
+    });
+
+    it('finaleUnlocksCluesAfterAcknowledgementAndDefersRankUntilAfterTheExternalDestination', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      repository.server = choiceSnapshot();
+      const vm: GameplayViewModel = viewModelWithRank(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('B');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = withRank(finalClueResult());
+      result.assignment.presentation.completionStyle = 'finale';
+      const target: GameplayCompletionTarget = new GameplayCompletionTarget();
+      target.kind = 'link';
+      target.url = 'https://example.com/';
+      result.assignment.completionTarget = target;
+      repository.answers[0].succeed(result);
+      await pending;
+      const revision: number = vm.completionRevision;
+      expect(vm.finaleStage).assertEqual('notice');
+      expect(vm.automaticClue).assertNull();
+      vm.acknowledgeFinale(revision + 1);
+      expect(vm.finaleStage).assertEqual('notice');
+      vm.acknowledgeFinale(revision);
+      expect(vm.automaticClue?.kind).assertEqual('text');
+      vm.finishAutomaticClue(result.assignment.clues[0], true);
+      expect(vm.automaticClue?.kind).assertEqual('video');
+      vm.finishAutomaticClue(result.assignment.clues[1], false);
+      expect(vm.automaticClue?.kind).assertEqual('image');
+      vm.finishAutomaticClue(result.assignment.clues[2], true);
+      expect(vm.finaleStage).assertEqual('combination');
+      expect(vm.completionClues[0]?.id).assertEqual('final-combination');
+      expect(vm.rankUp).assertNull();
+      vm.finishCompletionPresentation(revision);
+      expect(vm.finaleStage).assertEqual('destination');
+      vm.moveTo(0);
+      vm.cancelAutomaticClues(true);
+      expect(vm.finaleStage).assertEqual('destination');
+      expect(vm.currentFinaleTarget()?.url).assertEqual(target.url);
+      expect(vm.rankUp).assertNull();
+      vm.dismissFinaleDestination(revision);
+      expect(vm.finaleStage).assertEqual('idle');
+      const rank: GameplayRankUp | null = vm.rankUp;
+      expect(rank?.order).assertEqual(2);
+      if (rank !== null) { vm.dismissRankUp(rank); }
+      vm.dismissFinaleDestination(revision);
+      repository.server = result.assignment;
+      await vm.refresh();
+      expect(vm.finaleStage).assertEqual('idle');
       expect(vm.rankUp).assertNull();
       expect(repository.answers.length).assertEqual(1);
     });
