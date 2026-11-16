@@ -37,25 +37,33 @@ import { StarwardKeyboard } from '../ui/StarwardKeyboard';
 import { StarwardFinaleBackdrop } from '../ui/StarwardCombinationNotice';
 import { JOURNEY_LAUNCHER_SIZE, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
 import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
+import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-/** One polling owner spans the briefing and gameplay branches of the assignment destination. */
+/** Keep route-scoped reads in sync with both branches of the assignment destination. */
 @ComponentV2
-struct AssignmentJourneyPolling {
+struct AssignmentSynchronization {
   @Require @Param journey: JourneyNotificationsViewModel;
   @Require @Param play: GameplayViewModel;
   @Require @Param narrative: NarrativeViewModel;
   @Require @Param assignmentId: string;
+  @Require @Param destinationActive: boolean;
   @Require @Param authorized: boolean;
   @Require @Param assigned: boolean;
+  @Event briefingPollingChanged: (id: string) => void = () => {};
 
   aboutToAppear(): void { this.update(); }
 
-  aboutToDisappear(): void { this.journey.setPolling(false); }
+  aboutToDisappear(): void {
+    this.journey.setPolling(false);
+    this.briefingPollingChanged('');
+  }
 
-  @Monitor('assignmentId', 'authorized', 'assigned', 'narrative.route', 'play.visible', 'play.snapshot',
+  @Monitor('assignmentId', 'destinationActive', 'authorized', 'assigned', 'narrative.route', 'play.visible', 'play.snapshot',
     'play.error', 'play.refreshing')
   private update(): void {
+    this.briefingPollingChanged(this.destinationActive && this.narrative.route === null && !this.play.visible ?
+      this.assignmentId : '');
     this.journey.setPolling(this.authorized && this.narrative.route === null && !this.play.refreshing &&
       (this.play.visible ? this.play.snapshot?.detail.id === this.assignmentId &&
         this.play.snapshot?.detail.status !== 'cancelled' && this.play.error.length === 0 : this.assigned));
@@ -108,6 +116,7 @@ struct Index {
   private gameplayJourneyBack: (() => boolean) | null = null;
   private briefJourneyBack: (() => boolean) | null = null;
   private paths: NavPathStack = new NavPathStack();
+  private assignmentDestinationRevision: number = 0;
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
@@ -115,7 +124,9 @@ struct Index {
       this.startClock();
       if (this.vm.gate === 'home') {
         this.vm.refresh();
-        if (this.paths.getAllPathName().includes('assignment') && this.selectedId.length > 0 && !this.vm.play.visible) {
+        const destinations: string[] = this.paths.getAllPathName();
+        if (destinations[destinations.length - 1] === 'assignment' && this.selectedId.length > 0 &&
+          !this.vm.play.visible) {
           this.vm.openAssignment(this.selectedId);
         }
         if (this.mainIndex === 2 && this.paths.size() === 0 && !this.vm.securityUnconfirmed) {
@@ -125,6 +136,7 @@ struct Index {
       }
     } else {
       this.stopClock();
+      this.vm.stopBriefingSync();
       this.vm.starLetters.suspend();
       this.vm.journey.pauseReads();
       if (this.vm.play.starting) { this.vm.play.cancelAutomaticClues(); }
@@ -167,6 +179,7 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.vm.stopBriefingSync();
     this.vm.narrative.close();
     this.vm.starLetters.suspend();
     this.vm.journey.suspend();
@@ -203,9 +216,13 @@ struct Index {
     }
   }
 
-  private assignmentJourneyAuthorized(): boolean {
+  private assignmentDestinationActive(): boolean {
     return this.foreground && this.gameplayDestinationShown && this.vm.gate === 'home' &&
-      !this.vm.securityUnconfirmed && this.selectedId.length > 0 && this.vm.detail.id === this.selectedId &&
+      !this.vm.securityUnconfirmed && this.selectedId.length > 0;
+  }
+
+  private assignmentJourneyAuthorized(): boolean {
+    return this.assignmentDestinationActive() && this.vm.detail.id === this.selectedId &&
       this.vm.detail.player === this.vm.player.id && this.vm.detail.status !== 'cancelled';
   }
 
@@ -299,6 +316,7 @@ struct Index {
       this.returnAssignmentId = this.selectedId;
     }
     this.showAccount = false;
+    this.vm.stopBriefingSync();
     this.vm.narrative.close();
     this.vm.play.leave();
     this.vm.journey.setPolling(false);
@@ -332,6 +350,7 @@ struct Index {
   private leaveGameplay(popPath: boolean = true): void {
     const gameplayVisible: boolean = this.vm.play.visible;
     this.gameplayTitleHidden = false;
+    this.vm.stopBriefingSync();
     this.vm.journey.setPolling(false);
     this.vm.journey.clearRouteArchive();
     this.vm.play.leave();
@@ -532,18 +551,15 @@ struct Index {
       return;
     }
     this.selectMain(0);
+    this.vm.stopBriefingSync();
+    this.gameplayDestinationShown = false;
     this.selectedId = id;
     this.vm.journey.setPolling(false);
     this.vm.journey.clearRouteArchive();
     this.vm.narrative.close();
     this.vm.play.leave();
-    this.paths.pushPath({ name: 'assignment' });
+    this.paths.pushPath({ name: 'assignment', param: ++this.assignmentDestinationRevision });
     await this.vm.openAssignment(id);
-    if (this.vm.gate === 'home' && this.selectedId === id && this.paths.size() > 0 &&
-      this.vm.detail.id === id && this.vm.detail.startedAt.length > 0 &&
-      (this.vm.detail.status === 'active' || this.vm.detail.status === 'completed')) {
-      await this.vm.play.open(id);
-    }
   }
 
   @Builder
@@ -1067,7 +1083,7 @@ struct Index {
 
   private enterBriefing(): void {
     if (this.briefJourneyNote() === null && this.vm.detail.id === this.selectedId) {
-      this.vm.play.enter(this.selectedId, this.vm.detail.clueIds);
+      void this.vm.enterAssignment(this.selectedId);
     }
   }
 
@@ -1108,31 +1124,56 @@ struct Index {
   }
 
   @Builder
+  revokedBriefing() {
+    Column({ space: 16 }) {
+      Text('本次场次已撤回').id('briefing-cancelled').width('100%').textAlign(TextAlign.Center)
+        .fontFamily(this.displayFont).fontSize(21).fontWeight(FontWeight.Medium).lineHeight('31.5fp')
+        .fontColor($r('app.color.strong'))
+      Text('如需继续，请联系游戏管理员重新安排。').width('100%').textAlign(TextAlign.Center)
+        .fontSize(13).lineHeight('24.7fp').fontColor($r('app.color.muted'))
+      Button('回到首页', { type: ButtonType.Normal }).id('briefing-cancelled-home')
+        .constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).borderRadius(10)
+        .fontSize(13).fontWeight(600)
+        .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
+        .onClick(() => this.leaveGameplay())
+    }.width('100%').constraintSize({ minHeight: 280 }).justifyContent(FlexAlign.Center)
+      .padding({ left: 20, right: 20, top: 32, bottom: 32 })
+      .backgroundColor($r('app.color.accent_faint')).borderRadius(18)
+  }
+
+  @Builder
   assignmentBrief() {
     Stack({ alignContent: Alignment.TopStart }) {
       Scroll() {
         Column({ space: 16 }) {
           if (this.vm.gate === 'home') {
             if (this.vm.detailBusy && this.vm.detail.id.length === 0) {
-              Text('正在准备本场冒险…').fontSize(13).fontColor($r('app.color.muted')).width('100%')
+              Text('正在准备本场冒险…').id('briefing-loading').fontSize(13)
+                .fontColor($r('app.color.muted')).width('100%')
             }
             ErrorNotice({ message: this.vm.detailError, retryable: !this.vm.detailBusy,
               retry: () => {
                 if (this.selectedId.length > 0) { this.vm.openAssignment(this.selectedId); }
-              }, returnHome: () => this.paths.clear() })
+              }, returnHome: () => { this.leaveGameplay(); void this.vm.refresh(); } })
             if (this.vm.detail.id.length > 0) {
               if (this.vm.detail.extraDisplay.length > 0) {
                 StarwardQuestMessages({ groupId: 'assignment-extra', items: this.vm.detail.extraDisplay })
               }
-              this.detailCard()
+              if (this.vm.detail.status === 'cancelled') {
+                this.revokedBriefing()
+              } else {
+                this.detailCard()
+              }
             }
             // Native return control supplements the frozen Web expired-state action inside the brief.
-            Button({ type: ButtonType.Normal }) {
-              Row({ space: 8 }) {
-                this.icon($r('app.media.icon_arrow_left'), 18, $r('app.color.accent_text'))
-                Text('回到首页').fontSize(13).fontColor($r('app.color.accent_text'))
-              }
-            }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => this.leaveGameplay())
+            if (this.vm.detail.status !== 'cancelled' && this.vm.detailError.length === 0) {
+              Button({ type: ButtonType.Normal }) {
+                Row({ space: 8 }) {
+                  this.icon($r('app.media.icon_arrow_left'), 18, $r('app.color.accent_text'))
+                  Text('回到首页').fontSize(13).fontColor($r('app.color.accent_text'))
+                }
+              }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => this.leaveGameplay())
+            }
           }
         }.width('100%').constraintSize({ maxWidth: 720 }).alignItems(HorizontalAlign.Start)
           .padding({ left: 12, right: 12, top: 16, bottom: this.showBriefJourneyLauncher() ?
@@ -1165,7 +1206,7 @@ struct Index {
   }
 
   @Builder
-  destination(name: string) {
+  destination(name: string, param: Object) {
     if (name === 'assignment') {
       NavDestination() {
         if (this.vm.play.visible) {
@@ -1194,14 +1235,17 @@ struct Index {
         StarwardMaterial.titleOptions(this.vm.play.visible ? BarStyle.STACK : BarStyle.STANDARD))
         .hideTitleBar(this.vm.play.visible && this.gameplayTitleHidden, !this.motion.reduced)
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
-        .onBackPressed(() => this.handleAssignmentJourneyBack())
+        .onBackPressed(() => param === this.assignmentDestinationRevision && this.handleAssignmentJourneyBack())
         .onShown((reason: VisibilityChangeReason) => {
-          if (reason !== VisibilityChangeReason.CONTENT_COVER) { this.gameplayDestinationShown = true; }
+          if (param === this.assignmentDestinationRevision && reason !== VisibilityChangeReason.CONTENT_COVER) {
+            this.gameplayDestinationShown = true;
+          }
         })
         .onHidden((reason: VisibilityChangeReason) => {
           // A full-screen clue or letter cover does not leave the answer destination.
-          if (reason === VisibilityChangeReason.CONTENT_COVER) { return; }
+          if (param !== this.assignmentDestinationRevision || reason === VisibilityChangeReason.CONTENT_COVER) { return; }
           this.gameplayDestinationShown = false;
+          this.vm.stopBriefingSync();
           this.vm.journey.setPolling(false);
           if (reason === VisibilityChangeReason.TRANSITION) { this.vm.journey.clearRouteArchive(); }
         })
@@ -1399,9 +1443,20 @@ struct Index {
       StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
         anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
       }).width('100%').height('100%')
-      AssignmentJourneyPolling({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
-        assignmentId: this.selectedId, authorized: this.assignmentJourneyAuthorized(),
-        assigned: this.vm.detail.status === 'assigned' })
+      AssignmentSynchronization({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
+        assignmentId: this.selectedId, destinationActive: this.assignmentDestinationActive(),
+        authorized: this.assignmentJourneyAuthorized(), assigned: this.vm.detail.status === 'assigned',
+        briefingPollingChanged: (id: string) => { this.vm.setBriefingPolling(id); } })
+      if (this.assignmentDestinationActive() && !this.vm.play.visible && this.vm.detail.status === 'assigned' &&
+        this.vm.detail.id === this.selectedId && this.vm.play.syncEpisode > 0 &&
+        this.vm.play.syncEpisode !== this.vm.play.dismissedSyncEpisode) {
+        Column() {
+          StarwardSyncNotice({ reducedMotion: this.motion.reduced, dismiss: () => this.vm.play.dismissSyncNotice() })
+        }.width('100%').alignItems(HorizontalAlign.Center)
+          .position({ x: 0, y: this.safeTop() + 16 })
+          .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })
+          .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
+      }
       if (this.showFinaleBackdrop && this.foreground && this.vm.gate === 'home') {
         StarwardFinaleBackdrop({ reducedMotion: this.motion.reduced }).zIndex(1)
       }

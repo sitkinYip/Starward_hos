@@ -71,6 +71,7 @@ export class GameplayViewModel {
   @Trace refreshing: boolean = false;
   @Trace refreshError: string = '';
   @Trace syncEpisode: number = 0;
+  @Trace dismissedSyncEpisode: number = 0;
   @Trace starting: boolean = false;
   @Trace error: string = '';
   @Trace errorCode: string = '';
@@ -205,7 +206,7 @@ export class GameplayViewModel {
     }
   }
 
-  private transientRefreshFailure(error: Object): boolean {
+  transientRefreshFailure(error: Object): boolean {
     if (!(error instanceof GameFailure) || error.code === 'CONTRACT_ERROR' ||
       error.code === 'ACCOUNT_DISABLED' || error.code === 'PASSWORD_CHANGE_REQUIRED' ||
       error.code === 'SESSION_OFFLINE' || error.status === 401 || error.status === 403 ||
@@ -221,7 +222,11 @@ export class GameplayViewModel {
     this.updateSyncEpisode();
   }
 
-  private setAssignmentSyncFailed(failed: boolean): void {
+  dismissSyncNotice(): void {
+    this.dismissedSyncEpisode = this.syncEpisode;
+  }
+
+  setAssignmentSyncFailed(failed: boolean): void {
     this.assignmentSyncFailed = failed;
     this.updateSyncEpisode();
   }
@@ -591,6 +596,20 @@ export class GameplayViewModel {
         this.schedulePoll();
       }
     }
+  }
+
+  /** Restore an already-started scene from an authorized GET. */
+  restoreFromBriefing(snapshot: GameplaySnapshot): boolean {
+    const detail = snapshot.detail;
+    if (this.owner.length === 0 || detail.player !== this.owner || detail.id.length === 0 ||
+      this.visible || this.starting || this.retryEntry || detail.startedAt.length === 0 ||
+      (detail.status !== 'active' && detail.status !== 'completed')) { return false; }
+    this.assignmentId = detail.id;
+    this.accept(snapshot);
+    this.restoreForm(detail.currentIndex);
+    this.intents = this.intents.filter((item: EntryIntent) => item.assignmentId !== detail.id);
+    this.schedulePoll();
+    return true;
   }
 
   async open(id: string, keepPosition: boolean = false): Promise<void> {

@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "role": "cancel",
+  "scope": "Pre-entry briefing only. No native start or answer is issued in this driver.",
+  "signedHapSha256": "180d8abf6d3a84f8b26b307ecc19f3d89aeb38e6a22809e32ce61b10200e631d",
+  "runtimeSha256": "bbfb37a9e6f49d088e2566e0433d12fdea041e91fe484e4e4891993857a3f138",
+  "driverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "fixtureSha256": "89b24b244a0ae6bea7cc9eb68d2d4bb2e6072720055f0f94019e66df580a6286",
+  "screenshots": [
+    {
+      "state": "brief-mail-before-revoked",
+      "file": "brief-mail-before-revoked.png",
+      "sha256": "447dd12f01feea9d7f1efa199326aeae891d7b278d3a637cae8e74fb50813748"
+    },
+    {
+      "state": "brief-withdrawn",
+      "file": "brief-withdrawn.png",
+      "sha256": "e0cd43b06c9d9a02069b972ab7a9d977416925a9c075cf9717538c42770c620f"
+    }
+  ],
+  "startControls": [],
+  "checks": [
+    "A live revocation replaces the briefing and its former eligibility guidance",
+    "Leaving the revoked briefing stops its detail reads",
+    "Closing the note due to revocation does not acknowledge it",
+    "The exact server receipt and write ledger match the intended scope"
+  ],
+  "gameplayFacts": {
+    "startReceiptCount": 0,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 0,
+    "clueGrants": 0,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "role": "rank",
+  "scope": "Pre-entry briefing only. No native start or answer is issued in this driver.",
+  "signedHapSha256": "180d8abf6d3a84f8b26b307ecc19f3d89aeb38e6a22809e32ce61b10200e631d",
+  "runtimeSha256": "bbfb37a9e6f49d088e2566e0433d12fdea041e91fe484e4e4891993857a3f138",
+  "driverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "fixtureSha256": "6fe0e7cc73b5e9bcef93f6dcc5d4f1a17d612f714cc4042b68500df74ae657f0",
+  "screenshots": [
+    {
+      "state": "initial-read-loading",
+      "file": "initial-read-loading.png",
+      "sha256": "002216773f8663ad2122e4a8e69f76592953f952ba27b6f8d9ea310b028df8b2"
+    },
+    {
+      "state": "initial-read-failed",
+      "file": "initial-read-failed.png",
+      "sha256": "a5f236617d7bb0b3ffa6ca6bed010af31eb6880e9d014d0d7a92af51b423f5b3"
+    },
+    {
+      "state": "brief-rank-locked",
+      "file": "brief-rank-locked.png",
+      "sha256": "f674b5bfc49bef47fb8efc10179076587dd296088f7ab52aab91ffe310b6e257"
+    },
+    {
+      "state": "brief-stale-read",
+      "file": "brief-stale-read.png",
+      "sha256": "09138ada0c1181383bfacf0e7d3e06d6e7010f6576d42492cbbc63e9caa0d652"
+    },
+    {
+      "state": "brief-rank-ready",
+      "file": "brief-rank-ready.png",
+      "sha256": "219b87001d8c28bed39ef2a133d4e2e31e349153d9e702d242109c6bfe17bf46"
+    }
+  ],
+  "startControls": [
+    {
+      "state": "locked",
+      "enabled": false,
+      "rawUiTestSha256": "ebb9d5c35f5c3574e823f29e4c69caf4db3d8788edb7e2b01a5b6e4f4508c3bf"
+    },
+    {
+      "state": "rank-updated",
+      "enabled": true,
+      "rawUiTestSha256": "1fbb247f0d0093b8ab1a45be3cf1040882b7b44ba093ee3c36194cd87b3dba4e"
+    },
+    {
+      "state": "foreground-resumed",
+      "enabled": true,
+      "rawUiTestSha256": "1fbb247f0d0093b8ab1a45be3cf1040882b7b44ba093ee3c36194cd87b3dba4e"
+    }
+  ],
+  "checks": [
+    "A first 503 leaves no stale briefing or playable question",
+    "An explicit read retry returns the authentic briefing",
+    "Initial rank locks the start button",
+    "The stale-read notice preserves the current briefing",
+    "The same ongoing outage remains dismissed across both routes",
+    "The same briefing enables start after the live profile change",
+    "The same view displays the edited assignment copy",
+    "A new outage is announced after the prior episode recovered",
+    "The briefing does not poll its assigned detail or profile in the background",
+    "Foreground returns to the same eligible briefing",
+    "The exact server receipt and write ledger match the intended scope"
+  ],
+  "overlapFaultsObserved": {
+    "me": 2,
+    "assignment": 2
+  },
+  "gameplayFacts": {
+    "startReceiptCount": 0,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 0,
+    "clueGrants": 0,
+    "xpLedgerCount": 1,
+    "xpAdjustmentCount": 1,
+    "xpDelta": 100
+  }
+}

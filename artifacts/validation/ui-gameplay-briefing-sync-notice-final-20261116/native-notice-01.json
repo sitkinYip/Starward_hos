@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "role": "rank",
+  "scope": "Pre-entry briefing only. No native start or answer is issued in this driver.",
+  "signedHapSha256": "fa272e634d47a05734b28629f3dba806cdc0c4e52f610382089e0087735fb298",
+  "runtimeSha256": "a09ba89db271f652805a63fec001488813f9312b8318d53d91b48713e9e767df",
+  "driverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "fixtureSha256": "96ce03526ba98600af6e77a50e385fd0cfdabf38c4762a9969232b0eec65f769",
+  "screenshots": [
+    {
+      "state": "ready-before-fault",
+      "file": "ready-before-fault.png",
+      "sha256": "5dd64481d8bffd883651807593d93af56087fa16092d4f05bc3d58d3bbae287d"
+    },
+    {
+      "state": "notice-after-400ms",
+      "file": "notice-after-400ms.png",
+      "sha256": "128de084e38778243cfc39b004e8876606fd85a287da61bd48d0ff4ce47b113e"
+    },
+    {
+      "state": "notice-after-second-render",
+      "file": "notice-after-second-render.png",
+      "sha256": "f5d15e44783fb63e50e4ecc10ee1972b69b67bd013fc94b3da54ce8de55af040"
+    },
+    {
+      "state": "ready-after-close",
+      "file": "ready-after-close.png",
+      "sha256": "638bf6ccb25f2b5263c5bc5098028ea034a17b2f8a368e77043f7a89db093abc"
+    }
+  ],
+  "startControls": [
+    {
+      "state": "before-sustained-fault",
+      "enabled": true,
+      "rawUiTestSha256": "c175fbd9b319d1ac87a9d26db04287e36685851998131738e033923a774c1782"
+    }
+  ],
+  "checks": [
+    "The isolated rank and current briefing are already ready",
+    "Two directly captured originals visibly change the measured notice region",
+    "The watch region returns to its baseline after a real Close tap",
+    "A second failed read does not reopen the dismissed episode",
+    "The notice probe does not write gameplay, profile, or rank"
+  ],
+  "measuredNoticePx": [
+    52,
+    175,
+    1208,
+    459
+  ],
+  "measuredCloseButtonPx": [
+    1036,
+    245,
+    1179,
+    388
+  ],
+  "reportedTopInsetPx": 123,
+  "noticeTopFromSafeEdgeVp": 16.0,
+  "noticeRegionChangedFractionFromBaseline": [
+    0.24346642136556362,
+    0.24346642136556362
+  ],
+  "dismissedRegionChangedFractionFromBaseline": 0.003438885910619426,
+  "paintedDriverSha256": "1713b327aab23e4436cf3e33f7a44de59b1325046f10a51d791ab9f275df5675"
+}

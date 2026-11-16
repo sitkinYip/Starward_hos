@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "role": "remote",
+  "scope": "Pre-entry briefing only. No native start or answer is issued in this driver.",
+  "signedHapSha256": "6d2fd268fb2dd7528245d18f1bcee49ac9731e96ba95d581df9dccbe66d5c03e",
+  "runtimeSha256": "d78381d7e8f2412bd2af5c21cc93c9e4ee1b116e70122b339539bb777c9e0a97",
+  "driverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "fixtureSha256": "51da76621c05215458d329b499d685972afe57a6341af21b98516272ccb67d9a",
+  "screenshots": [
+    {
+      "state": "brief-before-remote-start",
+      "file": "brief-before-remote-start.png",
+      "sha256": "4d17ecbcb6a0cb7c833e1586fcfadb25b02f9685a8c301fa9bb049d150d16185"
+    },
+    {
+      "state": "brief-remote-start-restored",
+      "file": "brief-remote-start-restored.png",
+      "sha256": "de9d405a48dd1fa7d0cf247843575b7cfde5aecd013f416308b5f6fb94f6fcb3"
+    }
+  ],
+  "startControls": [
+    {
+      "state": "before-remote-start",
+      "enabled": true,
+      "rawUiTestSha256": "6bb3352d07186ec83a0d5bf33dd4b8fc9cc4d2fc2e718c6b3954762032aa5658"
+    }
+  ],
+  "checks": [
+    "The remote-start actor is initially ready",
+    "A server-side entry is reflected without touching the phone start button",
+    "Read-only restore remains silent across another foreground polling interval",
+    "The exact server receipt and write ledger match the intended scope"
+  ],
+  "gameplayFacts": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 2,
+    "clueGrants": 1,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  }
+}

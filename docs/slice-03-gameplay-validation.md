@@ -679,3 +679,30 @@ python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
 夜间定版改用另一隔离账号。入场前收下两封信后，入场自动文字线索先出现。线索播放期间通过正式管理入口仅向该账号发一封信，答题页收到后先保持原线索，关闭后才弹新来信。三封信均收下，SQLite 只有一次入场、零次答题。说明页同数据 Web 与原生夜间原图保留相同标题断行和金色确认按钮，原生遮罩延伸至系统栏。测试结束恢复原主题。[直板夜间验收](../artifacts/validation/ui-gameplay-parity-completion-20261116/native-briefing-night-01.json) · [日夜视觉记录](../artifacts/validation/ui-gameplay-parity-completion-20261116/visual-review-01.json)
 
 临时后端及其 USB 映射已释放，固定预览沿用原数据库、账号和 CA。固定预览包与定版隔离包的 ArkTS 字节码一致。重新安装后直板机通过严格 HTTPS 直接登录，进度与经验一致，手机保持在已登录首页。[环境恢复](../artifacts/validation/ui-gameplay-parity-completion-20261116/restore-config-01.json) · [预览直登](../artifacts/validation/ui-gameplay-parity-completion-20261116/fixed-preview-home-01.json) · [包字节码核对](../artifacts/validation/ui-gameplay-parity-completion-20261116/preview-package-equivalence-01.json)
+
+## 入场说明页状态同步与撤回（2026-11-16）
+
+参照冻结 Web `4b7d1a0`。隔离 PocketBase 使用正式玩家及管理路由，分别准备等级变更、撤回、另一端入场三组直板账号和三组同内容的 Web 账号。只在明确的隔离读取路由注入失败，正常状态和写入由真实后端产生。浏览器在 388 × 771 CSS px 重放同数据，日夜原图复核涵盖初始和更新后的说明、同步提示、撤回及另一端入场。撤回面板为 364 × 280 CSS px，标题、正文及返回按钮居中。[主机隔离夹具](../artifacts/validation/ui-gameplay-briefing-sync-20261116/host-fixtures-01.json) · [冻结 Web 对照](../artifacts/validation/ui-gameplay-briefing-sync-20261116/web-briefing-reference-01.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-gameplay-briefing-sync-20261116/final-tools
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output artifacts/validation/ui-gameplay-briefing-sync-20261116/runtime-isolated-02.json
+```
+
+定版 SDK 26 的 Hypium 通过 205 项，新增用例覆盖静默恢复另一端入场、离开后丢弃迟到恢复和未确认本机入场的读取门控。codelinter 零错误和警告，保留原信纸的模糊性能建议。原始日志、直板原图和驱动位于本机私有目录 `artifacts/private/gameplay-briefing-sync-20261116/`。[Hypium](../artifacts/validation/ui-gameplay-briefing-sync-20261116/final-tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-briefing-sync-20261116/final-tools/lint.json)
+
+直板首包 `device-briefing-sync.py rank 01` 实测读取中、首次 503 后触发显式重试、系统控件树中的禁用状态和正常返回。场次与 `/me` 的 503 可在同一轮出现，暂时保留原说明。关闭提示后两路尚未完全恢复期间不重弹。两路恢复后，原页显示隔离后台更改的说明，开始按钮从禁用变为启用。退后台暂停两路。该账号台账仅有隔离管理入口显式加的经验，入场及答题回执均为零。[等级变化与失败首包](../artifacts/validation/ui-gameplay-briefing-sync-20261116/native-rank-01.json)
+
+`device-briefing-sync.py cancel 01` 在已打开未读来信时从隔离后台撤回，原说明和入场操作退出，撤回页按钮返回首页。来信无新增回执，台账无入场与作答，离开后说明页的详情轮询停止。[撤回首包](../artifacts/validation/ui-gameplay-briefing-sync-20261116/native-cancel-01.json)
+
+定版 `device-briefing-sync.py remote 02` 停留在未入场说明页，隔离主机从另一客户端执行一次入场。手机取得最新快照，直接显示首题并持续至少一个后续轮询周期，未出现开场自动线索。SQLite 与网关的入场请求身份匹配，只有主机的一次入场、一条自动线索授权，答题及经验写入为零。定版编译、签名、USB 安装、启动与三种 HTTPS 信任检查各有记录。[静默恢复定版](../artifacts/validation/ui-gameplay-briefing-sync-20261116/native-remote-02.json) · [定版运行时](../artifacts/validation/ui-gameplay-briefing-sync-20261116/runtime-isolated-02.json)
+
+定版 `device-briefing-switch.py 02` 在等候前一场次的真实 GET 200 时，从来信链接进入后一场次。代理保留旧响应 12 秒，后一场次正常加载并开始轮询。旧响应释放后仍显示后一场次，原场次不再轮询。两场和来信的隔离账本一致。[相邻路由与迟到响应](../artifacts/validation/ui-gameplay-briefing-sync-20261116/native-switch-02.json)
+
+定版同步提示使用另一个独立的同内容账号持续返回 503。首次单次故障截图只取得控件树，未拍到提示。持续故障复验直接采得两张显示完整提示的原图。提示在顶部安全区下方 16 vp，标题与说明保持可读。关闭后观察区域恢复至近似原背景，第二次同轮故障仍保持已关闭。隔离台账与请求记录无玩法、资料或经验写入。撤回面板实测约 363.69 × 280 vp，Web 为 364 × 280 CSS px，原生面板受导航顶栏影响约低 9 vp。另一端入场沿用已确认的题卡自动定位。[定版提示与关闭](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/native-notice-01.json) · [同数据视觉复核](../artifacts/validation/ui-gameplay-briefing-sync-20261116/visual-review-01.json)
+
+两轮隔离的临时 PocketBase 与各自 USB 映射均已释放。重新装回固定预览，原账号、数据库及 CA 一致，直板严格 HTTPS 直接登录成功，保持原进度与经验并停在首页。定版场次包、持续故障复验包和预览包的 ArkTS 字节码一致。[恢复回执](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/restore-config-01.json) · [固定预览直登](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/fixed-preview-home-01.json) · [包字节码核对](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/preview-package-equivalence-01.json)

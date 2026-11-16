@@ -157,6 +157,52 @@ export default function viewModelTests(): void {
       expect(viewModel.detailBusy).assertFalse();
     });
 
+    it('briefingReadResumesRemoteStartWithoutPlayingEntryEffects', 0, async () => {
+      const repository: MockGameRepository = new MockGameRepository(0);
+      const viewModel: SliceViewModel = new SliceViewModel(repository);
+      await enterHome(viewModel);
+      await viewModel.openAssignment('assignment1');
+      expect(viewModel.play.visible).assertFalse();
+      await repository.startAssignment('assignment1', 'other-client');
+      await viewModel.openAssignment('assignment1');
+      expect(viewModel.detail.status).assertEqual('active');
+      expect(viewModel.play.visible).assertTrue();
+      expect(viewModel.play.currentLevel()?.question !== null).assertTrue();
+      expect(viewModel.play.automaticClue).assertNull();
+      expect(repository.calls.filter((operation: string) => operation === 'startAssignment').length).assertEqual(1);
+    });
+
+    it('leavingBriefingIgnoresLateRemoteStart', 0, async () => {
+      const repository: MockGameRepository = new MockGameRepository(0);
+      const viewModel: SliceViewModel = new SliceViewModel(repository);
+      await enterHome(viewModel);
+      await viewModel.openAssignment('assignment1');
+      await repository.startAssignment('assignment1', 'other-client');
+      repository.delayMs = 5;
+      const pending: Promise<void> = viewModel.openAssignment('assignment1');
+      viewModel.stopBriefingSync();
+      await pending;
+      expect(viewModel.detail.status).assertEqual('assigned');
+      expect(viewModel.detailBusy).assertFalse();
+      expect(viewModel.play.visible).assertFalse();
+    });
+
+    it('briefingDoesNotReplaceUncertainLocalEntryWithReadRecovery', 0, async () => {
+      const repository: MockGameRepository = new MockGameRepository(0);
+      const viewModel: SliceViewModel = new SliceViewModel(repository);
+      await enterHome(viewModel);
+      await viewModel.openAssignment('assignment1');
+      await repository.startAssignment('assignment1', 'other-client');
+      viewModel.play.retryEntry = true;
+      const before: number = repository.calls.length;
+      await viewModel.openAssignment('assignment1');
+      expect(repository.calls.length).assertEqual(before);
+      expect(viewModel.play.visible).assertFalse();
+      viewModel.play.retryEntry = false;
+      await viewModel.openAssignment('assignment1');
+      expect(viewModel.play.visible).assertTrue();
+    });
+
     it('emptyAssignmentsAreSuccessWhileTransientErrorsRemainRetryable', 0, async () => {
       const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);

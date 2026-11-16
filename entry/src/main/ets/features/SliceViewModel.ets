@@ -10,7 +10,7 @@ import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 import { ReadCancellation } from '../business/ReadCancellation';
 
-const GAMEPLAY_PLAYER_POLL_MS: number = 5000;
+const ASSIGNMENT_SYNC_INTERVAL_MS: number = 5000;
 
 @ObservedV2
 export class SliceViewModel {
@@ -47,8 +47,10 @@ export class SliceViewModel {
   readonly journey: JourneyNotificationsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
-  private detailRequest: number = 0;
+  private detailRead: ReadCancellation | null = null;
   private openingId: string = '';
+  private briefingAssignmentId: string = '';
+  private briefingPollTimer: number = -1;
   private serverOffset: number = 0;
   private profileDirty: boolean = false;
   private profileRevision: number = 0;
@@ -74,14 +76,7 @@ export class SliceViewModel {
     });
     this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
       if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
-        this.detail = snapshot.detail;
-        this.items = this.items.map((item: AssignmentSummary) =>
-          item.id === snapshot.detail.id ? snapshot.detail : item);
-        const serverTime: number = Date.parse(snapshot.detail.serverTime);
-        if (Number.isFinite(serverTime)) {
-          this.serverOffset = serverTime - Date.now();
-        }
-        this.tick();
+        this.publishDetail(snapshot.detail);
       }
     }, (message: string) => {
       this.logout();
@@ -129,11 +124,6 @@ export class SliceViewModel {
     return this.message(error);
   }
 
-  private fatalDetail(error: Object): boolean {
-    return error instanceof GameFailure &&
-      (error.status === 403 || error.status === 404 || error.status === 410 || error.code === 'SESSION_OFFLINE');
-  }
-
   private acceptPlayer(player: Player): void {
     const identityChanged: boolean = this.player.id !== player.id;
     const avatarChanged: boolean = identityChanged || this.player.avatar !== player.avatar;
@@ -154,12 +144,10 @@ export class SliceViewModel {
       this.avatarError = '';
     }
     if (player.mustChangePassword) {
+      this.stopBriefingSync();
       this.setGameplayPlayerPolling(false);
       this.items = [];
       this.detail = new AssignmentDetail();
-      this.detailRequest++;
-      this.openingId = '';
-      this.detailBusy = false;
       this.listError = '';
       this.detailError = '';
     } else if (player.avatar.length > 0 && this.avatarImage === null && !this.avatarBusy &&
@@ -333,6 +321,7 @@ export class SliceViewModel {
     this.profileRevision++;
     this.interruptPlayerPoll();
     this.securityBusy = true;
+    this.cancelAssignmentRead();
     this.securityError = '';
     this.securitySaved = false;
     try {
@@ -345,10 +334,7 @@ export class SliceViewModel {
       this.narrative.close();
       this.starLetters.bindOwner('');
       this.journey.bindOwner('');
-      this.detailRequest++;
       this.listBusy = false;
-      this.detailBusy = false;
-      this.openingId = '';
       this.avatarRequest++;
       this.avatarBusy = false;
       this.acceptPlayer(player);
@@ -369,6 +355,7 @@ export class SliceViewModel {
     } finally {
       if (generation === this.generation) {
         this.securityBusy = false;
+        this.scheduleBriefingPoll();
         this.schedulePlayerPoll();
       }
     }
@@ -429,10 +416,8 @@ export class SliceViewModel {
       }
       // Credential rotation invalidates every response started under the previous token.
       generation = ++this.generation;
-      this.detailRequest++;
+      this.cancelAssignmentRead();
       this.listBusy = false;
-      this.detailBusy = false;
-      this.openingId = '';
       this.acceptPlayer(player);
       if (!player.mustChangePassword) {
         await this.refresh();
@@ -485,7 +470,7 @@ export class SliceViewModel {
           this.rejectPlayerSession(error as Object);
         } else if (!(error instanceof GameFailure && error.code === 'CANCELLED')) {
           this.listError = this.message(error as Object);
-          if (readingPlayer && this.play.visible) { this.play.setPlayerSyncFailed(true); }
+          if (readingPlayer && (this.play.visible || this.canPollBriefing())) { this.play.setPlayerSyncFailed(true); }
         }
       }
     } finally {
@@ -498,11 +483,16 @@ export class SliceViewModel {
 
   setGameplayPlayerPolling(active: boolean): void {
     this.gameplayPlayerPolling = active;
-    if (active) { this.schedulePlayerPoll(); } else { this.interruptPlayerPoll(); }
+    this.updatePlayerPolling();
+  }
+
+  private updatePlayerPolling(): void {
+    if (this.canPollPlayer()) { this.schedulePlayerPoll(); } else { this.interruptPlayerPoll(); }
   }
 
   private canPollPlayer(): boolean {
-    return this.gameplayPlayerPolling && this.gate === 'home' && this.play.visible && this.play.error.length === 0 &&
+    const gameplay: boolean = this.gameplayPlayerPolling && this.play.visible && this.play.error.length === 0;
+    return (gameplay || this.canPollBriefing()) && this.gate === 'home' &&
       !this.listBusy && !this.profileBusy && !this.securityBusy && !this.securityUnconfirmed &&
       !this.play.refreshing && !this.play.loading && !this.play.starting;
   }
@@ -519,7 +509,7 @@ export class SliceViewModel {
     this.playerPollTimer = setTimeout(() => {
       this.playerPollTimer = -1;
       void this.pollPlayer();
-    }, GAMEPLAY_PLAYER_POLL_MS);
+    }, ASSIGNMENT_SYNC_INTERVAL_MS);
   }
 
   private async pollPlayer(): Promise<void> {
@@ -551,49 +541,125 @@ export class SliceViewModel {
     }
   }
 
-  async openAssignment(id: string): Promise<void> {
-    if (this.gate !== 'home' || this.securityUnconfirmed || id.length === 0 || (this.detailBusy && id === this.openingId)) {
+  private publishDetail(detail: AssignmentDetail): void {
+    this.detail = detail;
+    this.items = this.items.map((item: AssignmentSummary) => item.id === detail.id ? detail : item);
+    const serverTime: number = Date.parse(detail.serverTime);
+    if (Number.isFinite(serverTime)) {
+      this.serverOffset = serverTime - Date.now();
+    }
+    this.tick();
+  }
+
+  setBriefingPolling(id: string): void {
+    if (id === this.briefingAssignmentId) { return; }
+    this.briefingAssignmentId = id;
+    if (id !== this.openingId) { this.cancelAssignmentRead(); }
+    this.scheduleBriefingPoll();
+    this.updatePlayerPolling();
+  }
+
+  stopBriefingSync(): void {
+    this.briefingAssignmentId = '';
+    this.cancelAssignmentRead();
+    this.updatePlayerPolling();
+  }
+
+  private canPollBriefing(): boolean {
+    return this.gate === 'home' && !this.securityBusy && !this.securityUnconfirmed &&
+      this.briefingAssignmentId.length > 0 && this.detail.id === this.briefingAssignmentId &&
+      this.detail.player === this.player.id && this.detail.status === 'assigned' &&
+      !this.play.visible && !this.play.starting && !this.play.retryEntry;
+  }
+
+  private cancelAssignmentRead(): void {
+    clearTimeout(this.briefingPollTimer);
+    this.briefingPollTimer = -1;
+    const read: ReadCancellation | null = this.detailRead;
+    this.detailRead = null;
+    this.openingId = '';
+    this.detailBusy = false;
+    read?.cancel();
+  }
+
+  private scheduleBriefingPoll(): void {
+    if (this.briefingPollTimer !== -1 || this.detailRead !== null || !this.canPollBriefing()) { return; }
+    this.briefingPollTimer = setTimeout(() => {
+      this.briefingPollTimer = -1;
+      if (this.canPollBriefing()) { void this.readAssignment(this.briefingAssignmentId, true); }
+    }, ASSIGNMENT_SYNC_INTERVAL_MS);
+  }
+
+  async enterAssignment(id: string): Promise<void> {
+    if (this.detail.id !== id || this.detail.player !== this.player.id || this.detail.status !== 'assigned' ||
+      this.gate !== 'home' || this.securityBusy || this.securityUnconfirmed || this.detailBusy ||
+      this.play.visible || this.play.starting) {
       return;
     }
+    this.cancelAssignmentRead();
+    this.interruptPlayerPoll();
+    await this.play.enter(id, this.detail.clueIds);
+    this.scheduleBriefingPoll();
+    this.schedulePlayerPoll();
+  }
+
+  async openAssignment(id: string): Promise<void> {
+    if (this.gate !== 'home' || this.securityBusy || this.securityUnconfirmed || id.length === 0 ||
+      this.play.starting || this.play.retryEntry || this.play.visible || (this.detailBusy && id === this.openingId)) {
+      return;
+    }
+    this.cancelAssignmentRead();
+    await this.readAssignment(id, false);
+  }
+
+  private async readAssignment(id: string, quiet: boolean): Promise<void> {
     const generation: number = this.generation;
-    const request: number = ++this.detailRequest;
+    const playerId: string = this.player.id;
+    const read: ReadCancellation = new ReadCancellation();
+    this.detailRead = read;
     this.openingId = id;
-    this.detailBusy = true;
+    this.detailBusy = !quiet;
     this.detailError = '';
-    if (this.detail.id !== id) {
-      this.detail = new AssignmentDetail();
-    }
+    if (this.detail.id !== id) { this.detail = new AssignmentDetail(); }
     try {
-      const detail: AssignmentDetail = await this.repository.assignment(id);
-      if (generation !== this.generation || request !== this.detailRequest || this.gate !== 'home') {
-        return;
+      const snapshot: GameplaySnapshot = await this.repository.gameplay(id, read);
+      if (!this.isAssignmentReadCurrent(generation, read)) { return; }
+      if (snapshot.detail.id !== id || snapshot.detail.player !== playerId) {
+        throw new GameFailure('CONTRACT_ERROR', '服务返回的场次身份不一致。');
       }
-      this.detail = detail;
-      const serverTime: number = Date.parse(detail.serverTime);
-      if (Number.isFinite(serverTime)) {
-        this.serverOffset = serverTime - Date.now();
-      }
-      this.tick();
+      this.play.setAssignmentSyncFailed(false);
+      if (!this.play.restoreFromBriefing(snapshot)) { this.publishDetail(snapshot.detail); }
     } catch (error) {
-      if (generation === this.generation && request === this.detailRequest) {
-        const message: string = this.message(error as Object);
-        if (this.sessionExpired(error as Object)) {
-          this.logout();
-          this.error = message;
-          this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
-        } else {
-          if (this.fatalDetail(error as Object)) {
-            this.detail = new AssignmentDetail();
-          }
-          this.detailError = message;
-        }
-      }
+      if (this.isAssignmentReadCurrent(generation, read)) { this.acceptAssignmentError(id, error as Object); }
     } finally {
-      if (generation === this.generation && request === this.detailRequest) {
-        this.detailBusy = false;
+      if (this.isAssignmentReadCurrent(generation, read)) {
+        this.detailRead = null;
         this.openingId = '';
+        this.detailBusy = false;
+        this.scheduleBriefingPoll();
+        this.updatePlayerPolling();
       }
     }
+  }
+
+  private isAssignmentReadCurrent(generation: number, read: ReadCancellation): boolean {
+    return this.detailRead === read && generation === this.generation && this.gate === 'home';
+  }
+
+  private acceptAssignmentError(id: string, error: Object): void {
+    if (error instanceof GameFailure && error.code === 'CANCELLED') { return; }
+    if (this.sessionExpired(error) || (error instanceof GameFailure &&
+      (error.code === 'ACCOUNT_DISABLED' || error.code === 'PASSWORD_CHANGE_REQUIRED'))) {
+      this.rejectPlayerSession(error);
+      return;
+    }
+    if (this.detail.id === id && this.briefingAssignmentId === id && this.play.transientRefreshFailure(error)) {
+      this.play.setAssignmentSyncFailed(true);
+      return;
+    }
+    this.play.setAssignmentSyncFailed(false);
+    this.detail = new AssignmentDetail();
+    this.detailError = this.message(error);
   }
 
   tick(): void {
@@ -602,13 +668,13 @@ export class SliceViewModel {
   }
 
   logout(): void {
+    this.stopBriefingSync();
     this.setGameplayPlayerPolling(false);
     this.play.reset();
     this.narrative.bindOwner('');
     this.starLetters.bindOwner('');
     this.journey.bindOwner('');
     this.generation++;
-    this.detailRequest++;
     this.profileRevision++;
     this.avatarRequest++;
     this.repository.logout();

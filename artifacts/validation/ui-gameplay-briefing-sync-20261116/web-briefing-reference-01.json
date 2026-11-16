@@ -1,0 +1,377 @@
+{
+  "status": "passed",
+  "webCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "distributionManifestSha256": "a2719e79f3f204b7d3061145dadbc25fbcffd0f47580719ec87ff41fa35dd739",
+  "inputSha256": "e9d199c43580f6e001638e866613fd0d4e61d5bdba416a90757ecadc98f732ca",
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "driverSha256": "a89c94508a1acba5540800be62ef02244435a5ce0f002b62d0ae8fc61acd6df8",
+  "playwrightVersion": "1.62.1",
+  "viewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "network": "local frozen distribution with offline GET fixture replay",
+  "scenarios": [
+    {
+      "scenario": "rank",
+      "theme": "light",
+      "dimensions": {
+        "notice": {
+          "x": 16,
+          "y": 16,
+          "width": 356,
+          "height": 86,
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "color": "rgb(41, 60, 56)",
+          "backgroundColor": "color(srgb 1 1 1 / 0.96)"
+        },
+        "ready": {
+          "x": 37,
+          "y": 410.15625,
+          "width": 314,
+          "height": 52,
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "fontWeight": "600",
+          "borderRadius": "10px",
+          "color": "rgb(255, 255, 255)",
+          "backgroundColor": "rgb(24, 123, 105)"
+        }
+      },
+      "checks": [
+        "initial rank prevents start",
+        "stale brief stays visible; dismissal suppresses subsequent failure in the same outage",
+        "the same page becomes eligible after the backend rank changes"
+      ],
+      "trace": {
+        "me": 4,
+        "assignment": 7,
+        "expectedFailures": 5,
+        "appWrites": 0,
+        "unexpected": [],
+        "browserErrors": []
+      }
+    },
+    {
+      "scenario": "cancel",
+      "theme": "light",
+      "dimensions": {
+        "panel": {
+          "x": 12,
+          "y": 109.578125,
+          "width": 364,
+          "height": 280,
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "fontWeight": "400",
+          "borderRadius": "18px",
+          "color": "rgb(41, 60, 56)",
+          "backgroundColor": "rgba(24, 123, 105, 0.05)"
+        },
+        "heading": {
+          "x": 120.5,
+          "y": 182.484375,
+          "width": 147,
+          "height": 31.5,
+          "fontSize": "21px",
+          "lineHeight": "31.5px",
+          "fontWeight": "500",
+          "borderRadius": "0px",
+          "color": "rgb(22, 46, 40)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "detail": {
+          "x": 77,
+          "y": 229.984375,
+          "width": 234,
+          "height": 24.6875,
+          "fontSize": "13px",
+          "lineHeight": "24.7px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "color": "rgb(83, 107, 99)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "returnHome": {
+          "x": 147,
+          "y": 270.671875,
+          "width": 94,
+          "height": 46,
+          "fontSize": "13px",
+          "lineHeight": "normal",
+          "fontWeight": "600",
+          "borderRadius": "10px",
+          "color": "rgb(255, 255, 255)",
+          "backgroundColor": "rgb(24, 123, 105)"
+        }
+      },
+      "checks": [
+        "withdrawal replaces the briefing and has a working home link"
+      ],
+      "trace": {
+        "me": 2,
+        "assignment": 2,
+        "expectedFailures": 0,
+        "appWrites": 0,
+        "unexpected": [],
+        "browserErrors": []
+      }
+    },
+    {
+      "scenario": "remote",
+      "theme": "light",
+      "dimensions": {},
+      "checks": [
+        "remote entry reaches the same question route without a browser start or automatic clue playback"
+      ],
+      "trace": {
+        "me": 2,
+        "assignment": 2,
+        "expectedFailures": 0,
+        "appWrites": 0,
+        "unexpected": [],
+        "browserErrors": []
+      }
+    },
+    {
+      "scenario": "rank",
+      "theme": "dark",
+      "dimensions": {
+        "notice": {
+          "x": 16,
+          "y": 16,
+          "width": 356,
+          "height": 86,
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "color": "rgb(231, 230, 225)",
+          "backgroundColor": "color(srgb 0.0901961 0.0941177 0.0784314 / 0.96)"
+        },
+        "ready": {
+          "x": 37,
+          "y": 410.15625,
+          "width": 314,
+          "height": 52,
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "fontWeight": "600",
+          "borderRadius": "10px",
+          "color": "rgb(25, 24, 17)",
+          "backgroundColor": "rgb(212, 188, 125)"
+        }
+      },
+      "checks": [
+        "initial rank prevents start",
+        "stale brief stays visible; dismissal suppresses subsequent failure in the same outage",
+        "the same page becomes eligible after the backend rank changes"
+      ],
+      "trace": {
+        "me": 4,
+        "assignment": 7,
+        "expectedFailures": 5,
+        "appWrites": 0,
+        "unexpected": [],
+        "browserErrors": []
+      }
+    },
+    {
+      "scenario": "cancel",
+      "theme": "dark",
+      "dimensions": {
+        "panel": {
+          "x": 12,
+          "y": 109.578125,
+          "width": 364,
+          "height": 280,
+          "fontSize": "16px",
+          "lineHeight": "normal",
+          "fontWeight": "400",
+          "borderRadius": "18px",
+          "color": "rgb(231, 230, 225)",
+          "backgroundColor": "rgba(212, 188, 125, 0.055)"
+        },
+        "heading": {
+          "x": 120.5,
+          "y": 182.484375,
+          "width": 147,
+          "height": 31.5,
+          "fontSize": "21px",
+          "lineHeight": "31.5px",
+          "fontWeight": "500",
+          "borderRadius": "0px",
+          "color": "rgb(240, 236, 223)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "detail": {
+          "x": 77,
+          "y": 229.984375,
+          "width": 234,
+          "height": 24.6875,
+          "fontSize": "13px",
+          "lineHeight": "24.7px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "color": "rgb(170, 169, 159)",
+          "backgroundColor": "rgba(0, 0, 0, 0)"
+        },
+        "returnHome": {
+          "x": 147,
+          "y": 270.671875,
+          "width": 94,
+          "height": 46,
+          "fontSize": "13px",
+          "lineHeight": "normal",
+          "fontWeight": "600",
+          "borderRadius": "10px",
+          "color": "rgb(25, 24, 17)",
+          "backgroundColor": "rgb(212, 188, 125)"
+        }
+      },
+      "checks": [
+        "withdrawal replaces the briefing and has a working home link"
+      ],
+      "trace": {
+        "me": 2,
+        "assignment": 2,
+        "expectedFailures": 0,
+        "appWrites": 0,
+        "unexpected": [],
+        "browserErrors": []
+      }
+    },
+    {
+      "scenario": "remote",
+      "theme": "dark",
+      "dimensions": {},
+      "checks": [
+        "remote entry reaches the same question route without a browser start or automatic clue playback"
+      ],
+      "trace": {
+        "me": 2,
+        "assignment": 2,
+        "expectedFailures": 0,
+        "appWrites": 0,
+        "unexpected": [],
+        "browserErrors": []
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "scenario": "rank",
+      "theme": "light",
+      "state": "before",
+      "filename": "light-rank-before.png",
+      "sha256": "b681654953a84766e7028174dcbb14ecc768a6033c3ecb8455c20eed6155f39a"
+    },
+    {
+      "scenario": "rank",
+      "theme": "light",
+      "state": "stale",
+      "filename": "light-rank-stale.png",
+      "sha256": "218945d24a4110dcccc9ede0c5cbe5975b9bde7c3b03e3d246f6826e1dd3dcbe"
+    },
+    {
+      "scenario": "rank",
+      "theme": "light",
+      "state": "after",
+      "filename": "light-rank-after.png",
+      "sha256": "bef656cbc8b641c733d2d12e972f8adb8912c9b958b66def30c8c3d7cb4f74d2"
+    },
+    {
+      "scenario": "cancel",
+      "theme": "light",
+      "state": "before",
+      "filename": "light-cancel-before.png",
+      "sha256": "c77cdab53f8650860f81449bb395c35335e8e03760856038ee67b9adcb1f49de"
+    },
+    {
+      "scenario": "cancel",
+      "theme": "light",
+      "state": "after",
+      "filename": "light-cancel-after.png",
+      "sha256": "e376b0671309ab2d31043e838c437bba7503c100f4f6a57511ef9927da3a39a7"
+    },
+    {
+      "scenario": "remote",
+      "theme": "light",
+      "state": "before",
+      "filename": "light-remote-before.png",
+      "sha256": "fcf5ca4cb29e0dd05d9d2f05685e71c263fbb439d46244ed177d120201b76b6d"
+    },
+    {
+      "scenario": "remote",
+      "theme": "light",
+      "state": "after",
+      "filename": "light-remote-after.png",
+      "sha256": "6f36c9c5169573db93927d53750d3dcfcd6ae1526187a79a69a8e034c622691f"
+    },
+    {
+      "scenario": "rank",
+      "theme": "dark",
+      "state": "before",
+      "filename": "dark-rank-before.png",
+      "sha256": "d6698096de86ff501f00c28ea277f365132b087eba96084a2d6ca59f14152f39"
+    },
+    {
+      "scenario": "rank",
+      "theme": "dark",
+      "state": "stale",
+      "filename": "dark-rank-stale.png",
+      "sha256": "58190e3eb5849ad1d5a95c8a65a1bedd519a3082642be0d763638ed68a2f2edf"
+    },
+    {
+      "scenario": "rank",
+      "theme": "dark",
+      "state": "after",
+      "filename": "dark-rank-after.png",
+      "sha256": "9effc85397c81b962c2ad3ef58aeeb86c1ee20dde76059ffc6a50a302cad1ceb"
+    },
+    {
+      "scenario": "cancel",
+      "theme": "dark",
+      "state": "before",
+      "filename": "dark-cancel-before.png",
+      "sha256": "6924268d822e0c5ebeb6e2e375d23e2d57bbc98c17b1e2502e061def6f773478"
+    },
+    {
+      "scenario": "cancel",
+      "theme": "dark",
+      "state": "after",
+      "filename": "dark-cancel-after.png",
+      "sha256": "d4e612a2b2113c618b4943cbaa86e03e1388c6e608967be6471f1f2d2beedcb1"
+    },
+    {
+      "scenario": "remote",
+      "theme": "dark",
+      "state": "before",
+      "filename": "dark-remote-before.png",
+      "sha256": "320bbbf125b21f399183e101e04e4646d07e82ff3f95bd9456092641b78f7ba2"
+    },
+    {
+      "scenario": "remote",
+      "theme": "dark",
+      "state": "after",
+      "filename": "dark-remote-after.png",
+      "sha256": "a1f935871df16e3913ac5bcbc4656405e0b969571f866eb7145ac504a09e9a23"
+    }
+  ],
+  "browserVersion": "151.0.7922.34",
+  "visualReview": {
+    "state": "originals-reviewed",
+    "originalsDirectory": "artifacts/private/gameplay-briefing-sync-20261116/web-run01",
+    "sameData": "server-emitted snapshots from paired read-only Web actors on the same isolated fixture content",
+    "imageCapture": "Chromium originals at deviceScaleFactor 1, independent of ArkUI rendering",
+    "observations": [
+      "Day and night show one fixed-top sync notice during the outage while leaving the same locked briefing and CTA mounted.",
+      "The rank update replaces the header rank and briefing description, removes the old lock explanation and enables the existing CTA.",
+      "Withdrawal replaces the entire briefing with a centered title, explanation and return control. The Web atmosphere still renders behind it.",
+      "Remote entry replaces the explanation with the first question, question navigation and first-answer guide. The granted entry clue does not reappear automatically."
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "role": "switch",
+  "scope": "Pre-entry briefing only. No native start or answer is issued in this driver.",
+  "signedHapSha256": "6d2fd268fb2dd7528245d18f1bcee49ac9731e96ba95d581df9dccbe66d5c03e",
+  "runtimeSha256": "d78381d7e8f2412bd2af5c21cc93c9e4ee1b116e70122b339539bb777c9e0a97",
+  "driverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "fixtureSha256": "f6643d80726eaf8b3f4c45aac98461345066874b31e88be60ce3df812367a1ec",
+  "screenshots": [
+    {
+      "state": "before-switch-letter-link",
+      "file": "before-switch-letter-link.png",
+      "sha256": "f09641796fcbcb8f688003781dd057aa53bbb4f8b20aab387e1564491a36b37c"
+    },
+    {
+      "state": "linked-briefing-loaded",
+      "file": "linked-briefing-loaded.png",
+      "sha256": "682f8e5d429651dd99487fcc3cd4ee95cab0fa7f8f69399b9525706024f0cca6"
+    }
+  ],
+  "startControls": [],
+  "checks": [
+    "A native letter link opens the next owned briefing before the old read returns",
+    "The first route neither returns stale content nor starts another GET",
+    "The second route performs both its initial read and polling",
+    "The two briefings and one note remain unchanged in the server write ledger"
+  ],
+  "switchDriverSha256": "3ca92eb5609e0ec2fe41d1c12b5614c4074eb0ee51794b867009f80d41d9e3d4",
+  "firstReadWasHeld": true,
+  "secondSuccessfulReads": 2,
+  "gameplayFacts": {
+    "startReceiptCount": 0,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "xpLedgerCount": 0
+  }
+}

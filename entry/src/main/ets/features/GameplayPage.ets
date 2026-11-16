@@ -175,7 +175,6 @@ export struct GameplayPage {
   private combinationOwner: string = '';
   private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
-  @Local private dismissedSyncEpisode: number = 0;
   @Local private backgroundRetryRevision: number = 0;
   @Local private guideAccount: string = '';
   @Local private guideSeen: boolean = true;
@@ -2194,11 +2193,10 @@ export struct GameplayPage {
           .padding({ bottom: this.destinationBottomInset(), left: this.leftInset, right: this.rightInset })
           .hitTestBehavior(HitTestMode.None)
       }
-      if (this.foreground && this.play.syncEpisode > 0 && this.play.syncEpisode !== this.dismissedSyncEpisode &&
+      if (this.foreground && this.play.syncEpisode > 0 && this.play.syncEpisode !== this.play.dismissedSyncEpisode &&
         this.play.error.length === 0) {
         Column() {
-          StarwardSyncNotice({ reducedMotion: this.reducedMotion,
-            dismiss: () => { this.dismissedSyncEpisode = this.play.syncEpisode; } })
+          StarwardSyncNotice({ reducedMotion: this.reducedMotion, dismiss: () => this.play.dismissSyncNotice() })
         }.width('100%').align(Alignment.Top).alignItems(HorizontalAlign.Center)
           .padding({ top: Math.max(16, this.foregroundTopInset()),
             left: 16 + this.leftInset, right: 16 + this.rightInset })
