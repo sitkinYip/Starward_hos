@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checks": 3,
+  "operation": "start",
+  "positive": "curl --cacert: HTTP200",
+  "withoutCa": "curl exit60: untrusted chain rejected",
+  "wrongHostname": "curl --cacert for localhost: exit60, SAN mismatch rejected",
+  "san": [
+    "IP:127.0.0.1"
+  ],
+  "tlsVerificationDisabled": false,
+  "systemTrustStoreModified": false,
+  "nativeTrust": "API26 caData only in isolated test config",
+  "certificateFingerprintSha256": "2B:C8:77:A3:2F:B7:41:43:C8:BB:08:61:3F:40:3D:E2:E0:3B:11:E7:08:BC:10:DA:58:66:59:4E:AD:26:51:C3",
+  "caSha256": "a297fde7e5acada48da49b690462d27b1cde9db2997fa823a25d40a96523c15f",
+  "reverseForwardConfirmed": true,
+  "certificateReused": false,
+  "reverseForwardReused": false,
+  "backendReset": false,
+  "causeOfPriorTermination": "not established; original execution output unavailable"
+}

@@ -65,10 +65,12 @@ struct Index {
   @Local private gameplayTitleHidden: boolean = false;
   @Local private showFinaleBackdrop: boolean = false;
   @Local private foreground: boolean = true;
+  @Local private gameplayDestinationShown: boolean = false;
   private motion: StarwardMotion = new StarwardMotion();
   private avatarEditor: AvatarEditor = new AvatarEditor();
   private avatarPickRevision: number = 0;
   private starLettersInterrupted: boolean = false;
+  private gameplayJourneyBack: (() => boolean) | null = null;
   private paths: NavPathStack = new NavPathStack();
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -82,11 +84,13 @@ struct Index {
         }
         if (this.mainIndex === 2 && this.paths.size() === 0 && !this.vm.securityUnconfirmed) {
           this.vm.starLetters.refresh();
+          this.vm.journey.refresh();
         }
       }
     } else {
       this.stopClock();
       this.vm.starLetters.suspend();
+      this.vm.journey.pauseReads();
       if (this.vm.play.starting) { this.vm.play.cancelAutomaticClues(); }
     }
   };
@@ -129,6 +133,7 @@ struct Index {
   aboutToDisappear(): void {
     this.vm.narrative.close();
     this.vm.starLetters.suspend();
+    this.vm.journey.suspend();
     this.vm.play.leave();
     this.showAccount = false;
     this.motion.stop();
@@ -180,6 +185,7 @@ struct Index {
       return true;
     }
     if (this.closeNarrative()) { return true; }
+    if (this.gameplayJourneyBack?.()) { return true; }
     if (this.vm.gate === 'home' && this.paths.size() === 0 && this.mainIndex !== 0) {
       this.goMain(0);
       return true;
@@ -248,6 +254,7 @@ struct Index {
     this.showAccount = false;
     this.vm.narrative.close();
     this.vm.play.leave();
+    this.vm.journey.setPolling(false);
     this.paths.clear();
     this.selectMain(index);
     if (gameplayVisible) {
@@ -261,9 +268,15 @@ struct Index {
       return;
     }
     if (this.mainIndex !== index) {
-      if (this.mainIndex === 2) { this.vm.starLetters.suspend(); }
+      if (this.mainIndex === 2) {
+        this.vm.starLetters.suspend();
+        this.vm.journey.suspend();
+      }
       this.mainIndex = index;
-      if (index === 2 && this.foreground) { this.vm.starLetters.refresh(); }
+      if (index === 2 && this.foreground) {
+        this.vm.starLetters.refresh();
+        this.vm.journey.refresh();
+      }
     }
     if (index === 3) { this.vm.openProfile(); }
   }
@@ -308,6 +321,34 @@ struct Index {
     if (!this.vm.narrative.open(route)) { return false; }
     this.vm.play.cancelAutoAdvance();
     this.paths.pushPath({ name: 'narrative', param: route }, !this.motion.reduced);
+    return true;
+  }
+
+  private openJourneyLink(href: string): boolean {
+    if (!this.foreground || this.vm.gate !== 'home' || this.vm.securityUnconfirmed ||
+      this.vm.narrative.route !== null) { return false; }
+    const path: string = href.split(/[?#]/)[0];
+    if (path === '/' || path === '/notifications' || path === '/profile') {
+      this.vm.journey.close();
+      this.goMain(path === '/' ? 0 : path === '/notifications' ? 2 : 3);
+      return true;
+    }
+    const story: RegExpMatchArray | null = path.match(/^\/play\/([A-Za-z0-9_-]{1,100})\/content\/([A-Za-z0-9_-]{1,100})\/?$/);
+    if (story !== null) {
+      const route: NarrativeRoute = new NarrativeRoute(story[1], story[2], 'journey');
+      if (!this.vm.narrative.open(route)) { return false; }
+      this.vm.journey.suspend();
+      this.vm.play.cancelAutoAdvance();
+      this.paths.pushPath({ name: 'narrative', param: route }, !this.motion.reduced);
+      return true;
+    }
+    const assignment: RegExpMatchArray | null = path.match(/^\/play\/([A-Za-z0-9_-]{1,100})\/?$/);
+    if (assignment === null) { return false; }
+    this.vm.journey.close();
+    if (!this.vm.play.visible || assignment[1] !== this.selectedId) {
+      this.paths.clear();
+      this.openAssignment(assignment[1]);
+    }
     return true;
   }
 
@@ -859,7 +900,8 @@ struct Index {
 
   @Builder
   starLetters() {
-    StarLettersPage({ model: this.vm.starLetters, displayFont: this.displayFont,
+    StarLettersPage({ model: this.vm.starLetters, journey: this.vm.journey, playerId: this.vm.player.id,
+      displayFont: this.displayFont, openInternalLink: (href: string) => this.openJourneyLink(href),
       bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced,
       active: this.foreground && this.mainIndex === 2 && this.vm.narrative.route === null && !this.vm.securityUnconfirmed,
       openLetter: (entry: StarLetterEntry) => this.openStarLetter(entry), returnHome: () => this.goMain(0) })
@@ -976,7 +1018,7 @@ struct Index {
     if (name === 'assignment') {
       NavDestination() {
         if (this.vm.play.visible) {
-          GameplayPage({ play: this.vm.play, autoNextDelay: this.motion.duration(1500),
+          GameplayPage({ play: this.vm.play, journey: this.vm.journey, autoNextDelay: this.motion.duration(1500),
             playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
             displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
             titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
@@ -985,7 +1027,11 @@ struct Index {
             rightInset: Math.max(0, this.avoidArea.cutout.rightRect.width, this.avoidArea.statusBar.rightRect.width,
               this.avoidArea.navigationIndicator.rightRect.width),
             keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
-            narrativeCovered: this.vm.narrative.route !== null,
+            narrativeCovered: this.vm.narrative.route !== null, accountCovered: this.showAccount,
+            journeyPollingAllowed: this.gameplayDestinationShown && this.vm.gate === 'home' &&
+              !this.vm.securityUnconfirmed,
+            openJourneyLink: (href: string) => this.openJourneyLink(href),
+            journeyBackHandlerChanged: (handler: (() => boolean) | null) => { this.gameplayJourneyBack = handler; },
             openNarrative: (assignmentId: string, contentId: string) => this.openFinaleNarrative(assignmentId, contentId),
             openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) =>
               this.openQuestClue(assignmentId, clueId, contentId),
@@ -1029,6 +1075,16 @@ struct Index {
         StarwardMaterial.titleOptions(this.vm.play.visible ? BarStyle.STACK : BarStyle.STANDARD))
         .hideTitleBar(this.vm.play.visible && this.gameplayTitleHidden, !this.motion.reduced)
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
+        .onBackPressed(() => this.gameplayJourneyBack?.() ?? false)
+        .onShown((reason: VisibilityChangeReason) => {
+          if (reason !== VisibilityChangeReason.CONTENT_COVER) { this.gameplayDestinationShown = true; }
+        })
+        .onHidden((reason: VisibilityChangeReason) => {
+          // A full-screen clue or letter cover does not leave the answer destination.
+          if (reason === VisibilityChangeReason.CONTENT_COVER) { return; }
+          this.gameplayDestinationShown = false;
+          this.vm.journey.setPolling(false);
+        })
     } else if (name === 'narrative') {
       NavDestination() {
         if (this.vm.gate === 'home' && this.vm.narrative.route !== null) {

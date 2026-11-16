@@ -12,6 +12,7 @@ export struct StarwardVideoPoster {
   @Require @Param imageCache: QuestionImageCache;
   @Require @Param nodeId: string;
   @Require @Param playLabel: string;
+  @Param placeholderLabel: string = '';
   @Param option: boolean = false;
   @Param active: boolean = true;
   @Param playable: boolean = true;
@@ -123,7 +124,7 @@ export struct StarwardVideoPoster {
       } else {
         Column({ space: 4 }) {
           this.badge()
-          Text(this.option ? '播放影像' : '影像记录').id(this.nodeId + '-placeholder')
+          Text(this.placeholderLabel || (this.option ? '播放影像' : '影像记录')).id(this.nodeId + '-placeholder')
             .fontSize(16).fontColor(this.option ? $r('app.color.accent_text') : $r('app.color.muted'))
         }.hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
       }

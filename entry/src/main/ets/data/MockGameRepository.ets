@@ -1,4 +1,5 @@
 import { GameRepository } from '../business/GameRepository';
+import { GameNotification } from '../business/GameNotification';
 import { GameplayAnswerResult, GameplayContentBlock, GameplayLevel, GameplayOption, GameplayQuestion,
   GameplaySnapshot } from '../business/GameplayModels';
 import { NarrativeContent } from '../business/NarrativeModels';
@@ -367,6 +368,14 @@ export class MockGameRepository implements GameRepository {
     if (this.fixture.startedAt.length === 0) {
       throw new GameFailure('NOT_STARTED', '请先进入场次', 409);
     }
+  }
+
+  async notifications(_cancellation?: ReadCancellation): Promise<GameNotification[]> {
+    return [];
+  }
+
+  async readNotification(_id: string): Promise<string> {
+    throw new GameFailure('NOT_FOUND', '通知不存在', 404);
   }
 
   async answerAssignment(id: string, sessionLevelId: string, rawAnswer: string,

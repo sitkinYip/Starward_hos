@@ -1,4 +1,5 @@
 import { AssignmentDetail, AssignmentSummary, ExtraDisplay, GameFailure, Player, Rank } from '../business/models';
+import { GameNotification } from '../business/GameNotification';
 
 export class LoginResult {
   token: string = '';
@@ -185,6 +186,25 @@ export function decodeAssignments(body: string): AssignmentSummary[] {
     result.push(summary);
   }
   return result;
+}
+
+export function decodeNotifications(body: string): GameNotification[] {
+  const items: Object = parse(body)['items'];
+  if (!Array.isArray(items)) { throw contractFailure(); }
+  const ids: Set<string> = new Set<string>();
+  return (items as Object[]).map((value: Object) => {
+    const note: Record<string, Object> = record(value);
+    const id: string = stringField(note, 'id', true);
+    if (ids.has(id)) { throw contractFailure(); }
+    ids.add(id);
+    return new GameNotification(id, stringField(note, 'title'), stringField(note, 'content'),
+      stringField(note, 'popupTitle'), stringField(note, 'buttonText'), dateField(note, 'sentAt', true),
+      dateField(note, 'readAt'), stringField(note, 'assignmentId'));
+  });
+}
+
+export function decodeNotificationReceipt(body: string): string {
+  return dateField(parse(body), 'readAt', true);
 }
 
 export function decodeAssignment(body: string): AssignmentDetail {

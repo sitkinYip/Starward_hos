@@ -1,6 +1,7 @@
 import { common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { curves, PromptAction, promptAction, RectShape } from '@kit.ArkUI';
+import { GameNotification } from '../business/GameNotification';
 import { clueImageSources, ClueTextPart, clueTextParts, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
 import { GameplayClue, GameplayCompletionTarget, GameplayContentBlock, GameplayLevel, GameplayOption,
@@ -17,6 +18,7 @@ import { QuestBgmPreference } from '../platform/QuestBgmPreference';
 import { QuestAnswerGuidePreference } from '../platform/QuestAnswerGuidePreference';
 import { QuestNarrativeAttentionPreference } from '../platform/QuestNarrativeAttentionPreference';
 import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
+import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
 import { PrimaryAction } from '../ui/PrimaryAction';
@@ -48,6 +50,8 @@ import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { StarwardAnswerGuide } from '../ui/StarwardAnswerGuide';
 import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
 import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
+import { JOURNEY_LAUNCHER_SIZE, JourneyDockObstacle, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
+import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
 
 class ClueDialogRequest {
   id: number = -1;
@@ -120,7 +124,9 @@ class RankDialogRequest {
 /** Native presentation only: the account-bound ViewModel owns drafts and writes. */
 @ComponentV2
 export struct GameplayPage {
+  @Event journeyBackHandlerChanged: (handler: (() => boolean) | null) => void = () => {};
   @Require @Param play: GameplayViewModel;
+  @Require @Param journey: JourneyNotificationsViewModel;
   @Require @Param playerId: string;
   @Param autoNextDelay: number = 0;
   @Param displayFont: string = 'serif';
@@ -132,9 +138,12 @@ export struct GameplayPage {
   @Param keyboardVisible: boolean = false;
   @Param reducedMotion: boolean = true;
   @Param narrativeCovered: boolean = false;
+  @Param accountCovered: boolean = false;
+  @Param journeyPollingAllowed: boolean = false;
   @Event leave: () => void = () => {};
   @Event openNarrative: (assignmentId: string, contentId: string) => void = () => {};
   @Event openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) => boolean = () => false;
+  @Event openJourneyLink: (href: string) => boolean = () => false;
   @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
   @Event finaleBackdropChanged: (visible: boolean) => void = () => {};
   @Local seenCompletionRevision: number = 0;
@@ -152,6 +161,10 @@ export struct GameplayPage {
   @Local private destinationHeight: number = 0;
   @Local private destinationLaunching: boolean = false;
   @Local private rankNotice: RankDialogRequest | null = null;
+  @Local private manualJourneyId: string = '';
+  @Local private journeyVideoOpen: boolean = false;
+  @Local private combinationDock: JourneyDockObstacle | null = null;
+  private manualJourneyOwner: string = '';
   private clueDialog: ClueDialogRequest | null = null;
   private combinationQueue: GameplayClue[] = [];
   private combinationOwner: string = '';
@@ -246,6 +259,7 @@ export struct GameplayPage {
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
     this.play.setPollingActive(this.foreground && !this.narrativeCovered);
+    this.updateJourneyPolling();
     this.updateBgm();
   }
 
@@ -253,8 +267,11 @@ export struct GameplayPage {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
     this.play.setPollingActive(false);
+    this.journey.setPolling(false);
     this.bgmMounted = false;
     this.bgm.release();
+    this.clearManualJourney();
+    this.journeyVideoOpen = false;
     this.bgmPreferenceOwner = '';
     this.bgmEnabled = true;
     this.bgmPosition = new QuestBgmPosition();
@@ -274,8 +291,10 @@ export struct GameplayPage {
     this.titleVisibilityChanged(false);
   }
 
-  @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error')
+  @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error', 'playerId')
   imageOwnerChanged(): void {
+    if (this.manualJourneyOwner.length > 0 && (!this.journeyOwnerCurrent() ||
+      this.manualJourneyOwner !== this.play.imageOwnerKey())) { this.clearManualJourney(); }
     if (this.attentionReserveOwner !== this.positionKey()) { this.attentionReserveOwner = ''; }
     if (this.guideHighlightOwner.length > 0 && this.guideHighlightOwner !== this.positionKey()) {
       this.clearAnswerGuideHighlight();
@@ -414,7 +433,9 @@ export struct GameplayPage {
   private guideBottomInset(): number { return Math.max(12, this.bgmBottomInset()); }
 
   private scrollBottomClearance(): number {
-    const baseline: number = this.bottomClearance + (this.bgmSource().length > 0 ? QUEST_BGM_SIZE : 0);
+    const floatingControl: number = this.bgmSource().length > 0 ? QUEST_BGM_SIZE :
+      this.journey.entries.length > 0 ? JOURNEY_LAUNCHER_SIZE : 0;
+    const baseline: number = this.bottomClearance + floatingControl;
     if (this.finalDestination() !== null) { return baseline + this.destinationHeight + 14; }
     if (this.attentionClue() !== null || (this.attentionReserveOwner.length > 0 &&
       this.attentionReserveOwner === this.positionKey())) {
@@ -432,7 +453,7 @@ export struct GameplayPage {
   }
 
   @Monitor('play.visible', 'play.snapshot', 'play.error', 'play.activeIndex', 'playerId', 'foreground',
-    'videoViewer.visible', 'videoViewer.closing')
+    'videoViewer.visible', 'videoViewer.closing', 'journeyVideoOpen')
   bgmInputsChanged(): void { this.updateBgm(); }
 
   @Monitor('narrativeCovered')
@@ -458,7 +479,7 @@ export struct GameplayPage {
     const source: string = this.bgmSource();
     const owner: string = source.length > 0 ? this.play.imageOwnerKey() : '';
     this.bgm.update(owner, source, this.foreground && !this.narrativeCovered,
-      videoOpening || this.videoViewer.visible || this.videoViewer.closing, this.bgmEnabled);
+      videoOpening || this.videoViewer.visible || this.videoViewer.closing || this.journeyVideoOpen, this.bgmEnabled);
   }
 
   private showBgmControl(): boolean {
@@ -567,8 +588,9 @@ export struct GameplayPage {
   }
 
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
-    'play.refreshing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
-    'textClue', 'completionNotice', 'combinationSequenceActive', 'rankNotice')
+    'play.refreshing', 'play.advancing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
+    'textClue', 'completionNotice', 'combinationSequenceActive', 'rankNotice', 'journey.entries',
+    'journey.gameplayReady', 'manualJourneyId', 'accountCovered')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -1525,7 +1547,7 @@ export struct GameplayPage {
     return !this.play.loading && !this.play.starting && !this.play.submitting && !this.play.refreshing;
   }
 
-  private questionInteractionReady(allowsKeyboard: boolean = false): boolean {
+  private gameplayOverlayReady(allowsKeyboard: boolean = false): boolean {
     return !this.narrativeCovered && this.interactionReady() && (allowsKeyboard || !this.keyboardVisible) &&
       !this.recoveryVisible &&
       this.textClue === null && !this.viewer.visible && !this.viewer.closing &&
@@ -1533,10 +1555,114 @@ export struct GameplayPage {
       !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
   }
 
+  private questionInteractionReady(allowsKeyboard: boolean = false): boolean {
+    return this.gameplayOverlayReady(allowsKeyboard) && this.displayedJourneyNotification() === null;
+  }
+
+  private journeyOwnerCurrent(): boolean {
+    const snapshot: GameplaySnapshot | null = this.play.snapshot;
+    return this.playerId.length > 0 && this.play.visible && this.play.error.length === 0 &&
+      snapshot !== null && snapshot.detail.player === this.playerId && snapshot.detail.status !== 'cancelled';
+  }
+
+  @Monitor('journeyPollingAllowed', 'foreground', 'narrativeCovered', 'play.visible', 'play.refreshing', 'play.error')
+  private updateJourneyPolling(): void {
+    this.journey.setPolling(this.journeyPollingAllowed && this.foreground && !this.narrativeCovered &&
+      this.play.visible && !this.play.refreshing && this.play.error.length === 0);
+  }
+
+  private journeyPresentationReady(): boolean {
+    return this.foreground && !this.accountCovered && this.journey.gameplayReady && this.journeyOwnerCurrent() &&
+      this.gameplayOverlayReady() && !this.play.advancing && this.play.automaticClue === null &&
+      this.play.finaleStage === 'idle' &&
+      this.play.rankUp === null && this.seenCompletionRevision === this.play.completionRevision &&
+      this.viewportWidth - this.leftInset - this.rightInset >= 160 &&
+      this.viewportHeight - this.foregroundTopInset() >= 120;
+  }
+
+  private manualJourneyNotification(): GameNotification | null {
+    if (this.manualJourneyId.length === 0 || this.manualJourneyOwner !== this.play.imageOwnerKey()) { return null; }
+    return this.journey.entries.find((note: GameNotification) => note.id === this.manualJourneyId) ?? null;
+  }
+
+  private displayedJourneyNotification(): GameNotification | null {
+    return this.journeyPresentationReady() ? this.manualJourneyNotification() ?? this.journey.oldestUnread : null;
+  }
+
+  private showJourneyLauncher(): boolean {
+    return this.journeyPresentationReady() && this.journey.entries.length > 0 &&
+      this.displayedJourneyNotification() === null &&
+      this.viewportHeight - this.foregroundTopInset() - this.bgmLayoutBottomInset() >= JOURNEY_LAUNCHER_SIZE + 24;
+  }
+
+  private measureCombinationDock(area: Area | null): void {
+    if (area === null) {
+      this.combinationDock = null;
+      return;
+    }
+    const left: number = Number(area.position.x);
+    const top: number = Number(area.position.y);
+    const width: number = Number(area.width);
+    const height: number = Number(area.height);
+    if (!Number.isFinite(left) || !Number.isFinite(top) ||
+      !Number.isFinite(width) || width <= 0 || !Number.isFinite(height) || height <= 0) { return; }
+    const previous: JourneyDockObstacle | null = this.combinationDock;
+    if (previous === null || previous.left !== left || previous.top !== top ||
+      previous.width !== width || previous.height !== height) {
+      this.combinationDock = new JourneyDockObstacle(left, top, width, height);
+    }
+  }
+
+  private openManualJourney(id: string): void {
+    if (!this.showJourneyLauncher() || !this.journey.entries.some((entry: GameNotification) => entry.id === id)) {
+      return;
+    }
+    this.manualJourneyOwner = this.play.imageOwnerKey();
+    this.manualJourneyId = id;
+    this.journey.markRead(id);
+  }
+
+  private clearManualJourney(): void {
+    this.manualJourneyId = '';
+    this.manualJourneyOwner = '';
+  }
+
+  private async closeJourneyNotification(id: string, retry: boolean): Promise<void> {
+    if (this.displayedJourneyNotification()?.id !== id) { return; }
+    if (this.manualJourneyNotification()?.id !== id) {
+      await this.journey.markRead(id);
+      return;
+    }
+    if (retry && this.journey.readErrorId === id) {
+      const owner: string = this.manualJourneyOwner;
+      if (!await this.journey.markRead(id) || this.manualJourneyOwner !== owner || this.manualJourneyId !== id) {
+        return;
+      }
+    }
+    this.clearManualJourney();
+  }
+
+  private openGameplayJourneyLink(href: string): boolean {
+    if (this.displayedJourneyNotification() === null || !this.openJourneyLink(href)) { return false; }
+    this.clearManualJourney();
+    return true;
+  }
+
+  private journeyReadError(): string {
+    const id: string = this.displayedJourneyNotification()?.id ?? '';
+    return id.length > 0 && this.journey.readErrorId === id ? this.journey.readErrorMessage : '';
+  }
+
+  private setJourneyVideo(open: boolean): void {
+    this.journeyVideoOpen = open;
+    this.updateBgm(open);
+  }
+
   private answerMotionEnabled(): boolean {
     return this.foreground && !this.reducedMotion && !this.recoveryVisible && this.textClue === null &&
       !this.viewer.visible && !this.viewer.closing && !this.videoViewer.visible && !this.videoViewer.closing &&
-      !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
+      !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null &&
+      this.displayedJourneyNotification() === null;
   }
 
   private hasAnswerFeedback(): boolean {
@@ -1864,7 +1990,8 @@ export struct GameplayPage {
           topInset: this.foregroundTopInset(), bottomInset: this.bgmLayoutBottomInset(),
           bgmLeft: this.showBgmControl() ? this.bgmLeft() : -1,
           bgmTop: this.showBgmControl() ? this.bgmTop() : -1,
-          reducedMotion: this.reducedMotion, open: () => this.openLatestCombination() })
+          reducedMotion: this.reducedMotion, open: () => this.openLatestCombination(),
+          dockChanged: (area: Area | null) => this.measureCombinationDock(area) })
       }
       if (this.showBgmControl()) {
         StarwardBgmControl({ state: this.bgmState, reducedMotion: this.reducedMotion,
@@ -1874,6 +2001,15 @@ export struct GameplayPage {
           ownerKey: this.playerId, positionCommitted: (owner: string, x: number, y: number) => {
             this.rememberBgmPosition(owner, x, y);
           }, toggle: () => this.toggleBgm() })
+      }
+      if (this.showJourneyLauncher()) {
+        StarwardJourneyLauncher({ entries: this.journey.entries, unreadCount: this.journey.unreadCount,
+          viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
+          topInset: this.foregroundTopInset(), bottomInset: this.bgmLayoutBottomInset(),
+          leftInset: this.leftInset, rightInset: this.rightInset, displayFont: this.displayFont,
+          bgmLeft: this.showBgmControl() ? this.bgmLeft() : -1, bgmTop: this.showBgmControl() ? this.bgmTop() : -1,
+          combinationDock: this.showCombinationLauncher() ? this.combinationDock : null,
+          reducedMotion: this.reducedMotion, select: (id: string) => this.openManualJourney(id) })
       }
       if (this.showAnswerGuide()) {
         Column() {
@@ -1948,6 +2084,15 @@ export struct GameplayPage {
         StarwardQuestAtmosphere({ reducedMotion: this.reducedMotion })
       }
       this.gameplayForeground()
+      StarwardJourneyNotificationDialog({ note: this.displayedJourneyNotification(), playerId: this.playerId,
+        active: this.journeyPresentationReady(), displayFont: this.displayFont, reducedMotion: this.reducedMotion,
+        queuedCount: this.manualJourneyNotification() === null ? this.journey.unreadCount : 1,
+        pending: this.journey.readingId.length > 0, error: this.journeyReadError(),
+        close: (id: string) => { this.closeJourneyNotification(id, false); },
+        acknowledge: (id: string) => { this.closeJourneyNotification(id, true); },
+        openInternalLink: (href: string) => this.openGameplayJourneyLink(href),
+        backHandlerChanged: (handler: (() => boolean) | null) => this.journeyBackHandlerChanged(handler),
+        playingChanged: (open: boolean) => this.setJourneyVideo(open), playbackReady: () => this.bgm.whenQuiet() })
     }.width('100%').height('100%')
   }
 }

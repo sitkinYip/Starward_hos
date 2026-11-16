@@ -6,6 +6,7 @@ import { GameplaySnapshot } from '../business/GameplayModels';
 import { GameplayViewModel } from './GameplayViewModel';
 import { NarrativeViewModel } from './NarrativeViewModel';
 import { StarLettersViewModel } from './StarLettersViewModel';
+import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 
 @ObservedV2
@@ -40,6 +41,7 @@ export class SliceViewModel {
   readonly play: GameplayViewModel;
   readonly narrative: NarrativeViewModel;
   readonly starLetters: StarLettersViewModel;
+  readonly journey: JourneyNotificationsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
   private detailRequest: number = 0;
@@ -57,6 +59,10 @@ export class SliceViewModel {
       this.error = message;
     });
     this.starLetters = new StarLettersViewModel(repository, (message: string) => {
+      this.logout();
+      this.error = message;
+    });
+    this.journey = new JourneyNotificationsViewModel(repository, (message: string) => {
       this.logout();
       this.error = message;
     });
@@ -123,6 +129,7 @@ export class SliceViewModel {
     this.play.bindOwner(player.mustChangePassword ? '' : player.id);
     this.narrative.bindOwner(player.mustChangePassword ? '' : player.id);
     this.starLetters.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.journey.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
       this.avatarImage = null;
@@ -316,6 +323,7 @@ export class SliceViewModel {
       this.play.reset();
       this.narrative.close();
       this.starLetters.bindOwner('');
+      this.journey.bindOwner('');
       this.detailRequest++;
       this.listBusy = false;
       this.detailBusy = false;
@@ -518,6 +526,7 @@ export class SliceViewModel {
     this.play.reset();
     this.narrative.bindOwner('');
     this.starLetters.bindOwner('');
+    this.journey.bindOwner('');
     this.generation++;
     this.detailRequest++;
     this.profileRevision++;

@@ -2,6 +2,7 @@ import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, Player 
 import { GameplayAnswerResult, GameplaySnapshot } from './GameplayModels';
 import { NarrativeContent } from './NarrativeModels';
 import { ReadCancellation } from './ReadCancellation';
+import { GameNotification } from './GameNotification';
 
 export interface GameRepository {
   readonly mode: string;
@@ -15,6 +16,8 @@ export interface GameRepository {
   startAssignment(id: string, requestId: string): Promise<GameplaySnapshot>;
   gameplay(id: string, cancellation?: ReadCancellation): Promise<GameplaySnapshot>;
   narrative(assignmentId: string, contentId: string, cancellation?: ReadCancellation): Promise<NarrativeContent>;
+  notifications(cancellation?: ReadCancellation): Promise<GameNotification[]>;
+  readNotification(id: string): Promise<string>;
   answerAssignment(id: string, sessionLevelId: string, rawAnswer: string, requestId: string): Promise<GameplayAnswerResult>;
   logout(): void;
 }

@@ -408,7 +408,9 @@ function ownedClaim(authorization) {
   } catch { return ''; }
 }
 function permitted(method, pathname) {
-  return (method === 'GET' && (pathname === '/api/health' || pathname === '/api/questions/v1/me' || pathname === '/api/questions/v1/notifications' || pathname === '/api/questions/v1/rewards' || pathname === '/api/questions/v1/assignments' || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}$/.test(pathname) || /^\/api\/files\/game_players\/[a-z0-9]{15}\/[a-zA-Z0-9._%-]+$/.test(pathname))) || (method === 'POST' && (['/api/collections/game_players/auth-with-password', '/api/questions/v1/me/change-password', '/api/files/token'].includes(pathname) || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}\/(start|answers)$/.test(pathname))) || (method === 'PATCH' && pathname === '/api/questions/v1/me/profile');
+  return (method === 'GET' && (pathname === '/api/health' || pathname === '/api/questions/v1/me' || pathname === '/api/questions/v1/notifications' || pathname === '/api/questions/v1/rewards' || pathname === '/api/questions/v1/assignments' || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}$/.test(pathname) || /^\/api\/files\/game_players\/[a-z0-9]{15}\/[a-zA-Z0-9._%-]+$/.test(pathname))) ||
+    (method === 'POST' && (['/api/collections/game_players/auth-with-password', '/api/questions/v1/me/change-password', '/api/files/token'].includes(pathname) || /^\/api\/questions\/v1\/assignments\/[a-z0-9]{15}\/(start|answers)$/.test(pathname) || /^\/api\/questions\/v1\/notifications\/[a-z0-9]{15}\/read$/.test(pathname))) ||
+    (method === 'PATCH' && pathname === '/api/questions/v1/me/profile');
 }
 
 async function registerNarrativeRead({ caseId, assignmentId, narrativeId }) {

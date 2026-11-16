@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "proof": "separate real HTTPS PocketBase accounts on API26 straight phone",
+  "mediaChecks": [
+    "long reading keeps complete confirmation control visible",
+    "image return preserves note and unread state",
+    "video close returns to the same unread note",
+    "media note acknowledges once on explicit action",
+    "opening and closing note media creates no gameplay writes"
+  ],
+  "emptyChecks": [
+    "distinct isolated account has empty inbox",
+    "no mail produces neither badge nor automatic dialog"
+  ],
+  "deviceOriginals": [
+    {
+      "state": "long-note-top",
+      "file": "long-note-top.png",
+      "sha256": "bcfd9aba39694a04b289b17da4a6c04d3f2b89b549538da1dc96165b511e470e"
+    },
+    {
+      "state": "loaded-image-in-letter",
+      "file": "loaded-image-in-letter.png",
+      "sha256": "7dc406f49539d459e2fbda4136067d8010cf7bbdc239e3ed76b2a8ea48ef8a2c"
+    },
+    {
+      "state": "image-original",
+      "file": "image-original.png",
+      "sha256": "c22f06426873eff35ff133729e8631968ce9b2e7612b0aeeccf8bd8427d2dcf8"
+    },
+    {
+      "state": "playing-video",
+      "file": "playing-video.png",
+      "sha256": "f302e8695c01785e9d2118d6da789d1f58fa66f85cb944d04cd1c1b644554474"
+    },
+    {
+      "state": "inbox-empty",
+      "file": "inbox-empty.png",
+      "sha256": "0ae72d53d019f8a28a6f2394698e282c8915b8e7b7af607630c37968283d341a"
+    }
+  ],
+  "mediaGateway": {
+    "device-image-events.ndjson": {
+      "events": 2,
+      "sha256": "73187882b07bfb02a770df8d3323419c2361b2b6a6429d0b4f20bba9ae0b17c3",
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    "device-media-events.ndjson": {
+      "events": 2,
+      "sha256": "f389ddc2202bc7dd0429fae3a38ad2fe3b35605eb1f2510e11e68c0e5c5e3d2e",
+      "statuses": [
+        200,
+        200
+      ]
+    }
+  }
+}

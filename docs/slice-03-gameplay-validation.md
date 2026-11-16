@@ -632,3 +632,17 @@ python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
 日夜分别对照冻结 Web 原图。定版场次公告实测约 363.69 × 104 vp，Web 为 364 × 104.125 CSS px。夜间边线和底色像素值一致。长英文串在 ArkUI 系统字体折成三行，Web 折成四行，两端保留完整文案与明确换行。验收覆盖直板机普通字号。[同数据视觉复核](../artifacts/validation/ui-gameplay-extra-display-20261116/visual-review-01.json)
 
 隔离后端与临时 USB 映射已清理。固定预览沿用原账号、数据库及 CA，重新安装并完成真实 HTTPS 直登。预览包和定版隔离包的 ArkTS 字节码一致，手机留在已登录首页。[清理与恢复](../artifacts/validation/ui-gameplay-extra-display-20261116/restore-config-01.json) · [真机预览](../artifacts/validation/ui-gameplay-extra-display-20261116/fixed-preview-home-01.json) · [包等价](../artifacts/validation/ui-gameplay-extra-display-20261116/preview-package-equivalence-01.json)
+
+## 旅途来信收件箱、答题浮标与沉浸弹窗（2026-11-16）
+
+Web 收件箱对照 `7f7c789` 的已确认分卡样式，答题队列与归档按冻结 `4b7d1a0` 重放。选用隔离后台实际返回的同一六封邮件。浏览器在 388 × 771 CSS px 下保存 20 张稳定的日夜原图，自动回执在独立 Web 账号上取得后本地重放。原生浮标按用户要求重新设计，以题卡同色的信封和双圈为主体。正式通知接口对未授权账号的已读写入返回 404，匿名返回 401，重复收下保留同一 `readAt`。[Web 对照](../artifacts/validation/ui-gameplay-journey-mail-20261116/web-reference-02.json) · [隔离后端](../artifacts/validation/ui-gameplay-journey-mail-20261116/host-fixture-01.json)
+
+通过 `scripts/hm.sh run` 完成官方构建、签名、USB 安装与启动。`scripts/hm.sh test` 通过 198 项，覆盖旧正文解析、回执解码、读取与写入竞态和迟到账号回执。`scripts/hm.sh lint` 的错误及告警均为零，既有信纸组件仍有一条模糊性能建议。[Hypium](../artifacts/validation/ui-gameplay-journey-mail-20261116/final-tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-gameplay-journey-mail-20261116/final-tools/lint.json)
+
+直板机验证收件箱 GET 503 及重试、正文系统返回保留未读、已读写入失败保留原信、成功关闭并更新计数。早期包在收下成功的弹窗退场时读到空信件，定版让内容按信件 ID 持有至退场结束并重新验证。早期全屏弹层关闭了答题轮询并抢到导航返回，定版处理 `CONTENT_COVER` 可见性原因和弹层返回优先级。已实测按最早未读排队、系统返回和确认、已读失败重试、最近五封回访保留答案、手指连续移动贴边及回访记忆。后台停止轮询。自动线索打开后从隔离后台发送新信，在读请求成功后，直到关闭线索才弹来信。台账仅有本轮有意发起的一次答题和 10 XP，来信操作无新增玩法写入。[直板机记录](../artifacts/validation/ui-gameplay-journey-mail-20261116/native-mail-core.json)
+
+日夜真机原图复查显示，通知背景延伸至状态栏与手势条边缘，面板及确认按钮在安全区内。日间原白带边界的每通道平均色差由约 19–27 降至约 1。原生收件箱首卡宽约 336 vp，与同数据 Web 的 336 CSS px 相近。原生弹窗遮罩略浅，轨道纹更明显。夜间信封入口和归档采用答题页同款金色描边，并恢复了原有主题设置。[日间视觉测量](../artifacts/validation/ui-gameplay-journey-mail-20261116/native-mail-core.json) · [夜间复查](../artifacts/validation/ui-gameplay-journey-mail-20261116/native-mail-night.json)
+
+专用媒体账号用同一封隔离长信检查滚动后的按钮完整性、图片查看器和视频实际播放。关闭图片或视频回到原信，在用户确认前保持未读。通过后端台账对照来信、媒体和试读未产生额外玩法写入。独立空账号在收件箱显示空态，答题页拉到空列表后也保持无来信浮标和弹窗。可点击外链的渲染已核对，系统浏览器交接、来信视频与答题 BGM 的音轨互斥和折叠设备属于未单独验收项。[媒体及空账号](../artifacts/validation/ui-gameplay-journey-mail-20261116/native-mail-media-and-empty.json)
+
+结束后释放临时后端和 USB 映射，恢复原固定预览账号、数据库和 CA。隔离定版与固定预览包的 ArkTS 字节码一致。直板机重新安装后以严格 HTTPS 直登固定预览，进度与经验一致，手机保持已登录首页。[预览恢复](../artifacts/validation/ui-gameplay-journey-mail-20261116/fixed-preview-home-01.json) · [包等价](../artifacts/validation/ui-gameplay-journey-mail-20261116/preview-package-equivalence-01.json)

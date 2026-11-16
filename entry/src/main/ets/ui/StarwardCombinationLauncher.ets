@@ -12,6 +12,7 @@ export struct StarwardCombinationLauncher {
   @Param bgmTop: number = -1;
   @Param reducedMotion: boolean = true;
   @Event open: () => void = () => {};
+  @Event dockChanged: (area: Area | null) => void = () => {};
   @Env(WritableEnvKey.FONT_SCALE) fontScale: number;
   @Local private x: number = 1;
   @Local private y: number = 0.72;
@@ -37,7 +38,10 @@ export struct StarwardCombinationLauncher {
     }
   }
 
-  aboutToDisappear(): void { this.mounted = false; }
+  aboutToDisappear(): void {
+    this.mounted = false;
+    this.dockChanged(null);
+  }
 
   @Monitor('reducedMotion')
   motionPolicyChanged(): void {
@@ -190,6 +194,7 @@ export struct StarwardCombinationLauncher {
         .opacity(this.entered ? 1 : 0).scale({ x: this.entered ? 1 : 0.78, y: this.entered ? 1 : 0.78 })
         .translate({ x: this.entered ? 0 : 18, y: this.entered ? 0 : 24 })
         .hitTestBehavior(HitTestMode.None).onAppear(() => this.appear())
+        .onAreaChange((_oldArea: Area, area: Area) => this.dockChanged(area), { expectedUpdateInterval: 16 })
     }.width('100%').height('100%').hitTestBehavior(HitTestMode.None)
   }
 }

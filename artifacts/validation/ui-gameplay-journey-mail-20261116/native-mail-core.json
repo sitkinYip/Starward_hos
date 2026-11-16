@@ -1,0 +1,121 @@
+{
+  "platform": "API 26 straight USB phone",
+  "mode": "strict HTTPS with separate disposable real PocketBase players",
+  "inbox": {
+    "preFixObservedChecks": [
+      "inbox actual GET failure",
+      "inbox actual retry success",
+      "manual open and hardware back preserve unread",
+      "read error keeps note available"
+    ],
+    "postFixChecks": [
+      "already-read note reopens and closes without another POST",
+      "hardware back preserves unread",
+      "receipt success closes cleanly and updates unread count"
+    ],
+    "originals": [
+      {
+        "state": "inbox-immersive-reading",
+        "file": "inbox-immersive-reading.png",
+        "sha256": "ddfbbb9f2e9d9f44c49cc7581b92978baa94215ec131d91e60bb8a00e35bfa11"
+      }
+    ],
+    "transitionErrorCorrected": "native reading component keeps the note through cover exit, keyed by note ID"
+  },
+  "answerPage": {
+    "queueAndArchiveChecks": [
+      "game first oldest note appears without advance write",
+      "game automatic close failure keeps oldest pending",
+      "game oldest receipt then next oldest appears",
+      "game automatic back acknowledges once",
+      "game archive shows latest five",
+      "already-read archive replay does not duplicate writes",
+      "archive reading preserves question draft"
+    ],
+    "dockAndForegroundChecks": [
+      "drag snaps right and suppresses tap",
+      "badge horizontal dock remembered on re-entry",
+      "background prevents subsequent polling",
+      "mail produced no gameplay writes before the test answer",
+      "new mail waits behind playing automatic clue",
+      "only the planned answer wrote gameplay or settled XP"
+    ],
+    "dockCenterPx": {
+      "before": [
+        1133,
+        2352
+      ],
+      "after": [
+        126,
+        1849
+      ],
+      "windowWidth": 1260
+    },
+    "originals": [
+      {
+        "state": "game-auto-first",
+        "file": "game-auto-first.png",
+        "sha256": "8b2e11016e80c9cc6bc1e2308dceba8195f6feac0c533cc0ea659ea4cc9bbe66"
+      },
+      {
+        "state": "game-auto-second",
+        "file": "game-auto-second.png",
+        "sha256": "3aabdb735e79e2c93997f4f18aa5434ada7c9d018f3ea63e783c0f17c83629b4"
+      },
+      {
+        "state": "game-badge-left",
+        "file": "game-badge-left.png",
+        "sha256": "a19cb95334484cc1a49c8f29587b2da7e7965e5237677ce380bf4886d5dccc66"
+      },
+      {
+        "state": "game-archive",
+        "file": "game-archive.png",
+        "sha256": "ae135d9ab52331b9ed8b710d4f5fa84e6eeeac7ede4a185d22c456242cfd7e66"
+      },
+      {
+        "state": "game-badge-after-drag",
+        "file": "game-badge-after-drag.png",
+        "sha256": "e142a472bddb3c5479cd55d35367503f4b3321ccb71ec6efbada7c8f6e7a75cb"
+      },
+      {
+        "state": "game-polled",
+        "file": "game-polled.png",
+        "sha256": "e5eb3468832d7e22b52e5edaf922bd479a7a46bff293f7c25c42ee57c03048b6"
+      }
+    ],
+    "gestureDriver": "official HDC UiTest continuous swipe from the actual button center"
+  },
+  "visualReview": {
+    "systemBarsRemainVisible": true,
+    "immersiveDayReview": "full native original, not cropped. Backdrop crosses both former white edges",
+    "oldRegularBoundaryAfterPhysicalY": [
+      122,
+      2628
+    ],
+    "meanRGBDeltaBefore": [
+      [
+        19.01,
+        27.01,
+        23.01
+      ],
+      [
+        19.01,
+        27.01,
+        23.01
+      ]
+    ],
+    "meanRGBDeltaAfter": [
+      [
+        1.23,
+        1.23,
+        1.23
+      ],
+      [
+        1.09,
+        1.09,
+        1.09
+      ]
+    ],
+    "notes": "Day inbox first card is about 336vp wide, same data Web 336 CSS px. The native notice tint is lighter and orbital lines are more visible. Journey launcher uses the native quest palette at the user’s request."
+  }
+}

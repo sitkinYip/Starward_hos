@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { GameFailure } from '../main/ets/business/models';
-import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer } from '../main/ets/data/DtoDecoder';
+import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword,
+  decodeNotifications, decodeNotificationReceipt, decodePlayer } from '../main/ets/data/DtoDecoder';
 import { WEB_ASSIGNMENT_JSON, WEB_ASSIGNMENTS_JSON, WEB_PLAYER_JSON } from './fixtures/WebFixture';
 
 export const PLAYER_JSON: string = '{"id":"playeralice","account":"alice","displayName":"Alice","avatar":"","mustChangePassword":true,"totalXp":0,"level":{"id":"rank1","order":1,"name":"初见者","minTotalXp":0},"nextLevel":null}';
@@ -22,6 +23,17 @@ function playerWithDisplay(display: string): string {
 
 export default function contractTests(): void {
   describe('Contract', () => {
+    it('validatesNotificationDatesAndReadReceiptsWithoutInventingReadState', 0, () => {
+      const first: string = '{"id":"new","title":"来信","content":"正文","popupTitle":"","buttonText":"",' +
+        '"sentAt":"2026-11-16 05:00:00.000Z","readAt":"","assignmentId":""}';
+      expect(decodeNotifications(`{"items":[${first}]}`)[0].readAt).assertEqual('');
+      expect(decodeNotificationReceipt('{"readAt":"2026-11-16 05:01:00.000Z"}'))
+        .assertEqual('2026-11-16 05:01:00.000Z');
+      expectContractFailure(() => { decodeNotifications(`{"items":[${first},${first}]}`); });
+      expectContractFailure(() => { decodeNotifications(`{"items":[${first.replace('"readAt":""', '"readAt":false')}]}`); });
+      expectContractFailure(() => { decodeNotificationReceipt('{"readAt":""}'); });
+    });
+
     it('decodesFrozenWebPlayerFixtureWithoutReshaping', 0, () => {
       const player = decodePlayer(WEB_PLAYER_JSON);
       expect(player.id).assertEqual('playeralice');

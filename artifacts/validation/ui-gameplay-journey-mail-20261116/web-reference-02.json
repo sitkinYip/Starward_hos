@@ -1,0 +1,93 @@
+{
+  "status": "verified_local_reference",
+  "mode": "verified disposable PocketBase read snapshots replayed locally",
+  "network": "HTTP loopback built assets; all business API operations intercepted and never forwarded",
+  "checks": {
+    "approved-light": {
+      "sixRows": true,
+      "detailCloseRetainsUnread": true,
+      "explicitReadBothPaths": true,
+      "empty": true
+    },
+    "approved-dark": {
+      "sixRows": true,
+      "detailCloseRetainsUnread": true,
+      "explicitReadBothPaths": true,
+      "empty": true
+    },
+    "frozen-light": {
+      "oldestUnreadFirst": true,
+      "autoCloseAcknowledges": true,
+      "continuesSecond": true,
+      "retainedArchiveLatestFive": true,
+      "draftSurvives": true,
+      "dragSnapWithoutTap": true,
+      "dragPositionRetainedOnReload": true
+    },
+    "frozen-dark": {
+      "oldestUnreadFirst": true,
+      "autoCloseAcknowledges": true,
+      "continuesSecond": true,
+      "retainedArchiveLatestFive": true,
+      "draftSurvives": true,
+      "dragSnapWithoutTap": true,
+      "dragPositionRetainedOnReload": true
+    }
+  },
+  "screenshots": {
+    "dark-game-archive-detail.png": "d85da0d8cd7db358adfe1d87f90830e43b43df199b2043cf73eb76f1efb135b3",
+    "dark-game-archive.png": "a21156d33a3672df597bac18401aef111a6536fda3d3317ff0a58daa703386e9",
+    "dark-game-auto-first.png": "bde0f970755bc978b9027c5037baa4eae291285f5a63f4a9e7f281f91fbc2cf4",
+    "dark-game-auto-second.png": "bc38b7173b5785476195a90e93d7eb06e534caa81ae16c23fd93162514280250",
+    "dark-game-dragged.png": "80d548f54135452e2dde5af33bcdd7f0899e67d81a9bd06853aec68920a8180c",
+    "dark-game-launcher.png": "915f6375b1ccd9d10cfa70e97c19a7eb89dcd2c00b214a92ccc76e3b23635a12",
+    "dark-inbox-action.png": "6f40deec1c952addf086d99bdf10e9f3b9a66197d1dbba7550191a54df0d4384",
+    "dark-inbox-detail.png": "b4a412650a5301b7c61efdb543d57e255d25e4d41537e03016b0e07797660121",
+    "dark-inbox-empty.png": "e0819677c5caab19568fc7f082094c64a293374031aeb7aee183e24ce71f9120",
+    "dark-inbox.png": "2bf7620cb75dbe235ee44674b04f81d5454699ea51c70cf13be3f430d3bfd5e5",
+    "light-game-archive-detail.png": "ca77823231eedf2f7c232222ada5e55e3dcbaa78f43e0afa35c48363cac40cd6",
+    "light-game-archive.png": "fb10c8fd8a2be9f8343a442078e9fc87d2682a8110f0f5cf759c94e0bf577ed2",
+    "light-game-auto-first.png": "09ca534a6a6027b7e8d52eda422d6686800f6d47bf0271ea76e1a49ac79ed7eb",
+    "light-game-auto-second.png": "54e2c7aaf0a9c5d92ee7bab5cf0ad94374c20e190d6b42984d23f5299c467ee0",
+    "light-game-dragged.png": "16411fee16a559f95654480a3d8919583e56d3ee1ccc1d0bb7e7fdf7f39e7b42",
+    "light-game-launcher.png": "da7cf1673a35c3a9cbfa6b01393a489c297877b83c751f0331d40c31474e51d1",
+    "light-inbox-action.png": "2faaa3946cff868b8df5a5d8aa0368951c98d5dd3f363c659c17329af3287aff",
+    "light-inbox-detail.png": "395db3b18ae7c00573aae1c8841a76528a5b5b693f452eacd13e5e2c42a36f73",
+    "light-inbox-empty.png": "6415991719b4a9f455b1bb3223879ddc127cb4ee14234e25de92a67a03aa3003",
+    "light-inbox.png": "ff527770fd18eb8166fe29177249856b1784d2a357c4e3406d5d12746ce1e264"
+  },
+  "viewport": {
+    "width": 388,
+    "height": 771
+  },
+  "source": {
+    "frozen": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+    "approved": "7f7c789c3c909bd10710d407b349b5996b771816"
+  },
+  "driverSha256": "a91dd39236d81f805c7cf6017cef8c47539f622ff437134ec03a596ce967f619",
+  "fixtureSha256": "73a015c75d50cfc9e0b5de6fa9667bb29bfe808724bc8ce2af4df381a80c10c8",
+  "acknowledgementFixtureSha256": "25be40ccd7f356a34c7bdc60d8e1ef2a53b862326458c297d0215069243475fe",
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "visualSource": {
+    "mailbox": "approved card layout",
+    "gameplay": "frozen launcher, archive and notification overlay reference",
+    "deviceWidthVp": 387.6923076923077,
+    "deviceContentHeightVp": 771.0769230769231,
+    "capture": "Retained continuous decorative motion and waited for finite entrance animation before original capture."
+  },
+  "manualReview": {
+    "status": "reviewed_representative_originals",
+    "observed": [
+      "day inbox layout and action",
+      "night empty and reading contrast",
+      "day/night gameplay latest-five archive",
+      "day automatic queue",
+      "night launcher"
+    ]
+  },
+  "limits": [
+    "Browser served captured snapshots and two actual backend acknowledgements without forwarding player API.",
+    "No native acceptance or transit time claimed by this report.",
+    "The native launcher intentionally follows the user’s requested styling."
+  ]
+}

@@ -8,8 +8,9 @@ import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, avatarM
   validateAvatarUpload, validateDisplayName, validatePasswordChange } from '../business/models';
 import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, TransportResponse } from '../platform/HttpTransport';
 import { ReadCancellation } from '../business/ReadCancellation';
+import { GameNotification } from '../business/GameNotification';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
-  LoginResult, PasswordResult } from './DtoDecoder';
+  decodeNotificationReceipt, decodeNotifications, LoginResult, PasswordResult } from './DtoDecoder';
 
 class LoginCommand {
   identity: string;
@@ -383,6 +384,18 @@ export class HttpsGameRepository implements GameRepository {
       throw new GameFailure('CONTRACT_ERROR', '服务返回的剧情身份不一致。');
     }
     return content;
+  }
+
+  async notifications(cancellation?: ReadCancellation): Promise<GameNotification[]> {
+    const generation: number = this.requireSession();
+    return decodeNotifications(await this.request('/api/questions/v1/notifications', 'GET', '', this.token,
+      generation, cancellation));
+  }
+
+  async readNotification(id: string): Promise<string> {
+    const generation: number = this.requireSession();
+    return decodeNotificationReceipt(await this.request(`/api/questions/v1/notifications/${encodeURIComponent(id)}/read`,
+      'POST', '{}', this.token, generation));
   }
 
   async answerAssignment(id: string, sessionLevelId: string, rawAnswer: string,

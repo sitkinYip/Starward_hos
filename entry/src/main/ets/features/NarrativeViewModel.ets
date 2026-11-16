@@ -3,7 +3,7 @@ import { NarrativeContent } from '../business/NarrativeModels';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { GameFailure } from '../business/models';
 
-type NarrativeSource = 'quest' | 'quest-clue' | 'star-letters';
+type NarrativeSource = 'quest' | 'quest-clue' | 'star-letters' | 'journey';
 
 export class NarrativeRoute {
   readonly assignmentId: string;
