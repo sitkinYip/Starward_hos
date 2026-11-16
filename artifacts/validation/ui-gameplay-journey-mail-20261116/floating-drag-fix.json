@@ -1,0 +1,116 @@
+{
+  "device": "API 26 straight USB phone",
+  "setup": "fixed isolated preview over strict HTTPS with already-read letters",
+  "installedSignedHapSha256": "19004d6a91512117fed6b2d62fa3a339fa9252b867eaf2f194a38dbb9d6db2da",
+  "before": {
+    "gesture": "official HDC UiTest drag with initial hold",
+    "fromBounds": [
+      39,
+      1615,
+      214,
+      1790
+    ],
+    "toBounds": [
+      39,
+      1615,
+      214,
+      1790
+    ],
+    "moved": false,
+    "archiveOpened": false
+  },
+  "after": {
+    "status": "passed",
+    "checks": [
+      "held drag from the envelope follows the finger and docks on release",
+      "held drag from the envelope leaves archive closed and question stable",
+      "immediate drag from the envelope follows the finger and docks on release",
+      "immediate drag from the envelope leaves archive closed and question stable",
+      "held drag from an offset on the envelope follows the finger and docks on release",
+      "held drag from an offset on the envelope leaves archive closed and question stable",
+      "single tap opens the archive",
+      "re-entering gameplay restores the dock",
+      "return drag toward original dock follows the finger and docks on release",
+      "return drag toward original dock leaves archive closed and question stable",
+      "preview progression and XP match the baseline",
+      "dragging and opening archive leave the stored receipts intact"
+    ],
+    "movements": [
+      {
+        "gesture": "held drag from the envelope",
+        "before": [
+          1046,
+          1404,
+          1222,
+          1580
+        ],
+        "after": [
+          39,
+          1274,
+          214,
+          1449
+        ]
+      },
+      {
+        "gesture": "immediate drag from the envelope",
+        "before": [
+          39,
+          1274,
+          214,
+          1449
+        ],
+        "after": [
+          1045,
+          1405,
+          1221,
+          1580
+        ]
+      },
+      {
+        "gesture": "held drag from an offset on the envelope",
+        "before": [
+          1045,
+          1405,
+          1221,
+          1580
+        ],
+        "after": [
+          39,
+          1490,
+          214,
+          1665
+        ]
+      },
+      {
+        "gesture": "return drag toward original dock",
+        "before": [
+          39,
+          1490,
+          215,
+          1666
+        ],
+        "after": [
+          1045,
+          1404,
+          1221,
+          1579
+        ]
+      }
+    ],
+    "archiveScreenshotSha256": "801a6c6f8b00efc622d38705b09f4d7ffd3aa27a189d5a5b4c7f464fedf79333"
+  },
+  "hypium": {
+    "tests": 198,
+    "passed": 198,
+    "failed": 0,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "lint": {
+    "filesChecked": 1,
+    "issues": 1,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 1
+  }
+}

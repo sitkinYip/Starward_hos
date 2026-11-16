@@ -232,7 +232,7 @@ export struct StarwardJourneyLauncher {
       Circle().width(40).height(40).fill($r('app.color.accent_faint'))
         .stroke($r('app.color.accent_border')).strokeWidth(1)
       Image($r('app.media.icon_envelope')).width(23).height(23).objectFit(ImageFit.Contain)
-        .fillColor($r('app.color.accent_text'))
+        .fillColor($r('app.color.accent_text')).draggable(false)
     }.width(40).height(40).accessibilityLevel('no-hide-descendants')
   }
 
@@ -245,7 +245,7 @@ export struct StarwardJourneyLauncher {
             .position({ top: -4, right: -4 }).constraintSize({ minWidth: 20 }).height(20)
             .textAlign(TextAlign.Center).padding({ left: 5, right: 5 }).fontSize(10).fontWeight(700).maxFontScale(1)
             .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-            .borderRadius(10).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+            .borderRadius(10).draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
         }
       }.width('100%').height('100%').hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
     }.id('gameplay-journey-launcher').width(JOURNEY_LAUNCHER_SIZE).height(JOURNEY_LAUNCHER_SIZE).padding(0)

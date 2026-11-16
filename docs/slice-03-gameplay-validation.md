@@ -646,3 +646,9 @@ Web 收件箱对照 `7f7c789` 的已确认分卡样式，答题队列与归档�
 专用媒体账号用同一封隔离长信检查滚动后的按钮完整性、图片查看器和视频实际播放。关闭图片或视频回到原信，在用户确认前保持未读。通过后端台账对照来信、媒体和试读未产生额外玩法写入。独立空账号在收件箱显示空态，答题页拉到空列表后也保持无来信浮标和弹窗。可点击外链的渲染已核对，系统浏览器交接、来信视频与答题 BGM 的音轨互斥和折叠设备属于未单独验收项。[媒体及空账号](../artifacts/validation/ui-gameplay-journey-mail-20261116/native-mail-media-and-empty.json)
 
 结束后释放临时后端和 USB 映射，恢复原固定预览账号、数据库和 CA。隔离定版与固定预览包的 ArkTS 字节码一致。直板机重新安装后以严格 HTTPS 直登固定预览，进度与经验一致，手机保持已登录首页。[预览恢复](../artifacts/validation/ui-gameplay-journey-mail-20261116/fixed-preview-home-01.json) · [包等价](../artifacts/validation/ui-gameplay-journey-mail-20261116/preview-package-equivalence-01.json)
+
+### 来信浮标长按拖动补验（2026-11-16）
+
+真机旧包从信封中心用官方 UiTest `uiInput drag` 送出停留后再移动的手势，浮标位置不变。ArkUI `Image` 默认开启系统拖出。将浮标信封和数字角标设为 `draggable(false)`，由按钮原有的 `PanGesture` 处理浮标位置和贴边。[华为 ArkUI 图片拖拽排障](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/arkui-kit-troubleshooting-0002/)
+
+通过 `scripts/hm.sh run` 安装签名包，使用固定隔离账号已收下的来信验证官方 UiTest `drag` 和 `swipe`。两种手势都能移动并贴边，题目稳定，归档只在单击时打开，重新进入场次后位置一致。对账确认试拖与回看没有新增已读回执和玩法写入。`scripts/hm.sh test` 通过 198 项，`scripts/hm.sh lint` 的错误与警告均为零。[直板手势补验](../artifacts/validation/ui-gameplay-journey-mail-20261116/floating-drag-fix.json)
