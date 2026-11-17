@@ -7,7 +7,8 @@ import { NarrativeContent } from '../business/NarrativeModels';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player } from '../business/models';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { AssetCredentialStore } from '../platform/AssetCredentialStore';
-import { NativeHttpTransport } from '../platform/HttpTransport';
+import { HttpTransport, NativeHttpTransport } from '../platform/HttpTransport';
+import { ProductionTransport } from '../platform/ProductionTransport';
 import { SliceViewModel } from './SliceViewModel';
 
 // An invalid packaged configuration is different from an absent one: it must
@@ -91,10 +92,12 @@ export function createSliceViewModel(): SliceViewModel {
     unavailable.errorCode = 'CONFIG_ERROR';
     return unavailable;
   }
-  const model: SliceViewModel = AppEnvironment.endpoint.length > 0 ?
-    new SliceViewModel(new HttpsGameRepository(AppEnvironment.endpoint,
-      new NativeHttpTransport(AppEnvironment.caData, AppEnvironment.timeoutMs),
-      AppEnvironment.probeTls, new AssetCredentialStore(AppEnvironment.endpoint, AppEnvironment.caData))) :
-    new SliceViewModel();
-  return model;
+  if (AppEnvironment.endpoint.length === 0) {
+    return new SliceViewModel();
+  }
+  const native: NativeHttpTransport = new NativeHttpTransport(AppEnvironment.caData, AppEnvironment.timeoutMs);
+  const transport: HttpTransport = AppEnvironment.production ?
+    new ProductionTransport(native, AppEnvironment.productionReadOnly) : native;
+  return new SliceViewModel(new HttpsGameRepository(AppEnvironment.endpoint, transport,
+    AppEnvironment.probeTls, new AssetCredentialStore(AppEnvironment.endpoint, AppEnvironment.caData)));
 }

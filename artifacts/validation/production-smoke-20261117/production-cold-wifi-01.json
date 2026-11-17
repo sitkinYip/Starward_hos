@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "phase": "cold",
+  "checks": {
+    "officialColdLaunch": true,
+    "freshProcess": true,
+    "productionHomeVisible": true,
+    "playerReadResponse": true,
+    "assignmentListResponse": true,
+    "restoredWithoutNewPasswordAuth": true,
+    "protectedFileTokenResponse": false,
+    "protectedAvatarResponse": false,
+    "protectedAvatarDecoded": false
+  },
+  "candidateHapSha256": "db136ad8f1a09c8503cb9e9ca3df4c802624b8d4bdfd6449e692af9cf7785c04",
+  "networkOperatorLabel": "wifi",
+  "productionReadEvents": [
+    {
+      "operation": "assignments",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "operation": "player",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "operation": "preflight",
+      "status": 401,
+      "count": 1
+    }
+  ],
+  "protectedAvatarCoverage": "incomplete"
+}

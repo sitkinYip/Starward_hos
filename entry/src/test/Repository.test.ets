@@ -6,6 +6,8 @@ import { HttpsGameRepository } from '../main/ets/data/HttpsGameRepository';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
 import { SliceViewModel } from '../main/ets/features/SliceViewModel';
 import { HttpTransport, TransportRequest, TransportResponse } from '../main/ets/platform/HttpTransport';
+import { ProductionTransport } from '../main/ets/platform/ProductionTransport';
+import { PRODUCTION_API_ORIGIN } from '../main/ets/platform/AppEnvironment';
 import { ASSIGNMENT_JSON, PLAYER_JSON } from './Contract.test';
 
 class StubTransport implements HttpTransport {
@@ -164,6 +166,67 @@ function queueAvatarLogin(transport: StubTransport): void {
 
 export default function repositoryTests(): void {
   describe('Repository', () => {
+    it('productionSmokeAllowsReadsAuthenticationAndProtectedFileToken', 0, async () => {
+      const stub: StubTransport = new StubTransport();
+      const transport: ProductionTransport = new ProductionTransport(stub, true);
+      const paths: string[] = ['/api/questions/v1/me', '/api/collections/game_players/auth-with-password',
+        '/api/files/token', '/api/files/game_players/player/avatar.png?token=fixture'];
+      const methods: string[] = ['GET', 'POST', 'POST', 'GET'];
+      for (let index: number = 0; index < paths.length; index++) {
+        const request: TransportRequest = new TransportRequest();
+        request.method = methods[index];
+        request.url = PRODUCTION_API_ORIGIN + paths[index];
+        stub.reply(200, '{}');
+        expect((await transport.send(request)).status).assertEqual(200);
+      }
+      expect(stub.requests.length).assertEqual(paths.length);
+    });
+
+    it('productionSmokeRejectsMutationsAndOtherOriginsBeforeNetworking', 0, async () => {
+      const stub: StubTransport = new StubTransport();
+      const transport: ProductionTransport = new ProductionTransport(stub, true);
+      const request: TransportRequest = new TransportRequest();
+      request.method = 'POST';
+      const blocked: string[] = ['/api/questions/v1/assignments/test/start',
+        '/api/questions/v1/assignments/test/answer', '/api/questions/v1/notifications/test/read',
+        '/api/questions/v1/me/change-password', '/api/files/token?path=/api/questions/v1/me'];
+      for (let index: number = 0; index < blocked.length; index++) {
+        request.url = PRODUCTION_API_ORIGIN + blocked[index];
+        expect(await rejectedCode(transport.send(request))).assertEqual('PRODUCTION_READ_ONLY');
+      }
+      request.method = 'PATCH';
+      request.url = PRODUCTION_API_ORIGIN + '/api/questions/v1/me';
+      expect(await rejectedCode(transport.send(request))).assertEqual('PRODUCTION_READ_ONLY');
+      request.method = 'GET';
+      request.url = PRODUCTION_API_ORIGIN + '.example/api/questions/v1/me';
+      expect(await rejectedCode(transport.send(request))).assertEqual('CONFIG_ERROR');
+      expect(stub.requests.length).assertEqual(0);
+    });
+
+    it('productionWriteCandidateSendsOriginalAuthenticatedCommandsOnlyToTheProductionOrigin', 0, async () => {
+      const stub: StubTransport = new StubTransport();
+      const transport: ProductionTransport = new ProductionTransport(stub, false);
+      const request: TransportRequest = new TransportRequest();
+      request.url = PRODUCTION_API_ORIGIN + '/api/questions/v1/assignments/assignment-test/answers';
+      request.method = 'POST';
+      request.body = '{"requestId":"test-only"}';
+      request.token = 'test-only-token';
+      stub.reply(200, '{}');
+      expect((await transport.send(request)).status).assertEqual(200);
+      expect(stub.requests.length).assertEqual(1);
+      expect(stub.requests[0].body).assertEqual('{"requestId":"test-only"}');
+      expect(stub.requests[0].token).assertEqual('test-only-token');
+      const otherOrigin: TransportRequest = new TransportRequest();
+      otherOrigin.url = PRODUCTION_API_ORIGIN + '@other.example/api/questions/v1/assignments/test/start';
+      otherOrigin.method = 'POST';
+      expect(await rejectedCode(transport.send(otherOrigin))).assertEqual('CONFIG_ERROR');
+      const otherMethod: TransportRequest = new TransportRequest();
+      otherMethod.url = PRODUCTION_API_ORIGIN + '/api/questions/v1/assignments/test';
+      otherMethod.method = 'DELETE';
+      expect(await rejectedCode(transport.send(otherMethod))).assertEqual('CONFIG_ERROR');
+      expect(stub.requests.length).assertEqual(1);
+    });
+
     it('sessionRestoreRetriesNetworkFailureWithoutExposingPrivateStateOrBypassingPasswordGate', 0, async () => {
       const transport: StubTransport = new StubTransport();
       const store: TestCredentialStore = new TestCredentialStore(new SavedSession('saved-token', 'playeralice'));

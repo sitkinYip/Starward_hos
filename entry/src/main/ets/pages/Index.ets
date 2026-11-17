@@ -1,4 +1,4 @@
-import { common, ConfigurationConstant } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
 import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
 import { GameplayPage } from '../features/GameplayPage';
@@ -21,6 +21,8 @@ import { ProfilePage } from '../features/ProfilePage';
 import { AvatarEditor, AvatarSelection } from '../platform/AvatarEditor';
 import { assignmentKind, assignmentState } from '../business/assignmentState';
 import { AppLifecycle } from '../platform/AppLifecycle';
+import { AppEnvironment } from '../platform/AppEnvironment';
+import { AppTheme, ThemePreference, ThemeSelection } from '../platform/AppTheme';
 import { LaunchRoutes } from '../platform/LaunchRoutes';
 import { LabeledInput } from '../ui/LabeledInput';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
@@ -140,7 +142,7 @@ struct Index {
   @Local avatarSelection: AvatarSelection | null = null;
   @Local showAvatarCrop: boolean = false;
   @Local avatarPicking: boolean = false;
-  @Local theme: number = 0;
+  @Local theme: ThemePreference = AppTheme.preference;
   @Local themeError: string = '';
   @Local displayFont: string = 'serif';
   @Local authAtlasWidth: number = 350;
@@ -575,20 +577,19 @@ struct Index {
     this.cancelAvatarCrop();
   }
 
-  private setTheme(mode: number): void {
-    const modes: ConfigurationConstant.ColorMode[] = [
-      ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET,
-      ConfigurationConstant.ColorMode.COLOR_MODE_DARK,
-      ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT
-    ];
-    try {
-      const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-      context.getApplicationContext().setColorMode(modes[mode]);
-      this.theme = mode;
-      this.themeError = '';
-    } catch (error) {
+  private setTheme(mode: ThemePreference): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context === undefined) {
       this.themeError = '主题切换失败，请重试。';
+      return;
     }
+    const result = AppTheme.select(context, mode);
+    if (result === ThemeSelection.ApplyFailed) {
+      this.themeError = '主题切换失败，请重试。';
+      return;
+    }
+    this.theme = AppTheme.preference;
+    this.themeError = result === ThemeSelection.SaveFailed ? '主题已切换，保存失败，请重试。' : '';
   }
 
   private count(history: boolean): number {
@@ -679,7 +680,7 @@ struct Index {
   }
 
   @Builder
-  themeChoice(mode: number, label: string, source: Resource, id: string) {
+  themeChoice(mode: ThemePreference, label: string, source: Resource, id: string) {
     Button({ type: ButtonType.Normal }) {
       Image(source).width(17).height(17)
         .fillColor(this.theme === mode ? $r('app.color.accent_text') : $r('app.color.subtle'))
@@ -692,9 +693,9 @@ struct Index {
   @Builder
   themePicker() {
     Row({ space: 2 }) {
-      this.themeChoice(0, '跟随系统', $r('app.media.icon_desktop'), 'theme-system')
-      this.themeChoice(2, '浅色', $r('app.media.icon_sun'), 'theme-light')
-      this.themeChoice(1, '深色', $r('app.media.icon_moon'), 'theme-dark')
+      this.themeChoice(ThemePreference.System, '跟随系统', $r('app.media.icon_desktop'), 'theme-system')
+      this.themeChoice(ThemePreference.Light, '浅色', $r('app.media.icon_sun'), 'theme-light')
+      this.themeChoice(ThemePreference.Dark, '深色', $r('app.media.icon_moon'), 'theme-dark')
     }.id('theme-picker').padding(3).border({ width: 1, color: $r('app.color.border'), radius: 10 })
       .accessibilityText('主题')
   }
@@ -728,6 +729,15 @@ struct Index {
     this.showAccount = true;
   }
 
+  private environmentLabel(): string {
+    if (this.vm.mode === 'mock') { return '演示环境'; }
+    if (this.vm.mode !== 'https') { return '环境配置无效'; }
+    if (AppEnvironment.production) {
+      return AppEnvironment.productionReadOnly ? '生产联调 · 只读' : '生产测试候选';
+    }
+    return '隔离测试环境';
+  }
+
   @Builder
   header(auth: boolean) {
     Row() {
@@ -738,7 +748,7 @@ struct Index {
       } else {
         this.avatar()
       }
-      Text(this.vm.mode === 'https' ? '隔离测试环境' : this.vm.mode === 'mock' ? '演示环境' : '环境配置无效').id('environment-badge')
+      Text(this.environmentLabel()).id('environment-badge')
         .fontSize(8).lineHeight('10fp').fontColor($r('app.color.subtle')).position({ x: 0, y: 71 })
     }.width('100%').height(84)
       .border({ width: { bottom: auth ? 0 : 1 }, color: $r('app.color.border') })
@@ -879,7 +889,7 @@ struct Index {
               .margin({ bottom: 16 })
           }
         } else {
-          Text(this.vm.mode === 'https' ? '隔离测试环境' : '环境配置无效')
+          Text(this.environmentLabel())
             .fontSize(10).fontColor($r('app.color.subtle')).margin({ bottom: 16 })
         }
       }.width('100%').constraintSize({ maxWidth: 440 }).padding({ left: 20, right: 20 })
@@ -1567,7 +1577,7 @@ struct Index {
         Text('旅途光线').fontSize(12).fontColor($r('app.color.muted'))
         this.themePicker()
         InlineError({ message: this.themeError, fieldId: 'theme-error-message' })
-        Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.vm.mode === 'https' ? '隔离测试环境' : '环境配置无效')
+        Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.environmentLabel())
           .fontSize(11).fontColor($r('app.color.subtle'))
         Button('退出登录', { type: ButtonType.Normal }).id('logout').width('100%').height(44)
           .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent).onClick(() => this.logout())

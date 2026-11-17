@@ -48,7 +48,14 @@ PY
     devecocli build --product default --modules entry --build-mode debug
     ;;
   run)
-    devecocli run --module entry --product default --build-mode debug
+    STARWARD_RUN_ARGS=(--module entry --product default --build-mode debug)
+    if [[ "$#" -eq 2 && "${2-}" == --skip-build ]]; then
+      STARWARD_RUN_ARGS+=(--skip-build)
+    elif [[ "$#" -ne 1 ]]; then
+      echo 'Usage: scripts/hm.sh run [--skip-build]' >&2
+      exit 2
+    fi
+    devecocli run "${STARWARD_RUN_ARGS[@]}"
     ;;
   lint)
     mkdir -p -- "$STARWARD_VALIDATION_DIR"
@@ -67,7 +74,7 @@ PY
     python3 scripts/verify-test-result.py "$STARWARD_RESULT" "$STARWARD_VALIDATION_DIR/local-test-summary.json"
     ;;
   *)
-    echo 'Usage: scripts/hm.sh {doctor|install|build|run|lint|test [SuiteName#methodName]}'
+    echo 'Usage: scripts/hm.sh {doctor|install|build|run [--skip-build]|lint|test [SuiteName#methodName]}'
     if [[ "${1:-help}" != help ]]; then exit 2; fi
     ;;
 esac

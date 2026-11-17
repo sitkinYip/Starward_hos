@@ -356,6 +356,18 @@
 
 详情底部的避让间距属于滚动内容。ArkUI Sheet 的主题底色连续绘制到系统手势区。双向绑定保留独立的弹层可见状态，按关闭按钮时先让系统收起弹层和遮罩，退场完成后清理选中的奖品。点遮罩、系统返回和下滑由 Sheet 处理。权限失效及时停止媒体并清除私密内容。[ArkUI 半模态转场](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition) · [安全区](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-expand-safe-area)
 
+## ADR-028：生产 HTTPS 的只读联调包
+
+生产联调包沿用当前开发身份和官方调试签名。构建时显式选择独立的 `production-smoke.json` 标记，固定使用正式 Web 已部署的 `https://api.sitkin.top`。应用拒绝混有隔离配置或额外 CA 的生产标记，使用系统证书和主机名校验。运行时的外部路由、测试代理和资源 URL 无法改写游戏 API origin。构建助手先归档验证过的 HAP，再以同一份签名产物安装，固定预览资源原样恢复。
+
+会话仍用原生关键资产存储，生产 origin 与隔离 origin/CA 各有别名。只读联调包仅发送 GET、密码登录和受保护文件临时令牌申请。联调诊断记录无凭据 `/me`、操作类型和 HTTP 状态，授权图片另记解码成功。只读候选的生产写入及正式签名另有验收范围。[逐状态验收](feature-acceptance-matrix.md#p01-公网生产-https-登录与只读联调)
+
+生产写入验收通过显式的 `production-write` 打包标记选择。该候选延用固定生产 origin、系统校验和同源约束，允许 Repository 正常发送业务 GET、POST、PATCH，沿用当前账号代次和请求 ID。调试诊断只记录操作类别和状态，账户、场次 ID、答案和凭据不入日志。构建脚本默认仍选生产只读，对两种签名包分别检查资源及模式。发行签名和正式应用身份另行核定。[生产写入验收](feature-acceptance-matrix.md#p02-首版生产候选与真实答题闭环)
+
+## ADR-029：本机主题偏好
+
+`platform/AppTheme` 通过 ArkData Preferences 保存 `system`、`light` 或 `dark`，单个轻量值在用户点选时同步落盘。偏好属于当前 App 安装，登录前和侧栏共用。启动时从首选项初始化选中态，在主窗口页面加载成功后调用 `ApplicationContext.setColorMode`，已有窗口配置监听继续更新沉浸系统栏。缺少有效偏好时跟随系统。[系统配色 API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-inner-application-applicationcontext/) · [用户首选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-data-preferences/) · [逐状态验收](feature-acceptance-matrix.md#u01-日夜主题冷启恢复)
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

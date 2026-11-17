@@ -18,6 +18,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { AppEnvironment } from '../platform/AppEnvironment';
+import { AppTheme } from '../platform/AppTheme';
 import { pruneAbandonedClueVideos } from '../platform/ClueVideoFile';
 import { reportWindowMetrics } from '../platform/WindowMetrics';
 import { LaunchRoutes } from '../platform/LaunchRoutes';
@@ -33,7 +34,7 @@ export default class EntryAbility extends UIAbility {
   private immersiveWindow: ImmersiveWindow = new ImmersiveWindow();
 
   private keepIntegrationScreenOn(visible: boolean): void {
-    if (this.integrationWindow !== null && AppEnvironment.endpoint.length > 0) {
+    if (this.integrationWindow !== null && AppEnvironment.isolated) {
       try {
         this.integrationWindow.setWindowKeepScreenOn(visible).catch(() => {
           hilog.warn(DOMAIN, 'StarwardTestWindow', 'Test window screen-on request was not applied');
@@ -46,6 +47,7 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     AppEnvironment.load(this.context.resourceManager);
+    AppTheme.load(this.context);
     pruneAbandonedClueVideos(this.context.cacheDir);
     LaunchRoutes.receive(want.uri || '');
     runTlsProbe();
@@ -53,9 +55,8 @@ export default class EntryAbility extends UIAbility {
       if (AppEnvironment.fontScale > 0) {
         this.context.getApplicationContext().setFontSizeScale(AppEnvironment.fontScale);
       }
-      this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     } catch (err) {
-      hilog.error(DOMAIN, 'testTag', 'Failed to set colorMode. Cause: %{public}s', JSON.stringify(err));
+      hilog.warn(DOMAIN, 'testTag', 'Failed to set the integration font scale');
     }
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -97,6 +98,7 @@ export default class EntryAbility extends UIAbility {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content');
         return;
       }
+      AppTheme.restore(this.context);
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content');
       reportWindowMetrics(windowStage, this.context.config.fontSizeScale || 1, this.context.config.colorMode);
     });

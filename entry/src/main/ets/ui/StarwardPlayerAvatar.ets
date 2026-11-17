@@ -1,5 +1,7 @@
 import { image } from '@kit.ImageKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AvatarImage } from '../business/models';
+import { AppEnvironment } from '../platform/AppEnvironment';
 import { decodeAvatarImage, releaseAvatarPixelMap } from '../platform/AvatarEditor';
 
 /** No URL or credentials reach this view; failed decoding returns the traveller initial. */
@@ -40,6 +42,10 @@ export struct StarwardPlayerAvatar {
         return;
       }
       this.pixels = pixels;
+      if (AppEnvironment.production) {
+        const tag: string = AppEnvironment.productionReadOnly ? 'StarwardProdRead' : 'StarwardProdApi';
+        hilog.info(0x0000, tag, 'operation=avatar-decode success=true');
+      }
     } catch {
       if (this.active && generation === this.generation && this.avatar === requested) {
         this.pixels = undefined;

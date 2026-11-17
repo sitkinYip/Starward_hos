@@ -1,10 +1,15 @@
 import { resourceManager } from '@kit.LocalizationKit';
 import { util } from '@kit.ArkTS';
 
-// Only a packaged, local test resource can select an HTTPS repository.
+export const PRODUCTION_API_ORIGIN: string = 'https://api.sitkin.top';
+
+// Only a packaged configuration can select an HTTPS repository.
 // Launch URLs/Want parameters cannot change where credentials are sent.
 export class AppEnvironment {
   static endpoint: string = '';
+  static isolated: boolean = false;
+  static production: boolean = false;
+  static productionReadOnly: boolean = false;
   static configurationError: string = '';
   static caData: string = '';
   static timeoutMs: number = 15000;
@@ -13,13 +18,34 @@ export class AppEnvironment {
 
   static load(manager: resourceManager.ResourceManager): void {
     AppEnvironment.endpoint = '';
+    AppEnvironment.isolated = false;
+    AppEnvironment.production = false;
+    AppEnvironment.productionReadOnly = false;
     AppEnvironment.configurationError = '';
     AppEnvironment.caData = '';
     AppEnvironment.timeoutMs = 15000;
     AppEnvironment.probeTls = false;
     AppEnvironment.fontScale = 0;
+    let productionMarker: boolean = false;
     try {
-      if (!manager.getRawFileListSync('').includes('integration.json')) {
+      const files: string[] = manager.getRawFileListSync('');
+      productionMarker = files.includes('production-smoke.json');
+      const integration: boolean = files.includes('integration.json');
+      if (productionMarker) {
+        const bytes: Uint8Array = manager.getRawFileContentSync('production-smoke.json');
+        const text: string = util.TextDecoder.create('utf-8', { fatal: true }).decodeToString(bytes);
+        const configuration: Record<string, Object> = JSON.parse(text) as Record<string, Object>;
+        const mode: Object = configuration['mode'];
+        if (integration || files.includes('integration-ca.pem') || Object.keys(configuration).length !== 1 ||
+          (mode !== 'production-readonly' && mode !== 'production-write')) {
+          throw new Error('Invalid production smoke configuration');
+        }
+        AppEnvironment.production = true;
+        AppEnvironment.productionReadOnly = mode === 'production-readonly';
+        AppEnvironment.endpoint = PRODUCTION_API_ORIGIN;
+        return;
+      }
+      if (!integration) {
         return;
       }
       const bytes: Uint8Array = manager.getRawFileContentSync('integration.json');
@@ -48,8 +74,10 @@ export class AppEnvironment {
         AppEnvironment.fontScale = scale as number;
       }
       AppEnvironment.endpoint = endpoint as string;
+      AppEnvironment.isolated = true;
     } catch (error) {
-      AppEnvironment.configurationError = '隔离测试环境配置无效，请重新准备测试构建。';
+      AppEnvironment.configurationError = productionMarker ? '生产联调配置无效，请重新安装联调包。' :
+        '隔离测试环境配置无效，请重新准备测试构建。';
     }
   }
 }

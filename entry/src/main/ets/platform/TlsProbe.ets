@@ -2,6 +2,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { GameFailure } from '../business/models';
 import { AppEnvironment } from './AppEnvironment';
 import { NativeHttpTransport, TransportRequest, TransportResponse } from './HttpTransport';
+import { ProductionTransport } from './ProductionTransport';
 
 class TlsProbeResult {
   customCaAccepted: boolean = false;
@@ -12,6 +13,16 @@ class TlsProbeResult {
 }
 
 export async function runTlsProbe(): Promise<void> {
+  if (AppEnvironment.productionReadOnly) {
+    const request: TransportRequest = new TransportRequest();
+    request.url = AppEnvironment.endpoint + '/api/questions/v1/me';
+    try {
+      await new ProductionTransport(new NativeHttpTransport(), true).send(request);
+    } catch {
+      // Production smoke transport records just the request category and network error code.
+    }
+    return;
+  }
   if (!AppEnvironment.probeTls || AppEnvironment.caData.length === 0) {
     return;
   }

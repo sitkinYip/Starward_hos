@@ -1,0 +1,25 @@
+{
+  "authoritativeSettlementCountVerified": false,
+  "candidateHapSha256": "a535520b0fd43dc3d2bdc198512034c1e0d6bc22f4060aef2625f5af0b1e21c8",
+  "deploymentReceiptAcknowledged": true,
+  "homeVisible": true,
+  "inputScope": "Official device inspection; gameplay manually operated",
+  "loginFormVisible": false,
+  "passwordLogin200Observed": false,
+  "phase": "ready",
+  "productionOperationResponses": [
+    {
+      "count": 12,
+      "httpStatus": 200,
+      "operation": "assignments",
+      "transportFailure": false
+    },
+    {
+      "count": 12,
+      "httpStatus": 200,
+      "operation": "player",
+      "transportFailure": false
+    }
+  ],
+  "status": "observation_completed"
+}

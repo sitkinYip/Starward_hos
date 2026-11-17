@@ -1,0 +1,296 @@
+{
+  "status": "passed",
+  "signedIsolatedHapSha256": "0632bca63b0d776fda749b0e319733c8c0e8a712caff050e92f2c42e3928e271",
+  "observedSystemColorMode": "light",
+  "initialPicker": {
+    "selectedMode": "system",
+    "selectionFlags": {
+      "system": "true",
+      "light": "false",
+      "dark": "false"
+    },
+    "buttonBackgroundSamplesRGB": {
+      "system": [
+        216,
+        228,
+        225
+      ],
+      "light": [
+        237,
+        240,
+        238
+      ],
+      "dark": [
+        237,
+        239,
+        239
+      ]
+    },
+    "screenshotSha256": "df0342e4a1c5884dce5f744227c039833fd1af5967896f3fefe0321aa9268707"
+  },
+  "checks": [
+    {
+      "requested": "dark",
+      "before": {
+        "effectiveMode": "dark",
+        "systemBars": {
+          "statusBarColor": "#00000000",
+          "navigationBarColor": "#00000000",
+          "statusBarContentColor": "#FFFFFFFF",
+          "navigationBarContentColor": "#FFFFFFFF"
+        },
+        "canvasRGB": [
+          16,
+          17,
+          15
+        ],
+        "screenshotSha256": "8b7a0ab712540e481a76bfc1a56b733f4430ec2d299ca14ae1ea5c4982381016",
+        "choice": {
+          "selectedMode": "dark",
+          "selectionFlags": {
+            "system": "false",
+            "light": "false",
+            "dark": "true"
+          },
+          "buttonBackgroundSamplesRGB": {
+            "system": [
+              22,
+              22,
+              21
+            ],
+            "light": [
+              23,
+              23,
+              21
+            ],
+            "dark": [
+              46,
+              42,
+              34
+            ]
+          },
+          "screenshotSha256": "76b5d09a9c0a423f7bdbbc93881c2ffab3855d5a81f980cedfea8522e17392ce"
+        },
+        "startedInNewProcess": false
+      },
+      "cold": {
+        "effectiveMode": "dark",
+        "systemBars": {
+          "statusBarColor": "#00000000",
+          "navigationBarColor": "#00000000",
+          "statusBarContentColor": "#FFFFFFFF",
+          "navigationBarContentColor": "#FFFFFFFF"
+        },
+        "canvasRGB": [
+          16,
+          17,
+          15
+        ],
+        "screenshotSha256": "7768e6594d0039ca69de260daf4065af99a6cd0610a265da2fbb8fda6ab1ced5",
+        "choice": {
+          "selectedMode": "dark",
+          "selectionFlags": {
+            "system": "false",
+            "light": "false",
+            "dark": "true"
+          },
+          "buttonBackgroundSamplesRGB": {
+            "system": [
+              22,
+              22,
+              21
+            ],
+            "light": [
+              23,
+              23,
+              21
+            ],
+            "dark": [
+              46,
+              42,
+              34
+            ]
+          },
+          "screenshotSha256": "8234d7e78c69e6093fe5ce75dee482a5e4842cb5d4cedd054fc31813d4dc4352"
+        },
+        "startedInNewProcess": true
+      }
+    },
+    {
+      "requested": "light",
+      "before": {
+        "effectiveMode": "light",
+        "systemBars": {
+          "statusBarColor": "#00000000",
+          "navigationBarColor": "#00000000",
+          "statusBarContentColor": "#FF000000",
+          "navigationBarContentColor": "#FF000000"
+        },
+        "canvasRGB": [
+          255,
+          255,
+          255
+        ],
+        "screenshotSha256": "c9ac59f257df6aff92110d42c4291ba001011fc955f6d05c27720041130ad7a2",
+        "choice": {
+          "selectedMode": "light",
+          "selectionFlags": {
+            "system": "false",
+            "light": "true",
+            "dark": "false"
+          },
+          "buttonBackgroundSamplesRGB": {
+            "system": [
+              238,
+              240,
+              239
+            ],
+            "light": [
+              215,
+              228,
+              224
+            ],
+            "dark": [
+              237,
+              239,
+              239
+            ]
+          },
+          "screenshotSha256": "0334672cefe5e8ef1fd3d4e331a74900aa591b909862fb299f2748d78d205eb0"
+        },
+        "startedInNewProcess": false
+      },
+      "cold": {
+        "effectiveMode": "light",
+        "systemBars": {
+          "statusBarColor": "#00000000",
+          "navigationBarColor": "#00000000",
+          "statusBarContentColor": "#FF000000",
+          "navigationBarContentColor": "#FF000000"
+        },
+        "canvasRGB": [
+          255,
+          255,
+          255
+        ],
+        "screenshotSha256": "3e935cb3ccb0ca564530307518eff899efa2fa5da6b836d1c35042f7ece379ac",
+        "choice": {
+          "selectedMode": "light",
+          "selectionFlags": {
+            "system": "false",
+            "light": "true",
+            "dark": "false"
+          },
+          "buttonBackgroundSamplesRGB": {
+            "system": [
+              238,
+              240,
+              239
+            ],
+            "light": [
+              215,
+              228,
+              224
+            ],
+            "dark": [
+              237,
+              239,
+              239
+            ]
+          },
+          "screenshotSha256": "042c8bb891d91e2ed46e10db426a14803f6f04667e9f6848ca7548e975ef3274"
+        },
+        "startedInNewProcess": true
+      }
+    },
+    {
+      "requested": "system",
+      "before": {
+        "effectiveMode": "light",
+        "systemBars": {
+          "statusBarColor": "#00000000",
+          "navigationBarColor": "#00000000",
+          "statusBarContentColor": "#FF000000",
+          "navigationBarContentColor": "#FF000000"
+        },
+        "canvasRGB": [
+          255,
+          255,
+          255
+        ],
+        "screenshotSha256": "1759633264f3350dbaeced6414c01228ec12b242c6de6ae8a7030813b6b782df",
+        "choice": {
+          "selectedMode": "system",
+          "selectionFlags": {
+            "system": "true",
+            "light": "false",
+            "dark": "false"
+          },
+          "buttonBackgroundSamplesRGB": {
+            "system": [
+              216,
+              228,
+              225
+            ],
+            "light": [
+              237,
+              240,
+              238
+            ],
+            "dark": [
+              237,
+              239,
+              239
+            ]
+          },
+          "screenshotSha256": "8a0833ad47c395e17a580adf6979c4c1a926b8092a4bfda4960ccca2fa3359ed"
+        },
+        "startedInNewProcess": false
+      },
+      "cold": {
+        "effectiveMode": "light",
+        "systemBars": {
+          "statusBarColor": "#00000000",
+          "navigationBarColor": "#00000000",
+          "statusBarContentColor": "#FF000000",
+          "navigationBarContentColor": "#FF000000"
+        },
+        "canvasRGB": [
+          255,
+          255,
+          255
+        ],
+        "screenshotSha256": "4963326a9476ddfee3cf1aff75179152210dc4a4e16fad64e22d463ef71e83fe",
+        "choice": {
+          "selectedMode": "system",
+          "selectionFlags": {
+            "system": "true",
+            "light": "false",
+            "dark": "false"
+          },
+          "buttonBackgroundSamplesRGB": {
+            "system": [
+              216,
+              228,
+              225
+            ],
+            "light": [
+              237,
+              240,
+              238
+            ],
+            "dark": [
+              237,
+              239,
+              239
+            ]
+          },
+          "screenshotSha256": "8e78437ccbad2912d956d7684632b10dbed9b035d99ae50c691790b6186ebc62"
+        },
+        "startedInNewProcess": true
+      }
+    }
+  ],
+  "originalFollowSystemRestored": true,
+  "fixedPreviewSessionStillOnHome": true
+}

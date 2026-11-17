@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "phase": "prelogin",
+  "checks": {
+    "productionBadge": true,
+    "loginFormVisible": true,
+    "anonymousPocketBaseResponse": true
+  },
+  "candidateHapSha256": "db136ad8f1a09c8503cb9e9ca3df4c802624b8d4bdfd6449e692af9cf7785c04",
+  "networkOperatorLabel": "wifi",
+  "productionReadEvents": [
+    {
+      "operation": "preflight",
+      "status": 401,
+      "count": 1
+    }
+  ]
+}
