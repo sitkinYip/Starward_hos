@@ -31,9 +31,7 @@ export struct StarwardBottomTabs {
     this.tabBarModifier.visibility(this.hideBar ? Visibility.None : Visibility.Visible);
   }
 
-  private tabStyle(index: number, normalIcon: Resource, selectedIcon: Resource, label: string,
-    nodeId: string): BottomTabBarStyle {
-    const icon: Resource = this.selectedIndex === index ? selectedIcon : normalIcon;
+  private tabStyle(icon: Resource, label: string, nodeId: string): BottomTabBarStyle {
     return BottomTabBarStyle.of(icon, label).id(nodeId)
       .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted') })
       .iconStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted') });
@@ -43,20 +41,20 @@ export struct StarwardBottomTabs {
     HdsTabs({ barPosition: BarPosition.End, index: this.selectedIndex, barModifier: this.tabBarModifier }) {
       TabContent() {
         this.journeys()
-      }.tabBar(this.tabStyle(0, $r('app.media.icon_nav_compass_regular'),
-        $r('app.media.icon_nav_compass_fill'), '启程', 'nav-home'))
+      }.tabBar(this.tabStyle(this.selectedIndex === 0 ? $r('app.media.icon_nav_compass_fill') :
+        $r('app.media.icon_nav_compass_regular'), '启程', 'nav-home'))
       TabContent() {
         this.rewards()
-      }.tabBar(this.tabStyle(1, $r('app.media.icon_nav_sparkle_regular'),
-        $r('app.media.icon_nav_sparkle_fill'), '收藏', 'nav-rewards'))
+      }.tabBar(this.tabStyle(this.selectedIndex === 1 ? $r('app.media.icon_nav_sparkle_fill') :
+        $r('app.media.icon_nav_sparkle_regular'), '收藏', 'nav-rewards'))
       TabContent() {
         this.letters()
-      }.tabBar(this.tabStyle(2, $r('app.media.icon_nav_envelope_regular'),
-        $r('app.media.icon_nav_envelope_fill'), '来信', 'nav-notifications'))
+      }.tabBar(this.tabStyle(this.selectedIndex === 2 ? $r('app.media.icon_nav_envelope_fill') :
+        $r('app.media.icon_nav_envelope_regular'), '来信', 'nav-notifications'))
       TabContent() {
         this.passport()
-      }.tabBar(this.tabStyle(3, $r('app.media.icon_nav_passport_regular'),
-        $r('app.media.icon_nav_passport_fill'), '护照', 'nav-profile'))
+      }.tabBar(this.tabStyle(this.selectedIndex === 3 ? $r('app.media.icon_nav_passport_fill') :
+        $r('app.media.icon_nav_passport_regular'), '护照', 'nav-profile'))
     }.width('100%').height('100%').vertical(false).scrollable(false).barOverlap(true)
       .barFloatingStyle({
         barSideMargin: 20,
@@ -74,11 +72,16 @@ export struct StarwardBottomTabs {
           current, coming, String(allowed));
         return allowed;
       })
-      .onChange((index: number) => {
-        hilog.info(0x0000, 'StarwardNavigation', 'change index=%{public}d param=%{public}d', index, this.selectedIndex);
-        if (index !== this.selectedIndex && this.validIndex(index) && !this.hideBar && this.canSelect(index)) {
+      .onSelected((index: number) => {
+        // The native selection is committed at the start of the transition.
+        // Animation completion can arrive after the next selection.
+        if (index !== this.selectedIndex && this.validIndex(index) && this.canSelect(index)) {
           this.selected(index);
         }
+        hilog.info(0x0000, 'StarwardNavigation', 'selected index=%{public}d param=%{public}d', index, this.selectedIndex);
+      })
+      .onChange((index: number) => {
+        hilog.info(0x0000, 'StarwardNavigation', 'change index=%{public}d param=%{public}d', index, this.selectedIndex);
       })
   }
 }

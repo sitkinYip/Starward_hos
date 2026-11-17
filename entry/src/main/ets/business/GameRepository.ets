@@ -8,6 +8,7 @@ import { GameReward } from './GameReward';
 export interface GameRepository {
   readonly mode: string;
   login(account: string, password: string): Promise<Player>;
+  restoreSession(cancellation?: ReadCancellation): Promise<Player | null>;
   me(cancellation?: ReadCancellation): Promise<Player>;
   changePassword(oldPassword: string, password: string, confirmation: string): Promise<Player>;
   updateProfile(displayName: string, avatar?: AvatarUpload | null): Promise<Player>;
@@ -21,5 +22,5 @@ export interface GameRepository {
   notifications(cancellation?: ReadCancellation): Promise<GameNotification[]>;
   readNotification(id: string): Promise<string>;
   answerAssignment(id: string, sessionLevelId: string, rawAnswer: string, requestId: string): Promise<GameplayAnswerResult>;
-  logout(): void;
+  logout(): Promise<void>;
 }

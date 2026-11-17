@@ -1,0 +1,158 @@
+{
+  "status": "passed-light-desktop-key-frames",
+  "candidateSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+  "runtimeSha256": "b230e66448c160735c636956f46d0ff0c7246b10490fb2e3d0fda1a06e765e41",
+  "theme": "system-light",
+  "actualLaunchMethod": "desktop-tap",
+  "launchSource": "Official UiTest click of the one exact-name app tile in the focused system desktops window, after target process termination",
+  "captureMethod": "Official snapshot_display PNG; snapshots only, no audio",
+  "windowMeaning": "Bounds of screenshot command invocation and completion relative to the device clock before the tap command; not exact exposure times",
+  "imageDimensionsPx": [
+    1260,
+    2720
+  ],
+  "packagedStartupAssets": {
+    "base": "42a3744731e47d7abc287564d79f8c829a77494d157426e9d249dec5070a6182",
+    "dark": "33e73c2ff3303ee3ac60de6ef0be2fc24c2d1a59efb9d4dfa4f90ae7821cd701"
+  },
+  "packagedStartupProfileSha256": "f214b3f0e96371d142afb510cab52a83832317d7116d5438bf88e941b28f2d3c",
+  "observed": "On the second verified desktop activation, sampled composition showed the light star atlas centered in the OS animated window with no app title or status copy, then the ArkUI session-restoring UI showed its title, copy and rotating outer ring. No old black square was present in the startup-window or restoring samples. The launcher icon itself remains unchanged.",
+  "checksInBothRuns": {
+    "officialLaunchAcknowledged": true,
+    "freshProcess": true,
+    "observedBackendHoldAndRestoringUi": true,
+    "protectedControlsAbsentDuringRestore": true,
+    "servedExactlyOneMeGet": true,
+    "noWritesAfterForceStop": true,
+    "originalSnapshotFrames": true,
+    "faultNeutralised": true,
+    "remoteScreenshotsRemoved": true
+  },
+  "verifiedFinalLogout": true,
+  "visualClassification": [
+    {
+      "sampleRun": "launch-desktop-light-02",
+      "initialSnapshotLeadMs": 80,
+      "privateReportSha256": "245e709eafdf36bb94d49b5e82e29a08fd6252b4e3a8e591602750c9a74e75dc",
+      "driverSha256": "e9120220ae8149504ac8e7e5eec2afb0f372509b2f3b150bca6441a0fa86d243",
+      "frames": [
+        {
+          "sample": 1,
+          "beforeLaunchMs": -73,
+          "afterLaunchMs": 777,
+          "sha256": "5a5c03dc1c6c88c5ba6d7b52de2c67aa5a1aec44ef9e51870297bbd4a9e13407",
+          "appearance": "desktop-before-tap"
+        },
+        {
+          "sample": 2,
+          "beforeLaunchMs": 802,
+          "afterLaunchMs": 1194,
+          "sha256": "c193eaa4cadfcb490a112f9dc5d6943982f44915923d5b0d0cedc5729a12b6ad",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 3,
+          "beforeLaunchMs": 1219,
+          "afterLaunchMs": 1614,
+          "sha256": "404447ad90a9781a1b30971603b281964eb45c2f8045acb88e17417afc5ce7e1",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 4,
+          "beforeLaunchMs": 1644,
+          "afterLaunchMs": 2039,
+          "sha256": "a0a1a36f9b4d760f65f05a190f1dc749df41038d5dfd652a66003ebbeb5014e7",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 5,
+          "beforeLaunchMs": 2065,
+          "afterLaunchMs": 2470,
+          "sha256": "291df131ef930ff53ddf725f5948a539047ddf021bd73ae9645c2ebd6fe2d22a",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 6,
+          "beforeLaunchMs": 2497,
+          "afterLaunchMs": 2908,
+          "sha256": "121f5610165a52747b6a532356be4ba8ef868e11a4ca2a837e3a305bfa47fa97",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 7,
+          "beforeLaunchMs": 2941,
+          "afterLaunchMs": 3342,
+          "sha256": "6061090902976be521d62c1baef633ebb6efe693df87abcd93febe3b32a236ea",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 8,
+          "beforeLaunchMs": 3369,
+          "afterLaunchMs": 3787,
+          "sha256": "ef3ac3fb52d2dfc628493cf2a2602905ff5b0e19f27828478a244681be60ce5a",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 9,
+          "beforeLaunchMs": 3811,
+          "afterLaunchMs": 4222,
+          "sha256": "305add112e1c4308a3315df9c9f6af12bf09bc50c91f9eaa684aa706a6aa289e",
+          "appearance": "arkui-session-restoring"
+        }
+      ],
+      "delayedResponseImageSha256": "c689f9ab314d770d2e39f51369e2ba10d89b551f868c10aa7f0769dc0f620ff8"
+    },
+    {
+      "sampleRun": "launch-desktop-light-03",
+      "initialSnapshotLeadMs": 700,
+      "privateReportSha256": "129c1f749b0bf5c2694a80b949b527f745fea27642e2cd306bd97db14776bea0",
+      "driverSha256": "e9120220ae8149504ac8e7e5eec2afb0f372509b2f3b150bca6441a0fa86d243",
+      "frames": [
+        {
+          "sample": 1,
+          "beforeLaunchMs": -702,
+          "afterLaunchMs": 315,
+          "sha256": "75d515e961878c3e72c8134108657b4e89fc9bafbe93d2e775ebecda7b1dc4dd",
+          "appearance": "desktop-before-tap"
+        },
+        {
+          "sample": 2,
+          "beforeLaunchMs": 342,
+          "afterLaunchMs": 873,
+          "sha256": "999912f982e39c003e4af10b5caa3ce7b1a882d9bd9c3c4b2b1b95ebc6f17149",
+          "appearance": "system-static-star-atlas"
+        },
+        {
+          "sample": 3,
+          "beforeLaunchMs": 896,
+          "afterLaunchMs": 1286,
+          "sha256": "59f1d9043d3f3a0c18c69b170f0304a7b3dd65a7b2c4a2fd2be617d8f8db296d",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 4,
+          "beforeLaunchMs": 1316,
+          "afterLaunchMs": 1714,
+          "sha256": "83d1162852ea321af4c313c3ef769aa2f0e6398ddbe3d38ea4f39bef92cebc6a",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 5,
+          "beforeLaunchMs": 1744,
+          "afterLaunchMs": 2148,
+          "sha256": "19094ba5ef390e65b19395e7bcea2246364b47b2c894d93235cdeff0dd55f905",
+          "appearance": "arkui-session-restoring"
+        },
+        {
+          "sample": 6,
+          "beforeLaunchMs": 2180,
+          "afterLaunchMs": 2589,
+          "sha256": "52b97e9452337e011ab1a8e23df8f974d32539c4d54a0c07ff1dd12e6918ea32",
+          "appearance": "arkui-session-restoring"
+        }
+      ],
+      "delayedResponseImageSha256": "f02537e6715a4e79a57e8195cd40773a1c879e338be9583f1a8c45a5a1130860"
+    }
+  ],
+  "scopeLimit": "Discrete samples do not establish that every intervening frame is flash-free. Night, reduced motion and unauthenticated desktop cold launch were not tested in this capture. Original images remain private."
+}

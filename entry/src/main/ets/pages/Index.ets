@@ -44,6 +44,7 @@ import { StarwardFinaleBackdrop } from '../ui/StarwardCombinationNotice';
 import { JOURNEY_LAUNCHER_SIZE, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
 import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
+import { StarwardSessionStatus } from '../ui/StarwardSessionStatus';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
 import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
@@ -121,6 +122,7 @@ struct AssignmentSynchronization {
 struct Index {
   @Env(WritableEnvKey.FONT_SCALE) fontScale: number;
   @Env(ReadonlyEnvKey.WINDOW_AVOID_AREA) avoidArea: window.UIEnvWindowAvoidAreaInfoVP;
+  @Env(ReadonlyEnvKey.WINDOW_SIZE) windowSize: window.SizeInVP;
   @Local vm: SliceViewModel = createSliceViewModel();
   @Local private atmosphere: AssignmentAtmosphereState = new AssignmentAtmosphereState();
   @Local account: string = '';
@@ -148,6 +150,7 @@ struct Index {
   @Local private gameplayTitleHidden: boolean = false;
   @Local private showFinaleBackdrop: boolean = false;
   @Local private foreground: boolean = true;
+  @Local private lobbyRouteTransitioning: boolean = false;
   @Local private gameplayDestinationShown: boolean = false;
   @Local private briefViewportWidth: number = 0;
   @Local private briefViewportHeight: number = 0;
@@ -163,6 +166,7 @@ struct Index {
   private timer: number = -1;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
+    this.lobbyVisibilityChanged();
     if (foreground) {
       this.startClock();
       if (this.vm.gate === 'home') {
@@ -220,10 +224,25 @@ struct Index {
     this.motion.start();
     AppLifecycle.subscribe(this.lifecycle);
     LaunchRoutes.subscribe(this.routeListener);
+    this.paths.setInterception({
+      willShow: () => {
+        this.lobbyRouteTransitioning = true;
+        this.lobbyVisibilityChanged();
+      },
+      didShow: () => {
+        this.lobbyRouteTransitioning = false;
+        this.lobbyVisibilityChanged();
+      }
+    });
+    this.foreground = AppLifecycle.isForeground();
+    this.lobbyVisibilityChanged();
     this.startClock();
+    void this.vm.restoreSession();
   }
 
   aboutToDisappear(): void {
+    this.paths.setInterception({});
+    this.vm.setLobbyPolling(false);
     this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.vm.narrative.close();
@@ -247,6 +266,16 @@ struct Index {
 
   private rewardsVisible(): boolean {
     return this.foreground && this.mainIndex === 1 && this.paths.size() === 0 && this.vm.narrative.route === null &&
+      this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
+  }
+
+  @Monitor('mainIndex', 'foreground', 'vm.gate', 'vm.securityUnconfirmed')
+  lobbyVisibilityChanged(): void {
+    this.vm.setLobbyPolling(this.lobbyVisible());
+  }
+
+  private lobbyVisible(): boolean {
+    return this.foreground && this.mainIndex === 0 && !this.lobbyRouteTransitioning && this.paths.size() === 0 &&
       this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
   }
 
@@ -299,6 +328,7 @@ struct Index {
       this.avoidArea.keyboard.topRect.height, this.avoidArea.keyboard.leftRect.height, this.avoidArea.keyboard.rightRect.height);
     hilog.info(0x0000, 'StarwardBack', 'keyboard=%{public}s height=%{public}d main=%{public}d depth=%{public}d',
       this.avoidArea.keyboard.visible.toString(), Math.round(keyboardHeight), this.mainIndex, this.paths.size());
+    if (this.vm.gate === 'signout') { return true; }
     if (this.avoidArea.keyboard.visible && keyboardHeight > 0) {
       StarwardKeyboard.dismiss(this.getUIContext());
       return true;
@@ -403,6 +433,7 @@ struct Index {
         this.vm.journey.suspend();
       }
       this.mainIndex = index;
+      this.lobbyVisibilityChanged();
       if (index === 2 && this.foreground) {
         this.vm.starLetters.refresh();
         this.vm.journey.refresh();
@@ -625,6 +656,7 @@ struct Index {
     this.vm.narrative.close();
     this.vm.play.leave();
     this.paths.pushPath({ name: 'assignment', param: ++this.assignmentDestinationRevision });
+    this.lobbyVisibilityChanged();
     await this.vm.openAssignment(id);
   }
 
@@ -852,6 +884,20 @@ struct Index {
         }
       }.width('100%').constraintSize({ maxWidth: 440 }).padding({ left: 20, right: 20 })
     }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
+  }
+
+  @Builder
+  sessionStatus() {
+    StarwardSessionStatus({
+      restoring: this.vm.gate === 'restoring' || this.vm.gate === 'restore-error',
+      message: this.vm.gate === 'restore-error' || this.vm.gate === 'signout-error' ? this.vm.error : '',
+      displayFont: this.displayFont, viewport: Math.max(260, this.windowSize.height - this.safeTop() - 84),
+      safeBottom: this.safeBottom(), motionEnabled: this.foreground && !this.motion.reduced,
+      retry: () => {
+        if (this.vm.gate === 'restore-error') { void this.vm.restoreSession(); }
+        else if (this.vm.gate === 'signout-error') { this.logout(); }
+      }, useLogin: () => this.logout()
+    })
   }
 
   @Builder
@@ -1554,8 +1600,10 @@ struct Index {
     Navigation(this.paths) {
       if (this.vm.gate === 'home') {
         this.home()
-      } else {
+      } else if (this.vm.gate === 'login' || this.vm.gate === 'password') {
         this.authPage()
+      } else {
+        this.sessionStatus()
       }
     }.navDestination(this.destination)
       .mode(this.vm.gate === 'home' ? NavigationMode.Auto : NavigationMode.Stack)
@@ -1580,6 +1628,15 @@ struct Index {
         this.vm.play.syncEpisode !== this.vm.play.dismissedSyncEpisode) {
         Column() {
           StarwardSyncNotice({ reducedMotion: this.motion.reduced, dismiss: () => this.vm.play.dismissSyncNotice() })
+        }.width('100%').alignItems(HorizontalAlign.Center)
+          .position({ x: 0, y: this.safeTop() + 16 })
+          .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })
+          .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
+      }
+      if (this.lobbyVisible() && this.vm.showLobbySyncNotice) {
+        Column() {
+          StarwardSyncNotice({ nodePrefix: 'lobby-sync-notice', reducedMotion: this.motion.reduced,
+            dismiss: () => this.vm.dismissLobbySyncNotice() })
         }.width('100%').alignItems(HorizontalAlign.Center)
           .position({ x: 0, y: this.safeTop() + 16 })
           .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })

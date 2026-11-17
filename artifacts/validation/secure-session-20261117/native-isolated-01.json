@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "environment": "real isolated PocketBase over verified USB HTTPS",
+  "checks": [
+    "Fresh process has blank login and no credential request",
+    "First real login only opens the forced password gate",
+    "Fresh process shows only a pending screen while successful real /me is held",
+    "Original pending screenshot was captured before the server reply was released",
+    "Cold restore honours forced password and neither logs in nor mutates",
+    "Exactly one real forced password change succeeds",
+    "Cold restore with rotated token reaches the correct dedicated account",
+    "Transient /me failure keeps credentials and hides private UI without auto-login",
+    "Retry reads /me once with saved token and without password login",
+    "Cold restoration distinguishes a connection closed without an HTTP response",
+    "Retry after transport loss uses the same saved token without login",
+    "Logout persists through process death with no validation of the old token",
+    "Invalidated token is rejected by real backend without restoring private UI",
+    "Server rejection permanently discards prior local credentials",
+    "Choose manual login clears previous credentials even across a fresh process",
+    "A different isolated player restores only its own profile with no extra login",
+    "No background, repeated password change, or unrelated business writes"
+  ],
+  "observations": {
+    "privateScreenshots": {
+      "session-restoring": {
+        "file": "device-session-report-session-restoring.png",
+        "sha256": "f576505ba572946c423f02976be44a5e5f0b691e672846439d1b244dafa50e2a",
+        "scope": "Original full-size native screenshot"
+      },
+      "session-restore-error": {
+        "file": "device-session-report-session-restore-error.png",
+        "sha256": "067e5f639c64a247e75b73f4d7b99aa0a9522fe5895da6875b1a886e7b9b4c3f",
+        "scope": "Original full-size native screenshot"
+      }
+    },
+    "disconnectedRestore": {
+      "httpResponseReceived": false,
+      "explicitRetryReturnedHttp200": true,
+      "additionalPasswordLogin": false
+    },
+    "serverRejectionHttpStatus": 401,
+    "methodPathCounts": {
+      "manualAuthPosts": 4,
+      "forcedPasswordPosts": 1,
+      "unexpectedWrites": 0,
+      "totalMeGets": 17
+    }
+  },
+  "cleanup": {
+    "fixtureEnabled": true,
+    "faultNeutralised": true,
+    "loggedOut": true
+  },
+  "hapSha256": "2c787792019584db629fb1da7064dce32e56e87a9f4e24f0789608704586484f",
+  "runtimeSha256": "16b096502a36a80477d1c4ddc6e3ad9e51b6b9165477fedd348bd451b3a46b34",
+  "driverSha256": "d573510d69cc2719004edda8d0732abd39477e69defff5dcc3d6166e68c63bb9",
+  "error": null
+}

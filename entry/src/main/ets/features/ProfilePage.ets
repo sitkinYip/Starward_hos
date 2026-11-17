@@ -165,7 +165,7 @@ export struct ProfilePage {
           }.tabBar(SubTabBarStyle.of('账号安全').id('profile-security-tab')
             .indicator({ color: $r('app.color.accent'), height: 2 })
             .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'), font: { size: 15 } }))
-        }.width('100%').height('auto').barMode(BarMode.Fixed).barHeight(53).scrollable(false)
+        }.width('100%').height('auto').barMode(BarMode.Fixed).barHeight(53)
           .accessibilityText('护照设置').onChange((index: number) => {
             this.section = index;
           })

@@ -365,7 +365,7 @@ export struct StarLettersPage {
           .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'),
             font: { size: 15, weight: FontWeight.Medium, family: this.displayFont } }))
       }.width('100%').layoutWeight(1).barMode(BarMode.Scrollable).barHeight(54)
-        .divider({ strokeWidth: 1, color: $r('app.color.border') }).scrollable(false)
+        .divider({ strokeWidth: 1, color: $r('app.color.border') })
         .onChange((index: number) => { this.category = index; })
       StarwardJourneyNotificationDialog({ note: this.journey.current, playerId: this.playerId, active: this.active,
         displayFont: this.displayFont, reducedMotion: this.reducedMotion,

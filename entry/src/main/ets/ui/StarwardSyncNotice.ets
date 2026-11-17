@@ -6,6 +6,7 @@ const SWIPE_DISTANCE: number = 50;
 /** Non-modal sync feedback with an explicit close action and one display per outage. */
 @ComponentV2
 export struct StarwardSyncNotice {
+  @Param nodePrefix: string = 'gameplay-sync-notice';
   @Param reducedMotion: boolean = true;
   @Event dismiss: () => void = () => {};
   @Local private swipeY: number = 0;
@@ -37,18 +38,18 @@ export struct StarwardSyncNotice {
   build() {
     Row({ space: 8 }) {
       Column({ space: 3 }) {
-        Text('同步暂时中断').id('gameplay-sync-notice-title').width('100%')
+        Text('同步暂时中断').id(this.nodePrefix + '-title').width('100%')
           .fontSize(16).lineHeight('24fp').fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
-        Text('当前页面和输入仍保留，连接恢复后会自动同步。').id('gameplay-sync-notice-description')
+        Text('当前页面和输入仍保留，连接恢复后会自动同步。').id(this.nodePrefix + '-description')
           .width('100%').fontSize(13).lineHeight('19.5fp').fontColor($r('app.color.muted'))
       }.layoutWeight(1).alignItems(HorizontalAlign.Start)
       Button({ type: ButtonType.Normal }) {
         Image($r('app.media.icon_close')).width(16).height(16).fillColor($r('app.color.subtle'))
           .accessibilityLevel('no')
-      }.id('gameplay-sync-notice-dismiss').width(44).height(44).padding(0)
+      }.id(this.nodePrefix + '-dismiss').width(44).height(44).padding(0)
         .backgroundColor(Color.Transparent).borderRadius(0).focusOnTouch(false)
         .accessibilityText('关闭同步暂时中断').onClick(() => this.dismiss())
-    }.id('gameplay-sync-notice').width('100%').constraintSize({ maxWidth: 420 })
+    }.id(this.nodePrefix).width('100%').constraintSize({ maxWidth: 420 })
       .alignItems(VerticalAlign.Center).padding({ left: 16, right: 8, top: 10, bottom: 10 })
       .backgroundColor($r('app.color.raised')).border({ width: 1, color: $r('app.color.accent_border') })
       .shadow({ radius: 26, color: $r('app.color.choice_shadow'), offsetY: 10 })

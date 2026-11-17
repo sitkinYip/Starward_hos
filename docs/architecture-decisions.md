@@ -62,6 +62,8 @@
 
 **验证：** 强制改密无法绕过；登出时清空玩家、列表、详情、文件 token、导航和未来卡片摘要；延迟的旧请求不恢复任何状态。无专用测试玩家时不向生产执行写入。本机 `@ohos.security.asset.d.ts` 提供敏感数据生命周期 API，服务 `@since 11`；持久属性另有权限要求，未来按实际策略核验，不预先增加无用权限。
 
+2026-11-17 冷启动续登采用 `CredentialStore` 和系统 Asset Store Kit。每个打包 HTTPS 端点和受信 CA 组合有独立的资产别名，密文只含令牌和玩家 ID。资产只在设备解锁时可读，禁止跨设备同步，沿用系统默认卸载删除行为。登录、改密和退出按顺序保存、轮换或删除资产。冷启动先用原始授权头调用 `/me` 且确认账号 ID 一致，再进入主页或强制改密。临时故障保留凭据供重试，失效和身份不符清理凭据。退出立即清理内存及导航，系统资产删除成功后完成退出，失败时提供原位重试。模拟模式不创建持久会话。[安全续登验收](feature-acceptance-matrix.md#a10-冷启动安全续登) · [Asset Store Kit 接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-asset)
+
 ## ADR-007：缓存、文件 token 与失效
 
 **问题：** Web 有账号级查询缓存、5 秒刷新和受保护头像临时 token；原生后台不能照搬常驻轮询。
@@ -107,6 +109,8 @@
 **备选与代价：** 不共享页面单例，不复制 Web 5 秒后台轮询，不在 Push 载荷放私人领取信息或服务端凭据。首切片仅保留业务入口和平台适配边界；没有创建 FormExtensionAbility、开通 Push 或完成后端协议。
 
 **验证：** 后续分别验证卡片类型、刷新限制、隐私级别、离线快照、账号切换、冷启动深链、失效 token 和重复通知；正式应用身份及服务开通另行核验。官方依据：[卡片进程模型](https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/arkts-ui-widget-process)、[Push Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-kit-introduction)。
+
+2026-11-17 核对 API 26 Push Kit 和 PocketBase 现有业务接口。App 可向 Push Kit 申请设备令牌，自动业务通知仍需要服务端把设备令牌绑定到当前玩家，并在真实业务写入成功后向 Push Cloud 发送。现有后端的派发和来信写入只更新 PocketBase，尚无绑定、解绑或发送接口。用户授权本轮在无需服务端改造的情况下接入，因此本轮仅记录依赖。后续第一组可选事件为新场次派发、旅途来信或公告，按玩家的通知授权和实际访问权限发送，点开后统一回源。服务凭据留在服务端。[获取 Push Token](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-get-token) · [官方客户端和服务端接入顺序](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-gettingstart)
 
 ## ADR-011：可复现的原生 HTTPS 隔离联调
 

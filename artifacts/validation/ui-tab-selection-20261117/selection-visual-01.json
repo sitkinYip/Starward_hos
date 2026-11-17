@@ -1,0 +1,401 @@
+{
+  "status": "passed",
+  "signedHapSha256": "a0f5d7983e5cd54dd7e80b00c94ecd3ec1182c44a72263c9f4a35fb85fa75679",
+  "oldPreviewReproduction": {
+    "gesture": "official native swipe",
+    "speedPxPerSecond": 2800,
+    "from": "rewards",
+    "visiblePage": "letters",
+    "renderedSelectedLabel": "letters",
+    "renderedFilledGlyph": "rewards",
+    "nativeEvents": [
+      {
+        "kind": "will",
+        "current": 1,
+        "coming": 2,
+        "allowed": true
+      }
+    ],
+    "originalSha256": "836bd8de50e4bbbff3eae9e4be764bfedf3a82c7378cba2b7b6bc78884df3030",
+    "rootReviewedOriginalBar": true
+  },
+  "nativeGestureChecks": [
+    {
+      "source": "rewards",
+      "target": "letters",
+      "gesture": "swipe",
+      "speedPxPerSecond": 2800,
+      "passed": true,
+      "visiblePage": "letters",
+      "renderedFilledGlyphs": [
+        "letters"
+      ],
+      "originalSha256": "2cc430fd13508264b46ff378825663f743a6afd83f20b30c4d0b29972fa6fdad",
+      "events": [
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "selected",
+          "index": 2,
+          "param": 1
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 2
+        }
+      ]
+    },
+    {
+      "source": "letters",
+      "target": "rewards",
+      "gesture": "swipe",
+      "speedPxPerSecond": 2800,
+      "passed": true,
+      "visiblePage": "rewards",
+      "renderedFilledGlyphs": [
+        "rewards"
+      ],
+      "originalSha256": "2b52875d93eab2e38d05073ad73d80cac62257a9a145cb3cffcc25e89ae972f8",
+      "events": [
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "selected",
+          "index": 1,
+          "param": 2
+        },
+        {
+          "kind": "change",
+          "index": 1,
+          "param": 1
+        }
+      ]
+    },
+    {
+      "source": "rewards",
+      "target": "profile",
+      "gesture": "swipe",
+      "speedPxPerSecond": 4600,
+      "passed": true,
+      "visiblePage": "profile",
+      "renderedFilledGlyphs": [
+        "profile"
+      ],
+      "originalSha256": "6295fd2e31ba684ea2fba7b42f72723f26dd288baa7ab565f3d20522afa0994f",
+      "events": [
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "selected",
+          "index": 3,
+          "param": 1
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "param": 3
+        }
+      ]
+    },
+    {
+      "source": "profile",
+      "target": "home",
+      "gesture": "drag",
+      "speedPxPerSecond": 700,
+      "passed": true,
+      "visiblePage": "home",
+      "renderedFilledGlyphs": [
+        "home"
+      ],
+      "originalSha256": "8f8155aff0141612beacc80bbaced476008358de4ae69804afa91d8060e26b82",
+      "events": [
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "allowed": true
+        },
+        {
+          "kind": "selected",
+          "index": 0,
+          "param": 3
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "source": "home",
+      "target": "letters",
+      "gesture": "swipe",
+      "speedPxPerSecond": 1200,
+      "passed": true,
+      "visiblePage": "letters",
+      "renderedFilledGlyphs": [
+        "letters"
+      ],
+      "originalSha256": "88ceb90f38664c752e9c842759752a723f8c57fcf1155cd9331ce2237b03d41c",
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "selected",
+          "index": 2,
+          "param": 0
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 2
+        }
+      ]
+    },
+    {
+      "source": "letters",
+      "target": "rewards",
+      "gesture": "drag",
+      "speedPxPerSecond": 2300,
+      "passed": true,
+      "visiblePage": "rewards",
+      "renderedFilledGlyphs": [
+        "rewards"
+      ],
+      "originalSha256": "ffa4cad5fd92e18eebccb272d315ab451314ef5b18f89b6e743c2ae6d323c6f7",
+      "events": [
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "selected",
+          "index": 1,
+          "param": 2
+        },
+        {
+          "kind": "change",
+          "index": 1,
+          "param": 1
+        }
+      ]
+    }
+  ],
+  "iconCalibration": {
+    "home": {
+      "actualPage": "home",
+      "shotSha256": "822ad921cfced5a6d42921d5fca8551526ab5fbbb957a01049d0c8693143b1c8",
+      "iconBounds": {
+        "home": [
+          221,
+          2444,
+          299,
+          2522
+        ],
+        "rewards": [
+          468,
+          2444,
+          546,
+          2522
+        ],
+        "letters": [
+          715,
+          2444,
+          793,
+          2522
+        ],
+        "profile": [
+          962,
+          2444,
+          1040,
+          2522
+        ]
+      },
+      "closestOppositeShapeDistance": 0.5864
+    },
+    "rewards": {
+      "actualPage": "rewards",
+      "shotSha256": "43977c4a3afc4fad5c981bfe9adbfa97a54a56a2cfbc7ec6f0b71f1e642a014f",
+      "iconBounds": {
+        "home": [
+          221,
+          2444,
+          299,
+          2522
+        ],
+        "rewards": [
+          468,
+          2444,
+          546,
+          2522
+        ],
+        "letters": [
+          715,
+          2444,
+          793,
+          2522
+        ],
+        "profile": [
+          962,
+          2444,
+          1040,
+          2522
+        ]
+      },
+      "closestOppositeShapeDistance": 0.3078
+    },
+    "letters": {
+      "actualPage": "letters",
+      "shotSha256": "1d6274fc720d969d18fe1a8e10f713f85140fb7be5126fe77d4ea78d7704deb0",
+      "iconBounds": {
+        "home": [
+          221,
+          2444,
+          299,
+          2522
+        ],
+        "rewards": [
+          468,
+          2444,
+          546,
+          2522
+        ],
+        "letters": [
+          715,
+          2444,
+          793,
+          2522
+        ],
+        "profile": [
+          962,
+          2444,
+          1040,
+          2522
+        ]
+      },
+      "closestOppositeShapeDistance": 0.1955
+    },
+    "profile": {
+      "actualPage": "profile",
+      "shotSha256": "e36cb41d4d8509f1a1f7aced249755c0953fabaebc7045e69ac3976618443c69",
+      "iconBounds": {
+        "home": [
+          221,
+          2444,
+          299,
+          2522
+        ],
+        "rewards": [
+          468,
+          2444,
+          546,
+          2522
+        ],
+        "letters": [
+          715,
+          2444,
+          793,
+          2522
+        ],
+        "profile": [
+          962,
+          2444,
+          1040,
+          2522
+        ]
+      },
+      "closestOppositeShapeDistance": 0.5542
+    }
+  },
+  "scope": "Official inputs and same-device tap-reference raster comparison on fixed isolated HTTPS preview",
+  "initialCollectorIssue": "Combined gesture and immediate capture could not verify its output. Results count only the separate guarded UI-input and screenshot run.",
+  "backToBackReverse": {
+    "status": "passed",
+    "actualPage": "rewards",
+    "events": [
+      {
+        "kind": "will",
+        "current": 1,
+        "coming": 2,
+        "allowed": true
+      },
+      {
+        "kind": "selected",
+        "index": 2,
+        "param": 1
+      },
+      {
+        "kind": "change",
+        "index": 2,
+        "param": 2
+      },
+      {
+        "kind": "selected",
+        "index": 1,
+        "param": 2
+      },
+      {
+        "kind": "change",
+        "index": 1,
+        "param": 1
+      }
+    ],
+    "selectedSequence": [
+      2,
+      1
+    ],
+    "backToBackOnDevice": true,
+    "originalSha256": "1e0af3259f5c2c5cba9d0aafffb0a2c4b711afcf376a2413ea6264618e368727",
+    "rootReviewedFilledGlyph": "rewards"
+  },
+  "programmatic": {
+    "status": "passed",
+    "signedHapSha256": "a0f5d7983e5cd54dd7e80b00c94ecd3ec1182c44a72263c9f4a35fb85fa75679",
+    "checks": [
+      "Account menu drives the same HdsTabs collection and fetches its authoritative list",
+      "Day/night theme transitions both preserve the selected active collection",
+      "System Back and programmatic selected index are synchronized"
+    ],
+    "originals": [
+      {
+        "state": "light-selected-collection",
+        "file": "light-selected-collection.png",
+        "sha256": "cc0494ab52b6552aa9d9f580cd507d0104175bb3578cb8e72b300a05b3d8e521"
+      },
+      {
+        "state": "dark-selected-collection",
+        "file": "dark-selected-collection.png",
+        "sha256": "07f5a6c0a1fd9717f13f65249d6902a6ea2046f0916f7480855ade48229b949b"
+      },
+      {
+        "state": "straight-phone-preview-home",
+        "file": "straight-phone-preview-home.png",
+        "sha256": "0d3b76f915ab63c861221df30b0799cc9173bd3c1c700d03a4bf15e0b1f4d7ac"
+      }
+    ],
+    "writesPerformed": false,
+    "leftOnPreviewHome": true,
+    "rootReviewedDayAndNightFilledGlyph": "rewards"
+  },
+  "previewBusinessRecordsUnchanged": true
+}

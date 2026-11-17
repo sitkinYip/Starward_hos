@@ -6,6 +6,7 @@ import { GameReward } from '../business/GameReward';
 import { NarrativeContent } from '../business/NarrativeModels';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player } from '../business/models';
 import { AppEnvironment } from '../platform/AppEnvironment';
+import { AssetCredentialStore } from '../platform/AssetCredentialStore';
 import { NativeHttpTransport } from '../platform/HttpTransport';
 import { SliceViewModel } from './SliceViewModel';
 
@@ -18,6 +19,8 @@ class UnavailableRepository implements GameRepository {
   constructor(reason: string) {
     this.reason = reason;
   }
+
+  async restoreSession(): Promise<Player | null> { return null; }
 
   async login(account: string, password: string): Promise<Player> {
     throw new GameFailure('CONFIG_ERROR', this.reason);
@@ -76,7 +79,7 @@ class UnavailableRepository implements GameRepository {
     throw new GameFailure('CONFIG_ERROR', this.reason);
   }
 
-  logout(): void {
+  async logout(): Promise<void> {
     // This repository never holds a credential or private state.
   }
 }
@@ -91,6 +94,7 @@ export function createSliceViewModel(): SliceViewModel {
   const model: SliceViewModel = AppEnvironment.endpoint.length > 0 ?
     new SliceViewModel(new HttpsGameRepository(AppEnvironment.endpoint,
       new NativeHttpTransport(AppEnvironment.caData, AppEnvironment.timeoutMs),
-      AppEnvironment.probeTls)) : new SliceViewModel();
+      AppEnvironment.probeTls, new AssetCredentialStore(AppEnvironment.endpoint, AppEnvironment.caData))) :
+    new SliceViewModel();
   return model;
 }

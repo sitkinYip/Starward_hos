@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "signedHapSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+  "runtimeSha256": "b230e66448c160735c636956f46d0ff0c7246b10490fb2e3d0fda1a06e765e41",
+  "fixtureDriverSha256": "5b7c60c6e0f10098ce855f6180baa965f5fe582e2cd5488c65d9e0c64ea0e7cd",
+  "checks": [
+    "保持在已进入的场次，超过一轮五秒无启程列表读取",
+    "三轮共享同一真机测试登录，退出后隔离网关核对无额外业务写入"
+  ],
+  "observations": {
+    "postLoginWriteCountAcrossRuns": 0
+  },
+  "cleanup": {
+    "loggedOut": true,
+    "faultCleared": true,
+    "zeroPostLoginWritesAcrossRuns": true
+  },
+  "scope": "直板同一签名包：答题路由覆盖、退出、三轮真机登录台账核对",
+  "reusedBindingHelperSha256": "589088b70b87ac51caa7d3e7e48f99aa176d36fa5fe6569b43d2695718f91786"
+}

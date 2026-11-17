@@ -1,0 +1,29 @@
+{
+  "status": "incomplete",
+  "signedHapSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+  "runtimeSha256": "b230e66448c160735c636956f46d0ff0c7246b10490fb2e3d0fda1a06e765e41",
+  "driverSha256": "589088b70b87ac51caa7d3e7e48f99aa176d36fa5fe6569b43d2695718f91786",
+  "fixtureDriverSha256": "5b7c60c6e0f10098ce855f6180baa965f5fe582e2cd5488c65d9e0c64ea0e7cd",
+  "checks": [
+    "新增场次自动显示，已滚动的可见列表锚点偏移不超过 2 px",
+    "正式后台派发的新场次内容可以看到",
+    "正式后台推进一题后首页自动显示 1 / 2",
+    "仅在后台改动玩家经验后，启程使用 /me 的新等级解锁卡片文案",
+    "503 时保留启程分类数量及非模态同步提示"
+  ],
+  "observations": {
+    "scrolledAnchorDeltaPx": [
+      0
+    ],
+    "hostOnlyManualSettlements": 1,
+    "sameCycleReadGapMs": 8.0,
+    "outageScreenshotSha256": "bec7f94315ec56585ee5503d85930dffd5a2a2ac5f88f4f62177efcb2c57e5e9",
+    "daytimeOutageOriginalReviewed": true,
+    "officialUiAutomationFailurePhase": "短暂提示的通用控件查找后进入收尾；退出按钮位于自己的侧栏，但被通用视口遮挡保护拒绝。"
+  },
+  "cleanup": {
+    "faultCleared": true
+  },
+  "reason": "Expected test control is not reachable: logout",
+  "scope": "直板同一签名候选包：场次新增、列表滚动保持、远端进度、玩家等级及503反馈；首次驱动余项未通过"
+}

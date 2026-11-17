@@ -4,6 +4,7 @@ import contractTests from './Contract.test';
 import domainTests from './Domain.test';
 import repositoryTests from './Repository.test';
 import viewModelTests from './ViewModel.test';
+import lobbySyncViewModelTests from './LobbySyncViewModel.test';
 import profileViewModelTests from './ProfileViewModel.test';
 import gameplayDataTests from './GameplayData.test';
 import gameplayViewModelTests from './GameplayViewModel.test';
@@ -32,6 +33,7 @@ export default function testsuite(): void {
   contractTests();
   repositoryTests();
   viewModelTests();
+  lobbySyncViewModelTests();
   profileViewModelTests();
   gameplayDataTests();
   gameplayViewModelTests();

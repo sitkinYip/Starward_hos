@@ -1,8 +1,10 @@
 import { describe, expect, it } from '@ohos/hypium';
+import { CredentialStore, SavedSession } from '../main/ets/business/CredentialStore';
 import { AvatarImage, AvatarUpload, GameFailure, Player } from '../main/ets/business/models';
 import { ReadCancellation } from '../main/ets/business/ReadCancellation';
 import { HttpsGameRepository } from '../main/ets/data/HttpsGameRepository';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
+import { SliceViewModel } from '../main/ets/features/SliceViewModel';
 import { HttpTransport, TransportRequest, TransportResponse } from '../main/ets/platform/HttpTransport';
 import { ASSIGNMENT_JSON, PLAYER_JSON } from './Contract.test';
 
@@ -32,6 +34,17 @@ class StubTransport implements HttpTransport {
     this.pending = new Promise<TransportResponse>((resolve: (response: TransportResponse) => void) => {
       this.resolvePending = resolve;
     });
+  }
+
+  deferTextReply(): (status: number, body: string) => void {
+    this.deferNext();
+    const complete: (response: TransportResponse) => void = this.resolvePending;
+    return (status: number, body: string) => {
+      const response: TransportResponse = new TransportResponse();
+      response.status = status;
+      response.body = body;
+      complete(response);
+    };
   }
 
   complete(status: number, body: string): void {
@@ -65,6 +78,51 @@ class StubTransport implements HttpTransport {
     }
     return response;
   }
+}
+
+class TestCredentialStore implements CredentialStore {
+  saved: SavedSession | null;
+  failClear: boolean = false;
+  failSave: boolean = false;
+  private readonly deferSave: boolean;
+  private readonly saveStarted: Promise<void>;
+  private readonly saveFinished: Promise<void>;
+  private clearFinished: Promise<void> | null = null;
+  private announceSave: () => void = () => {};
+  private release: () => void = () => {};
+  private releaseDelete: () => void = () => {};
+
+  constructor(saved: SavedSession | null = null, deferSave: boolean = false) {
+    this.saved = saved;
+    this.deferSave = deferSave;
+    this.saveStarted = new Promise<void>((resolve: () => void) => { this.announceSave = resolve; });
+    this.saveFinished = new Promise<void>((resolve: () => void) => { this.release = resolve; });
+  }
+
+  async read(): Promise<SavedSession | null> { return this.saved; }
+
+  async save(session: SavedSession): Promise<void> {
+    this.announceSave();
+    if (this.deferSave) { await this.saveFinished; }
+    this.saved = session;
+    if (this.failSave) { throw new GameFailure('STORAGE_ERROR', 'Stored before failing'); }
+  }
+
+  async clear(): Promise<void> {
+    if (this.clearFinished !== null) { await this.clearFinished; }
+    if (this.failClear) { throw new GameFailure('SESSION_STORAGE_LOCKED', 'Test store locked'); }
+    this.saved = null;
+  }
+
+  deferClear(): void {
+    this.clearFinished = new Promise<void>((resolve: () => void) => { this.releaseDelete = resolve; });
+  }
+
+  releaseClear(): void { this.releaseDelete(); }
+
+  waitForSave(): Promise<void> { return this.saveStarted; }
+
+  releaseSave(): void { this.release(); }
 }
 
 async function rejectedCode<T>(task: Promise<T>): Promise<string> {
@@ -106,6 +164,174 @@ function queueAvatarLogin(transport: StubTransport): void {
 
 export default function repositoryTests(): void {
   describe('Repository', () => {
+    it('sessionRestoreRetriesNetworkFailureWithoutExposingPrivateStateOrBypassingPasswordGate', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore(new SavedSession('saved-token', 'playeralice'));
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      const vm: SliceViewModel = new SliceViewModel(repository);
+      transport.failure = new GameFailure('NETWORK_ERROR', 'connection dropped');
+      await vm.restoreSession();
+      expect(vm.gate).assertEqual('restore-error');
+      expect(vm.player.id).assertEqual('');
+      expect(vm.items.length).assertEqual(0);
+      expect(store.saved?.token).assertEqual('saved-token');
+      expect(await rejectedCode(repository.me())).assertEqual('UNAUTHORIZED');
+      transport.failure = null;
+      for (const status of [403, 404, 410]) {
+        transport.reply(status, '{}');
+        await vm.restoreSession();
+        expect(vm.gate).assertEqual('restore-error');
+        expect(store.saved?.token).assertEqual('saved-token');
+      }
+      transport.reply(200, PLAYER_JSON);
+      await vm.restoreSession();
+      expect(vm.gate).assertEqual('password');
+      expect(vm.player.id).assertEqual('playeralice');
+      expect(transport.requests.length).assertEqual(5);
+      expect(transport.requests[4].method).assertEqual('GET');
+      expect(transport.requests[4].url).assertEqual('https://isolated.example/api/questions/v1/me');
+      expect(transport.requests[4].token).assertEqual('saved-token');
+    });
+
+    it('sessionRestorePurgesExpiredOrWrongIdentityBeforeOpeningLogin', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore(new SavedSession('saved-token', 'other-player'));
+      const vm: SliceViewModel = new SliceViewModel(new HttpsGameRepository('https://isolated.example', transport,
+        false, store));
+      transport.reply(200, PLAYER_JSON);
+      await vm.restoreSession();
+      expect(store.saved === null).assertTrue();
+      expect(vm.gate).assertEqual('login');
+      expect(vm.player.id).assertEqual('');
+      store.saved = new SavedSession('expired-token', 'playeralice');
+      transport.reply(401, '{}');
+      await vm.restoreSession();
+      expect(store.saved === null).assertTrue();
+      expect(vm.gate).assertEqual('login');
+      expect(vm.player.id).assertEqual('');
+      store.saved = new SavedSession('disabled-token', 'playeralice');
+      transport.reply(403, '{"error":{"code":"ACCOUNT_DISABLED"}}');
+      await vm.restoreSession();
+      expect(store.saved === null).assertTrue();
+      expect(vm.gate).assertEqual('login');
+      store.saved = new SavedSession('deleted-token', 'playeralice');
+      transport.reply(404, '{"error":{"code":"NOT_FOUND"}}');
+      await vm.restoreSession();
+      expect(store.saved === null).assertTrue();
+      expect(vm.gate).assertEqual('login');
+      expect(transport.requests.length).assertEqual(4);
+    });
+
+    it('logoutInvalidatesInFlightCredentialSaveAndRetryWaitsForDurableClear', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore(null, true);
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      const vm: SliceViewModel = new SliceViewModel(repository);
+      queueLogin(transport);
+      const login: Promise<void> = vm.login('alice', 'test-password');
+      await store.waitForSave();
+      store.failClear = true;
+      vm.logout();
+      expect(vm.gate).assertEqual('signout');
+      expect(vm.player.id).assertEqual('');
+      expect(await rejectedCode(repository.me())).assertEqual('UNAUTHORIZED');
+      store.releaseSave();
+      await login;
+      await nextTurn();
+      expect(vm.gate).assertEqual('signout-error');
+      expect(vm.error).assertContain('解锁设备');
+      expect(store.saved?.token).assertEqual('test-token');
+      await vm.login('alice', 'test-password');
+      expect(transport.requests.length).assertEqual(2);
+      store.failClear = false;
+      vm.logout();
+      await nextTurn();
+      expect(vm.gate).assertEqual('login');
+      expect(store.saved === null).assertTrue();
+      const restarted: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      expect(await restarted.restoreSession() === null).assertTrue();
+      expect(transport.requests.length).assertEqual(2);
+    });
+
+    it('confirmedPasswordRotationReplacesSavedCredentialAndFailureClearsUncertainWrite', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore();
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      queueLogin(transport);
+      await repository.login('alice', 'test-password');
+      const player: string = PLAYER_JSON.replace('"mustChangePassword":true', '"mustChangePassword":false');
+      transport.reply(200, '{"token":"rotated-token","player":' + player + '}');
+      await repository.changePassword('test-password', 'NewStarward1234', 'NewStarward1234');
+      const coldTransport: StubTransport = new StubTransport();
+      const coldVm: SliceViewModel = new SliceViewModel(new HttpsGameRepository('https://isolated.example',
+        coldTransport, false, store));
+      coldTransport.reply(200, player);
+      coldTransport.reply(200, '{"items":[' + ASSIGNMENT_JSON + ']}');
+      await coldVm.restoreSession();
+      expect(coldVm.gate).assertEqual('home');
+      expect(coldVm.items.length).assertEqual(1);
+      expect(coldTransport.requests.length).assertEqual(2);
+      expect(coldTransport.requests[0].token).assertEqual('rotated-token');
+      expect(coldTransport.requests[1].token).assertEqual('rotated-token');
+      store.failSave = true;
+      coldTransport.reply(200, '{"token":"unsafely-saved-token","player":' + player + '}');
+      await coldVm.changeAccountPassword('NewStarward1234', 'NewStarward5678', 'NewStarward5678');
+      await nextTurn();
+      expect(coldVm.gate).assertEqual('login');
+      expect(coldVm.error).assertContain('密码已修改');
+      expect(coldVm.player.id).assertEqual('');
+      expect(store.saved === null).assertTrue();
+      expect(coldTransport.requests.length).assertEqual(3);
+    });
+
+    it('oldTokenUnauthorizedDuringPasswordPostCannotRevokeRotatedCredential', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore();
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      queueLogin(transport);
+      await repository.login('alice', 'test-password');
+      const failOldRead: (status: number, body: string) => void = transport.deferTextReply();
+      const oldRead: Promise<string> = rejectedCode(repository.me());
+      const completePassword: (status: number, body: string) => void = transport.deferTextReply();
+      const rotation: Promise<Player> = repository.changePassword('test-password', 'NewStarward1234', 'NewStarward1234');
+      expect(await rejectedCode(repository.me())).assertEqual('CANCELLED');
+      failOldRead(401, '{}');
+      expect(await oldRead).assertEqual('CANCELLED');
+      expect(store.saved?.token).assertEqual('test-token');
+      const player: string = PLAYER_JSON.replace('"mustChangePassword":true', '"mustChangePassword":false');
+      completePassword(200, '{"token":"rotated-token","player":' + player + '}');
+      expect((await rotation).mustChangePassword).assertFalse();
+      expect(store.saved?.token).assertEqual('rotated-token');
+      transport.reply(200, player);
+      expect((await repository.me()).id).assertEqual('playeralice');
+      expect(transport.requests.length).assertEqual(5);
+      expect(transport.requests[4].token).assertEqual('rotated-token');
+    });
+
+    it('currentUnauthorizedReachesCallerBeforeDurableDeletionFinishes', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore();
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      queueLogin(transport);
+      await repository.login('alice', 'test-password');
+      store.deferClear();
+      transport.reply(401, '{}');
+      const read: ReadCancellation = new ReadCancellation();
+      let result: string = '';
+      const response: Promise<void> = rejectedCode(repository.me(read)).then((code: string) => { result = code; });
+      try {
+        await nextTurn();
+        expect(result).assertEqual('UNAUTHORIZED');
+        expect(store.saved?.token).assertEqual('test-token');
+        read.cancel();
+      } finally {
+        store.releaseClear();
+      }
+      await response;
+      await repository.logout();
+      expect(store.saved === null).assertTrue();
+    });
+
     it('aCancelledPlayerReadCannotRevokeTheCurrentSession', 0, async () => {
       const transport: StubTransport = new StubTransport();
       const repository: HttpsGameRepository = new HttpsGameRepository('https://preview.example.test', transport);

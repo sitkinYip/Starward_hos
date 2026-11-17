@@ -32,7 +32,7 @@
 
 新预览使用 `scripts/preview-environment.mjs`，数据位于忽略的 `artifacts/private/profile-preview/`；一次性验收继续使用 `artifacts/private/https-isolation/`。两者没有共用数据库、状态、玩家或故障控制。预览不会暴露故障注入、测试重置、通用管理员或 PocketBase 管理端接口。底层 PB 管理端仅绑定本机回环，玩家 HTTPS 代理有明确接口白名单。
 
-固定玩家账号为`starward_preview`。密码首次生成后保存在本机  `artifacts/private/profile-preview/login.json`，文件权限为600，目录权限为700；密码、登录 token、签名和设备标识不进入受版本管理的代码或报告。该文件是用户要求的本机预览登录信息，应用自身仍然只在内存保存会话，不支持记住登录或重启自动恢复。
+固定玩家账号为`starward_preview`。密码首次生成后保存在本机 `artifacts/private/profile-preview/login.json`，文件权限为600，目录权限为700；密码、登录 token、签名和设备标识不进入受版本管理的代码或报告。此文件用于人工预览登录。App 通过独立系统资产保存当前有效令牌，重启后需要经预览 HTTPS 服务验证身份，详见[安全续登验收](slice-05-secure-session-validation.md)。
 
 首次start初始化必须通过正式管理员接口创建专用玩家，再通过真实玩家改密接口完成一次初始改密并确认 `mustChangePassword=false`。用户之后直接登录，不再经过强制改密页。初始化用管理员会在操作完成后停用并轮换为不保留的随机密码，审计和场次的必需 actor 关联保留；临时 superuser 优先按确切记录删除；PB0.40.1禁止删除唯一记录时，仅在认证与sole记录ID/email完全一致、容器归属复核后，使用官方superuser update将同一记录换成不保留的随机密码。不会为规避唯一记录限制创建额外superuser，相关口令和token不持久化。固定预览玩家不得用于自动故障注入或改密验收。
 

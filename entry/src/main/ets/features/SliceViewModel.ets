@@ -1,4 +1,5 @@
 import { GameRepository } from '../business/GameRepository';
+import { isRestoredSessionInvalid } from '../business/CredentialStore';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player,
   validateDisplayName, validatePasswordChange } from '../business/models';
 import { MockGameRepository } from '../data/MockGameRepository';
@@ -13,6 +14,19 @@ import { ReadCancellation } from '../business/ReadCancellation';
 
 const ASSIGNMENT_SYNC_INTERVAL_MS: number = 5000;
 
+/** A lobby cycle owns two independent requests, each with its own NetworkKit cancellation. */
+class LobbyRead {
+  readonly player: ReadCancellation = new ReadCancellation();
+  readonly assignments: ReadCancellation = new ReadCancellation();
+  readonly generation: number;
+  readonly profileRevision: number;
+
+  constructor(generation: number, profileRevision: number) {
+    this.generation = generation;
+    this.profileRevision = profileRevision;
+  }
+}
+
 @ObservedV2
 export class SliceViewModel {
   @Trace gate: string = 'login';
@@ -26,6 +40,7 @@ export class SliceViewModel {
   @Trace listBusy: boolean = false;
   @Trace detailBusy: boolean = false;
   @Trace listError: string = '';
+  @Trace showLobbySyncNotice: boolean = false;
   @Trace detailError: string = '';
   @Trace profileName: string = '';
   @Trace profileUpload: AvatarUpload | null = null;
@@ -50,6 +65,7 @@ export class SliceViewModel {
   readonly rewards: RewardsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
+  private restoreRead: ReadCancellation | null = null;
   private detailRead: ReadCancellation | null = null;
   private openingId: string = '';
   private briefingAssignmentId: string = '';
@@ -61,9 +77,18 @@ export class SliceViewModel {
   private gameplayPlayerPolling: boolean = false;
   private playerPollTimer: number = -1;
   private playerPollRead: ReadCancellation | null = null;
+  private lobbyPolling: boolean = false;
+  private lobbyPollTimer: number = -1;
+  private lobbyRead: LobbyRead | null = null;
+  private lobbyHasList: boolean = false;
+  private lobbyPlayerReadFailed: boolean = false;
+  private lobbyListReadFailed: boolean = false;
+  private readonly lobbySyncIntervalMs: number;
 
-  constructor(repository: GameRepository = new MockGameRepository()) {
+  constructor(repository: GameRepository = new MockGameRepository(),
+    lobbySyncIntervalMs: number = ASSIGNMENT_SYNC_INTERVAL_MS) {
     this.repository = repository;
+    this.lobbySyncIntervalMs = lobbySyncIntervalMs;
     this.mode = repository.mode;
     this.narrative = new NarrativeViewModel(repository, (message: string) => {
       this.logout();
@@ -149,6 +174,8 @@ export class SliceViewModel {
       this.avatarError = '';
     }
     if (player.mustChangePassword) {
+      this.setLobbyPolling(false);
+      this.lobbyHasList = false;
       this.stopBriefingSync();
       this.setGameplayPlayerPolling(false);
       this.items = [];
@@ -271,6 +298,7 @@ export class SliceViewModel {
     const generation: number = this.generation;
     this.profileRevision++;
     this.interruptPlayerPoll();
+    this.interruptLobbyPoll();
     this.profileBusy = true;
     this.profileError = '';
     this.profileSaved = false;
@@ -299,6 +327,7 @@ export class SliceViewModel {
       if (generation === this.generation) {
         this.profileBusy = false;
         this.schedulePlayerPoll();
+        this.scheduleLobbyPoll();
       }
     }
   }
@@ -325,6 +354,7 @@ export class SliceViewModel {
     let generation: number = this.generation;
     this.profileRevision++;
     this.interruptPlayerPoll();
+    this.interruptLobbyPoll();
     this.securityBusy = true;
     this.cancelAssignmentRead();
     this.securityError = '';
@@ -348,6 +378,7 @@ export class SliceViewModel {
       this.securitySuccessRevision++;
     } catch (error) {
       if (generation === this.generation) {
+        if (this.handlePasswordStorageFailure(error as Object)) { return; }
         const message: string = this.passwordMessage(error as Object);
         if (this.sessionExpired(error as Object)) {
           this.logout();
@@ -363,6 +394,47 @@ export class SliceViewModel {
         this.securityBusy = false;
         this.scheduleBriefingPoll();
         this.schedulePlayerPoll();
+        this.scheduleLobbyPoll();
+      }
+    }
+  }
+
+  async restoreSession(): Promise<void> {
+    if (this.mode !== 'https' || this.busy || (this.gate !== 'login' && this.gate !== 'restore-error')) { return; }
+    const generation: number = ++this.generation;
+    const read: ReadCancellation = new ReadCancellation();
+    this.restoreRead = read;
+    this.gate = 'restoring';
+    this.busy = true;
+    this.error = '';
+    this.errorCode = '';
+    try {
+      const player: Player | null = await this.repository.restoreSession(read);
+      if (generation !== this.generation) { return; }
+      if (player === null) {
+        this.gate = 'login';
+        return;
+      }
+      this.acceptPlayer(player);
+      if (!player.mustChangePassword) { await this.refreshHome(false); }
+    } catch (error) {
+      if (generation === this.generation) {
+        this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
+        if (this.errorCode === 'CREDENTIAL_CLEAR_ERROR') {
+          this.gate = 'signout-error';
+          this.error = this.message(error as Object);
+        } else if (isRestoredSessionInvalid(error as Object)) {
+          this.gate = 'login';
+          this.error = '登录已失效，请重新登录。';
+        } else {
+          this.gate = 'restore-error';
+          this.error = this.message(error as Object);
+        }
+      }
+    } finally {
+      if (generation === this.generation) {
+        this.restoreRead = null;
+        this.busy = false;
       }
     }
   }
@@ -393,6 +465,7 @@ export class SliceViewModel {
       if (generation === this.generation) {
         this.error = this.message(error as Object);
         this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
+        if (this.errorCode === 'CREDENTIAL_CLEAR_ERROR') { this.gate = 'signout-error'; }
       }
     } finally {
       if (generation === this.generation) {
@@ -430,6 +503,7 @@ export class SliceViewModel {
       }
     } catch (error) {
       if (generation === this.generation) {
+        if (this.handlePasswordStorageFailure(error as Object)) { return; }
         const message: string = this.passwordMessage(error as Object);
         if (this.sessionExpired(error as Object)) {
           this.logout();
@@ -444,32 +518,46 @@ export class SliceViewModel {
     }
   }
 
+  private handlePasswordStorageFailure(error: Object): boolean {
+    if (!(error instanceof GameFailure) || (error.code !== 'PASSWORD_CHANGED_SESSION_NOT_SAVED' &&
+      error.code !== 'CREDENTIAL_CLEAR_ERROR')) { return false; }
+    this.logout();
+    this.error = error.message;
+    this.errorCode = error.code;
+    return true;
+  }
+
   async refresh(): Promise<void> {
+    await this.refreshHome(true);
+  }
+
+  private async refreshHome(recheckPlayer: boolean): Promise<void> {
     if (this.gate !== 'home' || this.listBusy || this.profileBusy || this.securityBusy || this.securityUnconfirmed) {
       return;
     }
     const generation: number = this.generation;
     const profileRevision: number = this.profileRevision;
     this.interruptPlayerPoll();
+    this.interruptLobbyPoll();
     this.listBusy = true;
     this.listError = '';
     this.tick();
-    let readingPlayer: boolean = true;
+    let readingPlayer: boolean = recheckPlayer;
     try {
-      const player: Player = await this.repository.me();
-      readingPlayer = false;
-      if (generation !== this.generation || profileRevision !== this.profileRevision) {
-        return;
-      }
-      this.acceptPlayer(player);
-      if (this.gate !== 'home') {
-        return;
+      if (recheckPlayer) {
+        const player: Player = await this.repository.me();
+        readingPlayer = false;
+        if (generation !== this.generation || profileRevision !== this.profileRevision) { return; }
+        this.acceptPlayer(player);
+        if (this.gate !== 'home') { return; }
+        this.setLobbyReadFailed(true, false);
       }
       const items: AssignmentSummary[] = await this.repository.assignments();
       if (generation !== this.generation || this.gate !== 'home' || profileRevision !== this.profileRevision) {
         return;
       }
-      this.items = items;
+      this.publishLobbyAssignments(items);
+      this.setLobbyReadFailed(false, false);
     } catch (error) {
       if (generation === this.generation && profileRevision === this.profileRevision) {
         if (this.fatalPlayer(error as Object)) {
@@ -483,7 +571,113 @@ export class SliceViewModel {
       if (generation === this.generation) {
         this.listBusy = false;
         this.schedulePlayerPoll();
+        this.scheduleLobbyPoll();
       }
+    }
+  }
+
+  setLobbyPolling(active: boolean): void {
+    this.lobbyPolling = active;
+    if (active) {
+      this.scheduleLobbyPoll();
+    } else {
+      this.interruptLobbyPoll();
+      this.lobbyPlayerReadFailed = false;
+      this.lobbyListReadFailed = false;
+      this.dismissLobbySyncNotice();
+    }
+  }
+
+  dismissLobbySyncNotice(): void {
+    this.showLobbySyncNotice = false;
+  }
+
+  private canPollLobby(): boolean {
+    return this.lobbyPolling && this.gate === 'home' && this.player.id.length > 0 &&
+      !this.listBusy && !this.profileBusy && !this.securityBusy && !this.securityUnconfirmed;
+  }
+
+  private interruptLobbyPoll(): void {
+    if (this.lobbyPollTimer !== -1) { clearTimeout(this.lobbyPollTimer); this.lobbyPollTimer = -1; }
+    const read: LobbyRead | null = this.lobbyRead;
+    this.lobbyRead = null;
+    read?.player.cancel();
+    read?.assignments.cancel();
+  }
+
+  private scheduleLobbyPoll(): void {
+    if (this.lobbyPollTimer !== -1 || this.lobbyRead !== null || !this.canPollLobby()) { return; }
+    this.lobbyPollTimer = setTimeout(() => {
+      this.lobbyPollTimer = -1;
+      void this.pollLobby();
+    }, this.lobbySyncIntervalMs);
+  }
+
+  private async pollLobby(): Promise<void> {
+    if (!this.canPollLobby()) { return; }
+    const read: LobbyRead = new LobbyRead(this.generation, this.profileRevision);
+    this.lobbyRead = read;
+    try {
+      await Promise.all([this.pollLobbyPlayer(read), this.pollLobbyAssignments(read)]);
+    } finally {
+      if (this.lobbyRead === read) {
+        this.lobbyRead = null;
+        this.scheduleLobbyPoll();
+      }
+    }
+  }
+
+  private currentLobbyRead(read: LobbyRead): boolean {
+    return this.lobbyRead === read && read.generation === this.generation &&
+      read.profileRevision === this.profileRevision && this.canPollLobby();
+  }
+
+  private async pollLobbyPlayer(read: LobbyRead): Promise<void> {
+    try {
+      const player: Player = await this.repository.me(read.player);
+      if (!this.currentLobbyRead(read)) { return; }
+      this.acceptPlayer(player);
+      this.setLobbyReadFailed(true, false);
+    } catch (error) {
+      this.failLobbyRead(read, true, error as Object);
+    }
+  }
+
+  private async pollLobbyAssignments(read: LobbyRead): Promise<void> {
+    try {
+      const items: AssignmentSummary[] = await this.repository.assignments(read.assignments);
+      if (!this.currentLobbyRead(read)) { return; }
+      this.publishLobbyAssignments(items);
+      this.setLobbyReadFailed(false, false);
+    } catch (error) {
+      this.failLobbyRead(read, false, error as Object);
+    }
+  }
+
+  private publishLobbyAssignments(items: AssignmentSummary[]): void {
+    this.lobbyHasList = true;
+    this.listError = '';
+    if (JSON.stringify(items) !== JSON.stringify(this.items)) { this.items = items; }
+  }
+
+  private failLobbyRead(read: LobbyRead, player: boolean, error: Object): void {
+    if (!this.currentLobbyRead(read) || (error instanceof GameFailure && error.code === 'CANCELLED')) { return; }
+    if (this.fatalPlayer(error)) {
+      this.rejectPlayerSession(error);
+    } else if (!player && !this.lobbyHasList) {
+      this.listError = this.message(error);
+    } else {
+      this.setLobbyReadFailed(player, true);
+    }
+  }
+
+  private setLobbyReadFailed(player: boolean, failed: boolean): void {
+    const wasFailed: boolean = this.lobbyPlayerReadFailed || this.lobbyListReadFailed;
+    if (player) { this.lobbyPlayerReadFailed = failed; } else { this.lobbyListReadFailed = failed; }
+    if (!this.lobbyPlayerReadFailed && !this.lobbyListReadFailed) {
+      this.dismissLobbySyncNotice();
+    } else if (!wasFailed) {
+      this.showLobbySyncNotice = true;
     }
   }
 
@@ -683,6 +877,12 @@ export class SliceViewModel {
   }
 
   logout(): void {
+    if (this.gate === 'signout') { return; }
+    const restore: ReadCancellation | null = this.restoreRead;
+    this.restoreRead = null;
+    restore?.cancel();
+    this.setLobbyPolling(false);
+    this.lobbyHasList = false;
     this.stopBriefingSync();
     this.setGameplayPlayerPolling(false);
     this.play.reset();
@@ -690,11 +890,11 @@ export class SliceViewModel {
     this.starLetters.bindOwner('');
     this.journey.bindOwner('');
     this.rewards.bindOwner('');
-    this.generation++;
+    const generation: number = ++this.generation;
     this.profileRevision++;
     this.avatarRequest++;
-    this.repository.logout();
-    this.gate = 'login';
+    const clearing: Promise<void> = this.repository.logout();
+    this.gate = this.mode === 'https' ? 'signout' : 'login';
     this.busy = false;
     this.error = '';
     this.errorCode = '';
@@ -722,5 +922,19 @@ export class SliceViewModel {
     this.securityUnconfirmed = false;
     this.serverOffset = 0;
     this.now = Date.now();
+    void this.finishLogout(clearing, generation);
+  }
+
+  private async finishLogout(clearing: Promise<void>, generation: number): Promise<void> {
+    try {
+      await clearing;
+      if (generation === this.generation && this.gate === 'signout') { this.gate = 'login'; }
+    } catch (error) {
+      if (generation === this.generation) {
+        this.gate = 'signout-error';
+        this.error = this.message(error as Object);
+        this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
+      }
+    }
   }
 }

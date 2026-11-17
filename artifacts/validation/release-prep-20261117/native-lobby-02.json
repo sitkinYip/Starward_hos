@@ -1,0 +1,26 @@
+{
+  "status": "incomplete",
+  "signedHapSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+  "runtimeSha256": "b230e66448c160735c636956f46d0ff0c7246b10490fb2e3d0fda1a06e765e41",
+  "driverSha256": "559bb273976b10076e8ad412ae6515e165dc48baae2e84f1e9697d8b5fc46333",
+  "fixtureDriverSha256": "5b7c60c6e0f10098ce855f6180baa965f5fe582e2cd5488c65d9e0c64ea0e7cd",
+  "checks": [
+    "在下一次回源前点按关闭提示，约五秒后系统自动恢复",
+    "切到护照超过一个间隔，无启程的列表与玩家轮询",
+    "在确实挂起的旧自动响应结束前，手动下拉完成了新回源",
+    "下拉完成后重新等待约五秒再自动读取",
+    "旧响应结束后仍保留手动刷新得到的场次"
+  ],
+  "observations": {
+    "firstPollAfterManualMs": 5059.0,
+    "postLoginWriteCount": 0,
+    "officialUiAutomationFailurePhase": "通用驱动只将答题页标题视为前台识别标志。随后官方布局独立核对，顶栏收起时仍在同一 Starward 答题页。"
+  },
+  "cleanup": {
+    "faultCleared": true,
+    "zeroPostLoginWrites": true
+  },
+  "baseDriverSha256": "589088b70b87ac51caa7d3e7e48f99aa176d36fa5fe6569b43d2695718f91786",
+  "scope": "outage dismissal, route gating and cancelled auto read race; arrival already applied",
+  "reason": "Expected test App is not foreground; other apps were not touched"
+}

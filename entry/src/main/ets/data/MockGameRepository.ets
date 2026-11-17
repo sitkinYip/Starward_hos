@@ -151,14 +151,14 @@ export class MockGameRepository implements GameRepository {
     if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '读取已取消。'); }
     if (failure !== null) {
       if (failure.status === 401) {
-        this.logout();
+        void this.logout();
       }
       throw failure;
     }
   }
 
   async login(account: string, password: string): Promise<Player> {
-    this.logout();
+    void this.logout();
     const generation: number = this.generation;
     await this.pause('login', generation);
     if (account.trim().toLowerCase() !== 'alice' || password !== this.currentPassword) {
@@ -166,6 +166,10 @@ export class MockGameRepository implements GameRepository {
     }
     this.authenticated = true;
     return this.player();
+  }
+
+  async restoreSession(): Promise<Player | null> {
+    return null;
   }
 
   async me(cancellation?: ReadCancellation): Promise<Player> {
@@ -474,7 +478,7 @@ export class MockGameRepository implements GameRepository {
     return this.demoAnswerResult(receipt);
   }
 
-  logout(): void {
+  async logout(): Promise<void> {
     this.generation++;
     this.authenticated = false;
   }

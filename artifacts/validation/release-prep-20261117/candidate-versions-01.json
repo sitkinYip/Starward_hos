@@ -1,0 +1,36 @@
+{
+  "status": "verified",
+  "isolatedCandidate": {
+    "signedHapSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+    "arkTSBytecode": {
+      "ets/modules.abc": "e6e80f0bd615ea9cde49a3f6c4d6e1ad965588c3879db98c7701edc7a3471fd1"
+    },
+    "startWindowResources": {
+      "resources/base/media/start_window_atlas.png": "42a3744731e47d7abc287564d79f8c829a77494d157426e9d249dec5070a6182",
+      "resources/base/profile/start_window.json": "f214b3f0e96371d142afb510cab52a83832317d7116d5438bf88e941b28f2d3c",
+      "resources/dark/media/start_window_atlas.png": "33e73c2ff3303ee3ac60de6ef0be2fc24c2d1a59efb9d4dfa4f90ae7821cd701"
+    },
+    "trustCaSha256": "c77dcd9a62aebbebe729b9d6192729cd5745f1e0c57c555fdfc415cfbca0365d"
+  },
+  "fixedPreview": {
+    "signedHapSha256": "4a99a1fad5ed17a5c088d4ff6fdd9dc69b0e5d2f8c9c8d9a8c16622098f63b78",
+    "arkTSBytecode": {
+      "ets/modules.abc": "e6e80f0bd615ea9cde49a3f6c4d6e1ad965588c3879db98c7701edc7a3471fd1"
+    },
+    "startWindowResources": {
+      "resources/base/media/start_window_atlas.png": "42a3744731e47d7abc287564d79f8c829a77494d157426e9d249dec5070a6182",
+      "resources/base/profile/start_window.json": "f214b3f0e96371d142afb510cab52a83832317d7116d5438bf88e941b28f2d3c",
+      "resources/dark/media/start_window_atlas.png": "33e73c2ff3303ee3ac60de6ef0be2fc24c2d1a59efb9d4dfa4f90ae7821cd701"
+    },
+    "trustCaSha256": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6"
+  },
+  "arkTSBytecodeIdentical": true,
+  "startupResourcesIdentical": true,
+  "separateTrustScopes": true,
+  "changedPackedMembers": [
+    "ets/symbolMap.map",
+    "resources/rawfile/integration-ca.pem",
+    "resources/rawfile/integration.json"
+  ],
+  "scope": "offline HAP content binding to both real installation receipts; isolated gameplay checks apply to the isolated signed candidate"
+}

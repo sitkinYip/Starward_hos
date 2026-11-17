@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "signedHapSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+  "interactionChecks": [
+    {
+      "description": "旅途来信→星海信笺，页面空白处向左横滑",
+      "deviceGesture": {
+        "start": [
+          958,
+          1521
+        ],
+        "end": [
+          302,
+          1521
+        ]
+      }
+    },
+    {
+      "description": "星海信笺→旅途来信，向右横滑，未发已读请求",
+      "deviceGesture": {
+        "start": [
+          302,
+          1685
+        ],
+        "end": [
+          958,
+          1685
+        ]
+      }
+    },
+    {
+      "description": "来信的两个子页签可点按",
+      "deviceGesture": null
+    },
+    {
+      "description": "未读来信卡片侧滑露出收下，底层子页签保持",
+      "deviceGesture": {
+        "start": [
+          945,
+          1231
+        ],
+        "end": [
+          315,
+          1231
+        ]
+      }
+    },
+    {
+      "description": "点侧滑动作后只发一次真实已读请求",
+      "deviceGesture": null
+    },
+    {
+      "description": "我的名片→账号安全，向左横滑",
+      "deviceGesture": {
+        "start": [
+          958,
+          2220
+        ],
+        "end": [
+          302,
+          2220
+        ]
+      }
+    },
+    {
+      "description": "账号安全→我的名片，向右横滑，未提交昵称保持",
+      "deviceGesture": {
+        "start": [
+          302,
+          2220
+        ],
+        "end": [
+          958,
+          2220
+        ]
+      }
+    },
+    {
+      "description": "护照可点按切换且离开账号安全会清空密码草稿",
+      "deviceGesture": null
+    }
+  ],
+  "driverSha256": "629f1fc437ffdddcadb7fa71342bb83d076dffb4e059ac0f5c80c4059f27a792",
+  "rawInteractionReportSha256": "3d1bd50d69269075aa7d1623c9655e2ad6e5a067857f7a2030a004379ea2c02b",
+  "cleanup": {
+    "loggedOut": true,
+    "explicitNotificationReadPostCount": 1,
+    "otherBusinessWrites": 0
+  },
+  "firstRunLimitation": "The observer used the underlying floating-bar viewport for a foreground dialog and skipped its visible logout button. A separate official hit test selected the menu action and verified blank login."
+}

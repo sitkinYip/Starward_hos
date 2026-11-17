@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "scope": "Native reward loop on one installed release candidate, straight phone and disposable real PocketBase over verified USB HTTPS",
+  "hapSha256": "d1d94fd6430c844a335ac88c1d78453b443da7a69715c5169df626fa888a4964",
+  "runtimeSha256": "b230e66448c160735c636956f46d0ff0c7246b10490fb2e3d0fda1a06e765e41",
+  "fixtureSha256": "bcaa3d2bfcf9f67ca3daf436a3048e46cdf67c3b40b80de30722e0a467c1b9b2",
+  "checks": [
+    "Actual native answer got a real 200 which was dropped, followed by a successful 200 retry without a second tap",
+    "The transparent retry preserved the exact request ID, raw body, player and session level",
+    "The original pre-claim receipt plus current SQLite proves one answer, XP award, rule grant and later management claim edit",
+    "Official management claim-details action added a synthetic private instruction to the same rule-generated grant",
+    "Native collection shows the same available grant, with the private instruction and no redeemed date",
+    "Original native ledger contains one login, one entry and two matching answer attempts; no client redemption write",
+    "The authoritative admin action changed only the same reward to redeemed; exactly one audit entry names its granted recipient action",
+    "Authoritative redeemedAt agrees with the one backend audit timestamp",
+    "The unchanged open sheet now displays the exact server day and minute in device time and hides the stored private instruction",
+    "Native authenticated reward GETs occurred after the backend redemption with the detail continuously open and no refresh input",
+    "Explicit logout returned the device to blank login and left settlement and redemption unchanged",
+    "Independent strict HTTPS player DTO returns the same grant and exact redeemedAt; private instructions are omitted"
+  ],
+  "observations": {
+    "pristine": {
+      "assignmentStatus": "assigned",
+      "progressRows": 0,
+      "completedAtPresent": false,
+      "startReceipts": 0,
+      "answerReceipts": 0,
+      "answerSubmissions": 0,
+      "xpLedgerRows": 0,
+      "xpSum": 0,
+      "playerXp": 0,
+      "grantCount": 0,
+      "ruleCount": 1,
+      "auditedRewardActions": []
+    },
+    "entry": {
+      "assignmentStatus": "active",
+      "progressRows": 1,
+      "completedAtPresent": false,
+      "startReceipts": 1,
+      "answerReceipts": 0,
+      "answerSubmissions": 0,
+      "xpLedgerRows": 0,
+      "xpSum": 0,
+      "playerXp": 0,
+      "grantCount": 0,
+      "ruleCount": 1,
+      "auditedRewardActions": [],
+      "nativeStartRequests": 1
+    },
+    "postRetry": {
+      "assignmentStatus": "completed",
+      "progressRows": 1,
+      "completedAtPresent": true,
+      "startReceipts": 1,
+      "answerReceipts": 1,
+      "answerSubmissions": 1,
+      "xpLedgerRows": 1,
+      "xpSum": 22,
+      "playerXp": 22,
+      "grantCount": 1,
+      "ruleCount": 1,
+      "auditedRewardActions": []
+    },
+    "retry": {
+      "transportAttempts": 2,
+      "storedSettlements": 1,
+      "grantMatchesReceipt": true,
+      "firstSuccessfulResponseDropped": true,
+      "interaction": "no second user gesture; matching retry observed on transport",
+      "requestIdAndBodyUnchanged": true,
+      "playerAndLevelUnchanged": true
+    },
+    "final": {
+      "assignmentStatus": "completed",
+      "progressRows": 1,
+      "completedAtPresent": true,
+      "startReceipts": 1,
+      "answerReceipts": 1,
+      "answerSubmissions": 1,
+      "xpLedgerRows": 1,
+      "xpSum": 22,
+      "playerXp": 22,
+      "grantCount": 1,
+      "ruleCount": 1,
+      "auditedRewardActions": [
+        "claim_details",
+        "redeem"
+      ]
+    },
+    "nativeRewardPollsProvenAfterRedemption": 22,
+    "nativeRewardWrites": 0,
+    "renderedServerTimeMatched": true
+  },
+  "privateArtifactSha256": {
+    "firstNativeRun": "c330c3cdf0b76a7c05525f680f1ebb65411a78c5e93e1ad27a1224d254f199c6",
+    "answerReplayContinuation": "d0f2c945acd9363e4b1d487ca5fa0fcad11ccb577459144c5c82bd1cf99e0cc5",
+    "claimAndRedemptionContinuation": "35175243b517abc76b2b8f6b0f4102031df6f8196ed4898789de9f90971d23cf",
+    "lastNativeContinuation": "7a2ef396e83a2fb94c0013e7e059d07cb35ec045df450289a7b88d7bb8bb85b3",
+    "finalEvidenceDriver": "225b6cefbad23653012ba40a4e6d155c7c8c35b9f068d7e9906c96279b3f7aad"
+  },
+  "privateScreenshotSha256": {
+    "answer-settled": "580f6b3c64b2e80cbfb969e4850e01a9ea9fcdef536d5a4a9b7e87bfadc97c82",
+    "collection-available": "cfd64d456213ef92f79c2c712341fab472e747907f69f38ced183d1024ccf989",
+    "available-details": "ebf7d27fe5c6cf6d1a4b1dbb6cf865f3be1fba6c0f92da2a66efb59a6c6ec1d3",
+    "redeemed-details": "7ce5f38cf28778a46cd49d5ebba193fa0a782d7979908cfaa8825cafc8433003",
+    "collection-redeemed": "cfd4a0d9d47145eb30d22bf46d475dde0f85b63b5ea48e30574fe34b373c2f3c"
+  },
+  "handoff": {
+    "blankNativeLogin": true,
+    "faultInjectorNeutral": true,
+    "releasedPhone": true
+  },
+  "notes": [
+    "One entry-only attempt was archived separately. A fresh disposable case then provided the full native reward loop.",
+    "The first final-answer response was dropped after a real 200. A matching retry was observed at the transport boundary without a second tap. The explicit retry dialog was not observed in this run.",
+    "Native observation continued in the already-running app without reinstalling or repeating the answer or any management actions. SQLite transitions were reconciled with the audited records and the strict player DTO.",
+    "No fixed preview, production data or protected artifacts are included."
+  ]
+}
