@@ -10,6 +10,7 @@ export class AppEnvironment {
   static isolated: boolean = false;
   static production: boolean = false;
   static productionReadOnly: boolean = false;
+  static hostedPrivacy: boolean = false;
   static configurationError: string = '';
   static caData: string = '';
   static timeoutMs: number = 15000;
@@ -21,6 +22,7 @@ export class AppEnvironment {
     AppEnvironment.isolated = false;
     AppEnvironment.production = false;
     AppEnvironment.productionReadOnly = false;
+    AppEnvironment.hostedPrivacy = false;
     AppEnvironment.configurationError = '';
     AppEnvironment.caData = '';
     AppEnvironment.timeoutMs = 15000;
@@ -37,11 +39,12 @@ export class AppEnvironment {
         const configuration: Record<string, Object> = JSON.parse(text) as Record<string, Object>;
         const mode: Object = configuration['mode'];
         if (integration || files.includes('integration-ca.pem') || Object.keys(configuration).length !== 1 ||
-          (mode !== 'production-readonly' && mode !== 'production-write')) {
+          (mode !== 'production-readonly' && mode !== 'production-write' && mode !== 'production-invite')) {
           throw new Error('Invalid production smoke configuration');
         }
         AppEnvironment.production = true;
         AppEnvironment.productionReadOnly = mode === 'production-readonly';
+        AppEnvironment.hostedPrivacy = mode === 'production-invite';
         AppEnvironment.endpoint = PRODUCTION_API_ORIGIN;
         return;
       }
@@ -75,6 +78,7 @@ export class AppEnvironment {
       }
       AppEnvironment.endpoint = endpoint as string;
       AppEnvironment.isolated = true;
+      AppEnvironment.hostedPrivacy = data['hostedPrivacy'] === true;
     } catch (error) {
       AppEnvironment.configurationError = productionMarker ? '生产联调配置无效，请重新安装联调包。' :
         '隔离测试环境配置无效，请重新准备测试构建。';

@@ -568,8 +568,12 @@ export class HttpsGameRepository implements GameRepository {
     this.clearFileToken();
   }
 
-  async logout(): Promise<void> {
+  suspendSession(): void {
     this.resetSession();
+  }
+
+  async logout(): Promise<void> {
+    this.suspendSession();
     await this.clearCredential();
   }
 }

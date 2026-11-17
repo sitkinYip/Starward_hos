@@ -22,5 +22,6 @@ export interface GameRepository {
   notifications(cancellation?: ReadCancellation): Promise<GameNotification[]>;
   readNotification(id: string): Promise<string>;
   answerAssignment(id: string, sessionLevelId: string, rawAnswer: string, requestId: string): Promise<GameplayAnswerResult>;
+  suspendSession?(): void;
   logout(): Promise<void>;
 }

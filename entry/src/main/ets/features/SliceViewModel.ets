@@ -876,8 +876,24 @@ export class SliceViewModel {
     this.play.tick();
   }
 
+  /** Discard live account state and requests without forgetting the last saved login. */
+  suspendSession(): void {
+    if (this.gate === 'signout' || this.gate === 'signout-error') { return; }
+    this.repository.suspendSession?.();
+    this.gate = 'login';
+    this.clearSessionState();
+  }
+
   logout(): void {
     if (this.gate === 'signout') { return; }
+    const clearing: Promise<void> = this.repository.logout();
+    this.gate = this.mode === 'https' ? 'signout' : 'login';
+    const generation: number = this.clearSessionState();
+    void this.finishLogout(clearing, generation);
+  }
+
+  private clearSessionState(): number {
+    const generation: number = ++this.generation;
     const restore: ReadCancellation | null = this.restoreRead;
     this.restoreRead = null;
     restore?.cancel();
@@ -890,11 +906,8 @@ export class SliceViewModel {
     this.starLetters.bindOwner('');
     this.journey.bindOwner('');
     this.rewards.bindOwner('');
-    const generation: number = ++this.generation;
     this.profileRevision++;
     this.avatarRequest++;
-    const clearing: Promise<void> = this.repository.logout();
-    this.gate = this.mode === 'https' ? 'signout' : 'login';
     this.busy = false;
     this.error = '';
     this.errorCode = '';
@@ -922,7 +935,7 @@ export class SliceViewModel {
     this.securityUnconfirmed = false;
     this.serverOffset = 0;
     this.now = Date.now();
-    void this.finishLogout(clearing, generation);
+    return generation;
   }
 
   private async finishLogout(clearing: Promise<void>, generation: number): Promise<void> {

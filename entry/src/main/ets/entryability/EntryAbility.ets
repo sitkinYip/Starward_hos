@@ -50,7 +50,7 @@ export default class EntryAbility extends UIAbility {
     AppTheme.load(this.context);
     pruneAbandonedClueVideos(this.context.cacheDir);
     LaunchRoutes.receive(want.uri || '');
-    runTlsProbe();
+    if (!AppEnvironment.hostedPrivacy) { runTlsProbe(); }
     try {
       if (AppEnvironment.fontScale > 0) {
         this.context.getApplicationContext().setFontSizeScale(AppEnvironment.fontScale);

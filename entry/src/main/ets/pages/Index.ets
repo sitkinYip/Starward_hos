@@ -22,6 +22,7 @@ import { AvatarEditor, AvatarSelection } from '../platform/AvatarEditor';
 import { assignmentKind, assignmentState } from '../business/assignmentState';
 import { AppLifecycle } from '../platform/AppLifecycle';
 import { AppEnvironment } from '../platform/AppEnvironment';
+import { HostedPrivacy, HostedPrivacyRequestResult, HostedPrivacyState } from '../platform/HostedPrivacy';
 import { AppTheme, ThemePreference, ThemeSelection } from '../platform/AppTheme';
 import { LaunchRoutes } from '../platform/LaunchRoutes';
 import { LabeledInput } from '../ui/LabeledInput';
@@ -152,6 +153,9 @@ struct Index {
   @Local private gameplayTitleHidden: boolean = false;
   @Local private showFinaleBackdrop: boolean = false;
   @Local private foreground: boolean = true;
+  @Local private privacyAllowed: boolean = !AppEnvironment.hostedPrivacy;
+  @Local private privacyBusy: boolean = false;
+  @Local private privacyError: string = '';
   @Local private lobbyRouteTransitioning: boolean = false;
   @Local private gameplayDestinationShown: boolean = false;
   @Local private briefViewportWidth: number = 0;
@@ -166,12 +170,18 @@ struct Index {
   private paths: NavPathStack = new NavPathStack();
   private assignmentDestinationRevision: number = 0;
   private timer: number = -1;
+  private privacyOwnerActive: boolean = false;
+  private privacyOwnerRevision: number = 0;
+  private privacyRestorePending: boolean = true;
+  private privacyRevocationHandled: boolean = false;
+  private unsubscribePrivacy: (() => void) | null = null;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
+    if (foreground && AppEnvironment.hostedPrivacy) { this.checkHostedPrivacy(); }
     this.lobbyVisibilityChanged();
     if (foreground) {
       this.startClock();
-      if (this.vm.gate === 'home') {
+      if (this.privacyAllowed && this.vm.gate === 'home') {
         this.vm.refresh();
         const destinations: string[] = this.paths.getAllPathName();
         if (destinations[destinations.length - 1] === 'assignment' && this.selectedId.length > 0 &&
@@ -195,13 +205,13 @@ struct Index {
   };
 
   private routeListener: (id: string) => void = (id: string) => {
-    if (id.length > 0 && this.vm.gate === 'home') {
+    if (id.length > 0) {
       this.dispatchPendingRoute();
     }
   };
 
   private dispatchPendingRoute(): void {
-    if (this.vm.gate !== 'home') {
+    if (!this.privacyAllowed || this.vm.gate !== 'home') {
       return;
     }
     const id: string = LaunchRoutes.take();
@@ -211,6 +221,67 @@ struct Index {
     this.vm.narrative.close();
     this.paths.clear();
     this.openAssignment(id);
+  }
+
+  private checkHostedPrivacy(): boolean {
+    if (!this.privacyOwnerActive) { return false; }
+    const state: HostedPrivacyState = HostedPrivacy.getState();
+    if (state === HostedPrivacyState.ALLOWED) {
+      this.privacyAllowed = true;
+      this.privacyRevocationHandled = false;
+      if (this.foreground && this.privacyRestorePending && this.vm.gate === 'login') {
+        this.privacyRestorePending = false;
+        void this.vm.restoreSession();
+      }
+      return true;
+    }
+    if (state === HostedPrivacyState.CONFIRMED_NOT_ALLOWED) {
+      this.privacyAllowed = false;
+      this.privacyRestorePending = false;
+      if (!this.privacyRevocationHandled || this.vm.gate === 'signout-error') {
+        this.privacyRevocationHandled = true;
+        this.logout();
+      }
+    } else if (this.privacyAllowed) {
+      this.suspendPrivateSession();
+    }
+    return false;
+  }
+
+  private suspendPrivateSession(): void {
+    this.privacyAllowed = false;
+    // An explicit signout already owns durable deletion; never start restoration behind it.
+    this.privacyRestorePending = this.vm.gate !== 'signout' && this.vm.gate !== 'signout-error';
+    this.vm.suspendSession();
+    this.clearAccountContext();
+  }
+
+  private async requestHostedPrivacy(): Promise<void> {
+    if (!this.privacyOwnerActive || !this.foreground || this.privacyBusy || this.checkHostedPrivacy()) { return; }
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context === undefined) {
+      this.privacyError = '暂时无法打开隐私确认，请重试。';
+      return;
+    }
+    const revision: number = this.privacyOwnerRevision;
+    this.privacyError = '';
+    this.privacyBusy = true;
+    const result: HostedPrivacyRequestResult = await HostedPrivacy.requestConsent(context);
+    if (!this.privacyOwnerActive || revision !== this.privacyOwnerRevision) { return; }
+    this.privacyBusy = false;
+    if (!this.checkHostedPrivacy() && result === HostedPrivacyRequestResult.LAUNCH_FAILED) {
+      this.privacyError = '暂时无法打开隐私确认，请重试。';
+    }
+  }
+
+  private async openHostedPrivacyPolicy(): Promise<void> {
+    if (!this.privacyOwnerActive || !this.foreground) { return; }
+    const revision: number = this.privacyOwnerRevision;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    const opened: boolean = context !== undefined && await HostedPrivacy.openPolicy(context);
+    if (!opened && this.privacyOwnerActive && this.foreground && revision === this.privacyOwnerRevision) {
+      StarwardFeedback.toast(this.getUIContext(), '暂时无法打开隐私政策，请稍后重试。');
+    }
   }
 
   aboutToAppear(): void {
@@ -237,12 +308,24 @@ struct Index {
       }
     });
     this.foreground = AppLifecycle.isForeground();
+    if (AppEnvironment.hostedPrivacy) {
+      this.privacyOwnerActive = true;
+      this.unsubscribePrivacy = HostedPrivacy.subscribe(() => { this.checkHostedPrivacy(); });
+      this.checkHostedPrivacy();
+    }
     this.lobbyVisibilityChanged();
     this.startClock();
-    void this.vm.restoreSession();
+    if (!AppEnvironment.hostedPrivacy) { void this.vm.restoreSession(); }
   }
 
   aboutToDisappear(): void {
+    this.privacyOwnerActive = false;
+    this.privacyOwnerRevision++;
+    this.privacyBusy = false;
+    this.privacyError = '';
+    this.unsubscribePrivacy?.();
+    this.unsubscribePrivacy = null;
+    if (AppEnvironment.hostedPrivacy && this.privacyAllowed) { this.suspendPrivateSession(); }
     this.paths.setInterception({});
     this.vm.setLobbyPolling(false);
     this.atmosphere.release();
@@ -261,24 +344,24 @@ struct Index {
     this.cancelAvatarCrop();
   }
 
-  @Monitor('mainIndex', 'foreground', 'vm.gate', 'vm.securityUnconfirmed', 'vm.narrative.route')
+  @Monitor('mainIndex', 'foreground', 'privacyAllowed', 'vm.gate', 'vm.securityUnconfirmed', 'vm.narrative.route')
   rewardsVisibilityChanged(): void {
     this.vm.rewards.setActive(this.rewardsVisible());
   }
 
   private rewardsVisible(): boolean {
-    return this.foreground && this.mainIndex === 1 && this.paths.size() === 0 && this.vm.narrative.route === null &&
-      this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
+    return this.privacyAllowed && this.foreground && this.mainIndex === 1 && this.paths.size() === 0 &&
+      this.vm.narrative.route === null && this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
   }
 
-  @Monitor('mainIndex', 'foreground', 'vm.gate', 'vm.securityUnconfirmed')
+  @Monitor('mainIndex', 'foreground', 'privacyAllowed', 'vm.gate', 'vm.securityUnconfirmed')
   lobbyVisibilityChanged(): void {
     this.vm.setLobbyPolling(this.lobbyVisible());
   }
 
   private lobbyVisible(): boolean {
-    return this.foreground && this.mainIndex === 0 && !this.lobbyRouteTransitioning && this.paths.size() === 0 &&
-      this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
+    return this.privacyAllowed && this.foreground && this.mainIndex === 0 && !this.lobbyRouteTransitioning &&
+      this.paths.size() === 0 && this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
   }
 
   @Monitor('vm.gate')
@@ -306,14 +389,15 @@ struct Index {
   }
 
   private assignmentDestinationActive(): boolean {
-    return this.foreground && this.gameplayDestinationShown && this.vm.gate === 'home' &&
+    return this.privacyAllowed && this.foreground && this.gameplayDestinationShown && this.vm.gate === 'home' &&
       !this.vm.securityUnconfirmed && this.selectedId.length > 0;
   }
 
   private assignmentAuthorized(): boolean {
-    return this.vm.gate === 'home' && !this.vm.securityUnconfirmed && this.selectedId.length > 0 &&
-      (this.gameplayDestinationShown || this.vm.narrative.route !== null) && this.vm.detail.id === this.selectedId &&
-      this.vm.detail.player === this.vm.player.id && this.vm.detail.status !== 'cancelled';
+    return this.privacyAllowed && this.vm.gate === 'home' && !this.vm.securityUnconfirmed &&
+      this.selectedId.length > 0 && (this.gameplayDestinationShown || this.vm.narrative.route !== null) &&
+      this.vm.detail.id === this.selectedId && this.vm.detail.player === this.vm.player.id &&
+      this.vm.detail.status !== 'cancelled';
   }
 
   private atmosphereOwner(revision: Object): string {
@@ -326,6 +410,7 @@ struct Index {
   }
 
   onBackPress(): boolean {
+    if (!this.privacyAllowed) { return false; }
     const keyboardHeight: number = Math.max(this.avoidArea.keyboard.bottomRect.height,
       this.avoidArea.keyboard.topRect.height, this.avoidArea.keyboard.leftRect.height, this.avoidArea.keyboard.rightRect.height);
     hilog.info(0x0000, 'StarwardBack', 'keyboard=%{public}s height=%{public}d main=%{public}d depth=%{public}d',
@@ -564,8 +649,14 @@ struct Index {
   }
 
   private logout(): void {
-    LaunchRoutes.clear();
     this.vm.logout();
+    this.clearAccountContext();
+  }
+
+  private clearAccountContext(): void {
+    LaunchRoutes.clear();
+    this.atmosphere.release();
+    this.showFinaleBackdrop = false;
     this.paths.clear();
     this.clearPasswords();
     this.account = '';
@@ -733,6 +824,7 @@ struct Index {
     if (this.vm.mode === 'mock') { return '演示环境'; }
     if (this.vm.mode !== 'https') { return '环境配置无效'; }
     if (AppEnvironment.production) {
+      if (AppEnvironment.hostedPrivacy) { return '邀请测试'; }
       return AppEnvironment.productionReadOnly ? '生产联调 · 只读' : '生产测试候选';
     }
     return '隔离测试环境';
@@ -868,6 +960,36 @@ struct Index {
   }
 
   @Builder
+  privacyPolicyLink(nodeId: string) {
+    Button('隐私政策', { type: ButtonType.Normal }).id(nodeId).constraintSize({ minHeight: 44 })
+      .padding({ left: 10, right: 10 }).fontSize(13).fontColor($r('app.color.accent_text'))
+      .backgroundColor(Color.Transparent).onClick(() => { void this.openHostedPrivacyPolicy(); })
+  }
+
+  @Builder
+  privacyPage() {
+    Column() {
+      this.rootTitle()
+      Scroll() {
+        Column({ space: 16 }) {
+          Text('隐私保护').id('privacy-gate-heading').fontFamily(this.displayFont).fontSize(30)
+            .fontWeight(FontWeight.Medium).lineHeight('42fp').fontColor($r('app.color.strong')).width('100%')
+          Text('请阅读《赴星之约隐私政策》，并在系统提示中完成选择。同意后即可登录。')
+            .fontSize(15).lineHeight('25.5fp').fontColor($r('app.color.muted')).width('100%')
+          Button(this.privacyBusy ? '正在打开…' : '继续', { type: ButtonType.Normal }).id('privacy-continue')
+            .width('100%').constraintSize({ minHeight: 52 }).borderRadius(10).margin({ top: 8 })
+            .fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.on_accent'))
+            .backgroundColor($r('app.color.accent')).enabled(!this.privacyBusy)
+            .onClick(() => { void this.requestHostedPrivacy(); })
+          InlineError({ message: this.privacyError, fieldId: 'privacy-gate-error' })
+          this.privacyPolicyLink('privacy-gate-policy')
+        }.width('100%').constraintSize({ maxWidth: 440 })
+          .padding({ top: 44, left: 20 + this.safeLeft(), right: 20 + this.safeRight(), bottom: 24 + this.safeBottom() })
+      }.width('100%').layoutWeight(1).align(Alignment.Top).scrollBar(BarState.Off)
+    }.width('100%').height('100%')
+  }
+
+  @Builder
   authPage() {
     Scroll() {
       Column() {
@@ -881,6 +1003,9 @@ struct Index {
         Text('每一个问题，都是一扇门。').fontFamily(this.displayFont).fontSize(12).lineHeight('21.6fp')
           .letterSpacing(2.4).fontColor($r('app.color.subtle')).width('100%').textAlign(TextAlign.Center)
           .padding({ top: 12, bottom: 24 })
+        if (AppEnvironment.hostedPrivacy) {
+          this.privacyPolicyLink('login-privacy-policy')
+        }
         if (this.vm.mode === 'mock') {
           Text('演示环境 · 数据仅保留在本次运行中').fontSize(10).fontColor($r('app.color.subtle'))
             .margin({ bottom: 8 })
@@ -1520,7 +1645,7 @@ struct Index {
 
   @Builder
   rootHeader() {
-    this.header(this.vm.gate !== 'home')
+    this.header(!this.privacyAllowed || this.vm.gate !== 'home')
   }
 
   @Builder
@@ -1577,8 +1702,15 @@ struct Index {
         Text('旅途光线').fontSize(12).fontColor($r('app.color.muted'))
         this.themePicker()
         InlineError({ message: this.themeError, fieldId: 'theme-error-message' })
-        Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.environmentLabel())
-          .fontSize(11).fontColor($r('app.color.subtle'))
+        if (AppEnvironment.hostedPrivacy) {
+          Row() {
+            Text(this.environmentLabel()).layoutWeight(1).fontSize(11).fontColor($r('app.color.subtle'))
+            this.privacyPolicyLink('account-privacy-policy')
+          }.width('100%')
+        } else {
+          Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.environmentLabel())
+            .fontSize(11).fontColor($r('app.color.subtle'))
+        }
         Button('退出登录', { type: ButtonType.Normal }).id('logout').width('100%').height(44)
           .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent).onClick(() => this.logout())
       }.width('100%').alignItems(HorizontalAlign.Start).padding({ left: 24, right: 24, top: 12, bottom: 24 })
@@ -1587,7 +1719,8 @@ struct Index {
 
   @Builder
   accountOverlay() {
-    StarwardSidePanel({ visible: this.showAccount!!, title: '冒险者菜单', ownerActive: this.vm.gate === 'home',
+    StarwardSidePanel({ visible: this.showAccount!!, title: '冒险者菜单',
+      ownerActive: this.privacyAllowed && this.vm.gate === 'home',
       headerTitle: '冒险者护照', displayFont: this.displayFont,
       ownerKey: this.vm.player.id, anchorWindowX: this.accountAnchorWindowX, reducedMotion: this.motion.reduced,
       failed: () => StarwardFeedback.toast(this.getUIContext(), '菜单暂时无法打开，请重试。'),
@@ -1622,38 +1755,47 @@ struct Index {
       .width('100%').height('100%').backgroundColor($r('app.color.canvas'))
   }
 
+  @Builder
+  appContent() {
+    StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
+      anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
+    }).width('100%').height('100%')
+    AssignmentSynchronization({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
+      atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(this.assignmentDestinationRevision),
+      accountId: this.vm.player.id, briefingPresentation: this.vm.briefingPresentation,
+      assignmentId: this.selectedId, destinationActive: this.assignmentDestinationActive(),
+      authorized: this.assignmentAuthorized(), assigned: this.vm.detail.status === 'assigned',
+      briefingPollingChanged: (id: string) => { this.vm.setBriefingPolling(id); } })
+    if (this.assignmentDestinationActive() && !this.vm.play.visible && this.vm.detail.status === 'assigned' &&
+      this.vm.detail.id === this.selectedId && this.vm.play.syncEpisode > 0 &&
+      this.vm.play.syncEpisode !== this.vm.play.dismissedSyncEpisode) {
+      Column() {
+        StarwardSyncNotice({ reducedMotion: this.motion.reduced, dismiss: () => this.vm.play.dismissSyncNotice() })
+      }.width('100%').alignItems(HorizontalAlign.Center)
+        .position({ x: 0, y: this.safeTop() + 16 })
+        .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })
+        .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
+    }
+    if (this.lobbyVisible() && this.vm.showLobbySyncNotice) {
+      Column() {
+        StarwardSyncNotice({ nodePrefix: 'lobby-sync-notice', reducedMotion: this.motion.reduced,
+          dismiss: () => this.vm.dismissLobbySyncNotice() })
+      }.width('100%').alignItems(HorizontalAlign.Center)
+        .position({ x: 0, y: this.safeTop() + 16 })
+        .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })
+        .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
+    }
+    if (this.showFinaleBackdrop && this.foreground && this.vm.gate === 'home') {
+      StarwardFinaleBackdrop({ reducedMotion: this.motion.reduced }).zIndex(1)
+    }
+  }
+
   build() {
     Stack() {
-      StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
-        anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
-      }).width('100%').height('100%')
-      AssignmentSynchronization({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
-        atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(this.assignmentDestinationRevision),
-        accountId: this.vm.player.id, briefingPresentation: this.vm.briefingPresentation,
-        assignmentId: this.selectedId, destinationActive: this.assignmentDestinationActive(),
-        authorized: this.assignmentAuthorized(), assigned: this.vm.detail.status === 'assigned',
-        briefingPollingChanged: (id: string) => { this.vm.setBriefingPolling(id); } })
-      if (this.assignmentDestinationActive() && !this.vm.play.visible && this.vm.detail.status === 'assigned' &&
-        this.vm.detail.id === this.selectedId && this.vm.play.syncEpisode > 0 &&
-        this.vm.play.syncEpisode !== this.vm.play.dismissedSyncEpisode) {
-        Column() {
-          StarwardSyncNotice({ reducedMotion: this.motion.reduced, dismiss: () => this.vm.play.dismissSyncNotice() })
-        }.width('100%').alignItems(HorizontalAlign.Center)
-          .position({ x: 0, y: this.safeTop() + 16 })
-          .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })
-          .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
-      }
-      if (this.lobbyVisible() && this.vm.showLobbySyncNotice) {
-        Column() {
-          StarwardSyncNotice({ nodePrefix: 'lobby-sync-notice', reducedMotion: this.motion.reduced,
-            dismiss: () => this.vm.dismissLobbySyncNotice() })
-        }.width('100%').alignItems(HorizontalAlign.Center)
-          .position({ x: 0, y: this.safeTop() + 16 })
-          .padding({ left: 16 + this.safeLeft(), right: 16 + this.safeRight() })
-          .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
-      }
-      if (this.showFinaleBackdrop && this.foreground && this.vm.gate === 'home') {
-        StarwardFinaleBackdrop({ reducedMotion: this.motion.reduced }).zIndex(1)
+      if (this.privacyAllowed) {
+        this.appContent()
+      } else {
+        this.privacyPage()
       }
     }.width('100%').height('100%').backgroundColor($r('app.color.canvas'))
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])

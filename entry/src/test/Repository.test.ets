@@ -285,6 +285,58 @@ export default function repositoryTests(): void {
       expect(transport.requests.length).assertEqual(4);
     });
 
+    it('privacySuspensionDiscardsLateRestoreWithoutDeletingSavedSession', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore(new SavedSession('saved-token', 'playeralice'));
+      const repository: HttpsGameRepository = new HttpsGameRepository('https://isolated.example', transport, false, store);
+      const vm: SliceViewModel = new SliceViewModel(repository);
+      const complete: (status: number, body: string) => void = transport.deferTextReply();
+      const staleRestore: Promise<void> = vm.restoreSession();
+      await nextTurn();
+      expect(vm.gate).assertEqual('restoring');
+      expect(transport.requests.length).assertEqual(1);
+      vm.suspendSession();
+      expect(transport.requests[0].cancellation?.cancelled).assertTrue();
+      complete(401, '{}');
+      await staleRestore;
+      expect(vm.gate).assertEqual('login');
+      expect(vm.player.id).assertEqual('');
+      expect(await rejectedCode(repository.me())).assertEqual('UNAUTHORIZED');
+      expect(store.saved?.token).assertEqual('saved-token');
+      transport.reply(200, PLAYER_JSON);
+      await vm.restoreSession();
+      expect(vm.gate).assertEqual('password');
+      expect(transport.requests.length).assertEqual(2);
+      expect(transport.requests[1].token).assertEqual('saved-token');
+      vm.suspendSession();
+      expect(vm.player.id).assertEqual('');
+      expect(store.saved?.token).assertEqual('saved-token');
+      vm.logout();
+      await nextTurn();
+      expect(store.saved === null).assertTrue();
+      expect(vm.gate).assertEqual('login');
+    });
+
+    it('privacySuspensionDoesNotInterruptPendingSignout', 0, async () => {
+      const transport: StubTransport = new StubTransport();
+      const store: TestCredentialStore = new TestCredentialStore(new SavedSession('saved-token', 'playeralice'));
+      const vm: SliceViewModel = new SliceViewModel(new HttpsGameRepository('https://isolated.example', transport,
+        false, store));
+      transport.reply(200, PLAYER_JSON);
+      await vm.restoreSession();
+      store.deferClear();
+      vm.logout();
+      vm.suspendSession();
+      expect(vm.gate).assertEqual('signout');
+      expect(store.saved?.token).assertEqual('saved-token');
+      await vm.restoreSession();
+      expect(transport.requests.length).assertEqual(1);
+      store.releaseClear();
+      await nextTurn();
+      expect(vm.gate).assertEqual('login');
+      expect(store.saved === null).assertTrue();
+    });
+
     it('logoutInvalidatesInFlightCredentialSaveAndRetryWaitsForDurableClear', 0, async () => {
       const transport: StubTransport = new StubTransport();
       const store: TestCredentialStore = new TestCredentialStore(null, true);

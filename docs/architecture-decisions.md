@@ -368,6 +368,16 @@
 
 `platform/AppTheme` 通过 ArkData Preferences 保存 `system`、`light` 或 `dark`，单个轻量值在用户点选时同步落盘。偏好属于当前 App 安装，登录前和侧栏共用。启动时从首选项初始化选中态，在主窗口页面加载成功后调用 `ApplicationContext.setColorMode`，已有窗口配置监听继续更新沉浸系统栏。缺少有效偏好时跟随系统。[系统配色 API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-inner-application-applicationcontext/) · [用户首选项](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-data-preferences/) · [逐状态验收](feature-acceptance-matrix.md#u01-日夜主题冷启恢复)
 
+## ADR-030：正式应用身份与邀请测试签名
+
+「赴星之约」以 `com.sitkin.starward` 登记为 sitkin 主账号同名项目下的 HarmonyOS 应用，首轮支持手机。沿用此 APP ID 及分发签名进行后续版本和 Push 绑定。首个邀请包从干净源码在独立工程中构建为 Release `.app`，仅打入已联调的生产 HTTPS 模式。DevEco Studio 使用云管理发布证书与 Profile 重签，保留本机调试签名及隔离预览资源。验证实际签名后上传到「仅测试」渠道。[发布签名说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-publish-app/) · [邀请测试验收](feature-acceptance-matrix.md#p03-发布签名与首轮邀请测试)
+
+## ADR-031：邀请包的 AppGallery 隐私托管
+
+邀请包使用 `production-invite` 资源标记、固定生产 HTTPS 和 AppGallery 隐私托管。启动、回到前台及收到系统签署通知时，使用 AppGallery Kit 查询当前隐私声明及同版本的完整签署记录。官方弹窗负责接受或拒绝。登录和 Asset 续登要在签署确认后开始。应用内通过系统接口获取政策链接并交给系统浏览器。
+
+确认未同意时，清理当前会话和本机续登记录。服务暂时无法查询时隐藏业务页面，废弃在途请求，保留原有加密续登记录。查询恢复后以官方签署状态决定续登或清理。隔离调试包可显式开启同一门禁并使用官方调试元数据。预览和此前两种生产联调模式沿用各自打包配置。[AppGallery 隐私管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/store-privacy/) · [签署验收](feature-acceptance-matrix.md#p04-首轮邀请的隐私政策和签署检查)
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

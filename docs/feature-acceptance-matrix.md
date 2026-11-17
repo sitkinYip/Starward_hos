@@ -1424,3 +1424,34 @@ Web原始12图、同字体控制12图已冻结；迁移前登录配对及认证4
 | 范围 | 设置保存在应用本地，登录前和侧栏读取同一项。固定隔离预览的续登可继续使用，本轮不需要生产或玩法写入。 |
 
 冻结 Web `4b7d1a0` 保存 `system`、`light`、`dark` 三态。旧包直板实测选中深色后冷启会回到跟随系统。修复包经官方 DevEco 签名安装，同一固定隔离账号下逐一点击深色、浅色、跟随系统，并分别结束进程再启动。三次均从官方 UiTest 原始布局读到正确的唯一选中项，首页原图采样和沉浸系统栏前景与对应主题一致。设备本轮系统配色为浅色，收尾仍在固定预览首页并设为跟随系统。登录页共用同一选择器，通过源码核对。Hypium 226 项通过，codelinter 无错误和警告。[旧包复现](../artifacts/validation/theme-persistence-20261117/baseline-theme-01.json) · [签名安装](../artifacts/validation/theme-persistence-20261117/signed-preview-01.json) · [真机冷启恢复](../artifacts/validation/theme-persistence-20261117/fixed-theme-01.json) · [业务测试](../artifacts/validation/theme-persistence-20261117/local-test-summary.json) · [代码检查](../artifacts/validation/theme-persistence-20261117/lint.json)
+
+### P03 发布签名与首轮邀请测试
+
+| 阶段 | 验收要求 |
+| --- | --- |
+| 应用身份 | 在 HarmonyOS 开发者中心核对团队、项目、应用分类、包名、支持设备与 APP ID。包名与签名包一致，首轮覆盖手机。 |
+| 正式包构建和签名 | 从已验证源码构建 Release `.app`，检查版本、固定生产 HTTPS 配置、调试标志和本地隔离资源排除。核验实际分发签名以及开发者中心的上传检测结果。 |
+| 指定范围邀请 | 明确具名测试群组、测试时段和渠道。平台要求时通过官方表单提供专用审核账号和本版本材料。记录提审、实际可安装及首台邀请设备的结果。 |
+
+已登记「赴星之约」，正式包名 `com.sitkin.starward`，APP ID `6917622040781575732`，归 sitkin 主账号同名项目，分类「应用」，首轮支持手机。源码 `be08996` 经 DevEco CLI 项目级 Release 构建得到 0.1.0（1）`.app`，包内为已联调的生产 HTTPS 模式，无隔离配置或隔离 CA。DevEco Studio 使用云管理发布签名，官方 SDK 核验外层签名及 release Profile 成功，签名前后应用 HAP 内容逐字节一致。[签名与上传回执](../artifacts/validation/release-invite-20261117/signed-release-01.json)
+
+开发者中心显示该包为「仅测试」，软件包合法性「已达标」，上架自检尚未执行。首份邀请草稿保存了图标、应用介绍和测试说明。邀请包随后更新至接入隐私签署检查的 0.1.0（2），见 P04。[首版生产调试联调](production-write-candidate-2026-11-17.md) · [华为邀请测试流程](https://developer.huawei.com/consumer/cn/doc/app/agc-help-invite-test-0000002270829393/)
+
+### P04 首轮邀请的隐私政策和签署检查
+
+| 场景 | 验收要求 |
+| --- | --- |
+| 托管声明 | 根据鸿蒙版实际数据编写，核实运营者、公开联系渠道、保留期限、实际存放地和行权方式。开发者中心生成后关联到邀请草稿。 |
+| 首次启动及续登 | 邀请包先查 AppGallery Kit 当前签署结果，再调用玩家接口。未同意、签署服务不可用或更新声明时，保持登录和续登入口关闭，可用官方弹窗继续。 |
+| 政策入口 | 签署前、登录页及账号侧栏能从官方服务读取并打开对应隐私政策。市场托管处理确认弹窗。 |
+| 首轮范围 | 测试组只有用户确认的一个账号。补齐测试时段及审核资料后再提交，实际分发与真机安装单独验证。 |
+
+华为托管政策已生成，公开链接已打开验证，并已关联到「0.1.0 首轮手机邀请测试」草稿。政策采用实名登记主体和经确认的公开邮箱。生产数据库与备份位于阿里云河源，应用面向受邀成年人。[华为托管政策](https://agreement-drcn.hispace.dbankcloud.cn/index.html?lang=zh&agreementId=2085666010223924480)
+
+0.1.0（2）由 DevEco CLI 构建，DevEco Studio 云签并上传到「仅测试」。SDK 验证外层 App 签名及 release Profile。云签前后 ArkTS 载荷及生产标记相同，只更新了分发构建元数据。开发者中心检测合法性已达标，新包已替换草稿中的 0.1.0（1）。Hypium 228 项通过，含保留及撤销续登记录的回归，codelinter 无错误或告警，保留一项既有信纸模糊性能建议。[云签与上传](../artifacts/validation/privacy-invite-20261117/signed-release-02.json) · [Hypium](../artifacts/validation/privacy-invite-20261117/local-test-summary.json) · [代码检查](../artifacts/validation/privacy-invite-20261117/lint.json)
+
+在直板机上用官方 AppGallery 调试元数据模拟托管。测试辅助按钮调用官方 SDK 重置签署，应用隐藏登录表单并可打开系统弹窗。取消后再启动，登录仍被挡住。同意后进入登录页，冷启保留签署状态，从登录页打开了托管政策。完成后重新安装原固定隔离预览包并确认恢复到首页。隔离调试包未验证市场分发后的首次安装和正式续登。[真机签署验证](../artifacts/validation/privacy-invite-20261117/device-privacy-simulation.json)
+
+应用分类设为「应用 / 休闲娱乐」，主标签为「休闲益智」。负责人手机已通过官方验证。生产后台只给新建的专用审核玩家分配一场虚构样例，含一题，无经验、奖品或私有内容。用户完成专用玩家首次改密，并通过开发者中心保存审核凭据。
+
+2026 年 11 月 17 日，构建号 2 的邀请测试已提交，华为显示「预审中」。测试窗口为北京时间 11 月 17 日 17:10 至 11 月 30 日 16:30:58。选择用户确认的一个群组、一位测试用户，开启平台测试通知。等待平台通过预审及正式审核后核验邀请实际送达、市场安装和正式签署。[提交回执](../artifacts/validation/privacy-invite-20261117/invitation-submitted-01.json) · [华为邀请测试流程](https://developer.huawei.com/consumer/cn/doc/app/agc-help-appgallery-release-testapp-0000002258174266)
