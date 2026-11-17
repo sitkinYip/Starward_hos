@@ -1,0 +1,49 @@
+{
+  "status": "exact_synthetic_handler_smoke_passed",
+  "transport": "ephemeral host HTTP handlers",
+  "deviceInvoked": false,
+  "checks": {
+    "session": {
+      "status": 200,
+      "type": "image/png",
+      "bytes": 100732,
+      "sha256": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a"
+    },
+    "level": {
+      "status": 200,
+      "type": "image/png",
+      "bytes": 88588,
+      "sha256": "f069651b3733e8b8fa02d3b792017296258306e92cb84c74af1135742e9ff3b0"
+    },
+    "soundtrackA": {
+      "status": 200,
+      "type": "audio/mpeg",
+      "bytes": 17493,
+      "sha256": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3"
+    },
+    "soundtrackB": {
+      "status": 200,
+      "type": "audio/mpeg",
+      "bytes": 23109,
+      "sha256": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24"
+    },
+    "letterVideo": {
+      "status": 200,
+      "type": "video/mp4",
+      "bytes": 258860,
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7"
+    }
+  },
+  "videoRange": {
+    "status": 206,
+    "bytes": 128
+  },
+  "rejections": {
+    "missingReferer": 403,
+    "mediaWithCredentials": 403,
+    "imageWithCredentials": 403,
+    "invalidRange": 416,
+    "unknownExactMedia": 404,
+    "unknownExactImage": 404
+  }
+}

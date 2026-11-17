@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { gameplayBgmSource } from '../main/ets/business/GameplayBgm';
+import { assignmentBgmSource, gameplayBgmSource } from '../main/ets/business/GameplayBgm';
 import { GameplayLevel, GameplayQuestion, GameplaySnapshot } from '../main/ets/business/GameplayModels';
 import { QuestBgmPosition, questBgmCoordinate } from '../main/ets/business/QuestBgmDock';
 
@@ -54,6 +54,22 @@ export default function gameplayBgmTests(): void {
       expect(gameplayBgmSource(snapshot, level)).assertEqual('');
       snapshot.detail.status = 'assigned';
       expect(gameplayBgmSource(snapshot, level)).assertEqual('');
+    });
+
+    it('usesOnlyTheAssignmentTrackBeforeAQuestionIsReadable', 0, () => {
+      const snapshot: GameplaySnapshot = new GameplaySnapshot();
+      snapshot.presentation.bgmUrl = ' https://media.example/session.mp3 ';
+      const first: GameplayLevel = new GameplayLevel();
+      first.presentationOverride.bgmMode = 'custom';
+      first.presentationOverride.bgmUrl = 'https://media.example/level.mp3';
+      expect(assignmentBgmSource(snapshot.presentation)).assertEqual('https://media.example/session.mp3');
+      expect(gameplayBgmSource(snapshot, first)).assertEqual('');
+      snapshot.detail.status = 'active';
+      first.question = new GameplayQuestion();
+      expect(gameplayBgmSource(snapshot, first)).assertEqual('https://media.example/level.mp3');
+      snapshot.presentation.bgmMode = 'silent';
+      expect(assignmentBgmSource(snapshot.presentation)).assertEqual('');
+      expect(assignmentBgmSource(null)).assertEqual('');
     });
   });
 }

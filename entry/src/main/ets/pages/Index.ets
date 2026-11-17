@@ -3,12 +3,17 @@ import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
 import { GameplayPage } from '../features/GameplayPage';
 import { GameplayViewModel } from '../features/GameplayViewModel';
+import { AssignmentAtmosphereState } from '../features/AssignmentAtmosphereState';
 import { JourneyNotificationsViewModel } from '../features/JourneyNotificationsViewModel';
 import { NarrativePage } from '../features/NarrativePage';
 import { NarrativeRoute, NarrativeViewModel } from '../features/NarrativeViewModel';
 import { StarLettersPage } from '../features/StarLettersPage';
 import { StarLetterEntry } from '../business/StarLetters';
 import { GameNotification } from '../business/GameNotification';
+import { GameplayPresentation, GameplaySnapshot } from '../business/GameplayModels';
+import { assignmentBgmSource, gameplayBgmSource } from '../business/GameplayBgm';
+import { assignmentBackgroundSource, gameplayBackgroundSource } from '../business/GameplayBackground';
+import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, questBgmCoordinate } from '../business/QuestBgmDock';
 import { createSliceViewModel } from '../features/createSliceViewModel';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
@@ -38,6 +43,9 @@ import { StarwardFinaleBackdrop } from '../ui/StarwardCombinationNotice';
 import { JOURNEY_LAUNCHER_SIZE, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
 import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
+import { StarwardBgmControl } from '../ui/StarwardBgmControl';
+import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
+import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 /** Keep route-scoped reads in sync with both branches of the assignment destination. */
@@ -46,17 +54,25 @@ struct AssignmentSynchronization {
   @Require @Param journey: JourneyNotificationsViewModel;
   @Require @Param play: GameplayViewModel;
   @Require @Param narrative: NarrativeViewModel;
+  @Require @Param atmosphere: AssignmentAtmosphereState;
+  @Require @Param atmosphereOwner: string;
+  @Require @Param accountId: string;
+  @Require @Param briefingPresentation: GameplayPresentation | null;
   @Require @Param assignmentId: string;
   @Require @Param destinationActive: boolean;
   @Require @Param authorized: boolean;
   @Require @Param assigned: boolean;
   @Event briefingPollingChanged: (id: string) => void = () => {};
 
-  aboutToAppear(): void { this.update(); }
+  aboutToAppear(): void {
+    this.update();
+    this.updateAtmosphere();
+  }
 
   aboutToDisappear(): void {
     this.journey.setPolling(false);
     this.briefingPollingChanged('');
+    this.atmosphere.release();
   }
 
   @Monitor('assignmentId', 'destinationActive', 'authorized', 'assigned', 'narrative.route', 'play.visible', 'play.snapshot',
@@ -64,9 +80,34 @@ struct AssignmentSynchronization {
   private update(): void {
     this.briefingPollingChanged(this.destinationActive && this.narrative.route === null && !this.play.visible ?
       this.assignmentId : '');
-    this.journey.setPolling(this.authorized && this.narrative.route === null && !this.play.refreshing &&
+    this.journey.setPolling(this.destinationActive && this.authorized && this.narrative.route === null &&
+      !this.play.refreshing &&
       (this.play.visible ? this.play.snapshot?.detail.id === this.assignmentId &&
         this.play.snapshot?.detail.status !== 'cancelled' && this.play.error.length === 0 : this.assigned));
+  }
+
+  @Monitor('assignmentId', 'destinationActive', 'authorized', 'assigned', 'accountId', 'atmosphereOwner', 'briefingPresentation',
+    'narrative.route', 'play.visible', 'play.snapshot', 'play.error', 'play.activeIndex')
+  private updateAtmosphere(): void {
+    if (!this.authorized) { this.atmosphere.release(); return; }
+    const foreground: boolean = this.destinationActive && this.narrative.route === null;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (this.play.visible) {
+      const snapshot: GameplaySnapshot | null = this.play.snapshot;
+      if (snapshot === null || snapshot.detail.id !== this.assignmentId || snapshot.detail.player !== this.accountId ||
+        (snapshot.detail.status !== 'active' && snapshot.detail.status !== 'completed') || this.play.error.length > 0) {
+        this.atmosphere.release();
+        return;
+      }
+      const level = this.play.currentLevel();
+      this.atmosphere.update(context, this.atmosphereOwner, this.accountId, gameplayBackgroundSource(snapshot, level),
+        gameplayBgmSource(snapshot, level), foreground);
+    } else if (this.assigned && this.briefingPresentation !== null) {
+      this.atmosphere.update(context, this.atmosphereOwner, this.accountId,
+        assignmentBackgroundSource(this.briefingPresentation), assignmentBgmSource(this.briefingPresentation), foreground);
+    } else {
+      this.atmosphere.release();
+    }
   }
 
   build() {
@@ -80,6 +121,7 @@ struct Index {
   @Env(WritableEnvKey.FONT_SCALE) fontScale: number;
   @Env(ReadonlyEnvKey.WINDOW_AVOID_AREA) avoidArea: window.UIEnvWindowAvoidAreaInfoVP;
   @Local vm: SliceViewModel = createSliceViewModel();
+  @Local private atmosphere: AssignmentAtmosphereState = new AssignmentAtmosphereState();
   @Local account: string = '';
   @Local password: string = '';
   @Local oldPassword: string = '';
@@ -136,6 +178,7 @@ struct Index {
       }
     } else {
       this.stopClock();
+      this.atmosphere.suspend();
       this.vm.stopBriefingSync();
       this.vm.starLetters.suspend();
       this.vm.journey.pauseReads();
@@ -179,6 +222,7 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.vm.narrative.close();
     this.vm.starLetters.suspend();
@@ -197,6 +241,7 @@ struct Index {
   gateChanged(): void {
     this.clearPasswords();
     if (this.vm.gate !== 'home') {
+      this.atmosphere.release();
       this.paths.clear();
       this.showAccount = false;
       this.mainIndex = 0;
@@ -221,9 +266,14 @@ struct Index {
       !this.vm.securityUnconfirmed && this.selectedId.length > 0;
   }
 
-  private assignmentJourneyAuthorized(): boolean {
-    return this.assignmentDestinationActive() && this.vm.detail.id === this.selectedId &&
+  private assignmentAuthorized(): boolean {
+    return this.vm.gate === 'home' && !this.vm.securityUnconfirmed && this.selectedId.length > 0 &&
+      (this.gameplayDestinationShown || this.vm.narrative.route !== null) && this.vm.detail.id === this.selectedId &&
       this.vm.detail.player === this.vm.player.id && this.vm.detail.status !== 'cancelled';
+  }
+
+  private atmosphereOwner(revision: Object): string {
+    return `${this.vm.player.id}:${revision}`;
   }
 
   private handleAssignmentJourneyBack(): boolean {
@@ -316,6 +366,7 @@ struct Index {
       this.returnAssignmentId = this.selectedId;
     }
     this.showAccount = false;
+    this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.vm.narrative.close();
     this.vm.play.leave();
@@ -350,6 +401,7 @@ struct Index {
   private leaveGameplay(popPath: boolean = true): void {
     const gameplayVisible: boolean = this.vm.play.visible;
     this.gameplayTitleHidden = false;
+    this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.vm.journey.setPolling(false);
     this.vm.journey.clearRouteArchive();
@@ -551,6 +603,7 @@ struct Index {
       return;
     }
     this.selectMain(0);
+    this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.gameplayDestinationShown = false;
     this.selectedId = id;
@@ -1088,7 +1141,8 @@ struct Index {
   }
 
   private briefJourneyReady(): boolean {
-    return !this.vm.play.visible && this.assignmentJourneyAuthorized() && this.vm.detail.status === 'assigned' &&
+    return !this.vm.play.visible && this.assignmentDestinationActive() && this.assignmentAuthorized() &&
+      this.vm.detail.status === 'assigned' &&
       this.vm.narrative.route === null && !this.vm.detailBusy && !this.vm.play.starting && !this.vm.play.retryEntry &&
       !this.showAccount && !this.showAvatarCrop &&
       !this.keyboardOccupiesViewport() && this.vm.journey.gameplayReady &&
@@ -1108,6 +1162,29 @@ struct Index {
   private showBriefJourneyLauncher(): boolean {
     return this.briefJourneyReady() && this.vm.journey.entries.length > 0 && this.briefJourneyNote() === null &&
       this.briefViewportHeight - this.briefJourneyTopInset() - this.safeBottom() >= JOURNEY_LAUNCHER_SIZE + 24;
+  }
+
+  private showBriefBgm(owner: string): boolean {
+    const minimum: number = QUEST_BGM_SIZE + 2 * QUEST_BGM_MARGIN;
+    return this.foreground && this.atmosphere.owns(owner) && this.atmosphere.trackAvailable &&
+      !this.keyboardOccupiesViewport() &&
+      this.briefViewportWidth - this.safeLeft() - this.safeRight() >= minimum &&
+      this.briefViewportHeight - this.briefJourneyTopInset() - this.safeBottom() >= minimum;
+  }
+
+  private briefBgmLeft(): number {
+    return questBgmCoordinate(this.atmosphere.position.x, this.briefViewportWidth, this.safeLeft(), this.safeRight());
+  }
+
+  private briefBgmTop(): number {
+    return questBgmCoordinate(this.atmosphere.position.y, this.briefViewportHeight, this.briefJourneyTopInset(),
+      this.safeBottom());
+  }
+
+  private briefScrollClearance(owner: string): number {
+    const reserve: number = this.showBriefBgm(owner) ? QUEST_BGM_SIZE :
+      this.showBriefJourneyLauncher() ? JOURNEY_LAUNCHER_SIZE : 0;
+    return 24 + (reserve > 0 ? reserve + this.safeBottom() : 0);
   }
 
   private async closeBriefJourneyNote(id: string, retry: boolean): Promise<void> {
@@ -1142,7 +1219,7 @@ struct Index {
   }
 
   @Builder
-  assignmentBrief() {
+  assignmentBrief(owner: string) {
     Stack({ alignContent: Alignment.TopStart }) {
       Scroll() {
         Column({ space: 16 }) {
@@ -1176,14 +1253,24 @@ struct Index {
             }
           }
         }.width('100%').constraintSize({ maxWidth: 720 }).alignItems(HorizontalAlign.Start)
-          .padding({ left: 12, right: 12, top: 16, bottom: this.showBriefJourneyLauncher() ?
-            24 + JOURNEY_LAUNCHER_SIZE + this.safeBottom() : 24 })
+          .padding({ left: 12, right: 12, top: 16, bottom: this.briefScrollClearance(owner) })
       }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
+      if (this.showBriefBgm(owner)) {
+        StarwardBgmControl({ state: this.atmosphere.state, reducedMotion: this.motion.reduced,
+          viewportWidth: this.briefViewportWidth, viewportHeight: this.briefViewportHeight,
+          topInset: this.briefJourneyTopInset(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
+          bottomInset: this.safeBottom(), savedX: this.atmosphere.position.x, savedY: this.atmosphere.position.y,
+          ownerKey: owner, positionCommitted: (key: string, x: number, y: number) => {
+            if (this.showBriefBgm(owner)) { this.atmosphere.rememberPosition(key, x, y); }
+          }, toggle: () => { if (this.showBriefBgm(owner)) { this.atmosphere.toggle(owner); } } })
+      }
       if (this.showBriefJourneyLauncher()) {
         StarwardJourneyLauncher({ entries: this.vm.journey.entries, unreadCount: this.vm.journey.unreadCount,
           viewportWidth: this.briefViewportWidth, viewportHeight: this.briefViewportHeight,
           topInset: this.briefJourneyTopInset(), bottomInset: 24 + this.safeBottom(),
           leftInset: this.safeLeft(), rightInset: this.safeRight(), displayFont: this.displayFont,
+          bgmLeft: this.showBriefBgm(owner) ? this.briefBgmLeft() : -1,
+          bgmTop: this.showBriefBgm(owner) ? this.briefBgmTop() : -1,
           reducedMotion: this.motion.reduced, select: (id: string) => {
             if (this.showBriefJourneyLauncher()) { this.vm.journey.openRouteArchive(this.selectedId, id); }
           } })
@@ -1200,54 +1287,74 @@ struct Index {
           this.vm.journey.clearRouteArchive();
           return true;
         },
-        backHandlerChanged: (handler: (() => boolean) | null) => { this.briefJourneyBack = handler; } })
+        backHandlerChanged: (handler: (() => boolean) | null) => { this.briefJourneyBack = handler; },
+        playingChanged: (open: boolean) => this.atmosphere.setVideo(owner, 'briefing', open),
+        playbackReady: () => this.atmosphere.whenQuiet(owner) })
     }.width('100%').height('100%')
       .onAreaChange((_oldArea: Area, area: Area) => this.measureBriefViewport(area))
+  }
+
+  @Builder
+  assignmentBackdrop(owner: string) {
+    if (this.foreground && this.vm.narrative.route === null && this.atmosphere.owns(owner)) {
+      if (this.atmosphere.background.length > 0) {
+        StarwardQuestBackground({ source: this.atmosphere.background, ownerKey: owner,
+          sourceIsCurrent: (key: string, source: string) => this.atmosphere.owns(key) &&
+            source === this.atmosphere.background,
+          imageCache: this.atmosphere.imageCache, retryRevision: this.atmosphere.backgroundRetryRevision })
+      }
+      StarwardQuestAtmosphere({ reducedMotion: this.motion.reduced })
+    }
   }
 
   @Builder
   destination(name: string, param: Object) {
     if (name === 'assignment') {
       NavDestination() {
-        if (this.vm.play.visible) {
-          GameplayPage({ play: this.vm.play, journey: this.vm.journey, autoNextDelay: this.motion.duration(1500),
-            playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
-            displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
-            titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
-            leftInset: this.safeLeft(), rightInset: this.safeRight(),
-            keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
-            narrativeCovered: this.vm.narrative.route !== null, accountCovered: this.showAccount,
-            journeyPollingAllowed: this.gameplayDestinationShown && this.vm.gate === 'home' &&
-              !this.vm.securityUnconfirmed,
-            openJourneyLink: (href: string) => this.openJourneyLink(href),
-            journeyBackHandlerChanged: (handler: (() => boolean) | null) => { this.gameplayJourneyBack = handler; },
-            profilePollingChanged: (active: boolean) => { this.vm.setGameplayPlayerPolling(active); },
-            openNarrative: (assignmentId: string, contentId: string) => this.openFinaleNarrative(assignmentId, contentId),
-            openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) =>
-              this.openQuestClue(assignmentId, clueId, contentId),
-            titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
-            finaleBackdropChanged: (visible: boolean) => { this.showFinaleBackdrop = visible; },
-            leave: () => this.leaveGameplay() })
-        } else {
-          this.assignmentBrief()
-        }
+        Stack({ alignContent: Alignment.Top }) {
+          this.assignmentBackdrop(this.atmosphereOwner(param))
+          if (this.vm.play.visible) {
+            GameplayPage({ play: this.vm.play, journey: this.vm.journey, autoNextDelay: this.motion.duration(1500),
+              atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(param),
+              playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
+              displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
+              titleBottom: this.detailTitleHeight() + 24 + this.safeTop(), statusInset: this.safeTop(),
+              leftInset: this.safeLeft(), rightInset: this.safeRight(),
+              keyboardVisible: this.keyboardOccupiesViewport(), reducedMotion: this.motion.reduced,
+              narrativeCovered: this.vm.narrative.route !== null, accountCovered: this.showAccount,
+              journeyPollingAllowed: this.gameplayDestinationShown && this.vm.gate === 'home' &&
+                !this.vm.securityUnconfirmed,
+              openJourneyLink: (href: string) => this.openJourneyLink(href),
+              journeyBackHandlerChanged: (handler: (() => boolean) | null) => { this.gameplayJourneyBack = handler; },
+              profilePollingChanged: (active: boolean) => { this.vm.setGameplayPlayerPolling(active); },
+              openNarrative: (assignmentId: string, contentId: string) => this.openFinaleNarrative(assignmentId, contentId),
+              openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) =>
+                this.openQuestClue(assignmentId, clueId, contentId),
+              titleVisibilityChanged: (hidden: boolean) => { this.gameplayTitleHidden = hidden; },
+              finaleBackdropChanged: (visible: boolean) => { this.showFinaleBackdrop = visible; },
+              leave: () => this.leaveGameplay() })
+          } else {
+            this.assignmentBrief(this.atmosphereOwner(param))
+          }
+        }.width('100%').height('100%')
       }.title({ builder: this.detailTitle, height: this.detailTitleHeight() + 24 + this.safeTop() },
         StarwardMaterial.titleOptions(this.vm.play.visible ? BarStyle.STACK : BarStyle.STANDARD))
         .hideTitleBar(this.vm.play.visible && this.gameplayTitleHidden, !this.motion.reduced)
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
         .onBackPressed(() => param === this.assignmentDestinationRevision && this.handleAssignmentJourneyBack())
         .onShown((reason: VisibilityChangeReason) => {
-          if (param === this.assignmentDestinationRevision && reason !== VisibilityChangeReason.CONTENT_COVER) {
+          if (param === this.assignmentDestinationRevision && reason === VisibilityChangeReason.TRANSITION) {
             this.gameplayDestinationShown = true;
           }
         })
         .onHidden((reason: VisibilityChangeReason) => {
           // A full-screen clue or letter cover does not leave the answer destination.
-          if (param !== this.assignmentDestinationRevision || reason === VisibilityChangeReason.CONTENT_COVER) { return; }
+          if (param !== this.assignmentDestinationRevision || reason !== VisibilityChangeReason.TRANSITION) { return; }
           this.gameplayDestinationShown = false;
+          if (this.vm.narrative.route === null) { this.atmosphere.release(); } else { this.atmosphere.suspend(); }
           this.vm.stopBriefingSync();
           this.vm.journey.setPolling(false);
-          if (reason === VisibilityChangeReason.TRANSITION) { this.vm.journey.clearRouteArchive(); }
+          this.vm.journey.clearRouteArchive();
         })
     } else if (name === 'narrative') {
       NavDestination() {
@@ -1444,8 +1551,10 @@ struct Index {
         anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
       }).width('100%').height('100%')
       AssignmentSynchronization({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
+        atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(this.assignmentDestinationRevision),
+        accountId: this.vm.player.id, briefingPresentation: this.vm.briefingPresentation,
         assignmentId: this.selectedId, destinationActive: this.assignmentDestinationActive(),
-        authorized: this.assignmentJourneyAuthorized(), assigned: this.vm.detail.status === 'assigned',
+        authorized: this.assignmentAuthorized(), assigned: this.vm.detail.status === 'assigned',
         briefingPollingChanged: (id: string) => { this.vm.setBriefingPolling(id); } })
       if (this.assignmentDestinationActive() && !this.vm.play.visible && this.vm.detail.status === 'assigned' &&
         this.vm.detail.id === this.selectedId && this.vm.play.syncEpisode > 0 &&

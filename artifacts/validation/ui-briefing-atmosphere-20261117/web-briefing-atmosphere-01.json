@@ -1,0 +1,3006 @@
+{
+  "status": "captured_frozen_web_reference",
+  "webCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "distributionManifestSha256": "a2719e79f3f204b7d3061145dadbc25fbcffd0f47580719ec87ff41fa35dd739",
+  "inputSha256": "8adc89ac04be07a06202a5d548da9fe6cbd7cfc5e6069cdb3a9141e95534ccf4",
+  "fontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "driverSha256": "cd6bf09d422784a88fc75cc70f6bef849b8ab847685323cf8f8630d9d35afd0c",
+  "playwrightVersion": "1.62.1",
+  "viewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "network": "local frozen distribution and blocked external network; read-only isolated fixture data and media byte replay",
+  "credentials": "synthetic browser authentication value",
+  "nativeAcceptance": false,
+  "autoplayDriver": "Chromium permits autoplay to exercise the frozen audio implementation",
+  "media": {
+    "theme-a.mp3": {
+      "type": "audio/mpeg",
+      "bytes": 17493,
+      "sha256": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3"
+    },
+    "theme-b.mp3": {
+      "type": "audio/mpeg",
+      "bytes": 23109,
+      "sha256": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24"
+    },
+    "quest-bg-session.png": {
+      "type": "image/png",
+      "bytes": 100732,
+      "sha256": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a"
+    },
+    "quest-bg-level.png": {
+      "type": "image/png",
+      "bytes": 88588,
+      "sha256": "f069651b3733e8b8fa02d3b792017296258306e92cb84c74af1135742e9ff3b0"
+    },
+    "ordinary.mp4": {
+      "type": "video/mp4",
+      "bytes": 258860,
+      "sha256": "cdc8ab2adc6fdf97f8574d997e3611bff2d6ca325c99f7e6dfd3d46551c60dd7"
+    }
+  },
+  "scenarios": [
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "no-preference",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 0.539762,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "notification": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "none",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 0.878315,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "video": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "none",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(57, 123, 109)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "50%"
+          },
+          "controlState": "paused",
+          "controlAnimations": [],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 1.12522,
+              "paused": true,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": {
+            "box": {
+              "x": 14.06317138671875,
+              "y": 284.3697509765625,
+              "width": 359.8736572265625,
+              "height": 202.428955078125,
+              "right": 14.06317138671875,
+              "bottom": 284.2012939453125,
+              "pointerEvents": "auto",
+              "position": "static",
+              "background": "rgba(0, 0, 0, 0)",
+              "color": "rgb(41, 60, 56)",
+              "border": "rgb(41, 60, 56)",
+              "radius": "0px"
+            },
+            "paused": false,
+            "readyState": 4,
+            "currentTime": 0.471835
+          }
+        },
+        "video-closed": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "none",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 1.73831,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": null,
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": {
+            "x": 11.927253723144531,
+            "y": 705.1233520507812,
+            "width": 53.98863983154297,
+            "height": 53.98858642578125,
+            "right": 322.0841064453125,
+            "bottom": 11.8880615234375,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgba(250, 246, 251, 0.96)",
+            "color": "rgb(100, 77, 107)",
+            "border": "rgb(184, 164, 189)",
+            "radius": "50%"
+          },
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 1.615469,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 4,
+          "assignment": 4,
+          "notifications": 3
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [
+          {
+            "name": "theme-a.mp3",
+            "status": 206
+          },
+          {
+            "name": "quest-bg-session.png",
+            "status": 200
+          },
+          {
+            "name": "ordinary.mp4",
+            "status": 206
+          }
+        ],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "brief notification video suspends BGM and its closure resumes the same audio element",
+        "authorized active snapshot keeps the same browser audio element with the same source"
+      ],
+      "handoffTimeSeconds": {
+        "before": 0.747475,
+        "after": 1.615469
+      }
+    },
+    {
+      "scenario": "override",
+      "theme": "light",
+      "motion": "no-preference",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "level",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "b",
+              "currentTime": 0.788251,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "level",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": null,
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "b",
+              "currentTime": 5.396171,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 2,
+          "assignment": 2,
+          "notifications": 1
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [
+          {
+            "name": "theme-b.mp3",
+            "status": 206
+          },
+          {
+            "name": "quest-bg-level.png",
+            "status": 200
+          }
+        ],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "frozen Web resolves the first level override while still assigned",
+        "authorized active snapshot keeps the same browser audio element with the same source"
+      ],
+      "handoffTimeSeconds": {
+        "before": 0.791334,
+        "after": 5.396171
+      }
+    },
+    {
+      "scenario": "silent",
+      "theme": "light",
+      "motion": "no-preference",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": null,
+          "backgroundBox": null,
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": null,
+          "controlState": null,
+          "controlAnimations": [],
+          "launcher": null,
+          "audios": [],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": null,
+          "backgroundBox": null,
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": null,
+          "control": null,
+          "controlState": null,
+          "controlAnimations": [],
+          "launcher": null,
+          "audios": [],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 2,
+          "assignment": 2,
+          "notifications": 1
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "no configured image or audio is requested before or after entry"
+      ]
+    },
+    {
+      "scenario": "same",
+      "theme": "dark",
+      "motion": "no-preference",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(21, 22, 18)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(117, 104, 74)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "color": "rgb(216, 196, 134)",
+            "border": "rgb(212, 188, 125)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 0.78518,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": null,
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "color": "rgb(216, 196, 134)",
+            "border": "rgb(212, 188, 125)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": {
+            "x": 11.855685234069824,
+            "y": 705.245849609375,
+            "width": 53.97651290893555,
+            "height": 53.97650146484375,
+            "right": 322.16780185699463,
+            "bottom": 11.77764892578125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgba(27, 22, 29, 0.94)",
+            "color": "rgb(223, 209, 228)",
+            "border": "rgb(102, 84, 110)",
+            "radius": "50%"
+          },
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 1.152738,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 2,
+          "assignment": 2,
+          "notifications": 1
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [
+          {
+            "name": "theme-a.mp3",
+            "status": 206
+          },
+          {
+            "name": "quest-bg-session.png",
+            "status": 200
+          }
+        ],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "authorized active snapshot keeps the same browser audio element with the same source"
+      ],
+      "handoffTimeSeconds": {
+        "before": 0.786407,
+        "after": 1.152738
+      }
+    },
+    {
+      "scenario": "override",
+      "theme": "dark",
+      "motion": "no-preference",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "level",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(21, 22, 18)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(117, 104, 74)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "color": "rgb(216, 196, 134)",
+            "border": "rgb(212, 188, 125)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "b",
+              "currentTime": 0.802611,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": "level",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": null,
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 0.0901961 0.0941176 0.0784314 / 0.94)",
+            "color": "rgb(216, 196, 134)",
+            "border": "rgb(212, 188, 125)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "bgm-wave",
+              "duration": 800,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "b",
+              "currentTime": 5.407908,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 2,
+          "assignment": 2,
+          "notifications": 1
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [
+          {
+            "name": "theme-b.mp3",
+            "status": 206
+          },
+          {
+            "name": "quest-bg-level.png",
+            "status": 200
+          }
+        ],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "frozen Web resolves the first level override while still assigned",
+        "authorized active snapshot keeps the same browser audio element with the same source"
+      ],
+      "handoffTimeSeconds": {
+        "before": 0.803732,
+        "after": 5.407908
+      }
+    },
+    {
+      "scenario": "silent",
+      "theme": "dark",
+      "motion": "no-preference",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": null,
+          "backgroundBox": null,
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(21, 22, 18)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(117, 104, 74)",
+            "radius": "18px"
+          },
+          "control": null,
+          "controlState": null,
+          "controlAnimations": [],
+          "launcher": null,
+          "audios": [],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "dark",
+            "coarse": true,
+            "reduced": false
+          },
+          "background": null,
+          "backgroundBox": null,
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 230, 225)",
+            "border": "rgb(231, 230, 225)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [
+            {
+              "name": "atmosphere-breathe",
+              "duration": 12000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rift",
+              "duration": 9000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-orbit",
+              "duration": 24000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-sigil",
+              "duration": 32000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-rays",
+              "duration": 26000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            },
+            {
+              "name": "atmosphere-mote",
+              "duration": 8000,
+              "running": true,
+              "infinite": true
+            }
+          ],
+          "briefBox": null,
+          "control": null,
+          "controlState": null,
+          "controlAnimations": [],
+          "launcher": null,
+          "audios": [],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 2,
+          "assignment": 2,
+          "notifications": 1
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "no configured image or audio is requested before or after entry"
+      ]
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "reduce",
+      "states": {
+        "brief": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [],
+          "briefBox": {
+            "x": 12,
+            "y": 109.578125,
+            "width": 364,
+            "height": 445.96875,
+            "right": 12,
+            "bottom": 215.453125,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgb(247, 249, 248)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(130, 175, 162)",
+            "radius": "18px"
+          },
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [],
+          "launcher": null,
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 0.756179,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        },
+        "first-question": {
+          "viewport": {
+            "width": 388,
+            "height": 771,
+            "dpr": 1,
+            "theme": "light",
+            "coarse": true,
+            "reduced": true
+          },
+          "background": "session",
+          "backgroundBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereBox": {
+            "x": 0,
+            "y": 0,
+            "width": 388,
+            "height": 771,
+            "right": 0,
+            "bottom": 0,
+            "pointerEvents": "none",
+            "position": "fixed",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(41, 60, 56)",
+            "border": "rgb(41, 60, 56)",
+            "radius": "0px"
+          },
+          "atmosphereAnimations": [],
+          "briefBox": null,
+          "control": {
+            "x": 320,
+            "y": 703,
+            "width": 56,
+            "height": 56,
+            "right": 12,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "fixed",
+            "background": "color(srgb 1 1 1 / 0.94)",
+            "color": "rgb(17, 105, 88)",
+            "border": "rgb(24, 123, 105)",
+            "radius": "50%"
+          },
+          "controlState": "playing",
+          "controlAnimations": [],
+          "launcher": {
+            "x": 12,
+            "y": 705,
+            "width": 54,
+            "height": 54,
+            "right": 322,
+            "bottom": 12,
+            "pointerEvents": "auto",
+            "position": "relative",
+            "background": "rgba(250, 246, 251, 0.96)",
+            "color": "rgb(100, 77, 107)",
+            "border": "rgb(184, 164, 189)",
+            "radius": "50%"
+          },
+          "audios": [
+            {
+              "track": "a",
+              "currentTime": 1.13625,
+              "paused": false,
+              "readyState": 4,
+              "loop": true,
+              "volume": 0.3
+            }
+          ],
+          "video": null
+        }
+      },
+      "trace": {
+        "reads": {
+          "me": 2,
+          "assignment": 2,
+          "notifications": 1
+        },
+        "writesAttempted": 0,
+        "writesForwarded": 0,
+        "media": [
+          {
+            "name": "quest-bg-session.png",
+            "status": 200
+          },
+          {
+            "name": "theme-a.mp3",
+            "status": 206
+          }
+        ],
+        "unexpected": [],
+        "browserErrors": []
+      },
+      "checks": [
+        "authorized active snapshot keeps the same browser audio element with the same source"
+      ],
+      "handoffTimeSeconds": {
+        "before": 0.756971,
+        "after": 1.13625
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "brief",
+      "filename": "light-no-preference-same-brief.png",
+      "sha256": "2e02c855e8d0eb8c8c5e9a276f782f6b3ac62cd7b0a8b6b4aab3bdeda55a7243"
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "notification",
+      "filename": "light-no-preference-same-notification.png",
+      "sha256": "f356ab3f37735881b638090020486a2e5a43ff40a719bb2c51a25a30f5e95405"
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "video",
+      "filename": "light-no-preference-same-video.png",
+      "sha256": "6135a0c6dbdc58963c4a5f213f2e0197b17d206b3113f26bff593060d5e89bd3"
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "video-closed",
+      "filename": "light-no-preference-same-video-closed.png",
+      "sha256": "d6efd5ade4229f965ab152e8c51aa1aebc52e301eca3b47dec01e55df496f395"
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "first-question",
+      "filename": "light-no-preference-same-first-question.png",
+      "sha256": "43d6f02d0fbc01882cdec7ac1407219bfc93b2c447f9494d5bc49000665680fa"
+    },
+    {
+      "scenario": "override",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "brief",
+      "filename": "light-no-preference-override-brief.png",
+      "sha256": "9f96cf0e1fd2a5bfc80048b9b63e08592cace8b78ef81425d135f873cbf565c0"
+    },
+    {
+      "scenario": "override",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "first-question",
+      "filename": "light-no-preference-override-first-question.png",
+      "sha256": "e1e38bbb04ba2fd07696fde2cff1aeccaa608a1185cb0f61be8f176de0a2ca9f"
+    },
+    {
+      "scenario": "silent",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "brief",
+      "filename": "light-no-preference-silent-brief.png",
+      "sha256": "e61a928416c9656a4b91b0b69ad43f216e28e83535f2dd493a1b9df55cdf3c2b"
+    },
+    {
+      "scenario": "silent",
+      "theme": "light",
+      "motion": "no-preference",
+      "label": "first-question",
+      "filename": "light-no-preference-silent-first-question.png",
+      "sha256": "319df8e833f6663731f68d38e5dc07f7eb638f787fb37cef9d4b216bc000907b"
+    },
+    {
+      "scenario": "same",
+      "theme": "dark",
+      "motion": "no-preference",
+      "label": "brief",
+      "filename": "dark-no-preference-same-brief.png",
+      "sha256": "7b3ca445836a93379e099f5635be92c4efcae518e591608ec07aa0de3f341218"
+    },
+    {
+      "scenario": "same",
+      "theme": "dark",
+      "motion": "no-preference",
+      "label": "first-question",
+      "filename": "dark-no-preference-same-first-question.png",
+      "sha256": "e21673382a855907acf76095ca984cbf3f30158d7a658616757af31344404257"
+    },
+    {
+      "scenario": "override",
+      "theme": "dark",
+      "motion": "no-preference",
+      "label": "brief",
+      "filename": "dark-no-preference-override-brief.png",
+      "sha256": "2b8bbce16db37d16887d0a915efbad14deb880b3a1910667c3a928e2934d8a4e"
+    },
+    {
+      "scenario": "override",
+      "theme": "dark",
+      "motion": "no-preference",
+      "label": "first-question",
+      "filename": "dark-no-preference-override-first-question.png",
+      "sha256": "3c318405606ac3b9a512aef24b68153bbf8d672ec933af5863d4f973406f5cb6"
+    },
+    {
+      "scenario": "silent",
+      "theme": "dark",
+      "motion": "no-preference",
+      "label": "brief",
+      "filename": "dark-no-preference-silent-brief.png",
+      "sha256": "18e804e4e78fa725c56dc4afc924a5a734711a27dce9810d55f0e9899d6c53df"
+    },
+    {
+      "scenario": "silent",
+      "theme": "dark",
+      "motion": "no-preference",
+      "label": "first-question",
+      "filename": "dark-no-preference-silent-first-question.png",
+      "sha256": "382c39d346a1147ba51b8e5de6c016306461c9337074397a48d70e126c9a1596"
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "reduce",
+      "label": "brief",
+      "filename": "light-reduce-same-brief.png",
+      "sha256": "13bb6b91dffb693d6307f7eeea1ebe330de664f96b71f7eee037005ad505321e"
+    },
+    {
+      "scenario": "same",
+      "theme": "light",
+      "motion": "reduce",
+      "label": "first-question",
+      "filename": "light-reduce-same-first-question.png",
+      "sha256": "ada5712394fc40bb157db21790498dd0c930ca2a75042682f69b89f379f83942"
+    }
+  ],
+  "browserVersion": "151.0.7922.34"
+}

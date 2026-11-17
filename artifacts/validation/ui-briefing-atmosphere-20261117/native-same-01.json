@@ -1,0 +1,527 @@
+{
+  "status": "passed",
+  "role": "same",
+  "scope": "Exact isolated briefing, one explicit start, optional real notification acknowledge",
+  "signedHapSha256": "1bd4bd05b1fe49caef9b37f2547d887e4aa3159b2de13f39a80cfba03fb0fae3",
+  "runtimeSha256": "1a5a1eb91403eb7bff1fc1cd4ad8c9086c0c4049a38da25d6889f0d92bf3b8a8",
+  "driverSha256": "7d48cfa2de3785ef540c528c0a189163b619d165a7189de871a8a8c858dc54bb",
+  "fixtureSha256": "8eefb7f03c48794267c41f6022d9709dfc7e8f9b6c99eb189a19a0642eb26ebc",
+  "screenshots": [
+    {
+      "state": "briefing-light-1",
+      "file": "briefing-light-1.png",
+      "sha256": "811058ae208ebd790d9c0363055a879eb901b3ca27715d3f133af544298624fd"
+    },
+    {
+      "state": "briefing-light-2",
+      "file": "briefing-light-2.png",
+      "sha256": "75ff25c3845d621cd80fa350c778b6cbfe80af72e145b9171a293f7402e03e41"
+    },
+    {
+      "state": "journey-note",
+      "file": "journey-note.png",
+      "sha256": "d5127568cab1df6067a87e9f6b2e0c0a2c7991e737b89f50fe41aa7a18f3e15e"
+    },
+    {
+      "state": "journey-video-1",
+      "file": "journey-video-1.png",
+      "sha256": "0b58f5533943886f929f61f21a603a6a171d712b5b02b51241e12888f4c1f638"
+    },
+    {
+      "state": "journey-video-2",
+      "file": "journey-video-2.png",
+      "sha256": "8b7bf4f66045f3c00a82f1edd342bd6adf0cd2d36dfc4a410aaee7a78880d941"
+    },
+    {
+      "state": "first-question-light",
+      "file": "first-question-light.png",
+      "sha256": "9dc601323ae3183ad276aada9a4af6bae56382e40041daac9eb1f37e8831f040"
+    },
+    {
+      "state": "home-after-exit",
+      "file": "home-after-exit.png",
+      "sha256": "114fb76237862583b279ca94ee9b0be353a8e169c3f51ce801318867a00d5c62"
+    }
+  ],
+  "startControls": [],
+  "checks": [
+    "The test uses the requested native theme",
+    "The native atmospheric scene honors system motion preference",
+    "Entering the briefing autoplays exactly one native AVPlayer",
+    "Scoped background fetch succeeded for session",
+    "The outer native atmosphere changes while the briefing content stays fixed",
+    "The animated background did not displace the CTA",
+    "Actual video frames advance",
+    "BGM stays paused while real Journey video frames advance",
+    "Closing the video resumes the exact native AVPlayer once",
+    "Actual Journey video was served by the isolated HTTPS media route",
+    "The inherited first question retains the native AVPlayer and continues playback without a restart",
+    "The inherited first question retains the decoded briefing artwork",
+    "Entering the first question preserves the native motion scene",
+    "Leaving the quest releases audio once and no new playback starts",
+    "Leaving the quest tears down the looping atmospheric scene",
+    "Strict HTTPS confirms no duplicated or unexpected background request",
+    "Strict HTTPS confirms each intended BGM is transferred once with isolated media headers",
+    "Initial phone theme preference restored"
+  ],
+  "sharedDriverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "motionChecks": [
+    {
+      "state": "briefing-light",
+      "changedFraction": 0.00146,
+      "sampleBoundsPx": [
+        4,
+        380,
+        226,
+        2121
+      ],
+      "reduced": false
+    },
+    {
+      "state": "journey-video",
+      "changedFraction": 0.63259,
+      "sampleBoundsPx": [
+        279,
+        1178,
+        982,
+        1574
+      ],
+      "reduced": false
+    }
+  ],
+  "lifecycle": {
+    "audio": [
+      [
+        1,
+        "begin",
+        0
+      ],
+      [
+        1,
+        "initialized",
+        0
+      ],
+      [
+        1,
+        "prepared",
+        0
+      ],
+      [
+        1,
+        "duration",
+        4231
+      ],
+      [
+        1,
+        "playing",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1042
+      ],
+      [
+        1,
+        "position",
+        2052
+      ],
+      [
+        1,
+        "position",
+        3060
+      ],
+      [
+        1,
+        "position",
+        4231
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1042
+      ],
+      [
+        1,
+        "position",
+        2050
+      ],
+      [
+        1,
+        "position",
+        3062
+      ],
+      [
+        1,
+        "position",
+        4231
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1061
+      ],
+      [
+        1,
+        "position",
+        2069
+      ],
+      [
+        1,
+        "position",
+        3078
+      ],
+      [
+        1,
+        "position",
+        4231
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1039
+      ],
+      [
+        1,
+        "position",
+        2045
+      ],
+      [
+        1,
+        "position",
+        3052
+      ],
+      [
+        1,
+        "position",
+        4065
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1016
+      ],
+      [
+        1,
+        "position",
+        2023
+      ],
+      [
+        1,
+        "position",
+        3031
+      ],
+      [
+        1,
+        "position",
+        4036
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1100
+      ],
+      [
+        1,
+        "position",
+        2009
+      ],
+      [
+        1,
+        "position",
+        3015
+      ],
+      [
+        1,
+        "position",
+        4021
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1002
+      ],
+      [
+        1,
+        "position",
+        2016
+      ],
+      [
+        1,
+        "paused",
+        0
+      ],
+      [
+        1,
+        "playing",
+        0
+      ],
+      [
+        1,
+        "position",
+        3129
+      ],
+      [
+        1,
+        "position",
+        4018
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1008
+      ],
+      [
+        1,
+        "position",
+        2013
+      ],
+      [
+        1,
+        "position",
+        3019
+      ],
+      [
+        1,
+        "position",
+        4024
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1088
+      ],
+      [
+        1,
+        "position",
+        2098
+      ],
+      [
+        1,
+        "position",
+        3004
+      ],
+      [
+        1,
+        "position",
+        4014
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1083
+      ],
+      [
+        1,
+        "position",
+        2091
+      ],
+      [
+        1,
+        "position",
+        3003
+      ],
+      [
+        1,
+        "position",
+        4009
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1094
+      ],
+      [
+        1,
+        "position",
+        2096
+      ],
+      [
+        1,
+        "position",
+        3001
+      ],
+      [
+        1,
+        "position",
+        4006
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "released",
+        0
+      ]
+    ],
+    "atmosphere": [
+      {
+        "state": "running",
+        "reduced": false,
+        "particles": 8
+      },
+      {
+        "state": "stopped",
+        "reduced": false,
+        "particles": 0
+      }
+    ],
+    "background": [
+      {
+        "state": "loading",
+        "httpStatus": 0,
+        "cacheHit": false
+      },
+      {
+        "state": "ready",
+        "httpStatus": 200,
+        "cacheHit": false
+      }
+    ]
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "fontScale": 1,
+    "appColorMode": 1,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "cutoutTopPx": 72,
+    "cutoutBottomPx": 0,
+    "immersiveLayout": "enabled",
+    "systemBarPropertiesObserved": true,
+    "statusBarColor": "#00FFFFFF",
+    "navigationBarColor": "#00FFFFFF",
+    "statusBarContentColor": "#FF000000",
+    "navigationBarContentColor": "#FF000000"
+  },
+  "gameplayFacts": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 2,
+    "clueGrants": 0,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  },
+  "notificationReads": 1
+}

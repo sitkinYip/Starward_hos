@@ -1,0 +1,453 @@
+{
+  "status": "passed",
+  "role": "faults",
+  "scope": "Scoped briefing 503, music retry, polling and silent first question",
+  "signedHapSha256": "1bd4bd05b1fe49caef9b37f2547d887e4aa3159b2de13f39a80cfba03fb0fae3",
+  "runtimeSha256": "1a5a1eb91403eb7bff1fc1cd4ad8c9086c0c4049a38da25d6889f0d92bf3b8a8",
+  "driverSha256": "442cd79d680ef247ed89c143ec43626cd9dd604c1d74b89b57a4845aae147103",
+  "fixtureSha256": "9cd49d25f1f178d18b913810aab217ad27186ed09a809d19e15eff4d8770a680",
+  "screenshots": [
+    {
+      "state": "first-question-explicit-silence",
+      "file": "first-question-explicit-silence.png",
+      "sha256": "0653638c1754a477ce809e1937bf0122e9e340356aaae61a260e4496ff1fbc31"
+    },
+    {
+      "state": "home-after-exit",
+      "file": "home-after-exit.png",
+      "sha256": "f828bb95a97e603b6481a6403dedf1b781d4ef7b237c2a660fd664ddeb8b2daf"
+    }
+  ],
+  "startControls": [],
+  "checks": [
+    "The same briefing restored playback after app background",
+    "The explicit clear keeps the default scene without another music attempt",
+    "Leaving the quest releases audio once and no new playback starts",
+    "Leaving the quest tears down the looping atmospheric scene"
+  ],
+  "lifecycle": {
+    "audio": [
+      [
+        3,
+        "begin",
+        0
+      ],
+      [
+        3,
+        "initialized",
+        0
+      ],
+      [
+        3,
+        "prepared",
+        0
+      ],
+      [
+        3,
+        "duration",
+        5642
+      ],
+      [
+        3,
+        "playing",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1029
+      ],
+      [
+        3,
+        "position",
+        2037
+      ],
+      [
+        3,
+        "position",
+        3042
+      ],
+      [
+        3,
+        "position",
+        4049
+      ],
+      [
+        3,
+        "position",
+        5057
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1030
+      ],
+      [
+        3,
+        "position",
+        2041
+      ],
+      [
+        3,
+        "position",
+        3050
+      ],
+      [
+        3,
+        "position",
+        4058
+      ],
+      [
+        3,
+        "position",
+        5068
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1051
+      ],
+      [
+        3,
+        "position",
+        2061
+      ],
+      [
+        3,
+        "position",
+        3070
+      ],
+      [
+        3,
+        "position",
+        4076
+      ],
+      [
+        3,
+        "position",
+        5084
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1046
+      ],
+      [
+        3,
+        "position",
+        2055
+      ],
+      [
+        3,
+        "position",
+        3065
+      ],
+      [
+        3,
+        "position",
+        4073
+      ],
+      [
+        3,
+        "position",
+        5083
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1040
+      ],
+      [
+        3,
+        "position",
+        2054
+      ],
+      [
+        3,
+        "position",
+        3062
+      ],
+      [
+        3,
+        "position",
+        4069
+      ],
+      [
+        3,
+        "position",
+        5079
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1042
+      ],
+      [
+        3,
+        "position",
+        2050
+      ],
+      [
+        3,
+        "position",
+        3056
+      ],
+      [
+        3,
+        "position",
+        4064
+      ],
+      [
+        3,
+        "position",
+        5071
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1034
+      ],
+      [
+        3,
+        "position",
+        2042
+      ],
+      [
+        3,
+        "position",
+        3050
+      ],
+      [
+        3,
+        "position",
+        4059
+      ],
+      [
+        3,
+        "position",
+        5066
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1042
+      ],
+      [
+        3,
+        "position",
+        2053
+      ],
+      [
+        3,
+        "position",
+        3061
+      ],
+      [
+        3,
+        "position",
+        4070
+      ],
+      [
+        3,
+        "position",
+        5080
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1040
+      ],
+      [
+        3,
+        "position",
+        2049
+      ],
+      [
+        3,
+        "position",
+        3055
+      ],
+      [
+        3,
+        "position",
+        4071
+      ],
+      [
+        3,
+        "position",
+        5082
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1052
+      ],
+      [
+        3,
+        "position",
+        2058
+      ],
+      [
+        3,
+        "position",
+        3065
+      ],
+      [
+        3,
+        "position",
+        4074
+      ],
+      [
+        3,
+        "position",
+        5082
+      ],
+      [
+        3,
+        "loop",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "released",
+        0
+      ]
+    ],
+    "atmosphere": [
+      {
+        "state": "running",
+        "reduced": false,
+        "particles": 8
+      },
+      {
+        "state": "stopped",
+        "reduced": false,
+        "particles": 0
+      }
+    ],
+    "background": [
+      {
+        "state": "loading",
+        "httpStatus": 0,
+        "cacheHit": false
+      },
+      {
+        "state": "failed",
+        "httpStatus": 503,
+        "cacheHit": false
+      }
+    ]
+  },
+  "gameplayFacts": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 2,
+    "clueGrants": 0,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  },
+  "notificationReads": 1,
+  "continuedPriorIsolatedEvidenceSha256": "d7c62f55ad27a067e4b0cdb3255b6f36a3036cf19a197c0c0fcd097272f9bb17"
+}

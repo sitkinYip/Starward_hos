@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { gameplayBackgroundSource } from '../main/ets/business/GameplayBackground';
+import { assignmentBackgroundSource, gameplayBackgroundSource } from '../main/ets/business/GameplayBackground';
 import { GameplayLevel, GameplayQuestion, GameplaySnapshot } from '../main/ets/business/GameplayModels';
 
 const SESSION_IMAGE: string = 'https://media.example.com/session.png';
@@ -54,6 +54,20 @@ export default function gameplayBackgroundTests(): void {
       expect(gameplayBackgroundSource(snapshot, level)).assertEqual('');
       snapshot.detail.status = 'assigned';
       expect(gameplayBackgroundSource(snapshot, level)).assertEqual('');
+    });
+
+    it('showsTheAssignmentImageBeforeEntryAndAppliesTheReadableLevelClearAfterEntry', 0, () => {
+      const snapshot: GameplaySnapshot = new GameplaySnapshot();
+      snapshot.presentation.backgroundUrl = SESSION_IMAGE;
+      const first: GameplayLevel = new GameplayLevel();
+      first.presentationOverride.backgroundMode = 'none';
+      expect(assignmentBackgroundSource(snapshot.presentation)).assertEqual(SESSION_IMAGE);
+      snapshot.detail.status = 'active';
+      first.question = new GameplayQuestion();
+      expect(gameplayBackgroundSource(snapshot, first)).assertEqual('');
+      snapshot.presentation.backgroundMode = 'none';
+      expect(assignmentBackgroundSource(snapshot.presentation)).assertEqual('');
+      expect(assignmentBackgroundSource(null)).assertEqual('');
     });
   });
 }

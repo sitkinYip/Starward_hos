@@ -1,4 +1,8 @@
-import { GameplayLevel, GameplaySnapshot } from './GameplayModels';
+import { GameplayLevel, GameplayPresentation, GameplaySnapshot } from './GameplayModels';
+
+export function assignmentBgmSource(presentation: GameplayPresentation | null): string {
+  return presentation?.bgmMode === 'silent' ? '' : presentation?.bgmUrl?.trim() ?? '';
+}
 
 /** The currently viewed readable question controls music, including on a completed revisit. */
 export function gameplayBgmSource(snapshot: GameplaySnapshot | null, level: GameplayLevel | null): string {
@@ -9,5 +13,5 @@ export function gameplayBgmSource(snapshot: GameplaySnapshot | null, level: Game
   const override = level.presentationOverride;
   if (override.bgmMode === 'silent') { return ''; }
   if (override.bgmMode === 'custom') { return override.bgmUrl?.trim() ?? ''; }
-  return snapshot.presentation.bgmMode === 'silent' ? '' : snapshot.presentation.bgmUrl?.trim() ?? '';
+  return assignmentBgmSource(snapshot.presentation);
 }

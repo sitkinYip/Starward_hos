@@ -706,3 +706,30 @@ python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
 定版同步提示使用另一个独立的同内容账号持续返回 503。首次单次故障截图只取得控件树，未拍到提示。持续故障复验直接采得两张显示完整提示的原图。提示在顶部安全区下方 16 vp，标题与说明保持可读。关闭后观察区域恢复至近似原背景，第二次同轮故障仍保持已关闭。隔离台账与请求记录无玩法、资料或经验写入。撤回面板实测约 363.69 × 280 vp，Web 为 364 × 280 CSS px，原生面板受导航顶栏影响约低 9 vp。另一端入场沿用已确认的题卡自动定位。[定版提示与关闭](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/native-notice-01.json) · [同数据视觉复核](../artifacts/validation/ui-gameplay-briefing-sync-20261116/visual-review-01.json)
 
 两轮隔离的临时 PocketBase 与各自 USB 映射均已释放。重新装回固定预览，原账号、数据库及 CA 一致，直板严格 HTTPS 直接登录成功，保持原进度与经验并停在首页。定版场次包、持续故障复验包和预览包的 ArkTS 字节码一致。[恢复回执](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/restore-config-01.json) · [固定预览直登](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/fixed-preview-home-01.json) · [包字节码核对](../artifacts/validation/ui-gameplay-briefing-sync-notice-final-20261116/preview-package-equivalence-01.json)
+
+## 入场说明页的氛围与配乐（2026-11-17）
+
+冻结 Web `4b7d1a0` 以 388 × 771 CSS px 重放同一隔离 PocketBase 的正式 DTO 与合成媒体字节。场次覆盖同曲和继承图、首题换曲换图、静音无图。浏览器只重放已保存的响应。冻结 Web 在入场说明已采纳首题媒体覆盖，原生在首题可读后才应用该配置，说明阶段显示场次自己的图和配乐。[隔离数据](../artifacts/validation/ui-briefing-atmosphere-20261117/host-fixtures-01.json) · [媒体路由](../artifacts/validation/ui-briefing-atmosphere-20261117/host-media-01.json) · [冻结 Web 对照](../artifacts/validation/ui-briefing-atmosphere-20261117/web-briefing-atmosphere-01.json)
+
+```sh
+export STARWARD_VALIDATION_DIR=artifacts/validation/ui-briefing-atmosphere-20261117/final-tools
+scripts/hm.sh run
+scripts/hm.sh test
+scripts/hm.sh lint
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls \
+  --output artifacts/validation/ui-briefing-atmosphere-20261117/runtime-isolated-01.json
+```
+
+SDK 26 官方 CLI 完成调试构建、签名、直板 USB 安装与启动。运行时独立核对一倍字号、387.69 × 771.08 vp 安全内容区、透明系统栏及三种 HTTPS 信任状态。Hypium 207 项通过。codelinter 报告零错误和零警告，保留原信纸的模糊性能建议。原图、签名产物和采集器保留在本机私有验收目录 `artifacts/private/briefing-atmosphere-20261117/`。[运行时](../artifacts/validation/ui-briefing-atmosphere-20261117/runtime-isolated-01.json) · [Hypium](../artifacts/validation/ui-briefing-atmosphere-20261117/final-tools/local-test-summary.json) · [codelinter](../artifacts/validation/ui-briefing-atmosphere-20261117/final-tools/lint.json)
+
+直板日间同曲场次在说明页自动播放，十轮只读回源后仍只有一个播放尝试。打开来信视频后 BGM 停止报出播放进度，两张原图确认视频继续前进。关掉视频回到同一封信，原播放器继续播放。一次确认收下只记一条已读回执。入场后首题沿用同一播放器、解码背景和氛围实例，各媒体只取一次。系统返回结束配乐和持续动画。[日间同曲与来信](../artifacts/validation/ui-briefing-atmosphere-20261117/native-same-01.json) · [只读轮询](../artifacts/validation/ui-briefing-atmosphere-20261117/native-readonly-poll-01.json)
+
+夜间换曲场次在入场后先释放原曲，再启动一次首题曲，并换成首题背景。静音无图场次从说明到首题均显示默认氛围，无 BGM 浮标或媒体请求。三个账号的 HTTPS 请求与 SQLite 回执逐条对账，每个场次只记一次主动入场，两条初始化题目进度，零次答题和经验写入。第一个驱动因 CLI 归一化树缺无障碍文案而误判播放，随后以按钮波形和播放器进度复核。夜间第一轮采样未覆盖清晰移动的底部粒子，重跑取样覆盖该区域，重新用同一包完整验证。[夜间首题覆盖](../artifacts/validation/ui-briefing-atmosphere-20261117/native-override-01.json) · [静音无图](../artifacts/validation/ui-briefing-atmosphere-20261117/native-silent-01.json)
+
+八组同宽度原图复核了说明与首题、来信正文和视频。日间原生卡宽 363.69 vp，Web 为 364 CSS px。原生卡片相对顶部安全区低约 8.9 vp，保留官方顶栏与分隔线。两端浮标均为 56 × 56，离右缘与底部各 12。视频画幅分别约 359.69 × 202.46 vp、359.87 × 202.43 CSS px。日夜均用两帧复核背景粒子，原生系统区域、卡片动作和媒体控件保持可读。冻结 Web 减少动画重放通过，真机本轮未触发系统减弱动效的开启分支。夜间静音组合的 Web 原图已采集，本轮真机静音样本是日间。[原图与测量](../artifacts/validation/ui-briefing-atmosphere-20261117/visual-review-01.json)
+
+独立故障场次让背景图和配乐同时返回 503。原图仍显示默认氛围、说明及完整入场按钮，音乐浮标显示重试。恢复网关后点同一浮标成功播放，之后两轮授权读取保持原有播放器、装饰与回退。手动暂停后打开来信视频，关闭并收下仍保持静音，重新点播放恢复同一播放器。退后台释放播放器、停止背景动效和读取，回前台同一说明页恢复。明确配置静音、无图的首题释放已播放配乐，保留默认氛围且未另取曲。隔离台账只有一次显式入场与一次主动已读，零次答题和经验写入。[故障夹具](../artifacts/validation/ui-briefing-atmosphere-20261117/host-fault-fixture-01.json) · [失败与重试](../artifacts/validation/ui-briefing-atmosphere-20261117/native-faults-01.json) · [暂停与后台](../artifacts/validation/ui-briefing-atmosphere-20261117/native-faults-02.json) · [回前台及静音首题](../artifacts/validation/ui-briefing-atmosphere-20261117/native-faults-03.json)
+
+故障采集在同一已暂停场次继续两次。第一次发送的隔离来信已落库，采集器未取得发送回执，续测核验原播放器轨迹及已存在的唯一未读来信后继续。第二次应用回前台后设备日志窗口淘汰了较老的记录，续测通过同一签名包、夹具、来信回执、释放与新播放尝试及 HTTPS 响应序列确认现场，再执行唯一一次入场。两份中断报告保留各自状态，续测绑定前一份报告摘要。
+
+临时后端与本轮 USB 映射已释放。固定预览沿用原数据库、账号和 CA。安装后通过严格 HTTPS 直登，核对进度和经验保持原值，手机停在已登录首页。固定预览与定版隔离包的 ArkTS 字节码一致。[恢复回执](../artifacts/validation/ui-briefing-atmosphere-20261117/restore-config-01.json) · [固定预览直登](../artifacts/validation/ui-briefing-atmosphere-20261117/fixed-preview-home-01.json) · [包字节码核对](../artifacts/validation/ui-briefing-atmosphere-20261117/preview-package-equivalence-01.json)

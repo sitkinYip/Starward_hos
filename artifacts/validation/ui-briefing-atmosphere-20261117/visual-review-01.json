@@ -1,0 +1,330 @@
+{
+  "status": "passed_scoped_visual_review",
+  "coverage": "同数据逐图核对直板机，涵盖说明、入场浮标、主题与静音回退、首题背景、来信视频。业务与音频时序由真机专项报告验收。",
+  "inputs": {
+    "webCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+    "webReportSha256": "eea25761672ef5f23ad38e26bc5aa0eaddeedf2418bfee87ec44797be531cdb1",
+    "webDtosSha256": "8adc89ac04be07a06202a5d548da9fe6cbd7cfc5e6069cdb3a9141e95534ccf4",
+    "webFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "nativeSignedHapSha256": "1bd4bd05b1fe49caef9b37f2547d887e4aa3159b2de13f39a80cfba03fb0fae3",
+    "nativeWindowRuntimeSha256": "1a5a1eb91403eb7bff1fc1cd4ad8c9086c0c4049a38da25d6889f0d92bf3b8a8",
+    "nativeCaptureReportSha256": {
+      "light": "adbf9e9fdd408f67f76c2f375b88aef6147e2bd09e742daec4b533a1ac861b36",
+      "dark": "eee2acb9db51c7a43e223b2917fa6e37487204edb1bdb89b0eec78136d78a80c",
+      "silent": "36b3c4562c1b15b864c138a3bc85bdc7ca276de619a485eb0dba5b8b43605edc"
+    },
+    "nativePackagedFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "nativeAndWebFontBytesMatch": true
+  },
+  "originalCapture": {
+    "native": {
+      "widthPx": 1260,
+      "heightPx": 2720,
+      "density": 3.25,
+      "topInsetPx": 123,
+      "bottomInsetPx": 91,
+      "widthVp": 387.6923076923077,
+      "contentHeightVp": 771.0769230769231,
+      "fontScale": 1
+    },
+    "web": {
+      "width": 388,
+      "height": 771
+    },
+    "bothUncropped": true,
+    "privateOriginals": true,
+    "inspectedOriginals": 20
+  },
+  "measurements": {
+    "method": "原始截图的物理像素描边，使用官方直板 runtime density 和真实避让区归一化。",
+    "lightBriefingCard": {
+      "nativePhysicalBoundsPx": [
+        39,
+        508,
+        1221,
+        1920
+      ],
+      "nativeContentBoxVp": {
+        "x": 12,
+        "y": 118.46153846153847,
+        "width": 363.6923076923077,
+        "height": 434.46153846153845,
+        "right": 12,
+        "bottom": 218.15384615384616
+      },
+      "webBoxCssPx": {
+        "x": 12,
+        "y": 109.578125,
+        "width": 364,
+        "height": 445.96875,
+        "right": 12,
+        "bottom": 215.453125
+      }
+    },
+    "lightBriefingBgm": {
+      "nativePhysicalBoundsPx": [
+        1039,
+        2408,
+        1221,
+        2590
+      ],
+      "nativeContentBoxVp": {
+        "x": 319.6923076923077,
+        "y": 703.0769230769231,
+        "width": 56,
+        "height": 56,
+        "right": 12,
+        "bottom": 12
+      },
+      "webBoxCssPx": {
+        "x": 320,
+        "y": 703,
+        "width": 56,
+        "height": 56,
+        "right": 12,
+        "bottom": 12
+      }
+    },
+    "lightJourneyVideo": {
+      "nativePhysicalBoundsPx": [
+        46,
+        1047,
+        1215,
+        1705
+      ],
+      "nativeContentBoxVp": {
+        "x": 14.153846153846153,
+        "y": 284.3076923076923,
+        "width": 359.6923076923077,
+        "height": 202.46153846153845,
+        "right": 13.846153846153847,
+        "bottom": 284.3076923076923
+      },
+      "webBoxCssPx": {
+        "x": 14.06317138671875,
+        "y": 284.3697509765625,
+        "width": 359.8736572265625,
+        "height": 202.428955078125,
+        "right": 14.06317138671875,
+        "bottom": 284.2012939453125
+      }
+    }
+  },
+  "nativeMotionSamples": {
+    "light": [
+      {
+        "state": "briefing-light",
+        "changedFraction": 0.00146,
+        "sampleBoundsPx": [
+          4,
+          380,
+          226,
+          2121
+        ],
+        "reduced": false
+      },
+      {
+        "state": "journey-video",
+        "changedFraction": 0.63259,
+        "sampleBoundsPx": [
+          279,
+          1178,
+          982,
+          1574
+        ],
+        "reduced": false
+      }
+    ],
+    "dark": [
+      {
+        "state": "briefing-dark",
+        "changedFraction": 0.00832,
+        "sampleBoundsPx": [
+          75,
+          2154,
+          693,
+          2556
+        ],
+        "reduced": false
+      }
+    ],
+    "silent": [
+      {
+        "state": "briefing-light",
+        "changedFraction": 0.00279,
+        "sampleBoundsPx": [
+          75,
+          2154,
+          693,
+          2556
+        ],
+        "reduced": false
+      }
+    ]
+  },
+  "reviewNotes": [
+    "原生说明页在安装包系统顶栏下方测得卡片上缘比 Web 约低 8.9vp，保留既有的官方材质细分隔与回首页动作。",
+    "原生首题截图已经自动定位，Web 原图仍在页面顶部。该对照核验环境背景、主题和浮标避让。",
+    "原生在说明期采用场次底图和配乐，首题可读后才采用关卡覆盖。冻结 Web 在说明期已采用首关卡的覆盖配置。",
+    "来信无封面视频说明保留已批准的图标与文本纵排。播放器控件和遮罩材质以原生组件实现。",
+    "截图对照覆盖普通字号直板机的日夜主题与正常动画。两帧用于复核背景发生变化。真机减少动画和夜间静音组合未在本组原图比较。"
+  ],
+  "pairs": [
+    {
+      "state": "light-inherited-briefing",
+      "native": [
+        {
+          "directory": "native-02-same",
+          "file": "briefing-light-1.png",
+          "sha256": "811058ae208ebd790d9c0363055a879eb901b3ca27715d3f133af544298624fd"
+        },
+        {
+          "directory": "native-02-same",
+          "file": "briefing-light-2.png",
+          "sha256": "75ff25c3845d621cd80fa350c778b6cbfe80af72e145b9171a293f7402e03e41"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "light-no-preference-same-brief.png",
+        "sha256": "2e02c855e8d0eb8c8c5e9a276f782f6b3ac62cd7b0a8b6b4aab3bdeda55a7243"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "原生与 Web 的卡片宽度、正文两行换行及主动作层级一致。日间冷青场景图在卡外透出，青绿播放状态清楚。状态栏同顶栏材质连续，背景延续到底部手势区。"
+    },
+    {
+      "state": "light-inherited-first-question",
+      "native": [
+        {
+          "directory": "native-02-same",
+          "file": "first-question-light.png",
+          "sha256": "9dc601323ae3183ad276aada9a4af6bae56382e40041daac9eb1f37e8831f040"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "light-no-preference-same-first-question.png",
+        "sha256": "43d6f02d0fbc01882cdec7ac1407219bfc93b2c447f9494d5bc49000665680fa"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "首题保留同一冷青氛围。原生自动定位到题卡并收起标题，配乐浮标避让答题引导，来信能独立显示。Web 此帧保留标题，右底配乐控件处于引导下层。"
+    },
+    {
+      "state": "dark-custom-briefing",
+      "native": [
+        {
+          "directory": "native-03-override",
+          "file": "briefing-dark-1.png",
+          "sha256": "5bfe1cd352d93c9a360600f3cc6ca0dae31879fdba6bd1c015ce3a2946c270b6"
+        },
+        {
+          "directory": "native-03-override",
+          "file": "briefing-dark-2.png",
+          "sha256": "615f17e90130e1533170019da09ab239f1a85b2fe04d8fdd2f3819d4b4f8d567"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "dark-no-preference-override-brief.png",
+        "sha256": "2b8bbce16db37d16887d0a915efbad14deb880b3a1910667c3a928e2934d8a4e"
+      },
+      "sameConfiguredArtwork": false,
+      "conclusion": "同一个场次的入场说明与夜间金色主动作可读，浮标与开场按钮无重叠。原生说明期显示场次冷色图，冻结 Web 在此阶段已选用第一题的暖色图。"
+    },
+    {
+      "state": "dark-custom-first-question",
+      "native": [
+        {
+          "directory": "native-03-override",
+          "file": "first-question-dark.png",
+          "sha256": "44701616ace01726d276407385f3ad0a5ea64d6529fc1e4aa7ce2cc53c5456dc"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "dark-no-preference-override-first-question.png",
+        "sha256": "3c318405606ac3b9a512aef24b68153bbf8d672ec933af5863d4f973406f5cb6"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "原生切入可读题后可见本题暖红背景，与冻结 Web 采用同一图片。暖红透出，正文、填空表单、音乐状态和手势区均可见。"
+    },
+    {
+      "state": "light-silent-briefing",
+      "native": [
+        {
+          "directory": "native-03-silent",
+          "file": "briefing-light-1.png",
+          "sha256": "44d83d6d8e53c3f292f1c76dc17b6a9161a28ce71032d122554f57e88c0ae923"
+        },
+        {
+          "directory": "native-03-silent",
+          "file": "briefing-light-2.png",
+          "sha256": "4e004ff6df0fa445cf69126c0d4a905902fccf62e2a22fc111a352f272637534"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "light-no-preference-silent-brief.png",
+        "sha256": "e61a928416c9656a4b91b0b69ad43f216e28e83535f2dd493a1b9df55cdf3c2b"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "两端保持主题底色和轻淡氛围，均省去音符浮标。原生保留相同的说明卡片几何与可用入场按钮。"
+    },
+    {
+      "state": "light-silent-first-question",
+      "native": [
+        {
+          "directory": "native-03-silent",
+          "file": "first-question-light.png",
+          "sha256": "e3f5cfd49ea7fa836e57cebc948737b3d20621404dcb1c832f2f3fd35546464a"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "light-no-preference-silent-first-question.png",
+        "sha256": "319df8e833f6663731f68d38e5dc07f7eb638f787fb37cef9d4b216bc000907b"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "首题保留主题底色和装饰动效，答题引导完整露出，配乐控件继续隐藏。"
+    },
+    {
+      "state": "briefing-journey-note",
+      "native": [
+        {
+          "directory": "native-02-same",
+          "file": "journey-note.png",
+          "sha256": "d5127568cab1df6067a87e9f6b2e0c0a2c7991e737b89f50fe41aa7a18f3e15e"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "light-no-preference-same-notification.png",
+        "sha256": "f356ab3f37735881b638090020486a2e5a43ff40a719bb2c51a25a30f5e95405"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "来信标题、正文、视频入口和关闭动作均可读。原生沿已确认的无封面视频样式把说明放在按钮下方。沉浸遮罩覆盖到系统区。"
+    },
+    {
+      "state": "briefing-journey-video",
+      "native": [
+        {
+          "directory": "native-02-same",
+          "file": "journey-video-1.png",
+          "sha256": "0b58f5533943886f929f61f21a603a6a171d712b5b02b51241e12888f4c1f638"
+        },
+        {
+          "directory": "native-02-same",
+          "file": "journey-video-2.png",
+          "sha256": "8b7bf4f66045f3c00a82f1edd342bd6adf0cd2d36dfc4a410aaee7a78880d941"
+        }
+      ],
+      "web": {
+        "directory": "web-01",
+        "file": "light-no-preference-same-video.png",
+        "sha256": "6135a0c6dbdc58963c4a5f213f2e0197b17d206b3113f26bff593060d5e89bd3"
+      },
+      "sameConfiguredArtwork": true,
+      "conclusion": "同一个 16:9 视频取不同实际播放时刻。原生和浏览器的画幅基本等宽，各自提供可见的暂停、进度、全屏及关闭控制。原生状态栏和导航手势区贯通播放器底色。"
+    }
+  ]
+}

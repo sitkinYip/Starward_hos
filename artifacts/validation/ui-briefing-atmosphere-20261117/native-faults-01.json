@@ -1,0 +1,200 @@
+{
+  "status": "incomplete",
+  "role": "faults",
+  "scope": "Scoped briefing 503, music retry, polling and silent first question",
+  "signedHapSha256": "1bd4bd05b1fe49caef9b37f2547d887e4aa3159b2de13f39a80cfba03fb0fae3",
+  "runtimeSha256": "1a5a1eb91403eb7bff1fc1cd4ad8c9086c0c4049a38da25d6889f0d92bf3b8a8",
+  "driverSha256": "58d80a2b5c8443e11b27848808dcf3b96f2fe4bc9370d2d0371b26aca016b05d",
+  "fixtureSha256": "9cd49d25f1f178d18b913810aab217ad27186ed09a809d19e15eff4d8770a680",
+  "screenshots": [
+    {
+      "state": "brief-two-media-failures",
+      "file": "brief-two-media-failures.png",
+      "sha256": "02522b7f1a328c5537fcd04b483af2133a6c1fefc6a43a255c1885b5c3da34b1"
+    },
+    {
+      "state": "brief-music-recovered",
+      "file": "brief-music-recovered.png",
+      "sha256": "e394c5fe5e6b63a6e29e4278643773412ad6bb5ee72fdf2ff06c4d6ccf879497"
+    }
+  ],
+  "startControls": [
+    {
+      "state": "failed-media",
+      "enabled": true,
+      "rawUiTestSha256": "33a7101bc60d83ac6e9c3336cd9ebdce3badfe1d7cc45b6d07083c1e5c8cc4d2"
+    }
+  ],
+  "checks": [
+    "Two real HTTPS failures retain the themed briefing and enabled Start",
+    "Read-only polling preserved the exact music attempt, motion and fallback"
+  ],
+  "lifecycle": {
+    "audio": [
+      [
+        1,
+        "begin",
+        0
+      ],
+      [
+        1,
+        "http",
+        503
+      ],
+      [
+        1,
+        "error",
+        0
+      ],
+      [
+        1,
+        "released",
+        0
+      ],
+      [
+        2,
+        "begin",
+        0
+      ],
+      [
+        2,
+        "initialized",
+        0
+      ],
+      [
+        2,
+        "prepared",
+        0
+      ],
+      [
+        2,
+        "duration",
+        5642
+      ],
+      [
+        2,
+        "playing",
+        0
+      ],
+      [
+        2,
+        "position",
+        0
+      ],
+      [
+        2,
+        "position",
+        1047
+      ],
+      [
+        2,
+        "position",
+        2056
+      ],
+      [
+        2,
+        "position",
+        3061
+      ],
+      [
+        2,
+        "position",
+        4070
+      ],
+      [
+        2,
+        "position",
+        5079
+      ],
+      [
+        2,
+        "loop",
+        0
+      ],
+      [
+        2,
+        "position",
+        0
+      ],
+      [
+        2,
+        "position",
+        1041
+      ],
+      [
+        2,
+        "position",
+        2050
+      ],
+      [
+        2,
+        "position",
+        3058
+      ],
+      [
+        2,
+        "position",
+        4067
+      ],
+      [
+        2,
+        "position",
+        5075
+      ],
+      [
+        2,
+        "loop",
+        0
+      ],
+      [
+        2,
+        "position",
+        0
+      ],
+      [
+        2,
+        "position",
+        1042
+      ],
+      [
+        2,
+        "paused",
+        0
+      ]
+    ],
+    "atmosphere": [
+      {
+        "state": "running",
+        "reduced": false,
+        "particles": 8
+      }
+    ],
+    "background": [
+      {
+        "state": "loading",
+        "httpStatus": 0,
+        "cacheHit": false
+      },
+      {
+        "state": "failed",
+        "httpStatus": 503,
+        "cacheHit": false
+      }
+    ]
+  },
+  "gameplayFacts": {
+    "startReceiptCount": 0,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 0,
+    "clueGrants": 0,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  },
+  "notificationReads": 0,
+  "failure": {
+    "step": "preserve-user-pause-across-video",
+    "reason": "The exact scoped fixture action succeeded"
+  }
+}

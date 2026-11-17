@@ -1,0 +1,110 @@
+{
+  "status": "incomplete",
+  "role": "faults",
+  "scope": "Scoped briefing 503, music retry, polling and silent first question",
+  "signedHapSha256": "1bd4bd05b1fe49caef9b37f2547d887e4aa3159b2de13f39a80cfba03fb0fae3",
+  "runtimeSha256": "1a5a1eb91403eb7bff1fc1cd4ad8c9086c0c4049a38da25d6889f0d92bf3b8a8",
+  "driverSha256": "4dd8b4cda3ef712ce33439defacb96eff74cd426d0dc03bad28e28ed3b86a856",
+  "fixtureSha256": "9cd49d25f1f178d18b913810aab217ad27186ed09a809d19e15eff4d8770a680",
+  "screenshots": [],
+  "startControls": [],
+  "checks": [
+    "Closing a Journey video keeps the explicitly paused track silent",
+    "A deliberate play resumes the same native track after the user pause",
+    "Audio and briefing reads stop in the background"
+  ],
+  "lifecycle": {
+    "audio": [
+      [
+        2,
+        "released",
+        0
+      ],
+      [
+        3,
+        "begin",
+        0
+      ],
+      [
+        3,
+        "initialized",
+        0
+      ],
+      [
+        3,
+        "prepared",
+        0
+      ],
+      [
+        3,
+        "duration",
+        5642
+      ],
+      [
+        3,
+        "playing",
+        0
+      ],
+      [
+        3,
+        "position",
+        0
+      ],
+      [
+        3,
+        "position",
+        1029
+      ],
+      [
+        3,
+        "position",
+        2037
+      ],
+      [
+        3,
+        "position",
+        3042
+      ]
+    ],
+    "atmosphere": [
+      {
+        "state": "stopped",
+        "reduced": false,
+        "particles": 0
+      },
+      {
+        "state": "running",
+        "reduced": false,
+        "particles": 8
+      }
+    ],
+    "background": [
+      {
+        "state": "loading",
+        "httpStatus": 0,
+        "cacheHit": false
+      },
+      {
+        "state": "failed",
+        "httpStatus": 503,
+        "cacheHit": false
+      }
+    ]
+  },
+  "continuedPriorIsolatedEvidenceSha256": "6eb9955773a6116d1dd1a6a292a0fc5cef640b9c0c62a263ea4057dc31d8c239",
+  "gameplayFacts": {
+    "startReceiptCount": 0,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 0,
+    "clueGrants": 0,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  },
+  "notificationReads": 1,
+  "failure": {
+    "step": "app-background-and-return",
+    "reason": "Earlier native lifecycle observations remain available"
+  }
+}

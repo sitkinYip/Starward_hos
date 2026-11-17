@@ -1,0 +1,367 @@
+{
+  "status": "passed",
+  "role": "override",
+  "scope": "Exact isolated briefing, one explicit start, optional real notification acknowledge",
+  "signedHapSha256": "1bd4bd05b1fe49caef9b37f2547d887e4aa3159b2de13f39a80cfba03fb0fae3",
+  "runtimeSha256": "1a5a1eb91403eb7bff1fc1cd4ad8c9086c0c4049a38da25d6889f0d92bf3b8a8",
+  "driverSha256": "ef9e995b4a63fa87750ba50327a7f61b3b88493af4c3c607b63db418d5d394cf",
+  "fixtureSha256": "0fe54771331c4f1a39fb31e705f69e488b076658f341af6e05c2a2ffde84f24a",
+  "screenshots": [
+    {
+      "state": "briefing-dark-1",
+      "file": "briefing-dark-1.png",
+      "sha256": "5bfe1cd352d93c9a360600f3cc6ca0dae31879fdba6bd1c015ce3a2946c270b6"
+    },
+    {
+      "state": "briefing-dark-2",
+      "file": "briefing-dark-2.png",
+      "sha256": "615f17e90130e1533170019da09ab239f1a85b2fe04d8fdd2f3819d4b4f8d567"
+    },
+    {
+      "state": "first-question-dark",
+      "file": "first-question-dark.png",
+      "sha256": "44701616ace01726d276407385f3ad0a5ea64d6529fc1e4aa7ce2cc53c5456dc"
+    },
+    {
+      "state": "home-after-exit",
+      "file": "home-after-exit.png",
+      "sha256": "612a2d0b39b433f822eaaa7fcc01167e7cd940b78e432c72d0631ea275d60eb7"
+    }
+  ],
+  "startControls": [],
+  "checks": [
+    "The test uses the requested native theme",
+    "The native atmospheric scene honors system motion preference",
+    "Entering the briefing autoplays exactly one native AVPlayer",
+    "Scoped background fetch succeeded for session",
+    "The outer native atmosphere changes while the briefing content stays fixed",
+    "The animated background did not displace the CTA",
+    "The first question releases theme A once and plays its theme B once",
+    "Scoped background fetch succeeded for level",
+    "Entering the first question preserves the native motion scene",
+    "Leaving the quest releases audio once and no new playback starts",
+    "Leaving the quest tears down the looping atmospheric scene",
+    "Strict HTTPS confirms no duplicated or unexpected background request",
+    "Strict HTTPS confirms each intended BGM is transferred once with isolated media headers",
+    "Initial phone theme preference restored"
+  ],
+  "sharedDriverSha256": "9b2263a73c05ba50d19d26f417aef3c8a410720dfb2ccd4affb0e794ddd31105",
+  "motionChecks": [
+    {
+      "state": "briefing-dark",
+      "changedFraction": 0.00832,
+      "sampleBoundsPx": [
+        75,
+        2154,
+        693,
+        2556
+      ],
+      "reduced": false
+    }
+  ],
+  "lifecycle": {
+    "audio": [
+      [
+        1,
+        "begin",
+        0
+      ],
+      [
+        1,
+        "initialized",
+        0
+      ],
+      [
+        1,
+        "prepared",
+        0
+      ],
+      [
+        1,
+        "duration",
+        4231
+      ],
+      [
+        1,
+        "playing",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1044
+      ],
+      [
+        1,
+        "position",
+        2052
+      ],
+      [
+        1,
+        "position",
+        3058
+      ],
+      [
+        1,
+        "position",
+        4231
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1044
+      ],
+      [
+        1,
+        "position",
+        2054
+      ],
+      [
+        1,
+        "position",
+        3062
+      ],
+      [
+        1,
+        "position",
+        4231
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1035
+      ],
+      [
+        1,
+        "position",
+        2044
+      ],
+      [
+        1,
+        "position",
+        3055
+      ],
+      [
+        1,
+        "position",
+        4062
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        1,
+        "position",
+        1018
+      ],
+      [
+        1,
+        "position",
+        2026
+      ],
+      [
+        1,
+        "position",
+        3035
+      ],
+      [
+        1,
+        "position",
+        4044
+      ],
+      [
+        1,
+        "loop",
+        0
+      ],
+      [
+        1,
+        "position",
+        0
+      ],
+      [
+        2,
+        "begin",
+        0
+      ],
+      [
+        1,
+        "released",
+        0
+      ],
+      [
+        2,
+        "initialized",
+        0
+      ],
+      [
+        2,
+        "prepared",
+        0
+      ],
+      [
+        2,
+        "duration",
+        5642
+      ],
+      [
+        2,
+        "playing",
+        0
+      ],
+      [
+        2,
+        "position",
+        0
+      ],
+      [
+        2,
+        "position",
+        1078
+      ],
+      [
+        2,
+        "position",
+        2088
+      ],
+      [
+        2,
+        "position",
+        3095
+      ],
+      [
+        2,
+        "position",
+        4000
+      ],
+      [
+        2,
+        "position",
+        5005
+      ],
+      [
+        2,
+        "loop",
+        0
+      ],
+      [
+        2,
+        "position",
+        0
+      ],
+      [
+        2,
+        "position",
+        1011
+      ],
+      [
+        2,
+        "position",
+        2083
+      ],
+      [
+        2,
+        "released",
+        0
+      ]
+    ],
+    "atmosphere": [
+      {
+        "state": "running",
+        "reduced": false,
+        "particles": 8
+      },
+      {
+        "state": "stopped",
+        "reduced": false,
+        "particles": 0
+      }
+    ],
+    "background": [
+      {
+        "state": "loading",
+        "httpStatus": 0,
+        "cacheHit": false
+      },
+      {
+        "state": "ready",
+        "httpStatus": 200,
+        "cacheHit": false
+      },
+      {
+        "state": "loading",
+        "httpStatus": 0,
+        "cacheHit": false
+      },
+      {
+        "state": "ready",
+        "httpStatus": 200,
+        "cacheHit": false
+      }
+    ]
+  },
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "fontScale": 1,
+    "appColorMode": 1,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "cutoutTopPx": 72,
+    "cutoutBottomPx": 0,
+    "immersiveLayout": "enabled",
+    "systemBarPropertiesObserved": true,
+    "statusBarColor": "#00FFFFFF",
+    "navigationBarColor": "#00FFFFFF",
+    "statusBarContentColor": "#FF000000",
+    "navigationBarContentColor": "#FF000000"
+  },
+  "gameplayFacts": {
+    "startReceiptCount": 1,
+    "answerReceiptCount": 0,
+    "submissions": 0,
+    "levelProgressRows": 2,
+    "clueGrants": 0,
+    "xpLedgerCount": 0,
+    "xpAdjustmentCount": 0,
+    "xpDelta": 0
+  },
+  "notificationReads": 0
+}

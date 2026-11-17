@@ -2,7 +2,7 @@ import { GameRepository } from '../business/GameRepository';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player,
   validateDisplayName, validatePasswordChange } from '../business/models';
 import { MockGameRepository } from '../data/MockGameRepository';
-import { GameplaySnapshot } from '../business/GameplayModels';
+import { GameplayPresentation, GameplaySnapshot } from '../business/GameplayModels';
 import { GameplayViewModel } from './GameplayViewModel';
 import { NarrativeViewModel } from './NarrativeViewModel';
 import { StarLettersViewModel } from './StarLettersViewModel';
@@ -21,6 +21,7 @@ export class SliceViewModel {
   @Trace player: Player = new Player();
   @Trace items: AssignmentSummary[] = [];
   @Trace detail: AssignmentDetail = new AssignmentDetail();
+  @Trace briefingPresentation: GameplayPresentation | null = null;
   @Trace listBusy: boolean = false;
   @Trace detailBusy: boolean = false;
   @Trace listError: string = '';
@@ -147,7 +148,7 @@ export class SliceViewModel {
       this.stopBriefingSync();
       this.setGameplayPlayerPolling(false);
       this.items = [];
-      this.detail = new AssignmentDetail();
+      this.clearDetail();
       this.listError = '';
       this.detailError = '';
     } else if (player.avatar.length > 0 && this.avatarImage === null && !this.avatarBusy &&
@@ -542,6 +543,7 @@ export class SliceViewModel {
   }
 
   private publishDetail(detail: AssignmentDetail): void {
+    if (detail.status !== 'assigned') { this.briefingPresentation = null; }
     this.detail = detail;
     this.items = this.items.map((item: AssignmentSummary) => item.id === detail.id ? detail : item);
     const serverTime: number = Date.parse(detail.serverTime);
@@ -549,6 +551,11 @@ export class SliceViewModel {
       this.serverOffset = serverTime - Date.now();
     }
     this.tick();
+  }
+
+  private clearDetail(): void {
+    this.briefingPresentation = null;
+    this.detail = new AssignmentDetail();
   }
 
   setBriefingPolling(id: string): void {
@@ -620,7 +627,7 @@ export class SliceViewModel {
     this.openingId = id;
     this.detailBusy = !quiet;
     this.detailError = '';
-    if (this.detail.id !== id) { this.detail = new AssignmentDetail(); }
+    if (this.detail.id !== id) { this.clearDetail(); }
     try {
       const snapshot: GameplaySnapshot = await this.repository.gameplay(id, read);
       if (!this.isAssignmentReadCurrent(generation, read)) { return; }
@@ -628,7 +635,10 @@ export class SliceViewModel {
         throw new GameFailure('CONTRACT_ERROR', '服务返回的场次身份不一致。');
       }
       this.play.setAssignmentSyncFailed(false);
-      if (!this.play.restoreFromBriefing(snapshot)) { this.publishDetail(snapshot.detail); }
+      if (!this.play.restoreFromBriefing(snapshot)) {
+        if (snapshot.detail.status === 'assigned') { this.briefingPresentation = snapshot.presentation; }
+        this.publishDetail(snapshot.detail);
+      }
     } catch (error) {
       if (this.isAssignmentReadCurrent(generation, read)) { this.acceptAssignmentError(id, error as Object); }
     } finally {
@@ -658,7 +668,7 @@ export class SliceViewModel {
       return;
     }
     this.play.setAssignmentSyncFailed(false);
-    this.detail = new AssignmentDetail();
+    this.clearDetail();
     this.detailError = this.message(error);
   }
 
@@ -684,7 +694,7 @@ export class SliceViewModel {
     this.errorCode = '';
     this.player = new Player();
     this.items = [];
-    this.detail = new AssignmentDetail();
+    this.clearDetail();
     this.listBusy = false;
     this.detailBusy = false;
     this.listError = '';
