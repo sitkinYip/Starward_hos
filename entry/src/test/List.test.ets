@@ -18,6 +18,7 @@ import narrativeViewModelTests from './NarrativeViewModel.test';
 import starLettersViewModelTests from './StarLettersViewModel.test';
 import journeyNotificationsViewModelTests from './JourneyNotificationsViewModel.test';
 import journeyNotificationContentTests from './JourneyNotificationContent.test';
+import rewardsViewModelTests from './RewardsViewModel.test';
 import letterAudioTests from './LetterAudioPlayer.test';
 import blessPlaybackTests from './BlessPlayback.test';
 import questionImageLoaderTests from './QuestionImageLoader.test';
@@ -45,6 +46,7 @@ export default function testsuite(): void {
   starLettersViewModelTests();
   journeyNotificationsViewModelTests();
   journeyNotificationContentTests();
+  rewardsViewModelTests();
   letterAudioTests();
   blessPlaybackTests();
   questionImageLoaderTests();

@@ -7,6 +7,7 @@ import { GameplayViewModel } from './GameplayViewModel';
 import { NarrativeViewModel } from './NarrativeViewModel';
 import { StarLettersViewModel } from './StarLettersViewModel';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
+import { RewardsViewModel } from './RewardsViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 import { ReadCancellation } from '../business/ReadCancellation';
 
@@ -46,6 +47,7 @@ export class SliceViewModel {
   readonly narrative: NarrativeViewModel;
   readonly starLetters: StarLettersViewModel;
   readonly journey: JourneyNotificationsViewModel;
+  readonly rewards: RewardsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
   private detailRead: ReadCancellation | null = null;
@@ -75,6 +77,7 @@ export class SliceViewModel {
       this.logout();
       this.error = message;
     });
+    this.rewards = new RewardsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
       if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
         this.publishDetail(snapshot.detail);
@@ -138,6 +141,7 @@ export class SliceViewModel {
     this.narrative.bindOwner(player.mustChangePassword ? '' : player.id);
     this.starLetters.bindOwner(player.mustChangePassword ? '' : player.id);
     this.journey.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.rewards.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
       this.avatarImage = null;
@@ -335,6 +339,7 @@ export class SliceViewModel {
       this.narrative.close();
       this.starLetters.bindOwner('');
       this.journey.bindOwner('');
+      this.rewards.bindOwner('');
       this.listBusy = false;
       this.avatarRequest++;
       this.avatarBusy = false;
@@ -684,6 +689,7 @@ export class SliceViewModel {
     this.narrative.bindOwner('');
     this.starLetters.bindOwner('');
     this.journey.bindOwner('');
+    this.rewards.bindOwner('');
     this.generation++;
     this.profileRevision++;
     this.avatarRequest++;

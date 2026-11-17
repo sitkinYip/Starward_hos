@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "signedHapSha256": "b2e35476e25cebe49e463207c8b6620010aeb5fd2cb85df35f37d57d6b10acdf",
+  "checks": [
+    "Account menu drives the same HdsTabs collection and fetches its authoritative list",
+    "Day/night theme transitions both preserve the selected active collection",
+    "Keyboard hides and restores the HdsTabs bar with the passport intact",
+    "System Back and programmatic selected index are synchronized"
+  ],
+  "originals": [
+    {
+      "state": "light-selected-collection",
+      "file": "light-selected-collection.png",
+      "sha256": "f3e4b8eab8b40212a3416a6631d27b903002ae9d5ae9c04d8bfcd4bb8559db5b"
+    },
+    {
+      "state": "dark-selected-collection",
+      "file": "dark-selected-collection.png",
+      "sha256": "5d2d361ad85f9e5e1df56fdac2c84b22b83609d828ed1df875ff58e3c39f3858"
+    },
+    {
+      "state": "straight-phone-preview-home",
+      "file": "straight-phone-preview-home.png",
+      "sha256": "4218a6491bcfacd7ea8227c7fda54a556605d830648895ca3e7931e16a7a2a41"
+    }
+  ],
+  "writesPerformed": false,
+  "leftOnPreviewHome": true,
+  "driverSha256": "d5945a153c55f88baf71648f7a946f86cc9b2f430faaa448655a89e09c6e89f5",
+  "originalsDirectory": "artifacts/private/tab-drag-20261117/visual-followup",
+  "previousAttempt": {
+    "observation": "An initial theme/side-panel sequence unexpectedly selected Home, once. The explicitly separated light/dark/system sequence and the complete follow-up played back on the same HAP both retained the selected Collection.",
+    "reproducedInRetest": false
+  }
+}

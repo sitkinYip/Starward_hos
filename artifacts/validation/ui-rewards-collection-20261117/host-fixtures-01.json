@@ -1,0 +1,63 @@
+{
+  "status": "real_disposable_reward_fixtures_verified",
+  "strictHostHttps": {
+    "trustedCaAccepted": true,
+    "untrustedCaRejected": true,
+    "wrongHostnameRejected": true
+  },
+  "scope": "Two local disposable player accounts; formal admin-provisioned synthetic rewards only",
+  "anonymousGetDenied": true,
+  "otherOwnerEmpty": true,
+  "manualGrantAssignmentCanBeEmpty": true,
+  "terminalSecretsOmittedByOfficialPlayerEndpoint": true,
+  "hostReadsLeftExactLedgersUnchanged": true,
+  "deviceInvoked": false,
+  "temporaryAdministratorRetired": true,
+  "imageSha256": "3893ac2073f4f6783c0f9abffb20b46edbcbafa63c205532045960cdfc78122a",
+  "imageFile": "quest-bg-session.png",
+  "sameDataWebInputSha256": "fcd8ae3b0792830f084e0bb7b9a53cc3369bfaba3ac7af75da497edfb318edbe",
+  "baseline": {
+    "populated": {
+      "assignmentCount": 4,
+      "gameplayWrites": 0,
+      "commandLedgerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "progressRows": 0,
+      "answerSubmissionCount": 0,
+      "clueGrantCount": 0,
+      "xpLedgerCount": 0,
+      "xpDelta": 0,
+      "notificationReceiptCount": 0,
+      "grants": 4,
+      "statuses": [
+        "available",
+        "available",
+        "redeemed",
+        "voided"
+      ],
+      "quantities": [
+        2,
+        3,
+        1,
+        1
+      ],
+      "storedTerminalSecretsOmittedFromDto": 2,
+      "rewardLedgerSha256": "d29fd2a5fb3cd6533c6133109d145a7c5c90a29f83c5a9157967878b0f6f8af9"
+    },
+    "empty": {
+      "assignmentCount": 4,
+      "gameplayWrites": 0,
+      "commandLedgerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "progressRows": 0,
+      "answerSubmissionCount": 0,
+      "clueGrantCount": 0,
+      "xpLedgerCount": 0,
+      "xpDelta": 0,
+      "notificationReceiptCount": 0,
+      "grants": 0,
+      "statuses": [],
+      "quantities": [],
+      "storedTerminalSecretsOmittedFromDto": 0,
+      "rewardLedgerSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}

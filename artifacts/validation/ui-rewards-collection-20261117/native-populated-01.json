@@ -1,0 +1,163 @@
+{
+  "status": "passed",
+  "role": "populated",
+  "runtimeSha256": "452c43720fbafbd30f9d9d8b2b9956c3262871141a7be88ad4d403a249709a1f",
+  "driverSha256": "6f034b8157186324d866467273e8524b3ff8d5d8667645a54ce38d156dbb7ef2",
+  "signedHapSha256": "09db1b5e1c0f698c648643ab3b37d3697c115452bea0818d41138f316b04e5b9",
+  "inputSha256": "fcd8ae3b0792830f084e0bb7b9a53cc3369bfaba3ac7af75da497edfb318edbe",
+  "screenshots": [
+    {
+      "state": "loading-light",
+      "file": "loading-light.png",
+      "sha256": "0616857cd221de2d936d7bb679d0a346f39468954cc8192ca5c2ede34b0fe833"
+    },
+    {
+      "state": "populated-light",
+      "file": "populated-light.png",
+      "sha256": "126dba581b88b062b7c808c32c965efeec014acbe636acb6faeefe33f8474508"
+    },
+    {
+      "state": "available-detail-light",
+      "file": "available-detail-light.png",
+      "sha256": "19b0aebf454f7a697db00ffe77bef271dbdfb99b081270c2f230acdb3fa9f9d7"
+    },
+    {
+      "state": "available-image-viewer-light",
+      "file": "available-image-viewer-light.png",
+      "sha256": "0f845481cc562d205a40025fcc5f4ac5769b3413f20e6f06c2ea57fa902d3633"
+    },
+    {
+      "state": "available-private-light",
+      "file": "available-private-light.png",
+      "sha256": "3f7a8ca2f271b2082913840e92a254808a44f5ae83698be6944a40be34e180b5"
+    },
+    {
+      "state": "mask-cleared-after-close-button",
+      "file": "mask-cleared-after-close-button.png",
+      "sha256": "cbfeb24d80b6ed2e126ed692dbcd1f9556550cdba8a6255a81d6e78f769275ec"
+    },
+    {
+      "state": "mask-cleared-after-system-back",
+      "file": "mask-cleared-after-system-back.png",
+      "sha256": "3a6d988c46fde10a63cc6236ee28ddf33437a94ffcc181c7e832b3695e040728"
+    },
+    {
+      "state": "mask-cleared-after-outside-tap",
+      "file": "mask-cleared-after-outside-tap.png",
+      "sha256": "72910e16f36a85b8c0e5c7e25f4a0bb728afe96324fdaf19d450a38fce087dd4"
+    },
+    {
+      "state": "mask-cleared-after-downward-swipe",
+      "file": "mask-cleared-after-downward-swipe.png",
+      "sha256": "89c7f234de3efd2e2252299a63f5966bca198474d52df67f0949ba87ab8ab594"
+    },
+    {
+      "state": "redeemed-light",
+      "file": "redeemed-light.png",
+      "sha256": "a5ac62e56c328cb7aed4ac6a128a518de86cb7471989a32a4cb7c17d6d6371e3"
+    },
+    {
+      "state": "voided-light",
+      "file": "voided-light.png",
+      "sha256": "c96d53c1109148b330bf83a4acae28d3f3ec41187bdfb82a2059d0352cc1f859"
+    },
+    {
+      "state": "return-to-assignment-dark",
+      "file": "return-to-assignment-dark.png",
+      "sha256": "53aa9aae6e70d873b75fb34f0e0e85b33918f1ab0eab665fc3b8bce8b6e9c908"
+    },
+    {
+      "state": "populated-dark",
+      "file": "populated-dark.png",
+      "sha256": "962b0021a4833b040837fbce22569b7500173e08be5597e5c1a1377e51f2a7c1"
+    },
+    {
+      "state": "available-detail-dark",
+      "file": "available-detail-dark.png",
+      "sha256": "d5becd1fb33f870ee698cf2fd1d88b916aeeeac80a6a04674dfa465c9da67d11"
+    },
+    {
+      "state": "available-private-dark",
+      "file": "available-private-dark.png",
+      "sha256": "49971e3b5a7700f3facb39ec8cab6ca8c37e161fdfff09a9009f7a880e8b556d"
+    }
+  ],
+  "checks": [
+    "Home does not read the collection before the user opens it",
+    "HTTPS reward cover expands and returns to the original detail by system Back",
+    "Available award displays the exact authorized claim section",
+    "Details close at the original card position",
+    "The visual mask cleared without another touch: mask-cleared-after-close-button",
+    "Details close at the original card position",
+    "The visual mask cleared without another touch: mask-cleared-after-system-back",
+    "The visual mask cleared without another touch: mask-cleared-after-outside-tap",
+    "The visual mask cleared without another touch: mask-cleared-after-downward-swipe",
+    "The redeemed detail only presents authorized data",
+    "Details close at the original card position",
+    "The voided detail only presents authorized data",
+    "Details close at the original card position",
+    "The side-panel route and same-assignment link both work",
+    "Details close at the original card position",
+    "The collection does not poll in the background",
+    "Explicit logout cleared the collection without restarting the app",
+    "App uses raw account authorization for scoped collection GETs",
+    "The native collection did not send a gameplay, receipt or redemption write"
+  ],
+  "maskPixelChecks": [
+    {
+      "state": "mask-cleared-after-close-button",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0
+    },
+    {
+      "state": "mask-cleared-after-system-back",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0
+    },
+    {
+      "state": "mask-cleared-after-outside-tap",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0
+    },
+    {
+      "state": "mask-cleared-after-downward-swipe",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0
+    }
+  ],
+  "collectionReads": 32,
+  "collectionResponseStatuses": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ]
+}

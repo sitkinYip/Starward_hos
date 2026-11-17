@@ -1,0 +1,370 @@
+{
+  "status": "passed_scoped_visual_review",
+  "webCommit": "4b7d1a0a00051ac630e459b0fd6c074f821d7455",
+  "webReportSha256": "a7c6b21cb847ec4afad3a55f5de25f0f19bdefdb9e854db02ab5ab18d3fde554",
+  "inputSha256": "fcd8ae3b0792830f084e0bb7b9a53cc3369bfaba3ac7af75da497edfb318edbe",
+  "nativeRuntimeSha256": "452c43720fbafbd30f9d9d8b2b9956c3262871141a7be88ad4d403a249709a1f",
+  "nativeSignedHapSha256": "09db1b5e1c0f698c648643ab3b37d3697c115452bea0818d41138f316b04e5b9",
+  "nativeReportSha256": {
+    "populated": [
+      "3fa165257703a892ede7030bd34d6188cb166199942d9747173220da04497c2b"
+    ],
+    "empty": [
+      "23086c7336cbf158055c0f78d5defbe3865cabcbcc6cfd046bd17d6b03be514f"
+    ]
+  },
+  "nativeAndWebFontSha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+  "bothOriginalPngUncropped": true,
+  "nativeWindow": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "density": 3.25,
+    "fontScale": 1
+  },
+  "webViewportCssPx": {
+    "width": 388,
+    "height": 771
+  },
+  "pairs": [
+    {
+      "scope": "相同结构的两个加载骨架",
+      "native": {
+        "file": "loading-light.png",
+        "sha256": "0616857cd221de2d936d7bb679d0a346f39468954cc8192ca5c2ede34b0fe833"
+      },
+      "web": {
+        "file": "light-populated-loading.png",
+        "sha256": "b8744edc2cff0ed82a870d3fe734bf038bbf0810110282bae90425181e49f4fa"
+      }
+    },
+    {
+      "scope": "日间单列卡片、真实封面与缺图星标、明示状态和详情按钮",
+      "native": {
+        "file": "populated-light.png",
+        "sha256": "126dba581b88b062b7c808c32c965efeec014acbe636acb6faeefe33f8474508"
+      },
+      "web": {
+        "file": "light-populated-list.png",
+        "sha256": "947814f4beed8a31d815a8429f4324722c3a1f92c6bc5063f6cd5b1727749028"
+      }
+    },
+    {
+      "scope": "待领取详情、原比例竖图与官方底部弹层",
+      "native": {
+        "file": "available-detail-light.png",
+        "sha256": "19b0aebf454f7a697db00ffe77bef271dbdfb99b081270c2f230acdb3fa9f9d7"
+      },
+      "web": {
+        "file": "light-populated-detail-available.png",
+        "sha256": "50f13a52e66d2df56cb0f5c5594867abe6660595090b7e2a00b4c43bb316ae9a"
+      }
+    },
+    {
+      "scope": "正文拖到底，固定关闭按钮、公共指引和私密领取线索",
+      "native": {
+        "file": "available-private-light.png",
+        "sha256": "3f7a8ca2f271b2082913840e92a254808a44f5ae83698be6944a40be34e180b5"
+      },
+      "web": {
+        "file": "light-populated-detail-available-end.png",
+        "sha256": "5c273025b07ae8d03c65dbdb6f0fba78648af55ec262dfe7e08040089a26498b"
+      }
+    },
+    {
+      "scope": "奖品封面展开到单独查看器",
+      "native": {
+        "file": "available-image-viewer-light.png",
+        "sha256": "0f845481cc562d205a40025fcc5f4ac5769b3413f20e6f06c2ea57fa902d3633"
+      },
+      "web": {
+        "file": "light-populated-detail-available-expanded-image.png",
+        "sha256": "7b4f136c1f37327a0314aa7ec792a61cfc396745c5c4a56dcc25dcdb1a927e6c"
+      }
+    },
+    {
+      "scope": "已核销只显示公开文字和领取时间",
+      "native": {
+        "file": "redeemed-light.png",
+        "sha256": "a5ac62e56c328cb7aed4ac6a128a518de86cb7471989a32a4cb7c17d6d6371e3"
+      },
+      "web": {
+        "file": "light-populated-detail-redeemed.png",
+        "sha256": "90110c54bb144148bcfd4f61e58e8bab1d5e89a40b0e8e1a05f164d86f4b7b6e"
+      }
+    },
+    {
+      "scope": "已失效只显示公开文字",
+      "native": {
+        "file": "voided-light.png",
+        "sha256": "c96d53c1109148b330bf83a4acae28d3f3ec41187bdfb82a2059d0352cc1f859"
+      },
+      "web": {
+        "file": "light-populated-detail-voided.png",
+        "sha256": "44c543e1143bd64bb0062699760877fe3d6decef7e03b006cf91cd953ecba0ff"
+      }
+    },
+    {
+      "scope": "夜间列表及金色主题，顶部返回上下文可能不同",
+      "native": {
+        "file": "populated-dark.png",
+        "sha256": "962b0021a4833b040837fbce22569b7500173e08be5597e5c1a1377e51f2a7c1"
+      },
+      "web": {
+        "file": "dark-populated-list.png",
+        "sha256": "c33105a1c374efeb11061d9512bc137381d4b40623a86d48762d180ec3f3ff38"
+      }
+    },
+    {
+      "scope": "夜间详情、原比例竖图及关闭控件对比度",
+      "native": {
+        "file": "available-detail-dark.png",
+        "sha256": "d5becd1fb33f870ee698cf2fd1d88b916aeeeac80a6a04674dfa465c9da67d11"
+      },
+      "web": {
+        "file": "dark-populated-detail-available.png",
+        "sha256": "188251244829f971af63e3b2d9c90714560ba70ba71f397380c76186718ff5ac"
+      }
+    },
+    {
+      "scope": "夜间长详情，末段完整且主题向手势区延伸",
+      "native": {
+        "file": "available-private-dark.png",
+        "sha256": "49971e3b5a7700f3facb39ec8cab6ca8c37e161fdfff09a9009f7a880e8b556d"
+      },
+      "web": {
+        "file": "dark-populated-detail-available-end.png",
+        "sha256": "aea82a7a3dc9877b3e1724c29581e070b119e595e971014ad12d8536423cd934"
+      }
+    },
+    {
+      "scope": "相同 503 文案和重试、回首页操作",
+      "native": {
+        "file": "initial-failure.png",
+        "sha256": "89bd166b2a343bb5d38a2523de215aaa754a50895fb4eb28d2b8c7c1ffc15170"
+      },
+      "web": {
+        "file": "light-failed-failure.png",
+        "sha256": "351646ce1b97ab8aeca2828e6a62ffe77363aa4333c3792a79c95d3a28afbdaf"
+      }
+    },
+    {
+      "scope": "确认空态与探索按钮",
+      "native": {
+        "file": "empty.png",
+        "sha256": "9da00fe46b8e14c4def026cb5d1c1fec37ae5ed26994747daac2f6105fcdc4e5"
+      },
+      "web": {
+        "file": "light-empty-empty.png",
+        "sha256": "3fdce04ac87774c149cfdb99ed4b7db9b89ad414f45a757f73721b4738569f8e"
+      }
+    }
+  ],
+  "nativeReturnContextOriginal": {
+    "file": "return-to-assignment-dark.png",
+    "sha256": "53aa9aae6e70d873b75fb34f0e0e85b33918f1ab0eab665fc3b8bce8b6e9c908"
+  },
+  "measurements": {
+    "lightFirstCard": {
+      "nativePhysicalBoundsPx": [
+        65,
+        795,
+        1195,
+        1526
+      ],
+      "nativeContentBoxVp": {
+        "x": 20.0,
+        "y": 206.76923076923077,
+        "width": 347.6923076923077,
+        "height": 224.9230769230769
+      },
+      "webBoxCssPx": {
+        "x": 20,
+        "y": 207.1875,
+        "width": 348,
+        "height": 225.28125
+      }
+    },
+    "lightThumbnail": {
+      "nativePhysicalBoundsPx": [
+        133,
+        902,
+        367,
+        1136
+      ],
+      "nativeContentBoxVp": {
+        "x": 40.92307692307692,
+        "y": 239.69230769230768,
+        "width": 72.0,
+        "height": 72.0
+      },
+      "webBoxCssPx": {
+        "x": 41,
+        "y": 240.1875,
+        "width": 72,
+        "height": 72
+      }
+    },
+    "lightSheetSafeContent": {
+      "nativePhysicalBoundsPx": [
+        0,
+        425,
+        1260,
+        2629
+      ],
+      "nativeContentBoxVp": {
+        "x": 0.0,
+        "y": 92.92307692307692,
+        "width": 387.6923076923077,
+        "height": 678.1538461538462
+      },
+      "webBoxCssPx": {
+        "x": 0,
+        "y": 92.53125,
+        "width": 388,
+        "height": 678.46875
+      }
+    },
+    "lightSheetArtworkDrawable": {
+      "nativePhysicalBoundsPx": [
+        55,
+        760,
+        1205,
+        2629
+      ],
+      "nativeContentBoxVp": {
+        "x": 16.923076923076923,
+        "y": 196.0,
+        "width": 353.84615384615387,
+        "height": 575.0769230769231
+      },
+      "webBoxCssPx": {
+        "x": 16,
+        "y": 203.53125,
+        "width": 355.984375,
+        "height": 547.46875
+      }
+    }
+  },
+  "gestureAreaPixelChecks": {
+    "available-detail-light": {
+      "nativePngSha256": "19b0aebf454f7a697db00ffe77bef271dbdfb99b081270c2f230acdb3fa9f9d7",
+      "safeBoundaryPx": 2629,
+      "columnPx": 25,
+      "sampleRowsPx": [
+        2600,
+        2628,
+        2629,
+        2650,
+        2685,
+        2710,
+        2719
+      ],
+      "continuousPanelRgb": [
+        247,
+        249,
+        248
+      ],
+      "artworkDrawnThroughPx": 2675,
+      "artworkInsideGestureInsetPx": 47
+    },
+    "available-private-light": {
+      "nativePngSha256": "3f7a8ca2f271b2082913840e92a254808a44f5ae83698be6944a40be34e180b5",
+      "safeBoundaryPx": 2629,
+      "columnPx": 25,
+      "sampleRowsPx": [
+        2600,
+        2628,
+        2629,
+        2650,
+        2685,
+        2710,
+        2719
+      ],
+      "continuousPanelRgb": [
+        247,
+        249,
+        248
+      ]
+    },
+    "available-detail-dark": {
+      "nativePngSha256": "d5becd1fb33f870ee698cf2fd1d88b916aeeeac80a6a04674dfa465c9da67d11",
+      "safeBoundaryPx": 2629,
+      "columnPx": 25,
+      "sampleRowsPx": [
+        2600,
+        2628,
+        2629,
+        2650,
+        2685,
+        2710,
+        2719
+      ],
+      "continuousPanelRgb": [
+        21,
+        22,
+        18
+      ],
+      "artworkDrawnThroughPx": 2675,
+      "artworkInsideGestureInsetPx": 47
+    },
+    "available-private-dark": {
+      "nativePngSha256": "49971e3b5a7700f3facb39ec8cab6ca8c37e161fdfff09a9009f7a880e8b556d",
+      "safeBoundaryPx": 2629,
+      "columnPx": 25,
+      "sampleRowsPx": [
+        2600,
+        2628,
+        2629,
+        2650,
+        2685,
+        2710,
+        2719
+      ],
+      "continuousPanelRgb": [
+        21,
+        22,
+        18
+      ]
+    }
+  },
+  "maskPixelChecks": [
+    {
+      "state": "mask-cleared-after-close-button",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0,
+      "nativePngSha256": "cbfeb24d80b6ed2e126ed692dbcd1f9556550cdba8a6255a81d6e78f769275ec"
+    },
+    {
+      "state": "mask-cleared-after-system-back",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0,
+      "nativePngSha256": "3a6d988c46fde10a63cc6236ee28ddf33437a94ffcc181c7e832b3695e040728"
+    },
+    {
+      "state": "mask-cleared-after-outside-tap",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0,
+      "nativePngSha256": "72910e16f36a85b8c0e5c7e25f4a0bb728afe96324fdaf19d450a38fce087dd4"
+    },
+    {
+      "state": "mask-cleared-after-downward-swipe",
+      "maskedDelta": 126,
+      "afterCloseDelta": 0,
+      "nativePngSha256": "89c7f234de3efd2e2252299a63f5966bca198474d52df67f0949ba87ab8ab594"
+    }
+  ],
+  "measurementBasis": "原图像素描边和有色图像轮廓，按照实际系统状态区、手势区和像素密度归一。图像宽高仅包括可见解码像素。",
+  "observations": [
+    "官方浮动 Tabs 用沉浸光感与实填图标，系统栏从原生安全区计算。",
+    "详情使用 ArkUI 底部弹层的系统遮罩、安全区、圆角和手势，中间正文为独立的 Scroll。",
+    "错误反馈复用原生通用组件，使用现有按钮材质和间距。",
+    "Web 亮黄高亮，原生沿用既有品牌富文本样式。",
+    "领取时间的时刻一致，当前真机 Intl 的中文短日期会带上午标签，Chromium 中文短日期用 24 小时制。",
+    "Web 减少动画重放未运行卡片 reveal。该系统开关的原生真机组合未在这组原图覆盖。",
+    "标题与图像上缘按最终官方弹层内容留白测量，单高度弹层由系统决定不显示顶部拖动条。"
+  ]
+}

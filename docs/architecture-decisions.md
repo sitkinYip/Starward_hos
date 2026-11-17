@@ -204,6 +204,8 @@
 
 **迟到专项与来源工具的最终边界：** 独立15秒变体HAP `d03bd895ed5ef220b48126186b3502925bb9ec94f72c4aa617174b11e93f42a4`已构建签名安装，`profile/runtime-late-15s.json`六项passed（SHA cb226514…）；`profile/device-profile-avatar-late.json`实际passed/count6，SHA `44f27226a1cb1804251b355b212148e410ee2dfe085ed772d312480855655ec9`。先在同变体完成正常原生头像GET200和实际退出校准，再hold精确SHA的真实文件200，观察空登录后release，下游finish且无client abort；响应结束、Back/Ability重启及冷启动仍为空登录，旧资料/头像/菜单缺席。gate中恰1次原生受保护文件GET、0次Host文件读取，5项cleanup全true。finish仅代表TLS下游写出，不是解码回调；不覆盖真实切到另一账号，也不将2秒base或后续UI包记为同版专项通过。 `profile/hap-timeout-variant-host.json`实际passed/23项，SHA `81c96c7b31787aac356714020376ec27b8a7199388744cf8e8c4834c552a329f`，仅为离线来源验证工具：34份源码、ABC和CA字节一致；除integration timeout由2000改15000外，仅symbolMap的1173条完整唯一记录重排，保留所有键和值，其余打包条目一致。严格校验及反例不忽略symbolMap、不重打包signed HAP，不计业务、签名有效性或UI通过。实际变体安装/runtime来源另见 `profile/late-variant-hap.json`（SHA b762fbe4…）。
 
+2026-11-17，四个目的地开放后重新核对拖动。应用收到正确的底栏坐标，ArkUI 浮动 `Tabs` 在非最左起点仍给出错位的目标索引。行为与公开实现使用起点子项局部坐标命中父底栏的路径一致。首页主导航使用 UIDesignKit 的官方 `HdsTabs` 浮动样式、沉浸材质和主题光色。`onContentWillChange` 负责业务准入，通过后由系统完成选择，`onChange` 同步已实际切换的页面。侧栏及返回仍以同一个目的地索引驱动。取消旧触摸事务和定时器回放，内容区保持禁止横向切主导航。键盘可见时从原生 TabBar 的 `barModifier` 隐藏底栏。[诊断实测](../artifacts/validation/ui-tab-drag-20261117/native-coordinate-diagnostic.json) · [HdsTabs 官方接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ui-design-hdstabs) · [ArkUI 开源坐标路径](https://github.com/openharmony/arkui_ace_engine/blob/master/frameworks/core/components_ng/pattern/tabs/tab_bar_pattern.cpp#L3722-L3757)
+
 ## ADR-018：键盘期间收起浮栏与官方左右玻璃面板
 
 当前用户手验补充（2026-10-30）：用户在最终交付的 `c2fdc343…` 固定预览中，手动拖动浮栏启程↔护照并松手切换、打开头像侧栏，对“跟手光感、松手选中和侧栏进出方向是否符合预期”明确回复“符合预期”。来源见 `artifacts/validation/profile/native-ui-user-confirmation.json`。这三项从当前待验中移除；6a历史采集、静态及官方注入报告的原限制保留，不反向改写。此次没有新增自动化或Root动态目视，不扩展为触感、取消/中断、减少动画、双主题全覆盖、折叠、重启或主动改密通过。
@@ -341,6 +343,14 @@
 场次目的页按账号和本次导航实例持有配置背景、默认氛围、BGM 播放器和浮标位置。说明页读取已授权 `assigned` 快照的场次级配置。进入答题后按可读关卡解析媒体覆盖。冻结 Web 在说明页已应用首题覆盖，原生在首题可读后应用，说明阶段使用场次自己的图和配乐。同一 HTTPS 音源跨说明、答题及同曲关卡延用当前播放尝试，音源变化才交接。无背景或配乐时沿用主题画布和默认氛围，回避无用的媒体请求。
 
 来信与答题媒体各自报告是否占用音频。播放器确认静音后才开始视频，关闭视频后沿用玩家此前的播放选择。前后台和剧情覆盖切换沿用原配乐的前台策略，保留当前目的页的媒体占用状态，应用退后台或剧情覆盖时停止装饰并清理解码背景缓存。离开、换账号或失去场次授权时立即清理。背景、动画和媒体回调不发起入场或答题写入。[场次氛围验收](feature-acceptance-matrix.md#t03c-入场说明页的氛围与配乐)
+
+## ADR-027：奇遇收藏使用玩家奖品快照
+
+底栏与头像侧栏使用同一原生收藏页。正式 `GET /api/questions/v1/rewards` 返回当前账号的有序奖品快照，包括脱离具体场次发放的奖品。HTTPS 层验证条目归属及必需字段，只保留可领取奖品的私密领取内容。列表与选中详情只留在账号会话内存，详情随成功回源更新，删除或失权即关闭。
+
+收藏可见且应用前台时每五秒回源，任一时刻只有一个读请求。下拉和显式重试替换在途读取，离开、后台或账号变化取消对应读取。短暂错误保留同账号快照并允许恢复，身份或权限失效清除列表和详情。原生底部弹层仅展示已授权快照，关闭回到原列表位置。领取、核销和撤销由后台负责。[收藏验收](feature-acceptance-matrix.md#r01a-奇遇收藏的奖品列表与详情)
+
+详情底部的避让间距属于滚动内容。ArkUI Sheet 的主题底色连续绘制到系统手势区。双向绑定保留独立的弹层可见状态，按关闭按钮时先让系统收起弹层和遮罩，退场完成后清理选中的奖品。点遮罩、系统返回和下滑由 Sheet 处理。权限失效及时停止媒体并清除私密内容。[ArkUI 半模态转场](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition) · [安全区](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-expand-safe-area)
 
 ## 验证记录边界
 

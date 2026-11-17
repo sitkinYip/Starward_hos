@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "role": "empty",
+  "runtimeSha256": "452c43720fbafbd30f9d9d8b2b9956c3262871141a7be88ad4d403a249709a1f",
+  "driverSha256": "e3befdd5fe67a58ef0e01bb50e8b6d7d3163e468b004d33f7062ec7720497f11",
+  "signedHapSha256": "09db1b5e1c0f698c648643ab3b37d3697c115452bea0818d41138f316b04e5b9",
+  "inputSha256": "fcd8ae3b0792830f084e0bb7b9a53cc3369bfaba3ac7af75da497edfb318edbe",
+  "screenshots": [
+    {
+      "state": "initial-failure",
+      "file": "initial-failure.png",
+      "sha256": "89bd166b2a343bb5d38a2523de215aaa754a50895fb4eb28d2b8c7c1ffc15170"
+    },
+    {
+      "state": "empty",
+      "file": "empty.png",
+      "sha256": "9da00fe46b8e14c4def026cb5d1c1fec37ae5ed26994747daac2f6105fcdc4e5"
+    }
+  ],
+  "checks": [
+    "HTTPS distinguishes failed GET from successful empty",
+    "Second isolated account sees no previous player cards",
+    "Native pull-to-refresh reads the collection and keeps the real empty state",
+    "Explore returns to the official journeys tab",
+    "The collection-only 404 offers page retry and does not sign out the player",
+    "App uses raw account authorization for scoped collection GETs",
+    "The native collection did not send a gameplay, receipt or redemption write"
+  ],
+  "priorEvidenceSha256": "82ae8970145fe920fd6d2dfd79eade5c0c7eccf2c651c743c49e1407aab67e34",
+  "collectionReads": 9,
+  "collectionResponseStatuses": [
+    200,
+    503,
+    503,
+    200,
+    200,
+    200,
+    404,
+    404,
+    200
+  ]
+}

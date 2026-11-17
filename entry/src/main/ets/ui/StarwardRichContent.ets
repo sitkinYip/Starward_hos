@@ -21,6 +21,8 @@ export struct StarwardRichContent {
   @Param showMedia: boolean = true;
   @Param clueBody: boolean = false;
   @Param lineHeight: string = '30.4fp';
+  @Param imageLabel: string = '';
+  @Param videoPlayLabel: string = '';
   @Param availableWidth: number = 0;
   @Param maxMediaHeight: number = 420;
   @Param mediaMargin: number = 0;
@@ -51,7 +53,7 @@ export struct StarwardRichContent {
       Stack() {
         StarwardVideoPoster({ source: block.poster, ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent,
           imageCache: this.imageCache, active: this.active, nodeId: `${this.nodeId}-video-${index}-inline`,
-          playLabel: this.clueBody ? '播放线索视频' : '播放题目视频',
+          playLabel: this.videoPlayLabel || (this.clueBody ? '播放线索视频' : '播放题目视频'),
           maxHeight: this.maxMediaHeight, playable: this.active && this.interactive && !this.playingAt(index),
           play: () => this.playVideo(index) })
           .opacity(this.playingAt(index) ? 0 : 1)
@@ -95,7 +97,7 @@ export struct StarwardRichContent {
           StarwardQuestionImages({ sources: [block.url], ownerKey: this.ownerKey, imageCache: this.imageCache,
             ownerIsCurrent: this.ownerIsCurrent, active: this.active, availableWidth: this.availableWidth,
             groupId: `${this.nodeId}-${this.clueBody ? 'inline' : 'image'}-${index}`,
-            imageLabel: this.clueBody ? '线索图片' : '题目图片', maxHeight: this.maxMediaHeight,
+            imageLabel: this.imageLabel || (this.clueBody ? '线索图片' : '题目图片'), maxHeight: this.maxMediaHeight,
             reducedMotion: this.reducedMotion,
             opened: () => { if (this.active && this.interactive) { this.openImage(index); } } })
             .margin({ top: this.mediaMargin, bottom: this.mediaMargin })

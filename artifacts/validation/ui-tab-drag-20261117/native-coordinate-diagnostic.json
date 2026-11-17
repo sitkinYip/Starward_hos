@@ -1,0 +1,251 @@
+{
+  "status": "arkui_release_index_offset_reproduced",
+  "tabOrder": [
+    "home",
+    "rewards",
+    "letters",
+    "profile"
+  ],
+  "stripBoundsPx": [
+    97,
+    2414,
+    1163,
+    2597
+  ],
+  "baseline": {
+    "startIndex": 1,
+    "targetIndex": 3,
+    "observedIndex": 2,
+    "officialDragSpeedPxPerSecond": 600
+  },
+  "touchProbeHapSha256": "bde90405457e0a1b8841be7e8323689e0caae1f1ea5b009d6df1a1ff12a01235",
+  "rawProbeSha256": "586d36b983b12a8d93785d335ea4d0ae320437fde7f007cb24928b99812dbf27",
+  "probes": [
+    {
+      "gesture": "drag",
+      "activeBefore": 0,
+      "startTab": 0,
+      "targetTab": 3,
+      "requestedStartPx": [
+        260,
+        2505
+      ],
+      "requestedEndPx": [
+        1000,
+        2505
+      ],
+      "actualDown": {
+        "displayPx": [
+          260,
+          2505
+        ],
+        "tabBarLocalPx": [
+          163,
+          91
+        ]
+      },
+      "actualUp": {
+        "displayPx": [
+          1000,
+          2505
+        ],
+        "tabBarLocalPx": [
+          903,
+          91
+        ]
+      },
+      "nativeWillIndexes": [
+        3
+      ]
+    },
+    {
+      "gesture": "drag",
+      "activeBefore": 1,
+      "startTab": 1,
+      "targetTab": 3,
+      "requestedStartPx": [
+        506,
+        2505
+      ],
+      "requestedEndPx": [
+        1000,
+        2505
+      ],
+      "actualDown": {
+        "displayPx": [
+          506,
+          2505
+        ],
+        "tabBarLocalPx": [
+          409,
+          91
+        ]
+      },
+      "actualUp": {
+        "displayPx": [
+          1000,
+          2505
+        ],
+        "tabBarLocalPx": [
+          903,
+          91
+        ]
+      },
+      "nativeWillIndexes": [
+        2
+      ]
+    },
+    {
+      "gesture": "drag",
+      "activeBefore": 1,
+      "startTab": 1,
+      "targetTab": 2,
+      "requestedStartPx": [
+        506,
+        2505
+      ],
+      "requestedEndPx": [
+        754,
+        2505
+      ],
+      "actualDown": {
+        "displayPx": [
+          506,
+          2505
+        ],
+        "tabBarLocalPx": [
+          409,
+          91
+        ]
+      },
+      "actualUp": {
+        "displayPx": [
+          754,
+          2505
+        ],
+        "tabBarLocalPx": [
+          657,
+          91
+        ]
+      },
+      "nativeWillIndexes": []
+    },
+    {
+      "gesture": "swipe",
+      "activeBefore": 2,
+      "startTab": 2,
+      "targetTab": 3,
+      "requestedStartPx": [
+        754,
+        2505
+      ],
+      "requestedEndPx": [
+        1000,
+        2505
+      ],
+      "actualDown": {
+        "displayPx": [
+          754,
+          2505
+        ],
+        "tabBarLocalPx": [
+          657,
+          91
+        ]
+      },
+      "actualUp": {
+        "displayPx": [
+          1000,
+          2505
+        ],
+        "tabBarLocalPx": [
+          903,
+          91
+        ]
+      },
+      "nativeWillIndexes": [
+        1
+      ]
+    },
+    {
+      "gesture": "drag",
+      "activeBefore": 3,
+      "startTab": 3,
+      "targetTab": 1,
+      "requestedStartPx": [
+        1000,
+        2505
+      ],
+      "requestedEndPx": [
+        506,
+        2505
+      ],
+      "actualDown": {
+        "displayPx": [
+          1000,
+          2505
+        ],
+        "tabBarLocalPx": [
+          903,
+          91
+        ]
+      },
+      "actualUp": {
+        "displayPx": [
+          506,
+          2505
+        ],
+        "tabBarLocalPx": [
+          409,
+          91
+        ]
+      },
+      "nativeWillIndexes": [
+        0
+      ]
+    },
+    {
+      "gesture": "drag",
+      "activeBefore": 0,
+      "startTab": 1,
+      "targetTab": 3,
+      "requestedStartPx": [
+        506,
+        2505
+      ],
+      "requestedEndPx": [
+        1000,
+        2505
+      ],
+      "actualDown": {
+        "displayPx": [
+          506,
+          2505
+        ],
+        "tabBarLocalPx": [
+          409,
+          91
+        ]
+      },
+      "actualUp": {
+        "displayPx": [
+          1000,
+          2505
+        ],
+        "tabBarLocalPx": [
+          903,
+          91
+        ]
+      },
+      "nativeWillIndexes": [
+        2
+      ]
+    }
+  ],
+  "officialHdsInitialProbe": {
+    "targetIndex": 3,
+    "actualIndex": 3,
+    "scope": "System page and callback only, root view model binding corrected in a later candidate"
+  },
+  "sourceInference": "Public ArkUI computes a bar index from the pressed item local position in the new material path. Device behavior is consistent; commercial runtime internals were not inspected."
+}

@@ -1,0 +1,1912 @@
+{
+  "status": "passed",
+  "signedHapSha256": "b2e35476e25cebe49e463207c8b6620010aeb5fd2cb85df35f37d57d6b10acdf",
+  "driverSha256": "55cfed8e0d49fbc34ef31807667a53700054b867ba4bfe6dc06b1d8b5d77ed41",
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "fontScale": 1,
+    "appColorMode": 1,
+    "leftInsetPx": 0,
+    "rightInsetPx": 0,
+    "cutoutTopPx": 72,
+    "cutoutBottomPx": 0,
+    "immersiveLayout": "enabled",
+    "systemBarPropertiesObserved": true,
+    "statusBarColor": "#00FFFFFF",
+    "navigationBarColor": "#00FFFFFF",
+    "statusBarContentColor": "#FF000000",
+    "navigationBarContentColor": "#FF000000"
+  },
+  "environment": "Fixed preview on isolated HTTPS using the physical straight handset",
+  "command": "python3 -B artifacts/private/tab-drag-20261117/device-tab-matrix.py --inactive --report artifacts/private/tab-drag-20261117/final-matrix.json",
+  "gesture": "drag",
+  "speed": 600,
+  "callbackLogs": true,
+  "expectedChecks": 20,
+  "results": [
+    {
+      "kind": "ordered-drag",
+      "startTab": "home",
+      "activeBefore": "home",
+      "expected": "rewards",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "home"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          259,
+          2505
+        ],
+        "end": [
+          506,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "rewards",
+      "observedMarker": "rewards-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 1,
+          "param": 0
+        }
+      ],
+      "nativeChangeIndexes": [
+        1
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "home",
+      "activeBefore": "home",
+      "expected": "letters",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "home"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          259,
+          2505
+        ],
+        "end": [
+          753,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "letters",
+      "observedMarker": "star-letters-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 0
+        }
+      ],
+      "nativeChangeIndexes": [
+        2
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "home",
+      "activeBefore": "home",
+      "expected": "profile",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "home"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          259,
+          2505
+        ],
+        "end": [
+          1000,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "profile",
+      "observedMarker": "profile-scroll",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "param": 0
+        }
+      ],
+      "nativeChangeIndexes": [
+        3
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "rewards",
+      "activeBefore": "rewards",
+      "expected": "home",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "rewards"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          506,
+          2505
+        ],
+        "end": [
+          259,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "home",
+      "observedMarker": "current-tab",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 0,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "param": 1
+        }
+      ],
+      "nativeChangeIndexes": [
+        0
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "rewards",
+      "activeBefore": "rewards",
+      "expected": "letters",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "rewards"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          506,
+          2505
+        ],
+        "end": [
+          753,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "letters",
+      "observedMarker": "star-letters-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 1
+        }
+      ],
+      "nativeChangeIndexes": [
+        2
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "rewards",
+      "activeBefore": "rewards",
+      "expected": "profile",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "rewards"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          506,
+          2505
+        ],
+        "end": [
+          1000,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "profile",
+      "observedMarker": "profile-scroll",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "param": 1
+        }
+      ],
+      "nativeChangeIndexes": [
+        3
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "letters",
+      "activeBefore": "letters",
+      "expected": "home",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "letters"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          753,
+          2505
+        ],
+        "end": [
+          259,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "home",
+      "observedMarker": "current-tab",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 0,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "param": 2
+        }
+      ],
+      "nativeChangeIndexes": [
+        0
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "letters",
+      "activeBefore": "letters",
+      "expected": "rewards",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "letters"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          753,
+          2505
+        ],
+        "end": [
+          506,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "rewards",
+      "observedMarker": "rewards-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 1,
+          "param": 2
+        }
+      ],
+      "nativeChangeIndexes": [
+        1
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "letters",
+      "activeBefore": "letters",
+      "expected": "profile",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "letters"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          753,
+          2505
+        ],
+        "end": [
+          1000,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "profile",
+      "observedMarker": "profile-scroll",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "param": 2
+        }
+      ],
+      "nativeChangeIndexes": [
+        3
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "profile",
+      "activeBefore": "profile",
+      "expected": "home",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "profile"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          1000,
+          2505
+        ],
+        "end": [
+          259,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "home",
+      "observedMarker": "current-tab",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "param": 3
+        }
+      ],
+      "nativeChangeIndexes": [
+        0
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "profile",
+      "activeBefore": "profile",
+      "expected": "rewards",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "profile"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          1000,
+          2505
+        ],
+        "end": [
+          506,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "rewards",
+      "observedMarker": "rewards-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 1,
+          "param": 3
+        }
+      ],
+      "nativeChangeIndexes": [
+        1
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "ordered-drag",
+      "startTab": "profile",
+      "activeBefore": "profile",
+      "expected": "letters",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "profile"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          1000,
+          2505
+        ],
+        "end": [
+          753,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "letters",
+      "observedMarker": "star-letters-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 3
+        }
+      ],
+      "nativeChangeIndexes": [
+        2
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "inactive-start",
+      "startTab": "rewards",
+      "activeBefore": "home",
+      "expected": "letters",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "home"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          506,
+          2505
+        ],
+        "end": [
+          753,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "letters",
+      "observedMarker": "star-letters-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 0
+        }
+      ],
+      "nativeChangeIndexes": [
+        2
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "inactive-start",
+      "startTab": "rewards",
+      "activeBefore": "home",
+      "expected": "profile",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "home"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          506,
+          2505
+        ],
+        "end": [
+          1000,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "profile",
+      "observedMarker": "profile-scroll",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "param": 0
+        }
+      ],
+      "nativeChangeIndexes": [
+        3
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "tap",
+      "startTab": "profile",
+      "activeBefore": "profile",
+      "expected": "home",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "profile"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui click",
+        "point": [
+          259,
+          2505
+        ]
+      },
+      "observed": "home",
+      "observedMarker": "current-tab",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "allowed": true
+        },
+        {
+          "kind": "will",
+          "current": 3,
+          "coming": 0,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 0,
+          "param": 3
+        }
+      ],
+      "nativeChangeIndexes": [
+        0
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "tap",
+      "startTab": "home",
+      "activeBefore": "home",
+      "expected": "rewards",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "home"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui click",
+        "point": [
+          506,
+          2505
+        ]
+      },
+      "observed": "rewards",
+      "observedMarker": "rewards-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "will",
+          "current": 0,
+          "coming": 1,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 1,
+          "param": 0
+        }
+      ],
+      "nativeChangeIndexes": [
+        1
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "tap",
+      "startTab": "rewards",
+      "activeBefore": "rewards",
+      "expected": "letters",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "rewards"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui click",
+        "point": [
+          753,
+          2505
+        ]
+      },
+      "observed": "letters",
+      "observedMarker": "star-letters-page",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "will",
+          "current": 1,
+          "coming": 2,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 2,
+          "param": 1
+        }
+      ],
+      "nativeChangeIndexes": [
+        2
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "tap",
+      "startTab": "letters",
+      "activeBefore": "letters",
+      "expected": "profile",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "letters"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui click",
+        "point": [
+          1000,
+          2505
+        ]
+      },
+      "observed": "profile",
+      "observedMarker": "profile-scroll",
+      "targetPassed": true,
+      "events": [
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "will",
+          "current": 2,
+          "coming": 3,
+          "allowed": true
+        },
+        {
+          "kind": "change",
+          "index": 3,
+          "param": 2
+        }
+      ],
+      "nativeChangeIndexes": [
+        3
+      ],
+      "callbackPassed": true
+    },
+    {
+      "kind": "same-item",
+      "startTab": "rewards",
+      "activeBefore": "rewards",
+      "expected": "rewards",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "rewards"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          506,
+          2505
+        ],
+        "end": [
+          588,
+          2505
+        ],
+        "speed": 600
+      },
+      "observed": "rewards",
+      "observedMarker": "rewards-page",
+      "targetPassed": true,
+      "events": [],
+      "nativeChangeIndexes": [],
+      "callbackPassed": true
+    },
+    {
+      "kind": "content-horizontal",
+      "startTab": "rewards",
+      "activeBefore": "rewards",
+      "expected": "rewards",
+      "passed": true,
+      "sourceReset": {
+        "method": "separate DevEco click",
+        "observed": "rewards"
+      },
+      "geometry": {
+        "bar": [
+          97,
+          2414,
+          1163,
+          2596
+        ],
+        "buttons": {
+          "home": [
+            136,
+            2427,
+            383,
+            2583
+          ],
+          "rewards": [
+            383,
+            2427,
+            630,
+            2583
+          ],
+          "letters": [
+            630,
+            2427,
+            877,
+            2583
+          ],
+          "profile": [
+            877,
+            2427,
+            1124,
+            2583
+          ]
+        },
+        "centers": {
+          "home": [
+            259,
+            2505
+          ],
+          "rewards": [
+            506,
+            2505
+          ],
+          "letters": [
+            753,
+            2505
+          ],
+          "profile": [
+            1000,
+            2505
+          ]
+        }
+      },
+      "input": {
+        "method": "devecocli ui drag",
+        "start": [
+          945,
+          1606
+        ],
+        "end": [
+          315,
+          1606
+        ],
+        "speed": 600
+      },
+      "observed": "rewards",
+      "observedMarker": "rewards-page",
+      "targetPassed": true,
+      "events": [],
+      "nativeChangeIndexes": [],
+      "callbackPassed": true
+    }
+  ],
+  "passed": 20,
+  "failed": 0
+}

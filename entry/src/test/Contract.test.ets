@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { GameFailure } from '../main/ets/business/models';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword,
-  decodeNotifications, decodeNotificationReceipt, decodePlayer } from '../main/ets/data/DtoDecoder';
+  decodeNotifications, decodeNotificationReceipt, decodePlayer, decodeRewards } from '../main/ets/data/DtoDecoder';
 import { WEB_ASSIGNMENT_JSON, WEB_ASSIGNMENTS_JSON, WEB_PLAYER_JSON } from './fixtures/WebFixture';
 
 export const PLAYER_JSON: string = '{"id":"playeralice","account":"alice","displayName":"Alice","avatar":"","mustChangePassword":true,"totalXp":0,"level":{"id":"rank1","order":1,"name":"初见者","minTotalXp":0},"nextLevel":null}';
@@ -23,6 +23,24 @@ function playerWithDisplay(display: string): string {
 
 export default function contractTests(): void {
   describe('Contract', () => {
+    it('validatesRewardOwnershipAndDropsSecretForNonAvailableGrants', 0, () => {
+      const row: string = '{"id":"grant1","player":"owner","assignment":"","quantity":2,"status":"available",' +
+        '"claimDetails":"synthetic private text","redeemedAt":"","created":"2026-11-17 03:00:00.000Z",' +
+        '"snapshot":{"id":"gift1","name":"星港纪念物","image":"","description":"测试说明",' +
+        '"claimMethod":"staff","publicInstructions":"公开指引"}}';
+      expect(decodeRewards(`{"items":[${row}]}`, 'owner')[0].claimDetails).assertEqual('synthetic private text');
+      const redeemed: string = row.replace('grant1', 'grant2').replace('available', 'redeemed');
+      const both = decodeRewards(`{"items":[${redeemed},${row}]}`, 'owner');
+      expect(both[0].status).assertEqual('redeemed');
+      expect(both[0].claimDetails).assertEqual('');
+      expect(both[1].quantity).assertEqual(2);
+      expectContractFailure(() => { decodeRewards(`{"items":[${row},${row}]}`, 'owner'); });
+      expectContractFailure(() => { decodeRewards(`{"items":[${row.replace('available', 'pending')}]}`, 'owner'); });
+      let code: string = '';
+      try { decodeRewards(`{"items":[${row}]}`, 'other'); } catch (error) { code = (error as GameFailure).code; }
+      expect(code).assertEqual('REWARDS_SCOPE_MISMATCH');
+    });
+
     it('validatesNotificationDatesAndReadReceiptsWithoutInventingReadState', 0, () => {
       const first: string = '{"id":"new","title":"来信","content":"正文","popupTitle":"","buttonText":"",' +
         '"sentAt":"2026-11-16 05:00:00.000Z","readAt":"","assignmentId":""}';

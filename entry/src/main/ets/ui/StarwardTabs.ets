@@ -1,126 +1,34 @@
-import { CommonModifier, UIUtils, uiMaterial } from '@kit.ArkUI';
+import { CommonModifier, UIUtils } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { StarwardMaterial } from './StarwardMaterial';
+import { HdsTabs, hdsMaterial } from '@kit.UIDesignKit';
 
-/** Main destinations use the native floating bar; deferred destinations cannot be entered. */
+/** Main destinations use a single native floating bar. */
 @ComponentV2
 export struct StarwardBottomTabs {
   @BuilderParam journeys: () => void;
+  @BuilderParam rewards: () => void;
   @BuilderParam letters: () => void;
   @BuilderParam passport: () => void;
   @Param selectedIndex: number = 0;
+  @Event canSelect: (index: number) => boolean = () => true;
   @Event selected: (index: number) => void = () => {};
-  @Event unavailableSelected: (index: number) => void = () => {};
   @Param followHandedness: boolean = false;
   @Param floatingGap: number = 10;
   @Param hideBar: boolean = false;
   @Param materialInteractionEnabled: boolean = false;
-  @Local private activeIndex: number = 0;
-  private pendingIndex: number = -1;
-  private selectionTimer: number = -1;
-  private mounted: boolean = false;
-  private acceptingInput: boolean = false;
-  @Local private barInputModifier: CommonModifier = UIUtils.makeObserved(new CommonModifier());
-  @Local private material: uiMaterial.ImmersiveMaterial | undefined = undefined;
+  @Local private tabBarModifier: CommonModifier = UIUtils.makeObserved(new CommonModifier());
 
-  private available(index: number): boolean { return index === 0 || index === 2 || index === 3; }
+  private validIndex(index: number): boolean { return Number.isInteger(index) && index >= 0 && index <= 3; }
 
   aboutToAppear(): void {
-    this.mounted = true;
-    this.activeIndex = this.selectedIndex;
-    this.updateMaterial();
-    this.barInputModifier.visibility(this.hideBar ? Visibility.None : Visibility.Visible);
-    // Attach only to the actual native TabBar. Content controls must never
-    // open a tab-selection transaction when native callbacks are emitted.
-    this.barInputModifier.id('starward-native-tabbar').onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Down) {
-        this.beginInput();
-      } else if (event.type === TouchType.Up || event.type === TouchType.Cancel) {
-        this.finishInput(event.type === TouchType.Cancel);
-      }
-    });
-    hilog.info(0x0000, 'StarwardNavigation', 'appear selected=%{public}d active=%{public}d', this.selectedIndex, this.activeIndex);
-  }
-
-  aboutToDisappear(): void {
-    this.mounted = false;
-    clearTimeout(this.selectionTimer);
-    this.selectionTimer = -1;
-    this.pendingIndex = -1;
-    this.acceptingInput = false;
+    this.tabBarModifier.id('starward-native-tabbar');
+    this.barVisibilityChanged();
   }
 
   @Monitor('hideBar')
   barVisibilityChanged(): void {
     // Keep Tabs and its page drafts mounted; only the native bar leaves layout and hit testing.
-    this.barInputModifier.visibility(this.hideBar ? Visibility.None : Visibility.Visible);
-    clearTimeout(this.selectionTimer);
-    this.selectionTimer = -1;
-    this.pendingIndex = -1;
-    this.acceptingInput = false;
-  }
-
-  @Monitor('materialInteractionEnabled')
-  materialInteractionChanged(): void {
-    this.updateMaterial();
-  }
-
-  private updateMaterial(): void {
-    this.material = StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN,
-      this.materialInteractionEnabled, $r('app.color.accent'));
-  }
-
-  private requestSelection(index: number): void {
-    if (!this.acceptingInput || this.hideBar) {
-      hilog.info(0x0000, 'StarwardNavigation', 'ignore index=%{public}d outside input', index);
-      return;
-    }
-    this.pendingIndex = index;
-  }
-
-  private beginInput(): void {
-    clearTimeout(this.selectionTimer);
-    this.selectionTimer = -1;
-    this.pendingIndex = -1;
-    this.acceptingInput = !this.hideBar;
-  }
-
-  private finishInput(cancelled: boolean = false): void {
-    clearTimeout(this.selectionTimer);
-    if (cancelled || this.hideBar) {
-      this.pendingIndex = -1;
-      this.acceptingInput = false;
-      return;
-    }
-    // Only the final native index belonging to this input may become a route.
-    // Feedback or delayed native callbacks cannot open an unrelated page.
-    this.selectionTimer = setTimeout(() => {
-      this.selectionTimer = -1;
-      const requested: number = this.pendingIndex;
-      this.pendingIndex = -1;
-      this.acceptingInput = false;
-      if (!this.mounted || this.hideBar) {
-        return;
-      }
-      hilog.info(0x0000, 'StarwardNavigation', 'intent index=%{public}d param=%{public}d', requested, this.selectedIndex);
-      if (this.available(requested)) {
-        this.selected(requested);
-      } else if (requested === 1) {
-        this.unavailableSelected(requested);
-      }
-    }, 0);
-  }
-
-  @Monitor('selectedIndex')
-  destinationChanged(): void {
-    clearTimeout(this.selectionTimer);
-    this.selectionTimer = -1;
-    this.pendingIndex = -1;
-    this.acceptingInput = false;
-    hilog.info(0x0000, 'StarwardNavigation', 'param selected=%{public}d active=%{public}d', this.selectedIndex, this.activeIndex);
-    if (this.available(this.selectedIndex)) {
-      this.activeIndex = this.selectedIndex;
-    }
+    this.tabBarModifier.visibility(this.hideBar ? Visibility.None : Visibility.Visible);
   }
 
   private tabStyle(index: number, normalIcon: Resource, selectedIcon: Resource, label: string,
@@ -132,16 +40,15 @@ export struct StarwardBottomTabs {
   }
 
   build() {
-    Tabs({ barPosition: BarPosition.End, index: this.activeIndex!!, barModifier: this.barInputModifier }) {
+    HdsTabs({ barPosition: BarPosition.End, index: this.selectedIndex, barModifier: this.tabBarModifier }) {
       TabContent() {
         this.journeys()
       }.tabBar(this.tabStyle(0, $r('app.media.icon_nav_compass_regular'),
         $r('app.media.icon_nav_compass_fill'), '启程', 'nav-home'))
       TabContent() {
-        Column()
+        this.rewards()
       }.tabBar(this.tabStyle(1, $r('app.media.icon_nav_sparkle_regular'),
         $r('app.media.icon_nav_sparkle_fill'), '收藏', 'nav-rewards'))
-        .accessibilityText('收藏，暂未开放')
       TabContent() {
         this.letters()
       }.tabBar(this.tabStyle(2, $r('app.media.icon_nav_envelope_regular'),
@@ -151,34 +58,27 @@ export struct StarwardBottomTabs {
       }.tabBar(this.tabStyle(3, $r('app.media.icon_nav_passport_regular'),
         $r('app.media.icon_nav_passport_fill'), '护照', 'nav-profile'))
     }.width('100%').height('100%').vertical(false).scrollable(false).barOverlap(true)
-      .barBackgroundColor(this.material ? Color.Transparent : $r('app.color.raised'))
       .barFloatingStyle({
         barSideMargin: 20,
         barBottomMargin: this.floatingGap,
-        maskColor: Color.Transparent,
+        gradientMask: { maskColor: Color.Transparent },
         adaptToHandedness: this.followHandedness,
-        systemMaterial: this.material
+        lightColor: this.materialInteractionEnabled ? $r('app.color.accent') : Color.Transparent,
+        systemMaterialEffect: { materialType: hdsMaterial.MaterialType.IMMERSIVE,
+          materialLevel: hdsMaterial.MaterialLevel.ADAPTIVE }
       })
       .onContentWillChange((current: number, coming: number): boolean => {
-        hilog.info(0x0000, 'StarwardNavigation', 'will current=%{public}d coming=%{public}d active=%{public}d param=%{public}d',
-          current, coming, this.activeIndex, this.selectedIndex);
-        if (this.available(coming) && coming === this.selectedIndex) {
-          return true;
-        }
-        this.requestSelection(coming);
-        return false;
+        const allowed: boolean = this.validIndex(coming) &&
+          (coming === this.selectedIndex || (!this.hideBar && this.canSelect(coming)));
+        hilog.info(0x0000, 'StarwardNavigation', 'will current=%{public}d coming=%{public}d allowed=%{public}s',
+          current, coming, String(allowed));
+        return allowed;
       })
       .onChange((index: number) => {
-        hilog.info(0x0000, 'StarwardNavigation', 'change index=%{public}d active=%{public}d param=%{public}d',
-          index, this.activeIndex, this.selectedIndex);
-        // Native change notifications also include programmatic updates.
-        // The parent-approved destination remains the routing authority.
-        this.activeIndex = this.selectedIndex;
-      })
-      .onTabBarClick((index: number) => {
-        hilog.info(0x0000, 'StarwardNavigation', 'click index=%{public}d active=%{public}d param=%{public}d',
-          index, this.activeIndex, this.selectedIndex);
-        this.requestSelection(index);
+        hilog.info(0x0000, 'StarwardNavigation', 'change index=%{public}d param=%{public}d', index, this.selectedIndex);
+        if (index !== this.selectedIndex && this.validIndex(index) && !this.hideBar && this.canSelect(index)) {
+          this.selected(index);
+        }
       })
   }
 }

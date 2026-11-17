@@ -1,0 +1,22 @@
+{
+  "status": "incomplete",
+  "role": "empty",
+  "runtimeSha256": "452c43720fbafbd30f9d9d8b2b9956c3262871141a7be88ad4d403a249709a1f",
+  "driverSha256": "f7ea2ad940636afd0bdcb6301079f755a660b4021f177e135fb63ca879fa0d00",
+  "signedHapSha256": "09db1b5e1c0f698c648643ab3b37d3697c115452bea0818d41138f316b04e5b9",
+  "inputSha256": "fcd8ae3b0792830f084e0bb7b9a53cc3369bfaba3ac7af75da497edfb318edbe",
+  "screenshots": [
+    {
+      "state": "initial-failure",
+      "file": "initial-failure.png",
+      "sha256": "1c62d99c16dd870f0066e5ec3d2c368866fd2e3b61345d39c068d0156a7751c4"
+    }
+  ],
+  "checks": [
+    "Home does not read the collection before the user opens it"
+  ],
+  "failure": {
+    "step": "first-load-retry-empty",
+    "type": "SafeFailure"
+  }
+}

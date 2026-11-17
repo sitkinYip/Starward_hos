@@ -1,5 +1,6 @@
 import { AssignmentDetail, AssignmentSummary, ExtraDisplay, GameFailure, Player, Rank } from '../business/models';
 import { GameNotification } from '../business/GameNotification';
+import { GameReward } from '../business/GameReward';
 
 export class LoginResult {
   token: string = '';
@@ -200,6 +201,42 @@ export function decodeNotifications(body: string): GameNotification[] {
     return new GameNotification(id, stringField(note, 'title'), stringField(note, 'content'),
       stringField(note, 'popupTitle'), stringField(note, 'buttonText'), dateField(note, 'sentAt', true),
       dateField(note, 'readAt'), stringField(note, 'assignmentId'));
+  });
+}
+
+export function decodeRewards(body: string, playerId: string): GameReward[] {
+  const items: Object = parse(body)['items'];
+  if (!Array.isArray(items)) { throw contractFailure(); }
+  const ids: Set<string> = new Set<string>();
+  return (items as Object[]).map((value: Object) => {
+    const source: Record<string, Object> = record(value);
+    const reward: GameReward = new GameReward();
+    reward.id = stringField(source, 'id', true);
+    reward.player = stringField(source, 'player', true);
+    if (reward.player !== playerId) {
+      throw new GameFailure('REWARDS_SCOPE_MISMATCH', '收藏与当前账号不一致，请重试。');
+    }
+    if (ids.has(reward.id)) { throw contractFailure(); }
+    ids.add(reward.id);
+    reward.assignment = stringField(source, 'assignment');
+    reward.quantity = intField(source, 'quantity');
+    const status: string = stringField(source, 'status');
+    if (status !== 'available' && status !== 'redeemed' && status !== 'voided') { throw contractFailure(); }
+    reward.status = status;
+    const claimDetails: string = stringField(source, 'claimDetails');
+    reward.claimDetails = status === 'available' ? claimDetails : '';
+    reward.redeemedAt = dateField(source, 'redeemedAt');
+    reward.created = dateField(source, 'created', true);
+    const snapshot: Record<string, Object> = record(source['snapshot']);
+    reward.snapshot.id = stringField(snapshot, 'id', true);
+    reward.snapshot.name = stringField(snapshot, 'name', true);
+    reward.snapshot.image = stringField(snapshot, 'image');
+    reward.snapshot.description = stringField(snapshot, 'description');
+    const method: string = stringField(snapshot, 'claimMethod');
+    if (method !== 'staff' && method !== 'location' && method !== 'locker') { throw contractFailure(); }
+    reward.snapshot.claimMethod = method;
+    reward.snapshot.publicInstructions = stringField(snapshot, 'publicInstructions');
+    return reward;
   });
 }
 

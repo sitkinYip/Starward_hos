@@ -1,5 +1,6 @@
 import { GameRepository } from '../business/GameRepository';
 import { GameNotification } from '../business/GameNotification';
+import { GameReward } from '../business/GameReward';
 import { GameplayAnswerResult, GameplayContentBlock, GameplayLevel, GameplayOption, GameplayQuestion,
   GameplaySnapshot } from '../business/GameplayModels';
 import { NarrativeContent } from '../business/NarrativeModels';
@@ -372,6 +373,14 @@ export class MockGameRepository implements GameRepository {
   }
 
   async notifications(_cancellation?: ReadCancellation): Promise<GameNotification[]> {
+    return [];
+  }
+
+  async rewards(cancellation?: ReadCancellation): Promise<GameReward[]> {
+    const generation: number = this.requireSession();
+    this.ensureChanged();
+    await this.pause('rewards', generation);
+    if (cancellation?.cancelled) { throw new GameFailure('CANCELLED', '收藏读取已取消。'); }
     return [];
   }
 

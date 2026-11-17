@@ -9,8 +9,9 @@ import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, avatarM
 import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, TransportResponse } from '../platform/HttpTransport';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { GameNotification } from '../business/GameNotification';
+import { GameReward } from '../business/GameReward';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
-  decodeNotificationReceipt, decodeNotifications, LoginResult, PasswordResult } from './DtoDecoder';
+  decodeNotificationReceipt, decodeNotifications, decodeRewards, LoginResult, PasswordResult } from './DtoDecoder';
 
 class LoginCommand {
   identity: string;
@@ -391,6 +392,13 @@ export class HttpsGameRepository implements GameRepository {
     const generation: number = this.requireSession();
     return decodeNotifications(await this.request('/api/questions/v1/notifications', 'GET', '', this.token,
       generation, cancellation));
+  }
+
+  async rewards(cancellation?: ReadCancellation): Promise<GameReward[]> {
+    const generation: number = this.requireSession();
+    const playerId: string = this.playerId;
+    const body: string = await this.request('/api/questions/v1/rewards', 'GET', '', this.token, generation, cancellation);
+    return decodeRewards(body, playerId);
   }
 
   async readNotification(id: string): Promise<string> {

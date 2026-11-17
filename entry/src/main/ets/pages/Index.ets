@@ -8,6 +8,7 @@ import { JourneyNotificationsViewModel } from '../features/JourneyNotificationsV
 import { NarrativePage } from '../features/NarrativePage';
 import { NarrativeRoute, NarrativeViewModel } from '../features/NarrativeViewModel';
 import { StarLettersPage } from '../features/StarLettersPage';
+import { RewardsPage } from '../features/RewardsPage';
 import { StarLetterEntry } from '../business/StarLetters';
 import { GameNotification } from '../business/GameNotification';
 import { GameplayPresentation, GameplaySnapshot } from '../business/GameplayModels';
@@ -179,6 +180,7 @@ struct Index {
     } else {
       this.stopClock();
       this.atmosphere.suspend();
+      this.vm.rewards.setActive(false);
       this.vm.stopBriefingSync();
       this.vm.starLetters.suspend();
       this.vm.journey.pauseReads();
@@ -226,6 +228,7 @@ struct Index {
     this.vm.stopBriefingSync();
     this.vm.narrative.close();
     this.vm.starLetters.suspend();
+    this.vm.rewards.setActive(false);
     this.vm.journey.suspend();
     this.vm.play.leave();
     this.showAccount = false;
@@ -235,6 +238,16 @@ struct Index {
     this.stopClock();
     this.clearPasswords();
     this.cancelAvatarCrop();
+  }
+
+  @Monitor('mainIndex', 'foreground', 'vm.gate', 'vm.securityUnconfirmed', 'vm.narrative.route')
+  rewardsVisibilityChanged(): void {
+    this.vm.rewards.setActive(this.rewardsVisible());
+  }
+
+  private rewardsVisible(): boolean {
+    return this.foreground && this.mainIndex === 1 && this.paths.size() === 0 && this.vm.narrative.route === null &&
+      this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
   }
 
   @Monitor('vm.gate')
@@ -300,6 +313,10 @@ struct Index {
     }
     if (this.closeNarrative()) { return true; }
     if (this.handleAssignmentJourneyBack()) { return true; }
+    if (this.vm.rewards.selected !== null && this.mainIndex === 1) {
+      this.vm.rewards.close();
+      return true;
+    }
     if (this.vm.gate === 'home' && this.paths.size() === 0 && this.mainIndex !== 0) {
       this.goMain(0);
       return true;
@@ -354,11 +371,7 @@ struct Index {
       return;
     }
     const gameplayVisible: boolean = this.vm.play.visible;
-    if (index === 1) {
-      StarwardFeedback.toast(this.getUIContext(), '收藏暂未开放');
-      return;
-    }
-    if (index === 2 && this.vm.securityUnconfirmed) {
+    if ((index === 1 || index === 2) && this.vm.securityUnconfirmed) {
       StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
       return;
     }
@@ -380,7 +393,7 @@ struct Index {
   }
 
   private selectMain(index: number): void {
-    if (index === 2 && this.vm.securityUnconfirmed) {
+    if ((index === 1 || index === 2) && this.vm.securityUnconfirmed) {
       StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
       return;
     }
@@ -449,9 +462,9 @@ struct Index {
     if (!this.foreground || this.vm.gate !== 'home' || this.vm.securityUnconfirmed ||
       this.vm.narrative.route !== null) { return false; }
     const path: string = href.split(/[?#]/)[0];
-    if (path === '/' || path === '/notifications' || path === '/profile') {
+    if (path === '/' || path === '/rewards' || path === '/notifications' || path === '/profile') {
       this.vm.journey.close();
-      this.goMain(path === '/' ? 0 : path === '/notifications' ? 2 : 3);
+      this.goMain(path === '/' ? 0 : path === '/rewards' ? 1 : path === '/notifications' ? 2 : 3);
       return true;
     }
     const story: RegExpMatchArray | null = path.match(/^\/play\/([A-Za-z0-9_-]{1,100})\/content\/([A-Za-z0-9_-]{1,100})\/?$/);
@@ -1006,17 +1019,26 @@ struct Index {
   home() {
     StarwardBottomTabs({ floatingGap: 10 + this.safeBottom(), selectedIndex: this.mainIndex,
       hideBar: this.keyboardOccupiesViewport(), materialInteractionEnabled: !this.motion.reduced,
-      selected: (index: number) => {
-        if (this.vm.gate !== 'home' || this.paths.size() > 0) {
-          return;
+      canSelect: (index: number): boolean => {
+        if (this.vm.gate !== 'home' || this.paths.size() > 0) { return false; }
+        if ((index === 1 || index === 2) && this.vm.securityUnconfirmed) {
+          StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
+          return false;
         }
-        this.selectMain(index);
-      }, journeys: () => { this.journeys() }, letters: () => { this.starLetters() }, passport: () => { this.profile() },
-      unavailableSelected: (index: number) => {
-        const names: string[] = ['启程', '收藏', '来信', '护照'];
-        StarwardFeedback.toast(this.getUIContext(), `${names[index]}暂未开放`);
-      }
+        return true;
+      }, selected: (index: number) => { this.selectMain(index); },
+      journeys: () => { this.journeys() }, rewards: () => { this.rewards() }, letters: () => { this.starLetters() },
+      passport: () => { this.profile() }
     })
+  }
+
+  @Builder
+  rewards() {
+    RewardsPage({ model: this.vm.rewards, playerId: this.vm.player.id, displayFont: this.displayFont,
+      bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced, active: this.rewardsVisible(),
+      canReturnToAssignment: this.returnAssignmentId.length > 0,
+      returnToAssignment: () => { if (this.returnAssignmentId.length > 0) { void this.openAssignment(this.returnAssignmentId); } },
+      returnHome: () => this.goMain(0), openInternalLink: (href: string) => this.openJourneyLink(href) })
   }
 
   @Builder
@@ -1461,16 +1483,13 @@ struct Index {
           Text(description).fontSize(15).fontColor($r('app.color.text'))
           Text(hint).fontSize(11).fontColor($r('app.color.muted'))
         }.layoutWeight(1).alignItems(HorizontalAlign.Start)
-        if (index === 1) {
-          Text('暂未开放').fontSize(10).fontColor($r('app.color.subtle'))
-        }
         this.icon($r('app.media.icon_arrow_right'), 17, $r('app.color.subtle'))
       }.width('100%').padding({ top: 12, bottom: 12 })
     }.id(index === 0 ? 'menu-home' : index === 1 ? 'menu-rewards' : index === 2 ? 'menu-notifications' : 'menu-profile')
       .width('100%').constraintSize({ minHeight: 64 }).borderRadius(10).padding({ left: 12, right: 12 })
       .backgroundColor(this.paths.size() === 0 && this.mainIndex === index ? $r('app.color.accent_faint') : Color.Transparent)
       .accessibilitySelected(this.paths.size() === 0 && this.mainIndex === index)
-      .accessibilityText(`${label}，${description}，${hint}${index === 1 ? '，暂未开放' : ''}`)
+      .accessibilityText(`${label}，${description}，${hint}`)
       .onClick(() => this.goMain(index))
   }
 
