@@ -1,0 +1,41 @@
+{
+  "verifiedDate": "2026-11-17",
+  "mount": "/alisoss",
+  "bucket": "sitkin-cdn",
+  "failure": {
+    "httpStatus": 403,
+    "providerCode": "InvalidAccessKeyId",
+    "providerDetail": "AccessKey disabled"
+  },
+  "oldKeyLastRecordedOssUse": "2026-04-08 10:27:12 Asia/Shanghai",
+  "audit": {
+    "region": "cn-hangzhou",
+    "from": "2026-08-20 18:00 Asia/Shanghai",
+    "through": "2026-11-17 17:52 Asia/Shanghai",
+    "eventsChecked": [
+      "UpdateAccessKey",
+      "UpdateAccessKeyStatusForAccount",
+      "UpdateAccessKeyStatus"
+    ],
+    "results": 0,
+    "causeAttribution": "undetermined"
+  },
+  "serviceUser": "alist-sitkin-cdn",
+  "customRamPolicy": "alist-sitkin-cdn-media-rw",
+  "operationScope": [
+    "list relevant bucket paths",
+    "read & write images/video/audio",
+    "abort multipart upload in media prefixes"
+  ],
+  "mountListRestored": true,
+  "adminResourceConnectionRestored": true,
+  "readBackTabs": [
+    "images",
+    "video",
+    "audio"
+  ],
+  "adminImageUploadReturnedSuccess": true,
+  "newObjectVisible": true,
+  "probeContentSHA256": "4c6979ef7f52f21bd67c5742102eb844e46905aa514dfc9bc6961ca763273851",
+  "probeResponseBytesMatchOriginal": true
+}
