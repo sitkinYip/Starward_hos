@@ -178,6 +178,7 @@ struct JourneyNotificationFailure {
 
 @ComponentV2
 export struct StarLettersPage {
+  @Param inboxRouteRevision: number = 0;
   @Require @Param model: StarLettersViewModel;
   @Require @Param journey: JourneyNotificationsViewModel;
   @Require @Param playerId: string;
@@ -190,6 +191,9 @@ export struct StarLettersPage {
   @Event openInternalLink: (href: string) => boolean = () => false;
   @Local private revealed: boolean = false;
   @Local private category: number = 0;
+
+  @Monitor('inboxRouteRevision')
+  openJourneyInboxForPush(): void { this.category = 0; }
   private readonly scroller: Scroller = new Scroller();
   private readonly journeyScroller: ListScroller = new ListScroller();
   private readonly tabBar: CommonModifier = new CommonModifier();
@@ -349,7 +353,7 @@ export struct StarLettersPage {
   build() {
     Column() {
       this.heading()
-      Tabs({ barPosition: BarPosition.Start, index: this.category, barModifier: this.tabBar }) {
+      Tabs({ barPosition: BarPosition.Start, index: this.category!!, barModifier: this.tabBar }) {
         TabContent() {
           StarwardRefresh({ refreshEnabled: this.active && !this.journey.loading,
             request: async () => { await this.journey.refresh(); }, content: () => { this.journeyScroll() } })

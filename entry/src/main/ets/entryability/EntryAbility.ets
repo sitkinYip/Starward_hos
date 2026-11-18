@@ -22,6 +22,7 @@ import { AppTheme } from '../platform/AppTheme';
 import { pruneAbandonedClueVideos } from '../platform/ClueVideoFile';
 import { reportWindowMetrics } from '../platform/WindowMetrics';
 import { LaunchRoutes } from '../platform/LaunchRoutes';
+import { HarmonyPush } from '../platform/HarmonyPush';
 import { runTlsProbe } from '../platform/TlsProbe';
 import { ImmersiveWindow } from '../platform/ImmersiveWindow';
 
@@ -47,9 +48,10 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     AppEnvironment.load(this.context.resourceManager);
+    if (AppEnvironment.pushEnabled) { HarmonyPush.setAbility(this); }
     AppTheme.load(this.context);
     pruneAbandonedClueVideos(this.context.cacheDir);
-    LaunchRoutes.receive(want.uri || '');
+    this.receiveLaunchRoute(want);
     if (!AppEnvironment.hostedPrivacy) { runTlsProbe(); }
     try {
       if (AppEnvironment.fontScale > 0) {
@@ -62,10 +64,16 @@ export default class EntryAbility extends UIAbility {
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.receiveLaunchRoute(want);
+  }
+
+  private receiveLaunchRoute(want: Want): void {
+    if (AppEnvironment.pushEnabled && LaunchRoutes.receivePush(want.action || '', want.parameters)) { return; }
     LaunchRoutes.receive(want.uri || '');
   }
 
   onDestroy(): void {
+    HarmonyPush.forgetAbility(this);
     this.immersiveWindow.detach();
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }

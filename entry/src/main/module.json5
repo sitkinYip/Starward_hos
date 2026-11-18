@@ -21,6 +21,7 @@
         "startWindowIcon": "$media:start_window_atlas",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        "launchType": "singleton",
         "skills": [
           {
             "entities": [
@@ -33,6 +34,12 @@
           {
             "actions": ["ohos.want.action.viewData"],
             "uris": [{ "scheme": "starward", "host": "assignment" }]
+          },
+          {
+            "actions": ["com.sitkin.starward.action.PUSH_OPEN"]
+          },
+          {
+            "actions": ["action.ohos.push.listener"]
           }
         ]
       }

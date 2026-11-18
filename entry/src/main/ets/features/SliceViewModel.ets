@@ -11,6 +11,7 @@ import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { RewardsViewModel } from './RewardsViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 import { ReadCancellation } from '../business/ReadCancellation';
+import { PushDevice, PushStatus } from '../business/PushRegistration';
 
 const ASSIGNMENT_SYNC_INTERVAL_MS: number = 5000;
 
@@ -874,6 +875,22 @@ export class SliceViewModel {
   tick(): void {
     this.now = Date.now() + this.serverOffset;
     this.play.tick();
+  }
+
+  attachPush(device: PushDevice): void { this.repository.attachPush?.(device); }
+
+  retryPushRemoval(): void {
+    if (this.gate === 'login' && !this.busy) { this.repository.retryPushRemoval?.(); }
+  }
+
+  async syncPush(force: boolean): Promise<PushStatus> {
+    if (this.gate !== 'home' || this.securityBusy || this.securityUnconfirmed) { return 'unknown'; }
+    return await this.repository.syncPush?.(force) ?? 'unknown';
+  }
+
+  async matchesPushProfile(profileId: string): Promise<boolean> {
+    if (this.gate !== 'home' || this.securityBusy || this.securityUnconfirmed) { return false; }
+    return await this.repository.matchesPushProfile?.(profileId) ?? false;
   }
 
   /** Discard live account state and requests without forgetting the last saved login. */

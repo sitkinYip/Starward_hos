@@ -4,6 +4,7 @@ import { NarrativeContent } from './NarrativeModels';
 import { ReadCancellation } from './ReadCancellation';
 import { GameNotification } from './GameNotification';
 import { GameReward } from './GameReward';
+import { PushDevice, PushStatus } from './PushRegistration';
 
 export interface GameRepository {
   readonly mode: string;
@@ -23,5 +24,9 @@ export interface GameRepository {
   readNotification(id: string): Promise<string>;
   answerAssignment(id: string, sessionLevelId: string, rawAnswer: string, requestId: string): Promise<GameplayAnswerResult>;
   suspendSession?(): void;
+  attachPush?(device: PushDevice): void;
+  syncPush?(force: boolean): Promise<PushStatus>;
+  matchesPushProfile?(profileId: string): Promise<boolean>;
+  retryPushRemoval?(): void;
   logout(): Promise<void>;
 }

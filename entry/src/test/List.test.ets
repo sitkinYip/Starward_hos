@@ -25,6 +25,7 @@ import blessPlaybackTests from './BlessPlayback.test';
 import questionImageLoaderTests from './QuestionImageLoader.test';
 import questionImageCacheTests from './QuestionImageCache.test';
 import immersiveSurfacesTests from './ImmersiveSurfaces.test';
+import pushRegistrationTests from './PushRegistration.test';
 
 export default function testsuite(): void {
   routeTests();
@@ -54,4 +55,5 @@ export default function testsuite(): void {
   questionImageLoaderTests();
   questionImageCacheTests();
   immersiveSurfacesTests();
+  pushRegistrationTests();
 }

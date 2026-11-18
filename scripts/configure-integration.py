@@ -11,12 +11,16 @@ parser.add_argument('--endpoint')
 parser.add_argument('--ca', type=Path)
 parser.add_argument('--timeout-ms', type=int, default=15000)
 parser.add_argument('--probe-tls', action='store_true')
+parser.add_argument('--push-test', action='store_true',
+                    help='Enable Push and the hosted privacy gate in a dedicated isolated build.')
 parser.add_argument('--font-scale', type=float, default=1)
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 target = root / 'entry/src/main/resources/rawfile/integration.json'
 ca_target = target.parent / 'integration-ca.pem'
 if not args.endpoint:
+    if args.push_test:
+        parser.error('--push-test requires an isolated HTTPS endpoint.')
     target.unlink(missing_ok=True)
     ca_target.unlink(missing_ok=True)
     print('Prepared default in-memory demo build configuration.')
@@ -40,5 +44,9 @@ if loopback:
     shutil.copyfile(args.ca, ca_target)
 else:
     ca_target.unlink(missing_ok=True)
-target.write_text(json.dumps({'isolated': True, 'endpoint': args.endpoint, 'timeoutMs': args.timeout_ms, 'probeTls': args.probe_tls, 'fontScale': args.font_scale}) + '\n')
+config = {'isolated': True, 'endpoint': args.endpoint, 'timeoutMs': args.timeout_ms,
+          'probeTls': args.probe_tls, 'fontScale': args.font_scale}
+if args.push_test:
+    config.update(hostedPrivacy=True, pushEnabled=True)
+target.write_text(json.dumps(config) + '\n')
 print('Prepared isolated HTTPS build configuration; no credentials embedded and certificate validation stays enabled.')

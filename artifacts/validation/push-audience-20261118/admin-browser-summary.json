@@ -1,0 +1,11 @@
+{
+  "environment": "local isolated PocketBase",
+  "passed": [
+    "auth redirect, empty allowlist, and independent master switch",
+    "keyboard selection and persistence after reload",
+    "widening confirmation and retained allowlist",
+    "stale write blocked, draft retained on refresh, narrowing saved",
+    "lost committed response preserves draft and request ID; replay reloads latest policy",
+    "desktop, tablet, and narrow mobile widths; light, dark, and reduced motion"
+  ]
+}

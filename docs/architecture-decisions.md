@@ -112,6 +112,12 @@
 
 2026-11-17 核对 API 26 Push Kit 和 PocketBase 现有业务接口。App 可向 Push Kit 申请设备令牌，自动业务通知仍需要服务端把设备令牌绑定到当前玩家，并在真实业务写入成功后向 Push Cloud 发送。现有后端的派发和来信写入只更新 PocketBase，尚无绑定、解绑或发送接口。用户授权本轮在无需服务端改造的情况下接入，因此本轮仅记录依赖。后续第一组可选事件为新场次派发、旅途来信或公告，按玩家的通知授权和实际访问权限发送，点开后统一回源。服务凭据留在服务端。[获取 Push Token](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-get-token) · [官方客户端和服务端接入顺序](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-gettingstart)
 
+2026-11-18 用户授权同时接入原生和后端。正式应用沿用 `com.sitkin.starward`。首个切片用华为系统通知及账号匿名标识，按已授权的安装绑定；签出时优先释出平台绑定，服务器解绑失败由一次性撤回凭据续办。通知仅路由到本应用的场次或来信入口，保留现有 API 鉴权与回源，载荷不含题目、来信正文或领奖信息。通知发送凭据只部署在后端，开发和发布分别显式开关。[通知消息与多账号](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-send-alert/) · [开通推送服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-config-setting)
+
+运营后台管理正式消息的发送范围：默认「仅白名单」且名单为空，可由有权管理员选定游戏玩家，或确认切换为「全部开放」。后端持久保存设置和审计记录，保存时须填写修改理由，并校验配置版本，避免两次管理操作相互覆盖。生产总开关仍由部署配置控制；开发测试消息仍只允许部署配置指定的专用玩家，两者不随后台切换而变化。AppGallery 邀请名单只用于分发应用，不参与游戏玩家判断。
+
+正式模式在设备注册、业务事件入队和提交华为前都检查当前范围。全部开放只覆盖已授权、已绑定且符合事件资格的设备，不为历史场次或来信补发通知；缩小范围后，未发送的范围外任务不得提交，华为已接收的消息无法撤回。范围配置变化不改变已有业务数据、原生权限检查或点击回源，也无需重打客户端包。验收见 [F02a](feature-acceptance-matrix.md#f02a-正式-push-发送范围)。
+
 ## ADR-011：可复现的原生 HTTPS 隔离联调
 
 **问题：** 验证真实网络、改密及权限撤回需要真实服务端事务；现有玩家及生产环境不适合故障注入。

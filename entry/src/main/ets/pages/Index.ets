@@ -24,7 +24,9 @@ import { AppLifecycle } from '../platform/AppLifecycle';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { HostedPrivacy, HostedPrivacyRequestResult, HostedPrivacyState } from '../platform/HostedPrivacy';
 import { AppTheme, ThemePreference, ThemeSelection } from '../platform/AppTheme';
-import { LaunchRoutes } from '../platform/LaunchRoutes';
+import { LaunchRoutes, PushRoute } from '../platform/LaunchRoutes';
+import { HarmonyPush, HarmonyPushDevice } from '../platform/HarmonyPush';
+import { PushStatus } from '../business/PushRegistration';
 import { LabeledInput } from '../ui/LabeledInput';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { PrimaryAction } from '../ui/PrimaryAction';
@@ -156,6 +158,10 @@ struct Index {
   @Local private privacyAllowed: boolean = !AppEnvironment.hostedPrivacy;
   @Local private privacyBusy: boolean = false;
   @Local private privacyError: string = '';
+  @Local private pushStatus: PushStatus = 'unknown';
+  @Local private pushBusy: boolean = false;
+  @Local private pushPermissionAttempted: boolean = false;
+  @Local private pushInboxRevision: number = 0;
   @Local private lobbyRouteTransitioning: boolean = false;
   @Local private gameplayDestinationShown: boolean = false;
   @Local private briefViewportWidth: number = 0;
@@ -175,13 +181,19 @@ struct Index {
   private privacyRestorePending: boolean = true;
   private privacyRevocationHandled: boolean = false;
   private unsubscribePrivacy: (() => void) | null = null;
+  private pushActionRevision: number = 0;
+  private pushTokenDirty: boolean = false;
+  private unsubscribePushToken: (() => void) | null = null;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
     if (foreground && AppEnvironment.hostedPrivacy) { this.checkHostedPrivacy(); }
     this.lobbyVisibilityChanged();
     if (foreground) {
       this.startClock();
+      if (AppEnvironment.pushEnabled && this.privacyAllowed) { this.vm.retryPushRemoval(); }
       if (this.privacyAllowed && this.vm.gate === 'home') {
+        this.dispatchPendingRoute();
+        void this.syncPush();
         this.vm.refresh();
         const destinations: string[] = this.paths.getAllPathName();
         if (destinations[destinations.length - 1] === 'assignment' && this.selectedId.length > 0 &&
@@ -204,14 +216,16 @@ struct Index {
     }
   };
 
-  private routeListener: (id: string) => void = (id: string) => {
-    if (id.length > 0) {
-      this.dispatchPendingRoute();
-    }
-  };
+  private routeListener: (id: string) => void = (_id: string) => { this.dispatchPendingRoute(); };
 
   private dispatchPendingRoute(): void {
-    if (!this.privacyAllowed || this.vm.gate !== 'home') {
+    if (!this.privacyAllowed || !this.foreground || this.vm.gate !== 'home' ||
+      this.vm.securityUnconfirmed || this.vm.securityBusy) {
+      return;
+    }
+    const push: PushRoute | null = LaunchRoutes.nextPush();
+    if (push !== null) {
+      void this.dispatchPushRoute(push);
       return;
     }
     const id: string = LaunchRoutes.take();
@@ -221,6 +235,78 @@ struct Index {
     this.vm.narrative.close();
     this.paths.clear();
     this.openAssignment(id);
+  }
+
+  private async dispatchPushRoute(route: PushRoute): Promise<void> {
+    const owner: string = this.vm.player.id;
+    const matches: boolean = await this.vm.matchesPushProfile(route.profileId);
+    if (!this.privacyAllowed || !this.foreground || this.vm.gate !== 'home' || this.vm.player.id !== owner ||
+      this.vm.securityUnconfirmed || this.vm.securityBusy || !LaunchRoutes.consumePush(route) || !matches) { return; }
+    if (route.kind === 'inbox') {
+      this.pushInboxRevision++;
+      const alreadyOnInbox: boolean = this.mainIndex === 2;
+      this.goMain(2);
+      if (alreadyOnInbox) { void this.vm.journey.refresh(); }
+    } else {
+      this.vm.narrative.close();
+      this.paths.clear();
+      void this.openAssignment(route.target);
+    }
+  }
+
+  private pushAvailable(): boolean {
+    return AppEnvironment.pushEnabled && this.privacyAllowed && this.vm.gate === 'home' &&
+      !this.vm.securityBusy && !this.vm.securityUnconfirmed && this.foreground;
+  }
+
+  private async syncPush(action: boolean = false): Promise<void> {
+    if (!this.pushAvailable() || this.pushBusy) { return; }
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context === undefined) { return; }
+    const revision: number = ++this.pushActionRevision;
+    const force: boolean = this.pushTokenDirty || (action && this.pushStatus === 'retry');
+    this.pushBusy = true;
+    try {
+      if (action && this.pushStatus !== 'retry') {
+        if (this.pushStatus === 'ready' || this.pushPermissionAttempted) {
+          await HarmonyPush.openSettings(context);
+        } else {
+          this.pushPermissionAttempted = true;
+          await HarmonyPush.requestPermission(context);
+        }
+      }
+      if (revision === this.pushActionRevision && this.pushAvailable()) {
+        this.pushTokenDirty = false;
+        const status: PushStatus = await this.vm.syncPush(force);
+        if (revision === this.pushActionRevision) {
+          this.pushStatus = status;
+          if (status === 'ready' && this.unsubscribePushToken === null) {
+            this.unsubscribePushToken = HarmonyPush.watchTokenUpdates(() => {
+              this.pushTokenDirty = true;
+              if (this.pushAvailable()) { void this.syncPush(); }
+            });
+          } else if (status === 'off') {
+            this.stopPushTokenWatch();
+          }
+        }
+      } else if (action && revision === this.pushActionRevision && this.privacyAllowed && this.vm.gate === 'home') {
+        // The system settings promise can settle before the application returns to foreground.
+        this.pushTokenDirty = true;
+      }
+    } catch {
+      if (revision === this.pushActionRevision) { this.pushStatus = 'retry'; }
+    } finally {
+      if (revision === this.pushActionRevision) {
+        this.pushBusy = false;
+        if (this.pushTokenDirty && this.pushAvailable()) { void this.syncPush(); }
+      }
+    }
+  }
+
+  private stopPushTokenWatch(): void {
+    this.unsubscribePushToken?.();
+    this.unsubscribePushToken = null;
+    this.pushTokenDirty = false;
   }
 
   private checkHostedPrivacy(): boolean {
@@ -308,6 +394,10 @@ struct Index {
       }
     });
     this.foreground = AppLifecycle.isForeground();
+    if (AppEnvironment.pushEnabled) {
+      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+      if (context !== undefined) { this.vm.attachPush(new HarmonyPushDevice(context)); }
+    }
     if (AppEnvironment.hostedPrivacy) {
       this.privacyOwnerActive = true;
       this.unsubscribePrivacy = HostedPrivacy.subscribe(() => { this.checkHostedPrivacy(); });
@@ -319,6 +409,9 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.stopPushTokenWatch();
+    this.pushActionRevision++;
+    this.pushBusy = false;
     this.privacyOwnerActive = false;
     this.privacyOwnerRevision++;
     this.privacyBusy = false;
@@ -368,6 +461,10 @@ struct Index {
   gateChanged(): void {
     this.clearPasswords();
     if (this.vm.gate !== 'home') {
+      this.stopPushTokenWatch();
+      this.pushActionRevision++;
+      this.pushBusy = false;
+      this.pushStatus = 'unknown';
       this.atmosphere.release();
       this.paths.clear();
       this.showAccount = false;
@@ -376,7 +473,14 @@ struct Index {
       this.cancelAvatarCrop();
     } else {
       this.dispatchPendingRoute();
+      void this.syncPush();
     }
+  }
+
+  @Monitor('vm.securityUnconfirmed', 'vm.securityBusy', 'privacyAllowed')
+  secureRoutesAvailable(): void {
+    if (this.pushAvailable()) { void this.syncPush(); }
+    this.dispatchPendingRoute();
   }
 
   @Monitor('showAvatarCrop')
@@ -1227,6 +1331,7 @@ struct Index {
     StarLettersPage({ model: this.vm.starLetters, journey: this.vm.journey, playerId: this.vm.player.id,
       displayFont: this.displayFont, openInternalLink: (href: string) => this.openJourneyLink(href),
       bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced,
+      inboxRouteRevision: this.pushInboxRevision,
       active: this.foreground && this.mainIndex === 2 && this.vm.narrative.route === null && !this.vm.securityUnconfirmed,
       openLetter: (entry: StarLetterEntry) => this.openStarLetter(entry), returnHome: () => this.goMain(0) })
   }
@@ -1235,7 +1340,10 @@ struct Index {
   profile() {
     ProfilePage({ vm: this.vm, active: this.mainIndex === 3 && this.paths.size() === 0,
       displayFont: this.displayFont, bottomClearance: this.bottomContentClearance(), pickingAvatar: this.avatarPicking,
-      chooseAvatar: () => this.pickAvatar(), logout: () => this.logout() })
+      chooseAvatar: () => this.pickAvatar(), logout: () => this.logout(),
+      pushVisible: AppEnvironment.pushEnabled, pushBusy: this.pushBusy, pushStatus: this.pushStatus,
+      pushSettingsAction: this.pushPermissionAttempted,
+      changePush: () => { void this.syncPush(true); } })
   }
 
   @Builder

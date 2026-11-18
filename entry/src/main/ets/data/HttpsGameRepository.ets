@@ -11,6 +11,8 @@ import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, Tr
 import { ReadCancellation } from '../business/ReadCancellation';
 import { GameNotification } from '../business/GameNotification';
 import { GameReward } from '../business/GameReward';
+import { PushDevice, PushRegistration, PushStatus } from '../business/PushRegistration';
+import { PushBindingClient } from './PushBindingClient';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
   decodeNotificationReceipt, decodeNotifications, decodeRewards, LoginResult, PasswordResult } from './DtoDecoder';
 
@@ -80,6 +82,7 @@ export class HttpsGameRepository implements GameRepository {
   private profileRevision: number = 0;
   private fileToken: string = '';
   private fileTokenExpires: number = 0;
+  private push: PushRegistration | null = null;
 
   constructor(baseUrl: string, transport: HttpTransport = new NativeHttpTransport(), probeBoundary: boolean = false,
     credentials: CredentialStore | null = null) {
@@ -232,7 +235,10 @@ export class HttpsGameRepository implements GameRepository {
         '未能读取本机登录状态，请重试。');
     }
     this.assertCurrent(generation);
-    if (saved === null) { return null; }
+    if (saved === null) {
+      this.removePush();
+      return null;
+    }
 
     let player: Player;
     try {
@@ -328,6 +334,7 @@ export class HttpsGameRepository implements GameRepository {
       }
       this.assertCurrent(generation);
       this.token = result.token;
+      this.push?.invalidate();
       this.rememberAvatar(result.player, true);
       return result.player;
     } finally {
@@ -569,11 +576,48 @@ export class HttpsGameRepository implements GameRepository {
   }
 
   suspendSession(): void {
+    this.push?.invalidate();
     this.resetSession();
   }
 
+  attachPush(device: PushDevice): void {
+    if (this.push === null) { this.push = new PushRegistration(device); }
+  }
+
+  async syncPush(force: boolean): Promise<PushStatus> {
+    if (this.push === null || this.token.length === 0 || this.passwordChangeGeneration !== -1) { return 'unknown'; }
+    const generation: number = this.generation;
+    const status: PushStatus = await this.push.sync(this.pushApi(), force, this.playerId);
+    return generation === this.generation ? status : 'unknown';
+  }
+
+  async matchesPushProfile(profileId: string): Promise<boolean> {
+    if (this.push === null || this.token.length === 0) { return false; }
+    const generation: number = this.generation;
+    const matches: boolean = await this.push.matchesProfile(profileId, this.playerId);
+    return generation === this.generation && matches;
+  }
+
+  private pushApi(): PushBindingClient {
+    return new PushBindingClient(this.baseUrl, this.transport, this.token);
+  }
+
+  private removePush(): void {
+    if (this.push !== null) {
+      // Platform unbind and narrowly scoped retry never block local credential removal.
+      void this.push.remove(this.pushApi(), this.playerId).catch(() => {});
+    }
+  }
+
+  retryPushRemoval(): void {
+    if (this.push !== null && this.token.length === 0) {
+      void this.push.retryRemoval(this.pushApi()).catch(() => {});
+    }
+  }
+
   async logout(): Promise<void> {
-    this.suspendSession();
+    this.removePush();
+    this.resetSession();
     await this.clearCredential();
   }
 }

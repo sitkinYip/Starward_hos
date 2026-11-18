@@ -1,0 +1,21 @@
+{
+  "hapSha256": "e31635d4ee4aa35ec3c73ad6ac3cae1516acd128db1a9a2bc399d1d046f81c66",
+  "bundleName": "com.sitkin.starward",
+  "officialSignedDebugProfileVerified": true,
+  "isolatedHttpsTrustVerified": true,
+  "provider": "Huawei Push Cloud HarmonyOS V3",
+  "providerTestMessageMode": true,
+  "targetBoundInstallations": 1,
+  "cases": [
+    {"event": "new-assignment", "appState": "background", "providerCode": "80000000", "attempts": 1, "systemNotificationClicked": true, "correctDestination": true},
+    {"event": "journey-letter", "appState": "foreground", "providerCode": "80000000", "attempts": 1, "systemNotificationClicked": true, "correctDestination": true},
+    {"event": "announcement", "appState": "process-not-running", "providerCode": "80000000", "attempts": 1, "systemNotificationClicked": true, "correctDestination": true}
+  ],
+  "assignmentStatesAfterClickAndLogout": ["assigned"],
+  "answerSubmissions": 0,
+  "readReceipts": 0,
+  "appReturnedToLoginAfterLogout": true,
+  "serverBindingsAfterLogout": 0,
+  "productionDeploymentPerformed": false,
+  "invitePackageChanged": false
+}
