@@ -4,7 +4,6 @@ import { InlineError } from '../ui/ErrorMessages';
 import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
 import { StarwardPassport } from '../ui/StarwardPassport';
 import { AvatarImage } from '../business/models';
-import { PushStatus } from '../business/PushRegistration';
 
 /** Phone profile content; the root owns routes, the system picker and crop Sheet. */
 @ComponentV2
@@ -14,13 +13,8 @@ export struct ProfilePage {
   @Param displayFont: string = 'serif';
   @Param bottomClearance: number = 112;
   @Param pickingAvatar: boolean = false;
-  @Param pushVisible: boolean = false;
-  @Param pushBusy: boolean = false;
-  @Param pushStatus: PushStatus = 'unknown';
-  @Param pushSettingsAction: boolean = false;
   @Event chooseAvatar: () => void = () => {};
   @Event logout: () => void = () => {};
-  @Event changePush: () => void = () => {};
   @Local section: number = 0;
   @Local oldPassword: string = '';
   @Local newPassword: string = '';
@@ -29,22 +23,6 @@ export struct ProfilePage {
   @Monitor('vm.securitySuccessRevision')
   passwordSaved(): void {
     this.clearPasswords();
-  }
-
-  @Builder
-  notificationSettings() {
-    Column({ space: 8 }) {
-      Text('旅途通知').fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
-      Text(this.pushStatus === 'retry' ? '暂时无法同步通知，请重试。应用内来信仍可查看。' :
-        '接收新场次、来信和公告提醒。').fontSize(13).lineHeight('21fp').fontColor($r('app.color.muted'))
-      Button(this.pushBusy ? '正在检查…' : this.pushStatus === 'retry' ? '重新同步' :
-        this.pushStatus === 'ready' || this.pushSettingsAction ? '系统通知设置' : '开启通知',
-        { type: ButtonType.Normal }).id('profile-push-settings').constraintSize({ minHeight: 44 })
-        .fontSize(14).fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-        .enabled(!this.pushBusy && !this.vm.securityBusy && !this.vm.securityUnconfirmed)
-        .onClick(() => this.changePush())
-    }.id('profile-push-card').width('100%').padding(16).alignItems(HorizontalAlign.Start)
-      .backgroundColor($r('app.color.surface')).border({ width: 1, color: $r('app.color.border'), radius: 12 })
   }
 
   @Monitor('active')
@@ -191,7 +169,6 @@ export struct ProfilePage {
           .accessibilityText('护照设置').onChange((index: number) => {
             this.section = index;
           })
-        if (this.pushVisible && !this.vm.securityUnconfirmed) { this.notificationSettings() }
       }.width('100%').alignItems(HorizontalAlign.Start)
         .padding({ left: 20, right: 20, top: 16, bottom: this.bottomClearance })
     }.id('profile-scroll').width('100%').height('100%').scrollBar(BarState.Off)

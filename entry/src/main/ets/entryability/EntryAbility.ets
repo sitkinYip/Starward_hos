@@ -47,7 +47,8 @@ export default class EntryAbility extends UIAbility {
   }
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    AppEnvironment.load(this.context.resourceManager);
+    AppEnvironment.load(this.context.resourceManager, this.context.applicationInfo.debug,
+      this.context.applicationInfo.appProvisionType);
     if (AppEnvironment.pushEnabled) { HarmonyPush.setAbility(this); }
     AppTheme.load(this.context);
     pruneAbandonedClueVideos(this.context.cacheDir);

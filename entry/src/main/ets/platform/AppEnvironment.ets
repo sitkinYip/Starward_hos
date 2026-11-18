@@ -12,13 +12,16 @@ export class AppEnvironment {
   static productionReadOnly: boolean = false;
   static hostedPrivacy: boolean = false;
   static pushEnabled: boolean = false;
+  static showEnvironmentDiagnostics: boolean = false;
   static configurationError: string = '';
   static caData: string = '';
   static timeoutMs: number = 15000;
   static probeTls: boolean = false;
   static fontScale: number = 0;
 
-  static load(manager: resourceManager.ResourceManager): void {
+  static load(manager: resourceManager.ResourceManager, debug: boolean, provisionType: string): void {
+    // Release invites can use the same backend as a developer build.
+    AppEnvironment.showEnvironmentDiagnostics = debug && provisionType === 'debug';
     AppEnvironment.endpoint = '';
     AppEnvironment.isolated = false;
     AppEnvironment.production = false;

@@ -10,6 +10,7 @@ import { PushDevice, PushLease } from '../business/PushRegistration';
 import { AppEnvironment } from './AppEnvironment';
 
 const STORE: string = 'starward_push_installation';
+const INITIAL_PERMISSION_PROMPT: string = 'initial_notification_permission_v1';
 const NOTIFICATION_DISABLED: number = 1600004;
 const INSTALLATION_UUID: RegExp = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/;
 
@@ -75,6 +76,21 @@ export class HarmonyPush {
   /** @throws If Notification Kit cannot read the current permission. */
   static async isPermissionEnabled(): Promise<boolean> {
     return notificationManager.isNotificationEnabled();
+  }
+
+  /** Persist before showing the optional system prompt so a restart cannot repeat it. */
+  static claimInitialPermissionPrompt(context: common.UIAbilityContext): boolean {
+    try {
+      const store: preferences.Preferences = preferences.getPreferencesSync(context.getApplicationContext(),
+        { name: STORE });
+      if (store.getSync(INITIAL_PERMISSION_PROMPT, false) === true) { return false; }
+      store.putSync(INITIAL_PERMISSION_PROMPT, true);
+      store.flushSync();
+      return true;
+    } catch {
+      // If the one-time claim cannot be made durable, leave manual system settings available.
+      return false;
+    }
   }
 
   static async requestPermission(context: common.UIAbilityContext): Promise<boolean> {

@@ -378,11 +378,19 @@
 
 「赴星之约」以 `com.sitkin.starward` 登记为 sitkin 主账号同名项目下的 HarmonyOS 应用，首轮支持手机。沿用此 APP ID 及分发签名进行后续版本和 Push 绑定。首个邀请包从干净源码在独立工程中构建为 Release `.app`，仅打入已联调的生产 HTTPS 模式。DevEco Studio 使用云管理发布证书与 Profile 重签，保留本机调试签名及隔离预览资源。验证实际签名后上传到「仅测试」渠道。[发布签名说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-publish-app/) · [邀请测试验收](feature-acceptance-matrix.md#p03-发布签名与首轮邀请测试)
 
+环境标识仅供开发调试。启动时用已安装应用的 `ApplicationInfo` 判断，只有系统标明调试模式且签名 Profile 类型为 `debug` 才显示。正式发行与 AppGallery 邀请测试包均不展示这类标签；后端环境、隐私门禁与错误提示仍按打包配置决定。[ApplicationInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-bundlemanager-applicationinfo/)
+
 ## ADR-031：邀请包的 AppGallery 隐私托管
 
 邀请包使用 `production-invite` 资源标记、固定生产 HTTPS 和 AppGallery 隐私托管。启动、回到前台及收到系统签署通知时，使用 AppGallery Kit 查询当前隐私声明及同版本的完整签署记录。官方弹窗负责接受或拒绝。登录和 Asset 续登要在签署确认后开始。应用内通过系统接口获取政策链接并交给系统浏览器。
 
 确认未同意时，清理当前会话和本机续登记录。服务暂时无法查询时隐藏业务页面，废弃在途请求，保留原有加密续登记录。查询恢复后以官方签署状态决定续登或清理。隔离调试包可显式开启同一门禁并使用官方调试元数据。预览和此前两种生产联调模式沿用各自打包配置。[AppGallery 隐私管理](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/store-privacy/) · [签署验收](feature-acceptance-matrix.md#p04-首轮邀请的隐私政策和签署检查)
+
+## ADR-032：设置目的页和一次性通知授权
+
+设置是头像侧栏下的原生导航目的地，不改变当前主 Tab。显示偏好继续使用 ADR-029；通知行展示系统允许状态，并通过 Notification Kit 打开系统设置。设备绑定失败独立提示和重试，不把系统允许显示成生产发送已启用。
+
+首次正常到达前台已认证首页、通过托管隐私和密码安全门禁后，先写入一次性本机通知申请标记，再尝试系统提示。标记属于当前安装，不绑定玩家，拒绝后不再自动弹出。登记、停止通知后的解绑和账号代次继续沿用现有契约。[Notification Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-notificationmanager) · [验收项](feature-acceptance-matrix.md#f02b-设置入口和首次通知授权实施前)
 
 ## 验证记录边界
 

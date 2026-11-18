@@ -18,6 +18,7 @@ import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, questBgmCoordinate } from '../busines
 import { createSliceViewModel } from '../features/createSliceViewModel';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
+import { SettingsPage } from '../features/SettingsPage';
 import { AvatarEditor, AvatarSelection } from '../platform/AvatarEditor';
 import { assignmentKind, assignmentState } from '../business/assignmentState';
 import { AppLifecycle } from '../platform/AppLifecycle';
@@ -44,6 +45,7 @@ import { StarwardQuestAvatar, StarwardQuestHeaderEntrance, StarwardQuestProgress
 import { StarwardQuestMessages } from '../ui/StarwardQuestMessages';
 import { StarwardAvatarCrop } from '../ui/StarwardAvatarCrop';
 import { StarwardPassport } from '../ui/StarwardPassport';
+import { StarwardPrivacySheet } from '../ui/StarwardPrivacySheet';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
 import { StarwardFinaleBackdrop } from '../ui/StarwardCombinationNotice';
 import { JOURNEY_LAUNCHER_SIZE, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
@@ -54,6 +56,8 @@ import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
 import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
+type PushAction = 'sync' | 'initial' | 'settings' | 'retry';
 
 /** Keep route-scoped reads in sync with both branches of the assignment destination. */
 @ComponentV2
@@ -160,7 +164,8 @@ struct Index {
   @Local private privacyError: string = '';
   @Local private pushStatus: PushStatus = 'unknown';
   @Local private pushBusy: boolean = false;
-  @Local private pushPermissionAttempted: boolean = false;
+  @Local private pushPermission: boolean | null = null;
+  @Local private pushSettingsError: string = '';
   @Local private pushInboxRevision: number = 0;
   @Local private lobbyRouteTransitioning: boolean = false;
   @Local private gameplayDestinationShown: boolean = false;
@@ -182,6 +187,7 @@ struct Index {
   private privacyRevocationHandled: boolean = false;
   private unsubscribePrivacy: (() => void) | null = null;
   private pushActionRevision: number = 0;
+  private pushPromptChecked: boolean = false;
   private pushTokenDirty: boolean = false;
   private unsubscribePushToken: (() => void) | null = null;
   private lifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -193,7 +199,7 @@ struct Index {
       if (AppEnvironment.pushEnabled && this.privacyAllowed) { this.vm.retryPushRemoval(); }
       if (this.privacyAllowed && this.vm.gate === 'home') {
         this.dispatchPendingRoute();
-        void this.syncPush();
+        this.syncPushOnArrival();
         this.vm.refresh();
         const destinations: string[] = this.paths.getAllPathName();
         if (destinations[destinations.length - 1] === 'assignment' && this.selectedId.length > 0 &&
@@ -259,27 +265,54 @@ struct Index {
       !this.vm.securityBusy && !this.vm.securityUnconfirmed && this.foreground;
   }
 
-  private async syncPush(action: boolean = false): Promise<void> {
+  private syncPushOnArrival(): void {
+    const canPrompt: boolean = !this.pushPromptChecked && !this.privacyBusy && !this.showAccount &&
+      !this.lobbyRouteTransitioning && this.paths.size() === 0;
+    void this.syncPush(canPrompt ? 'initial' : 'sync');
+  }
+
+  private async syncPush(action: PushAction = 'sync'): Promise<void> {
     if (!this.pushAvailable() || this.pushBusy) { return; }
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
     if (context === undefined) { return; }
     const revision: number = ++this.pushActionRevision;
-    const force: boolean = this.pushTokenDirty || (action && this.pushStatus === 'retry');
+    const force: boolean = this.pushTokenDirty || action === 'retry';
     this.pushBusy = true;
+    if (action === 'settings') { this.pushSettingsError = ''; }
     try {
-      if (action && this.pushStatus !== 'retry') {
-        if (this.pushStatus === 'ready' || this.pushPermissionAttempted) {
-          await HarmonyPush.openSettings(context);
-        } else {
-          this.pushPermissionAttempted = true;
-          await HarmonyPush.requestPermission(context);
+      if (action === 'initial') {
+        this.pushPromptChecked = true;
+        if (HarmonyPush.claimInitialPermissionPrompt(context)) {
+          try {
+            const permitted: boolean = await HarmonyPush.requestPermission(context);
+            if (revision === this.pushActionRevision) { this.pushPermission = permitted; }
+          } catch {
+            // The prompt is optional. Manual system settings remain available.
+          }
+        }
+      } else if (action === 'settings') {
+        try {
+          const permitted: boolean = await HarmonyPush.openSettings(context);
+          if (revision === this.pushActionRevision) { this.pushPermission = permitted; }
+        } catch {
+          if (revision === this.pushActionRevision) {
+            this.pushSettingsError = '暂时无法打开系统通知设置，请重试。';
+          }
         }
       }
       if (revision === this.pushActionRevision && this.pushAvailable()) {
+        try {
+          const permitted: boolean = await HarmonyPush.isPermissionEnabled();
+          if (revision === this.pushActionRevision) { this.pushPermission = permitted; }
+        } catch {
+          if (revision === this.pushActionRevision) { this.pushPermission = null; }
+        }
+        if (revision !== this.pushActionRevision || !this.pushAvailable()) { return; }
         this.pushTokenDirty = false;
         const status: PushStatus = await this.vm.syncPush(force);
         if (revision === this.pushActionRevision) {
           this.pushStatus = status;
+          if (status === 'ready' || status === 'off') { this.pushPermission = status === 'ready'; }
           if (status === 'ready' && this.unsubscribePushToken === null) {
             this.unsubscribePushToken = HarmonyPush.watchTokenUpdates(() => {
               this.pushTokenDirty = true;
@@ -289,7 +322,8 @@ struct Index {
             this.stopPushTokenWatch();
           }
         }
-      } else if (action && revision === this.pushActionRevision && this.privacyAllowed && this.vm.gate === 'home') {
+      } else if (action !== 'sync' && revision === this.pushActionRevision &&
+        this.privacyAllowed && this.vm.gate === 'home') {
         // The system settings promise can settle before the application returns to foreground.
         this.pushTokenDirty = true;
       }
@@ -391,6 +425,7 @@ struct Index {
       didShow: () => {
         this.lobbyRouteTransitioning = false;
         this.lobbyVisibilityChanged();
+        if (this.paths.size() === 0) { this.syncPushOnArrival(); }
       }
     });
     this.foreground = AppLifecycle.isForeground();
@@ -465,6 +500,8 @@ struct Index {
       this.pushActionRevision++;
       this.pushBusy = false;
       this.pushStatus = 'unknown';
+      this.pushPermission = null;
+      this.pushSettingsError = '';
       this.atmosphere.release();
       this.paths.clear();
       this.showAccount = false;
@@ -473,13 +510,13 @@ struct Index {
       this.cancelAvatarCrop();
     } else {
       this.dispatchPendingRoute();
-      void this.syncPush();
+      this.syncPushOnArrival();
     }
   }
 
   @Monitor('vm.securityUnconfirmed', 'vm.securityBusy', 'privacyAllowed')
   secureRoutesAvailable(): void {
-    if (this.pushAvailable()) { void this.syncPush(); }
+    if (this.pushAvailable()) { this.syncPushOnArrival(); }
     this.dispatchPendingRoute();
   }
 
@@ -532,6 +569,7 @@ struct Index {
       this.showAccount = false;
       return true;
     }
+    if (this.closeSettings()) { return true; }
     if (this.closeNarrative()) { return true; }
     if (this.handleAssignmentJourneyBack()) { return true; }
     if (this.vm.rewards.selected !== null && this.mainIndex === 1) {
@@ -924,6 +962,25 @@ struct Index {
     this.showAccount = true;
   }
 
+  private openSettings(): void {
+    if (!this.privacyAllowed || this.vm.gate !== 'home' || this.settingsOnTop()) {
+      return;
+    }
+    this.showAccount = false;
+    this.paths.pushPath({ name: 'settings' }, !this.motion.reduced);
+  }
+
+  private closeSettings(): boolean {
+    if (!this.settingsOnTop()) { return false; }
+    this.paths.pop(!this.motion.reduced);
+    return true;
+  }
+
+  private settingsOnTop(): boolean {
+    const destinations: string[] = this.paths.getAllPathName();
+    return destinations[destinations.length - 1] === 'settings';
+  }
+
   private environmentLabel(): string {
     if (this.vm.mode === 'mock') { return '演示环境'; }
     if (this.vm.mode !== 'https') { return '环境配置无效'; }
@@ -944,8 +1001,10 @@ struct Index {
       } else {
         this.avatar()
       }
-      Text(this.environmentLabel()).id('environment-badge')
-        .fontSize(8).lineHeight('10fp').fontColor($r('app.color.subtle')).position({ x: 0, y: 71 })
+      if (AppEnvironment.showEnvironmentDiagnostics) {
+        Text(this.environmentLabel()).id('environment-badge')
+          .fontSize(8).lineHeight('10fp').fontColor($r('app.color.subtle')).position({ x: 0, y: 71 })
+      }
     }.width('100%').height(84)
       .border({ width: { bottom: auth ? 0 : 1 }, color: $r('app.color.border') })
   }
@@ -1071,26 +1130,23 @@ struct Index {
   }
 
   @Builder
-  privacyPage() {
+  privacyGatedContent() {
+    if (this.privacyAllowed) {
+      this.appContent()
+    } else {
+      this.privacyBackdrop()
+    }
+  }
+
+  @Builder
+  privacyBackdrop() {
     Column() {
-      this.rootTitle()
-      Scroll() {
-        Column({ space: 16 }) {
-          Text('隐私保护').id('privacy-gate-heading').fontFamily(this.displayFont).fontSize(30)
-            .fontWeight(FontWeight.Medium).lineHeight('42fp').fontColor($r('app.color.strong')).width('100%')
-          Text('请阅读《赴星之约隐私政策》，并在系统提示中完成选择。同意后即可登录。')
-            .fontSize(15).lineHeight('25.5fp').fontColor($r('app.color.muted')).width('100%')
-          Button(this.privacyBusy ? '正在打开…' : '继续', { type: ButtonType.Normal }).id('privacy-continue')
-            .width('100%').constraintSize({ minHeight: 52 }).borderRadius(10).margin({ top: 8 })
-            .fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.on_accent'))
-            .backgroundColor($r('app.color.accent')).enabled(!this.privacyBusy)
-            .onClick(() => { void this.requestHostedPrivacy(); })
-          InlineError({ message: this.privacyError, fieldId: 'privacy-gate-error' })
-          this.privacyPolicyLink('privacy-gate-policy')
-        }.width('100%').constraintSize({ maxWidth: 440 })
-          .padding({ top: 44, left: 20 + this.safeLeft(), right: 20 + this.safeRight(), bottom: 24 + this.safeBottom() })
-      }.width('100%').layoutWeight(1).align(Alignment.Top).scrollBar(BarState.Off)
-    }.width('100%').height('100%')
+      StarwardTitleSurface({ topInset: this.safeTop(), titleContent: () => { this.brand() } })
+      Column() {
+        this.authStory()
+      }.width('100%').constraintSize({ maxWidth: 440 })
+        .padding({ left: 20 + this.safeLeft(), right: 20 + this.safeRight() })
+    }.width('100%').height('100%').hitTestBehavior(HitTestMode.None)
   }
 
   @Builder
@@ -1110,16 +1166,18 @@ struct Index {
         if (AppEnvironment.hostedPrivacy) {
           this.privacyPolicyLink('login-privacy-policy')
         }
-        if (this.vm.mode === 'mock') {
-          Text('演示环境 · 数据仅保留在本次运行中').fontSize(10).fontColor($r('app.color.subtle'))
-            .margin({ bottom: 8 })
-          if (this.vm.gate === 'login') {
-            Text('演示账号 alice · 初始密码 Starward1234').fontSize(10).fontColor($r('app.color.subtle'))
+        if (AppEnvironment.showEnvironmentDiagnostics) {
+          if (this.vm.mode === 'mock') {
+            Text('演示环境 · 数据仅保留在本次运行中').fontSize(10).fontColor($r('app.color.subtle'))
+              .margin({ bottom: 8 })
+            if (this.vm.gate === 'login') {
+              Text('演示账号 alice · 初始密码 Starward1234').fontSize(10).fontColor($r('app.color.subtle'))
+                .margin({ bottom: 16 })
+            }
+          } else {
+            Text(this.environmentLabel()).fontSize(10).fontColor($r('app.color.subtle'))
               .margin({ bottom: 16 })
           }
-        } else {
-          Text(this.environmentLabel())
-            .fontSize(10).fontColor($r('app.color.subtle')).margin({ bottom: 16 })
         }
       }.width('100%').constraintSize({ maxWidth: 440 }).padding({ left: 20, right: 20 })
     }.height('100%').width('100%').align(Alignment.Top).scrollBar(BarState.Off)
@@ -1340,10 +1398,7 @@ struct Index {
   profile() {
     ProfilePage({ vm: this.vm, active: this.mainIndex === 3 && this.paths.size() === 0,
       displayFont: this.displayFont, bottomClearance: this.bottomContentClearance(), pickingAvatar: this.avatarPicking,
-      chooseAvatar: () => this.pickAvatar(), logout: () => this.logout(),
-      pushVisible: AppEnvironment.pushEnabled, pushBusy: this.pushBusy, pushStatus: this.pushStatus,
-      pushSettingsAction: this.pushPermissionAttempted,
-      changePush: () => { void this.syncPush(true); } })
+      chooseAvatar: () => this.pickAvatar(), logout: () => this.logout() })
   }
 
   @Builder
@@ -1667,6 +1722,21 @@ struct Index {
           this.vm.journey.setPolling(false);
           this.vm.journey.clearRouteArchive();
         })
+    } else if (name === 'settings') {
+      NavDestination() {
+        if (this.vm.gate === 'home') {
+          SettingsPage({
+            bottomInset: this.safeBottom(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
+            themeError: this.themeError, pushVisible: AppEnvironment.pushEnabled, pushAvailable: this.pushAvailable(),
+            pushBusy: this.pushBusy, pushPermission: this.pushPermission, pushStatus: this.pushStatus,
+            pushSettingsError: this.pushSettingsError, appearanceControls: () => { this.themePicker() },
+            openNotificationSettings: () => { void this.syncPush('settings'); },
+            retryNotificationSync: () => { void this.syncPush('retry'); }
+          })
+        }
+      }.title({ builder: this.settingsTitle, height: 60 + this.safeTop() }, StarwardMaterial.titleOptions())
+        .hideBackButton(true).backgroundColor($r('app.color.canvas'))
+        .onBackPressed(() => this.closeSettings())
     } else if (name === 'narrative') {
       NavDestination() {
         if (this.vm.gate === 'home' && this.vm.narrative.route !== null) {
@@ -1762,6 +1832,24 @@ struct Index {
   }
 
   @Builder
+  settingsTitle() {
+    StarwardTitleSurface({ titleHeight: 60, horizontalGutter: 16, topInset: this.safeTop(),
+      titleContent: () => { this.settingsTitleContent() } })
+  }
+
+  @Builder
+  settingsTitleContent() {
+    Row({ space: 10 }) {
+      Button({ type: ButtonType.Normal }) {
+        this.icon($r('app.media.icon_arrow_left'), 20, $r('app.color.accent_text'))
+      }.id('settings-back').width(44).height(44).padding(0).borderRadius(10)
+        .backgroundColor($r('app.color.accent_faint')).accessibilityText('返回').onClick(() => this.closeSettings())
+      Text('设置').id('settings-heading').fontFamily(this.displayFont).fontSize(23)
+        .fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
+    }.width('100%').padding({ left: this.safeLeft(), right: this.safeRight() })
+  }
+
+  @Builder
   menuDestination(index: number, label: string, description: string, hint: string, normalIcon: Resource,
     selectedIcon: Resource) {
     Button({ type: ButtonType.Normal }) {
@@ -1807,17 +1895,34 @@ struct Index {
           this.menuDestination(3, '护照', '冒险者护照', '装扮你的冒险名片', $r('app.media.icon_nav_passport_regular'),
             $r('app.media.icon_nav_passport_fill'))
         }.width('100%')
-        Text('旅途光线').fontSize(12).fontColor($r('app.color.muted'))
-        this.themePicker()
-        InlineError({ message: this.themeError, fieldId: 'theme-error-message' })
-        if (AppEnvironment.hostedPrivacy) {
-          Row() {
-            Text(this.environmentLabel()).layoutWeight(1).fontSize(11).fontColor($r('app.color.subtle'))
-            this.privacyPolicyLink('account-privacy-policy')
+        Column({ space: 8 }) {
+          Text('旅途光线').fontSize(12).fontColor($r('app.color.muted'))
+          Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            this.themePicker()
+            Button({ type: ButtonType.Normal }) {
+              Row({ space: 6 }) {
+                SymbolGlyph($r('sys.symbol.gearshape')).fontSize('17vp').fontColor([$r('app.color.accent_text')])
+                  .accessibilityLevel('no')
+                Text('设置').fontSize(13).fontColor($r('app.color.accent_text'))
+              }
+            }.id('account-open-settings').constraintSize({ minHeight: 44 })
+              .padding({ left: 10, right: 10 }).borderRadius(10).backgroundColor(Color.Transparent)
+              .onClick(() => this.openSettings())
           }.width('100%')
-        } else {
-          Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.environmentLabel())
-            .fontSize(11).fontColor($r('app.color.subtle'))
+          InlineError({ message: this.themeError, fieldId: 'theme-error-message' })
+        }.width('100%').alignItems(HorizontalAlign.Start)
+        if (AppEnvironment.hostedPrivacy || AppEnvironment.showEnvironmentDiagnostics) {
+          Row() {
+            if (AppEnvironment.showEnvironmentDiagnostics) {
+              Text(this.vm.mode === 'mock' ? '演示环境 · 数据仅保留在本次运行中' : this.environmentLabel())
+                .layoutWeight(1).fontSize(11).fontColor($r('app.color.subtle'))
+            } else {
+              Blank()
+            }
+            if (AppEnvironment.hostedPrivacy) {
+              this.privacyPolicyLink('account-privacy-policy')
+            }
+          }.width('100%')
         }
         Button('退出登录', { type: ButtonType.Normal }).id('logout').width('100%').height(44)
           .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent).onClick(() => this.logout())
@@ -1900,11 +2005,12 @@ struct Index {
 
   build() {
     Stack() {
-      if (this.privacyAllowed) {
-        this.appContent()
-      } else {
-        this.privacyPage()
-      }
+      StarwardPrivacySheet({
+        visible: !this.privacyAllowed, busy: this.privacyBusy, error: this.privacyError, displayFont: this.displayFont,
+        viewportHeight: this.windowSize.height, leftInset: this.safeLeft(), rightInset: this.safeRight(),
+        bottomInset: this.safeBottom(), continueConsent: () => { void this.requestHostedPrivacy(); },
+        openPolicy: () => { void this.openHostedPrivacyPolicy(); }, anchor: () => { this.privacyGatedContent() }
+      })
     }.width('100%').height('100%').backgroundColor($r('app.color.canvas'))
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }
