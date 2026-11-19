@@ -337,9 +337,12 @@ API 26 直板机通过隔离真实 HTTPS 登录。侧栏齿轮与主题选择在
 
 主任务已实际独立查看三张干净 JPEG，品牌、可读性、独立确认及取消入口均通过。三张已上传用于华为「订阅」分类申请，2026-11-19 11:43:36 提交成功，官方申请记录为「审核中」，尚未获批，未遇到新的法务确认。见 [申请事实](../artifacts/validation/push-subscription-20261119/huawei-subscription-application.json)及[平台事实与原图摘要](../artifacts/validation/push-subscription-20261119/huawei-invitation-platform.json)。
 
-生产本轮发布已完成 `recorded`、revision 15，迁移恰好一次，三个新增私有集合为空，历史结构和迁移保留；备份恢复、新镜像健康及匿名拒绝通过，见 [生产发布事实](../artifacts/validation/push-subscription-20261119/production-deployment.json)。发送器仍关闭、Push 环境变量为空、分类权益未启用，本轮未配置正式凭据或实际投递。管理前端已由 CI 部署，主任务真实浏览器刷新确认新用途选择、场次范围约束及关闭状态提示，未提交生产配置或发送表单；后端 CI 的 Linux 清理权限问题单独修复复验。正式候选隐私、邀请审核通过和真实投递仍待各自证据，折叠屏及大字号未在本轮验收。详见 [本轮实施记录](push-subscription-2026-11-19.md)。
+生产本轮发布已完成 `recorded`、revision 15，迁移恰好一次，三个新增私有集合为空，历史结构和迁移保留；备份恢复、新镜像健康及匿名拒绝通过，见 [生产发布事实](../artifacts/validation/push-subscription-20261119/production-deployment.json)。发送器仍关闭、Push 环境变量为空、分类权益未启用，本轮未配置正式凭据或实际投递。管理前端已由 CI 部署，主任务真实浏览器刷新确认新用途选择、场次范围约束及关闭状态提示，未提交生产配置或发送表单；首次后端 CI 的 Linux 清理权限错误已修复，重跑为 132 通过、0 失败、1 个合成 RSA / OpenSSL 条件用例跳过（该项本机已通过），实际华为投递仍未执行。正式候选隐私、邀请审核通过和真实投递仍待各自证据，折叠屏及大字号未在本轮验收。详见 [本轮实施记录](push-subscription-2026-11-19.md)。
 
 独立代码复核发现一处非阻断的后台省流边界：保存期间进入后台，PUT 随后成功仍会发起两次回源 GET；账号代次、后台不弹确认和不自动开启通知仍保持。当前提审包保留此行为，后续可延至前台读取。
+
+
+管理端发布、首次 Linux CI 清理失败及修复后的最终双工作流结果，见 [部署与 CI 收尾证据](../artifacts/validation/push-subscription-20261119/admin-deployment.json)。这些检查没有开启正式 Push 或验证真实华为投递。
 
 ### F02a 正式 Push 发送范围
 

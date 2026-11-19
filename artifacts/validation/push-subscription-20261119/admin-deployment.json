@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-19T03:55:49.004Z",
+  "repository": "https://github.com/sitkinYip/sitkin-pb-backend-management",
+  "featureCommit": "a5f4c61292b0bf2b5a9b3ffac352edd4562f751b",
+  "testHarnessFixCommit": "03bdfd0e15e70d443dc469a42a45f738ea1a1fa4",
+  "branch": "main",
+  "push": {
+    "mode": "normal; no force",
+    "exactFeaturePathCount": 27,
+    "fixPaths": [
+      "backend/tests/server.mjs",
+      "backend/scripts/verify-image.mjs",
+      "docs/current-production.md"
+    ],
+    "worktreeCleanAfterPush": true
+  },
+  "initialWorkflowResults": [
+    {
+      "id": 44453657678,
+      "name": "Deploy to Server",
+      "runNumber": 71,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44453657678"
+    },
+    {
+      "id": 44453657685,
+      "name": "PocketBase backend CI",
+      "runNumber": 18,
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44453657685",
+      "testSummary": {
+        "tests": 133,
+        "pass": 115,
+        "fail": 17,
+        "skipped": 1
+      },
+      "failure": "All 17 reported failures were EACCES cleanup errors from root-owned files/directories in Linux Docker bind-mounted temporary databases. Image/restore step was skipped after the failing test step."
+    }
+  ],
+  "remediation": {
+    "scope": "Only writable test containers now use Node process.getuid()/process.getgid(). Cleanup failures and all business/safety assertions remain strict. Production image and frozen release package were unchanged.",
+    "nativeLinuxPermissionControl": {
+      "filesystem": "Docker named volume; real PocketBase migration",
+      "before": {
+        "writer": "default UID/GID 0:0",
+        "cleanupUser": "synthetic 10001:10001",
+        "permissionDenied": true,
+        "cleanupExitCode": 1
+      },
+      "after": {
+        "writer": "synthetic UID/GID 10001:10001",
+        "databaseOwnershipMatched": true,
+        "cleanupExitCode": 0,
+        "directoryAbsent": true
+      },
+      "explicitUid0Compatibility": {
+        "cleanupExitCode": 0
+      },
+      "temporaryVolumeRemoved": true
+    },
+    "macDockerCompatibility": {
+      "subscriptionTests": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "imageRestoreRehearsal": "passed"
+    },
+    "linuxFullSuiteVerification": "GitHub Actions backend CI #19 on ubuntu-latest"
+  },
+  "finalWorkflowResults": [
+    {
+      "id": 44454536008,
+      "name": "PocketBase backend CI",
+      "runNumber": 19,
+      "headSha": "03bdfd0e15e70d443dc469a42a45f738ea1a1fa4",
+      "event": "push",
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44454536008",
+      "startedAt": "2026-11-19T03:53:24Z",
+      "updatedAt": "2026-11-19T03:54:15Z"
+    },
+    {
+      "id": 44454535973,
+      "name": "Deploy to Server",
+      "runNumber": 72,
+      "headSha": "03bdfd0e15e70d443dc469a42a45f738ea1a1fa4",
+      "event": "push",
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44454535973",
+      "startedAt": "2026-11-19T03:53:24Z",
+      "updatedAt": "2026-11-19T03:54:27Z"
+    }
+  ],
+  "finalBackendVerification": {
+    "tests": 133,
+    "pass": 132,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1,
+    "skippedTest": "PocketBase JSVM signs an AGC PS256 JWT using the image's OpenSSL",
+    "skippedReason": "PB_PUSH_VALIDATE_OPENSSL was not set to 1; this opt-in test generates a synthetic RSA key. It is not a real Huawei delivery test.",
+    "imageAndRestoreRehearsal": "passed: pinned runtime version, empty-database migration, authenticated hooks, restart and offline database-copy restore"
+  },
+  "finalAdminVerification": {
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "skipped": 0,
+    "generatedContracts": "passed",
+    "productionReadOnlyApiCompatibility": "passed",
+    "productionBuild": "passed",
+    "scpStaticUpload": "passed"
+  },
+  "browserUiVerified": {
+    "verified": true,
+    "source": "root agent; native Chrome on actual production vae.sitkin.top",
+    "performedAfter": "initial successful static deployment",
+    "facts": [
+      "Reloaded production page and observed new notification category explanation.",
+      "Push master and subscription approval remained off; existing allowlist count remained 2.",
+      "Save and discard controls were disabled; no pending changes.",
+      "Notice composition defaults to MARKETING announcement.",
+      "Selecting journey messages restricts audience to participants in one required session.",
+      "No message content was entered; no send or save action was submitted."
+    ],
+    "productionFormWrites": 0,
+    "screenshotsWithPlayerDataSaved": false
+  },
+  "activationBoundary": {
+    "productionPocketBaseMigrationExecutedByTheseCiRuns": false,
+    "senderEnabledByThisTask": false,
+    "subscriptionApprovalEnabledByThisTask": false,
+    "allowlistChangedByThisTask": false,
+    "productionNotificationSentByThisTask": false,
+    "realHuaweiDeliveryValidatedByTheseChecks": false
+  },
+  "evidencePolicy": "Contains public commit/workflow metadata, aggregate test counts and sanitized UI facts only. Private logs, filesystem paths, credentials, player/device identifiers and invitation URLs are omitted."
+}

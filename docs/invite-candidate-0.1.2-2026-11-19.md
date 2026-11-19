@@ -15,6 +15,7 @@
 | 新版签名、上传和邀请 | DevEco 官方云签及仅测试渠道上传完成；官方 SDK 验包及与 0.1.1 原发布身份比对通过。平台合法性「已达标」，build 为 1；邀请已提交，控制台显示「0.1.2测试版本 - 预审中」 |
 | 通知自分类权益 | 2026-11-19 11:43:36 已提交「订阅」，申请记录为「审核中」；不等于权益获批 |
 | 生产部署与 Push | 后端发布已 `recorded`（revision 15），HTTPS 健康 200、同一容器健康检查与零重启通过。发送开关及订阅权益开关关闭，没有正式发送凭据挂载，不能宣称生产 Push 已启用 |
+| 运营后台与 CI | 已常规提交并部署管理端，真实浏览器只读核验新分类及范围约束；原两人白名单和发送关闭状态保持。Linux 后端 CI 首轮清理权限错误已在测试辅助工具修复，重跑 132 通过、0 失败、1 个条件 OpenSSL 用例跳过；本机该项已通过，实际华为投递仍待验 |
 | 本轮真机与隐私 | 保留原 Debug 身份覆盖安装。官方侧载隐私调试配置后仍曾拉起失败；后续已出现真实系统声明，用户自行同意。清除私有诊断代码后再次覆盖安装，同源最终包通过订阅 UI/真实 HTTPS 主验证及冷启。失败根因尚未确定，不能据此宣称正式分发包首次隐私已验收；详见专项记录 |
 
 当前发布证据见 [未签名包检查](../artifacts/validation/push-subscription-20261119/release-unsigned-0.1.2.json)、[原生业务测试](../artifacts/validation/push-subscription-20261119/local-test-summary.json)及 [Release lint](../artifacts/validation/push-subscription-20261119/release-lint-0.1.2.json)。较早的 `release-tools.json` 中 `newCandidateFrozen/newCandidateBuilt=false` 记录的是工具准备阶段，不覆盖上述后续结果。订阅能力和未验边界见 [本轮实现记录](push-subscription-2026-11-19.md)。
@@ -71,3 +72,5 @@ python3 scripts/verify-invite-package.py \
 新邀请已选择原「赴星之约首轮单人测试」群组（1 位用户），发送测试通知，不扩大到全网。窗口为 2026-11-19 11:32:32 至 2026-11-30 23:59:59，保留推荐加密和中国大陆手机范围。用户已直接在页面填入专用审核账号及口令，保存成功；未读取口令或将其写入仓库。关联本轮合法性已达标的 0.1.2（4）/ build 1 包及原托管隐私政策后，点击「提交审核」，控制台实际显示「预审中」，见 [平台事实与原图摘要](../artifacts/validation/push-subscription-20261119/huawei-invitation-platform.json)。平台提示预审通过后自动交正式审核；此时没有正式审核通过或可下载结论。
 
 官方也提供基于 Service Account 的 Upload Management API 和 Testing API，但现有 Push 账号不因此自动获得发布权限；本轮不擅自扩大账号权限。[Connect API](https://developer.huawei.com/consumer/cn/doc/App/agc-help-connect-api-introduction-0000002270974725/) · [服务端授权](https://developer.huawei.com/consumer/cn/doc/App/agc-help-connect-api-obtain-server-auth-0000002271134661/)
+
+管理端发布、首次 Linux CI 清理失败及修复后的最终双工作流结果，见 [部署与 CI 收尾证据](../artifacts/validation/push-subscription-20261119/admin-deployment.json)。这些检查没有开启正式 Push 或验证真实华为投递。
