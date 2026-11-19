@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "releaseId": "push-account-subscription-20261119",
+  "scope": "personal_journey_v1",
+  "sourceReviewedFiles": 17,
+  "sourceHashMismatches": [],
+  "additionalReviewedOperationSheet": "backend/deploy/1panel/UPGRADE.md",
+  "sourceImage": "questions-pocketbase:0.40.1-push-subscriptions-20261119-amd64",
+  "targetImage": "questions-pocketbase:0.40.1-push-account-subscription-20261119-amd64",
+  "targetLocalImmutableImageId": "sha256:e869a071247dc37f956688b77a1f256e06b88a76c5356efaf8d26cedc83f87c6",
+  "targetArchiveConfigDigest": "sha256:2304010161587e4409b4073befce684cfb6b48e52c6ac711107aead2c043a43a",
+  "bundleFile": "questions-pocketbase-0.40.1-push-account-subscription-20261119-amd64-upgrade.tar.gz",
+  "bundleSha256": "426016cdf74f445be032f9a94a722e88ead0abfec82ecbfcd7c9c475e052de4a",
+  "frozenPlanSha256": "6a33dd179febe5f0cc31e4211d4698a6a7d98c00662ae1f3f38dd0f9dfe5027a",
+  "allowedDeltaSha256": "c510ae57e1039c83c26a7d2e085ed324d1a6230bc8cd8b64ea02619dde402af5",
+  "operationSheetSha256": "57d37a9f032cbacc066e91d61d3de92df6c0f0d69445d43a3b3a2be9312a2ae9",
+  "executorSha256": "69c51752a833e0dd876ac0a449e8468509d1aea6c8c89023fe26525a7142cf6d",
+  "frozenSourceManifestSha256": "1941e2e944397b224e1aaf7965d1060175336972204c728e1a137fbccab406ed",
+  "outerChecksumsPassed": true,
+  "innerChecksumsAndImageCodePassedByPackager": true,
+  "preflight": {
+    "ready": true,
+    "phase": "not-staged",
+    "blocked": false,
+    "blockers": []
+  },
+  "productionRuntimeReadOnly": {
+    "healthy": true,
+    "restartCount": 0,
+    "senderEnabled": false,
+    "subscriptionApproved": false,
+    "credentialConfigured": false,
+    "pushEnvironmentVariableCount": 0,
+    "mountCount": 1,
+    "newAccountTablesAlreadyPresent": false
+  },
+  "newMigrationFiles": [
+    "1795075260_push_journey_subscription.js"
+  ],
+  "newPrivateEmptyCollections": [
+    "game_push_journey_deliveries",
+    "game_push_journey_subscriptions"
+  ],
+  "productionModified": false,
+  "staged": false,
+  "deployed": false,
+  "businessWritesPerformed": false,
+  "realCredentialsRead": false,
+  "senderOrApprovalEnabled": false,
+  "manualTtyGates": [
+    "STAGE",
+    "BACKUP",
+    "MIGRATE",
+    "SWITCH",
+    "FINALIZE"
+  ],
+  "manualGateSource": "docs/pocketbase-release-program.md sections 3 and 4"
+}

@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-11-19T05:31:06Z",
+  "releaseId": "push-account-subscription-20261119",
+  "phase": "recorded",
+  "revision": 15,
+  "updatedAt": "2026-11-19T05:21:03Z",
+  "digests": {
+    "releaseState": "07cce649e7ea68f19fe07129a221a239de672f0de2f04a40b7e3c3db23790a15",
+    "report": "a09978ae6f1f450c3a64ae3b087198e152d8e5a4172f282d18a72e5687a2906e",
+    "reportChecksumFile": "f64306b8cec74c5ae1ade66df8d41ce8fa876697a9b87cc016a1df0be88a5276",
+    "rootRelease": "7fdf89a2c37db7171acb7bf9e279171d9f5cbdea70bec54ef60c999a9b300fa2",
+    "rootChecksums": "6cd8f9dc7ce4865fdb73cf09ab65fc7b994ba1138d25a942d2de7dbf2fabf9cb",
+    "compose": "20e7a02a749a43af61344ef9f3b64f9e51be3e77daae0fd9f366f33a43f00ff9"
+  },
+  "runtime": {
+    "imageId": "sha256:2304010161587e4409b4073befce684cfb6b48e52c6ac711107aead2c043a43a",
+    "imageTag": "questions-pocketbase:0.40.1-push-account-subscription-20261119-amd64",
+    "healthy": true,
+    "restartCount": 0,
+    "lastThreeHealthProbes": [
+      {
+        "start": "2026-11-19T13:30:34.539086271+08:00",
+        "end": "2026-11-19T13:30:34.598345673+08:00",
+        "exitCode": 0
+      },
+      {
+        "start": "2026-11-19T13:30:49.599250196+08:00",
+        "end": "2026-11-19T13:30:49.640938846+08:00",
+        "exitCode": 0
+      },
+      {
+        "start": "2026-11-19T13:31:04.641379528+08:00",
+        "end": "2026-11-19T13:31:04.702454093+08:00",
+        "exitCode": 0
+      }
+    ],
+    "pushEnvironmentNames": [],
+    "senderEnabled": false,
+    "subscriptionApproved": false,
+    "credentialConfigured": false,
+    "mounts": [
+      {
+        "destination": "/pb/pb_data",
+        "readWrite": true
+      }
+    ]
+  },
+  "database": {
+    "newTables": [
+      {
+        "name": "game_push_journey_subscriptions",
+        "count": 0,
+        "allRulesPrivate": true
+      },
+      {
+        "name": "game_push_journey_deliveries",
+        "count": 0,
+        "allRulesPrivate": true
+      }
+    ],
+    "migrationLedgerCount": 17,
+    "targetMigrationCount": 1,
+    "collectionsCount": 41,
+    "tablesCount": 46
+  },
+  "recordedStatus": {
+    "phase": "recorded",
+    "revision": 15,
+    "blocked": false,
+    "inFlight": null,
+    "activeMarker": null,
+    "nextOperation": null
+  },
+  "writes": {
+    "businessWritesPerformed": false,
+    "pushActivationPerformed": false,
+    "credentialsRead": false
+  }
+}

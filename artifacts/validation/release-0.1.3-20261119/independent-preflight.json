@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "kind": "read-only independent release preflight",
+  "bundleName": "com.sitkin.starward",
+  "proposedVersion": {
+    "versionName": "0.1.3",
+    "versionCode": 5,
+    "userRequestedAudience": "reuse the existing group containing only the user's own Huawei account",
+    "userRequestedStart": "current local time when the new draft is configured",
+    "userRequestedEnd": "2026-12-19 23:59:59+08:00",
+    "windowRequiresLiveConsoleConfirmation": true,
+    "publishedByThisReview": false
+  },
+  "productionCompatibility": {
+    "sourceOfProductionBaseline": "backend repository docs/current-production.md, recorded deployment and 2026-11-19 11:37:25+08:00 runtime snapshot; production was not queried in this review",
+    "lastRecordedMigration": "1795075200_push_subscriptions.js",
+    "lastRecordedApiScope": "per-assignment subscriptions",
+    "newClientRoute": "/api/questions/v1/me/push/journey-subscription",
+    "newClientMethods": ["GET", "PUT"],
+    "requiredNewMigration": "1795075260_push_journey_subscription.js",
+    "requiredNewPrivateCollections": [
+      "game_push_journey_subscriptions",
+      "game_push_journey_deliveries"
+    ],
+    "requiredServerChange": "Deploy the reviewed hooks, new additive migration and account-scoped queue eligibility before distributing the new feature as usable; update the management UI explanations as part of the same release scope.",
+    "newClientAgainstOldBackend": "The old hooks do not implement the account route and return NOT_FOUND/404. The new subscription view keeps the choice unknown and shows a retryable read failure; it does not invent default-off success or fall back to old per-assignment consent.",
+    "oldClientAgainstNewBackend": "The old per-assignment subscription endpoints intentionally return 409 PUSH_SUBSCRIPTION_SCOPE_CHANGED. The old 0.1.2 subscription settings therefore have a visible upgrade/read failure boundary; the ordinary game APIs remain supported. Do not describe this as identical old-client subscription behavior.",
+    "reviewImpact": "An in-review 0.1.2 package cannot demonstrate the replacement account subscription after the server upgrade. The new 0.1.3 review description should explain its replacement scope; retain the old package and audit evidence. Stopping an older invitation is a separate console action.",
+    "productionChecksStillRequired": [
+      "New deployment recorded with the allowed additive delta, backup/health verification and no unresolved operation",
+      "Authenticated dedicated player GET returns personal_journey_v1 and the real current state; an unauthenticated 401 alone is not a successful DTO or write test",
+      "Verify production command behavior only for an authorized dedicated test player; never reset another player's subscription to prepare a screenshot",
+      "Verify current master and classification gates separately; deployment is not Huawei entitlement approval or real delivery"
+    ],
+    "senderPolicy": "Personal journey events remain suppressed while the SUBSCRIPTION entitlement/runtime gate is off, without MARKETING fallback. Announcements retain MARKETING. Shipping the client must not silently enable the production sender or expand the audience."
+  },
+  "parallelInvitations": {
+    "previousEvidence": "0.1.2(4), cloud build 1: package legality qualified and invitation pre-review observed on 2026-11-19. Its live status was not rechecked in this review.",
+    "currentHarmonyOsRule": "The current HarmonyOS NEXT AppGallery invitation guide supports up to 100 simultaneous test versions. A new distinct invitation can therefore be prepared alongside 0.1.2; there is no reason from this rule alone to withdraw its review first.",
+    "versionConditions": "Code must exceed published public versions and must not be below published test versions. Two listed test packages cannot have identical versionName, versionCode and cloud build. Check the live package list for a conflicting version before uploading 0.1.3(5).",
+    "selfInspectionBoundary": "Only one application listing self-inspection task may be active. If 0.1.2 is still in self-inspection, the new invitation may omit the self-inspection option; this is separate from invitation review.",
+    "windowRule": "The current invitation guide allows up to 90 days; the requested month-long window is within that limit. An already effective start date does not bypass application review or make the package immediately downloadable.",
+    "legacyDocumentationExcluded": "The older open-testing FAQ that blocks a second review is associated with Android/HarmonyOS API<=9 documentation and is not the API26 HarmonyOS NEXT invitation workflow used here.",
+    "sources": [
+      "https://developer.huawei.com/consumer/cn/doc/App/agc-help-invite-test-overview-0000002287701773/",
+      "https://developer.huawei.com/consumer/cn/doc/app/agc-help-appgallery-release-testapp-0000002258174266/"
+    ]
+  },
+  "reusableReleaseEvidence": {
+    "existingVerifiedDistributionBaseline": "artifacts/validation/push-subscription-20261119/release-signed-strict-verification.json",
+    "baselineIdentityVerified": true,
+    "baselinePushProfileVerified": true,
+    "baselineEvidenceCanProveNewPayload": false,
+    "freezeCommand": "python3 scripts/prepare-invite-candidate.py --version-name 0.1.3 --version-code 5",
+    "releaseToolTests": "python3 scripts/test-invite-package.py; run against final tools, not merely reuse the earlier result",
+    "buildPath": "Use the new private project only: scripts/hm.sh install; scripts/hm.sh doctor; devecocli build --product default --build-mode release; STARWARD_VALIDATION_DIR=../validation scripts/hm.sh lint",
+    "scopeOfPreparationTool": "The help and source confirm that freezing does not build, sign, upload, install or perform production writes. It records source hashes and excludes ignored local signing/isolation material.",
+    "packageMode": "production-invite-push, with hosted privacy enabled; exclude debug privacy metadata, isolated API/CA resources and private materials",
+    "uploadPath": "Use the existing DevEco Studio Build > Upload Product workflow, original application and same distribution identity, test-only channel. Keep unsigned and cloud-signed App Packs separate.",
+    "verifierArguments": [
+      "--unsigned-app <actual-new-unsigned.app>",
+      "--signed-app <actual-new-cloud-signed.app>",
+      "--baseline-app <previous-verified-distribution.app>",
+      "--version-name 0.1.3",
+      "--version-code 5",
+      "--output <new-nonexistent-report.json>"
+    ],
+    "cloudBuildBoundary": "Use --cloud-build-version only after observing that exact number in the new cloud output. The earlier build 1 is not permission to assume or ignore arbitrary changes.",
+    "newPackageChecks": [
+      "SDK verification of outer App Pack and embedded release Profile",
+      "Same distribution identity and Push capability, valid certificate/Profile dates; check validity against the requested test period",
+      "Exact new version, production marker and absence of debug/isolation resources",
+      "Entry-set, resource, compiled payload and strict manifest comparisons, allowing only explicitly observed cloud build fields",
+      "Final targeted native tests/build/lint correspond to frozen source hashes",
+      "Platform package legality, selected audience/window, hosted policy and review submission are separate observed steps",
+      "First launch privacy and actual download/install remain distribution/device checks, not conclusions from package signature verification"
+    ],
+    "publishingApiBoundary": "Existing Push service credentials do not automatically grant Upload/Testing API permission. Reuse the proven Studio/UI path; do not create credentials or broaden roles for this release.",
+    "sources": [
+      "docs/invite-candidate-0.1.2-2026-11-19.md",
+      "scripts/prepare-invite-candidate.py --help and source",
+      "scripts/verify-invite-package.py --help and source",
+      "https://developer.huawei.com/consumer/cn/doc/HarmonyOS-Guides/ide-publish-app/"
+    ]
+  },
+  "reviewerCredentialHandoff": {
+    "lastKnownCurrentCredentialLocation": "The user saved the changed reviewer credentials directly in the Huawei 0.1.2 application-review fields. They were not copied to public reports or repository files.",
+    "oldTemporaryHandoffFileStillPresentAtKnownPath": false,
+    "oldTemporaryPasswordCanBeReused": false,
+    "credentialReadInThisReview": false,
+    "preferredHandling": "First check whether the new draft inherits the recent test version's review fields. If not, use an existing platform copy/inheritance path or browser-native copy/paste between the saved review fields, without emitting values through tools, logs, screenshots or chat. Verify that a saved value is actually present; the guide's general inheritance statement is not proof for password fields.",
+    "ifSavedFieldsCannotBeTransferred": "Use a separately managed release-reviewer account with authorized synthetic samples and complete first-password-change privately, then fill the console directly. Do not reset the account currently used by an in-review invitation, as that would invalidate its submitted credentials. Do not ask the user to copy the same password again before exhausting the existing secure platform handoff.",
+    "publicEvidencePolicy": "Record only that review credentials are present/saved and the account can access non-private samples. Do not publish the account name, password, invitation link or test-group personal details."
+  },
+  "reviewActions": {
+    "readLocalDocumentsAndScripts": true,
+    "readOfficialHuaweiGuides": true,
+    "queriedProduction": false,
+    "usedBrowserOrStudio": false,
+    "builtOrInstalledPackage": false,
+    "createdCredentials": false,
+    "modifiedRuntimeOrFrozenArtifacts": false,
+    "submittedInvitation": false,
+    "productionSenderActivated": false
+  }
+}

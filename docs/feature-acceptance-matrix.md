@@ -323,7 +323,7 @@ API 26 直板机通过隔离真实 HTTPS 登录。侧栏齿轮与主题选择在
 | 新场次与来信 | 新分配场次、关联场次的剧情来信/关卡动态均按账号授权判断，不再要求逐场订阅，也无应用自加的每日两条业务限制。隔离真实后端验证一次同意覆盖未来场次和来信；真机采集了订阅后的合成场次及新来信。当前权益门关闭，因此不入队，不代表真实 Push 已送达。 |
 | 分类与额度 | 获批并启用后，个人旅途范围使用 SUBSCRIPTION；未批或未启用时不发送、不降级消耗 MARKETING 额度。公告和推广保持 MARKETING。134 项后端测试及 5 项定向复验通过，provider 为合成实现；华为新范围资格、实际频控和至少 20 次/日需求仍待申请与真实投递验收。 |
 | 授权与取消 | 新迁移增加两个空私有集合，不转换旧逐场同意；无新范围授权即停发，旧 API 返回 409 提示升级。取消事务丢弃新旧旅途队列，重新订阅不复活；发送前检查当前版本与权益。已由隔离真实后端验证。真机通过取消、PUT 503 原命令重试、提交后丢响应同命令重放且只递增一次、GET 局部失败恢复，以及退出后私密状态清除。 |
-| 发布材料 | 六张新账号级流程 JPEG 已采集：默认关闭、独立确认、已接收可取消、场次列表、来信列表、具体内容；全屏原图仅重编码，均 1260×2720、未裁切/覆盖，见素材清单。旧逐场申请撤回后，已在同一记录改为新账号范围并带六图重新提交；平台先显示申请完成，查看进展为「订阅／审核中」，不是获批。生产未部署新账号 API，正式发送仍关闭，新邀请候选未在本条记为完成。 |
+| 发布材料 | 六张新账号级流程 JPEG 已采集：默认关闭、独立确认、已接收可取消、场次列表、来信列表、具体内容；全屏原图仅重编码，均 1260×2720、未裁切/覆盖，见素材清单。新账号范围带六图重新提交后为「订阅／审核中」，不是获批。匹配的账号 API 已完成生产 recorded，正式发送仍关闭；0.1.3（5）通过云签、完整验包及平台合法性，11 月 19 日至 12 月 19 日的原单人邀请已提交，平台为「预审中」，不代表已审核通过或实际分发。见 [邀请记录](invite-candidate-0.1.3-2026-11-19.md)。 |
 
 依据：[华为分类与订阅流程要求](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-apply-right/)、[频控 FAQ](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-faq-5)。本轮 9 组真机检查全部通过，使用新独立 CA、专用合成玩家与真实隔离库；入场和答题始终为 0，阅读素材没有提交已读。订阅保存期间及素材新增场次/来信后均无实际云端投递。见 [设备 UI/HTTPS 证据](../artifacts/validation/push-account-subscription-20261119/device-ui-https.json)、[原生测试](../artifacts/validation/push-journey-subscription-20261119/local-test-summary.json)、[后端测试与迁移摘要](../artifacts/validation/push-account-subscription-20261119/backend-summary.json)、[六张素材及原图对应清单](../artifacts/validation/push-account-subscription-20261119/material-manifest.json)。完整实现和当前生产边界见 [本轮记录](push-subscription-2026-11-19.md)。
 

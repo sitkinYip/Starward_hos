@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-19",
+  "toolExitCode": 0,
+  "publicVerification": "release-signed-verification.json",
+  "publicVerificationSHA256": "9a42a1610cb3468fb1fe6316b1aa4fe314fc094df3a5269662c7b0976e6c5afb",
+  "baselineVersion": "0.1.2 (4)",
+  "baselineSignedAppSHA256": "ad1c1e12f741c663d8b9b6ec968d9cd365f661a0a1c37748aef13d0d263264b3",
+  "baselineHashMatchedPriorVerifiedOriginal": true,
+  "observedCloudMetadata": {
+    "module.app.buildVersion": {
+      "value": "1",
+      "type": "string"
+    },
+    "packInfo.summary.app.version.build": {
+      "value": "1",
+      "type": "string"
+    }
+  },
+  "privateSignedCopyPreserved": true,
+  "credentialsCreatedOrChangedByVerifier": false,
+  "interfaceOrDeviceOperationsByVerifier": false,
+  "signingAndProfileVerification": "Official fixed SDK hap-sign-tool verify-app plus verify-profile for current and original release baseline",
+  "limitations": "Package signature and content checks are separate from platform upload/legal checks, invitation submission, formal privacy acceptance and actual Push delivery."
+}

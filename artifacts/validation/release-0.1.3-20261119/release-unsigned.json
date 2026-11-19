@@ -1,0 +1,58 @@
+{
+  "result": "passed unsigned package content inspection",
+  "bundleName": "com.sitkin.starward",
+  "versionName": "0.1.3",
+  "versionCode": 5,
+  "mode": "production-invite-push",
+  "releaseDebugFlag": false,
+  "unsignedAppSHA256": "52d5d143a880b52030f869637f6b7e82f61d564bbc70946f1de8d5ce2781de1e",
+  "unsignedAppBytes": 17597266,
+  "compiledArkTSPayloadSHA256": "a83d0862808889faa00329bdf9cd3e699723f43014e79546be01b7b286d88afc",
+  "hapContentEntries": 54,
+  "isolatedConfigurationPresent": false,
+  "sideloadPrivacyMetadataPresent": false,
+  "sourceOrSigningMaterialInHap": false,
+  "pushListenerAndClickActionsPresent": true,
+  "productionHTTPSEndpointInCompiledCode": true,
+  "signed": false,
+  "signatureVerified": false,
+  "uploaded": false,
+  "invitationSubmitted": false,
+  "date": "2026-11-19",
+  "install": {
+    "command": "scripts/hm.sh install",
+    "exitCode": 0,
+    "logSHA256": "7bc654fcc7d098952dc5d7f3f524b78c487b9d89404e028b9ae717ded90b4568"
+  },
+  "releaseBuild": {
+    "command": "DEVECO_CLI_STUDIO_PATH=/Applications/DevEco-Studio.app devecocli build --product default --build-mode release",
+    "exitCode": 0,
+    "result": "BUILD SUCCESSFUL",
+    "logSHA256": "9278f6154a3e27fa6ec50221f3a7f33f447799d853cfb79527cd6da2f4f7d19f",
+    "arkTSWarnings": 30,
+    "warningKinds": {
+      "Function may throw exceptions. Special handling is required.": 13,
+      "The system capacity of this api 'media' is not supported on all devices": 2,
+      "The system capacity of this api 'createMd' is not supported on all devices": 3,
+      "The system capacity of this api 'audio' is not supported on all devices": 11,
+      "The '@Monitor' decorator needs to monitor the state variables that exist.": 1
+    },
+    "signingSkippedReason": "No signingConfigs profile configured in isolated release project; unsigned artifact is intended."
+  },
+  "packageInspector": {
+    "script": "scripts/verify-invite-package.py",
+    "function": "inspect_app",
+    "versionName": "0.1.3",
+    "versionCode": 5,
+    "scriptSHA256": "61397e35694b0d945af9695fb1805d1a04257ec580ec7c9fe43a96955960d6de"
+  },
+  "sourceSnapshotSHA256": "c828c9c034a1e31a6ff566a15b49e91d2bd310a627effa2a94d57d2c59e8976a",
+  "businessTestEvidence": "source-verification.json",
+  "lintEvidence": "release-lint.json",
+  "releaseToolTests": "release-tools.json",
+  "limitations": [
+    "Unsigned content inspection does not prove signature validity, platform upload/legal checks, invitation submission or distribution.",
+    "This release build does not repeat phone UI, formal distribution first-run privacy or Huawei notification delivery.",
+    "Production-invite-push selects production HTTPS and Push support; it does not deploy account-level backend APIs, enable sender credentials or grant Huawei classification rights."
+  ]
+}

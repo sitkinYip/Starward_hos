@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "scope": "backend-admin-matched-release",
+  "sourceCommit": "8902dfe8e973659b38a559b45d6ae71674106756",
+  "documentationCommit": "45435532955100f5b55855a1e5bf0aaddeefb567",
+  "sourceCommitPaths": 23,
+  "documentationCommitPaths": 4,
+  "privateMaterialCommitted": false,
+  "runtimeChangedAfterSourceCommit": false,
+  "runs": [
+    {
+      "id": 44466062215,
+      "name": "Deploy to Server",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44466062215",
+      "headSha": "45435532955100f5b55855a1e5bf0aaddeefb567",
+      "runNumber": 74,
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-11-19T05:34:10Z",
+      "updatedAt": "2026-11-19T05:35:10Z"
+    },
+    {
+      "id": 44466062240,
+      "name": "PocketBase backend CI",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44466062240",
+      "headSha": "45435532955100f5b55855a1e5bf0aaddeefb567",
+      "runNumber": 21,
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-11-19T05:34:10Z",
+      "updatedAt": "2026-11-19T05:35:04Z"
+    }
+  ],
+  "evidence": {
+    "sourceCI": "admin-release-ci.json",
+    "onlineAssetByteComparison": "admin-online-assets.json",
+    "backendRecorded": "backend-recorded.json",
+    "backendFinalReadOnly": "backend-final-readonly.json"
+  },
+  "productionBusinessWritesPerformed": false,
+  "formalPushActivationPerformed": false
+}

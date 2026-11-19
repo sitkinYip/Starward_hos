@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-19",
+  "command": "python3 scripts/test-invite-package.py",
+  "exitCode": 0,
+  "testsRun": 14,
+  "passed": 14,
+  "failed": 0,
+  "result": "OK",
+  "testedBoundary": "Unsigned/re-signed content comparison, release identity, invalid data, and source snapshot credential exclusion",
+  "scriptsSHA256": {
+    "scripts/test-invite-package.py": "a6ccfcbc884f421ddef617c91075b061551605217e56a75ecafcc7f3d4896f76",
+    "scripts/prepare-invite-candidate.py": "fa3dd2ae5769683a734afabc1ff3fc21c2bf74a3c08bb674d3d7a5fc529d555b",
+    "scripts/verify-invite-package.py": "61397e35694b0d945af9695fb1805d1a04257ec580ec7c9fe43a96955960d6de"
+  }
+}

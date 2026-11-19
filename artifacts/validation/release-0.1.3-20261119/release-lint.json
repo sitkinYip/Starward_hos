@@ -1,0 +1,25 @@
+{
+  "issues": [
+    {
+      "file": "entry/src/main/ets/ui/StarwardNarrativeLetter.ets",
+      "line": 253,
+      "column": 11,
+      "severity": "Suggestion",
+      "rule": "@performance/hp-arkui-suggest-use-effectkit-blur",
+      "message": "Suggestion Use effectKit.createEffect to create a blur effect"
+    }
+  ],
+  "summary": {
+    "filesChecked": 1,
+    "issues": 1,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 1
+  },
+  "command": "STARWARD_VALIDATION_DIR=../release-validation scripts/hm.sh lint",
+  "exitCode": 0,
+  "rawReportSHA256": "304163753a527045525711b6ff58704f6a58cdef4f35dfb6b549ddcc07171c1b",
+  "logSHA256": "a684da5a2c498e6cc7271d66fd71404cff4e07f6710f2cc36a423303460ea308",
+  "limitation": "Official linter reports filesChecked=1; no claim that every project file was checked.",
+  "result": "passed with one existing effectKit blur suggestion"
+}

@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "commit": "8902dfe8e973659b38a559b45d6ae71674106756",
+  "privateMaterialCommitted": false,
+  "exactPathCount": 23,
+  "runs": [
+    {
+      "id": 44465491909,
+      "name": "PocketBase backend CI",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44465491909",
+      "runNumber": 20,
+      "sha": "8902dfe8e973659b38a559b45d6ae71674106756",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-11-19T05:29:15Z",
+      "updatedAt": "2026-11-19T05:30:09Z",
+      "jobs": [
+        {
+          "id": 135362176427,
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Download pinned Linux runtime",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Build isolated backend image",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Real backend integration tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Image and restore rehearsal",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Run actions/setup-node@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 44465491873,
+      "name": "Deploy to Server",
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44465491873",
+      "runNumber": 73,
+      "sha": "8902dfe8e973659b38a559b45d6ae71674106756",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-11-19T05:29:15Z",
+      "updatedAt": "2026-11-19T05:30:13Z",
+      "jobs": [
+        {
+          "id": 135362176606,
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Build appleboy/scp-action@v0.1.7",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Checkout code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Setup Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Test admin authentication and routing",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Check this repository's generated contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Check backend API compatibility (read-only)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Build project",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Deploy to Server",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Install dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Post Setup Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Post Checkout code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tests": {
+    "backendCI": {
+      "tests": 134,
+      "passed": 133,
+      "failed": 0,
+      "skipped": 1,
+      "skip": "Optional PS256 OpenSSL integration: CI omits PB_PUSH_VALIDATE_OPENSSL=1"
+    },
+    "localBackend": {
+      "tests": 134,
+      "passed": 134,
+      "failed": 0,
+      "skipped": 0,
+      "optionalCryptoExplicitlyEnabled": true
+    },
+    "adminCI": {
+      "tests": 48,
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "backendImageRestoreRehearsalPassed": true,
+  "onlineAssetsEvidence": "admin-online-assets.json",
+  "finalReadOnlyEvidence": "backend-final-readonly.json",
+  "productionBusinessWritesPerformed": false,
+  "formalPushActivationPerformed": false
+}
