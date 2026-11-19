@@ -1,0 +1,115 @@
+{
+  "sdkApi": 26,
+  "deviceClass": "straight phone",
+  "mode": "isolated real HTTPS PocketBase",
+  "pushSent": false,
+  "productionWrites": false,
+  "window": {
+    "widthPx": 1260,
+    "heightPx": 2720,
+    "density": 3.25,
+    "widthVp": 387.6923076923077,
+    "contentHeightVp": 771.0769230769231,
+    "topInsetPx": 123,
+    "bottomInsetPx": 91,
+    "fontScale": 1
+  },
+  "package": {
+    "signatureVerified": true,
+    "testAppIdentityUnchanged": true,
+    "onlyIsolatedEndpoint": true,
+    "signedHapSha256": "ec7d2d665f967e6ef17be01865f01886e1c8ccab3599d7170a4e751100f19c02",
+    "currentUiSources": {
+      "entry/src/main/ets/features/GameplayPage.ets": "74002db7cc5a0769567aafa4a578f1b66758b8458472127c43b81f8a44386e57",
+      "entry/src/main/ets/features/JourneyNotificationsViewModel.ets": "1fa353fb4557ef8d213fa14725f2745dfbfc8b83ccf0444c429eab23985a0712",
+      "entry/src/main/ets/features/NarrativePage.ets": "15688f84e7e481b88f2b3e34b5c78c7913199011734f6037ab59afcde61e3028",
+      "entry/src/main/ets/features/RewardsPage.ets": "3a290083476dc8c04f16ef712db7df46aa957bbf2bc36a5a8bf43406ac94ed28",
+      "entry/src/main/ets/features/RewardsViewModel.ets": "cb95c1bf640526f9564f498c64881ff8d7a3853731b842c64b392dc94112a37f",
+      "entry/src/main/ets/features/SliceViewModel.ets": "d381727110304e5ca3a03aabe136d88b2c57b8ce9fcf6403ea76e80a27fd2d07",
+      "entry/src/main/ets/features/StarLettersPage.ets": "72ef51dced38b8ae78ff61651f4d4767f2774ffc388fa9a87ed659087b9ebdc5",
+      "entry/src/main/ets/features/StarLettersViewModel.ets": "94526dac5492e40db552e85a60603d97bb28a03fee01c3895a9f7afb21df1f55",
+      "entry/src/main/ets/pages/Index.ets": "5cc56d4400129acb55ee71afac6b8d58c846932334180d53d9948c385ce96279",
+      "entry/src/main/ets/ui/ErrorMessages.ets": "1bb140ee19e8e02efa2a978fb2b13ddc449beaea9e129c830d3f21f3029187b8",
+      "entry/src/main/ets/ui/StarwardJourneyLauncher.ets": "a26d832d9df60e9bf5ace4cb24ee36040e396565f9ab8843e72f6bb941cbb91c",
+      "entry/src/main/ets/ui/StarwardSyncNotice.ets": "a0ac09ec2ea2b77b8f3090dd4864f9a40a8d0d29e79fc2e385ed5632b1169f4a",
+      "entry/src/main/ets/ui/StarwardTabs.ets": "3e6192cbd2ba5020d5f80406f99d73207ab7ed639df349baf0462bc9994ab30b",
+      "entry/src/main/ets/ui/StarwardJourneyToast.ets": "e95b533ea911afc56e3224d88cf26583c5b5d73cab4c1bbcb3eb8cb9de61e1b8",
+      "entry/src/main/ets/ui/StarwardErrorToast.ets": "0448af69d3e58e93b9ad0e702551f2adffce6fc51a02f1b17664e7b4444f288f"
+    }
+  },
+  "observed": {
+    "initialUnreadBadge": 2,
+    "initialBaselineNoToast": true,
+    "arrivalToastScreenshot": "b2e4f6f8ddd509b1722f75ee3ada81842ce66a1e9f24e3ecc724ff933598755d",
+    "autoPopupPreserved": true,
+    "ordinaryCloseNoReadWrite": true,
+    "noRepopupForDeferredPoll": true,
+    "onlyUnreadArchive": true,
+    "archiveScreenshot": "d82aba34f232942c6adc177cdc8a9231b73eeec5106541dc29e516deca7050d3",
+    "manualOpenDoesNotMarkRead": true,
+    "failedReadKeptUnreadAndRetryable": true,
+    "retryReadRemovesOnlyOne": true,
+    "allReadHintScreenshot": "74819e246a98e7ba2970eda1fada3188088f612c3954d97577bf4265af6d469c",
+    "allReadHidesLauncher": true,
+    "draftPreservedAfterRead": true,
+    "allReadHintNavigatesInbox": true,
+    "finalReadCount": 4,
+    "finalUnreadCount": 0,
+    "noAdditionalEntryOrAnswer": true,
+    "nightArrivalScreenshot": "251ccd7ff99d937d428b763bf474736fd538c3bf89cf4500ac7a3ca98f8d9fb0",
+    "nightBadgeTopRight": [
+      767,
+      2422,
+      822,
+      2477
+    ],
+    "arrivalDismissDoesNotRepeatOnPoll": true,
+    "nativeBarDragWithBadge": true,
+    "backgroundStopsMailPolling": true,
+    "foregroundSyncFindsNewMail": true,
+    "nativeToastBodyNavigatesInbox": true,
+    "nightArchiveScreenshot": "55f7848e6eb9b50833ac24094300bf5130e24370c48dea6f5d697bd1c1be05b3",
+    "launcherDragStillWorks": true,
+    "logoutClearsBadgeAndToast": true,
+    "logoutStopsMailPolling": true,
+    "finalLedger": {
+      "starts": 1,
+      "answers": 0,
+      "readCount": 4,
+      "unreadCount": 3
+    },
+    "readRequests": {
+      "successful": 3,
+      "controlled503": 1
+    },
+    "cleanup": {
+      "signedOut": true,
+      "systemThemeRestored": true,
+      "leftDockRestored": true,
+      "isolatedHttpsReverseRemoved": true,
+      "dockerFixtureStopped": true
+    }
+  },
+  "visualReview": {
+    "reviewedOriginals": true,
+    "badgeEnvelopeTopRight": true,
+    "defaultRedBorderRemoved": true,
+    "nativeLightAndDark": true,
+    "webLightAndDark": true,
+    "sameDataThreeUnreadDtoSha256": "80705cb71fd274a4a4e822f067d9c052cadef32e24c5b859da055b0e9cc5d383",
+    "webViewport": {
+      "width": 388,
+      "height": 837
+    },
+    "identicalPixelsClaimed": false
+  },
+  "notRechecked": [
+    "foldable/window configurations",
+    "large font",
+    "screen reader",
+    "production Push"
+  ],
+  "instrumentation": [
+    "Initial capture used a stale inbox node id; final candidate navigation was subsequently confirmed using the actual node."
+  ]
+}

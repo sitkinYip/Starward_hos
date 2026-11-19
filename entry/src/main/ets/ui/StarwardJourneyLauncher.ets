@@ -79,6 +79,7 @@ export struct StarwardJourneyLauncher {
   @Param reducedMotion: boolean = true;
   @Param displayFont: string = 'serif';
   @Event select: (id: string) => void = () => {};
+  @Event openInbox: () => void = () => {};
   @Local private opened: boolean = false;
   @Local private x: number = 0;
   @Local private y: number = 1;
@@ -97,6 +98,15 @@ export struct StarwardJourneyLauncher {
 
   @Monitor('viewportWidth', 'viewportHeight', 'topInset', 'leftInset', 'rightInset', 'bottomInset')
   geometryChanged(): void { this.finishDrag(true); }
+
+  @Monitor('entries', 'unreadCount')
+  unreadChanged(): void {
+    if (this.unreadCount === 0) { this.opened = false; }
+  }
+
+  private unreadEntries(): GameNotification[] {
+    return this.entries.filter((item: GameNotification) => item.readAt.length === 0);
+  }
 
   private appear(): void {
     if (this.reducedMotion) { return; }
@@ -204,14 +214,14 @@ export struct StarwardJourneyLauncher {
   archive() {
     Column() {
       Row({ space: 12 }) {
-        Text('旅途来信').fontSize(20).lineHeight('28fp').fontFamily(this.displayFont).fontWeight(FontWeight.Medium)
+        Text('未读来信').fontSize(20).lineHeight('28fp').fontFamily(this.displayFont).fontWeight(FontWeight.Medium)
           .fontColor($r('app.color.strong')).layoutWeight(1)
-        Text(`${this.entries.length} 封`).fontSize(12).fontFamily('monospace').fontColor($r('app.color.muted'))
+        Text(`${this.unreadCount} 封未读`).fontSize(12).fontFamily('monospace').fontColor($r('app.color.muted'))
       }.width('100%').alignItems(VerticalAlign.Center).padding({ top: 14, bottom: 12 })
         .border({ width: { bottom: 1 }, color: $r('app.color.accent_border') })
       Scroll() {
         Column() {
-          ForEach(this.entries.slice(0, 5), (item: GameNotification, index: number) => {
+          ForEach(this.unreadEntries(), (item: GameNotification, index: number) => {
             StarwardJourneyArchiveItem({ item: item, index: index, reducedMotion: this.reducedMotion,
               select: (id: string) => {
                 this.opened = false;
@@ -221,6 +231,20 @@ export struct StarwardJourneyLauncher {
         }.width('100%').padding({ top: 2, bottom: 4 })
       }.width('100%').constraintSize({ maxHeight: Math.max(58, Math.min(380, this.viewportHeight - 230)) })
         .scrollBar(BarState.Off)
+      Button({ type: ButtonType.Normal, stateEffect: !this.reducedMotion }) {
+        Row({ space: 8 }) {
+          Text('已阅读的来信可在「来信」中查看').fontSize(12).lineHeight('20fp')
+            .fontColor($r('app.color.muted')).layoutWeight(1).textAlign(TextAlign.Start)
+          Image($r('app.media.icon_arrow_right')).width(14).height(14)
+            .fillColor($r('app.color.accent_text')).accessibilityLevel('no')
+        }.width('100%')
+      }.id('gameplay-journey-open-inbox').width('100%').constraintSize({ minHeight: 44 })
+        .padding({ left: 2, right: 2, top: 10, bottom: 10 }).backgroundColor(Color.Transparent).borderRadius(0)
+        .border({ width: { top: 1 }, color: $r('app.color.accent_border') })
+        .accessibilityText('前往来信查看已阅读的信件').onClick(() => {
+          this.opened = false;
+          this.openInbox();
+        })
     }.id('gameplay-journey-archive').width(this.popupWidth()).borderRadius(16)
       .padding({ left: 16, right: 16, top: 2, bottom: 5 }).backgroundColor($r('app.color.raised'))
       .border({ width: 1, color: $r('app.color.accent_border') })

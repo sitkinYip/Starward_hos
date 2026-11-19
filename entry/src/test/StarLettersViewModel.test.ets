@@ -160,10 +160,15 @@ export default function starLettersViewModelTests(): void {
       expect(repository.detailIds.join(',')).assertEqual('first,second,second');
       expect(model.entries.length).assertEqual(2);
       expect(model.detailErrors.length).assertEqual(0);
+      repository.snapshotFails.set('second', new GameFailure('NETWORK_ERROR', '连接中断。'));
+      expect(await model.refresh()).assertEqual('部分信笺暂未同步，请下拉重试。');
+      expect(model.detailErrors.length).assertEqual(0);
+      expect(model.canOpen('second', 'two')).assertTrue();
       repository.snapshotFails.set('second', new GameFailure('NOT_FOUND', '场次暂不可访问。', 404));
-      await model.refresh();
+      expect(await model.refresh()).assertEqual('');
       expect(model.canOpen('second', 'two')).assertFalse();
       expect(model.canOpen('first', 'one')).assertTrue();
+      expect(model.detailErrors[0].assignmentId).assertEqual('second');
     });
 
     it('DoesNotRestoreRevokedEntriesWithoutAConfirmedNarrativeRead', 0, async () => {
@@ -191,7 +196,7 @@ export default function starLettersViewModelTests(): void {
       const requested: Promise<PendingNarrative> = new Promise<PendingNarrative>((resolve: (work: PendingNarrative) => void) => {
         repository.holdNarrative = resolve;
       });
-      const first: Promise<void> = model.refresh();
+      const first: Promise<string> = model.refresh();
       const old: PendingNarrative = await requested;
       model.bindOwner('next');
       expect(old.cancellation?.cancelled).assertTrue();
@@ -210,15 +215,25 @@ export default function starLettersViewModelTests(): void {
       const model: StarLettersViewModel = new StarLettersViewModel(repository, (message: string) => { expired = message; });
       model.bindOwner('owner');
       repository.listFailure = new GameFailure('UNAVAILABLE', '稍后重试。', 503);
-      await model.refresh();
+      expect(await model.refresh()).assertEqual('');
       expect(model.error).assertEqual('稍后重试。');
+      expect(model.archiveReady).assertFalse();
       repository.listFailure = null;
       await model.refresh();
       expect(model.error).assertEqual('');
       expect(model.entries.length).assertEqual(0);
+      expect(model.archiveReady).assertTrue();
+      repository.listFailure = new GameFailure('UNAVAILABLE', '稍后重试。', 503);
+      expect(await model.refresh()).assertEqual('信笺暂时无法同步，请下拉重试。');
+      expect(model.error).assertEqual('');
+      expect(model.archiveReady).assertTrue();
+      repository.listFailure = new GameFailure('CONTRACT_ERROR', '数据暂不可读。');
+      expect(await model.refresh()).assertEqual('');
+      expect(model.error).assertEqual('数据暂不可读。');
       repository.listFailure = new GameFailure('UNAUTHORIZED', '请重新登录。', 401);
       await model.refresh();
       expect(expired).assertEqual('请重新登录。');
+      expect(model.archiveReady).assertFalse();
       expect(model.entries.length).assertEqual(0);
     });
   });

@@ -99,7 +99,7 @@ export struct NarrativePage {
         })
       } else if (this.model.error.length > 0) {
         Scroll() {
-          ErrorNotice({ message: this.model.error, retryable: this.model.retryable, topMargin: 8,
+          ErrorNotice({ message: this.model.error, retryable: this.model.retryable, topMargin: 8, showReturn: true,
             returnLabel: this.model.route?.source === 'star-letters' ? '返回星海信笺' :
               this.model.route?.source === 'quest-clue' ? '返回答题' : '回到首页',
             retry: () => this.model.retry(), returnHome: () => this.returnHome() })

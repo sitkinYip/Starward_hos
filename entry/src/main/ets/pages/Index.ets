@@ -39,6 +39,8 @@ import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardAccountSheet } from '../ui/StarwardAccountSheet';
 import { StarwardSidePanel } from '../ui/StarwardSidePanel';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
+import { StarwardErrorToast } from '../ui/StarwardErrorToast';
+import { StarwardJourneyToast } from '../ui/StarwardJourneyToast';
 import { StarwardMotion } from '../ui/StarwardMotion';
 import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
 import { StarwardQuestAvatar, StarwardQuestHeaderEntrance, StarwardQuestProgress } from '../ui/StarwardQuestHeaderMotion';
@@ -58,6 +60,30 @@ import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 type PushAction = 'sync' | 'initial' | 'settings' | 'retry';
+
+/** Observe the notification model directly instead of a non-observable intermediate owner. */
+@ComponentV2
+struct JourneyUnreadEvents {
+  @Require @Param journey: JourneyNotificationsViewModel;
+  @Event arrived: (count: number) => void = () => {};
+  @Event allRead: () => void = () => {};
+
+  @Monitor('journey.newUnreadRevision')
+  private unreadArrived(): void {
+    const count: number = this.journey.newUnreadCount;
+    this.journey.dismissNewUnread();
+    if (count > 0) { this.arrived(count); }
+  }
+
+  @Monitor('journey.unreadClearedRevision')
+  private readCompleted(): void {
+    if (this.journey.unreadClearedRevision > 0 && this.journey.unreadCount === 0) { this.allRead(); }
+  }
+
+  build() {
+    Column() {}.width(0).height(0).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+  }
+}
 
 /** Keep route-scoped reads in sync with both branches of the assignment destination. */
 @ComponentV2
@@ -173,6 +199,11 @@ struct Index {
   @Local private briefViewportHeight: number = 0;
   @Local private briefViewportTop: number = 0;
   private motion: StarwardMotion = new StarwardMotion();
+  private authToast: StarwardErrorToast = new StarwardErrorToast();
+  private authFeedbackEpoch: number = 0;
+  private journeyToast: StarwardJourneyToast = new StarwardJourneyToast();
+  private journeyToastTimer: number = -1;
+  private journeyToastRevision: number = 0;
   private avatarEditor: AvatarEditor = new AvatarEditor();
   private avatarPickRevision: number = 0;
   private starLettersInterrupted: boolean = false;
@@ -212,6 +243,7 @@ struct Index {
         }
       }
     } else {
+      this.clearAuthToast();
       this.stopClock();
       this.atmosphere.suspend();
       this.vm.rewards.setActive(false);
@@ -419,12 +451,15 @@ struct Index {
     LaunchRoutes.subscribe(this.routeListener);
     this.paths.setInterception({
       willShow: () => {
+        this.clearJourneyToast();
         this.lobbyRouteTransitioning = true;
         this.lobbyVisibilityChanged();
+        this.journeyScopeChanged();
       },
       didShow: () => {
         this.lobbyRouteTransitioning = false;
         this.lobbyVisibilityChanged();
+        this.journeyScopeChanged();
         if (this.paths.size() === 0) { this.syncPushOnArrival(); }
       }
     });
@@ -444,6 +479,8 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.clearJourneyToast();
+    this.clearAuthToast();
     this.stopPushTokenWatch();
     this.pushActionRevision++;
     this.pushBusy = false;
@@ -492,8 +529,72 @@ struct Index {
       this.paths.size() === 0 && this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
   }
 
+  private journeySessionReady(): boolean {
+    return this.privacyAllowed && this.foreground && this.vm.gate === 'home' &&
+      this.vm.player.id.length > 0 && !this.vm.securityBusy && !this.vm.securityUnconfirmed;
+  }
+
+  @Monitor('mainIndex', 'foreground', 'privacyAllowed', 'vm.gate', 'vm.securityUnconfirmed', 'vm.securityBusy',
+    'showAccount', 'showAvatarCrop', 'gameplayDestinationShown')
+  private journeyScopeChanged(): void {
+    this.clearJourneyToast();
+    // AssignmentSynchronization owns quest reads and pauses them around its refresh.
+    this.vm.journey.setInboxPolling(this.journeySessionReady() && !this.gameplayDestinationShown);
+  }
+
+  private clearJourneyToast(): void {
+    this.journeyToastRevision++;
+    clearTimeout(this.journeyToastTimer);
+    this.journeyToastTimer = -1;
+    this.journeyToast.dismiss();
+  }
+
+  private showJourneyToast(message: string): void {
+    this.clearJourneyToast();
+    const owner: string = this.vm.player.id;
+    const revision: number = this.journeyToastRevision;
+    this.journeyToastTimer = setTimeout(() => {
+      this.journeyToastTimer = -1;
+      if (revision !== this.journeyToastRevision || !this.journeySessionReady() ||
+        this.vm.player.id !== owner || this.showAccount || this.showAvatarCrop) { return; }
+      this.journeyToast.show(this.getUIContext(), message,
+        this.paths.size() === 0 ? this.bottomContentClearance() : this.safeBottom() + 12, () => {
+          if (revision === this.journeyToastRevision && this.vm.player.id === owner && this.journeySessionReady()) {
+            this.openJourneyInbox();
+          }
+        });
+    }, 320);
+  }
+
+  private journeyArrived(count: number): void {
+    if (count > 0 && this.journeySessionReady() && !this.gameplayDestinationShown &&
+      this.vm.narrative.route === null && !(this.mainIndex === 2 && this.paths.size() === 0) &&
+      !this.showAccount && !this.showAvatarCrop) {
+      this.showJourneyToast(`收到 ${count} 封新来信`);
+    }
+  }
+
+  private journeyReadCompleted(): void {
+    if (this.vm.journey.unreadClearedRevision > 0 && this.vm.journey.unreadCount === 0 &&
+      this.assignmentDestinationActive()) {
+      this.showJourneyToast('已阅读的来信可在「来信」中查看。');
+    }
+  }
+
+  private openJourneyInbox(): void {
+    if (!this.journeySessionReady()) { return; }
+    this.clearJourneyToast();
+    this.pushInboxRevision++;
+    this.goMain(2);
+    this.vm.journey.clearRouteArchive();
+    void this.vm.journey.refresh();
+    this.journeyScopeChanged();
+  }
+
   @Monitor('vm.gate')
   gateChanged(): void {
+    this.clearAuthToast();
+    this.clearJourneyToast();
     this.clearPasswords();
     if (this.vm.gate !== 'home') {
       this.stopPushTokenWatch();
@@ -643,7 +744,7 @@ struct Index {
     this.vm.narrative.close();
     this.vm.play.leave();
     this.vm.journey.setPolling(false);
-    this.vm.journey.clearRouteArchive();
+    this.vm.journey.leaveRoute(this.selectedId);
     this.paths.clear();
     this.selectMain(index);
     if (gameplayVisible) {
@@ -663,6 +764,7 @@ struct Index {
       }
       this.mainIndex = index;
       this.lobbyVisibilityChanged();
+      this.journeyScopeChanged();
       if (index === 2 && this.foreground) {
         this.vm.starLetters.refresh();
         this.vm.journey.refresh();
@@ -677,7 +779,7 @@ struct Index {
     this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.vm.journey.setPolling(false);
-    this.vm.journey.clearRouteArchive();
+    this.vm.journey.leaveRoute(this.selectedId);
     this.vm.play.leave();
     if (popPath) {
       this.paths.pop();
@@ -731,7 +833,9 @@ struct Index {
     if (story !== null) {
       const route: NarrativeRoute = new NarrativeRoute(story[1], story[2], 'journey');
       if (!this.vm.narrative.open(route)) { return false; }
-      this.vm.journey.suspend();
+      this.vm.journey.pauseReads();
+      this.vm.journey.close();
+      this.vm.journey.clearRouteArchive();
       this.vm.play.cancelAutoAdvance();
       this.paths.pushPath({ name: 'narrative', param: route }, !this.motion.reduced);
       return true;
@@ -1009,12 +1113,19 @@ struct Index {
       .border({ width: { bottom: auth ? 0 : 1 }, color: $r('app.color.border') })
   }
 
-  @Builder
-  formError() {
-    if (this.vm.errorCode === 'VALIDATION_ERROR') {
-      InlineError({ message: this.vm.error })
-    } else {
-      ErrorNotice({ message: this.vm.error, returnHome: () => this.paths.clear() })
+  private clearAuthToast(): void {
+    this.authFeedbackEpoch++;
+    this.authToast.dismiss();
+  }
+
+  private async submitLogin(): Promise<void> {
+    if (this.vm.busy || this.vm.gate !== 'login') { return; }
+    this.clearAuthToast();
+    const epoch: number = this.authFeedbackEpoch;
+    await this.vm.login(this.account, this.password);
+    if (epoch === this.authFeedbackEpoch && this.foreground && this.privacyAllowed &&
+      this.vm.gate === 'login' && this.vm.loginNetworkError) {
+      this.authToast.show(this.getUIContext(), this.vm.error, this.safeBottom());
     }
   }
 
@@ -1071,13 +1182,21 @@ struct Index {
         .margin({ bottom: 16 })
       Column({ space: 16 }) {
         LabeledInput({ label: '登录账号', placeholder: '你的冒险者账号', fieldId: 'account',
-          value: this.account, disabled: this.vm.busy, changed: (value: string) => this.account = value })
+          value: this.account, disabled: this.vm.busy, changed: (value: string) => {
+            if (value !== this.account) { this.vm.clearLoginInputError(); }
+            this.account = value;
+          } })
         LabeledInput({ label: '密码', placeholder: '输入通行密语', fieldId: 'password', value: this.password,
-          secret: true, disabled: this.vm.busy, changed: (value: string) => this.password = value })
-        this.formError()
+          secret: true, disabled: this.vm.busy, changed: (value: string) => {
+            if (value !== this.password) { this.vm.clearLoginInputError(); }
+            this.password = value;
+          } })
+        if (!this.vm.loginNetworkError) {
+          InlineError({ message: this.vm.error, fieldId: 'error-message' })
+        }
         PrimaryAction({ label: this.vm.busy ? '正在打开故事…' : '进入冒险', arrow: true,
           actionEnabled: !this.vm.busy && this.vm.mode !== 'unavailable',
-          action: () => { this.vm.login(this.account, this.password); } })
+          action: () => { void this.submitLogin(); } })
       }.width('100%')
       Button({ type: ButtonType.Normal }) {
         Text(`${this.showHelp ? '▾' : '▸'} 还没有账号，或忘记了密码？`).fontSize(12).lineHeight('21.6fp')
@@ -1112,7 +1231,7 @@ struct Index {
           secret: true, disabled: this.vm.busy, changed: (value: string) => this.newPassword = value })
         LabeledInput({ label: '确认新密码', fieldId: 'confirm-password', value: this.confirmation,
           secret: true, disabled: this.vm.busy, changed: (value: string) => this.confirmation = value })
-        this.formError()
+        InlineError({ message: this.vm.error, fieldId: 'error-message' })
         PrimaryAction({ label: this.vm.busy ? '正在保存…' : '保存新密码',
           actionEnabled: !this.vm.busy && this.vm.mode !== 'unavailable',
           action: () => { this.vm.changePassword(this.oldPassword, this.newPassword, this.confirmation); } })
@@ -1309,12 +1428,13 @@ struct Index {
   journeyScroll(history: boolean) {
     Scroll() {
       Column({ space: 20 }) {
-        if (this.vm.listBusy && this.vm.items.length === 0) {
+        if (this.vm.listBusy && !this.vm.lobbyHasList) {
           this.loadingCards()
         }
-        ErrorNotice({ message: this.vm.listError, retryable: !this.vm.listBusy,
-          retry: () => this.vm.refresh(), returnHome: () => this.paths.clear() })
-        if (!this.vm.listBusy && this.vm.listError.length === 0 && this.visibleItems(history).length === 0) {
+        if (!this.vm.lobbyHasList) {
+          ErrorNotice({ message: this.vm.listError, retryable: !this.vm.listBusy, retry: () => this.vm.refresh() })
+        }
+        if (this.vm.lobbyHasList && this.visibleItems(history).length === 0) {
           this.emptyState(history)
         }
         // Server projection only: time does not change component identity.
@@ -1361,6 +1481,7 @@ struct Index {
   @Builder
   home() {
     StarwardBottomTabs({ floatingGap: 10 + this.safeBottom(), selectedIndex: this.mainIndex,
+      unreadLetters: this.vm.journey.unreadCount,
       hideBar: this.keyboardOccupiesViewport(), materialInteractionEnabled: !this.motion.reduced,
       canSelect: (index: number): boolean => {
         if (this.vm.gate !== 'home' || this.paths.size() > 0) { return false; }
@@ -1391,7 +1512,7 @@ struct Index {
       bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced,
       inboxRouteRevision: this.pushInboxRevision,
       active: this.foreground && this.mainIndex === 2 && this.vm.narrative.route === null && !this.vm.securityUnconfirmed,
-      openLetter: (entry: StarLetterEntry) => this.openStarLetter(entry), returnHome: () => this.goMain(0) })
+      openLetter: (entry: StarLetterEntry) => this.openStarLetter(entry) })
   }
 
   @Builder
@@ -1472,8 +1593,7 @@ struct Index {
           .accessibilityText(this.vm.play.starting ? '正在进入本场冒险' : '开始本场冒险')
           .onClick(() => this.enterBriefing())
         ErrorNotice({ message: this.vm.play.error, retryable: this.vm.play.retryEntry && !this.vm.play.starting,
-          retry: () => this.enterBriefing(),
-          returnHome: () => { this.vm.play.leave(); this.paths.clear(); } })
+          retry: () => this.enterBriefing() })
         if (assignmentKind(this.vm.detail, this.vm.player.level.order, this.vm.now) === 'expired') {
           Button({ type: ButtonType.Normal }) {
             Row({ space: 12 }) {
@@ -1518,7 +1638,7 @@ struct Index {
 
   private briefJourneyNote(): GameNotification | null {
     return this.briefJourneyReady() ? this.vm.journey.archivedOnRoute(this.selectedId) ??
-      this.vm.journey.oldestUnread : null;
+      this.vm.journey.automaticUnreadOnRoute(this.selectedId) : null;
   }
 
   private briefJourneyTopInset(): number {
@@ -1526,7 +1646,7 @@ struct Index {
   }
 
   private showBriefJourneyLauncher(): boolean {
-    return this.briefJourneyReady() && this.vm.journey.entries.length > 0 && this.briefJourneyNote() === null &&
+    return this.briefJourneyReady() && this.vm.journey.unreadCount > 0 && this.briefJourneyNote() === null &&
       this.briefViewportHeight - this.briefJourneyTopInset() - this.safeBottom() >= JOURNEY_LAUNCHER_SIZE + 24;
   }
 
@@ -1594,7 +1714,7 @@ struct Index {
               Text('正在准备本场冒险…').id('briefing-loading').fontSize(13)
                 .fontColor($r('app.color.muted')).width('100%')
             }
-            ErrorNotice({ message: this.vm.detailError, retryable: !this.vm.detailBusy,
+            ErrorNotice({ message: this.vm.detailError, retryable: !this.vm.detailBusy, showReturn: true,
               retry: () => {
                 if (this.selectedId.length > 0) { this.vm.openAssignment(this.selectedId); }
               }, returnHome: () => { this.leaveGameplay(); void this.vm.refresh(); } })
@@ -1631,13 +1751,13 @@ struct Index {
           }, toggle: () => { if (this.showBriefBgm(owner)) { this.atmosphere.toggle(owner); } } })
       }
       if (this.showBriefJourneyLauncher()) {
-        StarwardJourneyLauncher({ entries: this.vm.journey.entries, unreadCount: this.vm.journey.unreadCount,
+        StarwardJourneyLauncher({ entries: this.vm.journey.unreadEntries, unreadCount: this.vm.journey.unreadCount,
           viewportWidth: this.briefViewportWidth, viewportHeight: this.briefViewportHeight,
           topInset: this.briefJourneyTopInset(), bottomInset: 24 + this.safeBottom(),
           leftInset: this.safeLeft(), rightInset: this.safeRight(), displayFont: this.displayFont,
           bgmLeft: this.showBriefBgm(owner) ? this.briefBgmLeft() : -1,
           bgmTop: this.showBriefBgm(owner) ? this.briefBgmTop() : -1,
-          reducedMotion: this.motion.reduced, select: (id: string) => {
+          reducedMotion: this.motion.reduced, openInbox: () => this.openJourneyInbox(), select: (id: string) => {
             if (this.showBriefJourneyLauncher()) { this.vm.journey.openRouteArchive(this.selectedId, id); }
           } })
       }
@@ -1681,6 +1801,7 @@ struct Index {
           this.assignmentBackdrop(this.atmosphereOwner(param))
           if (this.vm.play.visible) {
             GameplayPage({ play: this.vm.play, journey: this.vm.journey, autoNextDelay: this.motion.duration(1500),
+              openInbox: () => this.openJourneyInbox(),
               atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(param),
               playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
               displayFont: this.displayFont, bottomClearance: 24 + this.safeBottom(),
@@ -1973,6 +2094,8 @@ struct Index {
     StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
       anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
     }).width('100%').height('100%')
+    JourneyUnreadEvents({ journey: this.vm.journey, arrived: (count: number) => this.journeyArrived(count),
+      allRead: () => this.journeyReadCompleted() })
     AssignmentSynchronization({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,
       atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(this.assignmentDestinationRevision),
       accountId: this.vm.player.id, briefingPresentation: this.vm.briefingPresentation,

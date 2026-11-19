@@ -8,6 +8,7 @@ const SWIPE_DISTANCE: number = 50;
 export struct StarwardSyncNotice {
   @Param nodePrefix: string = 'gameplay-sync-notice';
   @Param reducedMotion: boolean = true;
+  @Param description: string = '当前页面和输入仍保留，连接恢复后会自动同步。';
   @Event dismiss: () => void = () => {};
   @Local private swipeY: number = 0;
   private timer: number = -1;
@@ -40,7 +41,7 @@ export struct StarwardSyncNotice {
       Column({ space: 3 }) {
         Text('同步暂时中断').id(this.nodePrefix + '-title').width('100%')
           .fontSize(16).lineHeight('24fp').fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
-        Text('当前页面和输入仍保留，连接恢复后会自动同步。').id(this.nodePrefix + '-description')
+        Text(this.description).id(this.nodePrefix + '-description')
           .width('100%').fontSize(13).lineHeight('19.5fp').fontColor($r('app.color.muted'))
       }.layoutWeight(1).alignItems(HorizontalAlign.Start)
       Button({ type: ButtonType.Normal }) {

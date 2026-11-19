@@ -1,0 +1,90 @@
+{
+  "sdkApi": 26,
+  "device": "HUAWEI Mate 60 Pro",
+  "mode": "isolated HTTPS Debug",
+  "productionChanges": false,
+  "package": {
+    "signatureVerified": true,
+    "sameTestAppIdentifier": true,
+    "isolatedEndpointOnly": true,
+    "sourceFilesMatch": true,
+    "signedHapSha256": "721af06911906ae11886b8ba9c5a1ed9c78d099abf3f540005a98d0d8a97ddaa"
+  },
+  "login": {
+    "passed": true,
+    "signedIsolatedDebug": true,
+    "keyboardInitiallyHidden": true,
+    "authValidationInline": true,
+    "noHomeButton": true,
+    "loginFormBounds": {
+      "account": [
+        65,
+        1375,
+        1196,
+        1545
+      ],
+      "password": [
+        65,
+        1685,
+        1196,
+        1855
+      ],
+      "primary-action": [
+        65,
+        1906,
+        1195,
+        2075
+      ]
+    },
+    "toastCloseBounds": [
+      1078,
+      2369,
+      1182,
+      2473
+    ],
+    "layoutStable": true,
+    "closeWorks": true,
+    "retryFailureShowsAgain": true,
+    "autoDismissRemainingSeconds": 6.94,
+    "reconnectionRetainsInputsAndLogsIn": true,
+    "lightScreenshotSha256": "93f7869ff3ff1f383785716fe31dac328602c08c64058851fe9997f59e741dc6",
+    "darkScreenshotSha256": "e77141bd35bd95e3ae54267bcfbdb9ca9792cea99c5578163702d2270396e15c"
+  },
+  "keyboard": {
+    "wrongPasswordRemainsInline": true,
+    "nonModalAllowsInputFocus": true,
+    "toastRisesAboveKeyboard": true,
+    "closeWorksWithKeyboard": true,
+    "closeWithKeyboardBounds": [
+      1078,
+      1355,
+      1182,
+      1459
+    ],
+    "keyboardScreenshotSha256": "83752b515aa38bfc31b76e0228c513640e79a79818143688e62f735a17e1b2f3"
+  },
+  "sync": {
+    "lobbyValidEmptyKept": true,
+    "lobbyCloseNoRepeat": true,
+    "rewardsValidEmptyKept": true,
+    "rewardsCloseNoRepeat": true
+  },
+  "letters": {
+    "validEmptyArchiveKept": true,
+    "manualRefreshUsesToast": true,
+    "closePreservesArchive": true
+  },
+  "cleanup": {
+    "signedOutWithEmptyInputAndNoToast": true,
+    "removedOwnedReverseRule": true,
+    "disposableIsolationStopped": true,
+    "fixtureLedger": {
+      "liveTest": false,
+      "bindings": 0,
+      "deliveries": [],
+      "readReceipts": 0,
+      "assignments": [],
+      "answerSubmissions": 0
+    }
+  }
+}

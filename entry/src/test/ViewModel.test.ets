@@ -62,6 +62,20 @@ export default function viewModelTests(): void {
       expect(viewModel.error).assertEqual('');
     });
 
+    it('aLoginServiceFailureIsRecoverableInPlaceWithoutOpeningAnAccount', 0, async () => {
+      const repository: MockGameRepository = new MockGameRepository(0);
+      const viewModel: SliceViewModel = new SliceViewModel(repository);
+      repository.nextFailure = new GameFailure('REQUEST_FAILED', '代理错误', 503);
+      await viewModel.login('alice', 'Starward1234');
+      expect(viewModel.loginNetworkError).assertTrue();
+      expect(viewModel.gate).assertEqual('login');
+      expect(viewModel.player.id).assertEqual('');
+      expect(repository.calls.join(',')).assertEqual('login');
+      await viewModel.login('alice', 'WrongPassword123');
+      expect(viewModel.loginNetworkError).assertFalse();
+      expect(viewModel.error).assertEqual('账号或密码不正确');
+    });
+
     it('expiredSessionClearsPrivateStateAndReturnsToLogin', 0, async () => {
       const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);
@@ -203,18 +217,22 @@ export default function viewModelTests(): void {
       expect(viewModel.play.visible).assertTrue();
     });
 
-    it('emptyAssignmentsAreSuccessWhileTransientErrorsRemainRetryable', 0, async () => {
+    it('manualLobbyRefreshKeepsAValidEmptySnapshotDuringAnOutage', 0, async () => {
       const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);
       await enterHome(viewModel);
+      repository.emptyAssignments = true;
+      await viewModel.refresh();
+      expect(viewModel.lobbyHasList).assertTrue();
+      expect(viewModel.items.length).assertEqual(0);
       repository.nextFailure = new GameFailure('NETWORK_ERROR', '连接中断');
       await viewModel.refresh();
       expect(viewModel.gate).assertEqual('home');
-      expect(viewModel.listError).assertEqual('连接中断');
-      repository.emptyAssignments = true;
-      await viewModel.refresh();
-      expect(viewModel.items.length).assertEqual(0);
+      expect(viewModel.lobbyHasList).assertTrue();
       expect(viewModel.listError).assertEqual('');
+      expect(viewModel.showLobbySyncNotice).assertTrue();
+      await viewModel.refresh();
+      expect(viewModel.showLobbySyncNotice).assertFalse();
     });
   });
 }

@@ -5,11 +5,12 @@ import { isLegacyInternalLink, legacyRichBlocks, LegacyRichBlock } from '../busi
 import { openExternalClueLink } from '../platform/ExternalClueLink';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
-import { ErrorNotice } from '../ui/ErrorMessages';
+import { InlineError } from '../ui/ErrorMessages';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardRichContent } from '../ui/StarwardRichContent';
+import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVideoViewer';
 import { RewardsViewModel } from './RewardsViewModel';
 
@@ -533,10 +534,13 @@ export struct RewardsPage {
           }.id('rewards-loading').width('100%').accessibilityText('正在打开你的收藏…').accessibilityLevel('yes')
         }
         if (this.model.error.length > 0) {
-          Column() {
-            ErrorNotice({ message: this.model.error, retryable: !this.model.loading, topMargin: 0,
-              retry: () => { void this.model.refresh(); }, returnHome: () => this.returnHome() })
-          }.id('rewards-error').width('100%')
+          Column({ space: 4 }) {
+            InlineError({ message: this.model.error, fieldId: 'rewards-error-message' })
+            Button('重新尝试', { type: ButtonType.Normal }).id('rewards-retry')
+              .constraintSize({ minHeight: 44 }).padding({ left: 12, right: 12 })
+              .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
+              .enabled(!this.model.loading).onClick(() => { void this.model.refresh(); })
+          }.id('rewards-error').width('100%').alignItems(HorizontalAlign.Start).padding({ bottom: 12 })
         }
         if (this.model.entries.length > 0) {
           Column({ space: 16 }) {
@@ -559,6 +563,14 @@ export struct RewardsPage {
     Stack({ alignContent: Alignment.Top }) {
       StarwardRefresh({ refreshEnabled: this.active && !this.model.loading,
         request: async () => { await this.model.refresh(); }, content: () => { this.content() } })
+      if (this.active && !this.detailVisible && this.model.showSyncNotice) {
+        Column() {
+          StarwardSyncNotice({ nodePrefix: 'rewards-sync-notice', reducedMotion: this.reducedMotion,
+            description: '当前收藏仍可查看，连接恢复后会自动同步。', dismiss: () => this.model.dismissSyncNotice() })
+        }.width('100%').alignItems(HorizontalAlign.Center)
+          .padding({ left: 16, right: 16 }).margin({ top: 8 })
+          .hitTestBehavior(HitTestMode.Transparent).zIndex(2)
+      }
     }.id('rewards-page').width('100%').height('100%')
       .opacity(this.reducedMotion || this.revealed ? 1 : 0)
       .translate({ y: this.reducedMotion || this.revealed ? 0 : 14 })

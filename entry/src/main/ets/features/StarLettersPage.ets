@@ -3,6 +3,7 @@ import { GameNotification } from '../business/GameNotification';
 import { journeyNotificationPreview } from '../business/JourneyNotificationContent';
 import { StarLetterEntry } from '../business/StarLetters';
 import { ErrorNotice } from '../ui/ErrorMessages';
+import { StarwardErrorToast } from '../ui/StarwardErrorToast';
 import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
@@ -187,7 +188,6 @@ export struct StarLettersPage {
   @Param reducedMotion: boolean = true;
   @Param active: boolean = true;
   @Event openLetter: (entry: StarLetterEntry) => void = () => {};
-  @Event returnHome: () => void = () => {};
   @Event openInternalLink: (href: string) => boolean = () => false;
   @Local private revealed: boolean = false;
   @Local private category: number = 0;
@@ -197,9 +197,30 @@ export struct StarLettersPage {
   private readonly scroller: Scroller = new Scroller();
   private readonly journeyScroller: ListScroller = new ListScroller();
   private readonly tabBar: CommonModifier = new CommonModifier();
+  private readonly refreshToast: StarwardErrorToast = new StarwardErrorToast();
+  private refreshRevision: number = 0;
 
   aboutToAppear(): void {
     this.tabBar.align(Alignment.Start);
+  }
+
+  aboutToDisappear(): void { this.clearRefreshToast(); }
+
+  @Monitor('active', 'category', 'playerId')
+  private refreshScopeChanged(): void { this.clearRefreshToast(); }
+
+  private clearRefreshToast(): void {
+    this.refreshRevision++;
+    this.refreshToast.dismiss();
+  }
+
+  private async refreshArchive(): Promise<void> {
+    this.clearRefreshToast();
+    const revision: number = this.refreshRevision;
+    const message: string = await this.model.refresh();
+    if (message.length > 0 && revision === this.refreshRevision && this.active && this.category === 1) {
+      this.refreshToast.show(this.getUIContext(), message, this.bottomClearance);
+    }
   }
 
   private closeJourneyNote(id: string): void {
@@ -256,22 +277,16 @@ export struct StarLettersPage {
   @Builder
   private scrollContent() {
     Scroll(this.scroller) {
-      Column() {
-        if (this.model.loading && this.model.entries.length === 0) {
+      Column({ space: 10 }) {
+        if (this.model.loading && !this.model.archiveReady && this.model.entries.length === 0) {
           this.loading()
         }
         if (this.model.error.length > 0) {
           Column() {
             ErrorNotice({ message: this.model.error, retryable: !this.model.loading, topMargin: 0,
-              retry: () => { void this.model.refresh(); }, returnHome: () => this.returnHome() })
+              retry: () => { void this.refreshArchive(); } })
           }.id('star-letters-error').width('100%')
         }
-        ForEach(this.model.detailErrors, (issue: StarLettersReadError) => {
-          Column() {
-            ErrorNotice({ message: issue.message, retryable: !this.model.loading, topMargin: 0,
-              retry: () => { void this.model.retryAssignment(issue.assignmentId); }, returnHome: () => this.returnHome() })
-          }.id(`star-letters-detail-error-${issue.assignmentId}`).width('100%')
-        }, (issue: StarLettersReadError) => JSON.stringify(issue))
         if (this.model.entries.length > 0) {
           Column({ space: 10 }) {
             ForEach(this.model.entries, (entry: StarLetterEntry, index: number) => {
@@ -279,9 +294,15 @@ export struct StarLettersPage {
                 revealDelay: index === 0 ? 0 : (index === 1 ? 70 : 120), openLetter: (letter: StarLetterEntry) => this.openLetter(letter) })
             }, (entry: StarLetterEntry) => JSON.stringify(entry))
           }.width('100%')
-        } else if (!this.model.loading && this.model.error.length === 0 && this.model.detailErrors.length === 0) {
+        } else if (this.model.archiveReady && this.model.error.length === 0) {
           this.empty()
         }
+        ForEach(this.model.detailErrors, (issue: StarLettersReadError) => {
+          Column() {
+            ErrorNotice({ message: issue.message, retryable: !this.model.loading, topMargin: 0,
+              retry: () => { void this.model.retryAssignment(issue.assignmentId); } })
+          }.id(`star-letters-detail-error-${issue.assignmentId}`).width('100%')
+        }, (issue: StarLettersReadError) => JSON.stringify(issue))
       }.width('100%').padding({ top: 20, bottom: this.bottomClearance, left: 6, right: 6 })
     }.id('star-letters-scroll').width('100%').height('100%').align(Alignment.Top).scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
@@ -363,7 +384,7 @@ export struct StarLettersPage {
             font: { size: 15, weight: FontWeight.Medium, family: this.displayFont } }))
         TabContent() {
           StarwardRefresh({ refreshEnabled: this.active && !this.model.loading,
-            request: async () => { await this.model.refresh(); }, content: () => { this.scrollContent() } })
+            request: async () => { await this.refreshArchive(); }, content: () => { this.scrollContent() } })
         }.tabBar(SubTabBarStyle.of('星海信笺').id('star-letters-tab')
           .indicator({ color: $r('app.color.accent'), height: 2 })
           .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'),

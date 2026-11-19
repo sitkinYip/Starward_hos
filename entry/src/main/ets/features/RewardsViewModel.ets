@@ -12,8 +12,10 @@ export class RewardsViewModel {
   @Trace loading: boolean = false;
   @Trace loaded: boolean = false;
   @Trace error: string = '';
+  @Trace showSyncNotice: boolean = false;
   private owner: string = '';
   private active: boolean = false;
+  private syncFailed: boolean = false;
   private pending: ReadCancellation | null = null;
   private timer: number = -1;
   private readonly repository: GameRepository;
@@ -41,6 +43,7 @@ export class RewardsViewModel {
     } else {
       this.cancelRead();
       this.close();
+      this.dismissSyncNotice();
     }
   }
 
@@ -54,6 +57,10 @@ export class RewardsViewModel {
     this.selected = null;
   }
 
+  dismissSyncNotice(): void {
+    this.showSyncNotice = false;
+  }
+
   async refresh(): Promise<void> {
     if (!this.active) { return; }
     // An explicit refresh supersedes a poll with a new account-bound read.
@@ -65,6 +72,12 @@ export class RewardsViewModel {
     this.entries = [];
     this.loaded = false;
     this.close();
+    this.resolveSyncFailure();
+  }
+
+  private resolveSyncFailure(): void {
+    this.syncFailed = false;
+    this.dismissSyncNotice();
   }
 
   private cancelRead(): void {
@@ -97,6 +110,7 @@ export class RewardsViewModel {
       }
       this.loaded = true;
       this.error = '';
+      this.resolveSyncFailure();
     } catch (error) {
       if (this.pending !== attempt) { return; }
       this.acceptError(error as Object);
@@ -114,6 +128,7 @@ export class RewardsViewModel {
 
   private acceptError(error: Object): void {
     if (error instanceof GameFailure) {
+      if (error.code === 'CANCELLED') { return; }
       if (error.status === 401 || error.code === 'ACCOUNT_DISABLED' || error.code === 'PASSWORD_CHANGE_REQUIRED') {
         this.clear();
         this.rejectSession(error);
@@ -122,8 +137,22 @@ export class RewardsViewModel {
       if (error.status === 403 || error.status === 404 || error.status === 410 ||
         error.code === 'REWARDS_SCOPE_MISMATCH') {
         this.clear();
+      } else if (this.loaded && this.transientFailure(error)) {
+        this.error = '';
+        if (!this.syncFailed) {
+          this.syncFailed = true;
+          this.showSyncNotice = true;
+        }
+        return;
       }
     }
+    this.resolveSyncFailure();
     this.error = error instanceof Error && error.message.length > 0 ? error.message : '暂时无法打开收藏。';
+  }
+
+  private transientFailure(error: GameFailure): boolean {
+    if (error.code === 'CONTRACT_ERROR') { return false; }
+    return error.code === 'NETWORK_ERROR' || error.code === 'TIMEOUT' || error.status === 408 ||
+      error.status === 429 || (error.status >= 500 && error.status < 600);
   }
 }

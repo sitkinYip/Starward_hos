@@ -1,0 +1,45 @@
+{
+  "command": "pnpm verify:release",
+  "exitCode": 0,
+  "baselineCommit": "7f7c789c3c909bd10710d407b349b5996b771816",
+  "workingTreeSources": {
+    "e2e/mailbox.spec.ts": "a409ed1c028988488e17a61d773d68fc6af1a382f9dd56ccd51642cc0624e6f2",
+    "e2e/quest-flow.spec.ts": "845883d362d072d5674b40c45f02ef7f73368e3572855dc65f4d85c9a1762d60",
+    "src/components/ui/Toast.tsx": "b5965864578975cc32098f634dd6c2d2bada27414b673d2805fe508a67856375",
+    "src/config/ui-copy.ts": "84291d188380446e4e849fca52b626020e1c3e7c1024f2eb1eb3a6acaeecf95b",
+    "src/features/game/GameContext.tsx": "1e1d0f0351c7abf7c5adb8288882e40701c2a4ce5ffb572b42e9c02e2c9a2874",
+    "src/features/game/GameNotificationCenter.tsx": "5dd737d137221d13882bf84a9fc23562142a9eab869eb6b9e7386db691b3c8c7",
+    "src/features/game/GamePlayPage.tsx": "cb84580dd1db5239416073f644f2651efabaf733b59cd32c2b16de0bd36e819a",
+    "src/features/game/components/GameNavigation.tsx": "8c2b13e3b641bc354b0d2f063bdd7dd4107a61b0987ffee3dc825ad4b699cc94",
+    "src/features/game/game-queries.ts": "8ce54518edf5f2a2633ae973706d8edbea0f0cc0984e5ee19f5d5961a94862ee",
+    "src/features/notification/NotificationCenter.test.tsx": "19f5e6752abeaf8322805842fba43a766359c3f74f6295a72dfa371010888755",
+    "src/features/notification/NotificationCenter.tsx": "14fcd8d608caa60fe27e7b71fa471c4337cbab4830e24e9b88cb422419249e39",
+    "src/features/notification/useNotifications.ts": "7a9da3f956da6b0b6b6098c168090758888bbb07be28e26cb5aaa2cd16c5508d",
+    "src/styles/components/controls-and-overlays.css": "59e37101279aaac9192fa116701a04c8ba75b212311464b1e92de5ee8c845e86",
+    "src/styles/effects/archive-lighting.css": "7f0d7422c17cf342fcb25feddca2055a05f3a06749181921a1ce72ecbb088aca",
+    "src/styles/features/notifications.css": "0e2948890803fbdce4ac49e671f258f74faedca7bbadb809bc8279524654f839",
+    "src/styles/layout/game-shell.css": "4f528c89597ffc016b070264b62184ffa3c32c6a5f0839b12bb9c022ae799fb3",
+    "src/features/game/GameNotificationSignals.tsx": "e98fb7e8817d2ec4584c95f214f400d5bfd5433806ec4a20d45e7fdefdce0243",
+    "src/features/game/GameNotificationSignals.test.tsx": "a8e75ecda7964a13c0a7f2dc31b0dcb99ef35522d4e2492e41158dae93536a5e"
+  },
+  "unit": {
+    "files": 71,
+    "passed": 333,
+    "failed": 0
+  },
+  "chromium": {
+    "passed": 132,
+    "failed": 0
+  },
+  "mobileWebKit": {
+    "passed": 28,
+    "failed": 0
+  },
+  "previewAndProductionArtifactsVerified": true,
+  "formatStyleMotionLintPassed": true,
+  "existingLintWarning": "e2e/network-preview.tsx react(only-export-components)",
+  "unauthenticatedReadOnlyBackendProbe": "passed",
+  "remoteCiExecuted": false,
+  "deployed": false,
+  "fullLogSha256": "a9b8bcc636978cc4d4783e551fbde5b3f481bbc08c07ef942815694f3ecd3af0"
+}

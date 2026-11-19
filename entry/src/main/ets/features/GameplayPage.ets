@@ -145,6 +145,7 @@ export struct GameplayPage {
   @Event openNarrative: (assignmentId: string, contentId: string) => void = () => {};
   @Event openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) => boolean = () => false;
   @Event openJourneyLink: (href: string) => boolean = () => false;
+  @Event openInbox: () => void = () => {};
   @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
   @Event finaleBackdropChanged: (visible: boolean) => void = () => {};
   @Local seenCompletionRevision: number = 0;
@@ -413,7 +414,7 @@ export struct GameplayPage {
 
   private scrollBottomClearance(): number {
     const floatingControl: number = this.hasBgm() ? QUEST_BGM_SIZE :
-      this.journey.entries.length > 0 ? JOURNEY_LAUNCHER_SIZE : 0;
+      this.journey.unreadCount > 0 ? JOURNEY_LAUNCHER_SIZE : 0;
     const baseline: number = this.bottomClearance + floatingControl;
     if (this.finalDestination() !== null) { return baseline + this.destinationHeight + 14; }
     if (this.attentionClue() !== null || (this.attentionReserveOwner.length > 0 &&
@@ -542,7 +543,7 @@ export struct GameplayPage {
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
     'play.refreshing', 'play.advancing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
     'textClue', 'completionNotice', 'combinationSequenceActive', 'rankNotice', 'journey.entries',
-    'journey.gameplayReady', 'journey.routeArchive', 'accountCovered')
+    'journey.gameplayReady', 'journey.routeArchive', 'journey.automaticDismissedRevision', 'accountCovered')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -932,7 +933,8 @@ export struct GameplayPage {
   }
 
   @Monitor('accountCovered', 'narrativeCovered', 'recoveryVisible', 'viewer.visible', 'viewer.closing',
-    'completionNotice', 'rankNotice', 'journey.entries', 'journey.gameplayReady', 'journey.routeArchive')
+    'completionNotice', 'rankNotice', 'journey.entries', 'journey.gameplayReady', 'journey.routeArchive',
+    'journey.automaticDismissedRevision')
   inlineVideoOverlayChanged(): void {
     if (this.inlineVideo.visible && (this.accountCovered || this.narrativeCovered || this.recoveryVisible ||
       this.viewer.visible || this.viewer.closing || this.completionNotice !== null || this.rankNotice !== null ||
@@ -1659,11 +1661,12 @@ export struct GameplayPage {
   }
 
   private displayedJourneyNotification(): GameNotification | null {
-    return this.journeyPresentationReady() ? this.manualJourneyNotification() ?? this.journey.oldestUnread : null;
+    return this.journeyPresentationReady() ? this.manualJourneyNotification() ??
+      this.journey.automaticUnreadOnRoute(this.play.snapshot?.detail.id ?? '') : null;
   }
 
   private showJourneyLauncher(): boolean {
-    return this.journeyPresentationReady() && this.journey.entries.length > 0 &&
+    return this.journeyPresentationReady() && this.journey.unreadCount > 0 &&
       this.displayedJourneyNotification() === null &&
       this.viewportHeight - this.foregroundTopInset() - this.bgmLayoutBottomInset() >= JOURNEY_LAUNCHER_SIZE + 24;
   }
@@ -2002,7 +2005,7 @@ export struct GameplayPage {
           Text('正在展开你的旅程…').id('gameplay-loading').width('100%')
             .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))
         } else if (this.play.error.length > 0) {
-          ErrorNotice({ message: this.play.error, retryable: this.interactionReady(),
+          ErrorNotice({ message: this.play.error, retryable: this.interactionReady(), showReturn: true,
             retry: () => this.play.reload(), returnHome: () => this.leave() })
         } else if (this.play.snapshot !== null && this.play.snapshot.detail.status === 'cancelled') {
           Text('本次场次已撤回').id('gameplay-cancelled').width('100%').fontFamily(this.displayFont)
@@ -2081,13 +2084,14 @@ export struct GameplayPage {
           } })
       }
       if (this.showJourneyLauncher()) {
-        StarwardJourneyLauncher({ entries: this.journey.entries, unreadCount: this.journey.unreadCount,
+        StarwardJourneyLauncher({ entries: this.journey.unreadEntries, unreadCount: this.journey.unreadCount,
           viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
           topInset: this.foregroundTopInset(), bottomInset: this.bgmLayoutBottomInset(),
           leftInset: this.leftInset, rightInset: this.rightInset, displayFont: this.displayFont,
           bgmLeft: this.showBgmControl() ? this.bgmLeft() : -1, bgmTop: this.showBgmControl() ? this.bgmTop() : -1,
           combinationDock: this.showCombinationLauncher() ? this.combinationDock : null,
-          reducedMotion: this.reducedMotion, select: (id: string) => this.openManualJourney(id) })
+          reducedMotion: this.reducedMotion, select: (id: string) => this.openManualJourney(id),
+          openInbox: () => this.openInbox() })
       }
       if (this.showAnswerGuide()) {
         Column() {

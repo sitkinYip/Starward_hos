@@ -15,6 +15,15 @@ import { PushDevice, PushStatus } from '../business/PushRegistration';
 
 const ASSIGNMENT_SYNC_INTERVAL_MS: number = 5000;
 
+function loginConnectionMessage(error: Object): string {
+  if (!(error instanceof GameFailure)) { return ''; }
+  if (error.code === 'TLS_ERROR') { return '安全连接失败，请稍后重试。'; }
+  if (error.code === 'TIMEOUT' || error.status === 408) { return '连接超时，请稍后重试。'; }
+  if (error.code === 'NETWORK_ERROR') { return '网络连接中断，请检查网络后重试。'; }
+  if (error.status === 429) { return '登录请求过于频繁，请稍后重试。'; }
+  return error.status >= 500 ? '登录服务暂不可用，请稍后重试。' : '';
+}
+
 /** A lobby cycle owns two independent requests, each with its own NetworkKit cancellation. */
 class LobbyRead {
   readonly player: ReadCancellation = new ReadCancellation();
@@ -34,6 +43,7 @@ export class SliceViewModel {
   @Trace busy: boolean = false;
   @Trace error: string = '';
   @Trace errorCode: string = '';
+  @Trace loginNetworkError: boolean = false;
   @Trace player: Player = new Player();
   @Trace items: AssignmentSummary[] = [];
   @Trace detail: AssignmentDetail = new AssignmentDetail();
@@ -41,6 +51,7 @@ export class SliceViewModel {
   @Trace listBusy: boolean = false;
   @Trace detailBusy: boolean = false;
   @Trace listError: string = '';
+  @Trace lobbyHasList: boolean = false;
   @Trace showLobbySyncNotice: boolean = false;
   @Trace detailError: string = '';
   @Trace profileName: string = '';
@@ -81,7 +92,6 @@ export class SliceViewModel {
   private lobbyPolling: boolean = false;
   private lobbyPollTimer: number = -1;
   private lobbyRead: LobbyRead | null = null;
-  private lobbyHasList: boolean = false;
   private lobbyPlayerReadFailed: boolean = false;
   private lobbyListReadFailed: boolean = false;
   private readonly lobbySyncIntervalMs: number;
@@ -409,6 +419,7 @@ export class SliceViewModel {
     this.busy = true;
     this.error = '';
     this.errorCode = '';
+    this.loginNetworkError = false;
     try {
       const player: Player | null = await this.repository.restoreSession(read);
       if (generation !== this.generation) { return; }
@@ -444,6 +455,7 @@ export class SliceViewModel {
     if (this.busy || this.gate !== 'login') {
       return;
     }
+    this.loginNetworkError = false;
     if (account.trim().length === 0 || password.length === 0) {
       this.error = '请输入账号和密码。';
       this.errorCode = 'VALIDATION_ERROR';
@@ -464,7 +476,9 @@ export class SliceViewModel {
       }
     } catch (error) {
       if (generation === this.generation) {
-        this.error = this.message(error as Object);
+        const connectionMessage: string = loginConnectionMessage(error as Object);
+        this.loginNetworkError = connectionMessage.length > 0;
+        this.error = this.loginNetworkError ? connectionMessage : this.message(error as Object);
         this.errorCode = error instanceof GameFailure ? error.code : 'UNKNOWN_ERROR';
         if (this.errorCode === 'CREDENTIAL_CLEAR_ERROR') { this.gate = 'signout-error'; }
       }
@@ -472,6 +486,13 @@ export class SliceViewModel {
       if (generation === this.generation) {
         this.busy = false;
       }
+    }
+  }
+
+  clearLoginInputError(): void {
+    if (this.gate === 'login' && !this.busy && !this.loginNetworkError) {
+      this.error = '';
+      this.errorCode = '';
     }
   }
 
@@ -564,7 +585,11 @@ export class SliceViewModel {
         if (this.fatalPlayer(error as Object)) {
           this.rejectPlayerSession(error as Object);
         } else if (!(error instanceof GameFailure && error.code === 'CANCELLED')) {
-          this.listError = this.message(error as Object);
+          if (this.lobbyHasList) {
+            this.setLobbyReadFailed(readingPlayer, true);
+          } else {
+            this.listError = this.message(error as Object);
+          }
           if (readingPlayer && (this.play.visible || this.canPollBriefing())) { this.play.setPlayerSyncFailed(true); }
         }
       }
@@ -928,6 +953,7 @@ export class SliceViewModel {
     this.busy = false;
     this.error = '';
     this.errorCode = '';
+    this.loginNetworkError = false;
     this.player = new Player();
     this.items = [];
     this.clearDetail();
