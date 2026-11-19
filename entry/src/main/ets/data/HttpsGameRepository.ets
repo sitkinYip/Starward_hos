@@ -13,6 +13,8 @@ import { GameNotification } from '../business/GameNotification';
 import { GameReward } from '../business/GameReward';
 import { PushDevice, PushRegistration, PushStatus } from '../business/PushRegistration';
 import { PushBindingClient } from './PushBindingClient';
+import { PushSubscription, PushSubscriptionCommand, PushSubscriptionList } from '../business/PushSubscription';
+import { decodePushSubscription, decodePushSubscriptions } from './PushSubscriptionDecoder';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
   decodeNotificationReceipt, decodeNotifications, decodeRewards, LoginResult, PasswordResult } from './DtoDecoder';
 
@@ -454,6 +456,24 @@ export class HttpsGameRepository implements GameRepository {
       }
     }
     return items;
+  }
+
+  async pushSubscriptions(cancellation?: ReadCancellation): Promise<PushSubscriptionList> {
+    const generation: number = this.requireSession();
+    return decodePushSubscriptions(await this.request('/api/questions/v1/me/push/subscriptions',
+      'GET', '', this.token, generation, cancellation));
+  }
+
+  async updatePushSubscription(assignmentId: string, command: PushSubscriptionCommand): Promise<PushSubscription> {
+    const generation: number = this.requireSession();
+    if (assignmentId.length === 0 || command.requestId.length === 0 || command.requestId.length > 100 ||
+      !Number.isInteger(command.expectedRevision) || command.expectedRevision < 0 ||
+      (command.pushEnabled && !command.subscribed)) {
+      throw new GameFailure('VALIDATION_ERROR', '无法确认本次订阅操作，请重新打开设置。');
+    }
+    return decodePushSubscription(await this.request('/api/questions/v1/assignments/' +
+      encodeURIComponent(assignmentId) + '/push-subscription', 'PUT', JSON.stringify(command),
+      this.token, generation), assignmentId);
   }
 
   async assignment(id: string): Promise<AssignmentDetail> {

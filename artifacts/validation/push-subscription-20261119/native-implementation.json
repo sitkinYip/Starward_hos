@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-19",
+  "api": 26,
+  "build": {
+    "command": "scripts/hm.sh build",
+    "result": "passed",
+    "logSha256": "81bf30e0b5589d1193332ac04a9818209e9988a3416f74b6c904dbb543dbb85b"
+  },
+  "tests": {
+    "tests": 255,
+    "passed": 255,
+    "failed": 0,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "linter": {
+    "filesChecked": 1,
+    "issues": 1,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 1
+  },
+  "sourceSha256": {
+    "entry/src/main/ets/business/PushSubscription.ets": "dedf9b02355c934965e5d65e451901b6fcc6d0f156edd9b67f35e7a8a9eba96b",
+    "entry/src/main/ets/business/GameRepository.ets": "d0d86218eb9a5493829d05e34d7113410aeec19e26533b64f6e0b5f02f9fb2f7",
+    "entry/src/main/ets/data/PushSubscriptionDecoder.ets": "8f886b334f66bc5fc715ab9bc3c9b5f1df800ef0135299c822e27c68287920be",
+    "entry/src/main/ets/data/HttpsGameRepository.ets": "a6c8b0f534a735d75f9b7d13c2bb4dd51ea69303ce21dcba8ff4838ee95ccce7",
+    "entry/src/main/ets/features/PushSubscriptionsViewModel.ets": "89ab4bb19599be5cd19bd88d27d76856a639d6acb8b4e951fc7e493c83b83c47",
+    "entry/src/main/ets/features/SettingsPage.ets": "4c8e1ba7fff57fa1de0c86dcd42f494f28ca7a274e120a9e67d0f5cbb0e9637b",
+    "entry/src/main/ets/features/SliceViewModel.ets": "f35679d6bcc9b762c059616b9292841d0499271f8936d62964a24a650a50b16d",
+    "entry/src/main/ets/pages/Index.ets": "070132e58149bb2991efadd3e8ab798798c6a1b0dfcf3f468b15520b2598ab55",
+    "entry/src/main/ets/platform/HttpTransport.ets": "fa5f8211a2e967227e7f59e4f3fff68dce9311297f750c331315f289e9139670",
+    "entry/src/main/ets/platform/ProductionTransport.ets": "1d9c38b93ea670aced4ac03798d2fe992917a884e2d49262b2e5ae38afc3746b",
+    "entry/src/main/ets/ui/StarwardPushSubscriptions.ets": "69d9fe3e5e8c60f08a4239e8685daea4ffbd25ac16b917cb57a2c40912947c2d",
+    "entry/src/test/PushSubscriptions.test.ets": "edcbe685e56ad8cf224d170d0d6ad7fbe18765b620179e494d412e918df760ae",
+    "entry/src/test/List.test.ets": "6d3ee21abb164056f3b030f14e1622cbb2f5fefbf03568d3ace8335c80b5301d"
+  },
+  "notCovered": [
+    "new signed invitation package",
+    "installation and straight-phone UI",
+    "isolated HTTPS interaction",
+    "Huawei SUBSCRIPTION rights approval",
+    "production deployment and delivery"
+  ],
+  "testSourceNote": "Final 255-test run covers unchanged business and test sources. Subsequent UI-only defensive changes were recompiled successfully."
+}

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "push-subscriptions-20261119",
+  "recordedAt": "2026-11-19T03:36:51Z",
+  "observedAt": "2026-11-19T03:37:25Z",
+  "environment": "production PocketBase; read-only release verification",
+  "phase": "recorded",
+  "revision": 15,
+  "blocked": false,
+  "inFlight": false,
+  "activeMarker": false,
+  "targetImageTag": "questions-pocketbase:0.40.1-push-subscriptions-20261119-amd64",
+  "productionImageConfigDigest": "sha256:3cd3693dc9045afbb7293a9fd66bb9538ef8349ba34dd3bb4b4a868daa2736f1",
+  "packageSha256": "7b35cfba68d985f628239de254af7cf5d61fd27355cfdf454006d33a914b5b57",
+  "sourceManifestSha256": "dfc6c08644dad1305598ac5d03d8bc18c33a9efd85b18acf7f0a49d0185544d4",
+  "sourceReproducibility": "frozen worktree manifest and image archive; Git HEAD alone is insufficient",
+  "sourceFileCount": 29,
+  "migration": {
+    "newFiles": [
+      "1795075200_push_subscriptions.js"
+    ],
+    "newMigrationAppliedExactlyOnce": true,
+    "newPrivateEmptyTables": {
+      "game_push_notice_contexts": 0,
+      "game_push_notice_deliveries": 0,
+      "game_push_subscriptions": 0
+    },
+    "historicalLedgerAndExistingSchemaPreserved": true,
+    "addedSchemaObjects": 11,
+    "migrationFileCount": 16,
+    "collectionCount": 39,
+    "tableCount": 44,
+    "ledgerSha256": "fc529327b8f0b7ce5969f0e285b66c0f58cd7b2ff17d7a5e33b4f0eb74b10266",
+    "schemaDigest": "5bb865af5ff2304f582df5fe47041824869de0ee1e1b5bee1c913af50e7e35ef"
+  },
+  "backup": {
+    "verified": true,
+    "archiveBytes": 5147652,
+    "archiveSha256": "350d86f11b04ae245e9877d2f3313449d80ebccd0b679c06589cfd2f900378f2",
+    "fileManifestSha256": "2fa0d7819a9384f86825e609ecf34c845f32e6fffc645185fc6f3dcb5e0ff934",
+    "restoredFileSetAndDatabaseMatch": true,
+    "restoredMigrationAndTwoServeCyclesStable": true,
+    "verificationSha256": "89820190babba314cacd116d56860a97ff940ab3a69acc0a52603e5e4bb3826d"
+  },
+  "switch": {
+    "maintenanceStartedAt": "2026-11-19T03:05:48Z",
+    "verifiedAt": "2026-11-19T03:10:17Z",
+    "sameContainerIdentityThroughFinalize": true,
+    "restartCount": 0,
+    "distinctConsecutiveSuccessfulHealthchecks": 3,
+    "latestThreeHealthchecks": [
+      {
+        "end": "2026-11-19T11:36:52.408122926+08:00",
+        "exitCode": 0,
+        "start": "2026-11-19T11:36:52.351546355+08:00"
+      },
+      {
+        "end": "2026-11-19T11:37:07.449776662+08:00",
+        "exitCode": 0,
+        "start": "2026-11-19T11:37:07.408869153+08:00"
+      },
+      {
+        "end": "2026-11-19T11:37:22.490660591+08:00",
+        "exitCode": 0,
+        "start": "2026-11-19T11:37:22.450746382+08:00"
+      }
+    ],
+    "healthStatus": 200,
+    "unauthenticatedProbeStatuses": {
+      "/api/questions/v1/admin/me": 401,
+      "/api/questions/v1/assignments": 401,
+      "/api/questions/v1/admin/push-settings": 401
+    },
+    "composeOnlyImageChanged": true,
+    "singleDataMount": true,
+    "loopbackOnly": true
+  },
+  "activation": {
+    "performedByRelease": false,
+    "pushEnvNames": [],
+    "serverEnabled": false,
+    "subscriptionApproved": false,
+    "productionCredentialsConfiguredThisRound": false,
+    "productionWriteTestPerformed": false,
+    "realHuaweiDeliveryTestedThisRound": false,
+    "adminFrontendDeploymentVerifiedThisRound": false,
+    "invitationDistributionVerifiedByBackendRelease": false
+  },
+  "hashes": {
+    "compose": "564f5c9234a94f4a8eb162b1a8543ca4c694b9270630066fe0e584d60590e3ec",
+    "rootRelease": "9005ab1c43d459eb81ad8b7118a940535577528cf0edf41a44686fcedb02fdce",
+    "rootChecksums": "e4555a4285854f0e47fcd255411cbe6d6c0f3c76557b35f5141694dfa36c0d0b",
+    "finalReport": "1681bb3f9d3fedc68b8274235ed2f995048d177ee3eb79c4283ac0d66415f762",
+    "migrationVerification": "52042184fc36e27083cc633d2cbb4ada4fd66f14a0f603f120fc99688861b8cd"
+  },
+  "evidencePolicy": "Private state, filesystem paths, container IDs, credentials, device/player identifiers and business row data are omitted."
+}

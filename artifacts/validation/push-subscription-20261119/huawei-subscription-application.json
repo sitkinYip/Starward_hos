@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "application": {
+    "name": "赴星之约",
+    "bundleName": "com.sitkin.starward"
+  },
+  "category": "SUBSCRIPTION",
+  "displayCategory": "订阅",
+  "submission": {
+    "submitted": true,
+    "submittedAtLocal": "2026-11-19 11:43:36",
+    "timezone": "Asia/Shanghai",
+    "consoleStatus": "审核中",
+    "approved": false,
+    "observedBy": "root through official Huawei console; screenshot independently viewed by implementing agent"
+  },
+  "materials": [
+    {
+      "file": "subscription-default.jpg",
+      "sha256": "b423eddc4e82650c13fe7dfa782e0f493bc3890c0dc470640b882360bfc2a6da",
+      "uploadedAndUsed": true
+    },
+    {
+      "file": "subscription-confirmation.jpg",
+      "sha256": "2b9c293876ee38f5d77de33a6583f12bc7eae5143deb310d4fe0f04699d5e370",
+      "uploadedAndUsed": true
+    },
+    {
+      "file": "subscription-enabled.jpg",
+      "sha256": "f61eb49ebcb56a1f7739e5bdbe8b249459d8919884a7bd3f158aeda516f0a651",
+      "uploadedAndUsed": true
+    }
+  ],
+  "consoleScreenshot": {
+    "file": "huawei-subscription-under-review.png",
+    "sha256": "0a9127fb21992850501483b69bb6f3d3f57004e76aab4eda78f8cb7646a92f6f",
+    "storage": "private local original; see platformEvidence for sanitized facts"
+  },
+  "additionalLegalConfirmationEncountered": false,
+  "runtimeActivation": {
+    "subscriptionApproved": false,
+    "senderEnabled": false,
+    "productionCredentialsConfiguredThisRound": false,
+    "actualHuaweiDeliveryTestedThisRound": false
+  },
+  "boundaries": [
+    "Submitted and under review does not mean approved",
+    "Formal distribution privacy remains unverified",
+    "Invitation submission and admin deployment have separate evidence",
+    "No real Huawei delivery is asserted by this report"
+  ],
+  "platformEvidence": "huawei-invitation-platform.json",
+  "privateOriginalScreenshotSha256": "0a9127fb21992850501483b69bb6f3d3f57004e76aab4eda78f8cb7646a92f6f"
+}

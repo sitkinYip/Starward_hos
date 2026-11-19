@@ -1,0 +1,42 @@
+{
+  "releaseTarget": {
+    "versionName": "0.1.2",
+    "versionCode": 4
+  },
+  "toolSourceSHA256": {
+    "scripts/verify-invite-package.py": "ab91df18eb51a80f4bb78ceba97c90c9736854aada8131a2c7e6fc27422e6a50",
+    "scripts/prepare-invite-candidate.py": "fa3dd2ae5769683a734afabc1ff3fc21c2bf74a3c08bb674d3d7a5fc529d555b",
+    "scripts/test-invite-package.py": "66bf84ab5bf077b84c67565ae682a9c6daaba6ae2b555f93c4abeaf6b1d89c03"
+  },
+  "boundaryTests": {
+    "command": "python3 scripts/test-invite-package.py",
+    "tests": 9,
+    "failed": 0,
+    "exitCode": 0,
+    "syntheticPackagesOnly": true
+  },
+  "priorSignedCandidateSDKReverification": {
+    "bundleName": "com.sitkin.starward",
+    "versionName": "0.1.1",
+    "versionCode": 3,
+    "productionMode": "production-invite-push",
+    "signedAppSHA256": "3dd965ff318418252c01289674657d901c9fdd6b24ec9fea990587e16d054724",
+    "unsignedAppSHA256": "a7badceb6eb1eef03468796e96c440600d56c40266e7612ee8a05a2ab10494d9",
+    "compiledArkTSPayloadSHA256": "8695c4ce5b107f4ac08f18934ac58c8a783ab745831813288c55692d96163cbc",
+    "allHAPEntriesMatchUnsigned": true,
+    "sdkOuterAppSignatureVerified": true,
+    "sdkEmbeddedProfileVerified": true,
+    "sameDistributionIdentity": true,
+    "releaseProfileCurrentlyValid": true,
+    "releaseProfilePushCapability": true,
+    "isolatedResourcesPackaged": false,
+    "debugPrivacyMetadataPackaged": false,
+    "uploadVerified": false,
+    "invitationSubmittedByThisTool": false
+  },
+  "newCandidateFrozen": false,
+  "newCandidateBuilt": false,
+  "newCandidateSigned": false,
+  "newCandidateUploaded": false,
+  "invitationSubmitted": false
+}

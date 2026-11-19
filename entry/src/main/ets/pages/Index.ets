@@ -1851,6 +1851,7 @@ struct Index {
             themeError: this.themeError, pushVisible: AppEnvironment.pushEnabled, pushAvailable: this.pushAvailable(),
             pushBusy: this.pushBusy, pushPermission: this.pushPermission, pushStatus: this.pushStatus,
             pushSettingsError: this.pushSettingsError, appearanceControls: () => { this.themePicker() },
+            subscriptions: this.vm.pushSubscriptions, active: this.foreground && this.settingsOnTop(),
             openNotificationSettings: () => { void this.syncPush('settings'); },
             retryNotificationSync: () => { void this.syncPush('retry'); }
           })

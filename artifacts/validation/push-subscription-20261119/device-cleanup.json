@@ -1,0 +1,21 @@
+{
+  "logoutObserved": true,
+  "loginFormObserved": true,
+  "privateSubscriptionUIAbsent": true,
+  "realIsolatedRevoke": {
+    "method": "POST",
+    "path": "/api/questions/v1/push/revoke",
+    "status": 200,
+    "registered": false
+  },
+  "gameplayAndReadCountersUnchanged": true,
+  "subscriptionPutCountUnchanged": true,
+  "ownedReverseRemoved": true,
+  "removedMapping": {
+    "devicePort": 18443,
+    "hostPort": 52773
+  },
+  "persistentPreviewEnvironmentTouched": false,
+  "fixtureLifecycleStoppedByThisAgent": false,
+  "note": "The official logout uses the successful revoke route; an initial expectation of unregister was corrected without another logout or network operation."
+}

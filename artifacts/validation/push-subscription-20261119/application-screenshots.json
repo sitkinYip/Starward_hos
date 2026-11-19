@@ -1,0 +1,220 @@
+{
+  "date": "2026-11-19",
+  "complete": true,
+  "scope": "same final no-probe HAP, dedicated isolated synthetic player, actual native UI and real HTTPS to isolated PocketBase; no production calls or actual Huawei send",
+  "candidateHapSHA256": "188a6dfe90a2cf3b65220b35937f34a0d266fb5659dbd309a56e6acf314405aa",
+  "collectorSHA256": "5d48be9a5b7fa287fd42ad2452a3e7e3e4ddeed3b9c91849687974d17c4e2979",
+  "collectorExecution": "one unchanged collector run; official CLI screenshots, no reinstall, no preferences changed",
+  "realBinding": {
+    "registered": true,
+    "requests": [
+      {
+        "method": "POST",
+        "path": "/api/questions/v1/me/push/unregister",
+        "directRealPB": true,
+        "status": 200,
+        "registered": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/questions/v1/me/push/register",
+        "directRealPB": true,
+        "status": 200,
+        "registered": true
+      }
+    ],
+    "productionConnected": false,
+    "realCredentialsMounted": false,
+    "actualSendAttempted": false
+  },
+  "encoding": {
+    "tool": "macOS /usr/bin/sips",
+    "format": "JPEG",
+    "quality": 85,
+    "resized": false,
+    "cropped": false,
+    "overlaysAdded": false,
+    "contentEdited": false
+  },
+  "captures": [
+    {
+      "state": "subscription-default",
+      "rawTree": "subscription-default-1795059334726653000.json",
+      "png": "subscription-default-1795059334726653000.png",
+      "rawTreeSHA256": "dd6073a78e8ab6e9e4a48f2f527f88ed8f09a6912767de5ecd55973280f6cbbf",
+      "pngSHA256": "fa5dc59423ebc11bf0316997ac11da63b84ae7939ed60556085bfce87c359516",
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "notificationBindingErrorAbsent": true,
+      "jpeg": "subscription-default.jpg",
+      "jpegSHA256": "b423eddc4e82650c13fe7dfa782e0f493bc3890c0dc470640b882360bfc2a6da",
+      "jpegBytes": 207748,
+      "jpegDimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "subscription-confirmation",
+      "rawTree": "subscription-confirmation-1795059343812442000.json",
+      "png": "subscription-confirmation-1795059343812442000.png",
+      "rawTreeSHA256": "6da47f40541c81f9579fe74bab23b674a682da55659b611c7c5dd72bf9d50c50",
+      "pngSHA256": "faed2c9ce057a495e6b17254b8fb7a7b349fd3b483578e7f49d5565654301884",
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "notificationBindingErrorAbsent": true,
+      "jpeg": "subscription-confirmation.jpg",
+      "jpegSHA256": "2b9c293876ee38f5d77de33a6583f12bc7eae5143deb310d4fe0f04699d5e370",
+      "jpegBytes": 211490,
+      "jpegDimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "subscription-enabled",
+      "rawTree": "subscription-enabled-1795059353318500000.json",
+      "png": "subscription-enabled-1795059353318500000.png",
+      "rawTreeSHA256": "6de671b4aca0a403fc8c544581837480022d96eb7d37180cf1f353786225e3c4",
+      "pngSHA256": "b838c6d2af53102a726439508985324ef2e1e4651962b9c5b0eae3c693dbf93f",
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "notificationBindingErrorAbsent": true,
+      "jpeg": "subscription-enabled.jpg",
+      "jpegSHA256": "f61eb49ebcb56a1f7739e5bdbe8b249459d8919884a7bd3f158aeda516f0a651",
+      "jpegBytes": 211414,
+      "jpegDimensions": [
+        1260,
+        2720
+      ]
+    }
+  ],
+  "counterFacts": {
+    "starts": 0,
+    "answers": 0,
+    "readCount": 1,
+    "unreadCount": 2
+  },
+  "additionalPutCount": 3,
+  "initialRevision": 4,
+  "finalRevision": 7,
+  "materialStageLedger": [
+    {
+      "method": "PUT",
+      "status": 200,
+      "path": "/api/questions/v1/assignments/:assignmentId/push-subscription",
+      "command": {
+        "subscribed": false,
+        "pushEnabled": false,
+        "expectedRevision": 4
+      },
+      "requestIdSHA256": "029ff9ea5acd29d5432f6e22efbf23aba5643224e14c2e496160bc58354a713a"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/assignments"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/me/push/subscriptions"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/notifications"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/notifications"
+    },
+    {
+      "method": "PUT",
+      "status": 200,
+      "path": "/api/questions/v1/assignments/:assignmentId/push-subscription",
+      "command": {
+        "subscribed": true,
+        "pushEnabled": false,
+        "expectedRevision": 5
+      },
+      "requestIdSHA256": "17f74a0821ddecc7fabf4ab9bd36fe09f69574e6be228790b6819a46bc8af76d"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/assignments"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/me/push/subscriptions"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/notifications"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/notifications"
+    },
+    {
+      "method": "PUT",
+      "status": 200,
+      "path": "/api/questions/v1/assignments/:assignmentId/push-subscription",
+      "command": {
+        "subscribed": true,
+        "pushEnabled": true,
+        "expectedRevision": 6
+      },
+      "requestIdSHA256": "d9e4d6b669dbd14987acecb9fd6be89dd200ea1da1bb87f88678b8fb2e0d5329"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/assignments"
+    },
+    {
+      "method": "GET",
+      "status": 200,
+      "path": "/api/questions/v1/me/push/subscriptions"
+    }
+  ],
+  "independentRootImageReview": {
+    "complete": true,
+    "actualFilesViewed": [
+      "subscription-default.jpg",
+      "subscription-confirmation.jpg",
+      "subscription-enabled.jpg"
+    ],
+    "result": "passed",
+    "observations": [
+      "Brand styling and readability passed",
+      "Independent concrete-scene consent is clear",
+      "Subscribed state and cancellation entry are visible"
+    ],
+    "formalCandidatePrivacyVerified": false,
+    "actualHuaweiDeliveryVerified": false
+  },
+  "originalPrivatePNGsRetained": true,
+  "phoneFinalState": "Logged out through official device UI after material review; login form observed and isolated Push binding revoked200; owned HTTPS reverse removed. See device-cleanup.json.",
+  "mainValidationBaseline": "device-ui-https-main.json is preserved as the original 17-check/5-PUT baseline; this material stage adds exactly 3 isolated successful PUTs",
+  "cleanupReport": "device-cleanup.json",
+  "huaweiApplicationUse": {
+    "uploadedAndUsed": true,
+    "category": "SUBSCRIPTION",
+    "submittedAtLocal": "2026-11-19 11:43:36",
+    "consoleStatus": "审核中",
+    "approved": false,
+    "evidence": "huawei-subscription-application.json"
+  }
+}

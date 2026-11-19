@@ -12,6 +12,7 @@ import { RewardsViewModel } from './RewardsViewModel';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { PushDevice, PushStatus } from '../business/PushRegistration';
+import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
 
 const ASSIGNMENT_SYNC_INTERVAL_MS: number = 5000;
 
@@ -75,6 +76,7 @@ export class SliceViewModel {
   readonly starLetters: StarLettersViewModel;
   readonly journey: JourneyNotificationsViewModel;
   readonly rewards: RewardsViewModel;
+  readonly pushSubscriptions: PushSubscriptionsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
   private restoreRead: ReadCancellation | null = null;
@@ -114,6 +116,7 @@ export class SliceViewModel {
       this.error = message;
     });
     this.rewards = new RewardsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
+    this.pushSubscriptions = new PushSubscriptionsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
       if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
         this.publishDetail(snapshot.detail);
@@ -178,6 +181,7 @@ export class SliceViewModel {
     this.starLetters.bindOwner(player.mustChangePassword ? '' : player.id);
     this.journey.bindOwner(player.mustChangePassword ? '' : player.id);
     this.rewards.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.pushSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
       this.avatarImage = null;
@@ -381,6 +385,7 @@ export class SliceViewModel {
       this.starLetters.bindOwner('');
       this.journey.bindOwner('');
       this.rewards.bindOwner('');
+      this.pushSubscriptions.bindOwner('');
       this.listBusy = false;
       this.avatarRequest++;
       this.avatarBusy = false;
@@ -948,6 +953,7 @@ export class SliceViewModel {
     this.starLetters.bindOwner('');
     this.journey.bindOwner('');
     this.rewards.bindOwner('');
+    this.pushSubscriptions.bindOwner('');
     this.profileRevision++;
     this.avatarRequest++;
     this.busy = false;

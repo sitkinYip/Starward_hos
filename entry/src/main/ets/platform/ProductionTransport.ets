@@ -27,7 +27,10 @@ export class ProductionTransport implements HttpTransport {
       if (/^\/api\/questions\/v1\/assignments\/[^/?#]+\/answers$/.test(path)) { return 'answer'; }
       return 'write';
     }
-    if (request.method === 'PATCH') { return 'write'; }
+    if (request.method === 'PUT' && /^\/api\/questions\/v1\/assignments\/[^/?#]+\/push-subscription$/.test(path)) {
+      return 'push-subscription';
+    }
+    if (request.method === 'PATCH' || request.method === 'PUT') { return 'write'; }
     if (path === PLAYER_PATH) { return request.token.length === 0 ? 'preflight' : 'player'; }
     if (path === ASSIGNMENTS_PATH) { return 'assignments'; }
     if (path.startsWith(ASSIGNMENTS_PATH + '/')) { return 'assignment'; }
@@ -40,7 +43,9 @@ export class ProductionTransport implements HttpTransport {
       throw new GameFailure('CONFIG_ERROR', '生产联调请求的域名无效。');
     }
     const path: string = request.url.substring(PRODUCTION_API_ORIGIN.length);
-    if (request.method !== 'GET' && request.method !== 'POST' && request.method !== 'PATCH') {
+    const subscriptionPut: boolean = request.method === 'PUT' &&
+      /^\/api\/questions\/v1\/assignments\/[^/?#]+\/push-subscription$/.test(path);
+    if (request.method !== 'GET' && request.method !== 'POST' && request.method !== 'PATCH' && !subscriptionPut) {
       throw new GameFailure('CONFIG_ERROR', '生产联调请求的方法无效。');
     }
     // Login and short-lived protected-file access do not change game progress or player data.

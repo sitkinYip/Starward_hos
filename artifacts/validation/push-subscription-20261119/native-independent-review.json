@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-19",
+  "reviewer": "independent backend agent; root reviewed runtime diff and decoder",
+  "scope": [
+    "native runtime diff",
+    "PushSubscription models/decoder/viewmodel/ui",
+    "new subscription tests",
+    "production transport method gate",
+    "official API 26 declarations"
+  ],
+  "result": "no blocking finding; one documented non-blocking background read issue",
+  "findings": [
+    {
+      "file": "entry/src/main/ets/features/PushSubscriptionsViewModel.ets",
+      "line": 224,
+      "severity": "non-blocking",
+      "description": "If a pending subscription PUT succeeds after settings is hidden/backgrounded, it still starts the two fresh GETs. Account generation guards remain, and no background consent dialog or automatic enable occurs.",
+      "disposition": "Known in already submitted 0.1.2 candidate; defer reads until foreground in a later small optimization."
+    }
+  ],
+  "frozenRuntimeModified": false,
+  "limitations": "Static and isolated state-machine review does not replace actual Huawei delivery or formal distribution privacy testing."
+}

@@ -1,5 +1,7 @@
 import { PushStatus } from '../business/PushRegistration';
 import { InlineError } from '../ui/ErrorMessages';
+import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
+import { StarwardPushSubscriptions } from '../ui/StarwardPushSubscriptions';
 
 /** Settings content uses the system notification options and the shared appearance controls. */
 @ComponentV2
@@ -14,6 +16,8 @@ export struct SettingsPage {
   @Param pushPermission: boolean | null = null;
   @Param pushStatus: PushStatus = 'unknown';
   @Param pushSettingsError: string = '';
+  @Require @Param subscriptions: PushSubscriptionsViewModel;
+  @Param active: boolean = false;
   @BuilderParam appearanceControls: () => void;
   @Event openNotificationSettings: () => void = () => {};
   @Event retryNotificationSync: () => void = () => {};
@@ -91,6 +95,8 @@ export struct SettingsPage {
             Text('通知').fontSize(13).fontWeight(FontWeight.Medium).fontColor($r('app.color.muted'))
               .margin({ left: 2 })
             this.notifications()
+            StarwardPushSubscriptions({ model: this.subscriptions, active: this.active,
+              permission: this.pushPermission, openSystemSettings: () => this.openNotificationSettings() })
           }.width('100%').alignItems(HorizontalAlign.Start)
         }
       }.width('100%').constraintSize({ maxWidth: 480 }).alignItems(HorizontalAlign.Start)

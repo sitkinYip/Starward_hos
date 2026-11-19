@@ -5,6 +5,7 @@ import { ReadCancellation } from './ReadCancellation';
 import { GameNotification } from './GameNotification';
 import { GameReward } from './GameReward';
 import { PushDevice, PushStatus } from './PushRegistration';
+import { PushSubscription, PushSubscriptionCommand, PushSubscriptionList } from './PushSubscription';
 
 export interface GameRepository {
   readonly mode: string;
@@ -28,5 +29,7 @@ export interface GameRepository {
   syncPush?(force: boolean): Promise<PushStatus>;
   matchesPushProfile?(profileId: string): Promise<boolean>;
   retryPushRemoval?(): void;
+  pushSubscriptions?(cancellation?: ReadCancellation): Promise<PushSubscriptionList>;
+  updatePushSubscription?(assignmentId: string, command: PushSubscriptionCommand): Promise<PushSubscription>;
   logout(): Promise<void>;
 }

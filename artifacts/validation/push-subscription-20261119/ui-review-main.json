@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-19",
+  "reference": "Existing native SettingsPage brand tokens and approved native component strategy; the new scene-specific management section has no frozen Web equivalent.",
+  "reviewer": "implementing agent viewed original main/day/night and all three clean post-bridge images; root independently viewed main day/night confirmation originals and all three clean JPEGs",
+  "actualImagesViewed": [
+    "default-list-day",
+    "independent-confirm-day",
+    "independent-confirm-dark",
+    "subscription-default",
+    "subscription-confirmation",
+    "subscription-enabled"
+  ],
+  "observations": [
+    "Scene title, subscription status and action remain grouped in a compact settings row.",
+    "Independent consent names the specific synthetic scene and states narrative mail/level events, with receive and decline actions visually distinct.",
+    "Day green and night gold palettes are readable; controls and text are fully visible in the examined original screenshots.",
+    "System status and gesture areas remain covered by the modal mask with no separate white/black filler blocks.",
+    "The long synthetic scene name wraps to two lines in the consent heading; no clipping observed.",
+    "Subscription controls were exercised directly; screenshot geometry is reported in physical pixels without inferring density from source constants."
+  ],
+  "physicalGeometry": [
+    {
+      "state": "default-list-day",
+      "role": "push-subscribe-",
+      "physicalPixelBounds": [
+        946,
+        1644,
+        1148,
+        1787
+      ],
+      "widthPixels": 202,
+      "heightPixels": 143,
+      "visible": true,
+      "enabled": true,
+      "clickable": true,
+      "screenPixels": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "independent-confirm-day",
+      "role": "push-subscription-confirm",
+      "physicalPixelBounds": [
+        146,
+        1498,
+        1114,
+        1648
+      ],
+      "widthPixels": 968,
+      "heightPixels": 150,
+      "visible": true,
+      "enabled": true,
+      "clickable": true,
+      "screenPixels": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "independent-confirm-dark",
+      "role": "push-subscription-confirm",
+      "physicalPixelBounds": [
+        146,
+        1498,
+        1114,
+        1648
+      ],
+      "widthPixels": 968,
+      "heightPixels": 150,
+      "visible": true,
+      "enabled": true,
+      "clickable": true,
+      "screenPixels": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "subscribed-can-cancel-day",
+      "role": "push-unsubscribe-",
+      "physicalPixelBounds": [
+        938,
+        1644,
+        1147,
+        1787
+      ],
+      "widthPixels": 209,
+      "heightPixels": 143,
+      "visible": true,
+      "enabled": true,
+      "clickable": true,
+      "screenPixels": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "put-503-same-command-pending",
+      "role": "push-subscription-retry",
+      "physicalPixelBounds": [
+        113,
+        1958,
+        386,
+        2101
+      ],
+      "widthPixels": 273,
+      "heightPixels": 143,
+      "visible": true,
+      "enabled": true,
+      "clickable": true,
+      "screenPixels": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "list-503-local-retry",
+      "role": "push-subscriptions-retry",
+      "physicalPixelBounds": [
+        113,
+        2094,
+        386,
+        2237
+      ],
+      "widthPixels": 273,
+      "heightPixels": 143,
+      "visible": true,
+      "enabled": true,
+      "clickable": true,
+      "screenPixels": [
+        1260,
+        2720
+      ]
+    }
+  ],
+  "knownNonProductFixtureIssue": "Original pre-bridge screenshots retain the real notification-sync error. The isolated bridge now permits actual register/unregister to real isolated PocketBase; registered200 and clean three-state screenshots are separately recorded in application-screenshots.json.",
+  "remaining": [
+    "formal distribution privacy requires separate verification",
+    "actual Huawei delivery not verified",
+    "no folding or large-font verification claimed"
+  ],
+  "postBridgeMaterialReview": {
+    "allThreeOriginalPNGsViewed": true,
+    "notificationSyncErrorAbsent": true,
+    "sameBrandAndSettingsLayout": true,
+    "allControlsAndTextVisible": true,
+    "fullStatusAndGestureRegionsPreserved": true,
+    "noClippingObserved": true,
+    "applicationMaterial": "application-screenshots.json",
+    "independentRootReview": {
+      "complete": true,
+      "result": "passed",
+      "images": [
+        "subscription-default.jpg",
+        "subscription-confirmation.jpg",
+        "subscription-enabled.jpg"
+      ],
+      "observations": "Brand, readability, independent consent and cancellation entry passed"
+    }
+  }
+}

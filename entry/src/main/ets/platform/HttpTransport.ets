@@ -69,7 +69,7 @@ export class NativeHttpTransport implements HttpTransport {
     }
     try {
       const pending: Promise<http.HttpResponse> = task.request(request.url, {
-        method: request.method === 'PATCH' ? http.RequestMethod.PATCH :
+        method: request.method === 'PUT' ? http.RequestMethod.PUT : request.method === 'PATCH' ? http.RequestMethod.PATCH :
           request.method === 'POST' ? http.RequestMethod.POST : http.RequestMethod.GET,
         header: headers,
         body: form.length > 0 ? undefined : request.body,

@@ -1,0 +1,308 @@
+{
+  "date": "2026-11-19",
+  "scope": "straight phone, native ArkUI and real isolated HTTPS, synthetic dedicated player only",
+  "signedHapSha256": "188a6dfe90a2cf3b65220b35937f34a0d266fb5659dbd309a56e6acf314405aa",
+  "sourceBusinessChanged": false,
+  "releaseUnsignedChanged": false,
+  "checks": [
+    {
+      "name": "default-off",
+      "subscribed": false,
+      "pushEnabled": false,
+      "subscriptions": 0,
+      "putCount": 0
+    },
+    {
+      "name": "subscribe-then-independent-confirm",
+      "putDelta": 1,
+      "subscribed": true,
+      "pushEnabled": false,
+      "revision": 1
+    },
+    {
+      "name": "decline-no-notification-write",
+      "putDelta": 0,
+      "subscribed": true,
+      "pushEnabled": false
+    },
+    {
+      "name": "backdismiss-no-notification-write",
+      "putDelta": 0,
+      "pushEnabled": false
+    },
+    {
+      "name": "maskdismiss-no-notification-write",
+      "putDelta": 0,
+      "pushEnabled": false
+    },
+    {
+      "name": "both-themes-confirmation",
+      "putDelta": 0,
+      "initialThemeRestored": true
+    },
+    {
+      "name": "explicit-consent-persisted",
+      "putDelta": 1,
+      "subscribed": true,
+      "pushEnabled": true,
+      "revision": 2
+    },
+    {
+      "name": "settings-revisit-persisted",
+      "putDelta": 0,
+      "pushEnabled": true
+    },
+    {
+      "name": "official-force-stop-start-persisted",
+      "putDelta": 0,
+      "pushEnabled": true,
+      "reinstalled": false
+    },
+    {
+      "name": "cancel-both-off",
+      "putDelta": 1,
+      "subscribed": false,
+      "pushEnabled": false,
+      "revision": 3
+    },
+    {
+      "name": "put-503-honest-pending",
+      "putDelta": 1,
+      "failedStatus": 503,
+      "currentSubscriptionUnchanged": true,
+      "competingActionDisabled": true
+    },
+    {
+      "name": "put-retry-same-request-fresh-read",
+      "putDelta": 1,
+      "sameRequestId": true,
+      "sameCommand": true,
+      "freshListAfterPut": true,
+      "subscribed": true,
+      "pushEnabled": false,
+      "responseLostAfterCommitTested": false
+    },
+    {
+      "name": "list-503-local-error",
+      "wholePageAvailable": true,
+      "staleWriteDisabled": true,
+      "putDelta": 0
+    },
+    {
+      "name": "list-retry-current-state",
+      "putDelta": 0,
+      "recoveredByGet": true
+    },
+    {
+      "name": "list-error-leave-and-return",
+      "leftSettings": true,
+      "recoveredOnReopen": true,
+      "putDelta": 0
+    },
+    {
+      "name": "background-clears-confirmation",
+      "putDelta": 0,
+      "foregroundReturnedToSettings": true,
+      "notificationConsentUnchanged": true
+    },
+    {
+      "name": "logout-clears-private-ui",
+      "putDelta": 0,
+      "subscriptionRowsAbsent": true,
+      "confirmationAbsent": true,
+      "loginFormPresent": true
+    }
+  ],
+  "serverBefore": {
+    "subscriptions": [],
+    "starts": 0,
+    "answers": 0,
+    "readCount": 1,
+    "unreadCount": 2
+  },
+  "serverAfterMainValidation": {
+    "subscriptions": [
+      {
+        "subscribed": true,
+        "pushEnabled": false,
+        "revision": 4
+      }
+    ],
+    "starts": 0,
+    "answers": 0,
+    "readCount": 1,
+    "unreadCount": 2
+  },
+  "putLedger": [
+    {
+      "method": "PUT",
+      "path": "/api/questions/v1/assignments/<synthetic-assignment>/push-subscription",
+      "requestIdSHA256": "c0425c2cbc121907f1fcab399dcf2c6f1b8b725904b842c88e66d5a4c0e78a28",
+      "subscribed": true,
+      "pushEnabled": false,
+      "expectedRevision": 0,
+      "status": 200,
+      "injected": false
+    },
+    {
+      "method": "PUT",
+      "path": "/api/questions/v1/assignments/<synthetic-assignment>/push-subscription",
+      "requestIdSHA256": "1bc9376e06155bee185b9d520358de5e36e6bb41d8aabe83adc4a8625238bca8",
+      "subscribed": true,
+      "pushEnabled": true,
+      "expectedRevision": 1,
+      "status": 200,
+      "injected": false
+    },
+    {
+      "method": "PUT",
+      "path": "/api/questions/v1/assignments/<synthetic-assignment>/push-subscription",
+      "requestIdSHA256": "c876456f9ce36e0843c7bc5cd1ec7c0755d75898038a68ff3d2f0fcb0bd1eaac",
+      "subscribed": false,
+      "pushEnabled": false,
+      "expectedRevision": 2,
+      "status": 200,
+      "injected": false
+    },
+    {
+      "method": "PUT",
+      "path": "/api/questions/v1/assignments/<synthetic-assignment>/push-subscription",
+      "requestIdSHA256": "792278d051fdac41d6c0f9a34a33bc14e446c32ebf430bf6cf80132fca6ae77a",
+      "subscribed": true,
+      "pushEnabled": false,
+      "expectedRevision": 3,
+      "status": 503,
+      "injected": true
+    },
+    {
+      "method": "PUT",
+      "path": "/api/questions/v1/assignments/<synthetic-assignment>/push-subscription",
+      "requestIdSHA256": "792278d051fdac41d6c0f9a34a33bc14e446c32ebf430bf6cf80132fca6ae77a",
+      "subscribed": true,
+      "pushEnabled": false,
+      "expectedRevision": 3,
+      "status": 200,
+      "injected": false
+    }
+  ],
+  "subscriptionListGetStatuses": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    503,
+    200,
+    503,
+    200,
+    200
+  ],
+  "sourceEvidence": [
+    {
+      "state": "default-list-day",
+      "rawTreeSha256": "af52a76bdad35a8de23105abd823e29fbcbee12199b8b03ee27b0d855a924112",
+      "screenshotSHA256": "a15f91fb6569a6a1f87693b818b40ae0e5a14d3a02c5daf2c7f8ea4bdf5d32a3"
+    },
+    {
+      "state": "independent-confirm-day",
+      "rawTreeSha256": "aa107595f66077b9a7d0e053b384ef3d5959e29ebe200790531b1a8270521e98",
+      "screenshotSHA256": "710e39da6b37db01a6c0910f7a3f0dbf39f0e73dda9a0ecdce131f9d30eb5c5a"
+    },
+    {
+      "state": "declined-still-subscribed",
+      "rawTreeSha256": "d4647ca81b0b2830244d6b4e77cc7c6093d29044b9a3c84df0e59c4a2568cf66"
+    },
+    {
+      "state": "backdismiss",
+      "rawTreeSha256": "6810ad564d04ef46678661c522a414e3b1c35bac4136492182e460163363da58"
+    },
+    {
+      "state": "maskdismiss",
+      "rawTreeSha256": "6810ad564d04ef46678661c522a414e3b1c35bac4136492182e460163363da58"
+    },
+    {
+      "state": "subscribed-off-dark",
+      "rawTreeSha256": "49bb27ba1ab1dcfd4f19ac374d96fbffe81d436a4465c6008e64efb2e4a3f804",
+      "screenshotSHA256": "07aa93958aa216a94edc6e9a9058f056e21feb240f15fdbe059cafeb4d7b721f"
+    },
+    {
+      "state": "independent-confirm-dark",
+      "rawTreeSha256": "3d5b5cfcf34c01b28e3386742d68556ee2ad5255c633ee53ac29538df12175f2",
+      "screenshotSHA256": "5b989420165a43cfb3cf8f1db19e1e271821dbaef3b7cbaa09e2299d44690407"
+    },
+    {
+      "state": "subscribed-can-cancel-day",
+      "rawTreeSha256": "dd64f84d6a511ea5a129473ab542af11a48bfba8a01368e62548f2bbbce510b3",
+      "screenshotSHA256": "7498877d0d775fe9e59394734dc87af626da63cad5bf4a9e5431ddfa0db47a2c"
+    },
+    {
+      "state": "revisit-enabled",
+      "rawTreeSha256": "ac9097dc1020b4fb73b6dd2d89dc2d9bc2e9ea08d2d1768fa4e0b7f727559ec5"
+    },
+    {
+      "state": "after-force-stop-restart",
+      "rawTreeSha256": "58b1f46538540ef21ff66a1d9fa50653a89c231f2dae7c760fc3c6c2f33c4446"
+    },
+    {
+      "state": "cancelled-both-off",
+      "rawTreeSha256": "c973d12cb9c2645915f9b92ec390c93310a229c59b5ad947a25ee6e30bfe3313"
+    },
+    {
+      "state": "put-503-same-command-pending",
+      "rawTreeSha256": "3cc4e8c24f5ad114154f86b443347ccdfc074ea9088e2999aa2fbff3f6d38733",
+      "screenshotSHA256": "2b62e938d57d457d4b7d1ce2bd6194e376393bf486ae65c463e21e4fc997183c"
+    },
+    {
+      "state": "retry-fresh-state-confirm",
+      "rawTreeSha256": "d5c8d14224bf74ec907e3b0749fff83e1d553115330f63911b3509d975aa1fa9"
+    },
+    {
+      "state": "list-503-local-retry",
+      "rawTreeSha256": "a6160b4b9bc4edc4db2be06245c93408f550d6fd2f3c3d57b720ba0688fdc168",
+      "screenshotSHA256": "4195e9d69e1911d03640909f221dad3d952a65a0da426c9db8cc7b4c6b2f97cb"
+    },
+    {
+      "state": "list-retry-recovered",
+      "rawTreeSha256": "c1a8dc99963b691c17e96e4ccc2019905d5b247f091c6c70dec85e149bed8222"
+    },
+    {
+      "state": "list-error-left-settings",
+      "rawTreeSha256": "16533e6a898165809066ada1931e923347e548ee53d1fce2b83cbc43617ca6a5"
+    },
+    {
+      "state": "foreground-cleared-confirmation",
+      "rawTreeSha256": "5c7e6361be248770c707e93085c86e651125cbd57715ed8236916ce1033148f5"
+    },
+    {
+      "state": "logout-private-subscriptions-cleared",
+      "rawTreeSha256": "7a2930b50e1e705ab1a779d88cf8ec234e1f423f6371ab5e78ac411e00b235ee"
+    }
+  ],
+  "collectorVariantsSHA256": {
+    "v1-default-subscribe": "b83ada5b67bb7c1789dd58f132f79b68e313c5ae789960d284d43572b3af163a",
+    "v2-consent-persistence": "ebc2858063842759d926e5001067061b026059143c18917cb18ac59b672516c3",
+    "v3-failure-cleanup": "1bb9f3bb442f131f8869e1de8bfe0616d29eb0d004cf2896890e897c6bd5608e"
+  },
+  "collectorNote": "Interactive staged harness was extended by appending independent action branches between steps. These retained append-only prefixes describe the three versions; this is not claimed as one immutable automated-suite execution. Every recorded step has separate raw UI and server snapshots.",
+  "themeChecks": {
+    "lightAndDarkConfirmationObserved": true,
+    "initialTheme": "theme-system",
+    "restoredInitialTheme": true,
+    "systemSettingsChanged": false
+  },
+  "notTestedOnDevice": [
+    "response loss after server commit followed by another device update (covered by ViewModel/backend tests)",
+    "late old-account response after actual account switch (covered by ViewModel tests)",
+    "folding or large-font adaptation",
+    "real Huawei delivery or SUBSCRIPTION entitlement approval"
+  ],
+  "existingFixtureLimitation": "System notification sync error visible because isolated gateway did not yet allow existing Push registration; no production delivery result claimed. Parent is preparing real isolated bridge; Huawei application screenshots will be recaptured only after actual sync succeeds.",
+  "huaweiApplicationScreenshotsComplete": false,
+  "followUpApplicationMaterial": {
+    "complete": true,
+    "report": "application-screenshots.json",
+    "note": "Original 17-check baseline and its pre-bridge captures remain unchanged; post-bridge true isolated registration and three clean official screenshots are separately recorded."
+  }
+}
