@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-19T08:40:05Z",
+  "releaseId": "push-personal-journey-20261119",
+  "status": {
+    "phase": "recorded",
+    "revision": 15,
+    "inFlight": null,
+    "activeMarker": null,
+    "blocked": false
+  },
+  "image": {
+    "tag": "questions-pocketbase:0.40.1-push-personal-journey-20261119-amd64",
+    "configDigest": "sha256:f3e1bc2ff3295772a50a497585bfcf51f4da1134ecdff3f9ec0ae06ac565e96a",
+    "pocketbaseVersion": "0.40.1",
+    "platform": "linux/amd64"
+  },
+  "hashes": {
+    "compose": "7a78755f21f53f0cae98319c6d175fc052eebc5bf920af17bb02841a1de276c6",
+    "rootRelease": "a6ee07602a7fd8a6fd22147b23a2b2e805c2100864d3974768dafe18d160b24b",
+    "rootChecksums": "82a5889ff26979b8c64c27d16998de46199cf2a5fe266768fe49b2c4860d77ec",
+    "finalReport": "cba8e7d51a76d02b320c9a99e61578171e8fdcb781e79c7faf9bad9a31ca11d7",
+    "bundle": "b097cc74c1f0715e564f7c9e6631c871724bad46a8593e43144e80308fbc7916",
+    "imageArchive": "386495fbbfaf028c88de0ce43708611d477264da50cfe5723a823f8f71e4d376",
+    "outerChecksums": "0982546aa1b4d0d5bdc05c16848737a8ff00acee88132067b3519046dfcfd424",
+    "internalChecksums": "ab9dcfc80d8c934107dbf24732daa84b4b742d5689816b85bf6bc280dd76896e",
+    "executor": "619c150911e9e67ac22c880beba8f5cd5d7b30b10b76257a36b4bc60b7fec32c",
+    "deploymentPlan": "e6c3ee1895740bb1e90d02a2456721e58c4fa1b395cacf5e3740f9a4e3d3e134",
+    "allowedDelta": "2ccf50f55792642bed964bce6dda71e2fb540a2b9cae52757dd645baad0e0882",
+    "sourceManifest": "a8e07de18a5b3b12f579f2c3108870ce0ffca3421c6404f1daa20e5e5f7cc5dc"
+  },
+  "health": {
+    "status": "healthy",
+    "restartCount": 0,
+    "switchDistinctSuccessfulHealthchecks": 3,
+    "switchVerifiedAt": "2026-11-19T08:39:17Z",
+    "latestHealthcheckStarts": [
+      "2026-11-19T16:40:02.301337682+08:00",
+      "2026-11-19T16:40:17.34354891+08:00",
+      "2026-11-19T16:40:32.406477059+08:00"
+    ],
+    "latestHealthcheckExitCodes": [
+      0,
+      0,
+      0
+    ],
+    "httpsStatus": 200,
+    "anonymousProbes": [
+      {
+        "path": "/api/questions/v1/admin/me",
+        "status": 401
+      },
+      {
+        "path": "/api/questions/v1/assignments",
+        "status": 401
+      },
+      {
+        "path": "/api/questions/v1/admin/push-settings",
+        "status": 401
+      },
+      {
+        "path": "/api/questions/v1/me/push/journey-subscription",
+        "status": 401
+      }
+    ]
+  },
+  "database": {
+    "integrity": "ok",
+    "migrationLedgerSha256": "ecb46ffcbd8252680e7da2815a2e54a79046a5d749a5c19fe413ce2a4e9ef401",
+    "migrationCount": 18,
+    "newMigration": "1795075320_push_personal_journey_notices.js",
+    "newMigrationOccurrences": 1,
+    "collectionCount": 41,
+    "tableCount": 46,
+    "contextRowCount": 0,
+    "contextPrivate": true
+  },
+  "preservedRuntime": {
+    "pushEnabled": true,
+    "testMode": false,
+    "subscriptionApproved": false,
+    "mountCount": 2,
+    "dedicatedSecretReadOnly": true,
+    "audienceChanged": false,
+    "scopeChanged": false
+  },
+  "stages": {
+    "backupStartedAt": "2026-11-19T08:35:14Z",
+    "restoreVerifiedAt": "2026-11-19T08:35:24Z",
+    "migrationCompletedAt": "2026-11-19T08:36:13Z",
+    "switchVerifiedAt": "2026-11-19T08:39:17Z",
+    "recordedAt": "2026-11-19T08:40:05Z"
+  },
+  "verificationBoundaries": {
+    "productionBusinessWritesPerformedForThisRelease": false,
+    "subscriptionProviderDeliveryVerified": false,
+    "adminStaticDeployment": "verified",
+    "sourceRuntimeFilesVerified": 31
+  },
+  "adminRelease": {
+    "commit": "7184170e97babe0e2074e08305b3b41261408695",
+    "deploy": {
+      "runId": 44490560634,
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44490560634",
+      "status": "completed",
+      "conclusion": "success",
+      "updatedAt": "2026-11-19T08:48:08Z",
+      "jobId": 135444794345,
+      "allStepsSuccess": true,
+      "adminTestsPassed": 48
+    },
+    "backendCI": {
+      "runId": 44490560636,
+      "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44490560636",
+      "status": "completed",
+      "conclusion": "success",
+      "updatedAt": "2026-11-19T08:48:05Z"
+    },
+    "onlineStaticAssets": [
+      {
+        "url": "/assets/index-DE1zhclC.js",
+        "sha256": "e8d3b9ec240b9c0f75b65e6e86ce3918be0d091cc5bf333d88c98a6b3492f26a",
+        "matchesBuild": true
+      },
+      {
+        "url": "/assets/index-Dlvq61_l.css",
+        "sha256": "a1d09fcaacc157a47e2ac324acd3630b63f83152d723f438f5fed3aa2ea214a9",
+        "matchesBuild": true
+      }
+    ],
+    "allAssetsMatchFinalProductionBuild": true,
+    "productionBrowserFormInteractionVerified": false,
+    "documentationCommit": "3c0e51cfd8beac62555940f5116f6a61a874737d",
+    "finalCI": {
+      "checkedAt": "2026-11-19T08:56:35.781Z",
+      "runs": [
+        {
+          "id": 44491251531,
+          "name": "Deploy to Server",
+          "headSha": "3c0e51cfd8beac62555940f5116f6a61a874737d",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44491251531",
+          "updatedAt": "2026-11-19T08:53:03Z",
+          "runNumber": 77
+        },
+        {
+          "id": 44491251343,
+          "name": "PocketBase backend CI",
+          "headSha": "3c0e51cfd8beac62555940f5116f6a61a874737d",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/sitkinYip/sitkin-pb-backend-management/actions/runs/44491251343",
+          "updatedAt": "2026-11-19T08:53:02Z",
+          "runNumber": 23
+        }
+      ],
+      "allRunsSuccess": true,
+      "allRunsMatchDocumentationCommit": true,
+      "allJobStepsSuccess": true
+    },
+    "finalStaticCheck": {
+      "checkedAt": "2026-11-19T08:56:40.037987+00:00",
+      "indexStatus": 200,
+      "sameAssetReferences": true,
+      "allAssetsByteEqualFinalProductionBuild": true,
+      "assets": [
+        {
+          "url": "/assets/index-DE1zhclC.js",
+          "status": 200,
+          "bytes": 2093310,
+          "sha256": "e8d3b9ec240b9c0f75b65e6e86ce3918be0d091cc5bf333d88c98a6b3492f26a",
+          "localSha256": "e8d3b9ec240b9c0f75b65e6e86ce3918be0d091cc5bf333d88c98a6b3492f26a",
+          "matchesBuild": true,
+          "contentType": "application/javascript"
+        },
+        {
+          "url": "/assets/index-Dlvq61_l.css",
+          "status": 200,
+          "bytes": 19895,
+          "sha256": "a1d09fcaacc157a47e2ac324acd3630b63f83152d723f438f5fed3aa2ea214a9",
+          "localSha256": "a1d09fcaacc157a47e2ac324acd3630b63f83152d723f438f5fed3aa2ea214a9",
+          "matchesBuild": true,
+          "contentType": "text/css"
+        }
+      ],
+      "serverRuntimeModified": false
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "checks": [
+    "default_announcement",
+    "old_player_b_selected",
+    "journey_forces_session",
+    "journey_only_session_target",
+    "journey_hides_players",
+    "personal_forces_selected",
+    "personal_only_selected_target",
+    "personal_hides_session",
+    "personal_does_not_restore_old_player_b",
+    "personal_empty_players_no_request",
+    "submission_1_http_200",
+    "submission_1_resets_announcement",
+    "submission_1_resets_selected",
+    "submission_1_clears_players",
+    "personal_request_only_a",
+    "player_a_inbox_http_200",
+    "player_b_inbox_http_200",
+    "personal_a_received_unread_without_assignment",
+    "personal_old_b_not_received",
+    "journey_empty_session_no_request",
+    "submission_2_http_200",
+    "submission_2_resets_announcement",
+    "submission_2_resets_selected",
+    "submission_2_clears_players",
+    "journey_request_session_without_players",
+    "player_a_inbox_http_200",
+    "player_b_inbox_http_200",
+    "journey_b_receives_assignment_notice",
+    "journey_a_not_received",
+    "announcement_all_three_targets",
+    "target_toggle_clears_old_selected_player",
+    "submission_3_http_200",
+    "submission_3_resets_announcement",
+    "submission_3_resets_selected",
+    "submission_3_clears_players",
+    "announcement_all_request_no_stale_values",
+    "player_a_inbox_http_200",
+    "announcement_a_received_without_assignment",
+    "player_b_inbox_http_200",
+    "announcement_b_received_without_assignment",
+    "three_real_submissions_only",
+    "no_browser_page_errors",
+    "all_external_requests_blocked"
+  ],
+  "count": 43,
+  "realSubmissions": 3,
+  "responseStatuses": [
+    200,
+    200,
+    200
+  ],
+  "browserPageErrors": 0,
+  "externalRequestsBlocked": 1,
+  "externalHostsBlocked": [
+    "telemetry.refine.dev"
+  ],
+  "externalRequestsServed": 0,
+  "privateScreenshots": 5,
+  "inboxMethod": "real_player_api",
+  "nativeAndHuaweiDeliveryExecuted": false,
+  "contextPersistence": {
+    "personalAccountWithoutSession": true,
+    "journeySession": true,
+    "announcementWithoutSubscriptionContext": true
+  },
+  "push": {
+    "enabled": false,
+    "deliveryJobs": 0,
+    "providerDeliveryExecuted": false
+  },
+  "independentSourceReview": "no_blocking_findings",
+  "environment": {
+    "mode": "isolated_real_pocketbase",
+    "binding": "loopback_only",
+    "productionAccess": false,
+    "envFilesLoaded": false
+  },
+  "cleanup": {
+    "status": "passed",
+    "ownedDockerServerAndTemporaryDatabaseRemoved": true,
+    "viteStopped": true,
+    "temporaryViteDirectoryRemoved": true,
+    "completionEvidence": "orchestrator exited 0 after awaited finally cleanup; Vite port 5187 absent; no container of isolated test image remains"
+  },
+  "visualReview": {
+    "scope": "admin form only, private screenshots reviewed",
+    "status": "no_blocking_findings",
+    "previewFrame": "local empty stub; player preview intentionally not validated"
+  },
+  "assertionCounting": "43 browser/API assertions include repeated HTTP checks; 3 additional persisted-context invariants; not a business completion percentage",
+  "limitations": [
+    "No production environment access",
+    "No native UI or Huawei provider delivery validation",
+    "Production release verifier for new collection migration remains outside this UI check"
+  ],
+  "sourceSha256": {
+    "src/game/OperationPages.tsx": "f9695358c517689d85f21eb48cf38da3801ade11f58c33df8f9f14162ddce33f",
+    "src/game/guidance.ts": "331947dec2297f9af8b1359040069aa3bd6ba2956d772d57e8dfa9b26af42a80",
+    "src/game/contracts.ts": "d9218c632f0631ab46742c926125ff222a887da6ba1ccbe03dc9295c464449b3",
+    "backend/contracts/game.ts": "1e7dd14ef3b29ccb6552783b5c865d94bab1fd5645186ee8450779a57beaa65b",
+    "backend/pb_hooks/lib/api.js": "e5a9919ccc668d6efc0575daf2cbee3800d32169efddffc3e949d897abdb6aef",
+    "backend/pb_hooks/lib/push-subscriptions.js": "6da4a539cd1f76768422f0e670f45b525908fc57c91da8d960e6f70893c00a17",
+    "backend/pb_hooks/lib/push-journey-subscription.js": "884eae770031f49c1777a02d31eda2c41f1c247d856b8abb19819c13bd785188",
+    "backend/pb_migrations/1795075320_push_personal_journey_notices.js": "3c6d364ea56bf95799f3b139619625849f93ec4976849f072c91dd2f63a592c0"
+  },
+  "recordedAt": "2026-11-19T08:07:24.073766+00:00"
+}

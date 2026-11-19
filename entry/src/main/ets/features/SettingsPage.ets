@@ -30,9 +30,10 @@ export struct SettingsPage {
 
   @Builder
   private rowIcon(icon: Resource) {
-    SymbolGlyph(icon).fontSize('19vp').fontColor([$r('app.color.accent_text')])
-      .width(36).height(36).borderRadius(10).backgroundColor($r('app.color.accent_faint'))
-      .accessibilityLevel('no')
+    Stack({ alignContent: Alignment.Center }) {
+      SymbolGlyph(icon).fontSize('19vp').fontColor([$r('app.color.accent_text')])
+        .accessibilityLevel('no')
+    }.width(36).height(36).borderRadius(10).backgroundColor($r('app.color.accent_faint'))
   }
 
   @Builder

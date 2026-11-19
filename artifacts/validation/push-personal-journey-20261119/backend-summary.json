@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-19T08:08:38.933711+00:00",
+  "status": "implemented-and-local-integration-verified-not-deployed",
+  "scope": "personal_journey_v1",
+  "purpose": "personal_journey",
+  "target": "selected-only",
+  "consentScopeChanged": false,
+  "genericImportantSecurityAndPromotionalNoticesIncluded": false,
+  "tests": {
+    "runtime": "PocketBase 0.40.1 in Docker",
+    "image": "questions-pocketbase:starward-push-crypto-test",
+    "command": "PB_DOCKER_IMAGE=questions-pocketbase:starward-push-crypto-test PB_PUSH_VALIDATE_OPENSSL=1 node --test --test-concurrency=2 backend/tests/*.test.mjs",
+    "tests": 138,
+    "pass": 138,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 38014.72425,
+    "newIntegrationGroups": 4,
+    "opensslPS256ExplicitlyEnabledAndPassed": true,
+    "provider": "synthetic",
+    "realPushDeliveryVerified": false
+  },
+  "mutation": {
+    "status": "infrastructure-blocked-not-claimed-as-killed",
+    "attempts": 4,
+    "reason": "UND_ERR_SOCKET during isolated administrator bootstrap before the mutated gate could be exercised",
+    "expectedAssertionReached": false,
+    "sharedSourceUnchanged": true,
+    "temporarySourceCopiesRemoved": true
+  },
+  "migration": {
+    "file": "1795075320_push_personal_journey_notices.js",
+    "restoredCopyVerified": true,
+    "legacyContextRowsSeeded": 1,
+    "legacyContextMeaning": "session unchanged; kind backfilled to session",
+    "newContextVariants": [
+      "session",
+      "account"
+    ],
+    "newFieldRequired": true,
+    "sessionRelationRequired": false,
+    "originalBusinessRowsPreserved": true,
+    "otherCollectionDefinitionsPreserved": true,
+    "otherSqliteSchemaPreserved": true,
+    "previousMigrationLedgerPreserved": true,
+    "newMigrationLedgerEntries": 1,
+    "privateRulesPreserved": true
+  },
+  "safety": {
+    "productionConnected": false,
+    "productionModified": false,
+    "realCredentialsUsed": false,
+    "webModified": false,
+    "nativeModified": false,
+    "committedOrPushed": false
+  },
+  "checks": {
+    "generatedContracts": "admin-only synchronized and verified",
+    "diffCheck": "passed"
+  },
+  "release": {
+    "readyForExistingReleaseRunner": false,
+    "reason": "Existing additive-empty-collections-v1 verifier cannot describe the context schema change and backfill; a dedicated reviewed verifier/delta is required before production release.",
+    "oldAllowedDeltaReused": false,
+    "releaseToolsModified": false
+  },
+  "sourceSha256": {
+    "backend/contracts/game.ts": "1e7dd14ef3b29ccb6552783b5c865d94bab1fd5645186ee8450779a57beaa65b",
+    "backend/pb_hooks/lib/api.js": "e5a9919ccc668d6efc0575daf2cbee3800d32169efddffc3e949d897abdb6aef",
+    "backend/pb_hooks/lib/push-journey-subscription.js": "884eae770031f49c1777a02d31eda2c41f1c247d856b8abb19819c13bd785188",
+    "backend/pb_hooks/lib/push-subscriptions.js": "6da4a539cd1f76768422f0e670f45b525908fc57c91da8d960e6f70893c00a17",
+    "backend/pb_migrations/1795075320_push_personal_journey_notices.js": "3c6d364ea56bf95799f3b139619625849f93ec4976849f072c91dd2f63a592c0",
+    "backend/tests/push-personal-journey.integration.test.mjs": "3c91b3d910510f9345d48cb9d99decad6018172006a9638ca6956755ec36ec5a",
+    "backend/tests/push-subscriptions.integration.test.mjs": "d506a41f0bdc5ccf7eb8c0e4583cda5d527c436baf1a696b66d14e568f81cac7",
+    "src/game/contracts.ts": "d9218c632f0631ab46742c926125ff222a887da6ba1ccbe03dc9295c464449b3"
+  }
+}

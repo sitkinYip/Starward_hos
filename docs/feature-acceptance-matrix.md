@@ -316,7 +316,13 @@ API 26 直板机通过隔离真实 HTTPS 登录。侧栏齿轮与主题选择在
 
 2026-11-19 后续运行启用：生产发送总开关、正式模式和只读服务账号已配置，用户保存的 `all` / revision 2 不变。定向公告首次尝试获华为成功码，用户确认邀请测试手机收到；当前只证实 MARKETING 收发，SUBSCRIPTION 仍审核中、权益开关保持关闭，通知点击待本轮验收。0.1.3 邀请已从下文记录的“预审中”进入“测试中”，不是分类审核通过。见[逐状态运行结果](push-production-activation-2026-11-19.md)。
 
+#### 设置页通知图标居中修正（2026-11-19，已验）
+
+仅将官方 19vp 铃铛放入 36×36vp 的居中 Stack，保留底色、圆角、字号、文案和整行点击范围。固定 SDK 26 构建、签名核验及覆盖安装通过；目录 lint 无错误或警告，仅有信纸模块既有建议。正式 HTTPS 调试体验包在直板机完成日夜原图审查：背景实测 117×117px，字形 62×62px，中心偏差各 0.5px，为物理像素取整，无裁切；通知设置可打开，系统返回仍在原设置页。已恢复原跟随系统主题，用户手动确认“已登录验视 没问题”。未重跑无关业务链，未上传新的 AppGallery 包。见[小点记录](settings-push-icon-2026-11-19.md)与[证据摘要](../artifacts/validation/settings-push-icon-20261119/summary.json)。
+
 ### F02c 账号级旅途订阅与消息分类（2026-11-19）
+
+2026-11-19 补充切片已完成隔离验证和后端／运营台发布：后台新增「定向旅途消息（无需关联场次）」；仅用于现有同意范围内的个人剧情来信与旅途动态，仅指定玩家。138 项后端测试通过（0 失败、0 跳过），覆盖无场次收件、账号双阶段授权、权益关闭不降级、取消/已读/撤回/过期和旧上下文恢复副本迁移；管理端 48 项测试、构建与本机浏览器 3 次真实发送通过，切换用途清理旧接收人/场次，收件由真实玩家 API 核对。专属迁移 verifier 已补齐：发布工具 51 项、真实 Docker 迁移 1 项通过，保留 1 条历史 context、拒绝 11 类 SQLite 副本漂移；独立 runner 变异成功捕获。较早的运行时变异实验因初始化 socket 中断未到断言，仍不计通过。生产后端于 16:40:05 进入 recorded/rev15，18 条迁移、41 集合、46 表，context 私有且 0 行；healthy、零重启、三次不同健康成功，HTTPS 200 和四项未认证接口 401。运营台随 `7184170e97babe0e2074e08305b3b41261408695` 发布，Deploy `44490560634` 与 backend CI `44490560636` 成功，线上 JS/CSS 与最终本地构建逐字一致。原生代码、路由和同意范围未变，本切片未重做原生构建、装机或华为实际投递；正式发送保留开启，SUBSCRIPTION 权益仍为 0，定向旅途未批准时停发，不声称已送达。见[后端与迁移证据](../artifacts/validation/push-personal-journey-20261119/backend-summary.json)、[浏览器与清理证据](../artifacts/validation/push-personal-journey-20261119/ui-summary.json)、[发布验证器证据](../artifacts/validation/push-personal-journey-20261119/release-verifier-r2-summary.json)、[生产与静态产物摘要](../artifacts/validation/push-personal-journey-20261119/production-summary.json)及[后台发布记录](../../sitkin-pb-backend-management/docs/harmony-push-personal-journey-deployment-20261119.md)。
 
 用户于 2026-11-19 纠正目标：玩家只需一次订阅并确认接收“分配给我的新场次、剧情来信与关卡动态”，后续新增场次不再逐场操作。新账号级流程已实现，并完成直板真机、隔离真实 HTTPS 与 PocketBase 验证。新场次通知至少每日每设备 20 次仍是业务要求，尚未由平台权益或真实投递证据证明达成；不能以代码分类或隔离测试承诺额度。官方要求订阅范围具体，但没有明确要求逐场订阅，仍需匹配本范围的 SUBSCRIPTION 申请结果。
 

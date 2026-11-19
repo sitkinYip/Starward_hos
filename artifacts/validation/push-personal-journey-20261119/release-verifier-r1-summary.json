@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-19T08:27:38.769128+00:00",
+  "scope": "local-only release tooling; no production, secrets, runtime or UI writes",
+  "tests": {
+    "releaseUnitAndController": {
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "command": "node --test backend/tests/release-plan.test.mjs backend/tests/release-runner.test.mjs backend/tests/release-controller.test.mjs backend/tests/package-upgrade.test.mjs"
+    },
+    "realPocketBaseContext": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "command": "PB_DOCKER_IMAGE=questions-pocketbase:starward-push-crypto-test node --test backend/tests/release-context.integration.test.mjs",
+      "legacyRowsPreserved": 1,
+      "rejectedSqliteBackupDrifts": 11,
+      "postSwitchNewAccountContextAccepted": true,
+      "sameAdditionsRejectedDuringStoppedMigration": true
+    },
+    "mutation": {
+      "status": "killed",
+      "isolatedSourceCopy": true,
+      "sharedSourceModified": false,
+      "removedGate": "projected legacy row equality",
+      "expectedFailure": "unexpected acceptance: old-row",
+      "rawEvidenceNote": "Initial real-PocketBase run log includes the expected old-row assertion traceback; final run passes the same independent-source mutation assertion and additionally validates live account-context growth."
+    },
+    "python36AstAndSelftest": "passed as part of release-runner suite",
+    "actualComposeResolvedContract": "passed",
+    "pendingPlanJsAndPythonValidation": "passed"
+  },
+  "files": [
+    {
+      "path": "backend/deploy/1panel/release-runner.py",
+      "sha256": "9d69aaa2789732bc1ab1220581d1704b1c38382149cea7b4336d279c8b2786cd"
+    },
+    {
+      "path": "backend/scripts/lib/release-plan.mjs",
+      "sha256": "0a7508221815d381821d0232dfada237fecfe6890c2aabd1f1d3dcdd2ed1cf5c"
+    },
+    {
+      "path": "backend/scripts/package-1panel.mjs",
+      "sha256": "7137eecae360fcddde80d78c0a6a8982a4119362ab0b57e6d69615dd1da4aa0d"
+    },
+    {
+      "path": "backend/deploy/1panel/compose.production.yaml",
+      "sha256": "3ef3d9ca68ded2b6356d8b96273686f3c377fbfd44255fdd812defde45dd8341"
+    },
+    {
+      "path": "backend/tests/release-plan.test.mjs",
+      "sha256": "6396ede58474f0c195efaa167dbd14d92033291b6841ca66064ad31e5cc716b0"
+    },
+    {
+      "path": "backend/tests/release-runner.test.mjs",
+      "sha256": "8ff9ddaaecf18c2bd3c5dca017f3dbf019fafaeb5fb650421b81b144ced32ed4"
+    },
+    {
+      "path": "backend/tests/release-context.integration.test.mjs",
+      "sha256": "eb9f44d878374649c3a28f222fa92a4ed98946fc310a714f6d049685976df8b5"
+    },
+    {
+      "path": "docs/pocketbase-release-program.md",
+      "sha256": "f9b917e41265bacdeb12f7ea764955cbd9697c0e47a304fec4f468170272d1c9"
+    },
+    {
+      "path": "docs/backend-release-safety.md",
+      "sha256": "d18d571d21748f09b70e8ef61589405cce2bdf47b05ad31e23152642bc08d799"
+    }
+  ],
+  "rawLogEvidence": [
+    {
+      "label": "release-tools-final.txt",
+      "sha256": "bbf24ffb3a79ea440e460b10589534106463c5e49d5b977d27c892213b0c8526"
+    },
+    {
+      "label": "release-context-final.txt",
+      "sha256": "081e7844d284334233f161a7c16deb53f42747eb133aadb18c1e571e713000d6"
+    },
+    {
+      "label": "release-context-initial-mutation.txt",
+      "sha256": "b4b710c81bb36aa907c73842e451be203b36cf81ad6b3325036513f9451685e6"
+    }
+  ]
+}

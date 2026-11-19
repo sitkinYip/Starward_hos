@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-19",
+  "scope": "Settings journey notification bell alignment only",
+  "implementation": {
+    "officialSymbol": "sys.symbol.bell",
+    "glyphFontSizeVp": 19,
+    "containerSizeVp": [
+      36,
+      36
+    ],
+    "alignment": "Alignment.Center",
+    "sourceSHA256": "47d5379ee9d7adf66a0e5856640cc2bcdf6a8540082fdbdace93fb6af4b0ac7f",
+    "otherRuntimeSourcesChanged": false
+  },
+  "environment": {
+    "sdk": "26.0.0.105",
+    "api": 26,
+    "deviceKind": "straight phone",
+    "productionHttps": true,
+    "bundleName": "com.sitkin.starward",
+    "versionName": "0.1.3",
+    "versionCode": 5,
+    "debugExperience": true
+  },
+  "build": {
+    "exitCode": 0,
+    "successful": true,
+    "logSHA256": "cc2a802ba083da2979a11242dc977dbf55bb211f0d6a7bceac306b6eea8b4a17"
+  },
+  "lint": {
+    "target": "entry/src/main/ets directory",
+    "exitCode": 0,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 1,
+    "suggestionIsExistingUnchangedLetterBlur": true,
+    "reportSHA256": "56dbb458cf93573476b7800f332a7c0be19998cd2955dc8a892b0a4299606e84",
+    "singleFileZeroFileReportNotUsedAsAcceptance": true
+  },
+  "package": {
+    "date": "2026-11-19",
+    "bundleName": "com.sitkin.starward",
+    "versionName": "0.1.3",
+    "versionCode": 5,
+    "sdkSignatureAndProfileVerified": true,
+    "sameApplicationIdentifierAndDebugCertificateAsExistingExperience": true,
+    "profileValid": true,
+    "pushCapabilityPresent": true,
+    "productionHttpsMode": true,
+    "isolatedConfigurationPackaged": false,
+    "debugPrivacyMetadataReused": true,
+    "hapSHA256": "2ce1763aed0f3c355416b5f28cdfd0be3cda0073e5cda216a08ddda9f5c09dbd",
+    "compiledArkTSPayloadSHA256": "ab12303be709753f085d4608469b699c851ffb25046061e3a05afd10238852a1",
+    "settingsSourceSHA256": "47d5379ee9d7adf66a0e5856640cc2bcdf6a8540082fdbdace93fb6af4b0ac7f"
+  },
+  "installation": {
+    "coveredExistingInstallation": true,
+    "exitCode": 0,
+    "launched": true,
+    "logSHA256": "9f7c7233797b6dc50155e95b15eda96f066ffc49fbc9ec56f89232c9a93b51f6"
+  },
+  "deviceAcceptance": {
+    "result": "passed",
+    "screenPx": [
+      1260,
+      2720
+    ],
+    "dayAndNightOriginalImagesReviewed": true,
+    "geometry": {
+      "light": {
+        "rowBoundsPx": [
+          68,
+          886,
+          1192,
+          1109
+        ],
+        "containerBoundsPx": [
+          113,
+          939,
+          230,
+          1056
+        ],
+        "glyphBoundsPx": [
+          141,
+          967,
+          203,
+          1029
+        ],
+        "centerOffsetPx": [
+          0.5,
+          0.5
+        ],
+        "noClip": true,
+        "imageSHA256": "aa09a62b7fa4ff467728f6cecabf5fb805a667e6e7e1d50952cf1582127d0725",
+        "layoutSHA256": "622974bf5c5b01e5c577bb6164265f50438c9e8129f7ae02a0c74132b947d03c"
+      },
+      "dark": {
+        "rowBoundsPx": [
+          68,
+          886,
+          1192,
+          1109
+        ],
+        "containerBoundsPx": [
+          113,
+          939,
+          230,
+          1056
+        ],
+        "glyphBoundsPx": [
+          141,
+          967,
+          203,
+          1029
+        ],
+        "centerOffsetPx": [
+          0.5,
+          0.5
+        ],
+        "noClip": true,
+        "imageSHA256": "57ed7fbecc98e0c2ea8b2bc95d11789254a21885969a79700c123d3f31a6d1b2",
+        "layoutSHA256": "622974bf5c5b01e5c577bb6164265f50438c9e8129f7ae02a0c74132b947d03c"
+      }
+    },
+    "systemNotificationSettingsOpened": true,
+    "systemBackReturnedToSameSettingsPage": true,
+    "finalStatus": "已开启",
+    "originalThemeRestored": "system",
+    "userManuallyConfirmed": true,
+    "userConfirmation": "已登录验视 没问题",
+    "historicalImagesOnlyUsedForDiagnosis": true,
+    "noNewEntryAnswerOrNotificationTestSubmitted": true
+  },
+  "businessTests": "not rerun: presentation-only change",
+  "newAppGalleryUpload": false
+}
