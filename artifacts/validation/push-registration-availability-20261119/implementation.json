@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-19",
+  "scope": "Native Push registration unavailable state; legal registered:false distinguished from genuine transport/SDK/protocol/cleanup failure",
+  "runtimeFileCount": 4,
+  "testFileCount": 1,
+  "sourceSHA256": {
+    "entry/src/main/ets/business/PushRegistration.ets": "c11ff36c3f816f9e3a77179f1fd9dbf290f2eee777793f125c3f1b87d2117a75",
+    "entry/src/main/ets/data/PushBindingClient.ets": "d55103b7e012a2b70c5574990923d1f270421275cc7263deb42777799dfe2e12",
+    "entry/src/main/ets/features/SettingsPage.ets": "16cc9523182b47bec7c4aabd27e5c7d0a9b4581c6c3efa00e80d0bba231c9e32",
+    "entry/src/main/ets/pages/Index.ets": "a8fa79739720348ce8cd6e99e791213547959d8ca971df7e92bc0bb4a1785401",
+    "entry/src/test/PushRegistration.test.ets": "ee97d27ea9108f7161a8537a1ec43326a713c24e91d2260a7999c946ff6f8a7d"
+  },
+  "behavior": {
+    "legalFalse": "unavailable, no invented revocation ticket, existing binding cleanup keeps its receipt until successful removal",
+    "retry": "Network, SDK, invalid receipt and cleanup errors retain a real retry state",
+    "readyCache": "Requires a nonempty server ticket; renewal attempts invalidate previous freshness before network or SDK operations",
+    "permission": "System notification permission remains independently observed and is not set false by unavailable",
+    "accountBoundary": "Serialized cleanup and current revision continue to reject late signout results",
+    "ui": "Existing notification card only; muted unavailability explanation and small native recheck button, separate from InlineError for failures"
+  },
+  "uiIDs": [
+    "settings-push-unavailable",
+    "settings-push-check",
+    "settings-push-retry",
+    "settings-push-status"
+  ],
+  "build": {
+    "command": "scripts/hm.sh build",
+    "exitCode": 0,
+    "result": "BUILD SUCCESSFUL",
+    "logSHA256": "ff13b4bc42e5f6f7015fa2fdd0e57231788bf2228a60df1659e91f367cefae96"
+  },
+  "tests": {
+    "command": "STARWARD_VALIDATION_DIR=artifacts/validation/push-registration-availability-20261119 scripts/hm.sh test",
+    "exitCode": 0,
+    "tests": 267,
+    "passed": 267,
+    "failed": 0,
+    "ignored": 0,
+    "newMeaningfulTests": 10,
+    "relatedTestCount": 16,
+    "relatedSuites": {
+      "PushRegistration": [
+        "deniedPermissionDoesNotRequestIdentityTokenOrServerBinding",
+        "aBindingIsUsableOnlyAfterDeviceBindingAndServerReceipt",
+        "logoutDuringRegisterRevokesTheLateReceiptAndDoesNotRestoreTheBinding",
+        "failedRevokeCanBeRetriedAcrossCoordinatorRestartBeforeCreatingAnotherBinding",
+        "switchingAccountDisownsTheFormerProfileEvenIfLogoutCouldNotMarkItsLease",
+        "routineSyncDoesNotFetchTheTokenAgainButForcedSyncCanRotateIt",
+        "legalRefusalIsUnavailableAndRemovesTheUnconfirmedLocalBinding",
+        "refusedRenewalCannotReuseAnEarlierReadyCacheOrProfile",
+        "networkFailureRemainsRetryAndDoesNotReturnCachedReadyOnNextSync",
+        "failedRefusalCleanupPreservesRevocationUntilRetryAndPreventsProfileUse",
+        "failedUnregisterAfterFirstRefusalCanRecoverBeforeRegistration",
+        "logoutDuringLegalRefusalDoesNotRestoreAccountOrProfile"
+      ],
+      "PushBindingClient": [
+        "acceptsLegacyRegisteredFalseWithoutInventingATicket",
+        "acceptsARealRegisteredReceiptOnlyWithAValidTicket",
+        "rejectsMalformedOrContradictoryReceipts",
+        "doesNotTreatTransportOrHttpFailureAsLegalRefusal"
+      ]
+    },
+    "actualResultSHA256": "39d9a74a720382b2ad096d88d261ec4cbb457afd54cd23921883bfa34d723c67",
+    "logSHA256": "4adfdfa713eb73cd0c498531b845696fb847707805cc8fe6c64e20f454168fdb"
+  },
+  "lint": {
+    "command": "STARWARD_VALIDATION_DIR=artifacts/validation/push-registration-availability-20261119 scripts/hm.sh lint",
+    "exitCode": 0,
+    "summary": {
+      "filesChecked": 1,
+      "issues": 1,
+      "errors": 0,
+      "warnings": 0,
+      "suggestions": 1
+    },
+    "originalReportSHA256": "0a2a08bbfd8666edc6905ac14d636f7fdfab634943aefcc84477d57cc344e01b",
+    "logSHA256": "9be9efc2e4181ef311e5457e09857cbdb31549a9d11c841085867ac63ff59548",
+    "limitation": "Tool reports filesChecked=1; do not infer full-project file coverage"
+  },
+  "diffCheck": "passed",
+  "designSelfReview": {
+    "reference": "Previously approved native SettingsPage/official Button and project starward-ui-parity skill",
+    "preserved": "Existing notification row, OS permission fact, brand tokens, typography and card spacing; no new modal or card",
+    "changed": "Muted status text and recheck replace the network-style error presentation for legal service refusal",
+    "actualDeviceVisualReview": "not performed"
+  },
+  "independentReview": {
+    "status": "passed without blocking findings",
+    "reviewer": "root agent, separately read all changed source/tests and existing cleanup/Index flow using code-review-and-quality",
+    "confirmedBoundaries": [
+      "Legal refusal clears renewal cache",
+      "Cleanup persists revoking state before platform and backend cleanup",
+      "Late responses retain account revision and cleanup protections"
+    ],
+    "limitation": "Static independent review; not phone or production delivery acceptance"
+  },
+  "notPerformed": [
+    "device installation or UI interaction",
+    "isolated real HTTPS validation of new availability state",
+    "production deployment or provider delivery",
+    "release signing, upload or invitation changes"
+  ],
+  "existingFrozen013CandidateChanged": false,
+  "backendChangedByTask": false,
+  "recordPhase": "local implementation validation before production/device follow-up",
+  "followupEvidence": "../push-production-activation-20261119/production.json",
+  "followupNote": "Later official USB install and real production HTTPS availability states passed. Formal MARKETING delivery accepted by Huawei and confirmed by user on their other invitation phone; current invitation click and USB notification display not verified. The earlier notPerformed list describes this original local phase."
+}

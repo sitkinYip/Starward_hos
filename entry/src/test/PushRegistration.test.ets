@@ -1,26 +1,33 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { PushBindingApi, PushDevice, PushLease, PushRegistration, PushStatus } from '../main/ets/business/PushRegistration';
+import {
+  PushBindingApi, PushDevice, PushLease, PushRegistration, PushRegistrationReceipt, PushStatus
+} from '../main/ets/business/PushRegistration';
+import { PushBindingClient } from '../main/ets/data/PushBindingClient';
+import { HttpTransport, TransportRequest, TransportResponse } from '../main/ets/platform/HttpTransport';
 
 const FIRST_OWNER: string = 'fixture-player-a';
 const SECOND_OWNER: string = 'fixture-player-b';
 
 class RegistrationGate {
   readonly entered: Promise<void>;
-  readonly receipt: Promise<string>;
+  readonly receipt: Promise<PushRegistrationReceipt>;
   private onEnter: () => void = () => {};
-  private onReceipt: (ticket: string) => void = () => {};
+  private onReceipt: (receipt: PushRegistrationReceipt) => void = () => {};
 
   constructor() {
     this.entered = new Promise<void>((resolve: () => void) => { this.onEnter = resolve; });
-    this.receipt = new Promise<string>((resolve: (ticket: string) => void) => { this.onReceipt = resolve; });
+    this.receipt = new Promise<PushRegistrationReceipt>((resolve: (receipt: PushRegistrationReceipt) => void) => {
+      this.onReceipt = resolve;
+    });
   }
 
-  hold(): Promise<string> {
+  hold(): Promise<PushRegistrationReceipt> {
     this.onEnter();
     return this.receipt;
   }
 
-  finish(ticket: string): void { this.onReceipt(ticket); }
+  finish(ticket: string): void { this.onReceipt(new PushRegistrationReceipt(true, ticket)); }
+  refuse(): void { this.onReceipt(new PushRegistrationReceipt(false)); }
 }
 
 class TestPushDevice implements PushDevice {
@@ -53,12 +60,15 @@ class TestPushApi implements PushBindingApi {
   readonly unregistrations: string[] = [];
   readonly timeline: string[] = [];
   failRevoke: boolean = false;
+  failUnregister: boolean = false;
+  failRegister: boolean = false;
+  available: boolean = true;
   gate: RegistrationGate | null = null;
   private readonly device: TestPushDevice;
 
   constructor(device: TestPushDevice) { this.device = device; }
 
-  async register(installationId: string, token: string, profileId: string): Promise<string> {
+  async register(installationId: string, token: string, profileId: string): Promise<PushRegistrationReceipt> {
     // A server receipt is useful only after this profile is bound on the device and can be cleaned up after restart.
     if (this.device.boundProfile !== profileId || this.device.lease?.profileId !== profileId ||
       this.device.lease?.revoking) {
@@ -66,18 +76,45 @@ class TestPushApi implements PushBindingApi {
     }
     this.timeline.push('register:' + profileId);
     this.registrations.push([installationId, token, profileId].join(':'));
+    if (this.failRegister) { throw new Error('Fixture registration network failure'); }
     const gate: RegistrationGate | null = this.gate;
     if (gate !== null) { return gate.hold(); }
-    return 'fixture-ticket-' + this.registrations.length;
+    return new PushRegistrationReceipt(this.available, this.available ? 'fixture-ticket-' + this.registrations.length : '');
   }
 
-  async unregister(installationId: string): Promise<void> { this.unregistrations.push(installationId); }
+  async unregister(installationId: string): Promise<void> {
+    this.unregistrations.push(installationId);
+    if (this.failUnregister) { throw new Error('Fixture unregister network failure'); }
+  }
 
   async revoke(installationId: string, ticket: string): Promise<void> {
     this.timeline.push('revoke:' + ticket);
     this.attemptedRevocations.push([installationId, ticket].join(':'));
     if (this.failRevoke) { throw new Error('Fixture service unavailable'); }
   }
+}
+
+class BindingTransport implements HttpTransport {
+  status: number = 200;
+  body: string = '{"registered":false}';
+  fail: boolean = false;
+  request: TransportRequest | null = null;
+
+  async send(request: TransportRequest): Promise<TransportResponse> {
+    this.request = request;
+    if (this.fail) { throw new Error('Fixture offline'); }
+    const response: TransportResponse = new TransportResponse();
+    response.status = this.status;
+    response.body = this.body;
+    return response;
+  }
+}
+
+async function rejectsRegistration(client: PushBindingClient): Promise<boolean> {
+  try {
+    await client.register('fixture-installation', 'fixture-push-token', 'fixture-profile');
+    return false;
+  } catch { return true; }
 }
 
 export default function pushRegistrationTests(): void {
@@ -207,6 +244,145 @@ export default function pushRegistrationTests(): void {
       expect(api.registrations[1]).assertEqual('fixture-installation:fixture-token-b:fixture-profile-1');
       expect(device.lease?.revokeTicket).assertEqual('fixture-ticket-2');
       expect(api.attemptedRevocations.length).assertEqual(0);
+    });
+
+    it('legalRefusalIsUnavailableAndRemovesTheUnconfirmedLocalBinding', 0, async () => {
+      const device: TestPushDevice = new TestPushDevice();
+      const api: TestPushApi = new TestPushApi(device);
+      const registration: PushRegistration = new PushRegistration(device);
+      api.available = false;
+
+      expect(await registration.sync(api, true, FIRST_OWNER)).assertEqual('unavailable');
+      expect(device.allowed).assertTrue();
+      expect(device.boundProfile).assertEqual('');
+      expect(device.lease === null).assertTrue();
+      expect(api.unregistrations.length).assertEqual(1);
+      expect(await registration.matchesProfile('fixture-profile-1', FIRST_OWNER)).assertFalse();
+
+      api.available = true;
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('ready');
+      expect(await registration.matchesProfile('fixture-profile-2', FIRST_OWNER)).assertTrue();
+    });
+
+    it('refusedRenewalCannotReuseAnEarlierReadyCacheOrProfile', 0, async () => {
+      const device: TestPushDevice = new TestPushDevice();
+      const api: TestPushApi = new TestPushApi(device);
+      const registration: PushRegistration = new PushRegistration(device);
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('ready');
+      api.available = false;
+
+      expect(await registration.sync(api, true, FIRST_OWNER)).assertEqual('unavailable');
+      expect(api.attemptedRevocations[0]).assertEqual('fixture-installation:fixture-ticket-1');
+      expect(await registration.matchesProfile('fixture-profile-1', FIRST_OWNER)).assertFalse();
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('unavailable');
+      expect(api.registrations.length).assertEqual(3);
+      expect(device.lease === null).assertTrue();
+    });
+
+    it('networkFailureRemainsRetryAndDoesNotReturnCachedReadyOnNextSync', 0, async () => {
+      const device: TestPushDevice = new TestPushDevice();
+      const api: TestPushApi = new TestPushApi(device);
+      const registration: PushRegistration = new PushRegistration(device);
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('ready');
+      api.failRegister = true;
+
+      expect(await registration.sync(api, true, FIRST_OWNER)).assertEqual('retry');
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('retry');
+      expect(api.registrations.length).assertEqual(3);
+      api.failRegister = false;
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('ready');
+    });
+
+    it('failedRefusalCleanupPreservesRevocationUntilRetryAndPreventsProfileUse', 0, async () => {
+      const device: TestPushDevice = new TestPushDevice();
+      const api: TestPushApi = new TestPushApi(device);
+      const registration: PushRegistration = new PushRegistration(device);
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('ready');
+      api.available = false;
+      api.failRevoke = true;
+
+      expect(await registration.sync(api, true, FIRST_OWNER)).assertEqual('retry');
+      expect(device.lease?.revoking).assertTrue();
+      expect(device.lease?.revokeTicket).assertEqual('fixture-ticket-1');
+      expect(await registration.matchesProfile('fixture-profile-1', FIRST_OWNER)).assertFalse();
+      api.failRevoke = false;
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('unavailable');
+      expect(device.lease === null).assertTrue();
+    });
+
+    it('failedUnregisterAfterFirstRefusalCanRecoverBeforeRegistration', 0, async () => {
+      const device: TestPushDevice = new TestPushDevice();
+      const api: TestPushApi = new TestPushApi(device);
+      const registration: PushRegistration = new PushRegistration(device);
+      api.available = false;
+      api.failUnregister = true;
+      expect(await registration.sync(api, true, FIRST_OWNER)).assertEqual('retry');
+      expect(device.lease?.revoking).assertTrue();
+      expect(device.lease?.revokeTicket).assertEqual('');
+      api.failUnregister = false;
+      api.available = true;
+      expect(await registration.sync(api, false, FIRST_OWNER)).assertEqual('ready');
+      expect(await registration.matchesProfile('fixture-profile-2', FIRST_OWNER)).assertTrue();
+    });
+
+    it('logoutDuringLegalRefusalDoesNotRestoreAccountOrProfile', 0, async () => {
+      const device: TestPushDevice = new TestPushDevice();
+      const api: TestPushApi = new TestPushApi(device);
+      const registration: PushRegistration = new PushRegistration(device);
+      const gate: RegistrationGate = new RegistrationGate();
+      api.gate = gate;
+      const syncing: Promise<PushStatus> = registration.sync(api, true, FIRST_OWNER);
+      expect(await Promise.race([gate.entered.then(() => true), syncing.then(() => false)])).assertTrue();
+      const cleanup: Promise<void> = registration.remove(api, FIRST_OWNER);
+      gate.refuse();
+      expect(await syncing).assertEqual('unknown');
+      await cleanup;
+      expect(device.boundProfile).assertEqual('');
+      expect(device.lease === null).assertTrue();
+      expect(api.unregistrations.length).assertEqual(1);
+    });
+  });
+
+  describe('PushBindingClient', () => {
+    it('acceptsLegacyRegisteredFalseWithoutInventingATicket', 0, async () => {
+      const transport: BindingTransport = new BindingTransport();
+      const client: PushBindingClient = new PushBindingClient('https://fixture.invalid', transport, 'fixture-session');
+      const receipt: PushRegistrationReceipt = await client.register('fixture-installation', 'fixture-token', 'fixture-profile');
+      expect(receipt.registered).assertFalse();
+      expect(receipt.revokeTicket).assertEqual('');
+      expect(transport.request?.token).assertEqual('fixture-session');
+      expect(transport.request?.method).assertEqual('POST');
+    });
+
+    it('acceptsARealRegisteredReceiptOnlyWithAValidTicket', 0, async () => {
+      const transport: BindingTransport = new BindingTransport();
+      const ticket: string = 'fixture-revocation-ticket-012345678901234567890123';
+      transport.body = JSON.stringify({ registered: true, revokeTicket: ticket });
+      const client: PushBindingClient = new PushBindingClient('https://fixture.invalid', transport, 'fixture-session');
+      const receipt: PushRegistrationReceipt = await client.register('fixture-installation', 'fixture-token', 'fixture-profile');
+      expect(receipt.registered).assertTrue();
+      expect(receipt.revokeTicket).assertEqual(ticket);
+    });
+
+    it('rejectsMalformedOrContradictoryReceipts', 0, async () => {
+      const transport: BindingTransport = new BindingTransport();
+      const client: PushBindingClient = new PushBindingClient('https://fixture.invalid', transport, 'fixture-session');
+      for (const payload of ['{}', '{"registered":"false"}', '{"registered":true}',
+        '{"registered":true,"revokeTicket":"short"}', '{"registered":false,"revokeTicket":"unexpected"}',
+        'null', '[]', 'invalid-json']) {
+        transport.body = payload;
+        expect(await rejectsRegistration(client)).assertTrue();
+      }
+    });
+
+    it('doesNotTreatTransportOrHttpFailureAsLegalRefusal', 0, async () => {
+      const transport: BindingTransport = new BindingTransport();
+      const client: PushBindingClient = new PushBindingClient('https://fixture.invalid', transport, 'fixture-session');
+      transport.status = 503;
+      expect(await rejectsRegistration(client)).assertTrue();
+      transport.status = 200;
+      transport.fail = true;
+      expect(await rejectsRegistration(client)).assertTrue();
     });
   });
 }

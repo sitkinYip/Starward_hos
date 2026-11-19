@@ -59,13 +59,19 @@ export struct SettingsPage {
         .enabled(this.pushAvailable && !this.pushBusy)
         .accessibilityText(`旅途通知，${this.notificationState()}，系统通知设置`)
         .onClick(() => this.openNotificationSettings())
-      if (this.pushSettingsError.length > 0 || this.pushStatus === 'retry') {
+      if (this.pushSettingsError.length > 0 || this.pushStatus === 'retry' || this.pushStatus === 'unavailable') {
         Divider().color($r('app.color.border')).margin({ left: 14, right: 14 })
         Column({ space: 4 }) {
-          InlineError({ message: this.pushSettingsError.length > 0 ? this.pushSettingsError :
-            '暂时无法同步通知，应用内来信仍可查看。', fieldId: 'settings-push-error' })
-          if (this.pushStatus === 'retry') {
-            Button('重新同步', { type: ButtonType.Normal }).id('settings-push-retry')
+          if (this.pushSettingsError.length === 0 && this.pushStatus === 'unavailable') {
+            Text('通知服务暂未就绪，应用内来信仍可查看。').id('settings-push-unavailable')
+              .fontSize(13).lineHeight('20fp').fontColor($r('app.color.muted'))
+          } else {
+            InlineError({ message: this.pushSettingsError.length > 0 ? this.pushSettingsError :
+              '暂时无法同步通知，应用内来信仍可查看。', fieldId: 'settings-push-error' })
+          }
+          if (this.pushStatus === 'retry' || this.pushStatus === 'unavailable') {
+            Button(this.pushStatus === 'unavailable' ? '重新检查' : '重新同步', { type: ButtonType.Normal })
+              .id(this.pushStatus === 'unavailable' ? 'settings-push-check' : 'settings-push-retry')
               .constraintSize({ minHeight: 44 }).padding({ left: 12, right: 12 })
               .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
               .enabled(this.pushAvailable && !this.pushBusy).onClick(() => this.retryNotificationSync())

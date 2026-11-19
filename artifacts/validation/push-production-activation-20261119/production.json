@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-19",
+  "status": "production-marketing-delivery-user-confirmed-subscription-pending",
+  "operatorAuthorizedScope": "Keep existing production audience all / revision 2; enable the existing Push runtime",
+  "platformObserved": {
+    "invitation013": "testing, review passed",
+    "subscriptionCategory": "under review"
+  },
+  "productionBefore": {
+    "senderEnabled": false,
+    "credentialsMounted": false,
+    "audience": "all",
+    "revision": 2,
+    "retainedPlayerCount": 2,
+    "bindings": 0,
+    "deliveries": 0
+  },
+  "configuredOff": {
+    "sameImage": true,
+    "readOnlyCredentialMounted": true,
+    "exactFivePushVariables": true,
+    "healthy": true,
+    "distinctHealthyChecks": 3,
+    "restarts": 0,
+    "httpsHealth": 200,
+    "anonymousProtectedRoutes": 401,
+    "policySchemaLedgerAndHistoricalAuditPreserved": true
+  },
+  "nativeInstalled": {
+    "version": "0.1.3 (5)",
+    "debugUsbExperience": true,
+    "sameExistingSigningIdentity": true,
+    "productionHttps": true,
+    "sameRootRuntimeSources": 127,
+    "signedHapSha256": "60828482c35fc655bea677de260ac7839b2db17dfebbaf858ebed8e14585d995",
+    "officialCliRunExit": 0,
+    "uninstall": false,
+    "dataCleared": false
+  },
+  "deviceOffState": {
+    "systemPermission": "enabled",
+    "status": "unavailable",
+    "text": "通知服务暂未就绪，应用内来信仍可查看。",
+    "recheckAvailable": true,
+    "networkErrorShown": false
+  },
+  "delivery": {
+    "classification": "MARKETING",
+    "directedToCurrentUserOnly": true,
+    "newNoticesSentByAgent": 1,
+    "sentAt": "2026-11-19T15:27:20.866+08:00",
+    "providerAcceptanceVerified": true,
+    "attempts": 1,
+    "providerCode": "80000000",
+    "testMessage": false,
+    "systemDisplayVerified": true,
+    "systemDisplayEvidence": "User explicitly confirmed receipt on their other invitation-test phone; not the USB-connected phone",
+    "usbSystemDisplayVerified": false,
+    "clickSourceSyncVerified": false,
+    "targetReadAtAfter": "",
+    "targetReadCountBefore": 6,
+    "targetReadCountAfter": 6,
+    "answerCountBefore": 63,
+    "answerCountAfter": 63,
+    "playerCommandCountsUnchanged": true,
+    "earlierUserNoticesDiscardedBeforeProvider": 2
+  },
+  "subscriptionCategoryEnabled": false,
+  "observedAt": "2026-11-19T07:32:21.439002Z",
+  "enabled": {
+    "completedAt": "2026-11-19T15:12:56+08:00",
+    "senderEnabled": true,
+    "testMessage": false,
+    "subscriptionApproved": false,
+    "distinctHealthyChecks": 3,
+    "restarts": 0,
+    "health": "healthy",
+    "httpsHealth": 200,
+    "anonymousProtectedRoutes": 401,
+    "audience": "all",
+    "audienceRevision": 2,
+    "policySchemaLedgerAndHistoricalAuditPreserved": true,
+    "readOnlyCredentialMounted": true,
+    "targetValidBindings": 1,
+    "simultaneousTwoDeviceRegistrationVerified": false,
+    "composeSha256": "3ef3d9ca68ded2b6356d8b96273686f3c377fbfd44255fdd812defde45dd8341",
+    "serverRecordStatus": "enabled-verified"
+  },
+  "deviceOnState": {
+    "settingsSystemPermission": "enabled",
+    "unavailableTextAbsent": true,
+    "networkErrorAbsent": true,
+    "subscriptionText": "订阅已保存 · 通知能力待启用",
+    "usbDeviceAtFinalObservation": "login page"
+  },
+  "limitations": [
+    "SUBSCRIPTION application remains under review; new assignments and story letters are not enqueued and are not downgraded to MARKETING",
+    "Current invitation-package notification click not verified this round",
+    "Both phones being signed in does not prove both Push bindings active; final production snapshot contains one valid binding",
+    "Provider requestId is not retained by current sender; success code is not a per-device receipt",
+    "Old frozen release runner requires explicit support for the new credential mount before a future code release"
+  ]
+}

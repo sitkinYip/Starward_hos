@@ -24,13 +24,23 @@ export interface PushDevice {
   saveLease(lease: PushLease | null): Promise<void>;
 }
 
+export class PushRegistrationReceipt {
+  readonly registered: boolean;
+  readonly revokeTicket: string;
+
+  constructor(registered: boolean, revokeTicket: string = '') {
+    this.registered = registered;
+    this.revokeTicket = revokeTicket;
+  }
+}
+
 export interface PushBindingApi {
-  register(installationId: string, token: string, profileId: string): Promise<string>;
+  register(installationId: string, token: string, profileId: string): Promise<PushRegistrationReceipt>;
   unregister(installationId: string): Promise<void>;
   revoke(installationId: string, ticket: string): Promise<void>;
 }
 
-export type PushStatus = 'unknown' | 'off' | 'ready' | 'retry';
+export type PushStatus = 'unknown' | 'off' | 'ready' | 'unavailable' | 'retry';
 
 /** Serializes SDK and HTTP writes across account and permission changes. */
 export class PushRegistration {
@@ -66,7 +76,10 @@ export class PushRegistration {
         }
         if (revision !== this.revision) { return 'unknown'; }
         if (!permitted) { return 'off'; }
-        if (!force && lease !== null && Date.now() - this.renewedAt < 12 * 60 * 60 * 1000) { return 'ready'; }
+        if (!force && lease !== null && lease.revokeTicket.length > 0 &&
+          Date.now() - this.renewedAt < 12 * 60 * 60 * 1000) { return 'ready'; }
+        // A failed or refused renewal must not fall back to a previous ready cache.
+        this.renewedAt = 0;
         const installationId: string = await this.device.getInstallationId();
         const token: string = await this.device.getToken();
         if (revision !== this.revision) { return 'unknown'; }
@@ -78,9 +91,15 @@ export class PushRegistration {
         if (revision !== this.revision) { return 'unknown'; }
         await this.device.bindProfile(lease.profileId);
         if (revision !== this.revision) { return 'unknown'; }
-        const ticket: string = await api.register(installationId, token, lease.profileId);
+        const receipt: PushRegistrationReceipt = await api.register(installationId, token, lease.profileId);
+        if (!receipt.registered) {
+          // A legal refusal is not a network failure. Retain any old ticket until
+          // cleanup completes, so a prior successful binding cannot remain usable.
+          await this.cleanup(api, lease, lease.ownerId === ownerId);
+          return revision === this.revision ? 'unavailable' : 'unknown';
+        }
         // Even after signout, save the receipt so the queued cleanup can revoke this exact binding.
-        await this.device.saveLease(new PushLease(lease.profileId, ticket, false, ownerId));
+        await this.device.saveLease(new PushLease(lease.profileId, receipt.revokeTicket, false, ownerId));
         if (revision !== this.revision) { return 'unknown'; }
         this.renewedAt = Date.now();
         return 'ready';

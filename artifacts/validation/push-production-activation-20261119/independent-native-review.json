@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-19",
+  "reviewer": "native_push_subscription agent; independent from backend/configuration author",
+  "skill": "code-review-and-quality",
+  "scope": "Offline Push activation candidates and operator; no server or device operations",
+  "verdict": "No remaining blocking findings after rollback guard correction",
+  "reviewedFileSHA256": {
+    "prepare-config.mjs": "57869c30cd84b15561e441b1b38bb6a5d1bcf8ec488e5334df441c59128eb4b0",
+    "check-runtime.py": "399d5661ec59b62915838ba3d8317fc0c0652b6f97f8bca3c47985af2106badc",
+    "check-policy.mjs": "507f076999c162fcb145cca78bc72ea3e0d129aaaea7dad7d4bff388893b37fc",
+    "verify-local.mjs": "4693eb57338e7d4d3d9e1c7146a50bb6a34e9a3aa85bc522c2a0dc3511e8c3b4",
+    "verify-image.mjs": "22e50b22b027e78f2ab9ef7a6eed9f76de90ae2487d79a12e31f8043578853d3",
+    "check-secret.py": "4b65877b41f3e8e5955937c938d1e224080b9f4087a0a7462b5b3b96b93b731b",
+    "apply-runtime.py": "b2ff82bf6b499be3c604b2a4f6559ce703d86e768205b77541136232bf02a78d",
+    "activation-plan.md": "2083b452f2b8ac4ba5f6845ba9865f6dd76c059f6106912db7875cb25f54a61b"
+  },
+  "frozenBaseline": {
+    "releaseId": "push-account-subscription-20261119",
+    "planSHA256": "6a33dd179febe5f0cc31e4211d4698a6a7d98c00662ae1f3f38dd0f9dfe5027a",
+    "archiveSHA256": "426016cdf74f445be032f9a94a722e88ead0abfec82ecbfcd7c9c475e052de4a",
+    "composeSHA256": "20e7a02a749a43af61344ef9f3b64f9e51be3e77daae0fd9f366f33a43f00ff9",
+    "archiveComposeIdenticalToPreparedBase": true
+  },
+  "effectiveConfiguration": {
+    "independentlyDockerRendered": true,
+    "onlyFivePushEnvironmentVariablesAndOneReadonlyCredentialMount": true,
+    "offOnChangesOnlyMasterSwitch": true,
+    "sameFrozenImageAndDatabaseMount": true,
+    "originalPortsNetworkSecurityHealthArgumentsPreserved": true,
+    "testMode": false,
+    "subscriptionApproved": false,
+    "savedAudience": "all",
+    "savedPolicyRevision": 2,
+    "savedPlayerSetRetainedWithoutPublishingIdentifiers": true
+  },
+  "checks": {
+    "independentPolicyCases": 11,
+    "independentPolicyPassed": 11,
+    "privateSamePlayerSetComparisonMutationKilled": true,
+    "operatorGuardASTCases": 12,
+    "operatorGuardASTPassed": 12,
+    "operatorMainExecuted": false
+  },
+  "resolvedFinding": {
+    "issue": "Rollback required an already verified and healthy enabled container, blocking recovery after a failed enable stage",
+    "resolution": "Rollback accepts enabled-applying or enabled-verified with exact ON Compose and image; skips old-container health only; OFF target still passes created/running same-container and full runtime health checks",
+    "verifiedNegativeGuards": [
+      "wrong Compose SHA",
+      "different image",
+      "wrong prior phase",
+      "changed policy",
+      "changed schema",
+      "changed migration ledger",
+      "unhealthy source during enable",
+      "nonempty queue before enable"
+    ]
+  },
+  "authorRehearsalSeparatelyInspected": {
+    "status": "local-synthetic-rehearsal-passed",
+    "sha256": "d6d342e4b33d6f2d31e499b19226a4b1144093306e8f818a9cad5553c3c6d38e",
+    "syntheticDatabaseOnly": true,
+    "realCredentialMounted": false,
+    "internalNetwork": true,
+    "enabledToOffRollbackVerified": true,
+    "cleanupVerified": true,
+    "rerunByIndependentReviewer": false
+  },
+  "operatorSafety": {
+    "sameGlobalDatabaseLockAndRecordedReleaseGate": true,
+    "oldReleaseAuditHashesPinnedAndNotRewritten": true,
+    "credentialReadabilityAndStrictFormatCheckedWithoutCredentialOutput": true,
+    "newContainerIdentityCheckedBeforeAndAfterStart": true,
+    "databaseNotRestoredOrMigrated": true,
+    "databaseGuarantee": "Schema, migration ledger and saved policy; business-row totals are separate root checks",
+    "missingContainerOrUnknownState": "Explicitly blocked for read-only diagnosis; no automatic force or data restore"
+  },
+  "notVerifiedByThisReview": [
+    "production activation",
+    "real backend registration",
+    "Huawei provider acceptance",
+    "actual phone delivery or click routing",
+    "SUBSCRIPTION entitlement approval"
+  ]
+}

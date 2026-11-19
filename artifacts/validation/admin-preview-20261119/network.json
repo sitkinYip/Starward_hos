@@ -1,0 +1,22 @@
+{
+  "test": "public-https-preview-from-clean-headless-browser",
+  "messages": [],
+  "errors": [
+    "Mixed Content: The page at 'https://vae.sitkin.top/preview-diagnostic' was loaded over HTTPS, but requested an insecure frame 'http://oneagent-filter.alibaba-inc.com/[redirect parameters redacted]'. This request has been blocked; the content must be served over HTTPS."
+  ],
+  "failed": [
+    {
+      "url": "https://sitkin.top/questions-next/preview/?parentOrigin=https%3A%2F%2Fvae.sitkin.top&channel=network-diagnostic",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://vae.sitkin.top/preview-diagnostic",
+      "status": 200,
+      "contentType": "text/html"
+    }
+  ]
+}

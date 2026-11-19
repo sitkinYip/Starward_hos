@@ -1,0 +1,31 @@
+{
+  "diagnosis": "Company OneAgent redirects the HTTPS editor-preview request to an HTTP policy page; the HTTPS admin blocks the iframe as mixed content.",
+  "source_changes": false,
+  "business_writes": false,
+  "deployed_preview": {
+    "version": "1.66.1",
+    "commit": "03ba71a230df25e251bb0f879e8217727941d8cf",
+    "entry": "https://sitkin.top/questions-next/preview/",
+    "entry_status_from_server": 200,
+    "referenced_assets_status_from_server": 200,
+    "entry_frame_blocking_headers_observed": false
+  },
+  "exact_deployed_artifact_isolated": {
+    "ready_handshake": true,
+    "runtime_errors": 0,
+    "supported_kinds": [
+      "question",
+      "notification",
+      "narrative",
+      "session",
+      "reward"
+    ],
+    "rendered_draft_flows_tested": false
+  },
+  "public_https_browser": {
+    "ready_handshake": false,
+    "failure": "Mixed Content after company policy redirect to http://oneagent-filter.alibaba-inc.com/"
+  },
+  "user_browser_visual_verification": "unavailable: CUA connection timed out",
+  "full_release_gate": "not rerun: diagnosis only; no source changes"
+}

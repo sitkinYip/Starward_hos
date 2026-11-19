@@ -1,0 +1,20 @@
+{
+  "test": "exact-deployed-preview-artifact-isolated-no-business-writes",
+  "messages": [
+    {
+      "type": "sitkin:preview:ready",
+      "version": 1,
+      "channel": "isolated-diagnostic",
+      "kinds": [
+        "question",
+        "notification",
+        "narrative",
+        "session",
+        "reward"
+      ]
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "frameText": "等待编辑内容…"
+}

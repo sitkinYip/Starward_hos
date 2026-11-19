@@ -1,4 +1,4 @@
-import { PushBindingApi } from '../business/PushRegistration';
+import { PushBindingApi, PushRegistrationReceipt } from '../business/PushRegistration';
 import { HttpTransport, TransportRequest, TransportResponse } from '../platform/HttpTransport';
 
 const PUSH_PATH: string = '/api/questions/v1';
@@ -52,14 +52,17 @@ export class PushBindingClient implements PushBindingApi {
     return JSON.parse(response.body) as Record<string, Object>;
   }
 
-  async register(installationId: string, token: string, profileId: string): Promise<string> {
+  async register(installationId: string, token: string, profileId: string): Promise<PushRegistrationReceipt> {
     const body = await this.post('/me/push/register',
       JSON.stringify(new PushRegistrationCommand(installationId, token, profileId)), this.authorization);
     const ticket: Object = body['revokeTicket'];
+    if (body['registered'] === false && ticket === undefined) {
+      return new PushRegistrationReceipt(false);
+    }
     if (body['registered'] !== true || typeof ticket !== 'string' || !/^[A-Za-z0-9_-]{32,384}$/.test(ticket as string)) {
       throw new Error('Invalid Push registration receipt');
     }
-    return ticket as string;
+    return new PushRegistrationReceipt(true, ticket as string);
   }
 
   async unregister(installationId: string): Promise<void> {

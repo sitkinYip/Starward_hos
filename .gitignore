@@ -18,6 +18,10 @@ artifacts/private/
 artifacts/*.log
 artifacts/lint*.json
 
+# Downloaded web build copies are temporary diagnostics, not validation summaries.
+/artifacts/validation/**/deployed/
+/artifacts/validation/**/deployed.tgz
+
 # Local IDE signing config; tracked example contains no signing material.
 /build-profile.json5
 

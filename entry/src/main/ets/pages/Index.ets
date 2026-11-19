@@ -350,7 +350,7 @@ struct Index {
               this.pushTokenDirty = true;
               if (this.pushAvailable()) { void this.syncPush(); }
             });
-          } else if (status === 'off') {
+          } else if (status === 'off' || status === 'unavailable') {
             this.stopPushTokenWatch();
           }
         }
