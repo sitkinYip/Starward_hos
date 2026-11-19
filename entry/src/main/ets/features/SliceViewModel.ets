@@ -77,6 +77,7 @@ export class SliceViewModel {
   readonly journey: JourneyNotificationsViewModel;
   readonly rewards: RewardsViewModel;
   readonly pushSubscriptions: PushSubscriptionsViewModel;
+  readonly onboardingSubscriptions: PushSubscriptionsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
   private restoreRead: ReadCancellation | null = null;
@@ -117,6 +118,7 @@ export class SliceViewModel {
     });
     this.rewards = new RewardsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.pushSubscriptions = new PushSubscriptionsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
+    this.onboardingSubscriptions = new PushSubscriptionsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
       if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
         this.publishDetail(snapshot.detail);
@@ -182,6 +184,7 @@ export class SliceViewModel {
     this.journey.bindOwner(player.mustChangePassword ? '' : player.id);
     this.rewards.bindOwner(player.mustChangePassword ? '' : player.id);
     this.pushSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.onboardingSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
       this.avatarImage = null;
@@ -386,6 +389,7 @@ export class SliceViewModel {
       this.journey.bindOwner('');
       this.rewards.bindOwner('');
       this.pushSubscriptions.bindOwner('');
+      this.onboardingSubscriptions.bindOwner('');
       this.listBusy = false;
       this.avatarRequest++;
       this.avatarBusy = false;
@@ -954,6 +958,7 @@ export class SliceViewModel {
     this.journey.bindOwner('');
     this.rewards.bindOwner('');
     this.pushSubscriptions.bindOwner('');
+    this.onboardingSubscriptions.bindOwner('');
     this.profileRevision++;
     this.avatarRequest++;
     this.busy = false;

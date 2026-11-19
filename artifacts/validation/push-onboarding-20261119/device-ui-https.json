@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "bundleName": "com.sitkin.starward",
+  "scope": "Native post-login personal-journey subscription onboarding only",
+  "device": {
+    "formFactor": "straight phone",
+    "model": "HUAWEI Mate 60 Pro",
+    "screenshotPx": [
+      1260,
+      2720
+    ]
+  },
+  "toolchain": {
+    "studio": "26.0.0.851",
+    "sdk": "26.0.0.105",
+    "api": 26,
+    "node": "24.14.1",
+    "devecoCLI": "1.3.0-stable",
+    "hdc": "3.2.0f"
+  },
+  "rounds": [
+    {
+      "label": "intermediate",
+      "hapSHA256": "901ef5dcc4cedaecf91ebefa0b30294bb622a5b60d205495a74d52607a39b7ab",
+      "signedHapVerified": true,
+      "profileType": "debug",
+      "checks": [
+        {
+          "name": "agree",
+          "putDelta": 2,
+          "automaticAfterLogin": true,
+          "twoExplicitSteps": true,
+          "settingsIndependent": true,
+          "coldNoRepeat": true
+        },
+        {
+          "name": "later",
+          "putDelta": 0,
+          "declineWritesNothing": true,
+          "coldNoRepeat": true
+        },
+        {
+          "name": "retry",
+          "putDelta": 4,
+          "dayNightReadable": true,
+          "sameCommand503Retry": true,
+          "lostResponseReplaySettledOnce": true
+        },
+        {
+          "name": "existing",
+          "putDelta": 0,
+          "existingCancellationNotAskedAgain": true,
+          "settingsCanContinue": true
+        },
+        {
+          "name": "background",
+          "putDelta": 0,
+          "backgroundDismissedWithoutWrite": true,
+          "coldNoRepeat": true
+        },
+        {
+          "name": "back",
+          "putDelta": 1,
+          "backKeepsSubscriptionButNoNotifications": true,
+          "coldNoRepeat": true
+        },
+        {
+          "name": "mask",
+          "putDelta": 0,
+          "maskDismissedWithoutWrite": true,
+          "coldNoRepeat": true,
+          "themeRestoredSystem": true
+        }
+      ],
+      "captures": [
+        {
+          "state": "01-day-subscribe",
+          "png": "01-day-subscribe-1795080259520774000.png",
+          "pngSHA256": "07ab3784916806a32c4f90a77af546d2f60c2cd3f172dd4de21ef91bd903bb6d",
+          "raw": "01-day-subscribe-1795080259520774000.json",
+          "rawSHA256": "5918156ef4d1ae7900c605a373ff7e972635eea50fc520238b2bb0924794ae65",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1035,
+              923,
+              1129
+            ],
+            "push-onboarding-accept": [
+              146,
+              1510,
+              1114,
+              1660
+            ],
+            "push-onboarding-decline": [
+              146,
+              1686,
+              1114,
+              1829
+            ]
+          }
+        },
+        {
+          "state": "02-day-separate-notifications",
+          "png": "02-day-separate-notifications-1795080266423705000.png",
+          "pngSHA256": "29e1d5e7847a6caffacbf7775f3880be9ca718c9ac3ddfeb20ca94b8838d5356",
+          "raw": "02-day-separate-notifications-1795080266423705000.json",
+          "rawSHA256": "aae27c1939ddc58cac9d79d6c0d365a09e4aba6e8e17ee103279a89b0e985d8a",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1004,
+              923,
+              1098
+            ],
+            "push-onboarding-accept": [
+              146,
+              1541,
+              1114,
+              1691
+            ],
+            "push-onboarding-decline": [
+              146,
+              1717,
+              1114,
+              1860
+            ]
+          }
+        },
+        {
+          "state": "03-settings-kept-independent",
+          "png": "03-settings-kept-independent-1795080282013774000.png",
+          "pngSHA256": "2b76289cd0177ced5537259bbdd0b5b4113185919034660850e71c1b2194ef7b",
+          "raw": "03-settings-kept-independent-1795080282013774000.json",
+          "rawSHA256": "5e4b19ea3c728feb8fd23820ba12b2f3faf1b7c88fc1cbd117a53efdd3211044",
+          "bounds": {
+            "settings-back": [
+              52,
+              149,
+              195,
+              292
+            ]
+          }
+        },
+        {
+          "state": "04-night-subscribe",
+          "png": "04-night-subscribe-1795080380576906000.png",
+          "pngSHA256": "8f8d399626b5cf834003284c3220f5c56f76ffaf51f87bf1cd023408bfe9b507",
+          "raw": "04-night-subscribe-1795080380576906000.json",
+          "rawSHA256": "f3363aa4b83280dffff6183c2117f05406ed4f84eb628cadd6e36d9801b3beff",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1035,
+              923,
+              1129
+            ],
+            "push-onboarding-accept": [
+              146,
+              1510,
+              1114,
+              1660
+            ],
+            "push-onboarding-decline": [
+              146,
+              1686,
+              1114,
+              1829
+            ]
+          }
+        },
+        {
+          "state": "05-night-503-retry",
+          "png": "05-night-503-retry-1795080387593247000.png",
+          "pngSHA256": "49abeee807981cb6901736373abc94cff6e1cedef92563dc7a0b2a72e01af2b9",
+          "raw": "05-night-503-retry-1795080387593247000.json",
+          "rawSHA256": "15f69e90973d5834170f5369ad18d252343bb99478550850979f49801fb282ad",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              974,
+              923,
+              1068
+            ],
+            "push-onboarding-decline": [
+              146,
+              1749,
+              1114,
+              1892
+            ],
+            "push-onboarding-retry": [
+              146,
+              1573,
+              1114,
+              1723
+            ]
+          }
+        },
+        {
+          "state": "06-night-separate-notifications",
+          "png": "06-night-separate-notifications-1795080394604736000.png",
+          "pngSHA256": "4ba3ccbd39b405f727c697b3b12898567699255ebdea8e805709749fd8b443b7",
+          "raw": "06-night-separate-notifications-1795080394604736000.json",
+          "rawSHA256": "b1d85846b41261d59a6fcb0240f80bd795b642f74387703afbee0749f50e98af",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1004,
+              923,
+              1098
+            ],
+            "push-onboarding-accept": [
+              146,
+              1541,
+              1114,
+              1691
+            ],
+            "push-onboarding-decline": [
+              146,
+              1717,
+              1114,
+              1860
+            ]
+          }
+        },
+        {
+          "state": "07-existing-cancel-kept",
+          "png": "07-existing-cancel-kept-1795080450410733000.png",
+          "pngSHA256": "b883480f1b2dfdaad021c00681890d5bfa3bc583fe0ddaafac8afda02841a752",
+          "raw": "07-existing-cancel-kept-1795080450410733000.json",
+          "rawSHA256": "0644caccef4cb4e9c5bda7b8ad090ce2b84ca88aa8030b99d28769093c0e92af",
+          "bounds": {
+            "settings-back": [
+              52,
+              149,
+              195,
+              292
+            ]
+          }
+        },
+        {
+          "state": "08-navigation-keeps-settings",
+          "png": "08-navigation-keeps-settings-1795080613430182000.png",
+          "pngSHA256": "49a279cb3ec747bbdfd6e033221893eace0feb5a9c5c3493cf40c988b05b960e",
+          "raw": "08-navigation-keeps-settings-1795080613430182000.json",
+          "rawSHA256": "db808f0d2470b3f2e5d6e3f5cca0af9f02eddda483bd7dac1e2af703c939bd67",
+          "bounds": {
+            "settings-back": [
+              52,
+              149,
+              195,
+              292
+            ]
+          }
+        }
+      ],
+      "strictPythonTLSVerified": true,
+      "realHttpsHealth": 200,
+      "faultPreflight": [
+        503,
+        200
+      ],
+      "delayedRealResponseStatus": 200,
+      "ledger": {
+        "subscriptionPutRequests": 7,
+        "starts": 0,
+        "answers": 0,
+        "readCount": 0,
+        "bindingsAfterLogout": 0,
+        "providerQueues": {
+          "pending": 0,
+          "sending": 0,
+          "accepted": 0,
+          "discarded": 0,
+          "failed": 0
+        },
+        "providerDeliveryTested": false
+      },
+      "environmentStopped": true,
+      "productionConnected": false,
+      "artifacts": {
+        "verificationSHA256": "3c86dcd415a5aefbb9f518b04d281ccc95ef68f7b86e7adf18f561148644efb2",
+        "finalLedgerSHA256": "f7dd4d1e77d8cf33fe93e388ebfcac663396c245b978534f1dc26738a1f11dce",
+        "preflightSHA256": "94aa72beea2648548cb17d236fc8c262b4dc97459a937f7a5c21461fc5f3f4f2",
+        "signedHapMetadataSHA256": "5c143f3953a65df9229da8b7bc0f9245741091d1a23e4c058694ef9a58351cbe",
+        "deviceCollectorSHA256": "fee1576bd7318a7c547405c8dddaab1c7ac5720ed66d7604511f71a07d19165d",
+        "scenarioCollectorSHA256": "a62b3b452bd32f69deea83c5fa9964c998ffc29d32911f55c56b8ef69c9b6e8b"
+      },
+      "binaryRetention": "SHA recorded before later rebuild; binary was not archived."
+    },
+    {
+      "label": "final",
+      "hapSHA256": "b86a1bbd603755e7f118f2e6e638dd8cca4d14c1ea9c41ef4f005d755074e4de",
+      "signedHapVerified": true,
+      "profileType": "debug",
+      "checks": [
+        {
+          "name": "navigation",
+          "putDelta": 0,
+          "delayedReadCannotOverlaySettings": true,
+          "settingsSourceIndependent": true,
+          "homeCanOfferAfterCancelledRead": true,
+          "backWritesNothing": true
+        },
+        {
+          "name": "finalday",
+          "putDelta": 1,
+          "separateConsent": true,
+          "declinedNotificationsWithoutSecondWrite": true,
+          "coldNoRepeat": true
+        },
+        {
+          "name": "retry",
+          "putDelta": 4,
+          "dayNightReadable": true,
+          "sameCommand503Retry": true,
+          "lostResponseReplaySettledOnce": true
+        }
+      ],
+      "captures": [
+        {
+          "state": "08-navigation-keeps-settings",
+          "png": "08-navigation-keeps-settings-1795080907989324000.png",
+          "pngSHA256": "560b055f627c3635f274bc5dccd069b0f8f8600e84d2d877e7a078bbb53a36da",
+          "raw": "08-navigation-keeps-settings-1795080907989324000.json",
+          "rawSHA256": "800e3db4c31a863116a117b5b9af127ae0ea9f0ecb9ab1b1065d6d5213d210bc",
+          "bounds": {
+            "settings-back": [
+              52,
+              149,
+              195,
+              292
+            ]
+          }
+        },
+        {
+          "state": "09-final-day-subscribe",
+          "png": "09-final-day-subscribe-1795080955132635000.png",
+          "pngSHA256": "7fa020443f808be1743f3d49e3e196c89c7f31e694afc943ddd1bdfe1d9937a5",
+          "raw": "09-final-day-subscribe-1795080955132635000.json",
+          "rawSHA256": "6e0322e33a2453f73a59b5bde9d234b6d851bd5655ce6268cc9fa504a697f4ca",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1035,
+              923,
+              1129
+            ],
+            "push-onboarding-accept": [
+              146,
+              1510,
+              1114,
+              1660
+            ],
+            "push-onboarding-decline": [
+              146,
+              1686,
+              1114,
+              1829
+            ]
+          }
+        },
+        {
+          "state": "10-final-day-notifications",
+          "png": "10-final-day-notifications-1795080961978336000.png",
+          "pngSHA256": "e784156a0058d503a0ba59f2af1c8e34cdaac137f1fcf4902b3990c77a5b327f",
+          "raw": "10-final-day-notifications-1795080961978336000.json",
+          "rawSHA256": "d8aa094412626997c60161216157f68d7e764d04e1dce1f70eaad849bcc2b722",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1035,
+              923,
+              1129
+            ],
+            "push-onboarding-accept": [
+              146,
+              1510,
+              1114,
+              1660
+            ],
+            "push-onboarding-decline": [
+              146,
+              1686,
+              1114,
+              1829
+            ]
+          }
+        },
+        {
+          "state": "04-night-subscribe",
+          "png": "04-night-subscribe-1795081013146077000.png",
+          "pngSHA256": "73944a4d0aba5f182da0c42b84dbd860f153266c32098bae667a8d71a6626d0c",
+          "raw": "04-night-subscribe-1795081013146077000.json",
+          "rawSHA256": "67fdcb8526e6e99d96f4193ab0f77e4ff6dcddcd1dfc76cff4044be605f8c5e1",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1035,
+              923,
+              1129
+            ],
+            "push-onboarding-accept": [
+              146,
+              1510,
+              1114,
+              1660
+            ],
+            "push-onboarding-decline": [
+              146,
+              1686,
+              1114,
+              1829
+            ]
+          }
+        },
+        {
+          "state": "05-night-503-retry",
+          "png": "05-night-503-retry-1795081020173297000.png",
+          "pngSHA256": "555cf0e881a6d5a245f8d9326ee020798680779f81356206821e20a2ad166048",
+          "raw": "05-night-503-retry-1795081020173297000.json",
+          "rawSHA256": "47bf6b904644ae5a925ecc2eabefed64c7a0ff5ce1079ed59c8cc4389f23d661",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              974,
+              923,
+              1068
+            ],
+            "push-onboarding-decline": [
+              146,
+              1749,
+              1114,
+              1892
+            ],
+            "push-onboarding-retry": [
+              146,
+              1573,
+              1114,
+              1723
+            ]
+          }
+        },
+        {
+          "state": "06-night-separate-notifications",
+          "png": "06-night-separate-notifications-1795081027332705000.png",
+          "pngSHA256": "82a52bf0d0de7a32810b36a5e59e08bf49ad462e229465bfc717d876f293e81a",
+          "raw": "06-night-separate-notifications-1795081027332705000.json",
+          "rawSHA256": "86cd2c68011a17d75c760287e23212c25c52ef06f5f2a322428130927f85f57c",
+          "bounds": {
+            "push-onboarding-title": [
+              337,
+              1035,
+              923,
+              1129
+            ],
+            "push-onboarding-accept": [
+              146,
+              1510,
+              1114,
+              1660
+            ],
+            "push-onboarding-decline": [
+              146,
+              1686,
+              1114,
+              1829
+            ]
+          }
+        }
+      ],
+      "strictPythonTLSVerified": true,
+      "realHttpsHealth": 200,
+      "faultPreflight": [
+        503,
+        200
+      ],
+      "delayedRealResponseStatus": 200,
+      "ledger": {
+        "subscriptionPutRequests": 5,
+        "starts": 0,
+        "answers": 0,
+        "readCount": 0,
+        "bindingsAfterLogout": 0,
+        "providerQueues": {
+          "pending": 0,
+          "sending": 0,
+          "accepted": 0,
+          "discarded": 0,
+          "failed": 0
+        },
+        "providerDeliveryTested": false
+      },
+      "environmentStopped": true,
+      "productionConnected": false,
+      "artifacts": {
+        "verificationSHA256": "2e0e5b25d0e26239951556d3215ebd853f905c7a22fd92f99d96d6c689ff4432",
+        "finalLedgerSHA256": "e0db476776fd64e13fdea978eea137d73225ae69aed7e20e511010299dbbb25f",
+        "preflightSHA256": "894dc2b252779ea61e30992c881668f391de84a13deb70b2bd523381cb6dcd78",
+        "signedHapMetadataSHA256": "b2ad92428a4f5490323bd74325aa276743c90d5860bbc36e54bb5a7338dfed8d",
+        "deviceCollectorSHA256": "f65e51e5e9d37935bb5e785a4a23ae9d9774bfdca6cc82013539df8e72315661",
+        "scenarioCollectorSHA256": "53ab5f8943cfafba282162410f583b7b3445dcdea104eb0ce1bd53f45917091b"
+      },
+      "binaryRetention": "Final signed isolated HAP archived privately.",
+      "allRuntimeSourcesMatchWorkspace": true,
+      "runtimeSourceCount": 131,
+      "runtimeSourceManifestSHA256": "a2405a30ffde38c7febec072f9ab8afea5cf5e72f44f3878c1f3b958dfbe8429"
+    }
+  ],
+  "navigationIssue": {
+    "initialRunRetainedAsIncomplete": true,
+    "cause": "Side-panel release could make onboarding eligible before route stack transition was reserved.",
+    "fix": "Synchronously reserve transition and disable onboarding before releasing the side panel; check both observed depth and current stack size.",
+    "finalFreshAccountDeviceRetest": "passed"
+  },
+  "visualReview": {
+    "officialArkUIDialog": true,
+    "lightAndDarkImagesActuallyViewed": true,
+    "finalShortCopyActuallyViewed": true,
+    "buttonBoundsAndWindowInsetsChecked": true,
+    "systemAreasImmersive": true,
+    "webComparison": "Native-only newly requested flow; follows existing native subscription branding, no new Web flow."
+  },
+  "restoration": {
+    "signedHapVerified": true,
+    "profileType": "debug",
+    "bundleName": "com.sitkin.starward",
+    "hapSHA256": "33104ac2532ce87c75998737d32a0f3bb2ba0d6845176d85e61a067ea615981e",
+    "runtimeSourceCount": 131,
+    "allRuntimeSourcesMatch": true,
+    "mode": "production-invite-push",
+    "noIntegrationConfiguration": true,
+    "coverInstalledAndLaunchedViaOfficialCLI": true,
+    "ui": {
+      "account": false,
+      "current-scroll": true,
+      "push-onboarding-title": false,
+      "privacy-continue": false,
+      "settings-back": false,
+      "primary-action": false
+    },
+    "isolatedReverseRemoved": true,
+    "themesRestoredToSystem": true,
+    "personalProductionConsentWritesPerformed": false
+  },
+  "independentStaticReview": {
+    "blockingFindings": 0,
+    "deviceResultsClaimedByReviewer": false
+  },
+  "notPerformed": [
+    "Fresh-install system notification denial test; pre-existing installation-level permission logic is unchanged.",
+    "Huawei provider delivery and subscription category approval.",
+    "Large fonts, short-window and foldable scenarios.",
+    "Reduced-motion system-setting device test.",
+    "Announcement dismissal or new invitation submission."
+  ]
+}

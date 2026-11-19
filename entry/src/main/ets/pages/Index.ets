@@ -28,6 +28,9 @@ import { AppTheme, ThemePreference, ThemeSelection } from '../platform/AppTheme'
 import { LaunchRoutes, PushRoute } from '../platform/LaunchRoutes';
 import { HarmonyPush, HarmonyPushDevice } from '../platform/HarmonyPush';
 import { PushStatus } from '../business/PushRegistration';
+import { PushOnboardingViewModel } from '../features/PushOnboardingViewModel';
+import { PushOnboardingPreference } from '../platform/PushOnboardingPreference';
+import { StarwardPushOnboarding } from '../ui/StarwardPushOnboarding';
 import { LabeledInput } from '../ui/LabeledInput';
 import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { PrimaryAction } from '../ui/PrimaryAction';
@@ -193,6 +196,8 @@ struct Index {
   @Local private pushPermission: boolean | null = null;
   @Local private pushSettingsError: string = '';
   @Local private pushInboxRevision: number = 0;
+  @Local private pushOnboarding: PushOnboardingViewModel | null = null;
+  @Local private navigationDepth: number = 0;
   @Local private lobbyRouteTransitioning: boolean = false;
   @Local private gameplayDestinationShown: boolean = false;
   @Local private briefViewportWidth: number = 0;
@@ -301,6 +306,20 @@ struct Index {
     const canPrompt: boolean = !this.pushPromptChecked && !this.privacyBusy && !this.showAccount &&
       !this.lobbyRouteTransitioning && this.paths.size() === 0;
     void this.syncPush(canPrompt ? 'initial' : 'sync');
+  }
+
+  private pushOnboardingOwner(): string {
+    return AppEnvironment.pushEnabled && this.privacyAllowed && this.vm.gate === 'home' &&
+      !this.vm.securityBusy && !this.vm.securityUnconfirmed ? this.vm.player.id : '';
+  }
+
+  private pushOnboardingEligible(): boolean {
+    return this.pushOnboardingOwner().length > 0 && this.foreground && this.pushPromptChecked &&
+      !this.pushBusy && !this.privacyBusy &&
+      !this.showAccount && !this.showAvatarCrop && !this.avatarPicking && !this.lobbyRouteTransitioning &&
+      !this.gameplayDestinationShown && this.navigationDepth === 0 && this.paths.size() === 0 &&
+      this.vm.narrative.route === null &&
+      this.vm.journey.activeNotificationId.length === 0;
   }
 
   private async syncPush(action: PushAction = 'sync'): Promise<void> {
@@ -451,12 +470,14 @@ struct Index {
     LaunchRoutes.subscribe(this.routeListener);
     this.paths.setInterception({
       willShow: () => {
+        this.navigationDepth = this.paths.size();
         this.clearJourneyToast();
         this.lobbyRouteTransitioning = true;
         this.lobbyVisibilityChanged();
         this.journeyScopeChanged();
       },
       didShow: () => {
+        this.navigationDepth = this.paths.size();
         this.lobbyRouteTransitioning = false;
         this.lobbyVisibilityChanged();
         this.journeyScopeChanged();
@@ -466,7 +487,11 @@ struct Index {
     this.foreground = AppLifecycle.isForeground();
     if (AppEnvironment.pushEnabled) {
       const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-      if (context !== undefined) { this.vm.attachPush(new HarmonyPushDevice(context)); }
+      if (context !== undefined) {
+        this.vm.attachPush(new HarmonyPushDevice(context));
+        this.pushOnboarding = new PushOnboardingViewModel(this.vm.onboardingSubscriptions,
+          new PushOnboardingPreference(context));
+      }
     }
     if (AppEnvironment.hostedPrivacy) {
       this.privacyOwnerActive = true;
@@ -479,6 +504,7 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.pushOnboarding?.bindOwner('');
     this.clearJourneyToast();
     this.clearAuthToast();
     this.stopPushTokenWatch();
@@ -984,6 +1010,9 @@ struct Index {
       StarwardFeedback.toast(this.getUIContext(), '请先退出并重新登录，确认密码修改结果。');
       return;
     }
+    this.lobbyRouteTransitioning = true;
+    this.pushOnboarding?.setEligible(false);
+    this.showAccount = false;
     this.selectMain(0);
     this.atmosphere.release();
     this.vm.stopBriefingSync();
@@ -1070,6 +1099,9 @@ struct Index {
     if (!this.privacyAllowed || this.vm.gate !== 'home' || this.settingsOnTop()) {
       return;
     }
+    // Reserve the destination before releasing the side panel's modal gate.
+    this.lobbyRouteTransitioning = true;
+    this.pushOnboarding?.setEligible(false);
     this.showAccount = false;
     this.paths.pushPath({ name: 'settings' }, !this.motion.reduced);
   }
@@ -2004,7 +2036,6 @@ struct Index {
               .id('menu-return-assignment').width('100%').constraintSize({ minHeight: 52 })
               .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
               .onClick(() => {
-                this.showAccount = false;
                 this.openAssignment(this.returnAssignmentId);
               })
           }
@@ -2095,6 +2126,12 @@ struct Index {
     StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
       anchor: () => { this.accountOverlay() }, content: () => { this.avatarCropContent() }
     }).width('100%').height('100%')
+    if (this.pushOnboarding !== null) {
+      StarwardPushOnboarding({ model: this.pushOnboarding, permission: this.pushPermission,
+        owner: this.pushOnboardingOwner(), eligible: this.pushOnboardingEligible(),
+        widthVp: this.windowSize.width, heightVp: this.windowSize.height,
+        notificationsConfirmed: () => { if (this.pushAvailable()) { void this.syncPush('sync'); } } })
+    }
     JourneyUnreadEvents({ journey: this.vm.journey, arrived: (count: number) => this.journeyArrived(count),
       allRead: () => this.journeyReadCompleted() })
     AssignmentSynchronization({ journey: this.vm.journey, play: this.vm.play, narrative: this.vm.narrative,

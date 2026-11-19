@@ -27,6 +27,7 @@ import questionImageCacheTests from './QuestionImageCache.test';
 import immersiveSurfacesTests from './ImmersiveSurfaces.test';
 import pushRegistrationTests from './PushRegistration.test';
 import pushSubscriptionsTests from './PushSubscriptions.test';
+import pushOnboardingTests from './PushOnboarding.test';
 
 export default function testsuite(): void {
   routeTests();
@@ -58,4 +59,5 @@ export default function testsuite(): void {
   immersiveSurfacesTests();
   pushRegistrationTests();
   pushSubscriptionsTests();
+  pushOnboardingTests();
 }

@@ -51,7 +51,7 @@ export class PushSubscriptionsViewModel {
     this.active = false;
   }
 
-  setActive(active: boolean): void {
+  setActive(active: boolean, refresh: boolean = true): void {
     if (active === this.active) { return; }
     this.active = active;
     this.activation++;
@@ -59,7 +59,7 @@ export class PushSubscriptionsViewModel {
       this.cancelRead();
       this.confirmationRequested = false;
       this.confirmationAfterRead = false;
-    } else if (this.owner.length > 0 && this.command === null) {
+    } else if (refresh && this.owner.length > 0 && this.command === null) {
       void this.refresh();
     }
   }
