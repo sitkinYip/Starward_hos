@@ -1,0 +1,349 @@
+{
+  "date": "2026-11-19",
+  "reviewer": "Native implementation agent; actual root-collected straight-phone screenshots viewed individually with view_image; no device actions performed by this reviewer",
+  "reference": "Previously approved native SettingsPage branding and native ArkUI dialog wrapper, reviewed using project starward-ui-parity skill. This new account-scope UI has no frozen Web counterpart and is not a Web pixel comparison.",
+  "scope": "Account subscription visual design, day/night static states only",
+  "reviewStatus": "passed for seven individually viewed actual device captures, including day/night confirmation, subscribed/cancel and retry states",
+  "captures": [
+    {
+      "state": "01-default-off",
+      "originalPNG": "01-default-off-1795063415192272000.png",
+      "pngSHA256": "ba1cb81114dcf2aa06e64ef6788437a0bc05ed2a1c4adce869bfe00b639a9d8a",
+      "rawTreeSHA256": "26d85a8ea7eb545bad8df0a955881e1386f514af287f5a2e0dbbfed87850e325",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-subscribe",
+          "physicalPixelBounds": [
+            946,
+            1441,
+            1148,
+            1584
+          ],
+          "widthPixels": 202,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "state": "02-independent-confirmation",
+      "originalPNG": "02-independent-confirmation-1795063428078177000.png",
+      "pngSHA256": "2deb520cae3b8b0325438e6484418fe91cb6bad387b04e267a651b757be8def9",
+      "rawTreeSHA256": "402b3d443bb6bb4069cf38be61d5bff5929aaac85bca468976c4665b3a4d817d",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-enable",
+          "physicalPixelBounds": [
+            938,
+            1437,
+            1147,
+            1580
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-journey-unsubscribe",
+          "physicalPixelBounds": [
+            938,
+            1580,
+            1147,
+            1723
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-subscription-confirm",
+          "physicalPixelBounds": [
+            146,
+            1487,
+            1114,
+            1637
+          ],
+          "widthPixels": 968,
+          "heightPixels": 150,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-subscription-decline",
+          "physicalPixelBounds": [
+            146,
+            1663,
+            1114,
+            1806
+          ],
+          "widthPixels": 968,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "state": "dark-subscription-off",
+      "originalPNG": "dark-subscription-off-1795063445461754000.png",
+      "pngSHA256": "a749be8d0733ba10a7a5ea4da40fc772eb4d5c4a012adf6014cfd512b97591f0",
+      "rawTreeSHA256": "c4f1a82cd1cc286229a98975fe96b4fd8a28958edad766a5ead5ca674822eb77",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-enable",
+          "physicalPixelBounds": [
+            938,
+            1437,
+            1147,
+            1580
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-journey-unsubscribe",
+          "physicalPixelBounds": [
+            938,
+            1580,
+            1147,
+            1723
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "state": "dark-independent-confirmation",
+      "originalPNG": "dark-independent-confirmation-1795063452414608000.png",
+      "pngSHA256": "2f20642bdc3cd04c75ae8e6cb7c87382b7877fe0f704fe67b8c5b50fc7a90627",
+      "rawTreeSHA256": "5fab6de1801399fd3928f9ee27c72b53640a6dc0f1bd558b81f56d33dd539619",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-enable",
+          "physicalPixelBounds": [
+            938,
+            1437,
+            1147,
+            1580
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-journey-unsubscribe",
+          "physicalPixelBounds": [
+            938,
+            1580,
+            1147,
+            1723
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-subscription-confirm",
+          "physicalPixelBounds": [
+            146,
+            1487,
+            1114,
+            1637
+          ],
+          "widthPixels": 968,
+          "heightPixels": 150,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-subscription-decline",
+          "physicalPixelBounds": [
+            146,
+            1663,
+            1114,
+            1806
+          ],
+          "widthPixels": 968,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "state": "background-confirmation-cleared",
+      "originalPNG": "background-confirmation-cleared-1795063465152884000.png",
+      "pngSHA256": "7b6a9260a84a1d270b1c1b0d3519da2b65214cccbffa02684e49b5e50edd2f11",
+      "rawTreeSHA256": "dc2d614c73cec49b9a573b77c01cdd7e97e5d7b57efb8a9977f00208794371aa",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-enable",
+          "physicalPixelBounds": [
+            938,
+            1437,
+            1147,
+            1580
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        },
+        {
+          "id": "push-journey-unsubscribe",
+          "physicalPixelBounds": [
+            938,
+            1580,
+            1147,
+            1723
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "state": "03-subscribed-cancel",
+      "originalPNG": "03-subscribed-cancel-1795063476212317000.png",
+      "pngSHA256": "56f9167069860c7a6a8ff38cff90ac40a7beb38f9542a91f2a8f91fc0fc4710b",
+      "rawTreeSHA256": "12fedbd6d0e06ee499f0e7d9e20cb935b217347b8d8f9f40460a31fa573e61fe",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-unsubscribe",
+          "physicalPixelBounds": [
+            938,
+            1441,
+            1147,
+            1584
+          ],
+          "widthPixels": 209,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "state": "failed-command-retained",
+      "originalPNG": "failed-command-retained-1795063515149458000.png",
+      "pngSHA256": "e75d33d4af4eb990aa75095e477953eb68b483762e5f9b484853dd34c0be367b",
+      "rawTreeSHA256": "4fa6315a54e36c91dc5d76738babf8b31d216b340e449e8030e5ebc2a08f251d",
+      "screenPixels": [
+        1260,
+        2720
+      ],
+      "actuallyViewed": true,
+      "reviewResult": "passed",
+      "buttonGeometry": [
+        {
+          "id": "push-journey-subscribe",
+          "physicalPixelBounds": [
+            946,
+            1441,
+            1148,
+            1584
+          ],
+          "widthPixels": 202,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": false,
+          "visible": true
+        },
+        {
+          "id": "push-subscription-retry",
+          "physicalPixelBounds": [
+            113,
+            1755,
+            386,
+            1898
+          ],
+          "widthPixels": 273,
+          "heightPixels": 143,
+          "withinScreen": true,
+          "enabled": true,
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "observations": [
+    "A single personal subscription item replaces the prior per-scene list without additional competing cards.",
+    "Scope text clearly includes subsequently assigned personal sessions, narrative mail, and level updates; default state explicitly says not subscribed.",
+    "The independent confirmation explicitly says notification service must be enabled first, does not imply delivery is active, and offers full receive/decline controls.",
+    "Green day and gold night themes preserve the existing brand and readable visual hierarchy.",
+    "The long scope explanation wraps normally to two lines on the settings page and three lines in the confirmation; no clipping observed.",
+    "The subscribed-but-not-receiving state presents separate receive and cancel controls, both fully visible.",
+    "The modal covers the status/gesture edge regions without introducing separate white/black spacer blocks.",
+    "After the background round trip, the actually viewed day image has no confirmation panel.",
+    "The enabled-consent state truthfully says subscription saved and notification capability awaiting enablement, with a fully visible cancel action; it does not claim notification delivery works.",
+    "The failed-command state keeps the setting in its prior off state and presents a local retry confirmation inside the existing section; error text and retry button are fully visible without covering other sections."
+  ],
+  "blockingFindings": [],
+  "remaining": [
+    "No motion timing, reduced-animation, folding, large-font or accessibility acceptance inferred",
+    "Functional interaction and HTTPS acceptance are recorded by the root device collector separately",
+    "Formal candidate privacy, Huawei approval and actual delivery not verified by visual review"
+  ]
+}

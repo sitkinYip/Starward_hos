@@ -27,8 +27,8 @@ export class ProductionTransport implements HttpTransport {
       if (/^\/api\/questions\/v1\/assignments\/[^/?#]+\/answers$/.test(path)) { return 'answer'; }
       return 'write';
     }
-    if (request.method === 'PUT' && /^\/api\/questions\/v1\/assignments\/[^/?#]+\/push-subscription$/.test(path)) {
-      return 'push-subscription';
+    if (request.method === 'PUT' && path === '/api/questions/v1/me/push/journey-subscription') {
+      return 'journey-push-subscription';
     }
     if (request.method === 'PATCH' || request.method === 'PUT') { return 'write'; }
     if (path === PLAYER_PATH) { return request.token.length === 0 ? 'preflight' : 'player'; }
@@ -44,7 +44,7 @@ export class ProductionTransport implements HttpTransport {
     }
     const path: string = request.url.substring(PRODUCTION_API_ORIGIN.length);
     const subscriptionPut: boolean = request.method === 'PUT' &&
-      /^\/api\/questions\/v1\/assignments\/[^/?#]+\/push-subscription$/.test(path);
+      path === '/api/questions/v1/me/push/journey-subscription';
     if (request.method !== 'GET' && request.method !== 'POST' && request.method !== 'PATCH' && !subscriptionPut) {
       throw new GameFailure('CONFIG_ERROR', '生产联调请求的方法无效。');
     }

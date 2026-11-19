@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "environment": "dedicated disposable account-journey HTTPS/PocketBase fixture",
+  "checks": {
+    "ownedStopReturned200": true,
+    "httpsPortClosed": true,
+    "controlSocketRemoved": true,
+    "ownedContainerRemoved": true,
+    "noOwnedDataMountRemains": true,
+    "temporaryRunDirectoryRemoved": true,
+    "temporaryLoginRemoved": true,
+    "temporaryCaAndKeysRemoved": true,
+    "readyFalseAndStopped": true,
+    "finalLedgerPreservedUnchanged": true,
+    "persistentPreviewTouched": false,
+    "hdcMappingsTouchedByCleanup": false,
+    "productionConnected": false,
+    "realCredentialsUsed": false,
+    "realProviderDeliveryTested": false
+  },
+  "finalCounters": {
+    "requestCount": 127,
+    "subscriptionPutCount": 9,
+    "subscriptionPutSuccessCount": 7,
+    "subscriptionPutInjected503Count": 2,
+    "afterCommit503Count": 1,
+    "starts": 0,
+    "answers": 0,
+    "readCount": 1,
+    "unreadCount": 3,
+    "bindings": 0,
+    "queueCounts": {
+      "pending": 0,
+      "sending": 0,
+      "accepted": 0,
+      "discarded": 0,
+      "failed": 0
+    }
+  },
+  "counterContext": {
+    "initialReadCount": 1,
+    "initialUnreadCount": 2,
+    "oneNewSyntheticUnreadLetterAddedForMaterials": true,
+    "readingMaterialSubmittedRead": false,
+    "subscriptionSavedRevision": 7,
+    "subscriptionApproved": false
+  }
+}

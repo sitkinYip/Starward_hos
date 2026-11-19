@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-19",
+  "api": 26,
+  "scope": "One explicit personal_journey_v1 subscription; no automatic expansion of former per-scene consent",
+  "contract": {
+    "read": "GET /api/questions/v1/me/push/journey-subscription",
+    "write": "PUT /api/questions/v1/me/push/journey-subscription",
+    "bodyFields": [
+      "requestId",
+      "scope",
+      "subscribed",
+      "pushEnabled",
+      "expectedRevision"
+    ],
+    "dtoFields": [
+      "scope",
+      "subscribed",
+      "pushEnabled",
+      "revision",
+      "subscriptionApproved"
+    ]
+  },
+  "build": {
+    "command": "scripts/hm.sh build",
+    "result": "passed",
+    "logSHA256": "d04818c04236af7fec8e1ddf901530d19e61dfc7eb5d655918f6da01697fafa0"
+  },
+  "tests": {
+    "tests": 257,
+    "passed": 257,
+    "failed": 0,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "testResultSHA256": "4ded20befd7a0ed60fb3f8189aca4c2084b5584dcc9df608db2c931887672c10",
+  "relatedCaseCount": 12,
+  "sourceSHA256": {
+    "entry/src/main/ets/business/PushSubscription.ets": "eccb59d8d02dc9e8f6b32f1745df194365b1c05aaac7349d9af52d28d642dc71",
+    "entry/src/main/ets/business/GameRepository.ets": "7b94593e53a62e1f79aed45daab75db83e27bac0bc44aec63ac5a2f60c35863c",
+    "entry/src/main/ets/data/PushSubscriptionDecoder.ets": "ad8635694d3283c7b9e7ccc94b4f06e5ba74deb1561874a55c9c574a213fd606",
+    "entry/src/main/ets/data/HttpsGameRepository.ets": "03c5cbf3cdf7252f6bbbc2607761f9372923e6faae934e6c90e59537ad0bc6c9",
+    "entry/src/main/ets/features/PushSubscriptionsViewModel.ets": "1cce21cf53619865e622adfb6acfe1d7b2878c961f75bae629a58497df349d61",
+    "entry/src/main/ets/ui/StarwardPushSubscriptions.ets": "648abac3c3a0f677668876ed2a9dc5e44830f36044872dc2a6c8298fb341d021",
+    "entry/src/main/ets/platform/ProductionTransport.ets": "17f0729212d473a4a5dd8ac7e900b9ba4725720a8d856f4b5c7b7c1b718ca8fc",
+    "entry/src/test/PushSubscriptions.test.ets": "50cd815576360bc929cd2589aaaf864b9bce644497d3eaa6a4228d14fa2acf71"
+  },
+  "verifiedBoundaries": [
+    "Only new account GET determines default state; no scene or assignment list reads",
+    "Explicit subscribe without notifications, then independent receive confirmation",
+    "One cancel clears both flags",
+    "Uncertain retry preserves original scoped command and identity",
+    "Idempotent receipts always followed by authoritative current GET",
+    "Read failure never invents default off or current success",
+    "Account generations discard old responses and private state",
+    "Settings/background close consent, cancel reads; write completion cannot reopen consent after lifecycle change",
+    "Unapproved capability is displayed honestly as pending enablement",
+    "Read-only production transport blocks writes; old scene PUT no longer accepted"
+  ],
+  "uiDesignSelfReview": {
+    "basis": "Existing approved native SettingsPage and official branded openCustomDialog, project starward-ui-parity skill",
+    "oneCompactItem": "我的专属冒险动态",
+    "scopeDisclosed": "本人之后获分配的新场次、剧情来信、关卡动态",
+    "preserved": "Existing typography, brand tokens, section layout, OS permission row, dialog shape and decline/cancel controls",
+    "deviceVisualReviewComplete": false
+  },
+  "notVerified": [
+    "installation or new straight-phone UI",
+    "isolated real HTTPS on new account-scope routes",
+    "new application screenshots or category resubmission",
+    "production deployment of the new account-scope backend",
+    "formal distribution privacy",
+    "actual Huawei category approval or delivery"
+  ],
+  "lifecycleNote": "No phone installation, device state, production, frozen candidate, or docs changed by this implementation stage.",
+  "linter": {
+    "result": "passed",
+    "command": "scripts/hm.sh lint",
+    "filesChecked": 1,
+    "issues": 1,
+    "errors": 0,
+    "warnings": 0,
+    "suggestions": 1,
+    "existingSuggestion": "StarwardNarrativeLetter.ets effectKit blur performance suggestion; unchanged by this slice"
+  },
+  "independentReview": {
+    "agent": "push_release_inspection",
+    "staticResult": "No newly observed blocking findings reported",
+    "supplementaryStubTests": "11 actual tests passed in a private platform-stub harness, excluding the full HTTPS/ProductionTransport graph; mutation disabling confirmation caused 3 failures",
+    "limitation": "Supplemental static/stub evidence is separate from the final official257 Hypium run and does not replace phone or HTTPS acceptance"
+  }
+}

@@ -412,6 +412,16 @@
 
 运营通知显式区分场次动态与平台公告。只有关联到该玩家具体场次、存在有效订阅且允许推送的场次动态，才进入订阅投递。取消会使尚未发送的旧版本任务失效，重新订阅不恢复旧任务。发送端再次核对资格；部署侧确认华为 SUBSCRIPTION 权益获批后才使用该分类，未获批不得声称已解除营销额度。应用内来信、已读及玩法结算不由推送订阅改变。新场次首次分配发生在订阅之前，沿用 MARKETING。[华为分类与订阅要求](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-apply-right/) · [验收目标](feature-acceptance-matrix.md)
 
+## ADR-036：个人冒险动态的一次订阅（替代 ADR-035 的逐场粒度）
+
+2026-11-19 用户纠正并授权：玩家一次主动订阅及独立通知确认后，应持续接收分配给本人的新场次、剧情来信与关卡动态，后续不逐场重复操作。订阅对象固定为“我的专属冒险动态”，不包含公告与推广；这两类仍走 MARKETING。账号级订阅由服务端保存，默认关闭，使用 requestId、预期版本、账号代次和回源确认。既有逐场同意不能自动扩大；没有账号级明确同意即不投递该主题，新记录的关闭/取消成为权威，旧记录和旧队列均不能绕过。
+
+真实新下发和对应场次来信统一经过该范围的投递资格判断，取消退役旧版本待发任务，重新开启不补发旧事件。页面显示、已读、答题与结算保持各自业务事实。分类批准与实际发送配置分开：只有匹配真实范围的 SUBSCRIPTION 权益获批并启用后才使用该分类，不能承诺保证送达或无系统频控。MARKETING 的公开正式额度不满足用户每日每设备至少 20 次业务提醒的目标；这仍是待完成的业务能力，不能以调测额度替代。
+
+用户授权先直接实现、隔离后端和直板真机验证，再撤回旧逐场分类申请，以真实设置/确认/取消、场次列表、来信列表及具体内容截图重新申请；如申请不通过，再走工单。此次授权替代此前先工单的推进顺序。华为指南没有明确要求逐场次，但也未直接批准本应用的新范围；提交申请与审核通过分别记录。当前本条为实现决策，非功能验收或平台获批证据。[分类与订阅要求](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/push-apply-right/) · [消息频控](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/push-msg-freq-control)
+
+执行结果另见[九组直板 UI/隔离 HTTPS 验证](../artifacts/validation/push-account-subscription-20261119/device-ui-https.json)与[华为重新申请记录](../artifacts/validation/push-account-subscription-20261119/huawei-application.json)：新实现已验证，六图申请已重新提交，控制台为审核中；生产新接口、匹配新实现的邀请包及真实 SUBSCRIPTION 投递尚未完成。
+
 ## 验证记录边界
 
 上述本机声明于 2026-10-27 只读核验，SDK 元数据 `apiVersion=26`、`version=26.0.0.105`、`releaseType=Release`。本文件不是构建或真机测试报告；实际执行结果必须记录在构建验收文档及对照表，失败和未执行项保留原状。

@@ -1,0 +1,837 @@
+{
+  "date": "2026-11-19",
+  "scope": "Account-level personal_journey_v1 subscription; straight-phone native UI and dedicated isolated real HTTPS backend",
+  "result": "9 executed check groups passed; installation, isolated HTTPS, read-only gameplay baseline and retry evidence verified separately",
+  "environment": {
+    "dedicatedSyntheticPlayer": true,
+    "isolatedHTTPS": true,
+    "exactFixtureCA": true,
+    "productionConnected": false,
+    "productionAccountSubscriptionAPIDeployed": false,
+    "subscriptionApproved": false,
+    "providerMode": "synthetic-only",
+    "huaweiProviderDeliveryTested": false
+  },
+  "installation": {
+    "officialCliExit": 0,
+    "installationLogHasSuccess": true,
+    "launchLogHasSuccess": true,
+    "uninstallRequested": false,
+    "appDataCleared": false,
+    "logSHA256": "9f7c7233797b6dc50155e95b15eda96f066ffc49fbc9ec56f89232c9a93b51f6"
+  },
+  "package": {
+    "buildPassed": true,
+    "signedHapSHA256": "d0aaa0dbdbd6062a9d19655b7d1268ba5a94f9387f98c730d4a2349b4b3873ca",
+    "sdkSignatureVerified": true,
+    "sameFormalBundleDebugProfileVerified": true,
+    "officialDebugPrivacyMetadata": true,
+    "currentRuntimeMatchesRoot": true
+  },
+  "execution": {
+    "executedGroups": 9,
+    "passedGroups": 9,
+    "failedGroups": 0,
+    "caseOrder": [
+      "default",
+      "subscribe",
+      "themes_background",
+      "accept",
+      "restart",
+      "cancel_retry",
+      "get_retry",
+      "lost_response",
+      "logout"
+    ],
+    "pairedBoundarySnapshotsVerified": 18,
+    "rawTreeHashesVerified": 16,
+    "originalScreenshotHashesVerified": 16,
+    "publicJPEGHashesVerified": 6,
+    "originalPlanningFileCompleteFlag": false,
+    "planningFlagInterpretation": "The plan file retains complete=false. Execution completeness is established by all 9 named completed checks and their 18 before/after snapshots, not that stale planning flag.",
+    "logoutCollectorExit": {
+      "exitCode": 0,
+      "source": "root observed official collector process completion"
+    },
+    "initialTheme": "theme-system",
+    "collectorSHA256": {
+      "device.py": "7ddc92964431eca2f813d98cd9d5eb2ecf46ab75be6a34ed44127005533a7a17",
+      "verify.py": "de2529299df96845339ad20d01d1a96dab22b1f289162043830771bc5d29b764"
+    }
+  },
+  "checks": [
+    {
+      "case": "default",
+      "result": "passed",
+      "facts": {
+        "defaultOff": true
+      },
+      "putDelta": 0,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": false,
+          "pushEnabled": false,
+          "revision": 0,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 0
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": false,
+          "pushEnabled": false,
+          "revision": 0,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 0
+      },
+      "beforeSnapshotSHA256": "2593d76fe38f1bc2ea1a6bd8fc6a479eff5d29184eacf02461fbbdaf1bb22e29",
+      "afterSnapshotSHA256": "cc287b2403220b868ca0d0dbc3a57adb8d95dc9e570de560f800a4c194c4893a"
+    },
+    {
+      "case": "subscribe",
+      "result": "passed",
+      "facts": {
+        "independentConfirmation": true,
+        "declinedWithoutNotificationConsent": true
+      },
+      "putDelta": 1,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": false,
+          "pushEnabled": false,
+          "revision": 0,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 0
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 1,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 1
+      },
+      "beforeSnapshotSHA256": "9efcb47b9ce68f9dfd6eae841b71f3c5f4e4032653222fd77eadfdee16599e6e",
+      "afterSnapshotSHA256": "17d0382f124659a50fa9a49fea8216b49543ec20baf850de6acf46b7ab615e5d"
+    },
+    {
+      "case": "themes_background",
+      "result": "passed",
+      "facts": {
+        "bothThemes": true,
+        "backDismissed": true,
+        "backgroundDismissed": true
+      },
+      "putDelta": 0,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 1,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 1
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 1,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 1
+      },
+      "beforeSnapshotSHA256": "2303fc1bb6626a1710265a1eae3be0b3de2b5f4d4162981d5d3c539fff9da10f",
+      "afterSnapshotSHA256": "115fd61e33d216310dad62bed9257e158b92a459e1a25fa56e227af41a922652"
+    },
+    {
+      "case": "accept",
+      "result": "passed",
+      "facts": {
+        "independentlyEnabled": true,
+        "cancelVisible": true
+      },
+      "putDelta": 1,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 1,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 1
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 2,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 2
+      },
+      "beforeSnapshotSHA256": "67d99583f9a0c5be3f93ae485f365a97e7cabd15b1307494e159d3173e462527",
+      "afterSnapshotSHA256": "9d12f2cfd07e5bae5acb35923a78546d7b66a01eef3ef575a0ade9ebc687196b"
+    },
+    {
+      "case": "restart",
+      "result": "passed",
+      "facts": {
+        "revisited": true,
+        "officialColdRestart": true,
+        "persisted": true
+      },
+      "putDelta": 0,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 2,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 2
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 2,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 2
+      },
+      "beforeSnapshotSHA256": "9d12f2cfd07e5bae5acb35923a78546d7b66a01eef3ef575a0ade9ebc687196b",
+      "afterSnapshotSHA256": "5c791759fa5e11efb3feeb967ea3b9067243ea823477568a8182b8ffc36f0e0a"
+    },
+    {
+      "case": "cancel_retry",
+      "result": "passed",
+      "facts": {
+        "cancelled": true,
+        "failedPut503": true,
+        "sameRequestIdAndBodyRetry": true
+      },
+      "putDelta": 3,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 2,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 2
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 4,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 5
+      },
+      "beforeSnapshotSHA256": "5c791759fa5e11efb3feeb967ea3b9067243ea823477568a8182b8ffc36f0e0a",
+      "afterSnapshotSHA256": "d02b34440e1e20f5f92f181cba79ab35f682da7fb6b06a2418425d0e79b6834e"
+    },
+    {
+      "case": "get_retry",
+      "result": "passed",
+      "facts": {
+        "localReadError": true,
+        "recoveredByGet": true
+      },
+      "putDelta": 0,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 4,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 5
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 4,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 5
+      },
+      "beforeSnapshotSHA256": "d02b34440e1e20f5f92f181cba79ab35f682da7fb6b06a2418425d0e79b6834e",
+      "afterSnapshotSHA256": "0dda86ff0a2192c80560b91f2bfccb61fc502b4dbff1b81f4d991afe3ddbcf4c"
+    },
+    {
+      "case": "lost_response",
+      "result": "passed",
+      "facts": {
+        "lostResponseAfterCommit": true,
+        "sameRequestIdAndBody": true,
+        "oneRevisionOnly": true
+      },
+      "putDelta": 3,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 4,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 5
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": false,
+          "revision": 6,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 8
+      },
+      "beforeSnapshotSHA256": "7d8d225481d4b6a2cc02fc017b5eed1fc994cba942af197b788c46aaa14d0076",
+      "afterSnapshotSHA256": "4df4b207fdf040a63ed8e43aab951b43933cf9dbbd0572047fef26c4c44180dc"
+    },
+    {
+      "case": "logout",
+      "result": "passed",
+      "facts": {
+        "privateStateCleared": true
+      },
+      "putDelta": 0,
+      "before": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 7,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 9
+      },
+      "after": {
+        "gameplayAndRead": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        },
+        "accountSubscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 7,
+          "subscriptionApproved": false
+        },
+        "subscriptionPutCount": 9
+      },
+      "beforeSnapshotSHA256": "0843a049a503219e880ba3ca4e4f7479564ed277a983c28ea502094cef2cbc63",
+      "afterSnapshotSHA256": "55a6f21964ba40cd3885d84d92d9fec007439d188f3cc8fa14bc30949b61bbe5"
+    }
+  ],
+  "retryEvidence": [
+    {
+      "case": "before-commit 503",
+      "failureStatus": 503,
+      "retryStatus": 200,
+      "actualDeviceAndIsolatedHTTPS": true,
+      "sameRequestIdHash": "822e0c19207c3495bcab90223931a21ffe20d34d48f391b1b765364d8b97b4f0",
+      "sameBodySHA256": "148d496a403df60e552fb1a683e8ed2d36f119b570483c4a0a442aae42ad2489",
+      "afterCommit": false,
+      "beforeRetryRevision": 3,
+      "afterRetryRevision": 4,
+      "duplicateRevisionMutation": false,
+      "failureSnapshotSHA256": "8d2121e614c51bd907567c3c897d59e59abe4697e26cbd9d076ad60b13bdf5c0",
+      "retrySnapshotSHA256": "4a4c28c1516befff8905c8eb4a95fdd8f58a1353212f2a3ba0d4847df99f32e5"
+    },
+    {
+      "case": "response failure after commit",
+      "failureStatus": 503,
+      "retryStatus": 200,
+      "actualDeviceAndIsolatedHTTPS": true,
+      "sameRequestIdHash": "f63814761e88685d692a437fd90bc6b7faaa1c227685b2c1fbbb41bbeae9d495",
+      "sameBodySHA256": "6a298ea31bf48a1c1227f9d0fe857865decdc4f5319450bb0a4d66c554197ae4",
+      "afterCommit": true,
+      "beforeRetryRevision": 6,
+      "afterRetryRevision": 6,
+      "duplicateRevisionMutation": false,
+      "failureSnapshotSHA256": "2d26e1bda8510efebbdf4c93293be63fd8482d5d8028c6eddb2f595cb901bf1e",
+      "retrySnapshotSHA256": "9329bcffe22a8cc45a2418bd168e58e13016585288d09062be06c13323657e12"
+    }
+  ],
+  "businessWriteBaseline": {
+    "starts": 0,
+    "answers": 0,
+    "readCount": 1,
+    "unchangedAcrossEveryCheck": true,
+    "checkGroupPutDeltaTotal": 8,
+    "finalSubscriptionPutCount": 9,
+    "additionalMaterialPreparationConsentWriteCount": 1,
+    "unreadCountChange": "2 to 3 only after the explicitly injected synthetic new mail; readCount stayed 1",
+    "mailContentOpeningAndClosingSnapshots": [
+      {
+        "state": "material-content-before",
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        },
+        "sourceSHA256": "2ab0e2cbc87e1b87321c7ff9c8679457646ff46772dc199d15640632e2a735c4"
+      },
+      {
+        "state": "material-content-open",
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        },
+        "sourceSHA256": "12a3d53a4c59dd8d40a9d5ff521de026eba88ce77067f64c0859e99732e0c042"
+      },
+      {
+        "state": "material-close-before",
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        },
+        "sourceSHA256": "2daced5f4a50e504c329088a7844191ac0a92832b904eaaf389c4b33791e9a9e"
+      },
+      {
+        "state": "material-close-after",
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        },
+        "sourceSHA256": "fbf1ac2af0c223380c2461023b2041a188becb7b0137f4fed2aff4988df70a36"
+      }
+    ],
+    "logoutPutDelta": 0,
+    "logoutPrivateStateCleared": true
+  },
+  "postConsentSyntheticContent": [
+    {
+      "operation": "new personal session assigned after account consent",
+      "result": "passed in isolated backend",
+      "accountConsentUnchanged": true,
+      "before": {
+        "subscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 2,
+          "subscriptionApproved": false
+        },
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        }
+      },
+      "after": {
+        "subscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 2,
+          "subscriptionApproved": false
+        },
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        }
+      },
+      "queuedOrSentToHuawei": false,
+      "sourceSHA256": "e16a06b025c2a9b519c67c98386e03e9c5ac9118fe857cc5d639352ea90403e6"
+    },
+    {
+      "operation": "new narrative mail sent after account consent",
+      "result": "passed in isolated backend",
+      "accountConsentUnchanged": true,
+      "before": {
+        "subscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 7,
+          "subscriptionApproved": false
+        },
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 2
+        }
+      },
+      "after": {
+        "subscription": {
+          "scope": "personal_journey_v1",
+          "subscribed": true,
+          "pushEnabled": true,
+          "revision": 7,
+          "subscriptionApproved": false
+        },
+        "counters": {
+          "starts": 0,
+          "answers": 0,
+          "readCount": 1,
+          "unreadCount": 3
+        }
+      },
+      "queuedOrSentToHuawei": false,
+      "sourceSHA256": "cec4085895c81c8edb0807813aa60b7ef16069dd8ba5c9e296478202b36fb152"
+    }
+  ],
+  "captures": [
+    {
+      "state": "01-default-off",
+      "originalPNGSHA256": "ba1cb81114dcf2aa06e64ef6788437a0bc05ed2a1c4adce869bfe00b639a9d8a",
+      "rawTreeSHA256": "26d85a8ea7eb545bad8df0a955881e1386f514af287f5a2e0dbbfed87850e325",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "02-independent-confirmation",
+      "originalPNGSHA256": "2deb520cae3b8b0325438e6484418fe91cb6bad387b04e267a651b757be8def9",
+      "rawTreeSHA256": "402b3d443bb6bb4069cf38be61d5bff5929aaac85bca468976c4665b3a4d817d",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "dark-subscription-off",
+      "originalPNGSHA256": "a749be8d0733ba10a7a5ea4da40fc772eb4d5c4a012adf6014cfd512b97591f0",
+      "rawTreeSHA256": "c4f1a82cd1cc286229a98975fe96b4fd8a28958edad766a5ead5ca674822eb77",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "dark-independent-confirmation",
+      "originalPNGSHA256": "2f20642bdc3cd04c75ae8e6cb7c87382b7877fe0f704fe67b8c5b50fc7a90627",
+      "rawTreeSHA256": "5fab6de1801399fd3928f9ee27c72b53640a6dc0f1bd558b81f56d33dd539619",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "background-confirmation-cleared",
+      "originalPNGSHA256": "7b6a9260a84a1d270b1c1b0d3519da2b65214cccbffa02684e49b5e50edd2f11",
+      "rawTreeSHA256": "dc2d614c73cec49b9a573b77c01cdd7e97e5d7b57efb8a9977f00208794371aa",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "03-subscribed-cancel",
+      "originalPNGSHA256": "56f9167069860c7a6a8ff38cff90ac40a7beb38f9542a91f2a8f91fc0fc4710b",
+      "rawTreeSHA256": "12fedbd6d0e06ee499f0e7d9e20cb935b217347b8d8f9f40460a31fa573e61fe",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "cold-revisit-persisted",
+      "originalPNGSHA256": "350e5debce60c1c67a1534fec78ca2002a9ad797b82de01aae5fbbd220905316",
+      "rawTreeSHA256": "fc7769af6b62008ee93eb95d110c763e46b091294f2c25dce4a4c1ca19e9c160",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "cancelled-both-off",
+      "originalPNGSHA256": "34c13ee56ccc9bfd8018dd157127d3b85ebb93e48cf43e0f7f45eec51c06b69f",
+      "rawTreeSHA256": "4cd5ff3a66044b45e3eec28582f4605cf0a59dcef9751b7cf5047db92c2b7231",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "failed-command-retained",
+      "originalPNGSHA256": "e75d33d4af4eb990aa75095e477953eb68b483762e5f9b484853dd34c0be367b",
+      "rawTreeSHA256": "4fa6315a54e36c91dc5d76738babf8b31d216b340e449e8030e5ebc2a08f251d",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "get-failure-local",
+      "originalPNGSHA256": "6b596db30077eb124cc58886640d700eb439fa745d9fc9946f0e0585c1b124f6",
+      "rawTreeSHA256": "3ddf7dc6d4f0832aded05049b6f8880441fba73eec8a43adcbb4652af44fc036",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "get-recovered",
+      "originalPNGSHA256": "d15ba0fcf66ecc82d38fdd40465bd9428895585dd6495daa026ffb4388a87b5e",
+      "rawTreeSHA256": "2976486b420c3bcfd03fa258817616cd7d4054e23840589f25e1c136a6275227",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "lost-response-uncertain-ui",
+      "originalPNGSHA256": "504225209e9d1fea4700a8d3fa51e8b5247cf6b772578fdb015c3274039e172f",
+      "rawTreeSHA256": "a1f6f78ffb4cdb99967f5c36481bca670beb8f5c1374b4a10c5c05d2be8a4b8f",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "04-my-sessions",
+      "originalPNGSHA256": "5de67f60fb6fa7c784a795914587db19b42a1768111b91f70044e48252dbc471",
+      "rawTreeSHA256": "43c41cde19dd4611b379ee0662913b7db6b5ce544b5c4f4073ed2fae621320c5",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "05-journey-mail-list",
+      "originalPNGSHA256": "362844e81395c435f8dd1a85a8ad9c6fba8843dc517dd3276d929073b3a9c56b",
+      "rawTreeSHA256": "00e28fb1130cb70fb815e376e20a352dffecd2de9d029b0b5354727509cb9c92",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "06-journey-mail-content",
+      "originalPNGSHA256": "7aa1d4166da24bcfd1a53bc578539b96de1570271505ab8a08364603a7e08cec",
+      "rawTreeSHA256": "f17a9305ae07c8ffbdb60af5c66ad1d387fe20047e01db431444d7b64e286fb0",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    },
+    {
+      "state": "logout-private-state-cleared",
+      "originalPNGSHA256": "5ff6530ed6e78a24ca9201571a9f69847091975bf4dbe07484617dac185cd5f0",
+      "rawTreeSHA256": "e9dd7555260321ca7bef6e5bda7d0a20cd09314930e7c7260e72284c2f75b0e3",
+      "dimensions": [
+        1260,
+        2720
+      ]
+    }
+  ],
+  "publicMaterials": [
+    {
+      "path": "materials/01-default-off.jpg",
+      "sha256": "f9097287cba7b20204a9a74e83e01f2bf459b7382f5693c9e3f02648a9086863",
+      "bytes": 211563,
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "reencodedOnly": true
+    },
+    {
+      "path": "materials/02-independent-confirmation.jpg",
+      "sha256": "20352418944e2f88499b5cabdd6c34c9d25b3b1e8eec9b2b3a9603a2b287bef4",
+      "bytes": 220823,
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "reencodedOnly": true
+    },
+    {
+      "path": "materials/03-subscribed-cancel.jpg",
+      "sha256": "2ea41263883d265a62393e2453f6269f47bfe5d9b85a46064236747bd3f0a5b5",
+      "bytes": 221002,
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "reencodedOnly": true
+    },
+    {
+      "path": "materials/04-my-sessions.jpg",
+      "sha256": "73a92d8bd13437aebeff33297b036f0744e67f6084a9daba7c0e3715cd3633a7",
+      "bytes": 364121,
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "reencodedOnly": true
+    },
+    {
+      "path": "materials/05-journey-mail-list.jpg",
+      "sha256": "f79d6122c553a829a4236c57297532a9e5fb24f4a8f2cbd503b69ec39034e090",
+      "bytes": 441286,
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "reencodedOnly": true
+    },
+    {
+      "path": "materials/06-journey-mail-content.jpg",
+      "sha256": "c44b1f0ba0909b6496b0a93d448d8f178b79d994e4e63b79a8885f378562e17f",
+      "bytes": 407980,
+      "dimensions": [
+        1260,
+        2720
+      ],
+      "reencodedOnly": true
+    }
+  ],
+  "publicVisualReview": "../push-journey-subscription-20261119/ui-design-review.json",
+  "inputEvidenceSHA256": {
+    "verification.json": "684e9be1dde8ab427930a783663f5d229ec72fa8aec2dcfd137379ff46c85b59",
+    "installation-evidence.json": "bfd7f7b3e56827ff9af1b7484a17041926ff58f19430a8586dabf80ae6795390",
+    "debug-package-verification.json": "07934c01de6ac9c5cef6243f9c7dd726934069351257bfe3d9adbac915267153",
+    "verification-plan.json": "b75bbd44fc4c8f076fd273b680c806c342bfa69e53d5aa6868ff0021611edd1e",
+    "future-assignment-after-account-consent.json": "e16a06b025c2a9b519c67c98386e03e9c5ac9118fe857cc5d639352ea90403e6",
+    "new-letter-after-account-consent.json": "cec4085895c81c8edb0807813aa60b7ef16069dd8ba5c9e296478202b36fb152"
+  },
+  "limitations": [
+    "No Huawei provider notification delivery was performed or demonstrated. subscriptionApproved remained false and the isolated sender did not enqueue or send these personal updates.",
+    "The new account-level API and sender changes were not deployed to production by this verification task.",
+    "Official debug privacy metadata was present; this evidence does not establish first-run formal invitation-package privacy acceptance.",
+    "Nine case-group passes are not a full gameplay regression, folding-screen acceptance, accessibility review or frozen Web pixel comparison.",
+    "Visual review has its own actually-viewed capture list; hash verification of all captures does not claim that this evidence aggregator visually reviewed every image."
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "environment": "local disposable PocketBase 0.40.1 via Docker",
+  "sourceBase": "03bdfd0e15e70d443dc469a42a45f738ea1a1fa4",
+  "scope": "personal_journey_v1",
+  "scopeDefaultOff": true,
+  "legacyConsentExpanded": false,
+  "pendingApprovalJourneyDelivery": "suppressed without MARKETING fallback",
+  "announcementCategory": "MARKETING",
+  "productionConnected": false,
+  "realCloudDeliveryTested": false,
+  "realCredentialsUsed": false,
+  "backendSuite": {
+    "tests": 134,
+    "passed": 134,
+    "failed": 0,
+    "skipped": 0,
+    "command": "PB_DOCKER_IMAGE=questions-pocketbase:starward-push-crypto-test PB_PUSH_VALIDATE_OPENSSL=1 node --test --test-concurrency=2 backend/tests/*.test.mjs"
+  },
+  "adminSuite": {
+    "tests": 48,
+    "passed": 48,
+    "failed": 0,
+    "skipped": 0,
+    "buildPassed": true,
+    "warning": "existing large chunk warning"
+  },
+  "mutation": {
+    "sharedSourceModified": false,
+    "condition": "drop approval eligibility gate in isolated copied source",
+    "detected": true,
+    "failure": "pending job count 4 instead of 2 discarded legacy jobs"
+  },
+  "checks": {
+    "contractCopies": "passed --admin-only",
+    "gitDiffCheck": "passed"
+  },
+  "sourceFiles": {
+    "backend/contracts/game.ts": "6c9e1bc7178b95714027c93ee0255d0557dd53fd29aa0a758317f0df0d2f9462",
+    "backend/pb_hooks/lib/api.js": "96a8fac008fe9feffb66c94773b6b0e96704ce985d6451e833492f16ac189733",
+    "backend/pb_hooks/lib/huawei-push.js": "27d8887ac3981b017c755ba75deba9d99714e0cd24504c9c6eabafc39dddb431",
+    "backend/pb_hooks/lib/push.js": "dd6048b55a03d440bcf4e69ecafbe103a245cfc3d5cffec52694e61a2d17dc01",
+    "backend/pb_hooks/lib/push-subscriptions.js": "306f63f303580458b27a3f4649f60d829e6a51097f6a1a2ca458845ebe99601a",
+    "backend/pb_hooks/lib/push-journey-subscription.js": "f6dd163693cdc09ecb1c8fcb1e2b9fdfc2e438941c06eeff48191b97365124eb",
+    "backend/pb_migrations/1795075260_push_journey_subscription.js": "6f631807d7214c41479a1d6a29bdaac8e265450376b2002f5a0e782ac884fb01",
+    "backend/deploy/1panel/allowed-delta.push-journey-subscription.json": "c510ae57e1039c83c26a7d2e085ed324d1a6230bc8cd8b64ea02619dde402af5",
+    "backend/tests/push-journey-subscription.integration.test.mjs": "36583d9555a06d42f7a39bc72ffa6ce9049ba927263a7f3d730b228ea8a96b3e",
+    "backend/tests/push-subscriptions.integration.test.mjs": "7a665645629d3e141806a7aa2fd8341020f57337b5fc2776a3b01ca83f86d62d",
+    "backend/tests/harmony-push.integration.test.mjs": "2708afb6f1645fb1415e72472311824e79ebda6f0111dd698f095a639817e84d",
+    "backend/tests/audit-capacity.integration.test.mjs": "6a6b78de8ac9611be85d4aea4ba99321f5ddf07ae398dc4fd2db98b4dbbbe472",
+    "src/game/PushSettingsPage.tsx": "a2796012da75a6ddee138e4bf59c00d529564fe01acd2efa2d7e7d0d4fed7955",
+    "src/game/contracts.ts": "5b8a793d25336014b2a19ea3feef3d792458995f6e316f881f894acce9ff47ec",
+    "docs/harmony-push.md": "74b6b434c78f819983296b43b212921f8854965d6739be69217d3f5c4562f40f",
+    "docs/harmony-push-subscriptions-20261119.md": "379b9de28c35513d38ae22fe6e8638459831e3e3bf52b637bcf1c5e13cdd08ab",
+    "docs/harmony-push-account-subscription-20261119.md": "50c6f72d44ca1e2f8aef3bb4ce3f22dd265a55ccd303ad1cbb31292a07cfd498"
+  },
+  "postSuiteChanges": "Test-only cancellation coverage now checks both assignment and inbox queues, plus obsolete migration-test helper cleanup; runtime unchanged.",
+  "targetedRecheck": {
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "command": "PB_DOCKER_IMAGE=questions-pocketbase:starward-push-crypto-test node --test backend/tests/push-journey-subscription.integration.test.mjs backend/tests/push-subscriptions.integration.test.mjs"
+  }
+}

@@ -1,36 +1,27 @@
 import { GameRepository } from '../business/GameRepository';
-import { AssignmentSummary, GameFailure } from '../business/models';
-import { PushSubscription, PushSubscriptionCommand, PushSubscriptionItem,
-  PushSubscriptionList } from '../business/PushSubscription';
+import { GameFailure } from '../business/models';
+import { JourneyPushSubscription, PERSONAL_JOURNEY_SCOPE, PushSubscriptionCommand } from '../business/PushSubscription';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 
-class PendingSubscription {
-  readonly assignmentId: string;
-  readonly command: PushSubscriptionCommand;
-  constructor(assignmentId: string, command: PushSubscriptionCommand) {
-    this.assignmentId = assignmentId;
-    this.command = command;
-  }
-}
-
 @ObservedV2
 export class PushSubscriptionsViewModel {
-  @Trace items: PushSubscriptionItem[] = [];
+  @Trace subscription: JourneyPushSubscription | null = null;
   @Trace loaded: boolean = false;
   @Trace busy: boolean = false;
   @Trace error: string = '';
   @Trace writeError: string = '';
-  @Trace pendingId: string = '';
+  @Trace pending: boolean = false;
   @Trace saving: boolean = false;
-  @Trace confirmationId: string = '';
+  @Trace confirmationRequested: boolean = false;
   @Trace needsSync: boolean = false;
   private owner: string = '';
   private generation: number = 0;
+  private activation: number = 0;
   private active: boolean = false;
   private read: ReadCancellation | null = null;
-  private pending: PendingSubscription | null = null;
-  private confirmationAfterRead: string = '';
+  private command: PushSubscriptionCommand | null = null;
+  private confirmationAfterRead: boolean = false;
   private readonly repository: GameRepository;
   private readonly rejectSession: (error: Object) => void;
   private readonly identity: () => string;
@@ -47,15 +38,15 @@ export class PushSubscriptionsViewModel {
     this.owner = owner;
     this.generation++;
     this.cancelRead();
-    this.items = [];
+    this.subscription = null;
     this.loaded = false;
     this.error = '';
     this.writeError = '';
-    this.pending = null;
-    this.pendingId = '';
+    this.command = null;
+    this.pending = false;
     this.saving = false;
-    this.confirmationId = '';
-    this.confirmationAfterRead = '';
+    this.confirmationRequested = false;
+    this.confirmationAfterRead = false;
     this.needsSync = false;
     this.active = false;
   }
@@ -63,10 +54,12 @@ export class PushSubscriptionsViewModel {
   setActive(active: boolean): void {
     if (active === this.active) { return; }
     this.active = active;
+    this.activation++;
     if (!active) {
       this.cancelRead();
-      this.confirmationId = '';
-    } else if (this.owner.length > 0 && this.pending === null) {
+      this.confirmationRequested = false;
+      this.confirmationAfterRead = false;
+    } else if (this.owner.length > 0 && this.command === null) {
       void this.refresh();
     }
   }
@@ -87,9 +80,9 @@ export class PushSubscriptionsViewModel {
   }
 
   async refresh(): Promise<void> {
-    if (this.owner.length === 0 || this.busy || this.pending !== null) { return; }
-    if (this.repository.pushSubscriptions === undefined) {
-      this.error = '当前版本暂不支持场次订阅。';
+    if (this.owner.length === 0 || !this.active || this.busy || this.command !== null) { return; }
+    if (this.repository.journeyPushSubscription === undefined) {
+      this.error = '当前版本暂不支持旅途订阅。';
       return;
     }
     const generation: number = this.generation;
@@ -98,46 +91,16 @@ export class PushSubscriptionsViewModel {
     this.busy = true;
     this.error = '';
     try {
-      const summaries: AssignmentSummary[] = await this.repository.assignments(read);
-      const list: PushSubscriptionList = await this.repository.pushSubscriptions(read);
+      // The new account scope is authoritative. Former scene consent is never read or widened.
+      const current: JourneyPushSubscription = await this.repository.journeyPushSubscription(read);
       if (generation !== this.generation || this.read !== read || read.cancelled) { return; }
-      const rows: PushSubscriptionItem[] = [];
-      summaries.forEach((assignment: AssignmentSummary) => {
-        const saved: PushSubscriptionItem | undefined = list.items.find((item: PushSubscriptionItem) =>
-          item.assignmentId === assignment.id);
-        if (assignment.status === 'cancelled' && saved?.subscribed !== true) { return; }
-        const row: PushSubscriptionItem = new PushSubscriptionItem();
-        row.assignmentId = assignment.id;
-        row.title = assignment.title;
-        row.available = assignment.status !== 'cancelled';
-        if (saved !== undefined) {
-          row.subscribed = saved.subscribed;
-          row.pushEnabled = saved.pushEnabled;
-          row.revision = saved.revision;
-        }
-        rows.push(row);
-      });
-      list.items.forEach((saved: PushSubscriptionItem) => {
-        if (!saved.subscribed || rows.some((row: PushSubscriptionItem) => row.assignmentId === saved.assignmentId)) { return; }
-        const historical: PushSubscriptionItem = new PushSubscriptionItem();
-        historical.assignmentId = saved.assignmentId;
-        historical.title = saved.title;
-        historical.subscribed = saved.subscribed;
-        historical.pushEnabled = saved.pushEnabled;
-        historical.revision = saved.revision;
-        historical.available = false;
-        rows.push(historical);
-      });
-      this.items = rows;
+      this.subscription = current;
       this.loaded = true;
       if (this.needsSync) { this.writeError = ''; }
       this.needsSync = false;
-      if (this.confirmationAfterRead.length > 0) {
-        const target: PushSubscriptionItem | null = this.item(this.confirmationAfterRead);
-        if (this.active && target?.available && target.subscribed && !target.pushEnabled) {
-          this.confirmationId = target.assignmentId;
-        }
-        this.confirmationAfterRead = '';
+      if (this.confirmationAfterRead) {
+        if (this.active && current.subscribed && !current.pushEnabled) { this.confirmationRequested = true; }
+        this.confirmationAfterRead = false;
         this.writeError = '';
       }
     } catch (error) {
@@ -153,86 +116,77 @@ export class PushSubscriptionsViewModel {
     }
   }
 
-  item(id: string): PushSubscriptionItem | null {
-    return this.items.find((item: PushSubscriptionItem) => item.assignmentId === id) ?? null;
+  dismissConfirmation(): void { this.confirmationRequested = false; }
+
+  async subscribe(): Promise<boolean> {
+    const current: JourneyPushSubscription | null = this.subscription;
+    if (current === null || current.subscribed) { return false; }
+    return this.begin(current, true, false);
   }
 
-  dismissConfirmation(): void { this.confirmationId = ''; }
-
-  async subscribe(id: string): Promise<boolean> {
-    const row: PushSubscriptionItem | null = this.item(id);
-    if (row === null || !row.available || row.subscribed) { return false; }
-    return this.begin(row, true, false);
+  requestNotifications(): void {
+    if (this.active && !this.busy && !this.saving && !this.needsSync && this.error.length === 0 && this.command === null &&
+      this.subscription?.subscribed && !this.subscription.pushEnabled) { this.confirmationRequested = true; }
   }
 
-  requestNotifications(id: string): void {
-    const row: PushSubscriptionItem | null = this.item(id);
-    if (this.active && !this.needsSync && this.error.length === 0 && this.pending === null &&
-      row?.available && row.subscribed && !row.pushEnabled) {
-      this.confirmationId = id;
-    }
+  async confirmNotifications(): Promise<boolean> {
+    if (!this.confirmationRequested || !this.active || this.busy || this.saving || this.needsSync ||
+      this.error.length > 0 || this.command !== null) { return false; }
+    this.confirmationRequested = false;
+    const current: JourneyPushSubscription | null = this.subscription;
+    return current !== null && current.subscribed && !current.pushEnabled ? this.begin(current, true, true) : false;
   }
 
-  async confirmNotifications(id: string): Promise<boolean> {
-    if (this.confirmationId !== id) { return false; }
-    this.confirmationId = '';
-    const row: PushSubscriptionItem | null = this.item(id);
-    return row !== null && row.available && row.subscribed ? this.begin(row, true, true) : false;
+  async unsubscribe(): Promise<boolean> {
+    const current: JourneyPushSubscription | null = this.subscription;
+    if (current === null || !current.subscribed) { return false; }
+    this.confirmationRequested = false;
+    return this.begin(current, false, false);
   }
 
-  async unsubscribe(id: string): Promise<boolean> {
-    const row: PushSubscriptionItem | null = this.item(id);
-    if (row === null || !row.subscribed) { return false; }
-    this.confirmationId = '';
-    return this.begin(row, false, false);
-  }
-
-  private async begin(row: PushSubscriptionItem, subscribed: boolean, pushEnabled: boolean): Promise<boolean> {
-    if (this.owner.length === 0 || this.busy || this.needsSync || this.error.length > 0 ||
-      this.pending !== null || this.repository.updatePushSubscription === undefined) {
-      return false;
-    }
+  private async begin(current: JourneyPushSubscription, subscribed: boolean, pushEnabled: boolean): Promise<boolean> {
+    if (this.owner.length === 0 || !this.active || this.busy || this.saving || this.needsSync || this.error.length > 0 ||
+      this.command !== null || this.repository.updateJourneyPushSubscription === undefined) { return false; }
     this.cancelRead();
-    this.pending = new PendingSubscription(row.assignmentId,
-      new PushSubscriptionCommand(this.identity(), subscribed, pushEnabled, row.revision));
-    this.pendingId = row.assignmentId;
+    this.command = new PushSubscriptionCommand(this.identity(), subscribed, pushEnabled, current.revision);
+    this.pending = true;
     return this.retry();
   }
 
   async retry(): Promise<boolean> {
-    const pending: PendingSubscription | null = this.pending;
-    if (pending === null || this.saving || this.owner.length === 0 ||
-      this.repository.updatePushSubscription === undefined) { return false; }
+    const command: PushSubscriptionCommand | null = this.command;
+    if (command === null || !this.active || this.saving || this.owner.length === 0 ||
+      this.repository.updateJourneyPushSubscription === undefined) { return false; }
     const generation: number = this.generation;
+    const activation: number = this.activation;
     this.saving = true;
     this.writeError = '';
     try {
-      const receipt: PushSubscription = await this.repository.updatePushSubscription(pending.assignmentId, pending.command);
-      if (generation !== this.generation || this.pending !== pending) { return false; }
-      if (receipt.assignmentId !== pending.assignmentId || receipt.subscribed !== pending.command.subscribed ||
-        receipt.pushEnabled !== pending.command.pushEnabled || receipt.revision <= pending.command.expectedRevision) {
+      const receipt: JourneyPushSubscription = await this.repository.updateJourneyPushSubscription(command);
+      if (generation !== this.generation || this.command !== command) { return false; }
+      if (receipt.scope !== PERSONAL_JOURNEY_SCOPE || receipt.subscribed !== command.subscribed ||
+        receipt.pushEnabled !== command.pushEnabled || receipt.revision < command.expectedRevision) {
         throw new GameFailure('CONTRACT_ERROR', '订阅结果尚未确认，请重试确认。');
       }
-      this.pending = null;
-      this.pendingId = '';
-      // An idempotent receipt may predate a later update on another device. It confirms
-      // this command, never the current subscription. Publish only a fresh server read.
+      this.command = null;
+      this.pending = false;
+      // A command receipt can predate another device's update. Only a fresh GET may publish current state.
       this.needsSync = true;
-      this.items = [];
+      this.subscription = null;
       this.loaded = false;
-      this.confirmationAfterRead = receipt.subscribed && !receipt.pushEnabled ? receipt.assignmentId : '';
-      await this.refresh();
+      this.confirmationAfterRead = this.active && activation === this.activation && receipt.subscribed && !receipt.pushEnabled;
+      if (this.active) { await this.refresh(); }
       if (generation !== this.generation) { return false; }
       if (this.needsSync) { this.writeError = '操作已保存，当前订阅状态尚未同步，请重新读取。'; }
       return true;
     } catch (error) {
-      if (generation !== this.generation || this.pending !== pending) { return false; }
+      if (generation !== this.generation || this.command !== command) { return false; }
       if (this.sessionFailure(error as Object)) { this.rejectSession(error as Object); return false; }
       this.writeError = this.message(error as Object);
       if (error instanceof GameFailure && error.status >= 400 && error.status < 500 &&
         error.status !== 408 && error.status !== 429) {
-        this.pending = null;
-        this.pendingId = '';
+        this.command = null;
+        this.pending = false;
         void this.refresh();
       }
       return false;
