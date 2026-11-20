@@ -36,6 +36,7 @@ import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
 import { PrimaryAction } from '../ui/PrimaryAction';
 import { DetailFact } from '../ui/DetailFact';
 import { StarwardAtlas } from '../ui/StarwardAtlas';
+import { StarwardAssignmentRequest } from '../ui/StarwardAssignmentRequest';
 import { StarwardMaterial, StarwardTitleSurface } from '../ui/StarwardMaterial';
 import { StarwardBottomTabs, StarwardJourneyTabs, StarwardSyncNote } from '../ui/StarwardTabs';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
@@ -1743,14 +1744,14 @@ struct Index {
       Scroll() {
         Column({ space: 16 }) {
           if (this.vm.gate === 'home') {
-            if (this.vm.detailBusy && this.vm.detail.id.length === 0) {
-              Text('正在准备本场冒险…').id('briefing-loading').fontSize(13)
-                .fontColor($r('app.color.muted')).width('100%')
+            if ((this.vm.detailBusy && this.vm.detail.id.length === 0) || this.vm.detailError.length > 0) {
+              StarwardAssignmentRequest({ loadingId: 'briefing-loading', loadingLabel: '正在准备本场冒险…',
+                displayFont: this.displayFont, message: this.vm.detailError, retryable: !this.vm.detailBusy,
+                motionEnabled: this.assignmentDestinationActive() && !this.showAccount && !this.motion.reduced,
+                retry: () => {
+                  if (this.selectedId.length > 0) { this.vm.openAssignment(this.selectedId); }
+                }, returnHome: () => { this.leaveGameplay(); void this.vm.refresh(); } })
             }
-            ErrorNotice({ message: this.vm.detailError, retryable: !this.vm.detailBusy, showReturn: true,
-              retry: () => {
-                if (this.selectedId.length > 0) { this.vm.openAssignment(this.selectedId); }
-              }, returnHome: () => { this.leaveGameplay(); void this.vm.refresh(); } })
             if (this.vm.detail.id.length > 0) {
               if (this.vm.detail.extraDisplay.length > 0) {
                 StarwardQuestMessages({ groupId: 'assignment-extra', items: this.vm.detail.extraDisplay })
@@ -1768,7 +1769,9 @@ struct Index {
                   this.icon($r('app.media.icon_arrow_left'), 18, $r('app.color.accent_text'))
                   Text('回到首页').fontSize(13).fontColor($r('app.color.accent_text'))
                 }
-              }.id('return-home').height(44).backgroundColor(Color.Transparent).onClick(() => this.leaveGameplay())
+              }.id('return-home').height(44).backgroundColor(Color.Transparent)
+                .alignSelf(this.vm.detailBusy && this.vm.detail.id.length === 0 ? ItemAlign.Center : ItemAlign.Auto)
+                .onClick(() => this.leaveGameplay())
             }
           }
         }.width('100%').constraintSize({ maxWidth: 720 }).alignItems(HorizontalAlign.Start)

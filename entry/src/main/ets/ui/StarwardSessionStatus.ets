@@ -1,37 +1,4 @@
-import { UIUtils } from '@kit.ArkUI';
-import { StarwardAtlas } from './StarwardAtlas';
-
-@ComponentV2
-struct SessionAtlas {
-  @Param diameter: number = 210;
-  @Param motionEnabled: boolean = false;
-  @Local private angle: number = 0;
-
-  @Monitor('motionEnabled')
-  restart(): void {
-    const context: UIContext = this.getUIContext();
-    context.animateTo({ duration: 0 }, () => UIUtils.applySync(() => { this.angle = 0; }));
-    if (this.motionEnabled) {
-      context.animateTo({ duration: 7000, curve: Curve.Linear, iterations: -1 },
-        () => UIUtils.applySync(() => { this.angle = 360; }));
-    }
-  }
-
-  build() {
-    Stack() {
-      Column().width(this.diameter * 1.32).height(this.diameter * 1.32)
-        .radialGradient({ center: ['50%', '50%'], radius: '50%',
-          colors: [[$r('app.color.accent_soft'), 0], [Color.Transparent, 1]] })
-      StarwardAtlas({ atlasSize: this.diameter })
-      Circle().width(this.diameter * 1.06).height(this.diameter * 1.06).fill(Color.Transparent)
-        .stroke($r('app.color.accent_border')).strokeWidth(1).strokeDashArray([2, 7])
-      Circle().width(this.diameter * 1.03).height(this.diameter * 1.03).fill(Color.Transparent)
-        .stroke($r('app.color.accent')).strokeWidth(1.5).strokeDashArray([this.diameter * 0.5, this.diameter * 4])
-        .rotate({ angle: this.angle - 40 })
-    }.width(this.diameter * 1.1).height(this.diameter * 1.1).clip(false).accessibilityLevel('no-hide-descendants')
-      .hitTestBehavior(HitTestMode.None).onAppear(() => this.restart())
-  }
-}
+import { StarwardLoadingAtlas } from './StarwardAtlas';
 
 @ComponentV2
 export struct StarwardSessionStatus {
@@ -74,7 +41,7 @@ export struct StarwardSessionStatus {
     Scroll() {
       Column({ space: 16 }) {
         if (this.restoring && this.message.length === 0) {
-          SessionAtlas({ diameter: Math.max(112, Math.min(240, this.viewport * 0.32)),
+          StarwardLoadingAtlas({ diameter: Math.max(112, Math.min(240, this.viewport * 0.32)),
             motionEnabled: this.motionEnabled })
             .margin({ bottom: 6 })
           Text('星图正在显现').fontSize(10).letterSpacing(2.4).fontColor($r('app.color.accent_muted'))

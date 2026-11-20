@@ -18,8 +18,9 @@ import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { isLegacyInternalLink, LegacyRichBlock, LegacyRichSpan, legacyImageSources,
   legacyRichBlocks } from '../business/LegacyRichContent';
-import { ErrorNotice, InlineError } from '../ui/ErrorMessages';
+import { InlineError } from '../ui/ErrorMessages';
 import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
+import { StarwardAssignmentRequest } from '../ui/StarwardAssignmentRequest';
 import { PrimaryAction } from '../ui/PrimaryAction';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
@@ -2001,11 +2002,11 @@ export struct GameplayPage {
           this.play.snapshot.detail.extraDisplay.length > 0) {
           StarwardQuestMessages({ groupId: 'assignment-extra', items: this.play.snapshot.detail.extraDisplay })
         }
-        if (this.play.loading) {
-          Text('正在展开你的旅程…').id('gameplay-loading').width('100%')
-            .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.muted'))
-        } else if (this.play.error.length > 0) {
-          ErrorNotice({ message: this.play.error, retryable: this.interactionReady(), showReturn: true,
+        if (this.play.loading || this.play.error.length > 0) {
+          StarwardAssignmentRequest({ loadingId: 'gameplay-loading', loadingLabel: '正在展开你的旅程…',
+            displayFont: this.displayFont, message: this.play.loading ? '' : this.play.error,
+            motionEnabled: this.foreground && !this.reducedMotion && !this.narrativeCovered && !this.accountCovered,
+            retryable: this.interactionReady(),
             retry: () => this.play.reload(), returnHome: () => this.leave() })
         } else if (this.play.snapshot !== null && this.play.snapshot.detail.status === 'cancelled') {
           Text('本次场次已撤回').id('gameplay-cancelled').width('100%').fontFamily(this.displayFont)

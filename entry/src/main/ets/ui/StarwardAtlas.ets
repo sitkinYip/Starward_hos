@@ -1,3 +1,5 @@
+import { UIUtils } from '@kit.ArkUI';
+
 /** Native geometry follows the frozen Web CelestialAtlas proportions. */
 @ComponentV2
 export struct StarwardAtlas {
@@ -68,5 +70,37 @@ export struct StarwardAtlas {
     }.width(this.atlasSize).height(this.atlasSize).offset({ x: this.renderX, y: this.renderY }).clip(false)
       .hitTestBehavior(HitTestMode.None)
       .accessibilityLevel('no-hide-descendants')
+  }
+}
+
+@ComponentV2
+export struct StarwardLoadingAtlas {
+  @Param diameter: number = 210;
+  @Param motionEnabled: boolean = false;
+  @Local private angle: number = 0;
+
+  @Monitor('motionEnabled')
+  private restart(): void {
+    const context: UIContext = this.getUIContext();
+    context.animateTo({ duration: 0 }, () => UIUtils.applySync(() => { this.angle = 0; }));
+    if (this.motionEnabled) {
+      context.animateTo({ duration: 7000, curve: Curve.Linear, iterations: -1 },
+        () => UIUtils.applySync(() => { this.angle = 360; }));
+    }
+  }
+
+  build() {
+    Stack() {
+      Column().width(this.diameter * 1.32).height(this.diameter * 1.32)
+        .radialGradient({ center: ['50%', '50%'], radius: '50%',
+          colors: [[$r('app.color.accent_soft'), 0], [Color.Transparent, 1]] })
+      StarwardAtlas({ atlasSize: this.diameter })
+      Circle().width(this.diameter * 1.06).height(this.diameter * 1.06).fill(Color.Transparent)
+        .stroke($r('app.color.accent_border')).strokeWidth(1).strokeDashArray([2, 7])
+      Circle().width(this.diameter * 1.03).height(this.diameter * 1.03).fill(Color.Transparent)
+        .stroke($r('app.color.accent')).strokeWidth(1.5).strokeDashArray([this.diameter * 0.5, this.diameter * 4])
+        .rotate({ angle: this.angle - 40 })
+    }.width(this.diameter * 1.1).height(this.diameter * 1.1).clip(false).accessibilityLevel('no-hide-descendants')
+      .hitTestBehavior(HitTestMode.None).onAppear(() => this.restart())
   }
 }
