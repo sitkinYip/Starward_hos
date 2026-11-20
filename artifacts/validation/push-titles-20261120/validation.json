@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-20",
+  "scope": "backend display title only",
+  "imageTag": "questions-pocketbase:0.40.1-push-titles-20261120-amd64",
+  "fullBackend": {
+    "tests": 154,
+    "pass": 154,
+    "fail": 0,
+    "skip": 0,
+    "cancelled": 0,
+    "opensslEnabled": true,
+    "exitCode": 0,
+    "logSHA256": "6554b0f533fe27d42ce5e39209d68d11a3b25d59373d465ffb5505815baa00a9"
+  },
+  "targetPushTests": {
+    "tests": 21,
+    "pass": 21,
+    "fail": 0,
+    "skip": 0,
+    "realPocketBase": 16
+  },
+  "releaseToolTests": {
+    "tests": 58,
+    "pass": 58,
+    "fail": 0,
+    "skip": 0
+  },
+  "mutations": {
+    "runtimeKilled": 1,
+    "runtimeTotal": 1,
+    "releaseKilled": 2,
+    "releaseTotal": 2
+  },
+  "verifyImage": {
+    "passed": true,
+    "restart": true,
+    "offlineRestore": true
+  },
+  "reviews": {
+    "runtime": "no blockers",
+    "releaseTool": "no blockers",
+    "releaseInputs": "no blockers"
+  },
+  "contractCheck": {
+    "admin": "passed",
+    "crossRepository": "existing Web copy missing prior subscription types; unchanged this task"
+  },
+  "nativeCodeChanged": false,
+  "webChanged": false,
+  "production": "recorded revision14; no migration",
+  "deviceTitle": "user confirmed received with correct title",
+  "finalPackaging": {
+    "passed": true,
+    "singlePlatform": true,
+    "firstAttempt": "rejected OCI index before output; rebuilt without provenance using same config and verified again",
+    "imageConfigDigest": "sha256:6103a1c579a24642c9c31486a7203e4a15a0829c5613661e790a4dba96114930"
+  }
+}

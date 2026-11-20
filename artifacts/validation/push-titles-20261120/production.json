@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-20",
+  "releaseId": "push-titles-20261120",
+  "backendPublished": true,
+  "clientReleaseRequired": false,
+  "webChanged": false,
+  "migrationMode": "none",
+  "phase": "recorded",
+  "revision": 14,
+  "recordedAt": "2026-11-20T08:49:22Z",
+  "blocked": false,
+  "activeMarkerPresent": false,
+  "inFlight": false,
+  "imageId": "sha256:6103a1c579a24642c9c31486a7203e4a15a0829c5613661e790a4dba96114930",
+  "imageTag": "questions-pocketbase:0.40.1-push-titles-20261120-amd64",
+  "composeSHA256": "d9a5f824bf7bcad1dbf84c30c19cf63cccfdc37f124b7ee5af99a5607d26734d",
+  "rootReleaseSHA256": "277c34495881756a3b91cfb966b02c590389421d537e0afeab857aadbce4f212",
+  "rootChecksumsSHA256": "f2222ca5e1f71b874d074d4f02d62847bcad1e2f932b0a32d08cd92575c75814",
+  "reportSHA256": "b1f7947b70e1e658dcaadbdffcb456c0f94d493944e4210b9b52a4844496bf5e",
+  "migrationLedgerSHA256": "ecb46ffcbd8252680e7da2815a2e54a79046a5d749a5c19fe413ce2a4e9ef401",
+  "schema": {
+    "collections": 41,
+    "tables": 46,
+    "migrationRows": 18,
+    "businessMigrationFiles": 10,
+    "unchangedAtFinalize": true
+  },
+  "runtime": {
+    "imageTag": "questions-pocketbase:0.40.1-push-titles-20261120-amd64",
+    "imageId": "sha256:6103a1c579a24642c9c31486a7203e4a15a0829c5613661e790a4dba96114930",
+    "health": "healthy",
+    "restarts": 0,
+    "lastHealthChecks": [
+      {
+        "start": "2026-11-20T16:50:26.374878161+08:00",
+        "end": "2026-11-20T16:50:26.425010644+08:00",
+        "exitCode": 0
+      },
+      {
+        "start": "2026-11-20T16:50:41.426626544+08:00",
+        "end": "2026-11-20T16:50:41.48506929+08:00",
+        "exitCode": 0
+      },
+      {
+        "start": "2026-11-20T16:50:56.486156572+08:00",
+        "end": "2026-11-20T16:50:56.543041429+08:00",
+        "exitCode": 0
+      }
+    ],
+    "pushFlags": {
+      "STARWARD_PUSH_ENABLED": "1",
+      "STARWARD_PUSH_TEST_MODE": "0",
+      "STARWARD_PUSH_SUBSCRIPTION_APPROVED": "1"
+    },
+    "mountCount": 2,
+    "runtimeHashes": {
+      "lib/push.js": "b0f1139e7ac2085f327fc770d1e6e389bb7cef12e4923a96faec2fb63633ff0d",
+      "lib/huawei-push.js": "093e65c15a7a9deba6405ed8bb2afe9fb31014d163be97163d107369d446c0de"
+    }
+  },
+  "https": {
+    "health": 200,
+    "anonymousProbes": [
+      401,
+      401,
+      401,
+      401
+    ]
+  },
+  "preserved": {
+    "audience": true,
+    "subscriptionConsent": true,
+    "credentials": true,
+    "flags": true
+  },
+  "productionTest": {
+    "recipientCount": 1,
+    "purpose": "personal_journey",
+    "title": "旅途来信 · 星光已抵达",
+    "createdAt": "2026-11-20 08:49:56.525Z",
+    "deliveryStatus": "accepted",
+    "providerCode": "80000000",
+    "attempts": 1,
+    "category": "SUBSCRIPTION",
+    "testMessage": false,
+    "deviceReceipt": "user confirmed received with correct title",
+    "clickRoute": "not re-tested",
+    "productionAssignmentTest": "not performed; isolated assignment title passed"
+  },
+  "pendingSendingAtFinalRead": 0,
+  "sshClosed": true,
+  "postTestStatus": "recorded revision14; no active marker, inFlight or blockers"
+}
