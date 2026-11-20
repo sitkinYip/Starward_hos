@@ -1,0 +1,77 @@
+{
+  "observedAt": "2026-11-20T12:59:15+08:00",
+  "source": {
+    "head": "da0444e6c06368cd65a50f2f1b91a15901a60248",
+    "includedCommits": [
+      "0aa690c9a26da7c59a41cb6ff89529194472dd2e",
+      "62ca6a1ccd232ad403b09611ffc482bca2b31258",
+      "da0444e6c06368cd65a50f2f1b91a15901a60248"
+    ],
+    "cleanAtFreeze": true,
+    "frozenFiles": 2597,
+    "matchedEntrySourcesAndResources": 223
+  },
+  "validation": {
+    "releaseAppBuilt": true,
+    "arkTSBuildWarnings": 39,
+    "hypium": {
+      "passed": 300,
+      "failed": 0,
+      "ignored": 0
+    },
+    "releaseToolTestsPassed": 14,
+    "lint": {
+      "errors": 0,
+      "warnings": 0,
+      "suggestions": 1
+    }
+  },
+  "package": {
+    "bundleName": "com.sitkin.starward",
+    "versionName": "0.1.5",
+    "versionCode": 7,
+    "productionMode": "production-invite-push",
+    "signedAppSHA256": "f8fbc66060fd111271d6c91b6e588af2de0e2c356fde401a5a6a90e5c73b9ea2",
+    "unsignedAppSHA256": "c3dcd12d2a929594dd4842f75177e455d61bfbe0bb4ceec0b2b1344d4c2e11af",
+    "compiledArkTSPayloadSHA256": "cdc7ea986a6ec3b3657bfe52fb3913e4d0435b44c71b2577cf5bd2f571d2352f",
+    "allHAPEntriesMatchUnsigned": false,
+    "cloudBuildNumber": "1",
+    "verifiedCloudMetadataAdditions": [
+      "module.json:app.buildVersion",
+      "pack.info:summary.app.version.build"
+    ],
+    "allOtherHAPContentMatchesUnsigned": true,
+    "sdkOuterAppSignatureVerified": true,
+    "sdkEmbeddedProfileVerified": true,
+    "sameDistributionIdentity": true,
+    "releaseProfileCurrentlyValid": true,
+    "releaseProfilePushCapability": true,
+    "isolatedResourcesPackaged": false,
+    "debugPrivacyMetadataPackaged": false,
+    "upload": {
+      "channel": "AppGallery Connect（仅测试）",
+      "uploadedAt": "2026-11-20T12:53:58+08:00",
+      "legality": "已达标",
+      "listingSelfCheck": "未检测"
+    }
+  },
+  "invitation": {
+    "versionId": "2087744503208254848",
+    "description": "0.1.5 后台配乐、旅程加载和登录快速填充",
+    "type": "邀请测试",
+    "group": "赴星之约首轮单人测试",
+    "selectedGroups": 1,
+    "groupMembers": 1,
+    "notificationEnabled": true,
+    "device": "手机",
+    "region": "中国大陆",
+    "start": "2026-11-20T12:57:24+08:00",
+    "end": "2026-12-20T12:57:24+08:00",
+    "inheritedPrivacyPolicy": "Starward 0.1.1 - Push privacy",
+    "inheritedReviewLoginFieldsPresent": true,
+    "submitted": true,
+    "observedStatus": "预审中",
+    "marketApprovalVerified": false,
+    "downloadVerified": false
+  }
+}

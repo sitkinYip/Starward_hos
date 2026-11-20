@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-20",
+  "observedAt": "2026-11-20T16:11:50+08:00",
+  "status": "production-subscription-enabled-provider-accepted-device-user-confirmed",
+  "platform": {
+    "appName": "赴星之约",
+    "bundleName": "com.sitkin.starward",
+    "category": "SUBSCRIPTION",
+    "statusObservedInOfficialUI": "审核通过",
+    "scopeReviewed": "personal_journey_v1"
+  },
+  "rootCause": {
+    "subscriptionApprovedBefore": false,
+    "masterEnabledBefore": true,
+    "testModeBefore": false,
+    "latestOperatorMessageLocalTime": "2026-11-20 15:58:30.733",
+    "inAppReceiptCreated": true,
+    "receiptUnreadAtInspection": true,
+    "playerSubscribed": true,
+    "playerPushEnabled": true,
+    "playerActive": true,
+    "mustChangePassword": false,
+    "validAccountMatchingBindings": 1,
+    "pushDeliveryRowsForThatReceiptAtInspection": 0,
+    "codeGateSkipsEnqueueWhileApprovalOff": true,
+    "platformApprovalDoesNotAutoChangeServerEnvironment": true
+  },
+  "activation": {
+    "phase": "enabled-verified",
+    "finishedAt": "2026-11-20T08:09:24.657197+00:00",
+    "subscriptionApproved": true,
+    "sameImage": true,
+    "sameRuntimeExceptApproval": true,
+    "audienceSchemaLedgerPreserved": true,
+    "historicalAuditPreserved": true,
+    "credentialMountedReadOnlyAndReadable": true,
+    "composeSHA256": "f26ebeb828ff763341d036a37040e52e493fe269e533f73acf1792496b7a6088",
+    "restarts": 0,
+    "differentHealthyChecks": 3,
+    "httpsProbes": {
+      "/api/health": 200,
+      "/api/questions/v1/admin/me": 401,
+      "/api/questions/v1/assignments": 401,
+      "/api/questions/v1/admin/push-settings": 401,
+      "/api/questions/v1/me/push/journey-subscription": 401
+    }
+  },
+  "activationAudit": {
+    "scriptSHA256": "788e8e670a76b3dcb8665f7a71c95ba64361bfe116ac982e640670702105bfc5",
+    "baseComposeSHA256": "7a78755f21f53f0cae98319c6d175fc052eebc5bf920af17bb02841a1de276c6",
+    "candidateComposeSHA256": "f26ebeb828ff763341d036a37040e52e493fe269e533f73acf1792496b7a6088",
+    "onlyEffectiveDelta": "STARWARD_PUSH_SUBSCRIPTION_APPROVED 0 -> 1",
+    "independentConfigurationRecord": true,
+    "freshConfigGuardReviewed": true,
+    "releaseLockAndPersistentFailureMarker": true,
+    "credentialsReadOrCopied": false,
+    "imageOrSchemaMigrationChanged": false,
+    "audienceOrAccountConsentChanged": false,
+    "databaseRestorePerformed": false,
+    "oldMessagesBackfilled": false
+  },
+  "directedVerification": {
+    "newMessagesSentByAgent": 1,
+    "operatorAccountOnly": true,
+    "recipientCountObservedInForm": 1,
+    "messagePurpose": "personal_journey",
+    "kind": "account",
+    "hasAssignment": false,
+    "sentAtUTC": "2026-11-20 08:10:50.041Z",
+    "jobs": [
+      {
+        "status": "accepted",
+        "attempts": 1,
+        "providerCode": "80000000",
+        "category": "SUBSCRIPTION",
+        "scope": "personal_journey_v1",
+        "revision": 17
+      }
+    ],
+    "providerAccepted": true,
+    "testMessage": false,
+    "userExplicitlyConfirmedSystemNotification": true,
+    "deviceDisplayEvidence": "User response: 已收到系统通知",
+    "nativeUiAutomationRepeated": false,
+    "noticeReadByAgent": false,
+    "notificationClickSourceSyncVerifiedThisRound": false
+  },
+  "finalReadOnly": {
+    "phase": "enabled-verified",
+    "sameVerifiedContainer": true,
+    "sameImage": true,
+    "health": "healthy",
+    "restarts": 0,
+    "pushEnabled": "1",
+    "testMode": "0",
+    "subscriptionApproved": "1",
+    "composeSHA256": "f26ebeb828ff763341d036a37040e52e493fe269e533f73acf1792496b7a6088",
+    "activeMarker": false,
+    "rootAuditUnchanged": true
+  },
+  "limitations": [
+    "A successful single production SUBSCRIPTION delivery does not establish daily frequency guarantees or all-device delivery.",
+    "Only the existing operator player was sent a new verification event; no historical notifications were resent.",
+    "Future ordinary backend releases must explicitly support the approved=1 runtime baseline; the historical approved=0 profile is unchanged."
+  ],
+  "maintenanceConnectionClosed": true
+}
