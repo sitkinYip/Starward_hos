@@ -113,13 +113,16 @@ export struct ProfilePage {
       Text('给你的故事，上把锁。').fontFamily(this.displayFont).fontSize(22).fontColor($r('app.color.strong'))
       Text('设置只有你知道的通行密语。使用 10—71 个字符。')
         .fontSize(13).lineHeight('22fp').fontColor($r('app.color.muted'))
-      LabeledInput({ label: '当前密码', fieldId: 'security-old-password', secret: true, value: this.oldPassword,
+      LabeledInput({ label: '当前密码', fieldId: 'security-old-password',
+        inputType: InputType.Password, value: this.oldPassword,
         disabled: this.vm.securityBusy || this.vm.profileBusy || this.vm.securityUnconfirmed,
         changed: (value: string) => { this.oldPassword = value; this.vm.clearSecurityFeedback(); } })
-      LabeledInput({ label: '新密码', fieldId: 'security-new-password', secret: true, value: this.newPassword,
+      LabeledInput({ label: '新密码', fieldId: 'security-new-password',
+        inputType: InputType.Password, value: this.newPassword,
         fieldLimit: 71, disabled: this.vm.securityBusy || this.vm.profileBusy || this.vm.securityUnconfirmed,
         changed: (value: string) => { this.newPassword = value; this.vm.clearSecurityFeedback(); } })
-      LabeledInput({ label: '确认新密码', fieldId: 'security-confirm-password', secret: true, value: this.confirmation,
+      LabeledInput({ label: '确认新密码', fieldId: 'security-confirm-password',
+        inputType: InputType.Password, value: this.confirmation,
         fieldLimit: 71, disabled: this.vm.securityBusy || this.vm.profileBusy || this.vm.securityUnconfirmed,
         changed: (value: string) => { this.confirmation = value; this.vm.clearSecurityFeedback(); } })
       InlineError({ message: this.vm.securityError, fieldId: 'security-error' })

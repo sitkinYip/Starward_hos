@@ -4,7 +4,8 @@ export struct LabeledInput {
   @Param value: string = '';
   @Param placeholder: string = '';
   @Param fieldId: string = '';
-  @Param secret: boolean = false;
+  @Param inputType: InputType = InputType.Normal;
+  @Param enableAutoFill: boolean = false;
   @Param disabled: boolean = false;
   @Param fieldLimit: number = 1000;
   @Event changed: (value: string) => void = () => {};
@@ -16,9 +17,9 @@ export struct LabeledInput {
       TextInput({ text: this.value, placeholder: this.placeholder })
         .id(this.fieldId)
         .accessibilityText(this.label)
-        .type(this.secret ? InputType.Password : InputType.Normal)
-        .showPasswordIcon(this.secret)
-        .enableAutoFill(false)
+        .type(this.inputType)
+        .showPasswordIcon(this.inputType === InputType.Password)
+        .enableAutoFill(this.enableAutoFill)
         .enabled(!this.disabled)
         .maxLength(this.fieldLimit)
         .height(52)

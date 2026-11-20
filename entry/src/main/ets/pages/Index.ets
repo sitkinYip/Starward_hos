@@ -1,4 +1,4 @@
-import { common } from '@kit.AbilityKit';
+import { autoFillManager, common } from '@kit.AbilityKit';
 import { window, KeyboardAvoidMode as PageKeyboardAvoidMode } from '@kit.ArkUI';
 import { SliceViewModel } from '../features/SliceViewModel';
 import { GameplayPage } from '../features/GameplayPage';
@@ -1156,7 +1156,12 @@ struct Index {
     if (this.vm.busy || this.vm.gate !== 'login') { return; }
     this.clearAuthToast();
     const epoch: number = this.authFeedbackEpoch;
-    await this.vm.login(this.account, this.password);
+    await this.vm.login(this.account, this.password, () => {
+      if (AppEnvironment.production && this.foreground && this.privacyAllowed) {
+        // The system reads the input nodes before the login form is removed.
+        autoFillManager.requestAutoSave(this.getUIContext());
+      }
+    });
     if (epoch === this.authFeedbackEpoch && this.foreground && this.privacyAllowed &&
       this.vm.gate === 'login' && this.vm.loginNetworkError) {
       this.authToast.show(this.getUIContext(), this.vm.error, this.safeBottom());
@@ -1216,12 +1221,15 @@ struct Index {
         .margin({ bottom: 16 })
       Column({ space: 16 }) {
         LabeledInput({ label: '登录账号', placeholder: '你的冒险者账号', fieldId: 'account',
+          inputType: AppEnvironment.production ? InputType.USER_NAME : InputType.Normal,
+          enableAutoFill: AppEnvironment.production && this.foreground,
           value: this.account, disabled: this.vm.busy, changed: (value: string) => {
             if (value !== this.account) { this.vm.clearLoginInputError(); }
             this.account = value;
           } })
         LabeledInput({ label: '密码', placeholder: '输入通行密语', fieldId: 'password', value: this.password,
-          secret: true, disabled: this.vm.busy, changed: (value: string) => {
+          inputType: InputType.Password, enableAutoFill: AppEnvironment.production && this.foreground,
+          disabled: this.vm.busy, changed: (value: string) => {
             if (value !== this.password) { this.vm.clearLoginInputError(); }
             this.password = value;
           } })
@@ -1260,11 +1268,11 @@ struct Index {
         .margin({ top: 12, bottom: 24 })
       Column({ space: 16 }) {
         LabeledInput({ label: '当前密码', fieldId: 'old-password', value: this.oldPassword,
-          secret: true, disabled: this.vm.busy, changed: (value: string) => this.oldPassword = value })
+          inputType: InputType.Password, disabled: this.vm.busy, changed: (value: string) => this.oldPassword = value })
         LabeledInput({ label: '新密码', fieldId: 'new-password', value: this.newPassword,
-          secret: true, disabled: this.vm.busy, changed: (value: string) => this.newPassword = value })
+          inputType: InputType.Password, disabled: this.vm.busy, changed: (value: string) => this.newPassword = value })
         LabeledInput({ label: '确认新密码', fieldId: 'confirm-password', value: this.confirmation,
-          secret: true, disabled: this.vm.busy, changed: (value: string) => this.confirmation = value })
+          inputType: InputType.Password, disabled: this.vm.busy, changed: (value: string) => this.confirmation = value })
         InlineError({ message: this.vm.error, fieldId: 'error-message' })
         PrimaryAction({ label: this.vm.busy ? '正在保存…' : '保存新密码',
           actionEnabled: !this.vm.busy && this.vm.mode !== 'unavailable',

@@ -64,6 +64,8 @@
 
 2026-11-17 冷启动续登采用 `CredentialStore` 和系统 Asset Store Kit。每个打包 HTTPS 端点和受信 CA 组合有独立的资产别名，密文只含令牌和玩家 ID。资产只在设备解锁时可读，禁止跨设备同步，沿用系统默认卸载删除行为。登录、改密和退出按顺序保存、轮换或删除资产。冷启动先用原始授权头调用 `/me` 且确认账号 ID 一致，再进入主页或强制改密。临时故障保留凭据供重试，失效和身份不符清理凭据。退出立即清理内存及导航，系统资产删除成功后完成退出，失败时提供原位重试。模拟模式不创建持久会话。[安全续登验收](feature-acceptance-matrix.md#a10-冷启动安全续登) · [Asset Store Kit 接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-asset)
 
+2026-11-20 正式服务登录表单接入鸿蒙系统密码保险箱。ArkUI 负责按输入类型识别账号密码，玩家登录和身份校验完成后，页面在移除表单前请求系统提示保存。保存由用户确认，填充后仍须主动提交给服务器。系统保管其密码条目，应用只持久化原有续登资产。系统按应用识别凭据，正式、预览和测试包共用应用身份，因此普通隔离包不请求保存或填充正式账号。[系统保存接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-app-ability-autofillmanager) · [密码保险箱验收](feature-acceptance-matrix.md#a11-系统密码保险箱2026-11-20)
+
 ## ADR-007：缓存、文件 token 与失效
 
 **问题：** Web 有账号级查询缓存、5 秒刷新和受保护头像临时 token；原生后台不能照搬常驻轮询。

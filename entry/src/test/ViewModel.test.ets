@@ -20,7 +20,9 @@ export default function viewModelTests(): void {
     it('forcedPasswordGatePreventsListAndDetailRequests', 0, async () => {
       const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);
-      await viewModel.login('alice', 'Starward1234');
+      let formAccepted: boolean = false;
+      await viewModel.login('alice', 'Starward1234', () => { formAccepted = true; });
+      expect(formAccepted).assertFalse();
       expect(viewModel.gate).assertEqual('password');
       await viewModel.refresh();
       await viewModel.openAssignment('assignment1');
@@ -36,11 +38,14 @@ export default function viewModelTests(): void {
     it('invalidInputsAndWrongPasswordKeepAuthGate', 0, async () => {
       const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);
-      await viewModel.login('', '');
+      let formAccepted: boolean = false;
+      const acceptForm = (): void => { formAccepted = true; };
+      await viewModel.login('', '', acceptForm);
       expect(repository.calls.length).assertEqual(0);
       expect(viewModel.errorCode).assertEqual('VALIDATION_ERROR');
       expect(viewModel.error.length > 0).assertTrue();
-      await viewModel.login('alice', 'WrongPassword123');
+      await viewModel.login('alice', 'WrongPassword123', acceptForm);
+      expect(formAccepted).assertFalse();
       expect(viewModel.gate).assertEqual('login');
       expect(viewModel.player.id).assertEqual('');
       expect(viewModel.busy).assertFalse();
@@ -48,18 +53,39 @@ export default function viewModelTests(): void {
     });
 
     it('duplicateLoginIsSingleFlightAndLogoutIgnoresResponse', 0, async () => {
-      const repository: MockGameRepository = new MockGameRepository(5);
+      const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);
-      const pending: Promise<void> = viewModel.login('alice', 'Starward1234');
-      await viewModel.login('alice', 'Starward1234');
+      await enterHome(viewModel);
+      viewModel.logout();
+      repository.calls.length = 0;
+      repository.delayMs = 5;
+      let formAccepted: boolean = false;
+      const acceptForm = (): void => { formAccepted = true; };
+      const pending: Promise<void> = viewModel.login('alice', 'NewStarward1234', acceptForm);
+      await viewModel.login('alice', 'NewStarward1234', acceptForm);
       viewModel.logout();
       await pending;
+      expect(formAccepted).assertFalse();
       expect(repository.calls.join(',')).assertEqual('login');
       expect(viewModel.gate).assertEqual('login');
       expect(viewModel.player.id).assertEqual('');
       expect(viewModel.items.length).assertEqual(0);
       expect(viewModel.busy).assertFalse();
       expect(viewModel.error).assertEqual('');
+    });
+
+    it('handlesVerifiedLoginFormBeforeOpeningHomeEvenIfSystemSaveFails', 0, async () => {
+      const viewModel: SliceViewModel = new SliceViewModel(new MockGameRepository(0));
+      await enterHome(viewModel);
+      viewModel.logout();
+      let gateAtSave: string = '';
+      await viewModel.login('alice', 'NewStarward1234', () => {
+        gateAtSave = viewModel.gate;
+        throw new Error('System password save unavailable');
+      });
+      expect(gateAtSave).assertEqual('login');
+      expect(viewModel.gate).assertEqual('home');
+      expect(viewModel.busy).assertFalse();
     });
 
     it('aLoginServiceFailureIsRecoverableInPlaceWithoutOpeningAnAccount', 0, async () => {

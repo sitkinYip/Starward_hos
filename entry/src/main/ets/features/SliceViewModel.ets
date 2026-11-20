@@ -460,7 +460,7 @@ export class SliceViewModel {
     }
   }
 
-  async login(account: string, password: string): Promise<void> {
+  async login(account: string, password: string, beforeEnterHome?: () => void): Promise<void> {
     if (this.busy || this.gate !== 'login') {
       return;
     }
@@ -478,6 +478,13 @@ export class SliceViewModel {
       const player: Player = await this.repository.login(account, password);
       if (generation !== this.generation) {
         return;
+      }
+      if (!player.mustChangePassword) {
+        try {
+          beforeEnterHome?.();
+        } catch {
+          // Optional system form handling cannot block a verified login.
+        }
       }
       this.acceptPlayer(player);
       if (!player.mustChangePassword) {
