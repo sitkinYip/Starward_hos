@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "capturedAt": "2026-11-20T02:10:22.676455+00:00",
+  "ownershipChecked": [
+    "exact UID, argv, cwd and process birth",
+    "exact loopback listener PIDs",
+    "backend state control identity and exact container mounts/image",
+    "separate unchanged official preview owner"
+  ],
+  "disposableBackendStopped": true,
+  "disposableGatewayStopped": true,
+  "disposableStateRemoved": true,
+  "disposableContainerRemoved": true,
+  "disposableRuntimeDbRemoved": true,
+  "privateEvidenceAndCaPreserved": true,
+  "fixedPreviewRunning": true,
+  "fixedPreviewDirectLoginVerified": true,
+  "fixedPreviewManifestLoginCaAndRunUnchanged": true,
+  "hostImpactSha256": "b01de7e415f91f550d56ce536489405b0bd8c470e7cf61cc8bea65a8ebf45756",
+  "privateCleanupVerificationSha256": "0afb4c590a737a7bf23d7b7b774fcbfd56d5ef8361901b383500ddd8321d3374",
+  "cleanupSourceSha256": "fdadc7963c80044827ecf4d98c98621cc643d39e187ac5c8cefe84e12df30fe0",
+  "deviceTouchedDuringCleanup": false,
+  "unrelatedProcessesStopped": false
+}

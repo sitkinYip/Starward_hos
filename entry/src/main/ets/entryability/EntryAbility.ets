@@ -25,6 +25,7 @@ import { LaunchRoutes } from '../platform/LaunchRoutes';
 import { HarmonyPush } from '../platform/HarmonyPush';
 import { runTlsProbe } from '../platform/TlsProbe';
 import { ImmersiveWindow } from '../platform/ImmersiveWindow';
+import { QuestBgmPlayer } from '../platform/QuestBgmPlayer';
 
 const DOMAIN = 0x0000;
 
@@ -74,6 +75,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onDestroy(): void {
+    QuestBgmPlayer.releaseAll();
     HarmonyPush.forgetAbility(this);
     this.immersiveWindow.detach();
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');

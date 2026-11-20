@@ -1,0 +1,47 @@
+{
+  "snapshotFileCount": 2540,
+  "entrySourceFiles": 219,
+  "candidateEntrySourceFilesIncludingProductionMode": 220,
+  "runtimeETSFiles": 131,
+  "testETSFiles": 33,
+  "allRuntimeTestAndResourceSourcesMatchRootSnapshotAndCandidate": true,
+  "sourceManifest": "source-manifest.json",
+  "sourceManifestSHA256": "3a369f295fc25cba33271d39fbe4fa7484f54a70136f336c9905edc4608f4635",
+  "sourceSnapshotSHA256": "21462e29fe7ddd1a0019493071e8b3acdffc47a643d3f38a489ddee8862432b7",
+  "finalDeviceRuntimeSourcesMatched": 131,
+  "finalDeviceHapSHA256": "b86a1bbd603755e7f118f2e6e638dd8cca4d14c1ea9c41ef4f005d755074e4de",
+  "businessTestsExecutedInFrozenCandidate": {
+    "tests": 290,
+    "passed": 290,
+    "failed": 0,
+    "ignored": 0,
+    "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+  },
+  "onboardingTests": {
+    "tests": 23,
+    "passed": 23,
+    "failed": 0,
+    "ignored": 0
+  },
+  "businessTestsReusedNotRerun": false,
+  "testResultSHA256": "e96c99411a54c0764135cf6f130f8e2ad6fb300629d1c47c238f2dcc45ff7982",
+  "testResultParserSHA256": "9404ebf9e99be1b564a4bbaefe243f735bf0b820d8b23ca0aef4a125db0c0af1",
+  "testLogSHA256": "87f685fbebfc13749a093c4c0a1e892c0fcf8bc8827b8204a96050f3dacdac2a",
+  "finalTestExitCode": 0,
+  "earlierAttempt": {
+    "verificationExitCode": 1,
+    "summary": {
+      "tests": 291,
+      "passed": 290,
+      "failed": 0,
+      "ignored": 0,
+      "source": "entry/.test/default/intermediates/test/coverage_data/test_result.txt"
+    },
+    "resultSHA256": "85af3f250cc7976d8f8a294ce862aa5e7f85d2661a67355050f7e8592677cd33",
+    "reason": "ArkCompiler GC output interleaved with and duplicated one test declaration; strict report verification rejected the malformed report. No test or parser changed before the clean complete rerun."
+  },
+  "localSigningMaterialCopied": false,
+  "isolatedHTTPSConfigCopied": false,
+  "rootRuntimeChangedByReleaseTask": false,
+  "rootAppVersionChanged": false
+}

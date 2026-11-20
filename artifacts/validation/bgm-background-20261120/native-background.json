@@ -1,0 +1,953 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-20",
+  "environment_mode": "disposable_isolated_https",
+  "overall": "partial",
+  "checks": [
+    {
+      "id": "initial_background_continuity",
+      "label": "初轮Home命令后至少35秒进度持续，回前台保留同一播放实例",
+      "status": "passed",
+      "build_scope": "initial_device_run",
+      "evidence": [
+        "first-play-audio.log",
+        "background-35s-audio.log",
+        "returned-same-track-audio.log"
+      ],
+      "facts": {
+        "attempt": 1,
+        "progress_events_after_before_snapshot": 78,
+        "snapshot_to_last_progress_seconds": 56.379,
+        "snapshot_span_is_not_background_duration": true,
+        "home_command_invocation_epoch_seconds": 1795139958.6320581,
+        "home_command_invocation_origin": "主任务真实工具输出捕获的Home命令调用时点；不是UIAbility onBackground回调时间",
+        "log_timestamp_alignment": "Asia/Shanghai设备本地日志时刻，与主任务捕获的命令epoch对齐",
+        "progress_events_after_home_command_invocation": 51,
+        "home_command_invocation_to_last_progress_seconds": 35.055,
+        "minimum_command_window_span_seconds": 35,
+        "restart_pause_or_release_events_since_before_snapshot": 0,
+        "same_attempt_progress_after_return": true
+      }
+    },
+    {
+      "id": "final_background_continuity",
+      "label": "最终包自动切后台及回前台保持播放进度",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "final-auto-before.log",
+        "final-auto-background.log",
+        "final-auto-return-audio.log"
+      ],
+      "facts": {
+        "attempt": 3,
+        "progress_events_after_before_snapshot": 26,
+        "snapshot_to_last_progress_seconds": 20.69,
+        "snapshot_span_is_not_background_duration": true,
+        "home_command_invocation_epoch_seconds": 1795140295.848285,
+        "home_command_invocation_origin": "主任务真实工具输出捕获的Home命令调用时点；不是UIAbility onBackground回调时间",
+        "log_timestamp_alignment": "Asia/Shanghai设备本地日志时刻，与主任务捕获的命令epoch对齐",
+        "progress_events_after_home_command_invocation": 26,
+        "home_command_invocation_to_last_progress_seconds": 20.22,
+        "minimum_command_window_span_seconds": 18,
+        "restart_pause_or_release_events_since_before_snapshot": 0,
+        "same_attempt_progress_after_return": true
+      }
+    },
+    {
+      "id": "system_pause_background",
+      "label": "系统暂停后后台未再自行播放且撤销长时任务",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "final-paused-background.log",
+        "final-system-controls-background.log"
+      ],
+      "facts": {
+        "boundary_found": true,
+        "attempt": 1,
+        "resume_or_progress_events_after_boundary": 0,
+        "native_task_stop_observed": true
+      }
+    },
+    {
+      "id": "explicit_background_resume",
+      "label": "后台系统播控显式继续使用已准备好的曲目",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "final-system-resumed-background.log",
+        "final-system-controls-background.log"
+      ],
+      "facts": {
+        "same_attempt": 1,
+        "pause_found": true,
+        "playing_after_pause": true,
+        "progress_after_pause": true,
+        "recreated_after_pause": false,
+        "native_task_start_count": 2
+      }
+    },
+    {
+      "id": "video_boundary",
+      "label": "线索视频期间暂停BGM，后台没有BGM播放或进度事件，视频结束返回后恢复同曲",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "video-background-audio.log",
+        "video-background-tasks.log",
+        "video-returned-audio.log"
+      ],
+      "facts": {
+        "boundary_found": true,
+        "attempt": 1,
+        "resume_or_progress_events_after_boundary": 0,
+        "same_attempt_resumed_after_video_return": true,
+        "native_task_stop_observed": true
+      }
+    },
+    {
+      "id": "loading_background",
+      "label": "加载中的曲目切后台被释放，没有在后台初始化或起播",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "loading-background-audio.log"
+      ],
+      "facts": {
+        "attempt": 2,
+        "begin_found": true,
+        "release_found": true,
+        "initialized_prepared_or_playing_count": 0
+      }
+    },
+    {
+      "id": "leave_quest",
+      "label": "离开答题后释放播放器并移除品牌媒体会话",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "left-quest-audio.log",
+        "left-quest-AVSessionService-show_session_info.log"
+      ],
+      "facts": {
+        "boundary_found": true,
+        "attempt": 3,
+        "resume_or_progress_events_after_boundary": 0,
+        "system_session_dump_present": true,
+        "brand_session_absent_in_system_dump": true,
+        "exit_screenshot_present": true
+      }
+    },
+    {
+      "id": "logout_cleanup",
+      "label": "退出账号后释放在播曲目、长时任务及品牌媒体会话",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "logged-out-audio.log",
+        "final-background-manager.log",
+        "logged-out-AVSessionService-show_session_info.log"
+      ],
+      "facts": {
+        "boundary_found": true,
+        "attempt": 1,
+        "resume_or_progress_events_after_boundary": 0,
+        "brand_session_absent_in_system_dump": true,
+        "native_task_stop_and_session_release_observed": true
+      }
+    },
+    {
+      "id": "force_stop_cleanup",
+      "label": "强制结束前曲目在播，结束后本应用媒体会话消失",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "before-force-stop-audio.log",
+        "after-force-stop-session.log"
+      ],
+      "facts": {
+        "before_attempt": 4,
+        "playing_before_force_stop": true,
+        "brand_session_absent_after_force_stop": true,
+        "system_global_session_count_not_used_as_assertion": true
+      }
+    },
+    {
+      "id": "final_native_api_errors",
+      "label": "最终复测的媒体会话和长时任务无已捕获参数错误",
+      "status": "passed",
+      "build_scope": "final_device_run",
+      "evidence": [
+        "final-system-controls-background.log"
+      ],
+      "facts": {
+        "observed_native_task_start": true,
+        "error_codes_in_final_captures": [],
+        "scope": "仅所列采集日志；不等于所有系统日志中都没有错误"
+      }
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "pending": 0
+  },
+  "fixed_history": [
+    {
+      "issue": "初轮暂停状态使用speed=0，系统媒体状态接口返回401",
+      "status": "fixed",
+      "initial_observation_origin": "采集者记录；不将缺失于当前窗口的401伪造为日志命中",
+      "current_source_uses_speed_one": true,
+      "final_captured_native_error_codes": [],
+      "source": "entry/src/main/ets/platform/QuestBgmBackgroundIO.ets"
+    }
+  ],
+  "pending_device_scenarios": [
+    "锁屏和更长时间后台运行；本次没有对应采集日志",
+    "来电、其他应用音频焦点和耳机断开；本次未逐项重新采集",
+    "真机切换到另一账号或强制改密时的后台播放清理；退出账号的设备证据不代替这些场景",
+    "AVSession stop回调没有独立实测；system-stopped截图对应的系统按键实际触发pause"
+  ],
+  "limitations": [
+    "日志名称关联人工执行的前后台场景；脚本只检查原生播放器和任务事件，不自行操作设备",
+    "后台观察窗口从主任务捕获的Home命令调用epoch开始；命令发起与系统实际进入后台之间仍有调度间隔",
+    "播放位置推进证明原生流持续运行，不等于独立声学录音验收",
+    "截图仅计算摘要；文件存在不代表脚本完成视觉审查",
+    "后台任务原始系统dump只保留摘要，不把命令输出为空或不支持当作任务成功",
+    "当前HAP和源码摘要用于复核当前文件；不能单独证明设备安装的是这些字节",
+    "测试包原始HAP被恢复专用预览环境的官方rebuild覆盖；测试包摘要来自当时采集记录"
+  ],
+  "captures": {
+    "background-35s-audio.log": {
+      "present": true,
+      "bytes": 10298,
+      "sha256": "14be61cb663ebb0ae49b2725229f3ba4dacc6f5c29d883b0b9bb9249edc26aa3",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 15,
+        "playing": 1,
+        "position": 76,
+        "prepared": 1
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "before-force-stop-audio.log": {
+      "present": true,
+      "bytes": 4183,
+      "sha256": "f228fbb525f74c31d07b062167fb90dd5aef416f6e383c49e4c5cb1df6fbb089",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 4,
+        "paused": 1,
+        "playing": 2,
+        "position": 27,
+        "prepared": 1,
+        "released": 1
+      },
+      "attempts": [
+        3,
+        4
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-auto-background.log": {
+      "present": true,
+      "bytes": 6671,
+      "sha256": "fd6cc63bf4a8f21174bf96e329b809e2b9ad77044b44a5dd179a33deb0f6152d",
+      "player_event_counts": {
+        "begin": 2,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 8,
+        "playing": 1,
+        "position": 46,
+        "prepared": 1,
+        "released": 2
+      },
+      "attempts": [
+        1,
+        2,
+        3
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-auto-before.log": {
+      "present": true,
+      "bytes": 3982,
+      "sha256": "3408a796da671d08d757fdfa5db5a35a13ef258b0e917c2947ca46da6d225d9b",
+      "player_event_counts": {
+        "begin": 2,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 4,
+        "playing": 2,
+        "position": 24,
+        "prepared": 1,
+        "released": 2
+      },
+      "attempts": [
+        1,
+        2,
+        3
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-auto-return-audio.log": {
+      "present": true,
+      "bytes": 1080,
+      "sha256": "d3eb9b4ce00d8379ddae10b74b776eb8326df99a7cfcf0b1ad447d8347391142",
+      "player_event_counts": {
+        "loop": 1,
+        "position": 9
+      },
+      "attempts": [
+        3
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-background-manager.log": {
+      "present": true,
+      "bytes": 429,
+      "sha256": "d23bcf7d903bab98d5aaea3b45ccd2039ee288dabe162d51f6456131caceaee1",
+      "player_event_counts": {},
+      "attempts": [],
+      "native_event_counts": {
+        "released": 1,
+        "sessionReady": 1,
+        "taskStart": 1,
+        "taskStop": 1
+      },
+      "native_error_codes": []
+    },
+    "final-paused-background.log": {
+      "present": true,
+      "bytes": 1069,
+      "sha256": "f0d19f23a6aafa58635d1d768d2fa040d3e1dc840dde4cdee658a4730bd400f4",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "paused": 1,
+        "playing": 1,
+        "position": 4,
+        "prepared": 1
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-playing-audio.log": {
+      "present": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "player_event_counts": {},
+      "attempts": [],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-returned-audio.log": {
+      "present": true,
+      "bytes": 4285,
+      "sha256": "c2b9f4ab3e30165ac7c07d0906633f892f8f7fb7878a9f5f6812cccee48baf80",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 5,
+        "paused": 1,
+        "playing": 2,
+        "position": 28,
+        "prepared": 1
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "final-system-controls-background.log": {
+      "present": true,
+      "bytes": 430,
+      "sha256": "0cffece2fa9013ca9d29540f1e7b6dd5ab18a3c784ff6882ea8f685569a12799",
+      "player_event_counts": {},
+      "attempts": [],
+      "native_event_counts": {
+        "sessionReady": 1,
+        "taskStart": 2,
+        "taskStop": 1
+      },
+      "native_error_codes": []
+    },
+    "final-system-resumed-background.log": {
+      "present": true,
+      "bytes": 2997,
+      "sha256": "10e0f2ad9f3a506adb7e4dfe2ec68f9da82b531e9c74e5421e332658083c687c",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 3,
+        "paused": 1,
+        "playing": 2,
+        "position": 18,
+        "prepared": 1
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "first-play-audio.log": {
+      "present": true,
+      "bytes": 1926,
+      "sha256": "5be44c93acd0f8d29769af7be8ae7f44aada5e2debeb40598e5521790359db21",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 2,
+        "playing": 1,
+        "position": 11,
+        "prepared": 1
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "left-quest-audio.log": {
+      "present": true,
+      "bytes": 3327,
+      "sha256": "d12322a9f60052690ca643d364df6cadb546d072667f1daeb8f7f30f77712aef",
+      "player_event_counts": {
+        "loop": 4,
+        "paused": 1,
+        "playing": 1,
+        "position": 24,
+        "released": 1
+      },
+      "attempts": [
+        3
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "loading-background-audio.log": {
+      "present": true,
+      "bytes": 5676,
+      "sha256": "02b26c3716f92420ed3f2b02f9718d962d48c11647064fba1b06603e66166f8a",
+      "player_event_counts": {
+        "begin": 1,
+        "loop": 8,
+        "paused": 1,
+        "playing": 1,
+        "position": 40,
+        "released": 2
+      },
+      "attempts": [
+        1,
+        2
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "logged-out-audio.log": {
+      "present": true,
+      "bytes": 2250,
+      "sha256": "2aed25dc7feb021dad0bfe0a4bd278aaad2c416e7f66a038e2f95eac597b5ef4",
+      "player_event_counts": {
+        "begin": 1,
+        "duration": 1,
+        "initialized": 1,
+        "loop": 2,
+        "playing": 1,
+        "position": 13,
+        "prepared": 1,
+        "released": 1
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "returned-same-track-audio.log": {
+      "present": true,
+      "bytes": 1288,
+      "sha256": "deb4fe96590c800347cbc85c38ebafec28b8d112e8bd30ebb11adc2643fd2cfe",
+      "player_event_counts": {
+        "loop": 2,
+        "position": 10
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "system-stopped-audio.log": {
+      "present": true,
+      "bytes": 2581,
+      "sha256": "aeab6fd1064383ac299a96f0758afd29eb674febc0a48ff63e591fa7a23efce1",
+      "player_event_counts": {
+        "loop": 3,
+        "paused": 1,
+        "position": 20
+      },
+      "attempts": [
+        3
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "video-background-audio.log": {
+      "present": true,
+      "bytes": 6861,
+      "sha256": "a26f50239ca240c79b3b46d9fb1a1c7b3562b501c21fc1abe0c082ac2b2b8e99",
+      "player_event_counts": {
+        "loop": 11,
+        "paused": 1,
+        "position": 52
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "video-background-tasks.log": {
+      "present": true,
+      "bytes": 106,
+      "sha256": "19a0efaf64a67d3488fc772a3eb01790fc7fa037a7129d3655397a291dee0d6a",
+      "player_event_counts": {},
+      "attempts": [],
+      "native_event_counts": {
+        "taskStop": 1
+      },
+      "native_error_codes": []
+    },
+    "video-paused-audio.log": {
+      "present": true,
+      "bytes": 6966,
+      "sha256": "a43648728f7a9d37d04cad9f3e0f9e628b8944e6e17807189f9f9aaedc568445",
+      "player_event_counts": {
+        "loop": 11,
+        "paused": 1,
+        "playing": 1,
+        "position": 52
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    },
+    "video-returned-audio.log": {
+      "present": true,
+      "bytes": 6005,
+      "sha256": "256c211ebdd5f6a2a7895e96fa2c07372036fbd49ce9fe4be801af51d5cccbdc",
+      "player_event_counts": {
+        "loop": 9,
+        "paused": 1,
+        "playing": 1,
+        "position": 45
+      },
+      "attempts": [
+        1
+      ],
+      "native_event_counts": {},
+      "native_error_codes": []
+    }
+  },
+  "raw_system_dump_fingerprints": {
+    "after-force-stop-audio-policy.log": {
+      "present": true,
+      "bytes": 539,
+      "sha256": "b5c9844bf452cb22b09b76644e060318c681543d98988ca1c65b1494fb63cee2"
+    },
+    "after-force-stop-session.log": {
+      "present": true,
+      "bytes": 852,
+      "sha256": "f3d4ac9c0b047270db2cba32344936635fbfc5340c47bfb80302f1371a7a7297"
+    },
+    "background-35s-session.log": {
+      "present": true,
+      "bytes": 849,
+      "sha256": "4904288bf469887cf491695321d36ad4d3267d2770666e56f66abc51f82e50fa"
+    },
+    "background-35s-task.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "bg-task-initial.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "connected-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 1696,
+      "sha256": "0ab3d92680baeafc5f8732b384bd63b3c0177c87c4b53176318330db3aa75c3d"
+    },
+    "connected-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 214,
+      "sha256": "4f1b85168ab803392042c3d0ae8736b43823813fe5c393e9a992586d5a15bb18"
+    },
+    "connected-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "current-session.log": {
+      "present": true,
+      "bytes": 214,
+      "sha256": "4f1b85168ab803392042c3d0ae8736b43823813fe5c393e9a992586d5a15bb18"
+    },
+    "final-auto-return-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 11309,
+      "sha256": "343bbcb1a8253cd031683684563c6cfde2995e1503b248fdf525e53b4a7bc074"
+    },
+    "final-auto-return-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 1487,
+      "sha256": "3cdaa3d83a96387eb999c77c1bb68a55cc2a3d29f7b67ea9d80b2fcddd8a7af8"
+    },
+    "final-auto-return-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "final-background-audio-policy.log": {
+      "present": true,
+      "bytes": 774,
+      "sha256": "1482d91ff9e8cde650142661fac393065cc0bcf36fa2c47aaa66de421d54f56f"
+    },
+    "final-playing-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 8192,
+      "sha256": "69ea8f9737ac04d916eafc2209b4d09d1e665bc7245cdb797ee278070b419c3a"
+    },
+    "final-playing-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 852,
+      "sha256": "f3d4ac9c0b047270db2cba32344936635fbfc5340c47bfb80302f1371a7a7297"
+    },
+    "final-playing-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "final-returned-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 9810,
+      "sha256": "f7ba06a11930361ff0e248fda5856b68aacf5c1116a43a17fa9a5e4d5b93b1fc"
+    },
+    "final-returned-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 1487,
+      "sha256": "680aa5f405d54509590c16f32c9627b307f6731a9727b1c7b3b730a2c10bd712"
+    },
+    "final-returned-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "first-play-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 3314,
+      "sha256": "5190eaffcdc494abb8e6301447c1890da7e056e4acf08d3720834384826f9016"
+    },
+    "first-play-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 849,
+      "sha256": "4904288bf469887cf491695321d36ad4d3267d2770666e56f66abc51f82e50fa"
+    },
+    "first-play-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "left-quest-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 11189,
+      "sha256": "9eb84c301d1a88ebcc8eaa8fc4b0773ba8d718447cbce37c40ac3f684e16d58c"
+    },
+    "left-quest-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 852,
+      "sha256": "f3d4ac9c0b047270db2cba32344936635fbfc5340c47bfb80302f1371a7a7297"
+    },
+    "left-quest-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "logged-out-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 14189,
+      "sha256": "f93497d3183f03c763b974f8d93641800d3c57e8fab519c64c79bf83ae52b91f"
+    },
+    "logged-out-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 852,
+      "sha256": "f3d4ac9c0b047270db2cba32344936635fbfc5340c47bfb80302f1371a7a7297"
+    },
+    "logged-out-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "preplay-sessions.log": {
+      "present": true,
+      "bytes": 214,
+      "sha256": "4f1b85168ab803392042c3d0ae8736b43823813fe5c393e9a992586d5a15bb18"
+    },
+    "returned-same-track-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 3314,
+      "sha256": "5190eaffcdc494abb8e6301447c1890da7e056e4acf08d3720834384826f9016"
+    },
+    "returned-same-track-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 849,
+      "sha256": "4904288bf469887cf491695321d36ad4d3267d2770666e56f66abc51f82e50fa"
+    },
+    "returned-same-track-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "system-paused-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 3314,
+      "sha256": "5190eaffcdc494abb8e6301447c1890da7e056e4acf08d3720834384826f9016"
+    },
+    "system-paused-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 849,
+      "sha256": "4904288bf469887cf491695321d36ad4d3267d2770666e56f66abc51f82e50fa"
+    },
+    "system-paused-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "system-stopped-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 11309,
+      "sha256": "343bbcb1a8253cd031683684563c6cfde2995e1503b248fdf525e53b4a7bc074"
+    },
+    "system-stopped-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 1487,
+      "sha256": "3cdaa3d83a96387eb999c77c1bb68a55cc2a3d29f7b67ea9d80b2fcddd8a7af8"
+    },
+    "system-stopped-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "task-dump-c.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "video-background-tasks.log": {
+      "present": true,
+      "bytes": 106,
+      "sha256": "19a0efaf64a67d3488fc772a3eb01790fc7fa037a7129d3655397a291dee0d6a"
+    },
+    "video-paused-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 9810,
+      "sha256": "f7ba06a11930361ff0e248fda5856b68aacf5c1116a43a17fa9a5e4d5b93b1fc"
+    },
+    "video-paused-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 1487,
+      "sha256": "680aa5f405d54509590c16f32c9627b307f6731a9727b1c7b3b730a2c10bd712"
+    },
+    "video-paused-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    },
+    "video-returned-AVSessionService-show_metadata.log": {
+      "present": true,
+      "bytes": 9810,
+      "sha256": "f7ba06a11930361ff0e248fda5856b68aacf5c1116a43a17fa9a5e4d5b93b1fc"
+    },
+    "video-returned-AVSessionService-show_session_info.log": {
+      "present": true,
+      "bytes": 1487,
+      "sha256": "680aa5f405d54509590c16f32c9627b307f6731a9727b1c7b3b730a2c10bd712"
+    },
+    "video-returned-BackgroundTaskManager-C.log": {
+      "present": true,
+      "bytes": 165,
+      "sha256": "71a66372b2e0edc37af850661c44b5f44968938834900197d77e3a7a2cf2b4ed"
+    }
+  },
+  "screenshots": {
+    "connected.png": {
+      "present": true,
+      "bytes": 262859,
+      "sha256": "7f645c3c9f2a2f0cc20bd8b30b89bece8845aacecaefa1701e950cf95e290110"
+    },
+    "final-auto-return.png": {
+      "present": true,
+      "bytes": 306658,
+      "sha256": "91406b9c5393e67c1b97038bf3bf71d51db521a91b74b6de6981841020c307b3"
+    },
+    "final-playing.png": {
+      "present": true,
+      "bytes": 367435,
+      "sha256": "77a9b1788b721c71dd428ffbf1dd9c65e1f7e10cac7c9248a18d5f7af690704f"
+    },
+    "final-returned.png": {
+      "present": true,
+      "bytes": 453142,
+      "sha256": "86aaba54bb1c0486260c1ed049d1a57e962d9cf1e6d4532bc850a85afe85f8ec"
+    },
+    "first-play.png": {
+      "present": true,
+      "bytes": 381637,
+      "sha256": "215e7d3f488a369019e60456b69dfdb9796e53ae371ad142f5391c8bdaa5e641"
+    },
+    "left-quest.png": {
+      "present": true,
+      "bytes": 419030,
+      "sha256": "f98dea3514d290df45a9df582e7cfca7c7e3fdec496c906af7f4e5093efa8b76"
+    },
+    "logged-out.png": {
+      "present": true,
+      "bytes": 370149,
+      "sha256": "e54ed26c7e58b0f439748cb7746d805c2d3e4c55479d5473610f3509c767c9e9"
+    },
+    "returned-same-track.png": {
+      "present": true,
+      "bytes": 377868,
+      "sha256": "5295cc18071856b21bd1e408a4934da1feb48ba5274d77ff84e3d29a976f9462"
+    },
+    "system-paused.png": {
+      "present": true,
+      "bytes": 370104,
+      "sha256": "34ce404ff0bdcdb0fa454fd2f59e7ffe3a4e8a8647eb56d68c8cf6ba5477a2cf"
+    },
+    "system-stopped.png": {
+      "present": true,
+      "bytes": 313790,
+      "sha256": "e6e152381d4133304050d9a656ac2456443471e45889943e0c5a1c87db0abc3d"
+    },
+    "video-paused.png": {
+      "present": true,
+      "bytes": 347392,
+      "sha256": "350c20255d055da766476e8ac0300ef5fb5f21aa28ff5597bb33e17bfbad8f8d"
+    },
+    "video-returned.png": {
+      "present": true,
+      "bytes": 379691,
+      "sha256": "e5d6e530fa6850d179cbcbec09f7c585eac72f2b4397f4cdaf3d665f7250670a"
+    }
+  },
+  "artifacts": {
+    "entry/build/default/outputs/default/entry-default-signed.hap": {
+      "present": true,
+      "bytes": 31507108,
+      "sha256": "fa74450818be4a64ea30b8ee2b061796821f459944d371a739083ea4b0b74a4d"
+    },
+    "entry/build/default/outputs/default/entry-default-unsigned.hap": {
+      "present": true,
+      "bytes": 31442256,
+      "sha256": "5d71c8c6a4a6327e7a9852523bf9117c999ed379250d9cd86b376ecec59d370c"
+    }
+  },
+  "current_artifact_role": "恢复专用预览环境重新构建的当前文件，不作为已验收测试包身份",
+  "tested_hap": {
+    "sha256": "aa4f674916ad94022e02f3abaf21cbd83ed3f0163cb44cafcffa41502579e87e",
+    "bytes": 31507109,
+    "version_name": "0.1.4",
+    "version_code": 6,
+    "background_modes": [
+      "audioPlayback"
+    ],
+    "permissions": [
+      "ohos.permission.INTERNET",
+      "ohos.permission.KEEP_BACKGROUND_RUNNING"
+    ],
+    "origin": "采集者当时的真实工具输出；本脚本未重新读取已被rebuild覆盖的原件",
+    "original_file_currently_available": false
+  },
+  "sources": {
+    "entry/src/main/ets/platform/QuestBgmPlayer.ets": {
+      "present": true,
+      "bytes": 25441,
+      "sha256": "ef98c8107bfdf13dfaf59930fa0f5f36a1858ce5e13858ab2443bddbe882f35c"
+    },
+    "entry/src/main/ets/platform/QuestBgmBackground.ets": {
+      "present": true,
+      "bytes": 6508,
+      "sha256": "b4d12b45f85c8255bbc785f172b4fadcde6a1b2db37c02cc7b28f3f3a52502dc"
+    },
+    "entry/src/main/ets/platform/QuestBgmBackgroundIO.ets": {
+      "present": true,
+      "bytes": 8330,
+      "sha256": "ba56e27030d1637782243e85698b593a68fccc3b3e8bcb59abee533a3ff7c737"
+    },
+    "entry/src/main/ets/features/AssignmentAtmosphereState.ets": {
+      "present": true,
+      "bytes": 4693,
+      "sha256": "77fc18ad1f5973158cda0e402660891ef43b8f8a60b42af140b02665eaa1f745"
+    },
+    "entry/src/main/ets/pages/Index.ets": {
+      "present": true,
+      "bytes": 104758,
+      "sha256": "af21ec71d929c30feb562dae5a3e6b10d24216c486fcd683eef390228311ed61"
+    },
+    "entry/src/main/module.json5": {
+      "present": true,
+      "bytes": 1575,
+      "sha256": "8c520ad7113a07eef4a752543556d16992f394b1964e84c991b384102000a5c9"
+    },
+    "entry/src/test/QuestBgmBackground.test.ets": {
+      "present": true,
+      "bytes": 12583,
+      "sha256": "f2fa9947d8b1b890e35a047e1e17bc156d618c63b2483bf5302330091aa1de0b"
+    },
+    "entry/src/test/List.test.ets": {
+      "present": true,
+      "bytes": 2746,
+      "sha256": "2ddea9a4cdb0350c9c14cfa8dbef5c578433a8b2c1d90470f466185b809ae7d8"
+    }
+  },
+  "temporary_version_metadata": {
+    "AppScope/app.json5": {
+      "present": true,
+      "bytes": 202,
+      "sha256": "a6f74a42360c4758c56f8c0c499575b271a7ba7c060f74a15647b322c4b53d05",
+      "role": "独立版本元数据；已恢复仓库默认构建号1，不宣称与已验收测试包元数据相同",
+      "recorded_test_version_code": 6,
+      "recorded_restored_default_version_code": 1
+    }
+  }
+}

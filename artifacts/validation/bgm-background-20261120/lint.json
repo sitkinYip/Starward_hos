@@ -1,0 +1,27 @@
+{
+  "issues": [
+    {
+      "file": "/Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmBackgroundIO.ets",
+      "line": 108,
+      "column": 7,
+      "severity": "Error",
+      "rule": "@typescript-eslint/await-thenable",
+      "message": "Unexpected `await` of a non-Promise (non-\"Thenable\") value."
+    },
+    {
+      "file": "/Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardNarrativeLetter.ets",
+      "line": 253,
+      "column": 11,
+      "severity": "Suggestion",
+      "rule": "@performance/hp-arkui-suggest-use-effectkit-blur",
+      "message": "Suggestion Use effectKit.createEffect to create a blur effect"
+    }
+  ],
+  "summary": {
+    "filesChecked": 2,
+    "issues": 2,
+    "errors": 1,
+    "warnings": 0,
+    "suggestions": 1
+  }
+}

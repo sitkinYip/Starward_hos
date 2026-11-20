@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-11-19T18:47:15+08:00",
+  "source": "Direct official DevEco Upload Product and Huawei application-management UI observations by the main agent",
+  "bundleName": "com.sitkin.starward",
+  "appId": "6917622040781575732",
+  "projectId": "101653523865742064",
+  "versionName": "0.1.4",
+  "versionCode": 6,
+  "cloudBuildNumber": "1",
+  "signedAppSHA256": "c45defd5e75689ef8ad685423d6606c7f62bc30250821872df87c2e13499c3eb",
+  "cloudUpload": {
+    "officialStudioUploadProduct": true,
+    "channel": "AppGallery Connect（仅测试）",
+    "uiResult": "project-default-re-signed.app已上传。",
+    "platformUploadTime": "2026-11-19 18:43:22"
+  },
+  "package": {
+    "platformVersion": "0.1.4（6）",
+    "cloudBuildNumber": "1",
+    "usage": "仅测试",
+    "legality": "已达标",
+    "listingSelfCheck": "未检测",
+    "selectedForThisDraft": true
+  },
+  "invitation": {
+    "versionId": "2087188376338863360",
+    "description": "0.1.4 登录授权与通知体验优化",
+    "testType": "邀请测试",
+    "testGroup": "赴星之约首轮单人测试",
+    "groupCount": 1,
+    "membersInGroup": 1,
+    "sendTestNotification": true,
+    "start": "2026-11-19T18:31:38+08:00",
+    "end": "2026-12-19T18:31:38+08:00",
+    "region": "中国大陆",
+    "device": "手机",
+    "submitted": true,
+    "observedStatus": "预审中",
+    "platformExplainsPrecheckThenMarketReview": true,
+    "reviewLoginRequired": true,
+    "dedicatedReviewAccountPresent": true,
+    "reviewPasswordFieldPresent": true,
+    "reviewCredentialValuesRecorded": false,
+    "privacyPolicy": "Starward 0.1.1 - Push privacy",
+    "previous013TestKept": true
+  },
+  "limitations": [
+    "Pre-review is not market-review approval or proof of download availability.",
+    "Formal invitation installation, first-run hosted privacy, fresh system notification denial and provider delivery are not repeated by this release submission.",
+    "The unsigned/package verification reports intentionally retain their own capture-time and tool-only upload/submission fields; this separate UI report records the later platform outcome.",
+    "This release did not deploy or modify backend, Web, administration configuration, sender permissions or announcement behavior."
+  ]
+}

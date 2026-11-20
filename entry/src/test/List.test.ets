@@ -12,6 +12,7 @@ import gameplayAnswerDataTests from './GameplayAnswerData.test';
 import gameplayAnswerViewModelTests from './GameplayAnswerViewModel.test';
 import gameplayCluesTests from './GameplayClues.test';
 import gameplayBgmTests from './GameplayBgm.test';
+import questBgmBackgroundTests from './QuestBgmBackground.test';
 import gameplayBackgroundTests from './GameplayBackground.test';
 import gameplayRefreshViewModelTests from './GameplayRefreshViewModel.test';
 import narrativeDataTests from './NarrativeData.test';
@@ -44,6 +45,7 @@ export default function testsuite(): void {
   gameplayAnswerViewModelTests();
   gameplayCluesTests();
   gameplayBgmTests();
+  questBgmBackgroundTests();
   gameplayBackgroundTests();
   gameplayRefreshViewModelTests();
   narrativeDataTests();

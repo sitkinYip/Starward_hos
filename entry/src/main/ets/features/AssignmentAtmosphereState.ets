@@ -22,11 +22,19 @@ export class AssignmentAtmosphereState {
   private foreground: boolean = false;
   private briefVideo: boolean = false;
   private gameplayVideo: boolean = false;
+  private backgroundPlayback: boolean = false;
+
+  constructor() {
+    this.player.onSystemPlaybackRequested((enabled: boolean) => {
+      this.enabled = enabled;
+      if (this.context && this.account.length > 0) { QuestBgmPreference.save(this.context, this.account, enabled); }
+    });
+  }
 
   owns(owner: string): boolean { return owner.length > 0 && owner === this.owner; }
 
   update(context: common.UIAbilityContext | undefined, owner: string, account: string, background: string,
-    source: string, foreground: boolean): void {
+    source: string, foreground: boolean, backgroundPlayback: boolean = false): void {
     if (owner.length === 0 || account.length === 0) { this.release(); return; }
     if (owner !== this.owner) {
       this.briefVideo = false;
@@ -35,6 +43,7 @@ export class AssignmentAtmosphereState {
       this.imageCache.validateOwner();
     }
     this.context = context;
+    this.backgroundPlayback = backgroundPlayback;
     if (this.account !== account) {
       this.account = account;
       this.enabled = context ? QuestBgmPreference.load(context, account) : true;
@@ -47,14 +56,14 @@ export class AssignmentAtmosphereState {
       this.foreground = true;
       this.updatePlayer();
     } else {
-      this.suspend();
+      this.suspend(backgroundPlayback);
     }
   }
 
-  suspend(): void {
+  suspend(keepPlaying: boolean = false): void {
     if (this.foreground) { this.imageCache.clear(); }
     this.foreground = false;
-    this.updatePlayer();
+    this.updatePlayer(keepPlaying);
   }
 
   setVideo(owner: string, branch: 'briefing' | 'gameplay', open: boolean): void {
@@ -97,10 +106,12 @@ export class AssignmentAtmosphereState {
     this.foreground = false;
     this.briefVideo = false;
     this.gameplayVideo = false;
+    this.backgroundPlayback = false;
     this.imageCache.validateOwner();
   }
 
-  private updatePlayer(): void {
+  private updatePlayer(keepPlaying: boolean = true): void {
+    this.player.configureBackground(this.context, this.backgroundPlayback && keepPlaying);
     this.player.update(this.owner, this.source, this.foreground, this.briefVideo || this.gameplayVideo, this.enabled);
   }
 }

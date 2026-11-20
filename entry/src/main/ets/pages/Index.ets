@@ -100,6 +100,7 @@ struct AssignmentSynchronization {
   @Require @Param briefingPresentation: GameplayPresentation | null;
   @Require @Param assignmentId: string;
   @Require @Param destinationActive: boolean;
+  @Require @Param backgroundPlayback: boolean;
   @Require @Param authorized: boolean;
   @Require @Param assigned: boolean;
   @Event briefingPollingChanged: (id: string) => void = () => {};
@@ -126,7 +127,7 @@ struct AssignmentSynchronization {
         this.play.snapshot?.detail.status !== 'cancelled' && this.play.error.length === 0 : this.assigned));
   }
 
-  @Monitor('assignmentId', 'destinationActive', 'authorized', 'assigned', 'accountId', 'atmosphereOwner', 'briefingPresentation',
+  @Monitor('assignmentId', 'destinationActive', 'backgroundPlayback', 'authorized', 'assigned', 'accountId', 'atmosphereOwner', 'briefingPresentation',
     'narrative.route', 'play.visible', 'play.snapshot', 'play.error', 'play.activeIndex')
   private updateAtmosphere(): void {
     if (!this.authorized) { this.atmosphere.release(); return; }
@@ -141,7 +142,7 @@ struct AssignmentSynchronization {
       }
       const level = this.play.currentLevel();
       this.atmosphere.update(context, this.atmosphereOwner, this.accountId, gameplayBackgroundSource(snapshot, level),
-        gameplayBgmSource(snapshot, level), foreground);
+        gameplayBgmSource(snapshot, level), foreground, this.backgroundPlayback);
     } else if (this.assigned && this.briefingPresentation !== null) {
       this.atmosphere.update(context, this.atmosphereOwner, this.accountId,
         assignmentBackgroundSource(this.briefingPresentation), assignmentBgmSource(this.briefingPresentation), foreground);
@@ -250,7 +251,7 @@ struct Index {
     } else {
       this.clearAuthToast();
       this.stopClock();
-      this.atmosphere.suspend();
+      this.atmosphere.suspend(true);
       this.vm.rewards.setActive(false);
       this.vm.stopBriefingSync();
       this.vm.starLetters.suspend();
@@ -2138,6 +2139,7 @@ struct Index {
       atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(this.assignmentDestinationRevision),
       accountId: this.vm.player.id, briefingPresentation: this.vm.briefingPresentation,
       assignmentId: this.selectedId, destinationActive: this.assignmentDestinationActive(),
+      backgroundPlayback: this.gameplayDestinationShown && this.vm.play.visible && this.vm.narrative.route === null,
       authorized: this.assignmentAuthorized(), assigned: this.vm.detail.status === 'assigned',
       briefingPollingChanged: (id: string) => { this.vm.setBriefingPolling(id); } })
     if (this.assignmentDestinationActive() && !this.vm.play.visible && this.vm.detail.status === 'assigned' &&

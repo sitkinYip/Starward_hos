@@ -1,9 +1,11 @@
+import { common } from '@kit.AbilityKit';
 import { url } from '@kit.ArkTS';
 import { audio } from '@kit.AudioKit';
 import { media } from '@kit.MediaKit';
 import { http } from '@kit.NetworkKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AppEnvironment } from './AppEnvironment';
+import { QuestBgmBackground } from './QuestBgmBackground';
 
 const WEB_ORIGIN: string = 'https://sitkin.top/';
 const FIXTURE_ORIGIN: string = 'https://127.0.0.1:18443';
@@ -84,6 +86,9 @@ class BgmAttempt {
   watchdog: number = -1;
   lastTime: number = -1;
   lastBucket: number = -1;
+  background: boolean = false;
+  backgroundRequest?: Promise<boolean>;
+  systemPlay: boolean = false;
 
   constructor(number: number) { this.number = number; }
 
@@ -107,8 +112,9 @@ class BgmAttempt {
   }
 }
 
-/** Owns one foreground media stream; UI preference remains separate from SDK state. */
+/** Owns one media stream; only an already playing quest can continue in the background. */
 export class QuestBgmPlayer implements ForegroundAudioChannel {
+  private static readonly backgroundPlayers: Set<QuestBgmPlayer> = new Set();
   private readonly changed: (state: QuestBgmState) => void;
   private readonly role: ForegroundAudioRole;
   private readonly spoken: boolean;
@@ -128,6 +134,68 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
   private nextAttempt: number = 0;
   private retired: Promise<boolean> = Promise.resolve(true);
   private quietWaiters: Array<(quiet: boolean) => void> = [];
+  private backgroundContext?: common.UIAbilityContext;
+  private backgroundAllowed: boolean = false;
+  private playbackRequested?: (enabled: boolean) => void;
+  private readonly background: QuestBgmBackground = new QuestBgmBackground({
+    play: () => this.systemPlay(),
+    pause: () => this.systemPause(),
+    stop: () => { this.systemPause(); this.retire(); this.publish('paused'); },
+    interrupted: () => this.backgroundInterrupted()
+  });
+
+  static releaseAll(): void {
+    QuestBgmPlayer.backgroundPlayers.forEach((player: QuestBgmPlayer) => player.release());
+  }
+
+  configureBackground(context: common.UIAbilityContext | undefined, allowed: boolean): void {
+    const wasAllowed: boolean = this.backgroundAllowed;
+    this.backgroundContext = context;
+    this.backgroundAllowed = this.role === 'quest-music' && allowed && context !== undefined;
+    if (wasAllowed !== this.backgroundAllowed && this.attempt !== undefined) {
+      this.attempt.backgroundRequest = undefined;
+    }
+    if (this.backgroundAllowed) { QuestBgmPlayer.backgroundPlayers.add(this); }
+    else { this.background.release(); }
+  }
+
+  onSystemPlaybackRequested(handler: (enabled: boolean) => void): void { this.playbackRequested = handler; }
+
+  private systemPlay(): void {
+    const attempt: BgmAttempt | undefined = this.attempt;
+    if (!this.foreground && (!this.backgroundAllowed || attempt?.ready !== true)) { return; }
+    this.wantsPlayback = true;
+    this.focus = 'clear';
+    this.failed = false;
+    if (attempt !== undefined && !this.foreground) {
+      attempt.background = true;
+      attempt.systemPlay = true;
+    }
+    this.playbackRequested?.(true);
+    this.reconcile();
+  }
+
+  private systemPause(): void {
+    this.wantsPlayback = false;
+    this.focus = 'manual';
+    if (this.attempt !== undefined) {
+      this.attempt.background = false;
+      this.attempt.systemPlay = false;
+    }
+    this.playbackRequested?.(false);
+    this.reconcile();
+  }
+
+  private backgroundInterrupted(): void {
+    const attempt: BgmAttempt | undefined = this.attempt;
+    if (attempt !== undefined) {
+      attempt.background = false;
+      attempt.systemPlay = false;
+      // Do not change the user's preference or immediately fight system task cancellation.
+      attempt.backgroundRequest = this.foreground ? Promise.resolve(false) : undefined;
+    }
+    this.reconcile();
+  }
 
   constructor(changed: (state: QuestBgmState) => void, role: ForegroundAudioRole = 'quest-music', ended?: () => void) {
     this.changed = changed;
@@ -163,6 +231,13 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
       this.owner = owner;
       this.target = target;
     }
+    if (!this.foreground && foreground && this.attempt !== undefined && !this.background.isRunning) {
+      this.attempt.backgroundRequest = undefined;
+    }
+    if (this.foreground && !foreground && this.attempt !== undefined) {
+      this.attempt.background = this.backgroundAllowed && this.background.isRunning &&
+        this.attempt.player?.state === 'playing' && this.focus === 'clear' && !this.videoVisible && this.wantsPlayback;
+    }
     this.foreground = foreground;
     this.videoVisible = videoVisible;
     this.wantsPlayback = wantsPlayback;
@@ -185,6 +260,10 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
 
   release(): void {
     this.retire();
+    this.background.release();
+    QuestBgmPlayer.backgroundPlayers.delete(this);
+    this.backgroundContext = undefined;
+    this.backgroundAllowed = false;
     this.owner = '';
     this.target = undefined;
     this.foreground = false;
@@ -220,7 +299,13 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
   }
 
   private canPlay(): boolean {
-    return this.foreground && !this.videoVisible && this.wantsPlayback && this.focus === 'clear';
+    return (this.foreground || this.canContinueBackground()) &&
+      !this.videoVisible && this.wantsPlayback && this.focus === 'clear';
+  }
+
+  private canContinueBackground(): boolean {
+    return this.backgroundAllowed && this.attempt?.background === true &&
+      (this.background.isRunning || this.attempt.systemPlay);
   }
 
   private live(attempt: BgmAttempt): boolean { return this.attempt === attempt; }
@@ -252,7 +337,8 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
       this.publish('idle');
       return;
     }
-    if (!this.foreground && (this.role === 'quest-music' || this.attempt?.ready !== true)) {
+    if (!this.foreground && (this.attempt?.ready !== true ||
+      (this.role === 'quest-music' && !this.backgroundAllowed))) {
       if (this.focus === 'temporary') { this.focus = 'manual'; }
       this.ducked = false;
       this.retire();
@@ -275,6 +361,10 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
     }
     const state: media.AVPlayerState = player.state;
     if (!this.canPlay()) {
+      attempt.background = false;
+      attempt.systemPlay = false;
+      attempt.backgroundRequest = undefined;
+      void this.background.setPlaying(false);
       if (!this.foreground && this.spoken) {
         clearTimeout(attempt.watchdog);
         attempt.watchdog = -1;
@@ -287,6 +377,8 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
       return;
     }
     if (state === 'playing') {
+      if (this.foreground) { void this.acquireBackground(attempt); }
+      void this.background.setPlaying(true);
       if (this.spoken && attempt.watchdog < 0) {
         this.voiceDeadline(attempt, player);
       }
@@ -424,12 +516,26 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
     attempt.watchdog = setTimeout(() => this.fail(attempt), Math.min(2000000000, remaining + 10000));
   }
 
+  private acquireBackground(attempt: BgmAttempt): Promise<boolean> {
+    if (!this.backgroundAllowed || this.backgroundContext === undefined) { return Promise.resolve(false); }
+    if (attempt.backgroundRequest === undefined) {
+      attempt.backgroundRequest = this.background.start(this.backgroundContext, `${this.owner}:${attempt.number}`);
+    }
+    return attempt.backgroundRequest;
+  }
+
   private async run(attempt: BgmAttempt, player: media.AVPlayer, command: BgmCommand): Promise<void> {
     attempt.command = command;
     try {
       if (command === 'prepare') {
         await player.prepare();
       } else if (command === 'play') {
+        if (this.role === 'quest-music' && this.backgroundAllowed && this.backgroundContext !== undefined) {
+          const acquired: boolean = await this.acquireBackground(attempt);
+          attempt.systemPlay = false;
+          // A task/session request can complete after leaving, pausing, or going to the background.
+          if (!this.live(attempt) || (!this.foreground && !acquired) || !this.canPlay()) { return; }
+        }
         await player.play();
       } else {
         await player.pause();
@@ -498,6 +604,7 @@ export class QuestBgmPlayer implements ForegroundAudioChannel {
   }
 
   private retire(): void {
+    this.background.release();
     const attempt: BgmAttempt | undefined = this.attempt;
     if (attempt === undefined) { return; }
     this.attempt = undefined;

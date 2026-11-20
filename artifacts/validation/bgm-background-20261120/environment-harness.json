@@ -1,0 +1,38 @@
+{
+  "status": "prepared_not_executed",
+  "preparedAt": "2026-11-20T01:48:20.037Z",
+  "source": "frozen backend/tests/server.mjs; original file left unchanged",
+  "sourceSha256": "f9fc9e26457352a5ca87b096a53818c1566c91557bacf6fb15d4ea8d3fdd9f65",
+  "adapter": "artifacts/private/https-isolation/harness/server.mjs",
+  "adapterSha256": "018cd179760ad46b031537c99f0454020b34f4faf24a68f5626bc75054ad810e",
+  "changes": [
+    {
+      "anchor": "static ../scripts/runtime.mjs import",
+      "occurrences": 1,
+      "replacement": "Absolute file URL of the original frozen backend scripts/runtime.mjs"
+    },
+    {
+      "anchor": "400 iterations with50ms delay",
+      "occurrences": 1,
+      "replacement": "Explicit Date.now() startup deadline",
+      "startupTimeoutMs": 120000
+    },
+    {
+      "anchor": "startup GET /api/health",
+      "occurrences": 1,
+      "replacement": "Bounded AbortSignal.timeout for each readiness request",
+      "healthRequestTimeoutMs": 1500
+    }
+  ],
+  "unchanged": [
+    "business hooks",
+    "migrations",
+    "seed logic",
+    "contracts",
+    "database lifecycle",
+    "50ms poll delay"
+  ],
+  "originalSourceUnchanged": true,
+  "serverStartedByPreparation": false,
+  "acceptanceCredit": "Preparation and source-integrity evidence only; not startup, HTTPS or UI acceptance"
+}

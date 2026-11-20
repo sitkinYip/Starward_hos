@@ -1,0 +1,65 @@
+{
+  "result": "passed unsigned package content inspection",
+  "bundleName": "com.sitkin.starward",
+  "versionName": "0.1.4",
+  "versionCode": 6,
+  "mode": "production-invite-push",
+  "releaseDebugFlag": false,
+  "unsignedAppSHA256": "2cdaf97beac902c34d6c41f7b7e3df766c0748d224d1c6978624ea8e2f88de21",
+  "unsignedAppBytes": 17607618,
+  "compiledArkTSPayloadSHA256": "c90fa261951911b577f712ab15c53407fdbf6d74bd39b6405d5f73b5b91a460d",
+  "hapContentEntries": 54,
+  "isolatedConfigurationPresent": false,
+  "sideloadPrivacyMetadataPresent": false,
+  "sourceOrSigningMaterialInAppOrHap": false,
+  "pushListenerAndClickActionsPresent": true,
+  "productionHTTPSEndpointInCompiledCode": true,
+  "signed": false,
+  "signatureVerified": false,
+  "uploaded": false,
+  "invitationSubmitted": false,
+  "date": "2026-11-19",
+  "install": {
+    "command": "scripts/hm.sh install",
+    "exitCode": 0,
+    "logSHA256": "35b9a5b8d40fe414e72fb055312173df3e0495b976283dce9c638808a51591e5"
+  },
+  "releaseBuild": {
+    "command": "DEVECO_CLI_STUDIO_PATH=/Applications/DevEco-Studio.app devecocli build --product default --build-mode release",
+    "fixedBundledNodeJDKAndToolsOnPATH": true,
+    "exitCode": 0,
+    "result": "BUILD SUCCESSFUL",
+    "logSHA256": "157d03f92a30483b2f44ece14a987cc8a223d76261bdc6b8a14480c3c93b06eb",
+    "arkTSWarnings": 36,
+    "warningKinds": {
+      "Function may throw exceptions. Special handling is required.": 19,
+      "The system capacity of this api 'media' is not supported on all devices": 2,
+      "The system capacity of this api 'createMd' is not supported on all devices": 3,
+      "The system capacity of this api 'audio' is not supported on all devices": 11,
+      "The '@Monitor' decorator needs to monitor the state variables that exist.": 1
+    },
+    "signingSkippedReason": "No signingConfigs profile configured in the fresh private release project; unsigned artifact is intended."
+  },
+  "lintExitCode": 0,
+  "packageInspector": {
+    "script": "scripts/verify-invite-package.py",
+    "function": "inspect_app",
+    "scriptSHA256": "61397e35694b0d945af9695fb1805d1a04257ec580ec7c9fe43a96955960d6de"
+  },
+  "sourceSnapshotSHA256": "21462e29fe7ddd1a0019493071e8b3acdffc47a643d3f38a489ddee8862432b7",
+  "businessTestEvidence": "source-verification.json",
+  "lintEvidence": "release-lint.json",
+  "releaseToolTests": "release-tools.json",
+  "allHapEntriesUnchangedAfterCandidateTestAndLint": true,
+  "independentInputReview": {
+    "blockingFindings": 0,
+    "snapshotFiles": 2540,
+    "runtimeETSFilesMatched": 131,
+    "candidateEntrySourceFiles": 220
+  },
+  "limitations": [
+    "Unsigned inspection does not prove signature validity, platform upload/legal checks, invitation submission or distribution.",
+    "The candidate build does not repeat phone UI, fresh-install system notification denial, formal distribution privacy or Huawei provider delivery.",
+    "Production-invite-push selects production HTTPS and Push support; it does not alter the backend, grant classification rights or enable sender settings."
+  ]
+}

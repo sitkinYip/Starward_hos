@@ -1,0 +1,173 @@
+{
+  "status": "interim_snapshot_verified",
+  "capturedAt": "2026-11-20T02:06:22.454470+00:00",
+  "fixtureSha256": "397e31640c641c23841bb1dd2de06b3d1d905736ee09c612b256625d1b696135",
+  "baselineFactsSha256": "3a3f19dcb6803985d69667cd8d3df944009b8378f46d4a5da8559a3324abff64",
+  "privateSnapshotSha256": "52f609429fee994dbdb8108e81dd6c14d4221b5778010e54bc7c41a3de2fe158",
+  "observerSourceSha256": "aadf4105cac39e3da9eb015edf3d7ff12e2258214b04104ee3873a36b40f88bb",
+  "gameplayFactsUnchanged": true,
+  "baselineAndLatestFacts": {
+    "assignmentStatus": "active",
+    "startedAtPresent": true,
+    "completedAtPresent": false,
+    "completedProgressRows": 3,
+    "answerSubmissions": 3,
+    "correctAnswers": 3,
+    "startReceipts": 1,
+    "answerReceipts": 3,
+    "xpRows": 3,
+    "xpDelta": 0,
+    "playerTotalXp": 0,
+    "rewardRows": 0,
+    "clueUnlockRows": 1
+  },
+  "postBaselineGameplayWrites": {
+    "start": 0,
+    "answer": 0,
+    "otherPlayerMutations": 0,
+    "loginPosts": 2
+  },
+  "proxyLedger": {
+    "baselineRows": 16,
+    "capturedRows": 292,
+    "prefixExtendsBaseline": true,
+    "lastRequestTime": "2026-11-20T02:06:18.204Z"
+  },
+  "mediaLedger": {
+    "completeCapturedRows": 22,
+    "sha256": "ab1f3be45ecc31d9dce4769ccc3723369d4f32d3399244cb86e8e4a7a674cd4d",
+    "continuousSequence": true,
+    "absoluteRequestTimestampsAvailable": false,
+    "initialHostVerificationExcluded": {
+      "sequenceRange": [
+        1,
+        17
+      ],
+      "rows": 17,
+      "groups": [
+        {
+          "label": "clue.mp4",
+          "method": "GET",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "clue.mp4",
+          "method": "GET",
+          "status": 206,
+          "count": 1
+        },
+        {
+          "label": "clue.mp4",
+          "method": "GET",
+          "status": 403,
+          "count": 2
+        },
+        {
+          "label": "clue.mp4",
+          "method": "HEAD",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "clue.mp4",
+          "method": "POST",
+          "status": 405,
+          "count": 1
+        },
+        {
+          "label": "denied",
+          "method": "GET",
+          "status": 404,
+          "count": 1
+        },
+        {
+          "label": "theme-a.mp3",
+          "method": "GET",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "theme-a.mp3",
+          "method": "GET",
+          "status": 403,
+          "count": 2
+        },
+        {
+          "label": "theme-a.mp3",
+          "method": "HEAD",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "theme-a.mp3",
+          "method": "POST",
+          "status": 405,
+          "count": 1
+        },
+        {
+          "label": "theme-b.mp3",
+          "method": "GET",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "theme-b.mp3",
+          "method": "GET",
+          "status": 403,
+          "count": 2
+        },
+        {
+          "label": "theme-b.mp3",
+          "method": "HEAD",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "theme-b.mp3",
+          "method": "POST",
+          "status": 405,
+          "count": 1
+        }
+      ],
+      "classification": "Exact ordered method/status/label/byte sequence issued by the host verify procedure"
+    },
+    "afterHostVerification": {
+      "sequenceRange": [
+        18,
+        22
+      ],
+      "rows": 5,
+      "groups": [
+        {
+          "label": "clue.mp4",
+          "method": "GET",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "label": "theme-a.mp3",
+          "method": "GET",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "label": "theme-b.mp3",
+          "method": "GET",
+          "status": 200,
+          "count": 2
+        }
+      ],
+      "allCredentialFreeRefererCorrectAndComplete": true,
+      "attribution": "Traffic after host verification; correlate with the root device-driver trace before claiming device request counts"
+    }
+  },
+  "registeredMediaSha256": {
+    "theme-a.mp3": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+    "theme-b.mp3": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24",
+    "clue.mp4": "cde7940c83fd46219d1e7ddd7480c74faa37a591d9ea63529c6666cf7805d120"
+  },
+  "deviceTouchedByObserver": false,
+  "servicesChanged": false,
+  "scope": "Captured read-only gameplay/API/media impact; later read-only UI or media activity is outside this snapshot."
+}

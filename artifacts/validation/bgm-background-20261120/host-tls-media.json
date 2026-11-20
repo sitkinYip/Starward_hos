@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "checks": {
+    "trustedCaHealth": true,
+    "ordinaryPlayerAndAuthoritativePrefix": true,
+    "theme-a.mp3ExactBytes": true,
+    "theme-b.mp3ExactBytes": true,
+    "clue.mp4ExactBytes": true,
+    "videoByteRange206": true,
+    "mediaNoCredentialsAndStrictReferer": true,
+    "exactPathsAndMethods": true,
+    "untrustedCaRejected": true,
+    "wrongHostRejected": true,
+    "unknownMediaPath404": true
+  },
+  "checksCount": 11,
+  "caSha256": "9a4f060dfa1ec19d69db53260a447eec6ca216711ac98ccd4fee301d9e775dbf",
+  "gatewaySourceSha256": "b7021e7f8c393f87e412eab5ed9cf9929ae6b816c9635428e2e62056c63b3dd4",
+  "mediaSha256": {
+    "theme-a.mp3": "c6fc926bc152c06e0ae13e130fd630217a802ed293b1e9d4ad74f82835aeada3",
+    "theme-b.mp3": "c6a0054f5e3629022ff9385eafab48041c99be4e882f35e925028a2e96151a24",
+    "clue.mp4": "cde7940c83fd46219d1e7ddd7480c74faa37a591d9ea63529c6666cf7805d120"
+  },
+  "fixtureGameplayWrites": {
+    "starts": 1,
+    "answers": 3,
+    "xpDelta": 0,
+    "rewards": 0
+  },
+  "deviceTouched": false,
+  "packagedConfigurationChanged": false,
+  "backendSourceReadOnly": true
+}
