@@ -62,12 +62,27 @@ export default function gameplayCluesTests(): void {
       const settled: GameplaySnapshot = snapshot([first, second], [bless, invalid, letter]);
       expect(visibleIds(settled, first)).assertEqual('letter,bless');
       expect(visibleIds(settled, second)).assertEqual('');
-      expect(nextNarrativeAttention(settled, ordinaryClues(settled, first), [])).assertNull();
-      expect(nextNarrativeAttention(settled, [], [])?.id).assertEqual('letter');
-      expect(nextNarrativeAttention(settled, [], ['letter'])?.id).assertEqual('bless');
-      expect(nextNarrativeAttention(settled, [], ['letter', 'bless'])).assertNull();
+      expect(nextNarrativeAttention(settled, first, [])).assertNull();
+      expect(nextNarrativeAttention(settled, second, [])?.id).assertEqual('letter');
+      expect(nextNarrativeAttention(settled, second, ['letter'])?.id).assertEqual('bless');
+      expect(nextNarrativeAttention(settled, second, ['letter', 'bless'])).assertNull();
       settled.detail.status = 'cancelled';
-      expect(nextNarrativeAttention(settled, [], [])).assertNull();
+      expect(nextNarrativeAttention(settled, second, [])).assertNull();
+    });
+
+    it('uses the current question scope before the clue archive becomes visible', 0, () => {
+      const first: GameplayLevel = level('first');
+      const second: GameplayLevel = level('second', false);
+      const earlier: GameplayClue = clue('earlier', 'letter', 'question', first.id);
+      const current: GameplayClue = clue('current', 'bless', 'question', second.id);
+      const shared: GameplayClue = clue('shared', 'letter', 'session', '', 'start');
+      earlier.narrative = 'orig-earlier';
+      current.narrative = 'orig-current';
+      shared.narrative = 'orig-shared';
+      const settled: GameplaySnapshot = snapshot([first, second], [shared, current, earlier]);
+      expect(visibleIds(settled, second)).assertEqual('');
+      expect(nextNarrativeAttention(settled, second, [])?.id).assertEqual('earlier');
+      expect(nextNarrativeAttention(settled, second, ['earlier'])).assertNull();
     });
 
     it('keeps authorized narratives in the archive and outside both autoplay queues', 0, () => {

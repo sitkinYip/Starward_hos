@@ -1,0 +1,343 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "installedHapSha256": "59d4e735889c840c02877fbd161afdf09987c0ddeba98746291110703894c8e2",
+  "fixtureMode": "read-only local historical DTO replay",
+  "checks": [
+    "Two progress stars for the two-question fixture",
+    "Hint opens and closes on the same question",
+    "Choice popup is anchored directly above the composer",
+    "Option photo opens independently and Back restores the popup",
+    "All four previously answered radios are disabled",
+    "Popup Back preserves the current question",
+    "Combination launcher renders a 46vp capsule",
+    "Combination dialog closes to the original scene",
+    "Previous question letter is shown as the first unopened reminder",
+    "At its own question the same letter is presented by the clue archive",
+    "Opening the letter consumes that reminder and leaves the blessing",
+    "Hint and choice both open and close in dark mode"
+  ],
+  "states": [
+    {
+      "name": "light-gameplay",
+      "sha256": "8d7a5c3850436891abd1003472543c8e896cb3a3f9b72b93c192706f2b71f25a"
+    },
+    {
+      "name": "light-hint",
+      "sha256": "6add4aa2461763a1bf2cb3096169a0cf43664e2238e0f6d8c00f7b4ec4e2c1e9"
+    },
+    {
+      "name": "light-choice",
+      "sha256": "e8f876f6c6807f8dccd84c43bc8abc95c05d711cc1e2da3e06a43c79d314b679"
+    },
+    {
+      "name": "light-choice-image",
+      "sha256": "f296745a9891c607006e9487684df6e2fec55b50852645b8fd4b9ce5f4f24cc0"
+    },
+    {
+      "name": "light-combination-launcher",
+      "sha256": "079b4f59bf3a1adc5715edf376357d0a650bfb264c98907c635cb81694a8f5ba"
+    },
+    {
+      "name": "light-combination-dialog",
+      "sha256": "682ac2876700b251882fa04aa9ac3a4db384537ffb33031a1360d2201f8f2170"
+    },
+    {
+      "name": "light-letter-beacon",
+      "sha256": "22c804941a1738afbb3aa7147258c96bd57f58059b704545825513bd11cf7236"
+    },
+    {
+      "name": "light-clue-archive",
+      "sha256": "5e802f6c35adecf1397dbe69d06e7a08b447efe89043ecfee5d5edafecc51998"
+    },
+    {
+      "name": "light-bless-beacon",
+      "sha256": "57b3e6d044d692f1d80782c2651d4e410454b8a9629f7af9ebbb6bb742b9b998"
+    },
+    {
+      "name": "dark-hint",
+      "sha256": "bbe043065c0e908657aa3b2e164dbbb5cdf142ac64fadaa1f89ac1510d84b155"
+    },
+    {
+      "name": "dark-choice",
+      "sha256": "5f34bc91bc94f46c6d0069c70bc5db04e7a8001ee6d21933d479a4d96eaf7039"
+    }
+  ],
+  "disposableSignedOut": true,
+  "geometryPx": {
+    "light-gameplay": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        2720
+      ]
+    },
+    "light-hint": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        2720
+      ],
+      "gameplay-hint-sheet": [
+        0,
+        2037,
+        1260,
+        2720
+      ]
+    },
+    "light-choice": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        340,
+        1212,
+        1684
+      ],
+      "gameplay-choice-sheet": [
+        52,
+        408,
+        1208,
+        2428
+      ]
+    },
+    "light-choice-image": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        340,
+        1212,
+        1684
+      ],
+      "gameplay-choice-sheet": [
+        52,
+        408,
+        1208,
+        2428
+      ]
+    },
+    "light-combination-launcher": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        1030
+      ],
+      "gameplay-combination-launcher": [
+        682,
+        1926,
+        1222,
+        2076
+      ]
+    },
+    "light-combination-dialog": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        1030
+      ]
+    },
+    "light-letter-beacon": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        1030
+      ],
+      "gameplay-narrative-attention": [
+        52,
+        2175,
+        1208,
+        2409
+      ]
+    },
+    "light-clue-archive": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        1868
+      ],
+      "gameplay-clues-panel": [
+        106,
+        1043,
+        1154,
+        1803
+      ]
+    },
+    "light-bless-beacon": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        1030
+      ],
+      "gameplay-narrative-attention": [
+        52,
+        2175,
+        1208,
+        2409
+      ]
+    },
+    "dark-hint": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        2720
+      ],
+      "gameplay-hint-sheet": [
+        0,
+        2037,
+        1260,
+        2720
+      ]
+    },
+    "dark-choice": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        340,
+        1212,
+        1684
+      ],
+      "gameplay-choice-sheet": [
+        52,
+        408,
+        1208,
+        2428
+      ]
+    }
+  }
+}

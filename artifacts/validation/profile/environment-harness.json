@@ -1,10 +1,10 @@
 {
   "status": "prepared_not_executed",
-  "preparedAt": "2026-10-29T02:36:51.016Z",
+  "preparedAt": "2026-11-25T05:54:39.511Z",
   "source": "frozen backend/tests/server.mjs; original file left unchanged",
-  "sourceSha256": "8025b804aa06b1ae73ebb02c7051a06874f53d9f6de1bdd1b363dc8ddb78bb9c",
+  "sourceSha256": "f9fc9e26457352a5ca87b096a53818c1566c91557bacf6fb15d4ea8d3fdd9f65",
   "adapter": "artifacts/private/https-isolation/harness/server.mjs",
-  "adapterSha256": "95ecec3f10e5c6b526332e21c269421fc053045b159550fcb7270489ecf517e4",
+  "adapterSha256": "018cd179760ad46b031537c99f0454020b34f4faf24a68f5626bc75054ad810e",
   "changes": [
     {
       "anchor": "static ../scripts/runtime.mjs import",
@@ -34,11 +34,5 @@
   ],
   "originalSourceUnchanged": true,
   "serverStartedByPreparation": false,
-  "acceptanceCredit": "Preparation and source-integrity evidence only; not startup, HTTPS or UI acceptance",
-  "execution": {
-    "status": "backend_started",
-    "observedAt": "2026-10-29T02:37:10.059865+00:00",
-    "playerProxyHealthStatus": 200,
-    "scope": "Dedicated disposable PocketBase started after computer reboot; HTTPS and UI separate"
-  }
+  "acceptanceCredit": "Preparation and source-integrity evidence only; not startup, HTTPS or UI acceptance"
 }

@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "installedHapSha256": "cf8d75268dd38e6875894b38d0aa9d82a3688294fe047708d4163f8b6e0bc1c9",
+  "runtimeSha256": "7b067d3c5af7c49b9ecfd7f1efd56077d1492d6e293c601436adec40e71b8319",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The dimmed underlying category remains visible in light mode",
+    "Backdrop tap preserves the original mailbox in light mode",
+    "The dimmed underlying category remains visible in dark mode",
+    "Backdrop tap preserves the original mailbox in dark mode",
+    "System Back returns to the original mailbox",
+    "Reading and backdrop dismissal preserve authoritative receipt state",
+    "The native Sheet keeps the Passport visible through its translucent mask"
+  ],
+  "states": [
+    {
+      "name": "mailbox-light-before",
+      "pngSha256": "ad1c036e85d27418dc1e2819bb41c9d6c491770c07c06db62163ce855a27f5f1"
+    },
+    {
+      "name": "mailbox-light-mask",
+      "pngSha256": "66acd9ead5005eb4dd184fc2d5db4ed58350cbf57946deee077ec5e89d41d358"
+    },
+    {
+      "name": "mailbox-dark-before",
+      "pngSha256": "2a9ca2cc1f106b122685956bc7d1b5327843d7f66046803d401a9778d91125ec"
+    },
+    {
+      "name": "mailbox-dark-mask",
+      "pngSha256": "f658a9ae9800ef8d08ee206db4627dae9bbfb48d676b99e5ab252c0653da2240"
+    },
+    {
+      "name": "passport-before-sheet",
+      "pngSha256": "d4b43890c4c11dd48ddec901780bc0b5dbd70e50bc49eb51c2d4df825c514f41"
+    },
+    {
+      "name": "passport-native-sheet-mask",
+      "pngSha256": "b670770eaea6b709728590a0a1372899439faf11600f9a089cbf37d40cd68d0e"
+    }
+  ],
+  "themeComparisons": [
+    {
+      "theme": "light",
+      "samplePx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "before": {
+        "contrast": 0.128543,
+        "edgeContrast": 0.115521
+      },
+      "masked": {
+        "contrast": 0.007097,
+        "edgeContrast": 0.249915
+      }
+    },
+    {
+      "theme": "dark",
+      "samplePx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "before": {
+        "contrast": 0.150384,
+        "edgeContrast": 0.116898
+      },
+      "masked": {
+        "contrast": 0.007491,
+        "edgeContrast": 0.249949
+      }
+    }
+  ],
+  "nativeSheetComparison": {
+    "before": {
+      "contrast": 0.060856,
+      "edgeContrast": 0.139877
+    },
+    "masked": {
+      "contrast": 0.042565,
+      "edgeContrast": 0.138966
+    },
+    "samplePx": [
+      490,
+      465,
+      770,
+      745
+    ]
+  },
+  "disposableSignedOut": true,
+  "stage": "complete"
+}

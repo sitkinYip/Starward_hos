@@ -1,0 +1,16 @@
+{
+  "status": "incomplete",
+  "stage": "native-locked-card",
+  "checks": [
+    "First native list GET returned injected 503, showed retry, and recovered by real GET"
+  ],
+  "installedHapSha256": "8e74f75d3603aa2824f7f29d9fe9760291942a48addef3a14a3ae206924fcf11",
+  "runtimeSha256": "4e2cebb7f74b0a4574430560216a148b4b54f59d9a0da74e558ce93299565d82",
+  "driverSha256": "888438296c834bdfb814bfe0a13217fd925f533456501496b63582575b52e5af",
+  "fixture": "aurora-lobby",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "failure": "The scene or sync note did not become reachable above the overlapping native navigation",
+  "disposableSignedOut": true,
+  "forbiddenRequestCount": 0,
+  "unchangedProgress": true
+}

@@ -3,6 +3,8 @@ import { NarrativeLetter, NarrativeParagraph } from '../business/NarrativeModels
 import { LetterAudioPlayer, LetterMusicState } from '../platform/LetterAudioPlayer';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
+import { LetterColumn, LetterSegment, letterPageForCursor, letterVerticalColumns,
+  paginateLetterRuns } from './NarrativeLetterPagination';
 
 const FONT = 17;
 const LINE = 32.3;
@@ -12,31 +14,7 @@ const VERTICAL_LETTER = 19.04;
 const VERTICAL_PARAGRAPH_GAP = 22;
 const VERTICAL_CARET_WIDTH = 1.36;
 const VERTICAL_CARET_HEIGHT = 17.85;
-const CANNOT_START_COLUMN = '、。，．！？：；）〕］｝〉》」』】〙〗〟’”';
-const CANNOT_END_COLUMN = '（〔［｛〈《「『【〘〖〝‘“';
 const TURN_MS = 920;
-
-class LetterSegment {
-  readonly paragraph: number;
-  readonly start: number;
-  readonly end: number;
-
-  constructor(paragraph: number, start: number, end: number) {
-    this.paragraph = paragraph;
-    this.start = start;
-    this.end = end;
-  }
-}
-
-class LetterColumn {
-  readonly text: string;
-  readonly caret: boolean;
-
-  constructor(text: string, caret: boolean = false) {
-    this.text = text;
-    this.caret = caret;
-  }
-}
 
 class LetterColors {
   readonly canvas: string;
@@ -460,9 +438,7 @@ export struct StarwardNarrativeLetter {
   }
 
   private activePage(): number {
-    return this.pages.findIndex((page: LetterSegment[]) => page.some((segment: LetterSegment) =>
-      segment.paragraph === this.paragraphIndex && this.visibleCharacters >= segment.start &&
-      (this.visibleCharacters < segment.end || (segment.start === segment.end && this.visibleCharacters === segment.end))));
+    return letterPageForCursor(this.pages, this.paragraphIndex, this.visibleCharacters);
   }
 
   private canTurn(): boolean {
@@ -527,37 +503,8 @@ export struct StarwardNarrativeLetter {
   }
 
   private verticalColumns(content: string, caret: boolean = false): LetterColumn[] {
-    const advance: number = this.fontVp(VERTICAL_LETTER);
-    const limit: number = Math.max(1, Math.floor(this.bodyHeight / advance));
-    const lines: string[] = content.split(/\r\n|\n|\r/);
-    const result: LetterColumn[] = [];
-    let lastLength: number = 0;
-    for (let index = 0; index < lines.length; index++) {
-      const line: string = lines[index];
-      const points: string[] = Array.from(line);
-      if (points.length === 0 && index < lines.length - 1) { result.push(new LetterColumn('')); }
-      lastLength = 0;
-      for (let start = 0; start < points.length;) {
-        const fullEnd: number = Math.min(points.length, start + limit);
-        let end: number = fullEnd;
-        while (end > start + 1 && end < points.length &&
-          (CANNOT_START_COLUMN.includes(points[end]) || CANNOT_END_COLUMN.includes(points[end - 1]))) {
-          end--;
-        }
-        lastLength = end - start;
-        result.push(new LetterColumn(points.slice(start, end).join('\n')));
-        start = end;
-      }
-    }
-    if (caret) {
-      if (lastLength === 0 || lastLength * advance + this.fontVp(VERTICAL_CARET_HEIGHT) > this.bodyHeight) {
-        result.push(new LetterColumn('', true));
-      } else {
-        const last: LetterColumn = result[result.length - 1];
-        result[result.length - 1] = new LetterColumn(last.text, true);
-      }
-    }
-    return result;
+    return letterVerticalColumns(content, this.bodyHeight, this.fontVp(VERTICAL_LETTER),
+      this.fontVp(VERTICAL_CARET_HEIGHT), caret);
   }
 
   private measure(utility: MeasureUtils, segment: LetterSegment): number {
@@ -574,44 +521,8 @@ export struct StarwardNarrativeLetter {
     const utility: MeasureUtils = this.getUIContext().getMeasureUtils();
     const limit: number = this.classical() ? this.bodyWidth : this.bodyHeight;
     const gap: number = this.classical() ? VERTICAL_PARAGRAPH_GAP : this.fontVp(PARAGRAPH_GAP);
-    const pages: LetterSegment[][] = [[]];
-    let used: number = 0;
-    for (let index = 0; index < this.characterRuns.length; index++) {
-      const length: number = this.characterRuns[index].length;
-      let start: number = 0;
-      do {
-        let page: LetterSegment[] = pages[pages.length - 1];
-        let low: number = Math.min(start + 1, length);
-        let high: number = length;
-        let fit: number = -1;
-        let fitSpace: number = 0;
-        const gapBefore: number = page.length > 0 ? gap : 0;
-        while (low <= high) {
-          const middle: number = Math.floor((low + high) / 2);
-          const space: number = this.measure(utility, new LetterSegment(index, start, middle)) + gapBefore;
-          if (used + space <= limit + 0.25) {
-            fit = middle;
-            fitSpace = space;
-            low = middle + 1;
-          } else {
-            high = middle - 1;
-          }
-        }
-        if (fit < 0 && page.length > 0) {
-          pages.push([]);
-          used = 0;
-          continue;
-        }
-        if (fit < 0) { fit = Math.min(start + 1, length); }
-        page.push(new LetterSegment(index, start, fit));
-        used += fitSpace;
-        start = fit;
-        if (start < length) {
-          pages.push([]);
-          used = 0;
-        }
-      } while (start < length);
-    }
+    const pages: LetterSegment[][] = paginateLetterRuns(this.characterRuns, limit, gap,
+      (segment: LetterSegment) => this.measure(utility, segment));
     this.pages = pages;
     this.pageIndex = this.finished ? Math.min(this.pageIndex, pages.length - 1) : Math.max(0, this.activePage());
     this.scheduleTyping();

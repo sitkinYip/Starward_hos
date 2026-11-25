@@ -17,7 +17,6 @@ export struct StarwardClueTextDialog {
   @Param inlineVideoSlot: string = '';
   @Require @Param panelWidth: number;
   @Require @Param maxHeight: number;
-  @Param displayFont: string = 'serif';
   @Param reducedMotion: boolean = true;
   @Param motionEnabled: boolean = false;
   @Event close: () => void = () => {};
@@ -30,7 +29,7 @@ export struct StarwardClueTextDialog {
 
   aboutToAppear(): void { this.revealed = !this.motionEnabled; }
 
-  private bodyPadding(): number { return Math.max(28, Math.min(58, (this.panelWidth + 48) * 0.06)); }
+  private bodyPadding(): number { return Math.max(24, Math.min(44, (this.panelWidth + 40) * 0.05)); }
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
@@ -41,15 +40,9 @@ export struct StarwardClueTextDialog {
       }
       Scroll() {
         Column() {
-          Text('DECODED FRAGMENT').fontFamily('monospace').fontSize(11).lineHeight('13.2fp')
-            .fontWeight(600).letterSpacing('1.76fp').fontColor($r('app.color.accent_muted'))
-            .margin({ right: 32, bottom: 14 })
-            .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
-            .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
-            .animation(clueRevealAnimation(this.motionEnabled, 0))
-          Text(clueTitle(this.clue)).id('gameplay-clue-text-title').fontFamily(this.displayFont)
-            .fontSize(Math.max(27, Math.min(40, (this.panelWidth + 48) * 0.05)))
-            .fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
+          Text(clueTitle(this.clue)).id('gameplay-clue-text-title')
+            .fontSize(Math.max(22, Math.min(30, (this.panelWidth + 40) * 0.045)))
+            .fontWeight(FontWeight.Bold).fontColor($r('app.color.strong')).margin({ right: 36 })
             .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
             .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
             .animation(clueRevealAnimation(this.motionEnabled, 70))
@@ -64,23 +57,25 @@ export struct StarwardClueTextDialog {
             StarwardRichContent({ content: this.clue.content.text, nodeId: 'gameplay-clue',
               ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent, imageCache: this.imageCache,
               inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
-              color: $r('app.color.text'), clueBody: true, maxMediaHeight: Math.min(680, this.maxHeight * 0.6),
-              mediaMargin: 18, reducedMotion: this.reducedMotion,
+              color: $r('app.color.text'), clueBody: true, textSize: 15, lineHeight: '27.75fp',
+              maxMediaHeight: Math.min(640, (this.maxHeight + 40) * 0.58),
+              mediaMargin: 16, reducedMotion: this.reducedMotion,
               openImage: (index: number) => this.openImage(index),
               openVideo: (index: number) => this.openVideo(index), playVideo: (index: number) => this.playVideo(index),
               openLink: (href: string) => this.openLink(href) })
-          }.id('gameplay-clue-text-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 24 })
+          }.id('gameplay-clue-text-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 18 })
             .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
             .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
             .animation(clueRevealAnimation(this.motionEnabled, 190))
         }.width('100%').alignItems(HorizontalAlign.Start).padding(this.bodyPadding())
       }.width('100%').constraintSize({ maxHeight: this.maxHeight }).align(Alignment.Top).scrollBar(BarState.Off)
       Button('×', { type: ButtonType.Circle }).id('gameplay-clue-text-close').width(44).height(44).padding(0)
-        .fontSize(26).fontColor($r('app.color.strong')).backgroundColor($r('app.color.inset'))
-        .border({ width: 1, color: $r('app.color.border_strong') }).margin({ top: 16, right: 16 })
+        .fontSize(22).fontColor($r('app.color.strong')).backgroundColor($r('app.color.inset'))
+        .border({ width: 1, color: $r('app.color.border_strong') }).margin({ top: 14, right: 14 })
         .accessibilityText('关闭线索').onClick(() => this.close())
     }.id('gameplay-clue-text-dialog').width(this.panelWidth).constraintSize({ maxHeight: this.maxHeight })
-      .backgroundColor($r('app.color.raised')).border({ width: 1, color: $r('app.color.border_strong') })
+      .backgroundColor($r('app.color.raised')).border({ width: 1, radius: 24,
+        color: $r('app.color.border_strong') }).borderRadius(24).clip(true)
       .onAppear(() => UIUtils.applySync(() => { this.revealed = true; }))
       .onAreaChange((_previous: Area, current: Area) => {
         const height: number = Number(current.height);

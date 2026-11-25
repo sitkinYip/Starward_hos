@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@ohos/hypium';
-import { AvatarImage, AvatarUpload, GameFailure, Player } from '../main/ets/business/models';
+import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player } from '../main/ets/business/models';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
+import { PassportSummary, summarizePassport } from '../main/ets/features/PassportSummary';
 import { SliceViewModel } from '../main/ets/features/SliceViewModel';
 
 const INITIAL_PASSWORD: string = 'Starward1234';
@@ -133,6 +134,33 @@ class LostAccountPasswordRepository extends MockGameRepository {
 
 export default function profileViewModelTests(): void {
   describe('ProfileViewModel', () => {
+    it('passportCountsDistinguishMissingSnapshotsFromConfirmedEmptyData', 0, () => {
+      const missing: PassportSummary = summarizePassport(null, null);
+      expect(missing.solved).assertNull();
+      expect(missing.sessions).assertNull();
+      expect(missing.rewards).assertNull();
+      const empty: PassportSummary = summarizePassport([], 0);
+      expect(empty.solved).assertEqual(0);
+      expect(empty.sessions).assertEqual(0);
+      expect(empty.rewards).assertEqual(0);
+      expect(summarizePassport(null, 4).rewards).assertEqual(4);
+    });
+
+    it('passportCountsSolvedQuestionsFromWithdrawnSessionsWithoutCountingTheSession', 0, () => {
+      const assigned: AssignmentSummary = new AssignmentSummary();
+      assigned.completedLevels = 2;
+      const withdrawn: AssignmentSummary = new AssignmentSummary();
+      withdrawn.status = 'cancelled';
+      withdrawn.completedLevels = 5;
+      const completed: AssignmentSummary = new AssignmentSummary();
+      completed.status = 'completed';
+      completed.completedLevels = 3;
+      const summary: PassportSummary = summarizePassport([assigned, withdrawn, completed], 6);
+      expect(summary.solved).assertEqual(10);
+      expect(summary.sessions).assertEqual(2);
+      expect(summary.rewards).assertEqual(6);
+    });
+
     it('refreshKeepsAnUnsavedNameAndAvatarDraft', 0, async () => {
       const repository: MockGameRepository = new MockGameRepository(0);
       const viewModel: SliceViewModel = new SliceViewModel(repository);

@@ -1,6 +1,7 @@
-import { curves, UIUtils } from '@kit.ArkUI';
+import { curves, uiMaterial, UIUtils } from '@kit.ArkUI';
 import { clueTitle } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
+import { StarwardMaterial } from './StarwardMaterial';
 
 export function narrativeAttentionLabel(kind: string): string {
   return kind === 'letter' ? '一封来信等待开启' : '一份祝福正在回响';
@@ -69,14 +70,18 @@ export struct StarwardNarrativeSignal {
 export struct StarwardNarrativeAttention {
   @Require @Param clue: GameplayClue;
   @Param reducedMotion: boolean = true;
+  @Param showArrow: boolean = false;
   @Event opened: (id: string) => void = () => {};
   @Local private stageWidth: number = 0;
   @Local private stageHeight: number = 0;
   @Local private emblemAngle: number = 0;
+  @Local private material: uiMaterial.ImmersiveMaterial | undefined = undefined;
   private mounted: boolean = false;
 
   @Monitor('reducedMotion')
   private animateEmblem(): void {
+    this.material = StarwardMaterial.create(uiMaterial.ImmersiveStyle.THIN,
+      !this.reducedMotion, $r('app.color.accent'));
     if (!this.mounted) { return; }
     this.getUIContext().animateTo({ duration: this.reducedMotion ? 0 : 8000,
       iterations: this.reducedMotion ? 1 : -1, curve: Curve.Linear }, () => UIUtils.applySync(() => {
@@ -100,20 +105,19 @@ export struct StarwardNarrativeAttention {
         Row({ space: 12 }) {
           Stack() {
             Circle().width(46).height(46).fill($r('app.color.accent'))
-            Circle().width(52).height(52).fill(Color.Transparent).stroke($r('app.color.accent_border'))
+              .shadow({ radius: 20, color: $r('app.color.glow_accent_soft') })
+            Circle().width(58).height(58).fill(Color.Transparent).stroke($r('app.color.accent'))
               .strokeWidth(1).strokeDashArray([3, 2]).rotate({ angle: this.emblemAngle })
-            Image(this.clue.kind === 'letter' ? $r('app.media.icon_envelope') : $r('app.media.icon_sparkle'))
+            Image(this.clue.kind === 'letter' ? $r('app.media.icon_clue_letter') : $r('app.media.icon_clue_bless'))
               .width(23).height(23).fillColor($r('app.color.on_accent'))
           }.width(46).height(46).accessibilityLevel('no-hide-descendants')
           Column({ space: 2 }) {
-            Text('IMPORTANT SIGNAL').fontFamily('monospace').fontSize(8).letterSpacing(1.28)
-              .fontColor($r('app.color.accent_text'))
             Text(narrativeAttentionLabel(this.clue.kind)).width('100%').fontSize(14).fontWeight(600)
               .fontColor($r('app.color.strong')).maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis })
             Text(this.clue.content.title || '重要内容已解锁').width('100%').fontSize(11)
               .fontColor($r('app.color.muted')).maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis })
           }.layoutWeight(1).alignItems(HorizontalAlign.Start)
-          if (this.stageWidth > 388) {
+          if (this.showArrow) {
             Image($r('app.media.icon_arrow_up_right')).width(20).height(20)
               .fillColor($r('app.color.accent_text')).accessibilityLevel('no')
           }
@@ -127,10 +131,12 @@ export struct StarwardNarrativeAttention {
         }.width(0).height(0).clip(false).position({ x: 0, y: 0 }).hitTestBehavior(HitTestMode.None)
       }.width('100%')
     }.id('gameplay-narrative-attention').width('100%').padding(0).borderRadius(0)
-      .border({ width: 1, color: $r('app.color.accent') }).backgroundColor($r('app.color.surface'))
+      .border({ width: 1, color: $r('app.color.accent') })
+      .backgroundColor(this.material ? $r('app.color.glass_floating') : $r('app.color.raised'))
+      .systemMaterial(this.material)
       .radialGradient({ center: ['0%', '50%'], radius: '50%',
-        colors: [[$r('app.color.accent_soft'), 0], [Color.Transparent, 1]] })
-      .shadow({ radius: 15, color: $r('app.color.accent_border'), offsetY: 4 })
+        colors: [[$r('app.color.glow_accent_soft'), 0], [Color.Transparent, 1]] })
+      .shadow({ radius: 24, color: $r('app.color.glow_accent_soft'), offsetY: 6 })
       .clip(true)
       .accessibilityText(`${narrativeAttentionLabel(this.clue.kind)}：${clueTitle(this.clue)}`)
       .onAppear(() => { this.mounted = true; this.animateEmblem(); })

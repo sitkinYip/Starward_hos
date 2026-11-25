@@ -1,0 +1,22 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "8249eaeb913a58de8aeadd84a9953b57494f0a9cc6fad2f2f338dc147c21e9ae",
+  "runtimeSha256": "7f221ed459b4db191ef45e421cf903b52601d884bb487603be2a827fbcc95a59",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "Empty collection has the Return to Journey action",
+    "Both collection categories remain empty for this account"
+  ],
+  "states": [
+    {
+      "name": "empty-unclaimed",
+      "pngSha256": "71073f34586debab546f30edca92d7ba95cd0d8df9d8e2a5b150a5f59c6be300"
+    },
+    {
+      "name": "empty-claimed",
+      "pngSha256": "5d133ecd0977ffa18dee1740a501a832db6f908fe5a77205e43d55f3168a588c"
+    }
+  ],
+  "failure": "Official command timed out: devecocli ui layout",
+  "stage": "exercise-empty"
+}

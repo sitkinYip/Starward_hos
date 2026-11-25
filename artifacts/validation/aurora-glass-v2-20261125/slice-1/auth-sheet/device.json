@@ -1,0 +1,253 @@
+{
+  "status": "passed",
+  "checks": [
+    "Complete login entry is anchored above the bottom safe inset before scrolling",
+    "Complete dark first view with measured footer and bottom safe-area gaps",
+    "Native dark bottom help opens and Back preserves the underlying layout",
+    "Complete light first view with measured footer and bottom safe-area gaps",
+    "Native light bottom help opens and Back preserves the underlying layout",
+    "Help reopens and preserves the current account draft",
+    "RESIZE keeps submit reachable and restores the bottom alignment",
+    "Direct fixed preview login and immutable package binding"
+  ],
+  "states": {
+    "initial": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-entry": [
+          58,
+          1368,
+          1202,
+          2577
+        ],
+        "auth-form-card": [
+          58,
+          1368,
+          1202,
+          2500
+        ],
+        "account": [
+          126,
+          1537,
+          1135,
+          1707
+        ],
+        "password": [
+          126,
+          1847,
+          1135,
+          2017
+        ],
+        "primary-action": [
+          126,
+          2068,
+          1134,
+          2237
+        ],
+        "login-help": [
+          126,
+          2276,
+          1134,
+          2419
+        ],
+        "auth-environment-note": [
+          532,
+          2539,
+          728,
+          2577
+        ]
+      },
+      "environmentGapPx": 39,
+      "bottomGapPx": 52
+    },
+    "dark": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-entry": [
+          58,
+          1368,
+          1202,
+          2577
+        ],
+        "auth-form-card": [
+          58,
+          1368,
+          1202,
+          2500
+        ],
+        "account": [
+          126,
+          1537,
+          1135,
+          1707
+        ],
+        "password": [
+          126,
+          1847,
+          1135,
+          2017
+        ],
+        "primary-action": [
+          126,
+          2068,
+          1134,
+          2237
+        ],
+        "login-help": [
+          126,
+          2276,
+          1134,
+          2419
+        ],
+        "auth-environment-note": [
+          532,
+          2539,
+          728,
+          2577
+        ]
+      },
+      "environmentGapPx": 39,
+      "bottomGapPx": 52,
+      "pngSha256": "a944777f8442f6cd9af230341bf34d3dda2c0de199e8e9bf6ba2b58257e4b7fb",
+      "sheetBoundsPx": [
+        0,
+        2460,
+        1260,
+        2720
+      ],
+      "sheetPngSha256": "cebf2aac0944a4cca97ee8bf578f1f407f31eba01ab2c20af4bbaf5f3b736b91"
+    },
+    "light": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-entry": [
+          58,
+          1368,
+          1202,
+          2577
+        ],
+        "auth-form-card": [
+          58,
+          1368,
+          1202,
+          2500
+        ],
+        "account": [
+          126,
+          1537,
+          1135,
+          1707
+        ],
+        "password": [
+          126,
+          1847,
+          1135,
+          2017
+        ],
+        "primary-action": [
+          126,
+          2068,
+          1134,
+          2237
+        ],
+        "login-help": [
+          126,
+          2276,
+          1134,
+          2419
+        ],
+        "auth-environment-note": [
+          532,
+          2539,
+          728,
+          2577
+        ]
+      },
+      "environmentGapPx": 39,
+      "bottomGapPx": 52,
+      "pngSha256": "01a264abe89c5dab4b227979ca04800ac1eccf75ebbc821baff9b062dd878496",
+      "sheetBoundsPx": [
+        0,
+        2460,
+        1260,
+        2720
+      ],
+      "sheetPngSha256": "4544d15a332b005a6a4887299d0c2e0d709cb0ad73b8f730d70bbcb09f0e7c2a"
+    },
+    "imeClosed": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-entry": [
+          58,
+          1368,
+          1202,
+          2577
+        ],
+        "auth-form-card": [
+          58,
+          1368,
+          1202,
+          2500
+        ],
+        "account": [
+          126,
+          1537,
+          1135,
+          1707
+        ],
+        "password": [
+          126,
+          1847,
+          1135,
+          2017
+        ],
+        "primary-action": [
+          126,
+          2068,
+          1134,
+          2237
+        ],
+        "login-help": [
+          126,
+          2276,
+          1134,
+          2419
+        ],
+        "auth-environment-note": [
+          532,
+          2539,
+          728,
+          2577
+        ]
+      },
+      "environmentGapPx": 39,
+      "bottomGapPx": 52
+    }
+  },
+  "installedHapSha256": "aff5847961e7b496d8229be2076562c81e2c78471e08bb7bd50c22c790694e71",
+  "sourceBindings": {
+    "runtime": "59a8aa26e8d27c2ed627ed94250d1b416084a7aceb2babd7779de8ce4ad5135c",
+    "geometryDriver": "88281d8e726595d5757a00ad24ea513415f4fda4f7b54a85c38eb2285472bff7"
+  },
+  "stage": "complete"
+}

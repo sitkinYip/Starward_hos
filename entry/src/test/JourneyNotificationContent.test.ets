@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@ohos/hypium';
 import { LegacyRichBlock, legacyImageSources, legacyRichBlocks } from '../main/ets/business/LegacyRichContent';
 import { JourneyNotificationBlock, journeyNotificationBlocks,
+  journeyNotificationHasLink, journeyNotificationHasMedia,
   journeyNotificationPreview } from '../main/ets/business/JourneyNotificationContent';
 
 export default function journeyNotificationContentTests(): void {
@@ -40,6 +41,22 @@ export default function journeyNotificationContentTests(): void {
       expect(blocks[0].spans[0].linkTarget).assertEqual('');
       expect(blocks[0].spans[1].linkTarget).assertEqual('');
       expect(blocks[0].spans[2].linkTarget).assertEqual('');
+    });
+
+    it('only authorizes exact attachments and links from the current letter revision', 0, () => {
+      const first: JourneyNotificationBlock[] = journeyNotificationBlocks(
+        '{{/one.png}}<<https://media.example/video.mp4||/first-poster.png>>((阅读||/profile))');
+      const revised: JourneyNotificationBlock[] = journeyNotificationBlocks(
+        '{{/two.png}}<<https://media.example/video.mp4||/second-poster.png>>((阅读||/rewards))');
+      expect(journeyNotificationHasMedia(first, 'image', '/one.png')).assertTrue();
+      expect(journeyNotificationHasMedia(revised, 'image', '/one.png')).assertFalse();
+      expect(journeyNotificationHasMedia(revised, 'image', '/second-poster.png')).assertFalse();
+      expect(journeyNotificationHasMedia(revised, 'video', 'https://media.example/video.mp4',
+        '/second-poster.png')).assertTrue();
+      expect(journeyNotificationHasMedia(revised, 'video', 'https://media.example/video.mp4',
+        '/first-poster.png')).assertFalse();
+      expect(journeyNotificationHasLink(first, '/profile')).assertTrue();
+      expect(journeyNotificationHasLink(revised, '/profile')).assertFalse();
     });
   });
 }

@@ -7,6 +7,8 @@ export struct StarwardClueParagraph {
   @Require @Param spans: LegacyRichSpan[];
   @Require @Param paragraphId: string;
   @Require @Param color: ResourceColor;
+  @Param textSize: number = 16;
+  @Param textWeight: number = 400;
   @Param lineHeight: string = '30.4fp';
   @Param active: boolean = true;
   @Param allowInternal: boolean = false;
@@ -28,7 +30,7 @@ export struct StarwardClueParagraph {
           Span(span.text)
         }
       }, (span: LegacyRichSpan, index: number) => `${index}:${span.text}:${span.highlight}:${span.linkTarget}`)
-    }.id(this.paragraphId).width('100%').fontSize(16).lineHeight(this.lineHeight)
+    }.id(this.paragraphId).width('100%').fontSize(this.textSize).fontWeight(this.textWeight).lineHeight(this.lineHeight)
       .fontColor(this.color).wordBreak(WordBreak.BREAK_WORD)
   }
 }

@@ -1,7 +1,8 @@
 import { PushStatus } from '../business/PushRegistration';
+import { InstalledAppVersion, readInstalledAppVersion } from '../platform/InstalledAppVersion';
 import { InlineError } from '../ui/ErrorMessages';
 import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
-import { StarwardPushSubscriptions } from '../ui/StarwardPushSubscriptions';
+import { StarwardPushSubscriptions } from './StarwardPushSubscriptions';
 
 /** Settings content uses the system notification options and the shared appearance controls. */
 @ComponentV2
@@ -9,6 +10,7 @@ export struct SettingsPage {
   @Param bottomInset: number = 0;
   @Param leftInset: number = 0;
   @Param rightInset: number = 0;
+  @Param notificationsOnly: boolean = false;
   @Param themeError: string = '';
   @Param pushVisible: boolean = false;
   @Param pushAvailable: boolean = false;
@@ -21,6 +23,11 @@ export struct SettingsPage {
   @BuilderParam appearanceControls: () => void;
   @Event openNotificationSettings: () => void = () => {};
   @Event retryNotificationSync: () => void = () => {};
+  @Local private version: InstalledAppVersion | null = null;
+
+  aboutToAppear(): void {
+    if (!this.notificationsOnly) { this.version = readInstalledAppVersion(); }
+  }
 
   private notificationState(): string {
     if (this.pushBusy) { return '检查中'; }
@@ -86,25 +93,34 @@ export struct SettingsPage {
   build() {
     Scroll() {
       Column({ space: 26 }) {
-        Column({ space: 10 }) {
-          Text('外观').fontSize(13).fontWeight(FontWeight.Medium).fontColor($r('app.color.muted'))
-            .margin({ left: 2 })
-          Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-            Text('旅途光线').fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.text'))
-              .margin({ right: 12, top: 4, bottom: 4 })
-            this.appearanceControls()
-          }.width('100%').padding(14).backgroundColor($r('app.color.surface'))
-            .border({ width: 1, color: $r('app.color.border'), radius: 14 })
-          InlineError({ message: this.themeError, fieldId: 'settings-theme-error' })
-        }.width('100%').alignItems(HorizontalAlign.Start)
+        if (!this.notificationsOnly) {
+          Column({ space: 10 }) {
+            Text('外观').fontSize(13).fontWeight(FontWeight.Medium).fontColor($r('app.color.muted'))
+              .margin({ left: 2 })
+            Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Text('旅途光线').fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.text'))
+                .margin({ right: 12, top: 4, bottom: 4 })
+              this.appearanceControls()
+            }.width('100%').padding(14).backgroundColor($r('app.color.surface'))
+              .border({ width: 1, color: $r('app.color.border'), radius: 14 })
+            InlineError({ message: this.themeError, fieldId: 'settings-theme-error' })
+          }.width('100%').alignItems(HorizontalAlign.Start)
+        }
         if (this.pushVisible) {
           Column({ space: 10 }) {
-            Text('通知').fontSize(13).fontWeight(FontWeight.Medium).fontColor($r('app.color.muted'))
-              .margin({ left: 2 })
+            if (!this.notificationsOnly) {
+              Text('通知').fontSize(13).fontWeight(FontWeight.Medium).fontColor($r('app.color.muted'))
+                .margin({ left: 2 })
+            }
             this.notifications()
             StarwardPushSubscriptions({ model: this.subscriptions, active: this.active,
               permission: this.pushPermission, openSystemSettings: () => this.openNotificationSettings() })
           }.width('100%').alignItems(HorizontalAlign.Start)
+        }
+        if (this.version !== null) {
+          Text(`版本 ${this.version.name}（${this.version.code}）`).id('settings-version')
+            .width('100%').textAlign(TextAlign.Center).fontSize(13).fontFeature("'tnum' 1")
+            .fontColor($r('app.color.muted'))
         }
       }.width('100%').constraintSize({ maxWidth: 480 }).alignItems(HorizontalAlign.Start)
         .padding({ left: 20 + this.leftInset, right: 20 + this.rightInset, top: 20, bottom: 24 + this.bottomInset })

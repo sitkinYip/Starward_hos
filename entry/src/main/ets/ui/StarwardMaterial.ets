@@ -2,12 +2,20 @@ import { uiMaterial } from '@kit.ArkUI';
 
 /** API 26 ArkUI system material; no blur/shadow imitation or HDS enums. */
 export class StarwardMaterial {
+  static immersiveAvailable(): boolean {
+    try {
+      return uiMaterial.isImmersiveMaterialSupported() &&
+        uiMaterial.getMaterialInfo().state !== uiMaterial.MaterialState.DISABLE;
+    } catch {
+      return false;
+    }
+  }
+
   static create(style: uiMaterial.ImmersiveStyle,
     interactionEnabled: boolean | undefined = undefined,
     lightEffectColor: ResourceColor | undefined = undefined): uiMaterial.ImmersiveMaterial | undefined {
     try {
-      if (!uiMaterial.isImmersiveMaterialSupported() ||
-        uiMaterial.getMaterialInfo().state === uiMaterial.MaterialState.DISABLE) {
+      if (!StarwardMaterial.immersiveAvailable()) {
         return undefined;
       }
       const options: uiMaterial.ImmersiveOptions = { style: style };
@@ -41,16 +49,27 @@ export struct StarwardTitleSurface {
   @Param titleHeight: number = 84;
   @Param horizontalGutter: number = 20;
   @Param topInset: number = 0;
+  @Param reducedMotion: boolean = true;
   @BuilderParam titleContent: () => void;
-  private material: uiMaterial.ImmersiveMaterial | undefined =
-    StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN);
+  @Local private material: uiMaterial.ImmersiveMaterial | undefined = undefined;
+
+  aboutToAppear(): void {
+    this.updateMaterial();
+  }
+
+  @Monitor('reducedMotion')
+  private updateMaterial(): void {
+    this.material = StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN,
+      !this.reducedMotion, $r('app.color.accent'));
+  }
 
   build() {
     Column() {
       Row() {
         this.titleContent()
       }.width('100%').height(this.titleHeight).padding({ left: this.horizontalGutter, right: this.horizontalGutter })
-    }.width('100%').padding({ top: this.topInset }).backgroundColor(this.material ? Color.Transparent : $r('app.color.canvas'))
+    }.width('100%').padding({ top: this.topInset })
+      .backgroundColor(this.material ? Color.Transparent : $r('app.color.raised'))
       .systemMaterial(this.material)
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP])
   }

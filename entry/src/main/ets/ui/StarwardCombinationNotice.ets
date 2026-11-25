@@ -1,4 +1,5 @@
 import { curves, UIUtils } from '@kit.ArkUI';
+import { StarwardGlassBackdrop } from './StarwardGlassBackdrop';
 
 @ComponentV2
 export struct StarwardFinaleBackdrop {
@@ -6,6 +7,7 @@ export struct StarwardFinaleBackdrop {
 
   build() {
     Stack() {
+      StarwardGlassBackdrop({ nodeId: 'gameplay-finale-backdrop' })
       Column() {}
         .width('118%').aspectRatio(1)
         .radialGradient({ center: ['50%', '50%'], radius: '50%',
@@ -13,7 +15,7 @@ export struct StarwardFinaleBackdrop {
         .border({ width: 1, radius: '50%', color: '#57E5C87D' })
       Column() {}
         .width('86%').aspectRatio(1).border({ width: 1, radius: '50%', color: '#57E5C87D' })
-    }.width('100%').height('100%').backgroundColor($r('app.color.completion_mask'))
+    }.width('100%').height('100%')
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
       .transition(this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.asymmetric(
         TransitionEffect.opacity(0).animation({ duration: 320, curve: Curve.EaseOut }),

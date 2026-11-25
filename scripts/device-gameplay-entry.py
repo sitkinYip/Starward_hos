@@ -66,14 +66,14 @@ def guarded(path, directory, private=False):
     return path
 
 
-def read_state():
+def read_state(expected_backend_commit=BACKEND_COMMIT):
     info = ISOLATION.stat()
     require(not ISOLATION.is_symlink() and stat.S_ISDIR(info.st_mode) and
             info.st_uid == os.getuid() and stat.S_IMODE(info.st_mode) == 0o700,
             'The disposable environment directory must be owned mode700')
     value = json.loads(guarded(STATE, ISOLATION, True).read_text())
     require(value.get('mode') == 'real isolated PocketBase' and value.get('version') == '0.40.1' and
-            value.get('backendSourceCommit') == BACKEND_COMMIT and
+            value.get('backendSourceCommit') == expected_backend_commit and
             re.fullmatch(r'hm_[a-f0-9]{10}', value.get('account', '')) and
             isinstance(value.get('controlToken'), str) and len(value['controlToken']) >= 24,
             'The expected disposable environment is absent')

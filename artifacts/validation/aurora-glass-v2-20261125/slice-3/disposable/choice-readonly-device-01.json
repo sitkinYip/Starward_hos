@@ -1,0 +1,21 @@
+{
+  "stage": "native-dark-readonly-options",
+  "status": "incomplete",
+  "installedHapSha256": "e3e3fdd7a4e802b28174fe7d4721bb41dab68454045a2a77b2fe82912351c04a",
+  "runtimeSha256": "96294f8a9c9744fc33300b0ac49a37156c106e56c1e22b9597980959250d4987",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The dark completed choice opens with a collapsed readonly composer"
+  ],
+  "states": [
+    {
+      "state": "dark-closed",
+      "pngSha256": "83d08ef7dc4ca6814c99ebad8538f337c713fd3df7838c118814a70dc1445d4b"
+    },
+    {
+      "state": "dark-sheet",
+      "pngSha256": "8dd88a6bffd667ecc0d1f8013d1443cba88659209cee1599b8879f291a1f5ceb"
+    }
+  ],
+  "failure": "Expected test control is not reachable: gameplay-option-0"
+}

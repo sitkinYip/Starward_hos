@@ -1,0 +1,27 @@
+{
+  "stage": "complete",
+  "status": "passed",
+  "installedHapSha256": "0d80b6a4137a0c6050641e0a43790c12f593f12be2a76eddc81e1763dbcb0def",
+  "runtimeSha256": "285adac31da3ab7544e35f65344683fadf072e03d6f2d0e0d84f3b8d59400ebd",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "Single-question gameplay omits redundant navigation",
+    "Question text precedes visible art and the separate composer is anchored above the safe inset",
+    "The lamp opened exactly one native hint sheet",
+    "Hint close retains the draft",
+    "The resized viewport keeps the submit action and focused capsule visible",
+    "IME Back preserves the original draft",
+    "Actual backend confirms one start, no answer, and zero EXP writes"
+  ],
+  "states": [
+    {
+      "state": "text-active",
+      "pngSha256": "3be23d5449eee2e84c3a510a75a05b582a91740849aa9338ae21407a8b8e7642"
+    },
+    {
+      "state": "text-hint-sheet",
+      "pngSha256": "f176ef02244451604b724d8e5f467ab2d277e295e1b9316dbf26bf7af829c3ee"
+    }
+  ],
+  "disposableSignedOut": true
+}

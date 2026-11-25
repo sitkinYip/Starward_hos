@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "installedHapSha256": "8249eaeb913a58de8aeadd84a9953b57494f0a9cc6fad2f2f338dc147c21e9ae",
+  "runtimeSha256": "7f221ed459b4db191ef45e421cf903b52601d884bb487603be2a827fbcc95a59",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The two native mailbox panes remain horizontally swipeable",
+    "The confirmation button is fully visible inside the native modal footer",
+    "Exactly one authorised server receipt marks only the confirmed notification read"
+  ],
+  "states": [
+    {
+      "name": "reading-visible-confirmation",
+      "pngSha256": "5dc79ac8e29ff153fa96527eb919250299be51a446f5213d8ac2674c4eacd3b7"
+    },
+    {
+      "name": "one-remains-unread",
+      "pngSha256": "e429674b1c7ec4542f7f147ada3b63a993dcf63d9326a53e036c0ca806b0bb39"
+    }
+  ],
+  "disposableSignedOut": true,
+  "stage": "complete"
+}

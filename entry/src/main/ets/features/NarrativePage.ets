@@ -1,7 +1,7 @@
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
 import { ErrorNotice } from '../ui/ErrorMessages';
-import { StarwardAtlas } from '../ui/StarwardAtlas';
 import { StarwardBlessExperience } from '../ui/StarwardBlessExperience';
+import { StarwardLoadingStage } from '../ui/StarwardLoadingStage';
 import { StarwardNarrativeLetter } from '../ui/StarwardNarrativeLetter';
 import { NarrativeViewModel } from './NarrativeViewModel';
 
@@ -15,8 +15,6 @@ export struct NarrativePage {
   @Param bottomInset: number = 0;
   @Event returnToQuest: () => void = () => {};
   @Event returnHome: () => void = () => {};
-  @Local private loadingWidth: number = 0;
-  @Local private loadingHeight: number = 0;
   private darkLease: number = 0;
 
   aboutToAppear(): void { this.applySystemBarContrast(); }
@@ -41,34 +39,6 @@ export struct NarrativePage {
     }
   }
 
-  @Builder
-  loading() {
-    Column({ space: 18 }) {
-      StarwardAtlas({ atlasSize: Math.max(90, Math.min(this.loadingWidth * 0.64, this.loadingHeight * 0.36, 320)) })
-        .margin({ bottom: 14 })
-      Column({ space: 12 }) {
-        Text('星图正在显现').fontSize(10).letterSpacing(2.4).fontColor($r('app.color.accent_muted'))
-        Text('故事，正为你展开').fontFamily(this.displayFont).fontSize(24).lineHeight('34.8fp').letterSpacing('0.96fp')
-          .fontWeight(500).fontColor($r('app.color.strong')).textAlign(TextAlign.Center)
-          .lineBreakStrategy(LineBreakStrategy.BALANCED)
-        Row({ space: 10 }) {
-          if (!this.reducedMotion && this.foreground) {
-            LoadingProgress().width(12).height(12).color($r('app.color.accent')).accessibilityLevel('no')
-          } else {
-            Circle({ width: 5, height: 5 }).fill($r('app.color.accent')).accessibilityLevel('no')
-          }
-          Text('正在准备这份专属内容…').fontSize(13).fontColor($r('app.color.muted'))
-        }
-      }
-      Row({ space: 14 }) {
-        Divider().layoutWeight(1).color($r('app.color.border_strong'))
-        Text('✦').fontSize(12).fontColor($r('app.color.accent_muted'))
-        Divider().layoutWeight(1).color($r('app.color.border_strong'))
-      }.width('60%').accessibilityLevel('no-hide-descendants')
-      Text('有些话，正等着被你读到。').fontSize(12).fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
-    }.id('narrative-loading').width('100%').padding(20).alignItems(HorizontalAlign.Center)
-  }
-
   build() {
     Stack() {
       if (this.model.content?.letter) {
@@ -84,18 +54,14 @@ export struct NarrativePage {
           returnLabel: this.model.route?.source === 'star-letters' ? '返回星海信笺' : '返回冒险',
           returnToSource: () => this.returnToQuest() })
       } else if (this.model.loading) {
-        Column() {
-          Scroll() {
-            this.loading()
-          }.width('100%').layoutWeight(1).align(Alignment.Center).scrollBar(BarState.Off)
-          Row({ space: 16 }) {
-            Divider().width(24).color($r('app.color.border_strong'))
-            Text('向着星辰的冒险').fontSize(10).letterSpacing('1.2fp').fontColor($r('app.color.subtle'))
-            Divider().width(24).color($r('app.color.border_strong'))
-          }.padding({ bottom: this.bottomInset + 22 })
-        }.width('100%').height('100%').onAreaChange((_previous: Area, current: Area) => {
-          this.loadingWidth = Number(current.width);
-          this.loadingHeight = Number(current.height);
+        StarwardLoadingStage({
+          stateId: 'narrative-loading',
+          title: '故事，正为你展开',
+          status: '正在准备这份专属内容…',
+          hint: '有些话，正等着被你读到。',
+          motionEnabled: this.foreground && !this.reducedMotion,
+          showBrand: false,
+          bottomInset: this.bottomInset
         })
       } else if (this.model.error.length > 0) {
         Scroll() {

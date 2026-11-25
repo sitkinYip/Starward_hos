@@ -8,6 +8,7 @@ export struct StarwardAccountSheet {
   @Event $visible: (visible: boolean) => void = () => {};
   @Param title: ResourceStr = '冒险者护照';
   @Param sheetHeight: SheetSize = SheetSize.LARGE;
+  @Param preferType: SheetType | undefined = undefined;
   @BuilderParam anchor: () => void;
   @BuilderParam content: () => void;
   private material: uiMaterial.ImmersiveMaterial | undefined =
@@ -23,10 +24,12 @@ export struct StarwardAccountSheet {
       this.anchor()
     }.bindSheet(this.visible, this.sheetBody, {
       height: this.sheetHeight,
+      preferType: this.preferType,
       dragBar: true,
       showClose: true,
       title: { title: this.title },
       systemMaterial: this.material,
+      maskColor: $r('app.color.modal_mask'),
       onDisappear: () => { this.$visible(false); }
     })
   }

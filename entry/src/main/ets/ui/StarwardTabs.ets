@@ -1,6 +1,8 @@
-import { CommonModifier, FrameCallback, FrameNode, UIUtils } from '@kit.ArkUI';
+import { CapsuleSegmentButtonV2, ColorMetrics, CommonModifier, FrameCallback, FrameNode, LengthMetrics,
+  SegmentButtonV2Items, UIUtils } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { HdsTabs, hdsMaterial } from '@kit.UIDesignKit';
+import { StarwardMaterial } from './StarwardMaterial';
 
 class TabBadgeMeasure extends FrameCallback {
   private readonly measure: () => void;
@@ -27,18 +29,30 @@ export struct StarwardBottomTabs {
   @Local private badgeX: number = 0;
   @Local private badgeY: number = 0;
   @Local private badgeMeasured: boolean = false;
+  @Local private immersiveBar: boolean = false;
   private mounted: boolean = false;
 
   private validIndex(index: number): boolean { return Number.isInteger(index) && index >= 0 && index <= 3; }
 
   aboutToAppear(): void {
     this.mounted = true;
+    this.updateMaterial();
     this.tabBarModifier.id('starward-native-tabbar');
     this.tabBarModifier.onAreaChange(() => this.scheduleBadge());
     this.barVisibilityChanged();
   }
 
   aboutToDisappear(): void { this.mounted = false; }
+
+  @Monitor('materialInteractionEnabled')
+  private updateMaterial(): void {
+    try {
+      this.immersiveBar = StarwardMaterial.immersiveAvailable() &&
+        hdsMaterial.getSystemMaterialTypes().includes(hdsMaterial.MaterialType.IMMERSIVE);
+    } catch {
+      this.immersiveBar = false;
+    }
+  }
 
   @Monitor('unreadLetters', 'selectedIndex', 'floatingGap')
   private scheduleBadge(): void {
@@ -113,14 +127,16 @@ export struct StarwardBottomTabs {
         }.tabBar(this.tabStyle(this.selectedIndex === 3 ? $r('app.media.icon_nav_passport_fill') :
           $r('app.media.icon_nav_passport_regular'), '护照', 'nav-profile'))
       }.width('100%').height('100%').vertical(false).scrollable(false).barOverlap(true)
+        .barBackgroundColor(this.immersiveBar ? Color.Transparent : $r('app.color.raised'))
         .barFloatingStyle({
           barSideMargin: 20,
           barBottomMargin: this.floatingGap,
           gradientMask: { maskColor: Color.Transparent },
           adaptToHandedness: this.followHandedness,
-          lightColor: this.materialInteractionEnabled ? $r('app.color.accent') : Color.Transparent,
-          systemMaterialEffect: { materialType: hdsMaterial.MaterialType.IMMERSIVE,
-            materialLevel: hdsMaterial.MaterialLevel.ADAPTIVE }
+          lightColor: this.immersiveBar && this.materialInteractionEnabled ?
+            $r('app.color.accent') : Color.Transparent,
+          systemMaterialEffect: this.immersiveBar ? { materialType: hdsMaterial.MaterialType.IMMERSIVE,
+            materialLevel: hdsMaterial.MaterialLevel.ADAPTIVE } : undefined
         })
         .onContentWillChange((current: number, coming: number): boolean => {
           const allowed: boolean = this.validIndex(coming) &&
@@ -153,32 +169,86 @@ export struct StarwardBottomTabs {
   }
 }
 
-/** Category switching and its transition are owned by native Tabs/SubTabBarStyle. */
+/** The page owns category state; ArkUI supplies the capsule, selection and input feedback. */
+@ComponentV2
+export struct StarwardCapsuleSegment {
+  @Require @Param items: SegmentButtonV2Items;
+  @Param selectedIndex: number = 0;
+  @Param reducedMotion: boolean = true;
+  @Param nodeId: string = '';
+  @Event selectionChanged: (index: number) => void = () => {};
+
+  build() {
+    Column() {
+      CapsuleSegmentButtonV2({
+        items: this.items,
+        selectedIndex: this.selectedIndex,
+        $selectedIndex: (index: number) => this.selectionChanged(index),
+        buttonPadding: LengthMetrics.vp(4),
+        buttonBorderRadius: LengthMetrics.vp(999),
+        buttonBackgroundColor: ColorMetrics.resourceColor($r('app.color.inset')),
+        itemSpace: LengthMetrics.vp(0),
+        itemMinHeight: LengthMetrics.vp(44),
+        itemBorderRadius: LengthMetrics.vp(999),
+        itemFontColor: ColorMetrics.resourceColor($r('app.color.muted')),
+        itemSelectedFontColor: ColorMetrics.resourceColor($r('app.color.on_accent')),
+        itemSelectedBackgroundColor: ColorMetrics.resourceColor($r('app.color.accent')),
+        itemFontWeight: FontWeight.Medium,
+        itemSelectedFontWeight: FontWeight.Medium,
+        enableStateAnimation: !this.reducedMotion
+      }).width('100%')
+    }.id(this.nodeId).width('100%').border({ width: 1, radius: 999, color: $r('app.color.border') })
+  }
+}
+
+/** ArkUI handles horizontal gestures between two independently scrollable categories. */
+@ComponentV2
+export struct StarwardPaneTabs {
+  @Param selectedIndex: number = 0;
+  @Param reducedMotion: boolean = true;
+  @Param nodeId: string = '';
+  @Event selectionChanged: (index: number) => void = () => {};
+  @BuilderParam first: () => void;
+  @BuilderParam second: () => void;
+
+  build() {
+    Tabs({ barPosition: BarPosition.Start, index: this.selectedIndex }) {
+      TabContent() { this.first() }
+      TabContent() { this.second() }
+    }.id(this.nodeId).width('100%').height('100%').barHeight(0)
+      .animationDuration(this.reducedMotion ? 0 : 250)
+      .onSelected((index: number) => this.selectionChanged(index))
+  }
+}
+
+/** The native segment and scrollable panes share the owner's selected category. */
 @ComponentV2
 export struct StarwardJourneyTabs {
-  @Param currentCount: number = 0;
-  @Param historyCount: number = 0;
   @Param selectedCategory: number = 0;
+  @Param reducedMotion: boolean = true;
   @Event categoryChanged: (index: number) => void = () => {};
   @BuilderParam currentJourneys: () => void;
   @BuilderParam pastJourneys: () => void;
+  private readonly segments: SegmentButtonV2Items = new SegmentButtonV2Items([
+    { text: '待赴', accessibilityText: '待赴' },
+    { text: '回响', accessibilityText: '回响' }
+  ]);
+
+  private select(index: number): void {
+    if ((index === 0 || index === 1) && index !== this.selectedCategory) {
+      this.categoryChanged(index);
+    }
+  }
 
   build() {
-    Tabs({ barPosition: BarPosition.Start, index: this.selectedCategory }) {
-      TabContent() {
-        this.currentJourneys()
-      }.tabBar(SubTabBarStyle.of(`待赴之约 ${this.currentCount}`).id('current-tab')
-        .indicator({ color: $r('app.color.accent'), height: 2 })
-        .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'),
-          font: { size: 15, weight: FontWeight.Medium } }))
-      TabContent() {
-        this.pastJourneys()
-      }.tabBar(SubTabBarStyle.of(`旅途回响 ${this.historyCount}`).id('history-tab')
-        .indicator({ color: $r('app.color.accent'), height: 2 })
-        .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'),
-          font: { size: 15, weight: FontWeight.Medium } }))
-    }.width('100%').height('100%').barMode(BarMode.Scrollable).barHeight(53)
-      .onChange((index: number) => this.categoryChanged(index))
+    Column() {
+      StarwardCapsuleSegment({ items: this.segments, selectedIndex: this.selectedCategory,
+        reducedMotion: this.reducedMotion, nodeId: 'journey-segment',
+        selectionChanged: (index: number) => this.select(index) }).margin({ bottom: 18 })
+      StarwardPaneTabs({ selectedIndex: this.selectedCategory, reducedMotion: this.reducedMotion,
+        nodeId: 'journey-panes', selectionChanged: (index: number) => this.select(index),
+        first: () => { this.currentJourneys() }, second: () => { this.pastJourneys() } }).layoutWeight(1)
+    }.width('100%').height('100%')
   }
 }
 

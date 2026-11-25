@@ -1,0 +1,190 @@
+{
+  "status": "passed",
+  "checks": [
+    "Lobby avatar opens the real fixed preview passport",
+    "Settings displays the installed HAP version name and code",
+    "Settings Back returns to passport",
+    "nav-rewards starts with its own heading",
+    "nav-notifications starts with its own heading",
+    "nav-profile starts with its own heading",
+    "Official floating bar drag reaches the target on release",
+    "No input or scroll needed to see the complete native login card after logout",
+    "Explicit logout clears both native inputs",
+    "Native dark login fits the star-ring and complete form on the first screen",
+    "Native light login fits the star-ring and complete form on the first screen",
+    "Expanding help keeps the hero in place",
+    "Empty login feedback leaves the hero in place",
+    "Login submit remains reachable in the resized IME viewport",
+    "Keyboard dismissal restores the complete login view and original hero position",
+    "Isolated HTTPS direct re-login returns to the lobby"
+  ],
+  "photos": {
+    "darkOrbitSample": "b3754463f3f1b1b460337121e9ebc45d44cef89bb61f267f1272b8dec6b0beed",
+    "dark": "9f4238b7f039afd6fb00ddfdffd999acc8fd04f74b3a6602635f4728a5e6c5f0",
+    "light": "193435050bf3eca10b6511c3ba47b7eb48ce4aa4b910f87865155ebcf00710ba"
+  },
+  "installedHapSha256": "3880a1a444d76a200b80776b6f89f579da48d2cf08f140eefa3d46b6c90b693b",
+  "firstView": {
+    "afterLogout": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-form-card": [
+          58,
+          1137,
+          1202,
+          2269
+        ],
+        "account": [
+          126,
+          1306,
+          1135,
+          1476
+        ],
+        "password": [
+          126,
+          1616,
+          1135,
+          1786
+        ],
+        "primary-action": [
+          126,
+          1837,
+          1134,
+          2006
+        ],
+        "login-help": [
+          126,
+          2045,
+          1134,
+          2188
+        ]
+      }
+    },
+    "dark": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-form-card": [
+          58,
+          1137,
+          1202,
+          2269
+        ],
+        "account": [
+          126,
+          1306,
+          1135,
+          1476
+        ],
+        "password": [
+          126,
+          1616,
+          1135,
+          1786
+        ],
+        "primary-action": [
+          126,
+          1837,
+          1134,
+          2006
+        ],
+        "login-help": [
+          126,
+          2045,
+          1134,
+          2188
+        ]
+      }
+    },
+    "light": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-form-card": [
+          58,
+          1137,
+          1202,
+          2269
+        ],
+        "account": [
+          126,
+          1306,
+          1135,
+          1476
+        ],
+        "password": [
+          126,
+          1616,
+          1135,
+          1786
+        ],
+        "primary-action": [
+          126,
+          1837,
+          1134,
+          2006
+        ],
+        "login-help": [
+          126,
+          2045,
+          1134,
+          2188
+        ]
+      }
+    },
+    "keyboardDismissed": {
+      "safeViewportPx": [
+        0,
+        422,
+        1260,
+        2629
+      ],
+      "controlsPx": {
+        "auth-form-card": [
+          58,
+          1137,
+          1202,
+          2393
+        ],
+        "account": [
+          126,
+          1306,
+          1135,
+          1476
+        ],
+        "password": [
+          126,
+          1616,
+          1135,
+          1786
+        ],
+        "primary-action": [
+          126,
+          1961,
+          1134,
+          2130
+        ],
+        "login-help": [
+          126,
+          2169,
+          1134,
+          2312
+        ]
+      }
+    }
+  },
+  "stage": "complete"
+}

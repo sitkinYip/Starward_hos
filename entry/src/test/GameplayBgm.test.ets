@@ -13,6 +13,7 @@ export default function gameplayBgmTests(): void {
       expect(questBgmCoordinate(new QuestBgmPosition(0.5, 2).y, 800, 40, 24)).assertEqual(708);
       expect(new QuestBgmPosition(0.5, 2).x).assertEqual(1);
       expect(new QuestBgmPosition(Number.NaN, Number.NaN).y).assertEqual(1);
+      expect(new QuestBgmPosition().y).assertEqual(0.84);
     });
 
     it('usesTheViewedQuestionAndHonorsExplicitSilenceOrAnEmptyCustomTrack', 0, () => {

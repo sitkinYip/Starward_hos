@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "fixtureMode": "local synthetic answer settlement replay",
+  "installedHapSha256": "bb091e43510da17adfe9a1ea6d2ab1a84386454cc37f3960df3c4a0f0ebafad2",
+  "cases": [
+    {
+      "name": "manual-backdrop",
+      "status": "passed",
+      "autoLabelSeen": false,
+      "manualButtonSeen": true,
+      "question": "第 1 题",
+      "observedWithinMs": 4002
+    },
+    {
+      "name": "auto-backdrop",
+      "status": "passed",
+      "autoLabelSeen": true,
+      "manualButtonSeen": false,
+      "question": "第 2 题",
+      "observedWithinMs": 3993
+    },
+    {
+      "name": "manual-idle",
+      "status": "passed",
+      "autoLabelSeen": false,
+      "manualButtonSeen": true,
+      "question": "第 1 题",
+      "observedWithinMs": 5989
+    }
+  ],
+  "disposableSignedOut": true
+}

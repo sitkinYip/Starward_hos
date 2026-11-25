@@ -2,7 +2,6 @@ import { GameRepository } from '../business/GameRepository';
 import { isRestoredSessionInvalid } from '../business/CredentialStore';
 import { AssignmentDetail, AssignmentSummary, AvatarImage, AvatarUpload, GameFailure, Player,
   validateDisplayName, validatePasswordChange } from '../business/models';
-import { MockGameRepository } from '../data/MockGameRepository';
 import { GameplayPresentation, GameplaySnapshot } from '../business/GameplayModels';
 import { GameplayViewModel } from './GameplayViewModel';
 import { NarrativeViewModel } from './NarrativeViewModel';
@@ -99,7 +98,7 @@ export class SliceViewModel {
   private lobbyListReadFailed: boolean = false;
   private readonly lobbySyncIntervalMs: number;
 
-  constructor(repository: GameRepository = new MockGameRepository(),
+  constructor(repository: GameRepository,
     lobbySyncIntervalMs: number = ASSIGNMENT_SYNC_INTERVAL_MS) {
     this.repository = repository;
     this.lobbySyncIntervalMs = lobbySyncIntervalMs;
@@ -924,8 +923,15 @@ export class SliceViewModel {
     if (this.gate === 'login' && !this.busy) { this.repository.retryPushRemoval?.(); }
   }
 
+  pushSyncOwner(): string {
+    if (this.gate !== 'home' || this.securityBusy || this.securityUnconfirmed || this.player.id.length === 0) {
+      return '';
+    }
+    return `${this.generation}:${this.player.id}`;
+  }
+
   async syncPush(force: boolean): Promise<PushStatus> {
-    if (this.gate !== 'home' || this.securityBusy || this.securityUnconfirmed) { return 'unknown'; }
+    if (this.pushSyncOwner().length === 0) { return 'unknown'; }
     return await this.repository.syncPush?.(force) ?? 'unknown';
   }
 

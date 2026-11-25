@@ -1,0 +1,211 @@
+{
+  "status": "passed",
+  "device": "API26 physical phone",
+  "windowEvidence": "fixed preview",
+  "hapSha256": "bb955bdb5674e41bf5f037d290c795177badbeae48e22d6679d6d8e62319011f",
+  "checks": [
+    "settled Journey geometry matches the previous build",
+    "Rewards to Journey shows the entire title",
+    "Letters and Passport return to Journey with their own title state",
+    "Journey identity still opens Passport",
+    "rapid switching and repeat tapping settle on Journey"
+  ],
+  "geometry": {
+    "nav-home": {
+      "headerPx": [
+        58,
+        150,
+        1202,
+        325
+      ],
+      "contentPx": [
+        58,
+        403,
+        1202,
+        525
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    },
+    "nav-rewards": {
+      "headerPx": null,
+      "contentPx": [
+        0,
+        124,
+        1260,
+        2720
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    },
+    "nav-notifications": {
+      "headerPx": null,
+      "contentPx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    },
+    "nav-profile": {
+      "headerPx": null,
+      "contentPx": [
+        58,
+        190,
+        1202,
+        312
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    }
+  },
+  "sampleTiming": [
+    "frame-start 0 1795604424380",
+    "frame-start 1 1795604424433",
+    "frame-start 2 1795604424495",
+    "tap-start 1795604424549",
+    "frame-start 3 1795604424549",
+    "frame-start 4 1795604424609",
+    "frame-start 5 1795604424661",
+    "frame-start 6 1795604424713",
+    "frame-start 7 1795604424770",
+    "frame-start 8 1795604424853",
+    "frame-start 9 1795604424876",
+    "frame-end 1 1795604424887",
+    "frame-end 0 1795604424886",
+    "frame-start 10 1795604424956",
+    "frame-end 3 1795604424972",
+    "tap-end 1795604424992",
+    "frame-end 2 1795604424998",
+    "frame-start 11 1795604425004",
+    "frame-end 4 1795604425040",
+    "frame-start 12 1795604425047",
+    "frame-start 13 1795604425128",
+    "frame-end 5 1795604425144",
+    "frame-start 14 1795604425151",
+    "frame-end 6 1795604425199",
+    "frame-start 15 1795604425216",
+    "frame-end 7 1795604425228",
+    "frame-start 16 1795604425271",
+    "frame-end 8 1795604425359",
+    "frame-start 17 1795604425366",
+    "frame-end 9 1795604425431",
+    "frame-start 19 1795604425440",
+    "frame-start 18 1795604425445",
+    "frame-end 11 1795604425455",
+    "frame-end 10 1795604425485",
+    "frame-end 12 1795604425556",
+    "frame-end 13 1795604425669",
+    "frame-end 14 1795604425678",
+    "frame-end 15 1795604425699",
+    "frame-end 16 1795604425841",
+    "frame-end 17 1795604425847",
+    "frame-end 19 1795604425954",
+    "frame-end 18 1795604425956"
+  ],
+  "motionEvidence": {
+    "transition": "Rewards to Journey",
+    "framesCaptured": 20,
+    "scaledRasterPx": [
+      630,
+      1360
+    ],
+    "journeyFrames": [
+      {
+        "frame": 5,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 0
+      },
+      {
+        "frame": 6,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 324
+      },
+      {
+        "frame": 7,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1189
+      },
+      {
+        "frame": 8,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 9,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 10,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 11,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 12,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 13,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 14,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 15,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 16,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 17,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 18,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      },
+      {
+        "frame": 19,
+        "headingTopRasterPx": 211,
+        "identityInkPixels": 1260
+      }
+    ],
+    "durationMsConfigured": 240,
+    "reducedMotionSettingToggledOnDevice": false
+  }
+}

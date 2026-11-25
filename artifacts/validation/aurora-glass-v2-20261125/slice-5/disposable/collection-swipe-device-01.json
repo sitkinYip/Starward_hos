@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "installedHapSha256": "f70d99e2b2c2e18a8384762491fee4c1f5e1a47b66ba1969bcf5aeeed80fc583",
+  "runtimeSha256": "77dcb7fd034dcf5f7dc6bc16f79342c1550a80dac64486f467fb248f930980dd",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "Left from Pending reveals Claimed and its own grid",
+    "Right from Claimed reveals Pending and its own grid",
+    "Tap selection and native swipe stay synchronized",
+    "Tapping the swiped back card opens the authoritative reward",
+    "Swiping and viewing preserved authoritative reward data"
+  ],
+  "states": [
+    {
+      "name": "claimed-from-swipe",
+      "pngSha256": "0261bf56b97b7967ea38b14d2f283444d28d8decb387f5fa006a17c7db1301bd"
+    },
+    {
+      "name": "pending-from-swipe",
+      "pngSha256": "089c32683d04a37a1ca943f9b6a63db174cc19cfc2c697a107547b88f4d2c94b"
+    },
+    {
+      "name": "pending-sheet-after-swipe",
+      "pngSha256": "267cefc7d836e2fef9fd64f1c71e1c398b95c1dee69954c8a42ad622ea63a20d"
+    }
+  ],
+  "stage": "complete"
+}

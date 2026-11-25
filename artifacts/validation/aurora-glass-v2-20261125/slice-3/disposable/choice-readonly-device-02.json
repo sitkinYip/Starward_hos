@@ -1,0 +1,51 @@
+{
+  "stage": "complete",
+  "status": "passed",
+  "installedHapSha256": "e3e3fdd7a4e802b28174fe7d4721bb41dab68454045a2a77b2fe82912351c04a",
+  "runtimeSha256": "96294f8a9c9744fc33300b0ac49a37156c106e56c1e22b9597980959250d4987",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The dark completed choice opens with a collapsed readonly composer",
+    "All four dark Radios are disabled and exactly one server answer is selected",
+    "The dark readonly sheet survives closing its real image cover",
+    "The light completed choice opens with a collapsed readonly composer",
+    "All four light Radios are disabled and exactly one server answer is selected",
+    "The light readonly sheet survives closing its real image cover",
+    "Readonly option and image actions preserve the authoritative choice, XP and receipts"
+  ],
+  "states": [
+    {
+      "state": "dark-closed",
+      "pngSha256": "438799d3692165dd1eea07b5170f3b5a575c33f90bde6eee7506eb8ecb40b066"
+    },
+    {
+      "state": "dark-sheet",
+      "pngSha256": "b39022d268053d796538905135ce34a0afd54ea74fc568ee9b819a9c78c7ba1f"
+    },
+    {
+      "state": "dark-image",
+      "pngSha256": "501bc5dc9db11b4fbc7e4bd8c5783a2e65c6120152c62d528a684cb40a29c867"
+    },
+    {
+      "state": "dark-sheet-returned",
+      "pngSha256": "d267166f54ec1a070c33a5f932219caa6ccb09902ba4f13b7e625e4ca29eab90"
+    },
+    {
+      "state": "light-closed",
+      "pngSha256": "20d8cc10231f839954968304c3b7668d52daf4f133a8463d77dc5bcf4af46c7f"
+    },
+    {
+      "state": "light-sheet",
+      "pngSha256": "e1219d25494733d61d10d72fe0abb86a89407d90df6f76eade6cd4564380c4bf"
+    },
+    {
+      "state": "light-image",
+      "pngSha256": "eef7210447009e8ff521c2183f11a376ed8c8ce97ffe08a1786a9cca1aa85b0f"
+    },
+    {
+      "state": "light-sheet-returned",
+      "pngSha256": "9270e9cdd2e96dd7b30f522084829d24a900bb08f4e78acc732d55b2239e3dab"
+    }
+  ],
+  "disposableSignedOut": true
+}

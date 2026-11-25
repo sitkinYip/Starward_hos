@@ -186,7 +186,7 @@ export struct StarwardAvatarCrop {
             .onChange((value: number) => { this.vertical = value; })
         }
         if (this.error.length > 0) {
-          Text(this.error).id('avatar-crop-error').fontColor($r('app.color.danger')).fontSize(13)
+          Text(this.error).id('avatar-crop-error').fontColor($r('app.color.danger_strong')).fontSize(13)
         }
         Button(this.processing ? '正在压缩…' : '使用此头像').id('avatar-crop-confirm').width('100%').height(52)
           .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))

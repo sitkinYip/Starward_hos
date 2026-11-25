@@ -1,4 +1,5 @@
 import { HttpsGameRepository } from '../data/HttpsGameRepository';
+import { MockGameRepository } from '../data/MockGameRepository';
 import { GameRepository } from '../business/GameRepository';
 import { GameplayAnswerResult, GameplaySnapshot } from '../business/GameplayModels';
 import { GameNotification } from '../business/GameNotification';
@@ -93,7 +94,7 @@ export function createSliceViewModel(): SliceViewModel {
     return unavailable;
   }
   if (AppEnvironment.endpoint.length === 0) {
-    return new SliceViewModel();
+    return new SliceViewModel(new MockGameRepository());
   }
   const native: NativeHttpTransport = new NativeHttpTransport(AppEnvironment.caData, AppEnvironment.timeoutMs);
   const transport: HttpTransport = AppEnvironment.production ?

@@ -1,0 +1,188 @@
+Ensure the project source is trustworthy before proceeding.
+
+[ohpm install] Running...
+[32minstall completed in 0s 36ms[39m
+
+[hvigor sync] Skipped (configurations unchanged)
+
+[hvigor build] Running...
+> hvigor [32mUP-TO-DATE :entry:default@PreBuild...  [39m
+> hvigor [32mFinished :entry:default@CreateModuleInfo... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@GenerateMetadata...  [39m
+> hvigor [32mFinished :entry:default@ConfigureCmake... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@MergeProfile...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@CreateBuildProfile...  [39m
+> hvigor [32mFinished :entry:default@PreCheckSyscap... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@GeneratePkgContextInfo...  [39m
+> hvigor [32mFinished :entry:default@GeneratePkgSdkInfo... after 1 ms [39m
+> hvigor [32mFinished :entry:default@ProcessIntegratedHsp... after 1 ms [39m
+> hvigor [32mFinished :entry:default@BuildNativeWithCmake... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@MakePackInfo...  [39m
+> hvigor [32mFinished :entry:default@SyscapTransform... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessProfile...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessRouterMap...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessShareConfig...  [39m
+> hvigor [32mFinished :entry:default@ProcessStartupConfig... after 1 ms [39m
+> hvigor [32mFinished :entry:default@BuildNativeWithNinja... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessResource...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@GenerateLoaderJson...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessLibs...  [39m
+> hvigor [32mFinished :entry:default@CompileResource... after 244 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@DoNativeStrip...  [39m
+> hvigor [32mFinished :entry:default@BuildJS... after 2 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@CacheNativeLibs...  [39m
+> hvigor [91mERROR: Failed :entry:default@CompileArkTS... [39m
+> hvigor [33mWARN: 
+[33m1 WARN: [33m[33mArkTS:WARN: For details about ArkTS syntax errors, see FAQs[39m[39m
+[33m2 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/ClueVideoFile.ets:40:35
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m3 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/ClueVideoFile.ets:109:23
+ The system capacity of this api 'media' is not supported on all devices
+[39m[39m
+[33m4 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/ClueVideoFile.ets:143:54
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m5 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/HarmonyPush.ets:41:56
+ The system capacity of this api 'createMd' is not supported on all devices
+[39m[39m
+[33m6 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:442:26
+ The system capacity of this api 'media' is not supported on all devices
+[39m[39m
+[33m7 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:450:57
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m8 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:478:45
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m9 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:485:37
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m10 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:562:18
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m11 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:566:25
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m12 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:568:30
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m13 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:573:25
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m14 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:576:26
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m15 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:577:16
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m16 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:578:26
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m17 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPlayer.ets:580:30
+ The system capacity of this api 'audio' is not supported on all devices
+[39m[39m
+[33m18 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/AccountPreferenceKey.ets:9:52
+ The system capacity of this api 'createMd' is not supported on all devices
+[39m[39m
+[33m19 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestBgmPreference.ets:9:24
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m20 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestNarrativeAttentionPreference.ets:8:24
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m21 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/QuestNarrativeAttentionPreference.ets:12:12
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m22 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardTabs.ets:189:45
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m23 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardTabs.ets:193:37
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m24 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardTabs.ets:194:45
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m25 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/ui/StarwardTabs.ets:195:51
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m26 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/features/RewardCard.ets:149:42
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m27 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/features/RewardsPage.ets:79:42
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m28 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/AssetCredentialStore.ets:21:54
+ The system capacity of this api 'createMd' is not supported on all devices
+[39m[39m
+[33m29 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/AssetCredentialStore.ets:21:54
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m30 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/AssetCredentialStore.ets:22:10
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m31 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/AssetCredentialStore.ets:23:75
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m32 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/HostedPrivacy.ets:83:68
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m33 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/features/createPushPermissionFlow.ets:22:24
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m34 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/features/createPushPermissionFlow.ets:26:24
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m35 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/PushOnboardingPreference.ets:15:24
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m36 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/PushOnboardingPreference.ets:19:12
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m37 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/PushOnboardingPreference.ets:24:25
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m38 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/PushOnboardingPreference.ets:31:15
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m39 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/PushOnboardingPreference.ets:32:11
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m40 WARN: [33m[33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/platform/PushOnboardingPreference.ets:34:11
+ Function may throw exceptions. Special handling is required.
+[39m[39m
+[33m41 WARN: [33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/pages/Index.ets:467:49
+ The '@Monitor' decorator needs to monitor the state variables that exist.[39m[39m
+[33m42 WARN: [33mArkTS:WARN File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/pages/Index.ets:999:7
+ The current component id "theme-picker" is duplicate with /Users/sitkin/my_code/starward_hm/entry/src/main/ets/pages/Index.ets:968:7.[39m[39m[39m
+> hvigor [91mERROR: ArkTS Compiler Error
+[31m1 ERROR: [31m10605040 ArkTS Compiler Error
+[31mError Message: Object literals cannot be used as type declarations (arkts-no-obj-literals-as-types) At File: /Users/sitkin/my_code/starward_hm/entry/src/main/ets/features/GameplayAnswerComposer.ets:57:30
+[31m[39m
+[39m
+[31mCOMPILE RESULT:FAIL {ERROR:2 WARN:42}[39m
+
+[31m* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+[39m
+[31m
+FAILURE: Build completed with 1 failure.[31m[39m
+[31m
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task 'default@CompileArkTS'.
+  > Compilation error. See log for more details
+
+[31m* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+[31m[39m
+[31m================================================================================[31m[39m
+> hvigor [91mERROR: BUILD FAILED in 2 s 985 ms [39m
+
+25 tasks in total: 11 executed, 14 up-to-date
+hvigor build failed
+Command failed with exit code 255: /Applications/DevEco-Studio.app/Contents/tools/node/bin/node /Applications/DevEco-Studio.app/Contents/tools/hvigor/bin/hvigorw.js assembleHap --mode module -p 'module=entry@default' -p 'product=default' -p 'buildMode=debug' '--analyze=normal' --parallel --incremental
+hvigor build failed

@@ -15,6 +15,7 @@ export class RewardsViewModel {
   @Trace showSyncNotice: boolean = false;
   private owner: string = '';
   private active: boolean = false;
+  private summaryActive: boolean = false;
   private syncFailed: boolean = false;
   private pending: ReadCancellation | null = null;
   private timer: number = -1;
@@ -34,18 +35,25 @@ export class RewardsViewModel {
     this.error = '';
   }
 
-  setActive(active: boolean): void {
+  setActive(active: boolean, summaryActive: boolean = false): void {
     const visible: boolean = active && this.owner.length > 0;
-    if (this.active === visible) { return; }
+    const showingSummary: boolean = summaryActive && this.owner.length > 0;
+    if (this.active === visible && this.summaryActive === showingSummary) { return; }
+    const wasReading: boolean = this.canRead();
     this.active = visible;
-    if (visible) {
-      void this.refresh();
-    } else {
-      this.cancelRead();
+    this.summaryActive = showingSummary;
+    if (!this.active) {
       this.close();
       this.dismissSyncNotice();
     }
+    if (!this.canRead()) {
+      this.cancelRead();
+    } else if (!wasReading) {
+      void this.refresh();
+    }
   }
+
+  private canRead(): boolean { return this.active || this.summaryActive; }
 
   open(id: string): void {
     if (this.active) {
@@ -62,7 +70,7 @@ export class RewardsViewModel {
   }
 
   async refresh(): Promise<void> {
-    if (!this.active) { return; }
+    if (!this.canRead()) { return; }
     // An explicit refresh supersedes a poll with a new account-bound read.
     this.cancelRead();
     await this.load(true);
@@ -90,7 +98,7 @@ export class RewardsViewModel {
   }
 
   private async load(showProgress: boolean): Promise<void> {
-    if (!this.active || this.pending !== null) { return; }
+    if (!this.canRead() || this.pending !== null) { return; }
     const attempt: ReadCancellation = new ReadCancellation();
     const owner: string = this.owner;
     this.pending = attempt;

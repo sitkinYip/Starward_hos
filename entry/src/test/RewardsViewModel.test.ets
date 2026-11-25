@@ -35,6 +35,62 @@ class RewardRepository extends MockGameRepository {
 
 export default function rewardsViewModelTests(): void {
   describe('RewardsViewModel', () => {
+    it('sharesAnOwnerBoundReadWithPassportWithoutEnablingRewardDetail', 0, async () => {
+      const repository: RewardRepository = new RewardRepository();
+      const model: RewardsViewModel = new RewardsViewModel(repository, () => {});
+      try {
+        model.bindOwner('owner');
+        repository.entries = [grant('owner')];
+        model.setActive(false, true);
+        await model.refresh();
+        expect(model.loaded).assertTrue();
+        expect(model.entries.length).assertEqual(1);
+        model.open('gift');
+        expect(model.selected).assertNull();
+
+        repository.hold = true;
+        const sharedRead: Promise<void> = model.refresh();
+        const cancellation: ReadCancellation | undefined = repository.lastRead;
+        model.setActive(true);
+        expect(repository.lastRead === cancellation).assertTrue();
+        expect(cancellation?.cancelled).assertFalse();
+        repository.deliver?.([grant('owner')]);
+        await sharedRead;
+        model.open('gift');
+        expect(model.selected?.id).assertEqual('gift');
+        model.setActive(false, true);
+        expect(model.selected).assertNull();
+        expect(model.entries.length).assertEqual(1);
+      } finally {
+        model.setActive(false);
+      }
+    });
+
+    it('cancelsAndDiscardsAnOldPassportReadWhenItsAccountChanges', 0, async () => {
+      const repository: RewardRepository = new RewardRepository();
+      const model: RewardsViewModel = new RewardsViewModel(repository, () => {});
+      try {
+        model.bindOwner('first');
+        model.setActive(false, true);
+        repository.hold = true;
+        const previous: Promise<void> = model.refresh();
+        const cancellation: ReadCancellation | undefined = repository.lastRead;
+        model.bindOwner('second');
+        expect(cancellation?.cancelled).assertTrue();
+        expect(model.loaded).assertFalse();
+        model.setActive(false, true);
+        repository.entries = [grant('second', 'new')];
+        await model.refresh();
+        repository.deliver?.([grant('first', 'old')]);
+        await previous;
+        expect(model.entries.length).assertEqual(1);
+        expect(model.entries[0].id).assertEqual('new');
+        expect(model.selected).assertNull();
+      } finally {
+        model.setActive(false);
+      }
+    });
+
     it('keepsOpenDetailOnTransientFailureAndUpdatesItsServerStatus', 0, async () => {
       const repository: RewardRepository = new RewardRepository();
       const model: RewardsViewModel = new RewardsViewModel(repository, () => {});

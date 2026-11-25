@@ -55,17 +55,22 @@ export function isNarrativeClue(clue: GameplayClue): boolean {
   return (clue.kind === 'letter' || clue.kind === 'bless') && clue.narrative.trim().length > 0;
 }
 
-/** Only a current, granted cue that is absent from the visible archive needs a reminder. */
-export function nextNarrativeAttention(snapshot: GameplaySnapshot | null, visibleClues: GameplayClue[],
+function clueBelongsToLevel(clue: GameplayClue, levelId: string): boolean {
+  if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === levelId; }
+  return clue.sessionLevel.length === 0 || clue.sessionLevel === levelId;
+}
+
+/** Remind about the first unopened story grant outside the current question's clue scope. */
+export function nextNarrativeAttention(snapshot: GameplaySnapshot | null, level: GameplayLevel | null,
   openedIds: string[]): GameplayClue | null {
   if (snapshot === null || (snapshot.detail.status !== 'active' && snapshot.detail.status !== 'completed')) {
     return null;
   }
-  const omitted: Set<string> = new Set(openedIds);
-  visibleClues.forEach((clue: GameplayClue) => omitted.add(clue.id));
+  const opened: Set<string> = new Set(openedIds);
   const levelOrder: Map<string, number> = new Map();
   snapshot.levels.forEach((level: GameplayLevel, index: number) => levelOrder.set(level.id, index));
-  return snapshot.clues.filter((clue: GameplayClue) => isNarrativeClue(clue) && !omitted.has(clue.id))
+  return snapshot.clues.filter((clue: GameplayClue) => isNarrativeClue(clue) &&
+    !opened.has(clue.id) && (level === null || !clueBelongsToLevel(clue, level.id)))
     .sort((left: GameplayClue, right: GameplayClue) => clueOrder(left, right, levelOrder))[0] ?? null;
 }
 
@@ -102,8 +107,7 @@ export function ordinaryClues(snapshot: GameplaySnapshot | null, level: Gameplay
   return snapshot.clues.filter((clue: GameplayClue) => {
     if (!isPlayableClue(clue, snapshot.detail.totalLevels) && !isNarrativeClue(clue) &&
       !(clue.kind === 'link' && clue.content.url.trim().length > 0)) { return false; }
-    if (clue.source === 'question') { return clue.sessionLevel.length > 0 && clue.sessionLevel === level.id; }
-    return clue.sessionLevel.length === 0 || clue.sessionLevel === level.id;
+    return clueBelongsToLevel(clue, level.id);
   }).sort(clueOrder);
 }
 

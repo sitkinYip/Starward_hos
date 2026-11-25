@@ -1,0 +1,33 @@
+{
+  "stage": "complete",
+  "status": "passed",
+  "installedHapSha256": "fa103225d46e32648ef48c527316e0992a6049fc3fbfbe07e6a6f428e2ccd524",
+  "runtimeSha256": "e7cc70191d8347734ad6a7c985eb5f79ffbb8e41bdb0c212e77f9ed106457b78",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "Two actual questions produce two native progress stars",
+    "Downward scroll hides the title and leaves the native composer fixed",
+    "A short upward gesture restores the native title while the composer stays put",
+    "Real input focus restores the title and the submit control remains present",
+    "Disposable HTTPS ledger records one start and no answers during scroll and focus checks"
+  ],
+  "states": [
+    {
+      "state": "title-at-top",
+      "pngSha256": "7ffedce1c1f942d7f071f68afc9bcdba1e2fe92a43bb36050744b7d58fd4771b"
+    },
+    {
+      "state": "title-after-downward-scroll",
+      "pngSha256": "be9f8426bd8b22fcc3fbafff06ae87cb05a5bdb9270aef5f78d16f6274b2baaa"
+    },
+    {
+      "state": "title-after-short-upward-scroll",
+      "pngSha256": "5fa29682b22d49c06640db277414dcb4ab5e3144912a0894d50564f0cc7c3d47"
+    },
+    {
+      "state": "title-with-keyboard-focus",
+      "pngSha256": "d0587e79670be8465c73ef149f7e577286d04001e4130fc5324950fd2a6bfa54"
+    }
+  ],
+  "disposableSignedOut": true
+}

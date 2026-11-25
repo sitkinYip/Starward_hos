@@ -52,7 +52,7 @@ export struct StarwardPrivacySheet {
       this.anchor()
     }.width('100%').height('100%').bindSheet(this.visible, this.body, {
       height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: false, showClose: false,
-      backgroundColor: $r('app.color.surface'), maskColor: $r('app.color.clue_mask'),
+      backgroundColor: $r('app.color.surface'), maskColor: $r('app.color.modal_mask'),
       enableOutsideInteractive: false,
       onWillDismiss: (action: DismissSheetAction): void => {
         // A mask tap, swipe, or Back cannot bypass the agreement. The owner closes it after verification.

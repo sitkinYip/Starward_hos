@@ -1,0 +1,44 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "d04ca0ca61c4da2382375599f5ba6d8baca0025e5534391e16397056feddf88c",
+  "runtimeSha256": "8e72869b9a8acebda45182f61ae5a833491d4fd072257bcda5f9801a0bf2a9ec",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The dimmed underlying category remains visible in light mode"
+  ],
+  "states": [
+    {
+      "name": "mailbox-light-before",
+      "pngSha256": "ab5decdf7e3635fc2ed9561822441e33f0c5f44968e78b6807cb2ce8e5f1774f"
+    },
+    {
+      "name": "mailbox-light-mask",
+      "pngSha256": "68b08af1a0fe219e55fdfa36fb947f2adccfedeec9897b310f82a7f2c45ae37e"
+    }
+  ],
+  "themeComparisons": [
+    {
+      "theme": "light",
+      "samplePx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "before": {
+        "contrast": 0.128543,
+        "edgeContrast": 0.115521
+      },
+      "masked": {
+        "contrast": 0.006584,
+        "edgeContrast": 0.172332
+      },
+      "systemBarLumaJumps": {
+        "statusBar": 0.097585,
+        "gestureArea": 0.106001
+      }
+    }
+  ],
+  "failure": "Glass shade is continuous across both system bar boundaries in light mode",
+  "stage": "mailbox-mask-themes"
+}

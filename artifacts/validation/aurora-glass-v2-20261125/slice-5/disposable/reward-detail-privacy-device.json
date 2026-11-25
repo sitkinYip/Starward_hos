@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "installedHapSha256": "f70d99e2b2c2e18a8384762491fee4c1f5e1a47b66ba1969bcf5aeeed80fc583",
+  "runtimeSha256": "77dcb7fd034dcf5f7dc6bc16f79342c1550a80dac64486f467fb248f930980dd",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The available reward exposes its private claim section inside the official Sheet",
+    "The native historical reward omits the private claim section",
+    "The native historical reward omits the private claim section"
+  ],
+  "states": [
+    {
+      "name": "available-sheet-initial",
+      "pngSha256": "4d7b965516e8002cf7fd0f4d1815f54fb459a74b18278645cc8001f47811728e"
+    },
+    {
+      "name": "available-sheet-private-claim",
+      "pngSha256": "8d91e2095c60397124d12475ca9013c8b8a7e696f14a8a54b41bd24a6d7157ef"
+    },
+    {
+      "name": "history-redeemed-light",
+      "pngSha256": "c789304194828cbe293f53b8a3c484f15dbfb16506536d909d92abeb43852b8e"
+    },
+    {
+      "name": "history-voided-light",
+      "pngSha256": "cd79634355c7059bb4b1cefe8d24e6c7171db7aafbbd551e9663473486e9a375"
+    }
+  ],
+  "disposableSignedOut": true
+}

@@ -12,9 +12,6 @@ export struct StarwardFinalDestination {
   build() {
     Column({ space: 24 }) {
       Column({ space: 6 }) {
-        Text('PASSAGE UNLOCKED').fontFamily('monospace').fontSize(12).fontWeight(600)
-          .lineHeight('14.4fp').letterSpacing('1.68fp').fontColor($r('app.color.accent_muted'))
-          .accessibilityLevel('no')
         Text('最终旅程入口已经开启').id('gameplay-final-destination-title').fontFamily(this.displayFont)
           .fontWeight(700).fontSize(18).lineHeight('26fp').fontColor($r('app.color.strong'))
       }.width('100%').alignItems(HorizontalAlign.Start)

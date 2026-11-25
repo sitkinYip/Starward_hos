@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "states": [
+    {
+      "section": "current",
+      "theme": "dark",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "active",
+      "pngSha256": "6726d16e9f830ce0fc58127f22129d2628ffc75cc0668c37399a3e6c895c1fb6"
+    },
+    {
+      "section": "history",
+      "theme": "dark",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "completed",
+      "pngSha256": "2d29fb597f819fa6f6e1e68f9c24d3c1870a43e2d3fa1a54d79eed2d7c2b4094"
+    },
+    {
+      "section": "current",
+      "theme": "light",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "active",
+      "pngSha256": "38c9a4129e6cc67a81eee29b2a55bd95ee1b8f0796a0804da832e446c4953cdf"
+    },
+    {
+      "section": "history",
+      "theme": "light",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "completed",
+      "pngSha256": "0bc329e96c2fa4a9e32f6511ae01b7e9ca8fa22d01f3dc6cb8eef932fb1481f9"
+    }
+  ],
+  "checks": [
+    "Both dark original PNG states share fixed preview data with the Web capture",
+    "Both light original PNG states share fixed preview data with the Web capture",
+    "Official content tab swipe returns from history to current"
+  ],
+  "installedHapSha256": "b256f1ed4f38ac2c45330b881943d7ae60d1a15d7902dea1a3a4f49866a77cde",
+  "sourceBindings": {
+    "driver": "2d73a58cdcf58110ffad749c96e07bbecccde0b5a5dbdc2f0b015d87ce1ab588",
+    "runtime": "c352a333191b192f61864f6f3a4b34af381108d72ec4da252971b4d8da9bb831",
+    "webReport": "59b0f7a2f8d08c3471f640620f62a067b609902c44c02b8550cf4cfa3bdba158"
+  },
+  "stage": "complete"
+}

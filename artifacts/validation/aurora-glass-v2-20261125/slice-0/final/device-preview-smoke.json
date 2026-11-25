@@ -1,0 +1,36 @@
+{
+  "status": "incomplete",
+  "scope": "Fixed isolated preview direct-login/read-only native smoke",
+  "hapSha256": "8502073c0247a5bd81da86bb91b80f05fe12b280d8a990a902a4f8041efec56a",
+  "bindingSha256": {
+    "hap": "8502073c0247a5bd81da86bb91b80f05fe12b280d8a990a902a4f8041efec56a",
+    "runtime": "06026d489599748bc53e0123c8d272c62ddb31b4a998ae3ec185942eca825c16",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "2838d3c75232039ae2f69b21f280d6c578182d6ac6e2ce9ca73c8893afba5611",
+    "hostReadiness": "d6876ac7eb5d8046567873e58b138846a8753a006bf2861cdfbeebd49df64e10",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "01c6aa70490d960a9e6c6793c858da6524789a279b336eeb442c56de96de6e43",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e"
+  },
+  "checksPassed": 1,
+  "checks": [
+    "Fresh strict Host HTTPS confirms the ordinary fixed preview identity"
+  ],
+  "privateScreenshots": [],
+  "cleanup": {
+    "firstExplicitLogoutObserved": false,
+    "firstLogoutInputsEmpty": false,
+    "secondDirectLoginObserved": false,
+    "finalStateObserved": false
+  },
+  "leftLoggedInForReview": false,
+  "businessWriteLedgerObserved": false,
+  "writeScope": "Commands only authenticate/read/navigate/logout; no profile-save, password-save, reset or fault control is invoked. No server write-ledger claim.",
+  "appCredentialsPersisted": false,
+  "createdAt": "2026-11-25T05:21:03.310596+00:00",
+  "failure": "Fresh Host assignment list exactly matches the dedicated seeded preview records",
+  "cleanupMeaning": "Flags record only completed observations; root must inspect the actual foreground before further actions"
+}

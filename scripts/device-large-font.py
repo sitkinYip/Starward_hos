@@ -12,7 +12,7 @@ import sys
 import time
 import urllib.request
 
-from native_device_ui import ROOT, DeviceUI, IsolationControl, SafeFailure, flatten
+from native_device_ui import ROOT, START_ASSIGNMENT_MIN_HEIGHT_VP, DeviceUI, IsolationControl, SafeFailure, flatten
 from isolated_snapshot import ReadonlySnapshot
 
 OUT = ROOT / 'artifacts/validation/large-font'
@@ -99,7 +99,10 @@ class AppViewportUI(DeviceUI):
                 if node and node.get('bounds'):
                     left, top, right, bottom = node['bounds']
                     visible = self.viewport(node_id)
-                    minimum = 52 * DENSITY * .9 if node.get('type') == 'TextInput' or node_id in ('primary-action', 'start-assignment') else (16 * SCALE * DENSITY * .9 if node_id == 'assignment-sync-note-text' else (45.6 * DENSITY * .9 if node_id == 'login-help' else 1))
+                    height = {'primary-action': 52, 'start-assignment': START_ASSIGNMENT_MIN_HEIGHT_VP,
+                              'assignment-sync-note-text': 16 * SCALE, 'login-help': 45.6}
+                    minimum_vp = 52 if node.get('type') == 'TextInput' else height.get(node_id)
+                    minimum = 1 if minimum_vp is None else minimum_vp * DENSITY * .9
                     if (right > left and bottom - top >= minimum and left >= visible[0] + 4 and
                             right <= visible[2] - 4 and top >= visible[1] + 8 and bottom <= visible[3] - 8):
                         return node

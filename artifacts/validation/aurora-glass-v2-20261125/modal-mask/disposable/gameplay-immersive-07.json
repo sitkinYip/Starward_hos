@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "installedHapSha256": "0875b3886fc4434fbac6c1bb75ed765e8b4a64438a821241d918e68004e0d789",
+  "runtimeSha256": "944e192d6048fee7368a14b6602b2db351f1827d9a05cb0a455e7fede3957b86",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The resting capsule, question card, and two progress stars remain in the safe area",
+    "The native answer bar stays fixed while scrolling beneath the system bar",
+    "Active question pixels change beneath the transparent status bar while scrolling",
+    "Native fading edge softens content underneath the status icons while retaining the underlay",
+    "A short upward page scroll restores the capsule above the question",
+    "Focusing answer input restores the capsule",
+    "The prior active assignment and answer data remain identical"
+  ],
+  "states": [
+    {
+      "name": "gameplay-top",
+      "pngSha256": "53b13caa7dda95a114cad1c412b95b62cb2fe26d0c10444ce521b5e0a507a5e8"
+    },
+    {
+      "name": "gameplay-status-underlay",
+      "pngSha256": "b81935593e70401de3d601d671f51178b9474bf8d16825488de068e4a308e0a1"
+    },
+    {
+      "name": "gameplay-capsule-underlay",
+      "pngSha256": "6e4719480184efcc47562e2bb7db556b56fcc92914f96445771f21334804a8b0"
+    },
+    {
+      "name": "gameplay-immersive-keyboard",
+      "pngSha256": "5dab03d6ad80bec1a2c4fc1bddc633687d350cf212bbb3cbed5ad1139d10a46e"
+    }
+  ],
+  "topLayoutPx": {
+    "viewport": [
+      0,
+      124,
+      1260,
+      2720
+    ],
+    "title": [
+      39,
+      162,
+      1221,
+      324
+    ],
+    "card": [
+      42,
+      497,
+      1218,
+      2720
+    ],
+    "composer": [
+      39,
+      2402,
+      1221,
+      2629
+    ]
+  },
+  "statusBarCropMeanDifference": 0.008007,
+  "scrollLayoutPx": {
+    "viewport": [
+      0,
+      124,
+      1260,
+      2720
+    ],
+    "card": [
+      42,
+      124,
+      1218,
+      2720
+    ]
+  },
+  "disposableSignedOut": true,
+  "stage": "complete"
+}

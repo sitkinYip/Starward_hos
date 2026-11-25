@@ -1,0 +1,126 @@
+{
+  "status": "passed",
+  "states": [
+    {
+      "section": "current",
+      "theme": "dark",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "active",
+      "pngSha256": "3c0f8ffc41ca0c7fffa4d3c3fb24d325f803f4758afc38818258f800256da34c"
+    },
+    {
+      "section": "current",
+      "theme": "light",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "active",
+      "pngSha256": "6dc0b7f8e80698aab269d5164000de5cc26ad606c6232acae588de903aed301e"
+    }
+  ],
+  "checks": [
+    "The dark active card uses the fixed preview data and full card height",
+    "The light active card uses the fixed preview data and full card height"
+  ],
+  "installedHapSha256": "286d8050014affdbec761aaa76accd1c041399ac9cdae97fb053b44d51cae3d0",
+  "sourceBindings": {
+    "driver": "61fcc8057880db5319777a59a4e376b657ce817993823d1a6de5b9765f3df4c1",
+    "runtime": "e0a57e9282bcf625be46650155b1f6660b6d78f422c869cb478aaa93dca0d379",
+    "webReport": "59b0f7a2f8d08c3471f640620f62a067b609902c44c02b8550cf4cfa3bdba158"
+  },
+  "samples": [
+    {
+      "theme": "dark",
+      "name": "active-glow-dark-0.png",
+      "sha256": "97a8fb7fc714a6688dacb5bab3376ac9b739cf048521a228ccadd654fa261f60",
+      "capturedMonotonicMs": 11351186
+    },
+    {
+      "theme": "dark",
+      "name": "active-glow-dark-1.png",
+      "sha256": "6099a2cd356858934664aea389bb7266f2f5c6cc6e28bd6e420edbc1f9e7004a",
+      "capturedMonotonicMs": 11353421
+    },
+    {
+      "theme": "dark",
+      "name": "active-glow-dark-2.png",
+      "sha256": "55299daed4fbe2b0f3375a8f06b314488acbb074e9025c5e5b95496be0fb051e",
+      "capturedMonotonicMs": 11355549
+    },
+    {
+      "theme": "dark",
+      "name": "active-glow-dark-3.png",
+      "sha256": "81fa5eb898d07aef260748e925ee71260191fae0ac8092b40c35069ea3850f50",
+      "capturedMonotonicMs": 11357736
+    },
+    {
+      "theme": "dark",
+      "name": "active-glow-dark-4.png",
+      "sha256": "cece2bd728e0562a536bb3f621e113d92473593d87bb1a619058bb4d48fc38c7",
+      "capturedMonotonicMs": 11360014
+    },
+    {
+      "theme": "light",
+      "name": "active-glow-light-0.png",
+      "sha256": "203c683e98d0f2194280ea3490ee1066a1781294211d2dd9510eff54c1482e9e",
+      "capturedMonotonicMs": 11401679
+    },
+    {
+      "theme": "light",
+      "name": "active-glow-light-1.png",
+      "sha256": "16e2388e4cfad641824fd09568b749d73f70a8042faeed0ff4324a79ea13956c",
+      "capturedMonotonicMs": 11403970
+    },
+    {
+      "theme": "light",
+      "name": "active-glow-light-2.png",
+      "sha256": "8b592ce7d55021dc085ef870a7b1a71fecfc2bebfff39127b31299026f73b146",
+      "capturedMonotonicMs": 11406205
+    },
+    {
+      "theme": "light",
+      "name": "active-glow-light-3.png",
+      "sha256": "cdd76c9fbfd26e99217c875e629220a38879623c8115d9c6f13528b5164ef1a9",
+      "capturedMonotonicMs": 11408401
+    },
+    {
+      "theme": "light",
+      "name": "active-glow-light-4.png",
+      "sha256": "e55dd4f38a463d0b2f18f4906a16a7be12dd8031b1b610f3ef31ef657bddd801",
+      "capturedMonotonicMs": 11410668
+    }
+  ],
+  "stage": "complete"
+}

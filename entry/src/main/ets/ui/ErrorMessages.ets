@@ -7,7 +7,7 @@ export struct InlineError {
   build() {
     if (this.message.length > 0) {
       Text(this.message).id(this.fieldId).fontSize(13).lineHeight('22.1fp')
-        .fontColor($r('app.color.danger')).width('100%').accessibilityText(this.message)
+        .fontColor($r('app.color.danger_strong')).width('100%').accessibilityText(this.message)
     }
   }
 }
@@ -26,7 +26,7 @@ export struct ErrorNotice {
     if (this.message.length > 0) {
       Column({ space: 4 }) {
         Text(this.message).id('error-message').fontSize(14).lineHeight('23.8fp')
-          .fontColor($r('app.color.danger')).width('100%').accessibilityText(this.message)
+          .fontColor($r('app.color.danger_strong')).width('100%').accessibilityText(this.message)
         if (this.retryable || this.showReturn) {
           Row({ space: 8 }) {
             if (this.retryable) {

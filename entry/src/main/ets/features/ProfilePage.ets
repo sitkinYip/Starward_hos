@@ -1,179 +1,208 @@
-import { SliceViewModel } from './SliceViewModel';
-import { LabeledInput } from '../ui/LabeledInput';
-import { InlineError } from '../ui/ErrorMessages';
-import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
-import { StarwardPassport } from '../ui/StarwardPassport';
+import { uiMaterial, window } from '@kit.ArkUI';
 import { AvatarImage } from '../business/models';
+import { InlineError } from '../ui/ErrorMessages';
+import { StarwardMaterial } from '../ui/StarwardMaterial';
+import { StarwardPageHeading } from '../ui/StarwardPageHeading';
+import { StarwardPassport } from '../ui/StarwardPassport';
+import { PassportSummary, summarizePassport } from './PassportSummary';
+import { PassportPasswordEditor, PassportProfileEditor } from './ProfileEditors';
+import { SliceViewModel } from './SliceViewModel';
 
-/** Phone profile content; the root owns routes, the system picker and crop Sheet. */
+type PassportEditor = 'profile' | 'password' | 'theme';
+
+@ComponentV2
+struct PassportSettingRow {
+  @Require @Param nodeId: string;
+  @Require @Param label: string;
+  @Param detail: string = '';
+  @Param destructive: boolean = false;
+  @Param actionEnabled: boolean = true;
+  @Event action: () => void = () => {};
+
+  build() {
+    Button({ type: ButtonType.Normal }) {
+      Row({ space: 12 }) {
+        Text(this.label).layoutWeight(1).fontSize(15).fontWeight(FontWeight.Medium)
+          .fontColor(this.destructive ? $r('app.color.danger_strong') : $r('app.color.strong'))
+          .wordBreak(WordBreak.BREAK_WORD)
+        if (this.detail.length > 0) {
+          Text(this.detail).fontSize(14).fontColor($r('app.color.muted'))
+        }
+        if (!this.destructive) {
+          SymbolGlyph($r('sys.symbol.chevron_right')).fontSize('14vp').fontColor([$r('app.color.muted')])
+            .accessibilityLevel('no')
+        }
+      }.width('100%').padding({ left: 18, right: 18, top: 12, bottom: 12 })
+    }.id(this.nodeId).width('100%').padding(0).constraintSize({ minHeight: 56 })
+      .backgroundColor(Color.Transparent).enabled(this.actionEnabled)
+      .accessibilityText(this.detail.length > 0 ? this.label + '，' + this.detail : this.label)
+      .onClick(() => this.action())
+  }
+}
+
+/** Passport editors retain their own native sheet anchor. The root owns the picker, crop, and routes. */
 @ComponentV2
 export struct ProfilePage {
   @Require @Param vm: SliceViewModel;
   @Param active: boolean = false;
-  @Param displayFont: string = 'serif';
+  @Param motionEnabled: boolean = false;
   @Param bottomClearance: number = 112;
   @Param pickingAvatar: boolean = false;
+  @Param showPrivacyPolicy: boolean = false;
+  @Param showNotifications: boolean = false;
+  @Param themeLabel: string = '跟随系统';
+  @Param themeError: string = '';
+  @Param environmentLabel: string = '';
+  @BuilderParam appearanceControls: () => void;
   @Event chooseAvatar: () => void = () => {};
+  @Event openSettings: () => void = () => {};
+  @Event openNotifications: () => void = () => {};
+  @Event openPrivacyPolicy: () => void = () => {};
   @Event logout: () => void = () => {};
-  @Local section: number = 0;
-  @Local oldPassword: string = '';
-  @Local newPassword: string = '';
-  @Local confirmation: string = '';
+  @Env(ReadonlyEnvKey.WINDOW_SIZE) private windowSize: window.SizeInVP;
+  @Local private editor: PassportEditor | null = null;
+  @Local private editorVisible: boolean = false;
+  private editorOwner: string = '';
+  private editorRevision: number = 0;
+  private editorMaterial: uiMaterial.ImmersiveMaterial | undefined =
+    StarwardMaterial.create(uiMaterial.ImmersiveStyle.THICK);
 
-  @Monitor('vm.securitySuccessRevision')
-  passwordSaved(): void {
-    this.clearPasswords();
+  @Computed
+  get summary(): PassportSummary {
+    return summarizePassport(this.vm.lobbyHasList ? this.vm.items : null,
+      this.vm.rewards.loaded ? this.vm.rewards.entries.length : null);
   }
 
-  @Monitor('active')
-  activityChanged(): void {
-    if (!this.active) {
-      this.clearPasswords();
+  @Monitor('active', 'vm.player')
+  private ownerChanged(): void {
+    if (this.editor !== null && (!this.active || this.editorOwner !== this.vm.player.id)) {
+      this.resetEditor();
     }
   }
 
-  @Monitor('section')
-  sectionChanged(): void {
-    if (this.section !== 1) {
-      this.clearPasswords();
-    }
+  aboutToDisappear(): void { this.resetEditor(); }
+
+  private resetEditor(): void {
+    this.editorRevision++;
+    this.editorVisible = false;
+    this.editor = null;
+    this.editorOwner = '';
   }
 
-  aboutToDisappear(): void {
-    this.clearPasswords();
+  private openEditor(editor: PassportEditor): void {
+    if (this.editor !== null || !this.active || this.vm.gate !== 'home' || this.vm.player.id.length === 0 ||
+      (editor !== 'theme' && this.vm.securityUnconfirmed)) { return; }
+    this.editorRevision++;
+    this.editorOwner = this.vm.player.id;
+    this.editor = editor;
+    this.editorVisible = true;
   }
 
-  private clearPasswords(): void {
-    this.oldPassword = '';
-    this.newPassword = '';
-    this.confirmation = '';
+  private editorTitle(): string {
+    if (this.editor === 'profile') { return '修改资料'; }
+    return this.editor === 'password' ? '修改密码' : '外观';
+  }
+
+  private editorOptions(): SheetOptions {
+    const revision: number = this.editorRevision;
+    return {
+      height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: true,
+      title: { title: this.editorTitle() }, keyboardAvoidMode: SheetKeyboardAvoidMode.TRANSLATE_AND_SCROLL,
+      backgroundColor: this.editorMaterial ? Color.Transparent : $r('app.color.raised'),
+      systemMaterial: this.editorMaterial,
+      maskColor: $r('app.color.modal_mask'),
+      onWillDismiss: (action: DismissSheetAction) => {
+        if (revision !== this.editorRevision) { return; }
+        this.editorVisible = false;
+        action.dismiss();
+      },
+      onDisappear: () => { if (revision === this.editorRevision) { this.resetEditor(); } }
+    };
   }
 
   @Builder
-  passport() {
-    Column() {
-      StarwardPassport({ player: this.vm.player, avatar: this.vm.avatarImage, displayFont: this.displayFont,
-        decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
-    }.id('profile-passport').width('100%').padding(20)
-      .backgroundColor($r('app.color.surface')).border({ width: 1, color: $r('app.color.border'), radius: 18 })
-  }
-
-  @Builder
-  identity() {
-    Column({ space: 20 }) {
-      Row({ space: 16 }) {
-        StarwardPlayerAvatar({ name: this.vm.profileName || this.vm.player.displayName,
-          avatar: this.vm.profilePreview || this.vm.avatarImage, avatarSize: 72,
-          decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
+  private editorContent() {
+    Scroll() {
+      if (this.editor === 'profile') {
+        PassportProfileEditor({ vm: this.vm, pickingAvatar: this.pickingAvatar,
+          chooseAvatar: () => this.chooseAvatar() })
+      } else if (this.editor === 'password') {
+        PassportPasswordEditor({ vm: this.vm, logout: () => this.logout() })
+      } else if (this.editor === 'theme') {
         Column({ space: 8 }) {
-          Button(this.pickingAvatar ? '正在准备照片…' : '更换头像', { type: ButtonType.Normal })
-            .id('profile-avatar-pick').constraintSize({ minHeight: 44 }).fontSize(14)
-            .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-            .enabled(!this.vm.profileBusy && !this.vm.securityBusy && !this.vm.securityUnconfirmed && !this.pickingAvatar)
-            .onClick(() => this.chooseAvatar())
-          Text('JPG / PNG / WebP · 原图最大 50 MB，裁剪后自动压缩')
-            .fontSize(11).lineHeight('18fp').fontColor($r('app.color.muted'))
-        }.layoutWeight(1).alignItems(HorizontalAlign.Start)
-      }.width('100%').alignItems(VerticalAlign.Center)
-      if (this.vm.profileUpload !== null) {
-        Text('已选择：avatar.jpg').id('profile-avatar-pending').fontSize(12).fontColor($r('app.color.muted'))
+          this.appearanceControls()
+          InlineError({ message: this.themeError, fieldId: 'passport-theme-error' })
+        }.width('100%')
       }
-      if (this.vm.avatarError.length > 0) {
-        InlineError({ message: this.vm.avatarError, fieldId: 'avatar-error' })
-        Button('重新尝试', { type: ButtonType.Normal }).id('avatar-retry').height(44)
-          .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-          .enabled(!this.vm.avatarBusy).onClick(() => this.vm.loadAvatar(true))
-      }
-      LabeledInput({ label: '显示昵称', fieldId: 'profile-name', value: this.vm.profileName, fieldLimit: 40,
-        disabled: this.vm.profileBusy || this.vm.securityBusy || this.vm.securityUnconfirmed,
-        changed: (value: string) => this.vm.editProfileName(value) })
-      Text('你的名字，会和解开的谜题一起被记住。').fontSize(12).lineHeight('20fp')
-        .fontColor($r('app.color.muted')).margin({ top: -12 })
-      Column({ space: 6 }) {
-        Text('登录账号').fontSize(12).fontColor($r('app.color.muted'))
-        Text(this.vm.player.account).id('profile-account').fontSize(14).fontColor($r('app.color.text'))
-        Text('账号由游戏管理员创建，不可修改').fontSize(11).fontColor($r('app.color.subtle'))
-      }.width('100%').alignItems(HorizontalAlign.Start)
-      InlineError({ message: this.vm.profileError, fieldId: 'profile-error' })
-      if (this.vm.profileSaved) {
-        Text('资料已保存。新的名片，新的出发。').id('profile-saved').fontSize(13).lineHeight('22fp')
-          .fontColor($r('app.color.accent_text'))
-      }
-      Button(this.vm.profileBusy ? '正在保存…' : '保存资料', { type: ButtonType.Normal })
-        .id('profile-save').width('100%').height(52).borderRadius(10).fontSize(16).fontWeight(600)
-        .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-        .enabled(!this.vm.profileBusy && !this.vm.securityBusy && !this.vm.securityUnconfirmed && !this.pickingAvatar)
-        .onClick(() => this.vm.saveProfile())
-    }.width('100%').alignItems(HorizontalAlign.Start).padding({ top: 24, bottom: 16 })
+    }.id(this.editor === 'profile' ? 'passport-profile-sheet' :
+      this.editor === 'password' ? 'passport-password-sheet' : 'passport-appearance-sheet')
+      .width('100%').constraintSize({ maxHeight: Math.max(140, this.windowSize.height * 0.8) })
+      .padding({ left: 20, right: 20, top: 12, bottom: 24 }).scrollBar(BarState.Auto)
   }
 
   @Builder
-  security() {
-    Column({ space: 20 }) {
-      Text('给你的故事，上把锁。').fontFamily(this.displayFont).fontSize(22).fontColor($r('app.color.strong'))
-      Text('设置只有你知道的通行密语。使用 10—71 个字符。')
-        .fontSize(13).lineHeight('22fp').fontColor($r('app.color.muted'))
-      LabeledInput({ label: '当前密码', fieldId: 'security-old-password',
-        inputType: InputType.Password, value: this.oldPassword,
-        disabled: this.vm.securityBusy || this.vm.profileBusy || this.vm.securityUnconfirmed,
-        changed: (value: string) => { this.oldPassword = value; this.vm.clearSecurityFeedback(); } })
-      LabeledInput({ label: '新密码', fieldId: 'security-new-password',
-        inputType: InputType.Password, value: this.newPassword,
-        fieldLimit: 71, disabled: this.vm.securityBusy || this.vm.profileBusy || this.vm.securityUnconfirmed,
-        changed: (value: string) => { this.newPassword = value; this.vm.clearSecurityFeedback(); } })
-      LabeledInput({ label: '确认新密码', fieldId: 'security-confirm-password',
-        inputType: InputType.Password, value: this.confirmation,
-        fieldLimit: 71, disabled: this.vm.securityBusy || this.vm.profileBusy || this.vm.securityUnconfirmed,
-        changed: (value: string) => { this.confirmation = value; this.vm.clearSecurityFeedback(); } })
-      InlineError({ message: this.vm.securityError, fieldId: 'security-error' })
-      if (this.vm.securitySaved) {
-        Text('密码已更新。你的冒险记录，安心留在这里。').id('security-saved')
-          .fontSize(13).lineHeight('22fp').fontColor($r('app.color.accent_text'))
+  private settingDivider() {
+    Divider().color($r('app.color.border')).strokeWidth(1)
+  }
+
+  @Builder
+  private settingRows() {
+    Column() {
+      PassportSettingRow({ nodeId: 'passport-edit-profile', label: '修改资料',
+        actionEnabled: !this.vm.securityUnconfirmed, action: () => this.openEditor('profile') })
+      this.settingDivider()
+      PassportSettingRow({ nodeId: 'passport-edit-password', label: '修改密码',
+        actionEnabled: !this.vm.securityUnconfirmed, action: () => this.openEditor('password') })
+      this.settingDivider()
+      PassportSettingRow({ nodeId: 'passport-appearance', label: '外观', detail: this.themeLabel,
+        action: () => this.openEditor('theme') })
+      this.settingDivider()
+      PassportSettingRow({ nodeId: 'passport-settings', label: '设置', action: () => this.openSettings() })
+      if (this.showNotifications) {
+        this.settingDivider()
+        PassportSettingRow({ nodeId: 'passport-notifications', label: '旅途通知与订阅设置',
+          action: () => this.openNotifications() })
       }
-      Button(this.vm.securityBusy ? '正在保存…' : '保存新密码', { type: ButtonType.Normal })
-        .id('security-save').width('100%').height(52).borderRadius(10).fontSize(16).fontWeight(600)
-        .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-        .enabled(!this.vm.securityBusy && !this.vm.profileBusy && !this.vm.securityUnconfirmed)
-        .onClick(() => this.vm.changeAccountPassword(this.oldPassword, this.newPassword, this.confirmation))
-      if (this.vm.securityUnconfirmed) {
-        Button('退出登录', { type: ButtonType.Normal }).id('security-unconfirmed-logout').width('100%').height(44)
-          .fontColor($r('app.color.text')).backgroundColor($r('app.color.surface')).onClick(() => this.logout())
+      this.settingDivider()
+      PassportSettingRow({ nodeId: this.vm.securityUnconfirmed ? 'profile-unconfirmed-logout' : 'logout',
+        label: '退出登录', destructive: true, action: () => this.logout() })
+    }.id('passport-settings-group').width('100%')
+      .linearGradient({ angle: 180, colors: [[$r('app.color.glass_card_top'), 0], [$r('app.color.glass_card_bottom'), 1]] })
+      .border({ width: 1, color: $r('app.color.border_strong'), radius: 24 }).clip(true)
+      .shadow({ radius: 14, offsetY: 6, color: $r('app.color.shadow') })
+  }
+
+  @Builder
+  private secondaryRoutes() {
+    Column({ space: 4 }) {
+      if (this.showPrivacyPolicy) {
+        Button('隐私政策', { type: ButtonType.Normal }).id('account-privacy-policy')
+          .constraintSize({ minHeight: 44 }).fontSize(13)
+          .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent)
+          .onClick(() => this.openPrivacyPolicy())
       }
-    }.width('100%').alignItems(HorizontalAlign.Start).padding({ top: 24, bottom: 16 })
+      if (this.environmentLabel.length > 0) {
+        Text(this.environmentLabel).fontSize(11).fontColor($r('app.color.subtle')).textAlign(TextAlign.Center)
+      }
+    }.width('100%')
   }
 
   build() {
     Scroll() {
-      Column({ space: 20 }) {
-        Column({ space: 8 }) {
-          Text('每一个名字，都有自己的故事').fontSize(12).fontColor($r('app.color.accent_text'))
-          Text('冒险者护照').fontFamily(this.displayFont).fontSize(28).fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.strong'))
-          Text('让旅途记住你的模样。').fontSize(14).fontColor($r('app.color.muted'))
-        }.width('100%').alignItems(HorizontalAlign.Start)
-        this.passport()
+      Column({ space: 14 }) {
+        StarwardPageHeading({ title: '护照', nodeId: 'passport-heading' }).margin({ bottom: 4 })
+        StarwardPassport({ player: this.vm.player, avatar: this.vm.avatarImage,
+          active: this.active, reducedMotion: !this.motionEnabled,
+          solved: this.summary.solved, sessions: this.summary.sessions, rewards: this.summary.rewards,
+          decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar) })
         if (this.vm.securityUnconfirmed) {
           InlineError({ message: this.vm.securityError, fieldId: 'profile-security-unconfirmed' })
-          Button('退出登录', { type: ButtonType.Normal }).id('profile-unconfirmed-logout').width('100%').height(44)
-            .fontColor($r('app.color.text')).backgroundColor($r('app.color.surface')).onClick(() => this.logout())
         }
-        Tabs({ barPosition: BarPosition.Start, index: this.section!! }) {
-          TabContent() {
-            this.identity()
-          }.tabBar(SubTabBarStyle.of('我的名片').id('profile-identity-tab')
-            .indicator({ color: $r('app.color.accent'), height: 2 })
-            .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'), font: { size: 15 } }))
-          TabContent() {
-            this.security()
-          }.tabBar(SubTabBarStyle.of('账号安全').id('profile-security-tab')
-            .indicator({ color: $r('app.color.accent'), height: 2 })
-            .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted'), font: { size: 15 } }))
-        }.width('100%').height('auto').barMode(BarMode.Fixed).barHeight(53)
-          .accessibilityText('护照设置').onChange((index: number) => {
-            this.section = index;
-          })
+        this.settingRows()
+        this.secondaryRoutes()
       }.width('100%').alignItems(HorizontalAlign.Start)
-        .padding({ left: 20, right: 20, top: 16, bottom: this.bottomClearance })
+        .padding({ left: 18, right: 18, top: 16, bottom: this.bottomClearance })
     }.id('profile-scroll').width('100%').height('100%').scrollBar(BarState.Off)
+      .bindSheet(this.editorVisible, this.editorContent(), this.editorOptions())
   }
 }

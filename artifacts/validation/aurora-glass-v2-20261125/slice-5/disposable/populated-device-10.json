@@ -1,0 +1,21 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "c6ffc66ffb4c435cef1d0f2f18bf4207f6b9c0f6e7dd60a7b58c7ec4abea05a7",
+  "runtimeSha256": "533ba38f1581ddf94160e8e03b9dfb31b1066a663e658fdef69a8bab1a485ebb",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "Both matching reward cards occupy separate equal width columns",
+    "The Pending category excludes redeemed and voided grants"
+  ],
+  "states": [
+    {
+      "name": "pending-grid-light",
+      "pngSha256": "6d6bd814f52bcf15d67a18fd51450b358bce806da86bb5cefb92c8a9de70b308"
+    }
+  ],
+  "thumbnailNodesObserved": [
+    true
+  ],
+  "failure": "UI expectation timed out: official reward bottom sheet appears",
+  "stage": "exercise-populated"
+}

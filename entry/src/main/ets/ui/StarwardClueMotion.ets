@@ -99,12 +99,10 @@ export struct StarwardClueDialogDecoration {
   aboutToDisappear(): void { this.mounted = false; }
 
   private diameter(): number { return this.combination ? Math.min(720, this.panelWidth * 1.5) : 390; }
-  private ringColor(): ResourceColor { return this.combination ? '#6CB9A2' : '#DAB76A'; }
-
   @Builder
   ring(fraction: number, dashed: boolean) {
     Circle().width(this.diameter() * fraction).height(this.diameter() * fraction)
-      .fill(Color.Transparent).stroke(this.ringColor()).strokeWidth(1).strokeDashArray(dashed ? [2, 3] : [])
+      .fill(Color.Transparent).stroke($r('app.color.accent')).strokeWidth(1).strokeDashArray(dashed ? [2, 3] : [])
   }
 
   @Builder
@@ -115,16 +113,16 @@ export struct StarwardClueDialogDecoration {
       this.ring(this.combination ? 0.24 : 0.52, !this.combination)
       if (this.combination) {
         Column() {}.width(this.diameter() * 0.06).height(this.diameter() * 0.72)
-          .border({ width: 1, color: this.ringColor() }).rotate({ angle: 38 })
+          .border({ width: 1, color: $r('app.color.accent') }).rotate({ angle: 38 })
         Column() {}.width(this.diameter() * 0.72).height(this.diameter() * 0.06)
-          .border({ width: 1, color: this.ringColor() }).rotate({ angle: 38 })
+          .border({ width: 1, color: $r('app.color.accent') }).rotate({ angle: 38 })
       } else {
         Column() {}.width(this.diameter() * 0.38).height(this.diameter() * 0.38)
-          .border({ width: 1, color: this.ringColor() }).rotate({ angle: 45 })
+          .border({ width: 1, color: $r('app.color.accent') }).rotate({ angle: 45 })
         Column() {}.width(this.diameter() * 0.84).height(this.diameter() * 0.08)
-          .border({ width: 1, color: this.ringColor() })
+          .border({ width: 1, color: $r('app.color.accent') })
         Column() {}.width(this.diameter() * 0.08).height(this.diameter() * 0.84)
-          .border({ width: 1, color: this.ringColor() })
+          .border({ width: 1, color: $r('app.color.accent') })
       }
     }.id('gameplay-clue-dialog-orbit').width(this.diameter()).height(this.diameter())
       .position({ x: this.combination ? (this.panelWidth - this.diameter()) / 2 : this.panelWidth - 260,
@@ -139,7 +137,7 @@ export struct StarwardClueDialogDecoration {
         .position({ x: 7, y: 7 }).border({ width: 1, color: $r('app.color.accent_faint') })
       Column() {}.id('gameplay-clue-dialog-edge').width(this.panelWidth * 0.7).height(1)
         .linearGradient({ direction: GradientDirection.Right,
-          colors: [[Color.Transparent, 0], ['#B7F4D789', 0.5], [Color.Transparent, 1]] })
+          colors: [[Color.Transparent, 0], [$r('app.color.glow_accent'), 0.5], [Color.Transparent, 1]] })
         .position({ x: this.panelWidth * 0.15, y: 0 })
         .opacity(this.charged ? 1 : 0.26).scale({ x: this.charged ? 1 : 0.38, y: 1 })
     }.width(this.panelWidth).height(this.panelHeight).clip(true)

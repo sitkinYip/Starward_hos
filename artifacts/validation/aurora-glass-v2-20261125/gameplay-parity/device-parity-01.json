@@ -1,0 +1,100 @@
+{
+  "status": "incomplete",
+  "stage": "light-choice",
+  "installedHapSha256": "e5be04660fcf378972b7712d5ce5cefc4b064e5cc854f6081db797021ca84426",
+  "fixtureMode": "read-only local historical DTO replay",
+  "checks": [
+    "Two progress stars for the two-question fixture",
+    "Hint opens and closes on the same question",
+    "Choice popup is anchored directly above the composer"
+  ],
+  "states": [
+    {
+      "name": "light-gameplay",
+      "sha256": "edd6f9d57946c59d23f2428cc2492ee840ae5298a7ff2751e353a0dc18f5d9d8"
+    },
+    {
+      "name": "light-hint",
+      "sha256": "b5ec1a45b5c6c9d71e6c80bda244440186d2056473794d258796911e2c5f0a2a"
+    },
+    {
+      "name": "light-choice",
+      "sha256": "ca175fce9dc532c7f888790d1d8c10b1e6eb977bcc85be415ef03b5c323eef89"
+    }
+  ],
+  "geometryPx": {
+    "light-gameplay": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        2720
+      ]
+    },
+    "light-hint": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        2720
+      ],
+      "gameplay-hint-sheet": [
+        0,
+        2153,
+        1260,
+        2720
+      ]
+    },
+    "light-choice": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        340,
+        1212,
+        1047
+      ],
+      "gameplay-choice-sheet": [
+        52,
+        1343,
+        1208,
+        2428
+      ]
+    }
+  },
+  "failure": "All four previously answered radios are disabled"
+}

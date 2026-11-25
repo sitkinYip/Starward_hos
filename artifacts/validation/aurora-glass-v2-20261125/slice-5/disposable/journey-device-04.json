@@ -1,0 +1,29 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "bbb044b079c4d83637f5ae2fdff43f59f6f0749988cd2a0b5fb0ca6715aeec12",
+  "runtimeSha256": "c94e20938394d49047ea6a618617ff03d63e4c135feda490eaf5ea56e15b44f4",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "Ordinary reading and dismissal in both themes leave both authoritative messages unread"
+  ],
+  "states": [
+    {
+      "name": "unread-inbox-dark",
+      "pngSha256": "d89d3b3b335e5d1186251661c27454662317256cb5821270271b9b6c3569d316"
+    },
+    {
+      "name": "reading-unread-dark",
+      "pngSha256": "cdce5918069eb19e5a803c72b47aaa92bda14efd500221fade517d58b7d561be"
+    },
+    {
+      "name": "unread-inbox-light",
+      "pngSha256": "053429b0ce82d416716ad685d65a4a902b033c812b4c89e3ac3efcdc9e217fe5"
+    },
+    {
+      "name": "reading-unread-light",
+      "pngSha256": "95a5a435fb7b3857715071bc7a4230132e11253694d914a854ab2fbc6e16f2fd"
+    }
+  ],
+  "failure": "UI expectation timed out: explicit authorized acknowledge button",
+  "stage": "exercise-journey"
+}

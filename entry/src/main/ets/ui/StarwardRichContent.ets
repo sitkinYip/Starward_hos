@@ -20,6 +20,8 @@ export struct StarwardRichContent {
   @Param interactive: boolean = true;
   @Param showMedia: boolean = true;
   @Param clueBody: boolean = false;
+  @Param textSize: number = 16;
+  @Param textWeight: number = 400;
   @Param lineHeight: string = '30.4fp';
   @Param imageLabel: string = '';
   @Param videoPlayLabel: string = '';
@@ -87,10 +89,11 @@ export struct StarwardRichContent {
         if (block.kind === 'text') {
           if (block.spans.length === 1 && !block.spans[0].highlight && block.spans[0].linkTarget.length === 0) {
             Text(block.spans[0].text).id(this.paragraphId(index)).width('100%')
-              .fontSize(16).lineHeight(this.lineHeight).fontColor(this.color)
+              .fontSize(this.textSize).fontWeight(this.textWeight).lineHeight(this.lineHeight).fontColor(this.color)
           } else {
             StarwardClueParagraph({ spans: block.spans, paragraphId: this.paragraphId(index), color: this.color,
-              lineHeight: this.lineHeight, active: this.active && this.interactive, allowInternal: !this.clueBody,
+              textSize: this.clueBody ? 16 : this.textSize, textWeight: this.textWeight, lineHeight: this.lineHeight,
+              active: this.active && this.interactive, allowInternal: !this.clueBody,
               openLink: (href: string) => this.openLink(href) })
           }
         } else if (this.showMedia && block.kind === 'image') {

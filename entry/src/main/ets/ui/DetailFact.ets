@@ -2,16 +2,22 @@
 export struct DetailFact {
   @Param label: string = '';
   @Param value: string = '';
-  @Param source: Resource = $r('app.media.icon_puzzle');
+  @Param source: Resource | undefined = undefined;
 
   build() {
-    Column({ space: 8 }) {
+    Row({ space: 16 }) {
       Row({ space: 6 }) {
-        Image(this.source).width(11).height(11).fillColor($r('app.color.subtle'))
-          .objectFit(ImageFit.Contain).accessibilityLevel('no')
-        Text(this.label).fontSize(11).lineHeight('16fp').fontColor($r('app.color.subtle'))
-      }.width('100%')
-      Text(this.value).fontSize(13).lineHeight('20.8fp').fontColor($r('app.color.text')).width('100%')
-    }.alignItems(HorizontalAlign.Start).layoutWeight(1)
+        if (this.source !== undefined) {
+          Image(this.source).width(14).height(14).fillColor($r('app.color.muted'))
+            .objectFit(ImageFit.Contain).accessibilityLevel('no')
+        } else {
+          Blank().width(14)
+        }
+        Text(this.label).fontSize(12).lineHeight('17fp').fontColor($r('app.color.muted'))
+      }.constraintSize({ maxWidth: '40%' })
+      Text(this.value).fontSize(14).lineHeight('20fp').fontWeight(600)
+        .fontFeature("'tnum' 1").fontColor($r('app.color.strong'))
+        .layoutWeight(1).textAlign(TextAlign.End)
+    }.width('100%').constraintSize({ minHeight: 28 }).alignItems(VerticalAlign.Center)
   }
 }

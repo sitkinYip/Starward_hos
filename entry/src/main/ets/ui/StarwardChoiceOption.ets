@@ -1,5 +1,5 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { curves, UIUtils } from '@kit.ArkUI';
+import { curves } from '@kit.ArkUI';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
@@ -10,11 +10,13 @@ class ChoiceRadioStyle implements ContentModifier<RadioConfiguration> {
   text: string;
   nodeId: string;
   reducedMotion: boolean;
+  reselect: () => void;
 
-  constructor(text: string, nodeId: string, reducedMotion: boolean) {
+  constructor(text: string, nodeId: string, reducedMotion: boolean, reselect: () => void) {
     this.text = text;
     this.nodeId = nodeId;
     this.reducedMotion = reducedMotion;
+    this.reselect = reselect;
   }
 
   applyContent(): WrappedBuilder<[RadioConfiguration]> { return wrapBuilder(choiceRadioContent); }
@@ -25,22 +27,26 @@ function choiceRadioContent(config: RadioConfiguration) {
   Row() {
     Row() {
       Text(config.value).id((config.contentModifier as ChoiceRadioStyle).nodeId + '-key')
-        .width(28).height(28).textAlign(TextAlign.Center).fontSize(16).fontWeight(FontWeight.Bold)
+        .width(28).height(28).textAlign(TextAlign.Center).fontSize(13).fontWeight(FontWeight.Bold)
         .fontColor(config.checked ? $r('app.color.on_accent') : $r('app.color.accent_text'))
-        .backgroundColor(config.checked ? $r('app.color.accent') : Color.Transparent)
-        .border({ width: 1, color: config.checked ? $r('app.color.accent') : $r('app.color.accent_border') })
-        .rotate({ angle: config.checked ? -4 : 0 })
-        .scale({ x: config.checked ? 1.08 : 1, y: config.checked ? 1.08 : 1 })
-        .animation({ duration: (config.contentModifier as ChoiceRadioStyle).reducedMotion ? 0 : 520,
-          curve: curves.cubicBezierCurve(0.22, 0.78, 0.18, 1) })
-    }.width(40).flexShrink(0)
+        .backgroundColor(config.checked ? $r('app.color.accent') : $r('app.color.accent_soft'))
+        .border({ width: 1, radius: 10,
+          color: config.checked ? $r('app.color.accent') : $r('app.color.accent_border') })
+        .scale({ x: config.checked ? 1.04 : 1, y: config.checked ? 1.04 : 1 })
+        .animation({ duration: (config.contentModifier as ChoiceRadioStyle).reducedMotion ? 0 : 240,
+          curve: curves.cubicBezierCurve(0.34, 1.38, 0.64, 1) })
+    }.width(38).flexShrink(0)
     Text((config.contentModifier as ChoiceRadioStyle).text)
       .id((config.contentModifier as ChoiceRadioStyle).nodeId + '-text').layoutWeight(1)
       .fontSize(16).fontColor(config.checked ? $r('app.color.strong') : $r('app.color.text'))
   }.id((config.contentModifier as ChoiceRadioStyle).nodeId + '-header')
-    .width('100%').constraintSize({ minHeight: 58 }).padding({ top: 8, bottom: 8, left: 14, right: 14 })
+    .width('100%').constraintSize({ minHeight: 54 }).padding({ top: 8, bottom: 8, left: 14, right: 14 })
     .alignItems(VerticalAlign.Center).enabled(config.enabled)
-    .onClick(() => { if (config.enabled) { config.triggerChange(true); } })
+    .onClick(() => {
+      if (!config.enabled) { return; }
+      if (config.checked) { (config.contentModifier as ChoiceRadioStyle).reselect(); }
+      else { config.triggerChange(true); }
+    })
 }
 
 /** One option retains its Radio and its independently owned thumbnail across selection and Refresh. */
@@ -61,62 +67,24 @@ export struct StarwardChoiceOption {
   @Param videoPlayable: boolean = false;
   @Param selected: boolean = false;
   @Param editable: boolean = false;
+  @Param mediaEnabled: boolean | undefined = undefined;
   @Param reducedMotion: boolean = true;
   @Event chosen: () => void = () => {};
   @Event opened: () => void = () => {};
   @Event videoOpened: () => void = () => {};
   @Local private image: QuestionImageResult | undefined = undefined;
   @Local private imageState: string = 'idle';
-  @Local private frameWidth: number = 0;
-  @Local private frameHeight: number = 0;
-  @Local private motionX: number = 0;
-  @Local private motionScale: number = 1;
   private readonly loader: QuestionImageLoader = new QuestionImageLoader();
   private revision: number = 0;
-  private motionRevision: number = 0;
-  private motionTimer: number = -1;
-  private motionSelected: boolean = false;
   private mounted: boolean = false;
 
   aboutToAppear(): void {
     this.mounted = true;
-    this.motionSelected = this.selected;
-    this.motionX = this.selected ? 6 : 0;
-    this.motionScale = this.selected ? 1.006 : 1;
     this.loadImage();
   }
 
-  @Monitor('selected', 'reducedMotion')
-  selectionChanged(): void {
-    clearTimeout(this.motionTimer);
-    const revision: number = ++this.motionRevision;
-    const changedSelection: boolean = this.selected !== this.motionSelected;
-    this.motionSelected = this.selected;
-    this.motionTimer = setTimeout(() => {
-      this.motionTimer = -1;
-      if (!this.mounted || revision !== this.motionRevision) { return; }
-      const context = this.getUIContext();
-      if (this.reducedMotion || !changedSelection) {
-        context.animateTo({ duration: 0 }, () => this.setMotion(this.selected ? 6 : 0, this.selected ? 1.006 : 1));
-      } else if (!this.selected) {
-        context.animateTo({ duration: 520, curve: curves.cubicBezierCurve(0.22, 0.78, 0.18, 1) },
-          () => this.setMotion(0, 1));
-      } else {
-        context.animateTo({ duration: 0 }, () => this.setMotion(0, 1));
-        const curve = curves.cubicBezierCurve(0.16, 1, 0.3, 1);
-        context.keyframeAnimateTo({ iterations: 1 }, [
-          { duration: 260, curve, event: () => this.setMotion(9, 1.014) },
-          { duration: 360, curve, event: () => this.setMotion(6, 1.006) }
-        ]);
-      }
-    }, 0);
-  }
-
-  private setMotion(x: number, scale: number): void {
-    UIUtils.applySync(() => {
-      this.motionX = x;
-      this.motionScale = scale;
-    });
+  private canOpenMedia(): boolean {
+    return this.mediaEnabled ?? this.editable;
   }
 
   @Monitor('imageSource', 'ownerKey', 'videoSource')
@@ -125,8 +93,6 @@ export struct StarwardChoiceOption {
   aboutToDisappear(): void {
     this.mounted = false;
     this.revision++;
-    this.motionRevision++;
-    clearTimeout(this.motionTimer);
     this.loader.cancel();
     const previous: QuestionImageResult | undefined = this.image;
     this.image = undefined;
@@ -196,9 +162,10 @@ export struct StarwardChoiceOption {
         Button({ type: ButtonType.Normal }) {
           Column() {}.width('100%').height(129).accessibilityLevel('no')
         }.id(this.imageId + '-open').width('100%').height(129).padding(0).borderRadius(0)
-          .backgroundColor(Color.Transparent).enabled(this.editable)
+          .backgroundColor(Color.Transparent).enabled(this.canOpenMedia())
           .accessibilityText(`查看选项 ${this.optionKey} 图片`).onClick(() => {
-            if (this.editable && this.imageState === 'ready' && this.image !== undefined && this.ownerIsCurrent(this.ownerKey)) {
+            if (this.canOpenMedia() && this.imageState === 'ready' && this.image !== undefined &&
+              this.ownerIsCurrent(this.ownerKey)) {
               this.opened();
             }
           })
@@ -212,9 +179,11 @@ export struct StarwardChoiceOption {
           Button('重新加载', { type: ButtonType.Capsule }).id(this.imageId + '-retry')
             .constraintSize({ minHeight: 44, minWidth: 88 }).fontSize(13)
             .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-            .enabled(this.editable).accessibilityText(`重新加载选项 ${this.optionKey} 图片`)
+            .enabled(this.canOpenMedia()).accessibilityText(`重新加载选项 ${this.optionKey} 图片`)
             .onClick(() => {
-              if (this.editable && this.imageState === 'failed' && this.ownerIsCurrent(this.ownerKey)) { this.loadImage(); }
+              if (this.canOpenMedia() && this.imageState === 'failed' && this.ownerIsCurrent(this.ownerKey)) {
+                this.loadImage();
+              }
             })
         }.width('100%').align(Alignment.Center)
       }
@@ -224,48 +193,24 @@ export struct StarwardChoiceOption {
 
   build() {
     Column() {
-      if (this.frameWidth > 2 && this.frameHeight > 2) {
-        Column() {}.id(this.radioId + '-glow').width(this.frameWidth - 2).height(this.frameHeight - 2)
-          .radialGradient({ center: ['8%', '50%'],
-            radius: Math.sqrt(Math.pow((this.frameWidth - 2) * 0.92, 2) + Math.pow((this.frameHeight - 2) * 0.5, 2)),
-            colors: [[$r('app.color.accent'), 0], [Color.Transparent, 0.62]] })
-          .opacity(this.selected ? 0.24 : 0).position({ x: 1, y: 1 })
-          .animation({ duration: this.reducedMotion ? 0 : 420, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
-          .translate({ x: this.selected ? 0 : -0.12 * this.frameWidth })
-          .scale({ x: this.selected ? 1 : 0.72, y: 1 })
-          .animation({ duration: this.reducedMotion ? 0 : 680, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) })
-          .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
-      }
       Radio({ value: this.optionKey, group: this.group }).id(this.radioId).checked(this.selected)
-        .contentModifier(new ChoiceRadioStyle(this.text, this.radioId, this.reducedMotion))
-        .width('100%').constraintSize({ minHeight: 58 }).margin(0).padding(0).enabled(this.editable)
+        .contentModifier(new ChoiceRadioStyle(this.text, this.radioId, this.reducedMotion, () => this.chosen()))
+        .width('100%').constraintSize({ minHeight: 54 }).margin(0).padding(0).enabled(this.editable)
         .accessibilityText(`${this.optionKey} ${this.text}`).onChange((checked: boolean) => {
           if (checked && this.editable) { this.chosen(); }
         })
-      Rect().id(this.radioId + '-rail').width(3).height(Math.max(0, this.frameHeight - 2))
-        .fill(this.selected ? $r('app.color.accent') : Color.Transparent).position({ x: 1, y: 1 })
-        .hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
-      // The media surface covers the rail below the label, like the Web inset line.
-      // Its Button is independent of the Radio selection.
+      // The media action stays available independently of the Radio selection.
       if (this.videoSource.length > 0) {
         StarwardVideoPoster({ source: this.imageSource, ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent,
           imageCache: this.imageCache, nodeId: this.videoId, playLabel: `播放选项 ${this.optionKey} 视频`,
-          option: true, playable: this.editable && this.videoPlayable, play: () => this.videoOpened() })
+          option: true, playable: this.canOpenMedia() && this.videoPlayable, play: () => this.videoOpened() })
       } else if (this.imageSource.length > 0) {
         this.thumbnail()
       }
     }.id(this.cardId).width('100%').alignItems(HorizontalAlign.Start)
-      .backgroundColor(this.selected ? $r('app.color.accent_faint') : Color.Transparent)
-      .border({ width: 1, color: this.selected ? $r('app.color.accent') : $r('app.color.border_strong'), radius: 0 })
-      .shadow({ radius: this.selected ? 23 : 0, offsetY: 15,
-        color: this.selected ? $r('app.color.choice_shadow') : Color.Transparent })
-      .animation({ duration: this.reducedMotion ? 0 : 480, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
-      .clip(true).translate({ x: this.motionX }).scale({ x: this.motionScale, y: this.motionScale })
-      .onAreaChange((_previous: Area, current: Area) => {
-        const width: number = Number(current.width);
-        const height: number = Number(current.height);
-        if (Number.isFinite(width) && width > 0 && width !== this.frameWidth) { this.frameWidth = width; }
-        if (Number.isFinite(height) && height > 0 && height !== this.frameHeight) { this.frameHeight = height; }
-      })
+      .backgroundColor(this.selected ? $r('app.color.accent_soft') : $r('app.color.input'))
+      .border({ width: 1, color: this.selected ? $r('app.color.accent') : $r('app.color.border_strong'), radius: 16 })
+      .animation({ duration: this.reducedMotion ? 0 : 240, curve: Curve.EaseOut })
+      .clip(true)
   }
 }

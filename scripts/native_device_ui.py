@@ -7,6 +7,7 @@ import time
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+START_ASSIGNMENT_MIN_HEIGHT_VP = 44
 
 
 class SafeFailure(RuntimeError):
@@ -118,6 +119,11 @@ class DeviceUI:
         known = {'environment-badge', 'account', 'password', 'old-password', 'new-password', 'confirm-password',
                  'primary-action', 'account-menu', 'start-assignment', 'return-home',
                  'forced-logout', 'logout', 'error-return-home', 'profile-scroll', 'profile-name',
+                 'starward-native-tabbar', 'settings-version', 'settings-page', 'auth-star-ring-hero', 'login-help-sheet',
+                 'session-restoring', 'briefing-loading', 'gameplay-page', 'gameplay-loading',
+                 'gameplay-hint-sheet', 'gameplay-choice-sheet', 'image-viewer', 'gameplay-video-viewer',
+                 'gameplay-star-burst', 'gameplay-rank-up', 'rewards-page', 'rewards-detail-sheet', 'mailbox-segment',
+                 'journey-notification-dialog', 'narrative-page', 'gameplay-combination-dialog',
                  'security-old-password', 'security-new-password', 'security-confirm-password'}
         if not any(node.get('id') in known or node.get('text') == 'QUEST SESSION' for node in self.flat):
             raise SafeFailure('Expected test App is not foreground; other apps were not touched')
@@ -194,7 +200,7 @@ class DeviceUI:
     def minimum_height(self, node_id, node):
         # Heights are the actual API26 ArkUI vp/fp declarations, converted using
         # the measured device density. Unknown controls still reject tiny clips.
-        heights = {'primary-action': 52, 'start-assignment': 52, 'account-menu': 44,
+        heights = {'primary-action': 52, 'start-assignment': START_ASSIGNMENT_MIN_HEIGHT_VP, 'account-menu': 44,
                    'account-close': 44, 'forced-logout': 44, 'logout': 44,
                    'request-retry': 40, 'error-return-home': 40, 'return-home': 44,
                    'current-tab': 52, 'history-tab': 52, 'login-help': 45.6,

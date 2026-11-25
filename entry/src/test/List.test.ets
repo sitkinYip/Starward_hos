@@ -16,6 +16,7 @@ import questBgmBackgroundTests from './QuestBgmBackground.test';
 import gameplayBackgroundTests from './GameplayBackground.test';
 import gameplayRefreshViewModelTests from './GameplayRefreshViewModel.test';
 import narrativeDataTests from './NarrativeData.test';
+import narrativeLetterPaginationTests from './NarrativeLetterPagination.test';
 import narrativeViewModelTests from './NarrativeViewModel.test';
 import starLettersViewModelTests from './StarLettersViewModel.test';
 import journeyNotificationsViewModelTests from './JourneyNotificationsViewModel.test';
@@ -27,6 +28,7 @@ import questionImageLoaderTests from './QuestionImageLoader.test';
 import questionImageCacheTests from './QuestionImageCache.test';
 import immersiveSurfacesTests from './ImmersiveSurfaces.test';
 import pushRegistrationTests from './PushRegistration.test';
+import pushPermissionFlowTests from './PushPermissionFlow.test';
 import pushSubscriptionsTests from './PushSubscriptions.test';
 import pushOnboardingTests from './PushOnboarding.test';
 
@@ -49,6 +51,7 @@ export default function testsuite(): void {
   gameplayBackgroundTests();
   gameplayRefreshViewModelTests();
   narrativeDataTests();
+  narrativeLetterPaginationTests();
   narrativeViewModelTests();
   starLettersViewModelTests();
   journeyNotificationsViewModelTests();
@@ -60,6 +63,7 @@ export default function testsuite(): void {
   questionImageCacheTests();
   immersiveSurfacesTests();
   pushRegistrationTests();
+  pushPermissionFlowTests();
   pushSubscriptionsTests();
   pushOnboardingTests();
 }

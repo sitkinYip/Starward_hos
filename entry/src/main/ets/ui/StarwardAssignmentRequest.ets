@@ -1,4 +1,4 @@
-import { StarwardLoadingAtlas } from './StarwardAtlas';
+import { StarwardLoadingStage } from './StarwardLoadingStage';
 
 @ComponentV2
 export struct StarwardAssignmentRequest {
@@ -7,18 +7,25 @@ export struct StarwardAssignmentRequest {
   @Param message: string = '';
   @Param displayFont: string = 'serif';
   @Param motionEnabled: boolean = false;
+  @Param fullScreen: boolean = false;
+  @Param topInset: number = 0;
+  @Param bottomInset: number = 0;
   @Param retryable: boolean = false;
   @Event retry: () => void = () => {};
   @Event returnHome: () => void = () => {};
 
   @Builder
   private loading() {
-    Column({ space: 14 }) {
-      StarwardLoadingAtlas({ diameter: 112, motionEnabled: this.motionEnabled })
-      Text(this.loadingLabel).id(this.loadingId)
-        .fontFamily(this.displayFont).fontSize(16).lineHeight('24fp').fontWeight(FontWeight.Medium)
-        .fontColor($r('app.color.strong')).textAlign(TextAlign.Center)
-    }.width('100%').padding({ left: 16, right: 16, top: 12, bottom: 4 })
+    StarwardLoadingStage({
+      stateId: this.loadingId,
+      title: '下一段冒险，正在苏醒',
+      status: this.loadingLabel,
+      hint: '循着微光，走进故事的另一面。',
+      fullScreen: this.fullScreen,
+      topInset: this.topInset,
+      bottomInset: this.bottomInset,
+      motionEnabled: this.motionEnabled
+    })
   }
 
   @Builder
@@ -45,8 +52,8 @@ export struct StarwardAssignmentRequest {
           .backgroundColor(Color.Transparent).onClick(() => this.returnHome())
       }.width('100%').constraintSize({ maxWidth: 224 }).margin({ top: 6 })
     }.width('100%').constraintSize({ maxWidth: 360 })
-      .padding({ left: 20, right: 20, top: 22, bottom: 14 }).borderRadius(16)
-      .backgroundColor($r('app.color.surface')).border({ width: 1, color: $r('app.color.border') })
+      .padding({ left: 20, right: 20, top: 22, bottom: 14 })
+      .backgroundColor($r('app.color.surface')).border({ width: 1, radius: 16, color: $r('app.color.border') })
   }
 
   build() {
@@ -56,6 +63,7 @@ export struct StarwardAssignmentRequest {
       } else {
         this.loading()
       }
-    }.id('assignment-request-state').width('100%').alignItems(HorizontalAlign.Center)
+    }.id('assignment-request-state').width('100%')
+      .height(this.fullScreen && this.message.length === 0 ? '100%' : undefined).alignItems(HorizontalAlign.Center)
   }
 }

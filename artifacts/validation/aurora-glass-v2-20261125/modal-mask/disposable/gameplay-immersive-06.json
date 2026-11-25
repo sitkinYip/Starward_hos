@@ -1,0 +1,63 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "0875b3886fc4434fbac6c1bb75ed765e8b4a64438a821241d918e68004e0d789",
+  "runtimeSha256": "944e192d6048fee7368a14b6602b2db351f1827d9a05cb0a455e7fede3957b86",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The resting capsule, question card, and two progress stars remain in the safe area",
+    "The native answer bar stays fixed while scrolling beneath the system bar"
+  ],
+  "states": [
+    {
+      "name": "gameplay-top",
+      "pngSha256": "f174cb511cc3b146cf5c6e8e1903c96a52de0b7372f94d22b2f70612c248f28b"
+    },
+    {
+      "name": "gameplay-status-underlay",
+      "pngSha256": "22eb2af3b32cd51ac4bb8d9df1113ea6af4c2158ee72b4f1f174a20e0c2d2774"
+    }
+  ],
+  "topLayoutPx": {
+    "viewport": [
+      0,
+      124,
+      1260,
+      2720
+    ],
+    "title": [
+      39,
+      162,
+      1221,
+      324
+    ],
+    "card": [
+      42,
+      497,
+      1218,
+      2720
+    ],
+    "composer": [
+      39,
+      2402,
+      1221,
+      2629
+    ]
+  },
+  "statusBarCropMeanDifference": 0.00807,
+  "scrollLayoutPx": {
+    "viewport": [
+      0,
+      124,
+      1260,
+      2720
+    ],
+    "card": [
+      42,
+      124,
+      1218,
+      2720
+    ]
+  },
+  "failure": "Active question pixels change beneath the transparent status bar while scrolling",
+  "stage": "undercut-scroll"
+}

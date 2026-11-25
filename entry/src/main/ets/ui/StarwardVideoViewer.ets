@@ -313,7 +313,7 @@ export struct StarwardVideoViewer {
           nodeId: 'gameplay-video-player' })
       }
       if (this.model.phase === 'loading') {
-        LoadingProgress().id('gameplay-video-loading').width(28).height(28).color('#d4bc7d')
+        LoadingProgress().id('gameplay-video-loading').width(28).height(28).color($r('app.color.media_viewer_accent'))
           .enableLoading(!this.reducedMotion).accessibilityText('正在载入视频')
       } else if (this.model.phase === 'failed') {
         Column({ space: 4 }) {
@@ -351,7 +351,8 @@ export struct StarwardVideoViewer {
       }.width(this.panelWidth()).height(Math.max(46, this.stageHeight()))
         .position({ x: this.safeLeft() + (this.availableWidth() - this.panelWidth()) / 2,
           y: this.safeTop() + Math.max(0, (this.availableHeight() - Math.max(46, this.stageHeight())) / 2) })
-    }.id('gameplay-video-viewer').width('100%').height('100%').backgroundColor('#050605')
+    }.id('gameplay-video-viewer').width('100%').height('100%')
+    .backgroundColor($r('app.color.media_viewer_background'))
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]).accessibilityText('视频播放器')
   }
 }

@@ -55,6 +55,7 @@ struct StarwardRecoverySpinner {
 @ComponentV2
 export struct StarwardAnswerRecovery {
   @Require @Param pending: boolean;
+  @Require @Param maxHeight: number;
   @Param displayFont: string = 'serif';
   @Param motionEnabled: boolean = false;
   @Event retry: () => void = () => {};
@@ -128,7 +129,7 @@ export struct StarwardAnswerRecovery {
             if (Number.isFinite(width) && width > 0 && this.panelWidth !== width) { this.panelWidth = width; }
             if (Number.isFinite(height) && height > 0 && this.panelHeight !== height) { this.panelHeight = height; }
           })
-      }.width('100%').constraintSize({ maxWidth: 460 }).align(Alignment.Center).scrollBar(BarState.Off)
-    }.width('100%').height('100%').padding({ left: 20, right: 20, top: 20, bottom: 20 })
+      }.width('100%').constraintSize({ maxHeight: this.maxHeight }).align(Alignment.Center).scrollBar(BarState.Off)
+    }.width('100%')
   }
 }

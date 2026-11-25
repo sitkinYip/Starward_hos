@@ -1,0 +1,38 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "fdb19656a48f3bd20a00a75e16919412c6c70db7885b9123179d0d95e191141a",
+  "runtimeSha256": "ee75c436a0798afe52563d1f660eaf22e7c859c801c0456d517d8e0d328c8dc0",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [],
+  "states": [
+    {
+      "name": "mailbox-light-before",
+      "pngSha256": "5349ef0446fe4cd908e15dbe251a3e1bad31b10d8218751cb28f6fcd33a61258"
+    },
+    {
+      "name": "mailbox-light-mask",
+      "pngSha256": "6eb628cf7241ac0a9e5824c7456a1f77015898507705674be5ebf234a4fa7050"
+    }
+  ],
+  "themeComparisons": [
+    {
+      "theme": "light",
+      "samplePx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "before": {
+        "contrast": 0.128543,
+        "edgeContrast": 136258000000.0
+      },
+      "masked": {
+        "contrast": 0.002072,
+        "edgeContrast": 17667400000.0
+      }
+    }
+  ],
+  "failure": "The dimmed underlying category remains visible in light mode",
+  "stage": "mailbox-mask-themes"
+}

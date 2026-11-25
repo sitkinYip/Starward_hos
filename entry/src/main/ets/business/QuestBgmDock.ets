@@ -1,5 +1,6 @@
 export const QUEST_BGM_SIZE: number = 56;
 export const QUEST_BGM_MARGIN: number = 12;
+export const QUEST_FLOATING_DOCK_START_Y: number = 0.84;
 
 export function questBgmRatio(value: number, fallback: number = 1): number {
   return Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : fallback;
@@ -17,7 +18,7 @@ export class QuestBgmPosition {
   readonly x: number;
   readonly y: number;
 
-  constructor(x: number = 1, y: number = 1) {
+  constructor(x: number = 1, y: number = QUEST_FLOATING_DOCK_START_Y) {
     this.x = questBgmRatio(x) < 0.5 ? 0 : 1;
     this.y = questBgmRatio(y);
   }

@@ -1,0 +1,29 @@
+{
+  "stage": "complete",
+  "status": "passed",
+  "installedHapSha256": "fa103225d46e32648ef48c527316e0992a6049fc3fbfbe07e6a6f428e2ccd524",
+  "runtimeSha256": "e7cc70191d8347734ad6a7c985eb5f79ffbb8e41bdb0c212e77f9ed106457b78",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "An editable choice starts collapsed",
+    "Both short choice controls fit the adaptive native Sheet without scrolling",
+    "Compact composer shows the real selected B badge",
+    "The selected native Radio stays enabled and aligned in place",
+    "Selecting and reopening performs no authoritative answer or EXP write"
+  ],
+  "states": [
+    {
+      "state": "editable-closed",
+      "pngSha256": "e68a98ec7e310543806a9c8339802665ae4af7d4700c6bd77ccc991d2d390b72"
+    },
+    {
+      "state": "editable-short-list",
+      "pngSha256": "a12d74c6193fe03ce3a55b7b770b7f70761f1e785a65831487b6cadd0b3f8bc1"
+    },
+    {
+      "state": "editable-selected",
+      "pngSha256": "4230d62f8a0cb99dbb86fca791bdfbf978f9b019fbcdb507140a76000b91fae7"
+    }
+  ],
+  "disposableSignedOut": true
+}

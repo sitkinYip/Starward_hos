@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "checks": [
+    "Current HTTPS auth and me identify the fixed preview player",
+    "Complete login card and controls fit the first screen with no scrolling",
+    "Cold isolated device login reached home directly",
+    "Every current HTTPS assignment was reachable in its device tab",
+    "The scrollable final sync note was visible above navigation in both sections"
+  ],
+  "stage": "complete",
+  "installedHapSha256": "7645295dd8d8b7da5480f01dba7c57f40efd3f340f2d96149756e3e302b647c2",
+  "sourceBindings": {
+    "hap": "7645295dd8d8b7da5480f01dba7c57f40efd3f340f2d96149756e3e302b647c2",
+    "runtime": "36099f8c44d1e1495c77c6ad1a8fbf87b88d89c83989cb0079a806e0ffb94750",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "2838d3c75232039ae2f69b21f280d6c578182d6ac6e2ce9ca73c8893afba5611",
+    "hostReadiness": "74fc045fe9fb9eff462b950ce8303a3f1d627c1f8a4c1b0f93a8352b7e953d4e",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "84fd0428ecd1b185b5e3bc0f863a0f66a2f4f3f1fd1decec56217418bdbe98be",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e",
+    "auroraSmoke": "ceb159fb0b05eef1182471bd36210de680cf6d935c03f055c0fb470411ea941e"
+  },
+  "snapshotCounts": {
+    "seeded": 4,
+    "current": 10,
+    "ongoing": 5,
+    "history": 5
+  },
+  "untouchedLogin": {
+    "safeViewportPx": [
+      0,
+      422,
+      1260,
+      2629
+    ],
+    "controlsPx": {
+      "auth-entry": [
+        58,
+        1368,
+        1202,
+        2577
+      ],
+      "auth-form-card": [
+        58,
+        1368,
+        1202,
+        2500
+      ],
+      "account": [
+        126,
+        1537,
+        1135,
+        1707
+      ],
+      "password": [
+        126,
+        1847,
+        1135,
+        2017
+      ],
+      "primary-action": [
+        126,
+        2068,
+        1134,
+        2237
+      ],
+      "login-help": [
+        126,
+        2276,
+        1134,
+        2419
+      ],
+      "auth-environment-note": [
+        532,
+        2539,
+        728,
+        2577
+      ]
+    },
+    "environmentGapPx": 39,
+    "bottomGapPx": 52
+  },
+  "verifiedRows": 10
+}

@@ -1,0 +1,29 @@
+{
+  "status": "incomplete",
+  "checks": [
+    "Current HTTPS auth and me identify the fixed preview player"
+  ],
+  "stage": "device-direct-login",
+  "installedHapSha256": "5a681af1da307820c0c3d3f79e49ddade940acf3c0ee9d4182d720f552f20027",
+  "sourceBindings": {
+    "hap": "5a681af1da307820c0c3d3f79e49ddade940acf3c0ee9d4182d720f552f20027",
+    "runtime": "e676699d7fdd6df8d256f75a2c44309ecb198fe53d996fe514d1b6c216fc5617",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "2838d3c75232039ae2f69b21f280d6c578182d6ac6e2ce9ca73c8893afba5611",
+    "hostReadiness": "1c68e987f57c054351a6c3471354dce550f0155885626a5d52a11bf759c51927",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "36e1b0efbbb7af6ed38a238d43e9d714c240bac88eb6363407bc5162b73ac46e",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e",
+    "auroraSmoke": "85f75a12f03973e1cd0a251921c8576a62a9680041ec4eb803ee5ae08209fb9c"
+  },
+  "snapshotCounts": {
+    "seeded": 4,
+    "current": 10,
+    "ongoing": 5,
+    "history": 5
+  },
+  "failure": "Preview verification stopped at the recorded stage. Private values omitted."
+}

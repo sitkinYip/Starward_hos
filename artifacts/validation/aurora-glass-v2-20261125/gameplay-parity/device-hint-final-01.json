@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "installedHapSha256": "bb091e43510da17adfe9a1ea6d2ab1a84386454cc37f3960df3c4a0f0ebafad2",
+  "fixtureMode": "read-only local historical DTO replay",
+  "checks": [
+    "Dark hint panel uses the navy glass theme",
+    "Dark themed hint returns to the same question"
+  ],
+  "states": [
+    {
+      "name": "dark-hint-final",
+      "sha256": "37ccb06876fd25bf0ccc26e710818a6667c9e1c8e72de7efdabb663f9b376c60"
+    }
+  ],
+  "geometryPx": {
+    "dark-hint-final": {
+      "gameplay-answer-form": [
+        52,
+        2467,
+        1208,
+        2630
+      ],
+      "gameplay-floating-title": [
+        45,
+        124,
+        1215,
+        298
+      ],
+      "gameplay-question-card": [
+        48,
+        515,
+        1212,
+        2720
+      ],
+      "gameplay-hint-sheet": [
+        0,
+        2037,
+        1260,
+        2720
+      ]
+    }
+  },
+  "panelBlueMinusRed": 0.113725,
+  "disposableSignedOut": true
+}

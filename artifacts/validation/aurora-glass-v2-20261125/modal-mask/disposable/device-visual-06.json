@@ -1,0 +1,105 @@
+{
+  "status": "passed",
+  "installedHapSha256": "ba9fef6ff73fc5d1bc7d8a4add8e4d7f6356068c09dcdacf7b7fff9cdf5d6482",
+  "runtimeSha256": "4c8482a2467d99ad2e9f7241071dfb1314cf1592ef498657dcab33a4c204a749",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The dimmed underlying category remains visible in light mode",
+    "Glass shade is continuous across both system bar boundaries in light mode",
+    "Backdrop tap preserves the original mailbox in light mode",
+    "The dimmed underlying category remains visible in dark mode",
+    "Glass shade is continuous across both system bar boundaries in dark mode",
+    "Backdrop tap preserves the original mailbox in dark mode",
+    "System Back returns to the original mailbox",
+    "Reading and backdrop dismissal preserve authoritative receipt state",
+    "The native Sheet keeps the Passport visible through its translucent mask"
+  ],
+  "states": [
+    {
+      "name": "mailbox-light-before",
+      "pngSha256": "6c51dd0876228d78885d364161e781796ec222f28d9ddd653e129f3926cc610b"
+    },
+    {
+      "name": "mailbox-light-mask",
+      "pngSha256": "05a6f8f9a14808427b3aa14a7b46b80fe8fc00ab9b87b61ea43afded557a223e"
+    },
+    {
+      "name": "mailbox-dark-before",
+      "pngSha256": "49341bfc50cbde2ae70fe2f48c4209382246f07d86ee640cd6b0aad392588ae4"
+    },
+    {
+      "name": "mailbox-dark-mask",
+      "pngSha256": "a03f82fd94fe3428d5423be3d1fec57ecbe040739910855823ed334e683fec00"
+    },
+    {
+      "name": "passport-before-sheet",
+      "pngSha256": "befa8fc9d4d01a0507ebef833a1358b390657048d6e688226450633a91ea9f68"
+    },
+    {
+      "name": "passport-native-sheet-mask",
+      "pngSha256": "9f06ed2d1fe543039ae01c55e4853e23d221e4e774d2201c80ed95b8517dde09"
+    }
+  ],
+  "themeComparisons": [
+    {
+      "theme": "light",
+      "samplePx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "before": {
+        "contrast": 0.128543,
+        "edgeContrast": 0.115521
+      },
+      "masked": {
+        "contrast": 0.091978,
+        "edgeContrast": 0.249993
+      },
+      "systemBarLumaJumps": {
+        "statusBar": 0.000126,
+        "gestureArea": 0.000287
+      }
+    },
+    {
+      "theme": "dark",
+      "samplePx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "before": {
+        "contrast": 0.150384,
+        "edgeContrast": 0.116898
+      },
+      "masked": {
+        "contrast": 0.097802,
+        "edgeContrast": 0.249961
+      },
+      "systemBarLumaJumps": {
+        "statusBar": 3.1e-05,
+        "gestureArea": 0.000338
+      }
+    }
+  ],
+  "nativeSheetComparison": {
+    "before": {
+      "contrast": 0.060856,
+      "edgeContrast": 0.139877
+    },
+    "masked": {
+      "contrast": 0.042565,
+      "edgeContrast": 0.138966
+    },
+    "samplePx": [
+      490,
+      465,
+      770,
+      745
+    ]
+  },
+  "disposableSignedOut": true,
+  "stage": "complete"
+}

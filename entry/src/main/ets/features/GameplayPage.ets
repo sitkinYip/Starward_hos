@@ -1,6 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { curves, PromptAction, promptAction, RectShape } from '@kit.ArkUI';
+import { curves, LengthMetrics, PromptAction, promptAction } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
 import { clueImageSources, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
@@ -12,30 +11,33 @@ import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
 import { externalClueLinkHref, openExternalClueLink } from '../platform/ExternalClueLink';
 import { AssignmentAtmosphereState } from './AssignmentAtmosphereState';
-import { QuestAnswerGuidePreference } from '../platform/QuestAnswerGuidePreference';
 import { QuestNarrativeAttentionPreference } from '../platform/QuestNarrativeAttentionPreference';
-import { GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
+import { GameplayAnswerBurst, GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
+import { GAMEPLAY_COMPOSER_MIN_HEIGHT, GAMEPLAY_COMPOSER_SIDE_GUTTER, GAMEPLAY_MAX_CONTENT_WIDTH,
+  GAMEPLAY_TITLE_CLEARANCE, GAMEPLAY_TITLE_MIN_TOP, GAMEPLAY_TITLE_SIDE_GUTTER, GameplayFloatingTitle,
+  GameplayProgress, GameplayProgressItem, GameplayQuestionHeading, GameplaySurface } from './GameplayChrome';
+import { GameplayAnswerComposer, GameplayComposerAction, GameplayComposerView } from './GameplayAnswerComposer';
+import { GameplayHintSheet } from './GameplayQuestionOverlays';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { isLegacyInternalLink, LegacyRichBlock, LegacyRichSpan, legacyImageSources,
   legacyRichBlocks } from '../business/LegacyRichContent';
 import { InlineError } from '../ui/ErrorMessages';
-import { StarwardAnswerInput } from '../ui/StarwardAnswerInput';
 import { StarwardAssignmentRequest } from '../ui/StarwardAssignmentRequest';
 import { PrimaryAction } from '../ui/PrimaryAction';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
-import { StarwardQuestionFrame } from '../ui/StarwardQuestionFrame';
+import { StarwardGlassDialog } from '../ui/StarwardGlassDialog';
+import { StarwardModalBackdropState } from '../ui/StarwardGlassBackdrop';
+import { starwardMediaCoverOptions } from '../ui/StarwardMediaCover';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardQuestionImages } from '../ui/StarwardQuestionImages';
 import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
 import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVideoViewer';
 import { StarwardVideoPoster } from '../ui/StarwardVideoPoster';
 import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
-import { StarwardQuestHint } from '../ui/StarwardQuestHint';
 import { StarwardRichContent } from '../ui/StarwardRichContent';
 import { StarwardQuestFeedback } from '../ui/StarwardQuestFeedback';
 import { StarwardAnswerRecovery } from '../ui/StarwardAnswerRecovery';
-import { QuestionNavigationItem, StarwardQuestionNavigation } from '../ui/StarwardQuestionNavigation';
 import { StarwardQuestionSwiper } from '../ui/StarwardQuestionSwiper';
 import { StarwardClueArchive } from '../ui/StarwardClueArchive';
 import { StarwardQuestMessages } from '../ui/StarwardQuestMessages';
@@ -46,9 +48,9 @@ import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
 import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
 import { StarwardFinalDestination } from '../ui/StarwardFinalDestination';
 import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
+import { StarwardStarBurstOverlay } from '../ui/StarwardStarBurstOverlay';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
-import { StarwardAnswerGuide } from '../ui/StarwardAnswerGuide';
 import { JOURNEY_LAUNCHER_SIZE, JourneyDockObstacle, StarwardJourneyLauncher } from '../ui/StarwardJourneyLauncher';
 import { StarwardJourneyNotificationDialog } from '../ui/StarwardJourneyNotificationDialog';
 
@@ -120,9 +122,20 @@ class RankDialogRequest {
   }
 }
 
+type GameplaySheet = 'hint' | 'choice';
+
+interface GameplayFeedbackPosition {
+  revision: number;
+  owner: string;
+  contentTop: number;
+  height: number;
+}
+
 /** Native presentation only: the account-bound ViewModel owns drafts and writes. */
 @ComponentV2
 export struct GameplayPage {
+  @Consumer('starwardModalBackdrop') private modalBackdrop: StarwardModalBackdropState =
+    new StarwardModalBackdropState();
   @Event journeyBackHandlerChanged: (handler: (() => boolean) | null) => void = () => {};
   @Event profilePollingChanged: (active: boolean) => void = () => {};
   @Require @Param play: GameplayViewModel;
@@ -133,7 +146,6 @@ export struct GameplayPage {
   @Param autoNextDelay: number = 0;
   @Param displayFont: string = 'serif';
   @Param bottomClearance: number = 24;
-  @Param titleBottom: number = 0;
   @Param statusInset: number = 0;
   @Param leftInset: number = 0;
   @Param rightInset: number = 0;
@@ -147,7 +159,6 @@ export struct GameplayPage {
   @Event openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) => boolean = () => false;
   @Event openJourneyLink: (href: string) => boolean = () => false;
   @Event openInbox: () => void = () => {};
-  @Event titleVisibilityChanged: (hidden: boolean) => void = () => {};
   @Event finaleBackdropChanged: (visible: boolean) => void = () => {};
   @Local seenCompletionRevision: number = 0;
   @Local private recoveryVisible: boolean = false;
@@ -174,24 +185,33 @@ export struct GameplayPage {
   private combinationOwner: string = '';
   private combinationRevision: number = 0;
   @Local private foreground: boolean = true;
-  @Local private guideAccount: string = '';
-  @Local private guideSeen: boolean = true;
-  @Local private guideHeight: number = 132;
-  @Local private guideHighlightOwner: string = '';
+  @Local private titleHidden: boolean = false;
+  @Local private answerFocused: boolean = false;
+  @Local private composerHeight: number = GAMEPLAY_COMPOSER_MIN_HEIGHT;
+  @Local private sheet: GameplaySheet | null = null;
+  @Local private sheetVisible: boolean = false;
+  private sheetOwner: string = '';
+  @Local private sheetRevision: number = 0;
+  private sheetMounted: boolean = false;
+  private journeyBack: (() => boolean) | null = null;
+  private lastScrollOffset: number = 0;
+  private scrollMomentum: number = 0;
+  private consumedFeedbackRevision: number = 0;
+  private feedbackPosition: GameplayFeedbackPosition | null = null;
   @Local private openedNarrativeIds: string[] = [];
   @Local private attentionHeight: number = 80;
   @Local private attentionReserveOwner: string = '';
   private attentionAccount: string = '';
   private attentionAssignment: string = '';
-  private guideHighlightTimer: number = -1;
+  private readonly hintBackdropOwner: Object = new Object();
   private bgmMounted: boolean = false;
   private clueLinkHandoff: ClueLinkHandoff | null = null;
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
     if (!foreground) {
       this.play.setPollingActive(false);
+      this.closeGameplaySheet(true);
       this.stopInlineVideo();
-      this.clearAnswerGuideHighlight();
       this.updateBgm();
     }
     const handoff: ClueLinkHandoff | null = this.clueLinkHandoff;
@@ -235,12 +255,6 @@ export struct GameplayPage {
   };
   private readonly questionScroller: Scroller = new Scroller();
   @Local private questionContentWidth: number = 0;
-  @Local private explicitQuestionTarget: string = '';
-  @Local private explicitQuestionRevision: number = 0;
-  private cardContentTop: number = -1;
-  private readingContentTop: number = -1;
-  private questionRegionHeight: number = 0;
-  private titleHidden: boolean = false;
   private positionOwner: string = '';
   private positionPending: boolean = false;
   private positionTimer: number = -1;
@@ -251,9 +265,10 @@ export struct GameplayPage {
     this.bgmMounted = true;
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
+    this.consumedFeedbackRevision = this.play.feedbackVersion;
     this.recoveryChanged();
-    this.answerGuideAccountChanged();
     this.loadNarrativeAttention();
+    this.journeyBackHandlerChanged(() => this.handleBack());
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
     this.play.setPollingActive(this.foreground && !this.narrativeCovered);
@@ -264,12 +279,13 @@ export struct GameplayPage {
   aboutToDisappear(): void {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
+    this.closeGameplaySheet(true);
+    this.journeyBackHandlerChanged(null);
     this.play.setPollingActive(false);
     this.profilePollingChanged(false);
     this.bgmMounted = false;
     this.stopInlineVideo();
     this.journeyVideoOpen = false;
-    this.clearAnswerGuideHighlight();
     this.play.cancelAutomaticClues();
     this.imageCache.validateOwner();
     this.clearClueLinkHandoff();
@@ -283,19 +299,13 @@ export struct GameplayPage {
     clearTimeout(this.positionTimer);
     this.positionTimer = -1;
     this.positionPending = false;
-    this.titleVisibilityChanged(false);
   }
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error', 'playerId')
   imageOwnerChanged(): void {
     if (this.attentionReserveOwner !== this.positionKey()) { this.attentionReserveOwner = ''; }
-    if (this.guideHighlightOwner.length > 0 && this.guideHighlightOwner !== this.positionKey()) {
-      this.clearAnswerGuideHighlight();
-    }
     if (this.clueLinkHandoff !== null && !this.clueLinkHandoff.isCurrent()) { this.clearClueLinkHandoff(); }
-    if (this.explicitQuestionTarget.length > 0 && this.explicitQuestionTarget !== this.readableQuestionId()) {
-      this.explicitQuestionTarget = '';
-    }
+    if (this.sheet !== null && !this.gameplaySheetOwnerCurrent()) { this.closeGameplaySheet(true); }
     const clue: GameplayClue | null = this.play.automaticClue;
     if (clue !== null && !this.isClueCurrent(this.imageOwner(), clue)) { this.play.cancelAutomaticClues(); }
     this.imageCache.validateOwner();
@@ -309,17 +319,11 @@ export struct GameplayPage {
     }
     if (this.clueDialog !== null && this.textClue !== null &&
       !this.isDialogClueCurrent(this.clueDialog, this.textClue)) { this.closeClueDialog(true); }
-    if (!this.play.currentLevel()?.question) {
-      this.cardContentTop = -1;
-      this.readingContentTop = -1;
-      this.questionRegionHeight = 0;
-      this.setTitleHidden(false, this.scrollOffset(), 0);
-    }
     this.trackQuestionPosition();
   }
 
   private scrollOffset(): number {
-    const offset: number = this.questionScroller.offset()?.yOffset ?? 0;
+    const offset: number = this.questionScroller.currentOffset()?.yOffset ?? 0;
     return Number.isFinite(offset) ? Math.max(0, offset) : 0;
   }
 
@@ -333,96 +337,16 @@ export struct GameplayPage {
     }
   }
 
-  @Monitor('playerId')
-  answerGuideAccountChanged(): void {
-    const account: string = this.playerId;
-    if (account === this.guideAccount) { return; }
-    this.clearAnswerGuideHighlight();
-    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-    this.guideSeen = account.length === 0 || (context !== undefined && QuestAnswerGuidePreference.load(context, account));
-    this.guideAccount = account;
-  }
-
-  private hasPendingAnswerGuide(): boolean {
-    const snapshot: GameplaySnapshot | null = this.play.snapshot;
-    return !this.guideSeen && this.guideAccount.length > 0 && this.guideAccount === this.playerId &&
-      this.play.visible && this.play.error.length === 0 && snapshot !== null &&
-      snapshot.detail.player === this.guideAccount && snapshot.detail.status === 'active' &&
-      snapshot.detail.totalLevels > 1 && this.readableQuestionId().length > 0 &&
-      this.viewportWidth > 0 && this.viewportWidth < 1100 && this.viewportHeight > 0;
-  }
-
-  private showAnswerGuide(): boolean {
-    return this.hasPendingAnswerGuide() && this.foreground && this.questionInteractionReady() &&
-      this.play.automaticClue === null && this.attentionClue() === null;
-  }
-
-  private consumeAnswerGuide(): void {
-    if (!this.hasPendingAnswerGuide()) { return; }
-    this.guideSeen = true;
-    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-    if (context) { QuestAnswerGuidePreference.save(context, this.guideAccount); }
-  }
-
-  private editAnswer(value: string): void {
-    const previous: string = this.play.draftAnswer;
-    this.play.editAnswer(value);
-    if (this.play.draftAnswer !== previous) { this.consumeAnswerGuide(); }
-  }
-
-  private locateAnswerForm(): void {
-    if (!this.showAnswerGuide()) { return; }
-    const ui: UIContext = this.getUIContext();
-    let formHeight: number;
-    let formTop: number;
-    try {
-      const geometry = ui.getComponentUtils();
-      const form = geometry.getRectangleById('gameplay-answer-form');
-      const viewport = geometry.getRectangleById('gameplay-page');
-      formHeight = ui.px2vp(form.size.height);
-      formTop = ui.px2vp(form.windowOffset.y - viewport.windowOffset.y);
-    } catch {
-      // A relayout can temporarily remove the form. Keep the guide available for another tap.
-      return;
-    }
-    if (!Number.isFinite(formHeight) || formHeight <= 0 || !Number.isFinite(formTop)) { return; }
-    const safeTop: number = this.foregroundTopInset();
-    const safeBottom: number = Math.max(safeTop, this.viewportHeight - this.bgmBottomInset());
-    const available: number = safeBottom - safeTop;
-    const alignment: number = safeTop + Math.max(0, (available - formHeight) / 2);
-    const target: number = Math.max(0, this.scrollOffset() + formTop - alignment);
-    clearTimeout(this.positionTimer);
-    this.positionTimer = -1;
-    this.positionPending = false;
-    this.consumeAnswerGuide();
-    this.guideHighlightOwner = this.positionKey();
-    this.guideHighlightTimer = setTimeout(() => this.clearAnswerGuideHighlight(), 2400);
-    this.questionScroller.scrollTo({ xOffset: 0, yOffset: target,
-      animation: this.reducedMotion ? false : { duration: 420, curve: Curve.EaseOut } });
-  }
-
-  private clearAnswerGuideHighlight(): void {
-    clearTimeout(this.guideHighlightTimer);
-    this.guideHighlightTimer = -1;
-    this.guideHighlightOwner = '';
-  }
-
-  private answerGuideHighlighted(): boolean {
-    return this.guideHighlightOwner.length > 0 && this.guideHighlightOwner === this.positionKey();
-  }
-
-  private guideBottomInset(): number { return Math.max(12, this.bgmBottomInset()); }
-
   private scrollBottomClearance(): number {
     const floatingControl: number = this.hasBgm() ? QUEST_BGM_SIZE :
       this.journey.unreadCount > 0 ? JOURNEY_LAUNCHER_SIZE : 0;
-    const baseline: number = this.bottomClearance + floatingControl;
+    const baseline: number = this.composerClearance() + floatingControl + 12;
     if (this.finalDestination() !== null) { return baseline + this.destinationHeight + 14; }
     if (this.attentionClue() !== null || (this.attentionReserveOwner.length > 0 &&
       this.attentionReserveOwner === this.positionKey())) {
       return baseline + this.attentionInset() + this.attentionHeight - this.bgmBottomInset();
     }
-    return this.showAnswerGuide() ? Math.max(baseline, this.guideBottomInset() + this.guideHeight + 12) : baseline;
+    return baseline;
   }
 
   private hasBgm(): boolean {
@@ -458,18 +382,32 @@ export struct GameplayPage {
 
   private showBgmControl(): boolean {
     const minimum: number = QUEST_BGM_SIZE + 2 * QUEST_BGM_MARGIN;
-    return this.foreground && !this.keyboardVisible && !this.videoViewer.visible && !this.videoViewer.closing &&
+    return this.foreground && this.sheet === null && !this.keyboardVisible && !this.videoViewer.visible &&
+      !this.videoViewer.closing &&
       !this.inlineVideo.visible && !this.viewer.visible && !this.viewer.closing && this.hasBgm() &&
       this.viewportWidth - this.leftInset - this.rightInset >= minimum &&
       this.viewportHeight - this.foregroundTopInset() - this.bgmLayoutBottomInset() >= minimum;
   }
 
-  private bgmBottomInset(): number { return Math.max(0, this.bottomClearance - 24); }
+  private safeBottom(): number { return this.keyboardVisible ? 0 : Math.max(0, this.bottomClearance - 24); }
+
+  private showComposer(): boolean {
+    return this.play.visible && this.play.error.length === 0 && this.readableQuestionId().length > 0 &&
+      this.play.snapshot?.detail.status !== 'cancelled';
+  }
+
+  private composerInset(): number { return this.keyboardVisible ? 8 : Math.max(18, this.safeBottom()); }
+
+  private composerClearance(): number {
+    return this.showComposer() ? this.composerInset() + this.composerHeight + 10 : this.safeBottom() + 12;
+  }
+
+  private bgmBottomInset(): number { return this.composerClearance(); }
 
   private bgmLayoutBottomInset(): number {
     if (this.finalDestination() !== null) { return this.destinationBottomInset() + this.destinationHeight + 10; }
     if (this.attentionClue() !== null) { return this.attentionInset() + this.attentionHeight + 10; }
-    return this.showAnswerGuide() ? this.guideBottomInset() + this.guideHeight : this.bgmBottomInset();
+    return this.bgmBottomInset();
   }
 
   private bgmLeft(): number {
@@ -481,38 +419,48 @@ export struct GameplayPage {
       this.bgmLayoutBottomInset());
   }
 
-  private setTitleHidden(hidden: boolean, offset: number, threshold: number): void {
-    if (this.titleHidden === hidden) { return; }
-    this.titleHidden = hidden;
-    this.titleVisibilityChanged(hidden);
-    hilog.info(0x0000, 'StarwardQuestHeader', 'hidden=%{public}s offset=%{public}s threshold=%{public}s',
-      hidden.toString(), offset.toFixed(3), threshold.toFixed(3));
+  private titlePresent(): boolean {
+    return (this.play.snapshot?.detail.title.length ?? 0) > 0 && this.play.error.length === 0;
+  }
+
+  private readingTopInset(): number {
+    return this.titleTopInset() + (this.titlePresent() ? GAMEPLAY_TITLE_CLEARANCE : 0);
+  }
+
+  private titleTopInset(): number {
+    return Math.max(0, Math.max(GAMEPLAY_TITLE_MIN_TOP, this.statusInset) - this.viewportTop);
+  }
+
+  private readingGutter(): number {
+    return this.viewportWidth <= 620 ? 14 : 20;
+  }
+
+  @Monitor('answerFocused', 'keyboardVisible')
+  revealTitleForInput(): void {
+    if (this.answerFocused || this.keyboardVisible) { this.revealTitle(); }
+  }
+
+  private revealTitle(): void {
+    this.titleHidden = false;
+    this.scrollMomentum = 0;
   }
 
   private syncTitle(): void {
     const offset: number = this.scrollOffset();
-    const threshold: number = Math.max(0, this.cardContentTop - this.titleBottom);
-    if (offset <= 0.5) {
-      this.setTitleHidden(false, offset, threshold);
-    } else if (this.titleBottom > 0 && this.cardContentTop >= 0 && offset + 0.25 >= threshold) {
-      this.setTitleHidden(true, offset, threshold);
+    const delta: number = offset - this.lastScrollOffset;
+    this.lastScrollOffset = offset;
+    if (offset <= 16 || this.answerFocused || this.keyboardVisible || this.positionPending) {
+      this.revealTitle();
+      return;
     }
-  }
-
-  private measureCard(area: Area): void {
-    const top: number = Number(area.globalPosition.y);
-    if (!Number.isFinite(top)) { return; }
-    this.cardContentTop = top + this.scrollOffset();
-    this.syncTitle();
-  }
-
-  private measureReadingRegion(area: Area): void {
-    const top: number = Number(area.globalPosition.y);
-    const height: number = Number(area.height);
-    if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) { return; }
-    this.readingContentTop = top + this.scrollOffset();
-    this.questionRegionHeight = height;
-    this.scheduleQuestionPosition();
+    if (Math.abs(delta) < 0.05) { return; }
+    this.scrollMomentum = Math.sign(delta) === Math.sign(this.scrollMomentum) ? this.scrollMomentum + delta : delta;
+    if (this.scrollMomentum <= -6) {
+      this.revealTitle();
+    } else if (offset >= 56 && this.scrollMomentum >= 10) {
+      this.titleHidden = true;
+      this.scrollMomentum = 0;
+    }
   }
 
   private hasLevelMessages(): boolean {
@@ -526,25 +474,27 @@ export struct GameplayPage {
 
   private trackQuestionPosition(force: boolean = false): void {
     const owner: string = this.positionKey();
+    if (owner !== this.positionOwner) { this.answerFocused = false; }
     if (owner !== this.positionOwner || force) {
       this.positionOwner = owner;
       this.positionPending = owner.length > 0;
+      this.revealTitle();
     }
     this.scheduleQuestionPosition();
+  }
+
+  private composerOwnerCurrent(owner: string): boolean {
+    return owner.length > 0 && owner === this.positionKey() && this.gameplayOwnerCurrent();
   }
 
   private foregroundTopInset(): number {
     return Math.max(0, this.statusInset - this.viewportTop);
   }
 
-  private minimumQuestionRegionHeight(): number {
-    return Math.max(0, this.viewportHeight - this.foregroundTopInset());
-  }
-
   @Monitor('keyboardVisible', 'recoveryVisible', 'play.loading', 'play.starting', 'play.submitting',
     'play.refreshing', 'play.advancing', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
     'textClue', 'completionNotice', 'combinationSequenceActive', 'rankNotice', 'journey.entries',
-    'journey.gameplayReady', 'journey.routeArchive', 'journey.automaticDismissedRevision', 'accountCovered')
+    'journey.gameplayReady', 'journey.routeArchive', 'journey.automaticDismissedRevision', 'accountCovered', 'sheet')
   scheduleQuestionPosition(): void {
     if (this.positionTimer !== -1 || !this.questionPositionReady()) {
       return;
@@ -552,25 +502,153 @@ export struct GameplayPage {
     this.positionTimer = setTimeout(() => {
       this.positionTimer = -1;
       if (!this.questionPositionReady() || this.positionOwner !== this.positionKey()) { return; }
-      const safeTop: number = Math.max(this.viewportTop, this.statusInset);
-      const visibleTop: number = this.hasLevelMessages() && !this.titleHidden ?
-        Math.max(safeTop, this.titleBottom) : safeTop;
-      const y: number = Math.max(0, this.readingContentTop - visibleTop);
       this.positionPending = false;
-      this.questionScroller.scrollTo({ xOffset: 0, yOffset: y,
-        animation: this.reducedMotion ? false : { duration: 240, curve: Curve.EaseOut } });
+      this.lastScrollOffset = 0;
+      this.questionScroller.scrollTo({ xOffset: 0, yOffset: 0, animation: false });
     }, 0);
   }
 
   private questionPositionReady(): boolean {
-    return this.positionPending && this.viewportHeight > 0 && this.readingContentTop >= 0 &&
-      this.questionRegionHeight + 0.5 >= this.minimumQuestionRegionHeight() && this.questionInteractionReady();
+    return this.positionPending && this.viewportHeight > 0 && this.questionInteractionReady();
   }
 
-  private foregroundClip(): RectShape | undefined {
-    if (this.viewportHeight <= 0) { return undefined; }
-    const top: number = this.foregroundTopInset();
-    return new RectShape({ width: '100%', height: Math.max(0, this.viewportHeight - top) }).offset({ x: 0, y: top });
+  private measureNewFeedback(levelId: string, revision: number, area: Area): void {
+    if (levelId !== this.readableQuestionId() || revision !== this.play.feedbackVersion ||
+      revision <= this.consumedFeedbackRevision || !this.answerFeedbackDanger()) { return; }
+    const top: number = Number(area.globalPosition.y);
+    const height: number = Number(area.height);
+    if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) { return; }
+    this.feedbackPosition = { revision: revision, owner: this.positionKey(), contentTop: top + this.scrollOffset(),
+      height: height };
+    this.revealNewFeedback();
+  }
+
+  @Monitor('keyboardVisible', 'play.submitting', 'sheet')
+  private revealNewFeedback(): void {
+    const feedback: GameplayFeedbackPosition | null = this.feedbackPosition;
+    if (feedback === null) { return; }
+    if (feedback.owner.length === 0 || feedback.owner !== this.positionKey() ||
+      feedback.revision !== this.play.feedbackVersion || !this.hasAnswerFeedback() || !this.answerFeedbackDanger()) {
+      this.feedbackPosition = null;
+      return;
+    }
+    if (this.keyboardVisible || this.play.submitting || !this.foreground || this.narrativeCovered ||
+      this.accountCovered || this.sheet !== null || !this.showComposer()) { return; }
+    const viewportTop: number = this.viewportTop + this.readingTopInset();
+    const viewportBottom: number = this.viewportTop + this.viewportHeight - this.composerClearance();
+    if (viewportBottom <= viewportTop) { return; }
+    const offset: number = this.scrollOffset();
+    const top: number = feedback.contentTop - offset;
+    const bottom: number = top + feedback.height;
+    this.consumedFeedbackRevision = feedback.revision;
+    this.feedbackPosition = null;
+    if (top >= viewportTop && bottom <= viewportBottom) { return; }
+    const alignment: number = top < viewportTop || feedback.height > viewportBottom - viewportTop ?
+      viewportTop : viewportBottom - feedback.height;
+    this.questionScroller.scrollTo({ xOffset: 0, yOffset: Math.max(0, feedback.contentTop - alignment),
+      animation: !this.reducedMotion });
+  }
+
+  private hasHints(levelId: string): boolean {
+    return this.contentBlocks(levelId).some((block: GameplayContentBlock) => block.hint.trim().length > 0);
+  }
+
+  private gameplaySheetOwnerCurrent(): boolean {
+    return this.foreground && !this.accountCovered && !this.narrativeCovered && this.gameplayOwnerCurrent() &&
+      this.sheetOwner.length > 0 && this.sheetOwner === this.positionKey() && (this.sheet === 'choice' ?
+      this.play.currentLevel()?.question?.kind === 'choice' : this.hasHints(this.readableQuestionId()));
+  }
+
+  private openGameplaySheet(kind: GameplaySheet): void {
+    if (!this.foreground || this.accountCovered || !this.questionInteractionReady(true) ||
+      this.play.automaticClue !== null || this.positionKey().length === 0 || (kind === 'hint' &&
+      !this.hasHints(this.readableQuestionId()))) { return; }
+    this.stopInlineVideo();
+    StarwardKeyboard.dismiss(this.getUIContext());
+    this.sheetOwner = this.positionKey();
+    this.sheetRevision++;
+    this.sheet = kind;
+    this.sheetVisible = true;
+  }
+
+  private closeGameplaySheet(invalidOwner: boolean = false): void {
+    if (this.sheet === null || (!invalidOwner && this.closeClueMedia())) { return; }
+    if (invalidOwner) {
+      this.sheetOwner = '';
+      this.viewer.close(this.viewer.sessionId, true);
+      this.videoViewer.close(this.videoViewer.sessionId, true);
+      if (this.viewer.closing) { this.viewer.disappeared(this.viewer.sessionId); }
+      if (this.videoViewer.closing) { this.videoViewer.disappeared(this.videoViewer.sessionId); }
+    }
+    this.stopInlineVideo();
+    this.sheetVisible = false;
+    if (invalidOwner || !this.sheetMounted) { this.finishGameplaySheet(this.sheetRevision); }
+  }
+
+  private finishGameplaySheet(revision: number): void {
+    if (revision !== this.sheetRevision) { return; }
+    if (this.sheet === 'hint') { this.modalBackdrop.hide(this.hintBackdropOwner); }
+    this.sheetMounted = false;
+    this.sheetOwner = '';
+    this.sheet = null;
+    this.sheetVisible = false;
+  }
+
+  @Monitor('accountCovered', 'narrativeCovered', 'recoveryVisible', 'play.answerBurst')
+  questionCoversChanged(): void {
+    if (this.accountCovered || this.narrativeCovered || this.recoveryVisible) {
+      this.closeGameplaySheet(true);
+      this.play.discardAnswerBurst();
+    }
+  }
+
+  private handleBack(): boolean {
+    if (this.closeClueMedia()) { return true; }
+    if (this.sheet !== null) {
+      this.closeGameplaySheet();
+      return true;
+    }
+    const burst: GameplayAnswerBurst | null = this.visibleAnswerBurst();
+    if (burst !== null) {
+      this.play.finishAnswerBurst(burst, false);
+      return true;
+    }
+    return this.journeyBack?.() ?? false;
+  }
+
+  private questionMediaReady(fromSheet: GameplaySheet | null = null): boolean {
+    return this.foreground && !this.accountCovered && this.play.automaticClue === null &&
+      (fromSheet === null ? this.questionInteractionReady(true) : this.sheet === fromSheet && this.sheetVisible &&
+      this.gameplaySheetOwnerCurrent() && this.gameplayOverlayReady(true, true));
+  }
+
+  private gameplaySheetOptions(): SheetOptions {
+    const revision: number = this.sheetRevision;
+    return { height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: false,
+      backgroundColor: $r('app.color.gameplay_overlay_tint'), blurStyle: BlurStyle.NONE, maskColor: Color.Transparent,
+      onWillAppear: () => {
+        if (revision === this.sheetRevision && this.sheet === 'hint' && this.sheetVisible) {
+          this.sheetMounted = true;
+          this.modalBackdrop.show(this.hintBackdropOwner);
+        }
+      },
+      onWillDismiss: (action: DismissSheetAction) => {
+        if (revision !== this.sheetRevision || this.closeClueMedia()) { return; }
+        this.closeGameplaySheet();
+        action.dismiss();
+      },
+      onDisappear: () => this.finishGameplaySheet(revision) };
+  }
+
+  private dismissChoicePopup(revision: number): boolean {
+    if (revision !== this.sheetRevision || this.sheet !== 'choice' || this.closeClueMedia()) { return false; }
+    this.closeGameplaySheet();
+    return true;
+  }
+
+  private choicePopupStateChanged(revision: number, visible: boolean): void {
+    if (revision !== this.sheetRevision || this.sheet !== 'choice') { return; }
+    if (visible) { this.sheetMounted = true; } else { this.finishGameplaySheet(revision); }
   }
 
   @Monitor('viewer.visible')
@@ -580,14 +658,16 @@ export struct GameplayPage {
 
   private openImages(blockIndex: number, index: number): void {
     const block: GameplayContentBlock | undefined = this.play.currentLevel()?.question?.content[blockIndex];
-    if (!this.play.visible || this.play.snapshot === null || block === undefined || block.videoUrl.trim().length > 0) { return; }
+    if (!this.questionMediaReady() || this.imageCacheOwner().length === 0 || block === undefined ||
+      block.videoUrl.trim().length > 0) { return; }
     const sources: string[] = this.blockImages(block);
     const owner: string = this.imageOwner();
     this.stopInlineVideo();
     StarwardKeyboard.dismiss(this.getUIContext());
     this.viewer.open(sources, index, () => {
       const current: GameplayContentBlock | undefined = this.play.currentLevel()?.question?.content[blockIndex];
-      if (!this.play.visible || this.play.snapshot === null || owner !== this.imageOwner() || current === undefined ||
+      if (this.imageCacheOwner().length === 0 || this.accountCovered || this.narrativeCovered ||
+        owner !== this.imageOwner() || current === undefined ||
         current.videoUrl.trim().length > 0) { return false; }
       const actual: string[] = this.blockImages(current);
       return actual.length === sources.length && actual.every((source: string, position: number) => source === sources[position]);
@@ -619,14 +699,16 @@ export struct GameplayPage {
 
   private openQuestionLegacyMedia(levelId: string, index: number, hint: boolean, partIndex: number,
     inline: boolean = false): void {
-    if (!this.foreground || this.accountCovered || levelId !== this.readableQuestionId() || !this.questionInteractionReady(true) ||
-      this.play.automaticClue !== null) { return; }
+    const fromSheet: GameplaySheet | null = hint ? 'hint' : null;
+    if (levelId !== this.readableQuestionId() || !this.questionMediaReady(fromSheet)) { return; }
     const source: string = this.legacyQuestionText(levelId, index, hint);
     const blocks: LegacyRichBlock[] = legacyRichBlocks(source);
     const part: LegacyRichBlock | undefined = blocks[partIndex];
     if (part === undefined) { return; }
     const owner: string = this.imageOwner();
-    const current = (): boolean => this.foreground && this.play.visible && owner === this.imageOwner() &&
+    const current = (): boolean => this.imageCacheOwner().length > 0 && !this.accountCovered && !this.narrativeCovered &&
+      (!hint || (this.sheet === 'hint' && this.sheetVisible && this.gameplaySheetOwnerCurrent())) &&
+      owner === this.imageOwner() &&
       levelId === this.readableQuestionId() && source === this.legacyQuestionText(levelId, index, hint);
     if (part.kind === 'image' && !inline) {
       this.stopInlineVideo();
@@ -634,13 +716,12 @@ export struct GameplayPage {
       this.viewer.open(legacyImageSources(blocks), legacyImageSources(blocks.slice(0, partIndex)).length, current);
     } else if (part.kind === 'video') {
       const slot: string = `${this.questionLegacyNodeId(levelId, index, hint)}-video-${partIndex}`;
-      this.openManualVideo(part.url, part.poster, current, inline ? slot : '', inline ? '' : slot);
+      this.openManualVideo(part.url, part.poster, current, inline ? slot : '', inline ? '' : slot, fromSheet);
     }
   }
 
   private openQuestionLegacyLink(levelId: string, index: number, hint: boolean, href: string): void {
-    if (!this.foreground || levelId !== this.readableQuestionId() || !this.questionInteractionReady(true) ||
-      this.play.automaticClue !== null) { return; }
+    if (levelId !== this.readableQuestionId() || !this.questionMediaReady(hint ? 'hint' : null)) { return; }
     const source: string = this.legacyQuestionText(levelId, index, hint);
     if (!legacyRichBlocks(source).some((part: LegacyRichBlock) =>
       part.spans.some((span: LegacyRichSpan) => span.linkTarget === href))) { return; }
@@ -648,6 +729,7 @@ export struct GameplayPage {
     StarwardKeyboard.dismiss(this.getUIContext());
     if (isLegacyInternalLink(href)) {
       this.stopInlineVideo();
+      if (hint) { this.closeGameplaySheet(); }
       if (!this.openJourneyLink(href)) { this.showClueLinkFailure(); }
     } else {
       this.launchClueLink(href, null, () => this.play.visible && owner === this.imageOwner() &&
@@ -656,9 +738,10 @@ export struct GameplayPage {
   }
 
   private openManualVideo(source: string, posterSource: string, mediaIsCurrent: () => boolean,
-    inlineSlot: string = '', returnSlot: string = ''): void {
-    if (!this.questionInteractionReady(true) || this.play.automaticClue !== null || source.length === 0) { return; }
-    const current = (): boolean => this.imageCacheOwner().length > 0 && this.play.snapshot?.detail.player === this.playerId &&
+    inlineSlot: string = '', returnSlot: string = '', fromSheet: GameplaySheet | null = null): void {
+    if (!this.questionMediaReady(fromSheet) || source.length === 0) { return; }
+    const current = (): boolean => this.imageCacheOwner().length > 0 && !this.accountCovered && !this.narrativeCovered &&
+      this.play.snapshot?.detail.player === this.playerId &&
       mediaIsCurrent();
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
     if (!context || !current()) { return; }
@@ -666,8 +749,7 @@ export struct GameplayPage {
       this.inlineVideo.pausePosition() : 0;
     let returnRevision: number = -1;
     const restore: ((ended: boolean) => void) | undefined = position > 0 ? (): void => {
-      if (returnRevision !== this.inlineVideoRevision || this.accountCovered || !current() ||
-        !this.questionInteractionReady(true) || this.play.automaticClue !== null) { return; }
+      if (returnRevision !== this.inlineVideoRevision || !current() || !this.questionMediaReady(fromSheet)) { return; }
       const cached: QuestionImageResult | undefined = posterSource.length > 0 ? this.imageCache.acquire(posterSource) : undefined;
       try {
         this.openVideoWithBgmSuspended(source, context.cacheDir, current, undefined, cached, returnSlot, position);
@@ -688,10 +770,10 @@ export struct GameplayPage {
 
   private viewerOptions(): ContentCoverOptions {
     const sessionId: number = this.viewer.sessionId;
-    return { backgroundColor: '#050605', enableSafeArea: false,
-      modalTransition: this.reducedMotion ? ModalTransition.NONE : ModalTransition.ALPHA,
-      onWillDismiss: (action: DismissContentCoverAction) => { this.viewer.close(sessionId); action.dismiss(); },
-      onDisappear: () => this.viewer.disappeared(sessionId) };
+    return starwardMediaCoverOptions(this.reducedMotion, (action: DismissContentCoverAction) => {
+      this.viewer.close(sessionId);
+      action.dismiss();
+    }, () => this.viewer.disappeared(sessionId));
   }
 
   private viewerCloseAction(): () => void {
@@ -708,15 +790,12 @@ export struct GameplayPage {
 
   private videoViewerOptions(): ContentCoverOptions {
     const sessionId: number = this.videoViewer.sessionId;
-    return { backgroundColor: '#050605', enableSafeArea: false,
-      modalTransition: this.reducedMotion ? ModalTransition.NONE : ModalTransition.ALPHA,
-      onWillDismiss: (action: DismissContentCoverAction) => {
-        if (!this.videoViewer.exitFullscreen(sessionId)) {
-          this.videoViewer.close(sessionId);
-          action.dismiss();
-        }
-      },
-      onDisappear: () => this.videoViewer.disappeared(sessionId) };
+    return starwardMediaCoverOptions(this.reducedMotion, (action: DismissContentCoverAction) => {
+      if (!this.videoViewer.exitFullscreen(sessionId)) {
+        this.videoViewer.close(sessionId);
+        action.dismiss();
+      }
+    }, () => this.videoViewer.disappeared(sessionId));
   }
 
   @Builder
@@ -757,7 +836,7 @@ export struct GameplayPage {
       snapshot?.detail.player !== this.playerId || !this.play.visible || this.play.error.length > 0 ||
       !this.questionInteractionReady() || this.play.automaticClue !== null || this.play.finaleStage !== 'idle' ||
       this.viewportWidth - this.leftInset - this.rightInset < 250 || this.viewportHeight <= 0) { return null; }
-    return nextNarrativeAttention(snapshot, this.currentClues(), this.openedNarrativeIds);
+    return nextNarrativeAttention(snapshot, this.play.currentLevel(), this.openedNarrativeIds);
   }
 
   private openPendingNarrative(id: string): void {
@@ -807,7 +886,7 @@ export struct GameplayPage {
   private showCombinationLauncher(): boolean {
     return this.foreground && this.play.finaleStage !== 'notice' && this.play.finaleStage !== 'combination' &&
       this.play.automaticClue === null && this.questionInteractionReady() &&
-      this.clueDialogWidth(true) >= 160 && this.clueDialogHeight() >= 120 && this.currentCombinations().length > 0;
+      this.clueDialogWidth() >= 160 && this.clueDialogHeight() >= 120 && this.currentCombinations().length > 0;
   }
 
   private openLatestCombination(): void {
@@ -875,7 +954,7 @@ export struct GameplayPage {
 
   @Monitor('play.automaticClue', 'play.starting', 'play.submitting', 'play.refreshing', 'keyboardVisible', 'recoveryVisible',
     'foreground', 'viewportWidth', 'viewportHeight', 'textClue', 'viewer.visible', 'viewer.closing',
-    'videoViewer.visible', 'videoViewer.closing')
+    'videoViewer.visible', 'videoViewer.closing', 'sheet')
   automaticClueChanged(): void {
     const clue: GameplayClue | null = this.play.automaticClue;
     if (clue === null || !this.foreground || this.viewportWidth <= 0 || this.viewportHeight <= 0) { return; }
@@ -928,11 +1007,6 @@ export struct GameplayPage {
     this.inlineVideoSlot = '';
   }
 
-  private stopHintInlineVideo(levelId: string, index: number): void {
-    const prefix: string = `${this.questionLegacyNodeId(levelId, index, true)}-video-`;
-    if (levelId === this.readableQuestionId() && this.inlineVideoSlot.startsWith(prefix)) { this.stopInlineVideo(); }
-  }
-
   @Monitor('accountCovered', 'narrativeCovered', 'recoveryVisible', 'viewer.visible', 'viewer.closing',
     'completionNotice', 'rankNotice', 'journey.entries', 'journey.gameplayReady', 'journey.routeArchive',
     'journey.automaticDismissedRevision')
@@ -942,8 +1016,8 @@ export struct GameplayPage {
       this.displayedJourneyNotification() !== null)) { this.stopInlineVideo(); }
   }
 
-  private clueDialogWidth(combination: boolean = false): number {
-    return Math.min(combination ? 760 : 720, this.viewportWidth - 48);
+  private clueDialogWidth(): number {
+    return Math.min(680, this.viewportWidth - this.leftInset - this.rightInset - 40);
   }
   private clueDialogHeight(): number {
     return this.viewportHeight - this.foregroundTopInset() - Math.max(24, this.bottomClearance) - 24;
@@ -951,7 +1025,7 @@ export struct GameplayPage {
 
   private async openClueDialog(clue: GameplayClue, owner: string,
     combination: boolean = false, sequence: boolean = false, onClosed?: (dismissed: boolean) => void): Promise<void> {
-    if (this.clueDialogWidth(combination) < 160 || this.clueDialogHeight() < 120 || this.clueDialog !== null) {
+    if (this.clueDialogWidth() < 160 || this.clueDialogHeight() < 120 || this.clueDialog !== null) {
       if (sequence) { this.interruptCombinationSequence(); }
       onClosed?.(false);
       return;
@@ -967,9 +1041,7 @@ export struct GameplayPage {
     this.stopInlineVideo();
     this.clueDialog = request;
     this.textClue = clue;
-    const fade: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.asymmetric(
-      TransitionEffect.opacity(0).animation({ duration: 320, curve: Curve.EaseOut }),
-      TransitionEffect.opacity(0).animation({ duration: 240, curve: Curve.EaseIn }));
+    this.modalBackdrop.show(request);
     const dialogTransition: TransitionEffect = this.reducedMotion ? TransitionEffect.IDENTITY :
       TransitionEffect.asymmetric(
         TransitionEffect.opacity(0).combine(TransitionEffect.translate({ y: 14 }))
@@ -980,11 +1052,10 @@ export struct GameplayPage {
           .animation({ duration: 240, curve: curves.cubicBezierCurve(0.4, 0, 0.8, 0.4) }));
     const options: promptAction.CustomDialogOptions = {
       builder: () => { this.clueDialogContent(request); },
-      alignment: DialogAlignment.Center, width: this.clueDialogWidth(combination), cornerRadius: 0,
+      alignment: DialogAlignment.Center, width: this.clueDialogWidth(), cornerRadius: 24,
       isModal: true, autoCancel: !combination, showInSubWindow: false,
-      backgroundColor: combination ? $r('app.color.combination_surface') : $r('app.color.raised'),
-      maskColor: combination ? $r('app.color.combination_mask') : $r('app.color.clue_mask'),
-      dialogTransition, maskTransition: fade,
+      backgroundColor: $r('app.color.raised'), backgroundBlurStyle: BlurStyle.NONE,
+      maskColor: Color.Transparent, dialogTransition,
       onWillDismiss: (action: DismissDialogAction) => {
         if (combination && action.reason === DismissReason.TOUCH_OUTSIDE) { return; }
         if (this.clueDialog !== request || !this.closeClueMedia()) {
@@ -1047,6 +1118,7 @@ export struct GameplayPage {
   }
 
   private releaseClueDialog(request: ClueDialogRequest, dismissed: boolean = false): void {
+    this.modalBackdrop.hide(request);
     if (this.clueDialog === request) {
       this.stopInlineVideo();
       if (this.clueLinkHandoff?.dialog === request) { this.clearClueLinkHandoff(); }
@@ -1139,7 +1211,7 @@ export struct GameplayPage {
           StarwardCombinationDialog({ clue: this.textClue, ownerKey: request.owner,
             ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
             imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
-            panelWidth: this.clueDialogWidth(true), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
+            panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(),
             motionEnabled: this.foreground && !this.reducedMotion && !this.viewer.visible && !this.viewer.closing &&
               !this.videoViewer.visible && !this.videoViewer.closing,
             reducedMotion: this.reducedMotion, acknowledge: () => this.closeClueDialog(),
@@ -1151,7 +1223,7 @@ export struct GameplayPage {
           StarwardClueTextDialog({ clue: this.textClue, ownerKey: request.owner,
             ownerIsCurrent: (owner: string) => this.currentTextClueOwner(owner),
             imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
-            panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(), displayFont: this.displayFont,
+            panelWidth: this.clueDialogWidth(), maxHeight: this.clueDialogHeight(),
             motionEnabled: this.foreground && !this.reducedMotion && !this.viewer.visible && !this.viewer.closing &&
               !this.videoViewer.visible && !this.videoViewer.closing,
             reducedMotion: this.reducedMotion, close: () => this.closeClueDialog(),
@@ -1163,7 +1235,7 @@ export struct GameplayPage {
         Column() {}.width(0).height(0).bindContentCover(this.viewer.visible, this.imageViewer(), this.viewerOptions())
         Column() {}.width(0).height(0)
           .bindContentCover(this.videoViewer.visible, this.gameplayVideoViewer(), this.videoViewerOptions())
-      }.width(this.clueDialogWidth(request.combination))
+      }.width(this.clueDialogWidth())
     }
   }
 
@@ -1193,24 +1265,10 @@ export struct GameplayPage {
     }
   }
 
-  private recoveryOptions(): ContentCoverOptions {
-    return {
-      backgroundColor: $r('app.color.answer_recovery_mask'),
-      enableSafeArea: true,
-      modalTransition: this.reducedMotion ? ModalTransition.NONE : ModalTransition.ALPHA,
-      onWillDismiss: (action: DismissContentCoverAction) => {
-        if (!this.play.submitting && action.reason === DismissReason.PRESS_BACK) {
-          this.stayOnQuestion();
-          action.dismiss();
-        }
-      }
-    };
-  }
-
   @Builder
   answerRecovery() {
     StarwardAnswerRecovery({ pending: this.play.submitting, displayFont: this.displayFont,
-      motionEnabled: this.foreground && !this.reducedMotion && this.recoveryVisible,
+      maxHeight: this.clueDialogHeight(), motionEnabled: this.foreground && !this.reducedMotion && this.recoveryVisible,
       retry: () => this.retryAnswer(), stay: () => this.stayOnQuestion() })
   }
 
@@ -1272,7 +1330,7 @@ export struct GameplayPage {
         builder: () => { this.combinationNoticeContent(request, width, height); },
         alignment: DialogAlignment.Center, width: width, cornerRadius: 0, isModal: true, showInSubWindow: false,
         backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
-        maskColor: finale ? Color.Transparent : $r('app.color.completion_mask'), dialogTransition: dialogTransition,
+        maskColor: finale ? Color.Transparent : $r('app.color.modal_mask'), dialogTransition: dialogTransition,
         maskTransition: fade,
         autoCancel: !hasResults && !finale, onWillDismiss: hasResults || finale ? () => {} : undefined,
         onDidDisappear: () => this.releaseCompletionNotice(request, true)
@@ -1320,7 +1378,7 @@ export struct GameplayPage {
   }
 
   @Monitor('play.completionRevision', 'viewportWidth', 'viewportHeight', 'play.submitting', 'recoveryVisible',
-    'foreground', 'keyboardVisible')
+    'foreground', 'keyboardVisible', 'sheet')
   completionChanged(): void {
     const revision: number = this.play.completionRevision;
     if (revision <= 0 || revision === this.seenCompletionRevision) {
@@ -1328,7 +1386,8 @@ export struct GameplayPage {
       return;
     }
     const snapshot: GameplaySnapshot | null = this.play.snapshot;
-    if (!this.foreground || !this.play.visible || snapshot === null || snapshot.detail.status !== 'completed') {
+    if (!this.foreground || !this.play.visible || snapshot === null || snapshot.detail.status !== 'completed' ||
+      this.sheet !== null) {
       return;
     }
     if (this.play.finaleStage === 'notice') {
@@ -1398,7 +1457,7 @@ export struct GameplayPage {
     'play.loading', 'play.starting', 'play.submitting', 'play.refreshing', 'seenCompletionRevision',
     'completionNotice', 'combinationSequenceActive', 'keyboardVisible', 'foreground', 'recoveryVisible',
     'textClue', 'viewer.visible', 'viewer.closing', 'videoViewer.visible', 'videoViewer.closing',
-    'viewportWidth', 'viewportHeight')
+    'viewportWidth', 'viewportHeight', 'sheet', 'play.answerBurst', 'accountCovered', 'narrativeCovered')
   rankChanged(): void {
     if (this.rankNotice !== null) {
       if (!this.isRankNoticeCurrent(this.rankNotice)) { this.cancelRankNotice(); }
@@ -1407,7 +1466,7 @@ export struct GameplayPage {
     const rank: GameplayRankUp | null = this.play.rankUp;
     const width: number = Math.min(680, this.viewportWidth - (this.viewportWidth <= 620 ? 28 : 48));
     const height: number = this.clueDialogHeight();
-    if (rank === null || !this.foreground || !this.play.visible || this.play.error.length > 0 ||
+    if (rank === null || !this.foreground || this.accountCovered || !this.play.visible || this.play.error.length > 0 ||
       this.play.imageOwnerKey().length === 0 || this.play.automaticClue !== null ||
       this.seenCompletionRevision !== this.play.completionRevision || !this.questionInteractionReady() ||
       width < 160 || height < 120) { return; }
@@ -1415,8 +1474,8 @@ export struct GameplayPage {
   }
 
   private isRankNoticeCurrent(request: RankDialogRequest): boolean {
-    return this.rankNotice === request && this.play.rankUp === request.rank && this.foreground && this.play.visible &&
-      this.play.error.length === 0 && this.play.imageOwnerKey() === request.owner;
+    return this.rankNotice === request && this.play.rankUp === request.rank && this.foreground && !this.accountCovered &&
+      !this.narrativeCovered && this.gameplayOwnerCurrent() && this.play.imageOwnerKey() === request.owner;
   }
 
   @Builder
@@ -1457,9 +1516,9 @@ export struct GameplayPage {
     try {
       request.id = await request.action.openCustomDialog({
         builder: () => { this.rankNoticeContent(request, width, height); },
-        alignment: DialogAlignment.Center, width, cornerRadius: 0, isModal: true, showInSubWindow: false,
+        alignment: DialogAlignment.Center, width, cornerRadius: 24, isModal: true, showInSubWindow: false,
         backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
-        maskColor: $r('app.color.rank_up_mask'), dialogTransition, maskTransition, autoCancel: false,
+        maskColor: $r('app.color.modal_mask'), dialogTransition, maskTransition, autoCancel: false,
         onWillDismiss: (action: DismissDialogAction) => {
           if (action.reason === DismissReason.TOUCH_OUTSIDE) { return; }
           request.closing = true;
@@ -1514,29 +1573,20 @@ export struct GameplayPage {
     return levels.slice(first, last + 1).map((level: GameplayLevel) => level.id);
   }
 
-  private questionNavigationItems(): QuestionNavigationItem[] {
-    return (this.play.snapshot?.levels || []).map((level: GameplayLevel, index: number): QuestionNavigationItem => ({
+  private questionNavigationItems(): GameplayProgressItem[] {
+    return (this.play.snapshot?.levels || []).map((level: GameplayLevel, index: number): GameplayProgressItem => ({
       id: level.id,
       completed: level.completedAt.length > 0,
-      enabled: this.interactionReady() && this.play.canMoveTo(index),
+      enabled: this.questionInteractionReady(true) && this.play.canMoveTo(index),
       locked: level.question === null
     }));
   }
 
-  private requestQuestionSettle(index: number): void {
-    const target: string = this.play.snapshot?.levels[index]?.id ?? '';
-    if (target.length > 0 && target !== this.readableQuestionId() && this.answerMotionEnabled()) {
-      this.explicitQuestionTarget = target;
-      this.explicitQuestionRevision++;
-    }
-  }
-
-  private selectQuestion(index: number, directAction: boolean = true): void {
-    if (!this.interactionReady() || this.recoveryVisible || !this.play.canMoveTo(index)) {
+  private selectQuestion(index: number): void {
+    if (!this.questionInteractionReady(true) || !this.play.canMoveTo(index) || index === this.play.activeIndex) {
       return;
     }
-    if (directAction) { this.requestQuestionSettle(index); }
-    if (index !== this.play.activeIndex) { this.stopInlineVideo(); }
+    this.stopInlineVideo();
     StarwardKeyboard.dismiss(this.getUIContext());
     this.play.moveTo(index);
     this.trackQuestionPosition(true);
@@ -1547,7 +1597,7 @@ export struct GameplayPage {
     if (!this.questionInteractionReady() || Math.abs(index - this.play.activeIndex) !== 1 || !this.play.canMoveTo(index)) {
       return false;
     }
-    this.selectQuestion(index, false);
+    this.selectQuestion(index);
     return this.readableQuestionId() === id;
   }
 
@@ -1601,24 +1651,28 @@ export struct GameplayPage {
 
   private optionOwner(key: string): string { return `${this.imageOwner()}:option:${key}`; }
 
+  private choiceMediaCurrent(owner: string, key: string): boolean {
+    return this.sheet === 'choice' && this.sheetVisible && this.gameplaySheetOwnerCurrent() &&
+      this.optionOwner(key) === owner && this.currentOption(key) !== undefined;
+  }
+
   private openOptionImage(key: string): void {
     const source: string = this.optionImage(key);
     const owner: string = this.optionOwner(key);
-    if (!this.play.visible || this.play.snapshot === null || !this.play.answerEditable() || source.length === 0 ||
+    if (!this.questionMediaReady('choice') || source.length === 0 ||
       this.optionVideo(key).length > 0) { return; }
     this.stopInlineVideo();
     StarwardKeyboard.dismiss(this.getUIContext());
-    this.viewer.open([source], 0, () => this.play.visible && this.play.snapshot !== null && this.play.answerEditable() &&
-      this.optionOwner(key) === owner && this.optionImage(key) === source && this.optionVideo(key).length === 0);
+    this.viewer.open([source], 0, () => this.choiceMediaCurrent(owner, key) && this.optionImage(key) === source &&
+      this.optionVideo(key).length === 0);
   }
 
   private openOptionVideo(key: string): void {
-    if (!this.play.answerEditable()) { return; }
     const owner: string = this.optionOwner(key);
     const source: string = this.optionVideo(key);
     const poster: string = this.optionImage(key);
-    this.openManualVideo(source, poster, () => this.play.answerEditable() && this.optionOwner(key) === owner &&
-      this.optionVideo(key) === source && this.optionImage(key) === poster);
+    this.openManualVideo(source, poster, () => this.choiceMediaCurrent(owner, key) &&
+      this.optionVideo(key) === source && this.optionImage(key) === poster, '', '', 'choice');
   }
 
   private currentCompleted(): boolean {
@@ -1629,9 +1683,9 @@ export struct GameplayPage {
     return !this.play.loading && !this.play.starting && !this.play.submitting && !this.play.refreshing;
   }
 
-  private gameplayOverlayReady(allowsKeyboard: boolean = false): boolean {
+  private gameplayOverlayReady(allowsKeyboard: boolean = false, allowsSheet: boolean = false): boolean {
     return !this.narrativeCovered && this.interactionReady() && (allowsKeyboard || !this.keyboardVisible) &&
-      !this.recoveryVisible &&
+      !this.recoveryVisible && this.play.answerBurst === null && (allowsSheet || this.sheet === null) &&
       this.textClue === null && !this.viewer.visible && !this.viewer.closing &&
       !this.videoViewer.visible && !this.videoViewer.closing &&
       !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
@@ -1641,15 +1695,34 @@ export struct GameplayPage {
     return this.gameplayOverlayReady(allowsKeyboard) && this.displayedJourneyNotification() === null;
   }
 
-  private journeyOwnerCurrent(): boolean {
+  private gameplayOwnerCurrent(): boolean {
     const snapshot: GameplaySnapshot | null = this.play.snapshot;
     return this.playerId.length > 0 && this.play.visible && this.play.error.length === 0 &&
       snapshot !== null && snapshot.detail.player === this.playerId && snapshot.detail.status !== 'cancelled';
   }
 
+  private visibleAnswerBurst(): GameplayAnswerBurst | null {
+    const burst: GameplayAnswerBurst | null = this.play.answerBurst;
+    if (burst === null || !this.foreground || this.accountCovered || this.narrativeCovered ||
+      this.keyboardVisible || this.recoveryVisible || this.sheet !== null || !this.interactionReady() ||
+      this.textClue !== null || this.viewer.visible || this.viewer.closing || this.videoViewer.visible ||
+      this.videoViewer.closing || this.completionNotice !== null || this.rankNotice !== null ||
+      !this.gameplayOwnerCurrent() || !this.play.answerBurstCurrent(burst)) { return null; }
+    return burst;
+  }
+
+  private visibleAnswerBursts(): GameplayAnswerBurst[] {
+    const burst: GameplayAnswerBurst | null = this.visibleAnswerBurst();
+    return burst === null ? [] : [burst];
+  }
+
+  private finishAnswerBurst(burst: GameplayAnswerBurst, advance: boolean): void {
+    if (this.visibleAnswerBurst() === burst) { this.play.finishAnswerBurst(burst, advance); }
+  }
+
   private journeyPresentationReady(): boolean {
     return this.journeyPollingAllowed && this.foreground && !this.accountCovered && this.journey.gameplayReady &&
-      this.journeyOwnerCurrent() &&
+      this.gameplayOwnerCurrent() &&
       this.gameplayOverlayReady() && !this.play.advancing && this.play.automaticClue === null &&
       this.play.finaleStage === 'idle' &&
       this.play.rankUp === null && this.seenCompletionRevision === this.play.completionRevision &&
@@ -1737,11 +1810,44 @@ export struct GameplayPage {
   }
 
   private questionTitleSize(): number {
-    return Math.max(32, Math.min(48, this.viewportWidth * 0.1));
+    if (this.viewportWidth <= 620) { return Math.max(20, Math.min(24, this.viewportWidth * 0.054)); }
+    return Math.max(21, Math.min(26, this.viewportWidth * 0.05));
   }
+
+  private questionMediaHeight(): number { return this.viewportWidth <= 620 ? 300 : 420; }
 
   private shownAnswer(): string {
     return this.currentCompleted() ? this.play.currentLevel()?.lastAnswer || '' : this.play.draftAnswer;
+  }
+
+  @Computed
+  get composerView(): GameplayComposerView {
+    const answer: string = this.shownAnswer();
+    const option: GameplayOption | undefined = this.currentOption(answer);
+    const interactionReady: boolean = this.questionInteractionReady(true);
+    const completed: boolean = this.currentCompleted();
+    const action: GameplayComposerAction = completed ?
+      this.play.canMoveTo(this.play.activeIndex + 1) ? 'next' : 'none' :
+      this.play.retryAnswer && !this.play.submitting ? 'retry' : 'submit';
+    return {
+      choice: this.play.currentLevel()?.question?.kind === 'choice', choiceKey: option?.key ?? '',
+      choiceLabel: option ? option.text || `选项 ${option.key}` : '', answer: answer,
+      placeholder: this.play.currentLevel()?.question?.placeholder || '输入你的答案',
+      editable: this.play.answerEditable(), completed: completed, interactionReady: interactionReady,
+      action: action, actionEnabled: interactionReady && (action !== 'submit' || this.play.answerAllowed()),
+      submitting: this.play.submitting, advancing: this.play.advancing
+    };
+  }
+
+  private performComposerAction(action: GameplayComposerAction): void {
+    if (!this.questionInteractionReady(true) || action !== this.composerView.action) { return; }
+    if (action === 'submit' && this.play.answerAllowed()) {
+      this.submit();
+    } else if (action === 'retry') {
+      this.showRecovery();
+    } else if (action === 'next') {
+      this.play.nextQuestion();
+    }
   }
 
   private submit(): void {
@@ -1754,17 +1860,15 @@ export struct GameplayPage {
     this.play.retrySubmission(this.autoNextDelay);
   }
 
-  // Private builders read the V2 owner directly. Passing plain snapshot/level
-  // objects by value would freeze their first render across a settlement.
   @Builder
   questionNavigation() {
-    StarwardQuestionNavigation({ items: this.questionNavigationItems(), activeIndex: this.play.activeIndex,
-      reducedMotion: this.reducedMotion, motionEnabled: this.answerMotionEnabled(),
+    GameplayProgress({ items: this.questionNavigationItems(), activeIndex: this.play.activeIndex,
+      reducedMotion: this.reducedMotion,
       select: (index: number) => this.selectQuestion(index) })
   }
 
   @Builder
-  choiceAnswer() {
+  choiceOptions() {
     Column({ space: 10 }) {
       ForEach(this.optionKeys(), (key: string, index: number) => {
         StarwardChoiceOption({ optionKey: key, text: this.currentOption(key)?.text || `选项 ${key}`,
@@ -1773,76 +1877,87 @@ export struct GameplayPage {
           selected: this.shownAnswer() === key, editable: this.play.answerEditable(),
           imageSource: this.optionImage(key), ownerKey: this.optionOwner(key),
           videoSource: this.optionVideo(key), videoId: `gameplay-option-video-${index}`,
-          videoPlayable: this.questionInteractionReady(true) && this.play.automaticClue === null,
-          ownerIsCurrent: (owner: string) => this.imageCacheOwner().length > 0 && owner === this.optionOwner(key),
+          mediaEnabled: this.questionMediaReady('choice'), videoPlayable: this.questionMediaReady('choice'),
+          ownerIsCurrent: (owner: string) => this.choiceMediaCurrent(owner, key),
           imageCache: this.imageCache,
-          reducedMotion: !this.answerMotionEnabled(), chosen: () => this.editAnswer(key),
+          reducedMotion: this.reducedMotion, chosen: () => {
+            if (this.questionMediaReady('choice') && this.play.answerEditable() && this.currentOption(key)) {
+              this.play.editAnswer(key);
+              this.closeGameplaySheet();
+            }
+          },
           opened: () => this.openOptionImage(key), videoOpened: () => this.openOptionVideo(key) })
       }, (key: string) => key)
     }.id('gameplay-choice-options').width('100%')
   }
 
   @Builder
-  answerForm() {
-    Column() {
-      if (this.play.currentLevel()?.question?.kind === 'choice') {
-        this.choiceAnswer()
-      } else {
-        StarwardAnswerInput({ value: this.shownAnswer(),
-          placeholder: this.play.currentLevel()?.question?.placeholder || '输入你的答案',
-          editable: this.play.answerEditable(), reducedMotion: this.reducedMotion,
-          changed: (value: string) => this.editAnswer(value) })
-      }
+  answerFeedback(levelId: string) {
+    Column({ space: 8 }) {
       if (!this.currentCompleted() && this.play.blockedReason().length > 0) {
         Text(this.play.blockedReason()).id('gameplay-penalty').width('100%')
           .fontSize(16).lineHeight('25.6fp').fontColor($r('app.color.accent_text'))
-          .padding({ top: 13, bottom: 13, left: 15, right: 15 }).margin({ top: 16 })
-          .backgroundColor($r('app.color.accent_faint')).border({ width: 1, color: $r('app.color.accent_border') })
-      }
-      if (!this.currentCompleted()) {
-        if (this.play.retryAnswer && !this.play.submitting) {
-          Button('重新连接', { type: ButtonType.Capsule }).id('gameplay-answer-retry-inline')
-            .constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).margin({ top: 18 })
-            .fontSize(16).fontWeight(600).fontColor($r('app.color.on_accent'))
-            .backgroundColor($r('app.color.accent')).enabled(this.interactionReady())
-            .onClick(() => this.showRecovery())
-        } else {
-          Button('提交答案', { type: ButtonType.Capsule }).id('gameplay-submit')
-            .constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).margin({ top: 18 })
-            .fontSize(16).fontWeight(600).fontColor($r('app.color.on_accent'))
-            .backgroundColor($r('app.color.accent')).enabled(this.play.answerAllowed()).onClick(() => this.submit())
-        }
-      }
-      if (this.currentCompleted() && this.play.canMoveTo(this.play.activeIndex + 1)) {
-        Button(this.play.advancing ? '即将前往下一题…' : '前往下一题', { type: ButtonType.Capsule })
-          .id('gameplay-next').constraintSize({ minHeight: 46 }).padding({ left: 20, right: 20 }).margin({ top: 18 })
-          .fontSize(16).fontWeight(600)
-          .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-          .border({ width: 1, color: $r('app.color.accent_border') })
-          .enabled(this.interactionReady()).onClick(() => {
-            this.requestQuestionSettle(this.play.activeIndex + 1);
-            this.play.nextQuestion();
-          })
+          .padding({ top: 6, bottom: 6, left: 12, right: 12 }).borderRadius(12)
+          .backgroundColor($r('app.color.accent_faint'))
       }
       if (this.hasAnswerFeedback()) {
-        ForEach([this.play.feedbackVersion], (_version: number) => {
-          StarwardQuestFeedback({
-            message: this.play.answerError.length > 0 ? this.play.answerError : this.play.feedback,
-            messageId: this.play.answerError.length > 0 ? 'gameplay-answer-error' : 'gameplay-feedback-message',
-            danger: this.answerFeedbackDanger(),
-            transient: this.play.feedbackTransient, motionEnabled: this.answerMotionEnabled()
-          })
+        ForEach([this.play.feedbackVersion], (version: number) => {
+          Column() {
+            StarwardQuestFeedback({
+              message: this.play.answerError.length > 0 ? this.play.answerError : this.play.feedback,
+              messageId: this.play.answerError.length > 0 ? 'gameplay-answer-error' : 'gameplay-feedback-message',
+              danger: this.answerFeedbackDanger(),
+              transient: this.play.feedbackTransient, motionEnabled: this.answerMotionEnabled()
+            })
+          }.width('100%').onAreaChange((_previous: Area, area: Area) => this.measureNewFeedback(levelId, version, area))
         }, (version: number) => version.toString())
       }
-    }.id('gameplay-answer-form').width('100%').alignItems(HorizontalAlign.Start)
-      .outlineWidth(1).outlineRadius(2)
-      .outlineColor(this.answerGuideHighlighted() ? $r('app.color.accent') : Color.Transparent)
-      .backgroundColor(this.answerGuideHighlighted() ? $r('app.color.accent_faint') : Color.Transparent)
-      .animation({ duration: this.reducedMotion ? 0 : 480, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
-      .shadow({ radius: this.getUIContext().vp2px(52),
-        color: this.answerGuideHighlighted() ? $r('app.color.quest_avatar_glow') : Color.Transparent })
-      .animation({ duration: this.reducedMotion ? 0 : 620, curve: curves.cubicBezierCurve(0.32, 0.72, 0, 1) })
-      .accessibilityDescription(this.answerGuideHighlighted() ? '已定位到当前答题区' : '')
+    }.width('100%').alignItems(HorizontalAlign.Start)
+  }
+
+  private choicePopupStatus(): string {
+    if (this.currentCompleted()) { return '已作答 · 仅查看选项'; }
+    if (!this.play.answerEditable()) { return '当前仅可查看选项'; }
+    const selection: GameplayOption | undefined = this.currentOption(this.shownAnswer());
+    return selection ? `已选 ${selection.key} · 点击选项可更换` : '请选择一个选项';
+  }
+
+  @Builder
+  private gameplaySheetMediaCovers() {
+    Column() {}.width(0).height(0).bindContentCover(this.viewer.visible, this.imageViewer(), this.viewerOptions())
+    Column() {}.width(0).height(0)
+      .bindContentCover(this.videoViewer.visible, this.gameplayVideoViewer(), this.videoViewerOptions())
+  }
+
+  @Builder
+  private choicePopupContent() {
+    if (this.sheet === 'choice' && this.gameplaySheetOwnerCurrent()) {
+      this.choiceOptions()
+      this.gameplaySheetMediaCovers()
+    }
+  }
+
+  @Builder
+  private hintSheet() {
+    GameplayHintSheet({ maxHeight: this.viewportHeight * 0.88,
+      leftInset: this.leftInset, rightInset: this.rightInset, close: () => this.closeGameplaySheet(),
+      content: () => { this.hintSheetContent() } })
+  }
+
+  @Builder
+  private hintSheetContent() {
+    if (this.sheet === 'hint' && this.gameplaySheetOwnerCurrent()) {
+      ForEach(this.contentBlocks(this.readableQuestionId()), (block: GameplayContentBlock, index: number) => {
+        if (block.hint.trim().length > 0) {
+          Column() {
+            this.questionLegacyBody(this.readableQuestionId(), index, true)
+          }.width('100%').padding({ top: 15, bottom: 15, left: 17, right: 17 })
+            .border({ width: 1, radius: 16, color: $r('app.color.border') })
+            .backgroundColor($r('app.color.input'))
+        }
+      }, (block: GameplayContentBlock, index: number) => `${index}:${block.hint}`)
+      this.gameplaySheetMediaCovers()
+    }
   }
 
   @Builder
@@ -1852,11 +1967,13 @@ export struct GameplayPage {
       ownerKey: this.questionImageOwner(levelId), ownerIsCurrent: (key: string) =>
         this.imageCacheOwner().length > 0 && this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
       imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
-      color: hint ? $r('app.color.muted') : $r('app.color.text'),
-      lineHeight: hint ? '27.2fp' : '27.52fp', active: levelId === this.readableQuestionId(),
-      interactive: this.questionInteractionReady(true) && this.play.automaticClue === null,
+      color: hint ? $r('app.color.text') : $r('app.color.strong'),
+      textSize: hint ? 15 : this.viewportWidth <= 620 ? 19 : 20, textWeight: hint ? 400 : 600,
+      lineHeight: hint ? '26.25fp' : this.viewportWidth <= 620 ? '29.45fp' : '31.2fp',
+      active: levelId === this.readableQuestionId(),
+      interactive: this.questionMediaReady(hint ? 'hint' : null),
       showMedia: this.showsQuestionImages(levelId), availableWidth: hint ? 0 : this.questionContentWidth,
-      maxMediaHeight: this.viewportWidth <= 620 ? 340 : 420, reducedMotion: this.reducedMotion,
+      maxMediaHeight: hint && this.viewportWidth <= 620 ? 340 : this.questionMediaHeight(), reducedMotion: this.reducedMotion,
       openImage: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex),
       openVideo: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex),
       playVideo: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex, true),
@@ -1865,89 +1982,82 @@ export struct GameplayPage {
 
   @Builder
   questionCard(levelId: string) {
-    StarwardQuestionFrame({
-      frameId: levelId === this.readableQuestionId() ? 'gameplay-question-card' : '',
-      motionEnabled: levelId === this.readableQuestionId() && this.answerMotionEnabled(),
-      selectionRevision: levelId === this.explicitQuestionTarget ? this.explicitQuestionRevision : 0,
-      feedbackVersion: levelId === this.readableQuestionId() && this.hasAnswerFeedback() ? this.play.feedbackVersion : 0,
-      feedbackDanger: this.answerFeedbackDanger(),
-      feedbackSuccess: !this.answerFeedbackDanger() && this.currentCompleted()
-    }) {
+    GameplaySurface({ lightweight: true, interactive: false, reducedMotion: this.reducedMotion }) {
       Column() {
-        Row() {
-          Text(`第 ${this.levelById(levelId)?.position || 0} 题`)
-            .id(levelId === this.readableQuestionId() ? 'question-number' : '')
-            .fontFamily('monospace').fontSize(12).lineHeight('14.4fp').fontColor($r('app.color.subtle'))
-          Blank()
-          Text(this.levelById(levelId)?.question?.kind === 'choice' ? '选择题' : '填空题')
-            .id(levelId === this.readableQuestionId() ? 'question-kind' : '')
-            .fontFamily('monospace').fontSize(12).lineHeight('14.4fp').fontColor($r('app.color.subtle'))
-        }.width('100%')
+        GameplayQuestionHeading({ questionNumber: this.levelById(levelId)?.position || 0,
+          active: levelId === this.readableQuestionId(), hasHint: this.hasHints(levelId),
+          hintExpanded: levelId === this.readableQuestionId() && this.sheet === 'hint' && this.sheetVisible,
+          hintEnabled: this.questionMediaReady(), openHint: () => this.openGameplaySheet('hint') })
         if (this.titleVisible(levelId) && (this.levelById(levelId)?.question?.title || '').length > 0) {
           Text(this.levelById(levelId)?.question?.title || '')
             .id(levelId === this.readableQuestionId() ? 'question-title' : '').width('100%')
-            .fontFamily(this.displayFont).fontSize(this.questionTitleSize()).fontWeight(FontWeight.Medium)
-            .lineHeight(`${this.questionTitleSize() * 0.98}fp`).letterSpacing(`${this.questionTitleSize() * -0.055}fp`)
+            .fontSize(this.questionTitleSize()).fontWeight(FontWeight.Bold)
+            .lineHeight(`${this.questionTitleSize() * 1.4}fp`)
+            .letterSpacing(`${-0.02 * this.questionTitleSize()}fp`)
             .lineBreakStrategy(LineBreakStrategy.BALANCED)
-            .fontColor($r('app.color.strong')).margin({ top: 18 })
+            .fontColor($r('app.color.strong')).margin({ top: this.viewportWidth <= 620 ? 10 : 12 })
         }
-        Column({ space: 20 }) {
-          ForEach(this.contentBlocks(levelId), (block: GameplayContentBlock, index: number) => {
-            Column({ space: 13 }) {
-              if (this.showsQuestionImages(levelId) && block.videoUrl.trim().length > 0) {
-                StarwardVideoPoster({ source: block.imageUrl, ownerKey: this.questionImageOwner(levelId),
-                  ownerIsCurrent: (key: string) => this.imageCacheOwner().length > 0 &&
-                    this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
-                  imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
-                  nodeId: levelId === this.readableQuestionId() ? `gameplay-question-video-${index}` :
-                    `question-video-preview-${this.levelById(levelId)?.position || 0}-${index}`,
-                  playLabel: `播放题目视频 ${index + 1}`, maxHeight: this.viewportWidth <= 620 ? 340 : 420,
-                  playable: this.questionInteractionReady(true) && this.play.automaticClue === null,
-                  play: () => this.openQuestionVideo(levelId, index) })
-              } else if (this.showsQuestionImages(levelId) && this.blockImages(block).length > 0) {
-                StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.questionImageOwner(levelId),
-                  ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null &&
-                    this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
-                  imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
-                  availableWidth: this.questionContentWidth,
-                  groupId: levelId === this.readableQuestionId() ? `question-images-${index}` :
-                    `question-preview-${this.levelById(levelId)?.position || 0}-${index}`,
-                  maxHeight: this.viewportWidth <= 620 ? 340 : 420, reducedMotion: this.reducedMotion,
-                  opened: (imageIndex: number) => {
-                    if (levelId === this.readableQuestionId()) { this.openImages(index, imageIndex); }
-                  } })
-              }
-              if (block.text.length > 0) {
-                this.questionLegacyBody(levelId, index, false)
-              }
-              if (levelId === this.readableQuestionId() && block.hint.length > 0) {
-                StarwardQuestHint({ contentIndex: index, reducedMotion: this.reducedMotion,
-                  collapse: () => this.stopHintInlineVideo(levelId, index),
-                  content: () => { this.questionLegacyBody(levelId, index, true); } })
-              }
+        Column({ space: this.viewportWidth <= 620 ? 14 : 16 }) {
+          if (this.contentBlocks(levelId).some((block: GameplayContentBlock) => block.text.length > 0)) {
+            Column({ space: this.viewportWidth <= 620 ? 14 : 16 }) {
+              ForEach(this.contentBlocks(levelId), (block: GameplayContentBlock, index: number) => {
+                if (block.text.length > 0) { this.questionLegacyBody(levelId, index, false); }
+              }, (block: GameplayContentBlock, index: number) => `${index}:${block.text}`)
             }.width('100%').alignItems(HorizontalAlign.Start)
-          }, (block: GameplayContentBlock, index: number) => `${index}:${JSON.stringify(block)}`)
+          }
+          if (this.showsQuestionImages(levelId) && this.contentBlocks(levelId).some((block: GameplayContentBlock) =>
+            block.videoUrl.trim().length > 0 || this.blockImages(block).length > 0)) {
+            Column({ space: this.viewportWidth <= 620 ? 14 : 16 }) {
+              ForEach(this.contentBlocks(levelId), (block: GameplayContentBlock, index: number) => {
+                if (block.videoUrl.trim().length > 0) {
+                  StarwardVideoPoster({ source: block.imageUrl, ownerKey: this.questionImageOwner(levelId),
+                    ownerIsCurrent: (key: string) => this.imageCacheOwner().length > 0 &&
+                      this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
+                    imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
+                    nodeId: levelId === this.readableQuestionId() ? `gameplay-question-video-${index}` :
+                      `question-video-preview-${this.levelById(levelId)?.position || 0}-${index}`,
+                    playLabel: `播放题目视频 ${index + 1}`, maxHeight: this.questionMediaHeight(),
+                    playable: this.questionMediaReady(),
+                    play: () => this.openQuestionVideo(levelId, index) }).borderRadius(16).clip(true)
+                } else if (this.blockImages(block).length > 0) {
+                  StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.questionImageOwner(levelId),
+                    ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null &&
+                      this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
+                    imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
+                    availableWidth: this.questionContentWidth,
+                    groupId: levelId === this.readableQuestionId() ? `question-images-${index}` :
+                      `question-preview-${this.levelById(levelId)?.position || 0}-${index}`,
+                    maxHeight: this.questionMediaHeight(), reducedMotion: this.reducedMotion,
+                    opened: (imageIndex: number) => {
+                      if (levelId === this.readableQuestionId()) { this.openImages(index, imageIndex); }
+                    } }).borderRadius(16).clip(true)
+                }
+              }, (block: GameplayContentBlock, index: number) =>
+                `${index}:${JSON.stringify([block.videoUrl, block.imageUrl, block.imageUrls])}`)
+            }.width('100%').alignItems(HorizontalAlign.Start)
+          }
         }.id(levelId === this.readableQuestionId() ? 'question-content' : '')
-          .width('100%').alignItems(HorizontalAlign.Start).margin({ top: 20 })
+          .width('100%').alignItems(HorizontalAlign.Start).margin({ top: 14 })
           .onAreaChange((_previous: Area, current: Area) => {
             const width: number = Number(current.width);
             if (levelId === this.readableQuestionId() && Number.isFinite(width) && width > 2 &&
               width !== this.questionContentWidth) { this.questionContentWidth = width; }
           })
         if (levelId === this.readableQuestionId()) {
-          Column() {
-            this.answerForm()
-          }.width('100%').alignItems(HorizontalAlign.Start).margin({ top: 24 })
+          if ((!this.currentCompleted() && this.play.blockedReason().length > 0) || this.hasAnswerFeedback()) {
+            Column() {
+              this.answerFeedback(levelId)
+            }.width('100%').margin({ top: 16 })
+          }
           if (this.currentClues().length > 0) {
-            StarwardClueArchive({ clues: this.currentClues(), displayFont: this.displayFont,
-              motionEnabled: this.foreground && !this.reducedMotion && this.questionInteractionReady(),
-              reducedMotion: this.reducedMotion, compact: this.viewportWidth <= 620,
-              pendingNarrativeIds: this.pendingNarrativeIds(),
-              opened: (id: string) => this.openClue(id) })
+            StarwardClueArchive({ clues: this.currentClues(), reducedMotion: this.reducedMotion,
+              pendingNarrativeIds: this.pendingNarrativeIds(), opened: (id: string) => this.openClue(id) })
           }
         }
-      }.width('100%').alignItems(HorizontalAlign.Start)
-        .padding({ top: 22, left: 18, right: 18, bottom: 26 })
+      }.id(levelId === this.readableQuestionId() ? 'gameplay-question-card' : '')
+        .width('100%').alignItems(HorizontalAlign.Start)
+        .padding(this.viewportWidth <= 620 ? { top: 20, left: 18, right: 18, bottom: 20 } :
+          { top: 22, left: 20, right: 20, bottom: 22 })
     }
   }
 
@@ -1973,9 +2083,6 @@ export struct GameplayPage {
           .fontSize(14).lineHeight('25.2fp').fontColor($r('app.color.accent_text'))
       }
     }.width('100%').alignItems(HorizontalAlign.Start)
-      .onAreaChange((_previous: Area, current: Area) => {
-        if (this.readableQuestionId().length > 0) { this.measureCard(current); }
-      })
   }
 
   @Builder
@@ -1986,23 +2093,17 @@ export struct GameplayPage {
       }
       this.questionBody()
     }.width('100%').alignItems(HorizontalAlign.Start)
-      // Short cards still need enough scroll range to reach the safe reading position.
-      .constraintSize({ minHeight: this.readableQuestionId().length > 0 ?
-        this.minimumQuestionRegionHeight() : 0 })
-      .onAreaChange((_previous: Area, current: Area) => {
-        if (this.readableQuestionId().length > 0) { this.measureReadingRegion(current); }
-      })
   }
 
   @Builder
   gameplayScroll() {
     Scroll(this.questionScroller) {
-      Column({ space: 16 }) {
-        if (!this.play.loading && this.play.error.length === 0 && this.play.snapshot !== null &&
+      Column({ space: this.viewportWidth <= 620 ? 14 : 16 }) {
+        if (this.play.error.length === 0 && this.play.snapshot !== null &&
           this.play.snapshot.detail.extraDisplay.length > 0) {
           StarwardQuestMessages({ groupId: 'assignment-extra', items: this.play.snapshot.detail.extraDisplay })
         }
-        if (this.play.loading || this.play.error.length > 0) {
+        if (this.play.error.length > 0) {
           StarwardAssignmentRequest({ loadingId: 'gameplay-loading', loadingLabel: '正在展开你的旅程…',
             displayFont: this.displayFont, message: this.play.loading ? '' : this.play.error,
             motionEnabled: this.foreground && !this.reducedMotion && !this.narrativeCovered && !this.accountCovered,
@@ -2035,9 +2136,14 @@ export struct GameplayPage {
           PrimaryAction({ label: '重新尝试', actionEnabled: this.interactionReady(), action: () => this.play.reload() })
         }
       }.width('100%').alignItems(HorizontalAlign.Start)
-        .padding({ left: 12, right: 12, top: 16 + Math.max(0, this.titleBottom - this.viewportTop),
+        .constraintSize({ maxWidth: GAMEPLAY_MAX_CONTENT_WIDTH + Math.max(this.readingGutter(), this.leftInset) +
+          Math.max(this.readingGutter(), this.rightInset) })
+        .padding({ left: Math.max(this.readingGutter(), this.leftInset), right: Math.max(this.readingGutter(), this.rightInset),
+          top: this.readingTopInset(),
           bottom: this.scrollBottomClearance() })
     }.id('gameplay-page').width('100%').height('100%').align(Alignment.Top).scrollBar(BarState.Off)
+      .clipContent(ContentClipMode.BOUNDARY)
+      .fadingEdge(this.statusInset > 0, { fadingEdgeLength: LengthMetrics.vp(this.statusInset + 6) })
       .onDidScroll(() => this.syncTitle())
       .onAreaChange((_previous: Area, current: Area) => {
         const width: number = Number(current.width);
@@ -2053,8 +2159,9 @@ export struct GameplayPage {
           this.viewportHeight = height;
         }
         this.scheduleQuestionPosition();
+        this.revealNewFeedback();
       })
-      .bindContentCover(this.textClue === null && this.videoViewer.visible,
+      .bindContentCover(this.textClue === null && this.sheet === null && this.videoViewer.visible,
         this.gameplayVideoViewer(), this.videoViewerOptions())
   }
 
@@ -2064,7 +2171,8 @@ export struct GameplayPage {
       StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
         request: () => this.refreshQuestion(),
         content: () => { this.gameplayScroll() } })
-        .bindContentCover(this.textClue === null && this.viewer.visible, this.imageViewer(), this.viewerOptions())
+        .bindContentCover(this.textClue === null && this.sheet === null && this.viewer.visible,
+          this.imageViewer(), this.viewerOptions())
       if (this.showCombinationLauncher()) {
         StarwardCombinationLauncher({ viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
           topInset: this.foregroundTopInset(), bottomInset: this.bgmLayoutBottomInset(),
@@ -2094,23 +2202,11 @@ export struct GameplayPage {
           reducedMotion: this.reducedMotion, select: (id: string) => this.openManualJourney(id),
           openInbox: () => this.openInbox() })
       }
-      if (this.showAnswerGuide()) {
-        Column() {
-          StarwardAnswerGuide({ reducedMotion: this.reducedMotion,
-            dismiss: () => { if (this.showAnswerGuide()) { this.consumeAnswerGuide(); } },
-            locate: () => this.locateAnswerForm(),
-            measured: (height: number) => {
-              if (Number.isFinite(height) && height > 0 && this.guideHeight !== height) { this.guideHeight = height; }
-            } })
-        }.width('100%').height('100%').justifyContent(FlexAlign.End)
-          .padding({ bottom: this.guideBottomInset(), left: Math.max(12, this.leftInset),
-            right: Math.max(12, this.rightInset) })
-          .hitTestBehavior(HitTestMode.None)
-      }
       if (this.attentionClue() !== null) {
         Column() {
           StarwardNarrativeAttention({ clue: this.attentionClue() as GameplayClue,
-            reducedMotion: this.reducedMotion, opened: (id: string) => this.openPendingNarrative(id) })
+            showArrow: this.viewportWidth > 420, reducedMotion: this.reducedMotion,
+            opened: (id: string) => this.openPendingNarrative(id) })
             .constraintSize({ maxWidth: 430 })
             .onAreaChange((_previous: Area, area: Area) => {
               const height: number = Number(area.height);
@@ -2145,18 +2241,68 @@ export struct GameplayPage {
         Column() {
           StarwardSyncNotice({ reducedMotion: this.reducedMotion, dismiss: () => this.play.dismissSyncNotice() })
         }.width('100%').align(Alignment.Top).alignItems(HorizontalAlign.Center)
-          .padding({ top: Math.max(16, this.foregroundTopInset()),
+          .padding({ top: this.readingTopInset(),
             left: 16 + this.leftInset, right: 16 + this.rightInset })
           .hitTestBehavior(HitTestMode.Transparent)
       }
-    }.width('100%').height('100%').alignContent(Alignment.Top)
-      .clipShape(this.foregroundClip())
-      .bindContentCover(!!this.recoveryVisible, this.answerRecovery(), this.recoveryOptions())
+      if (this.showComposer()) {
+        Column() {
+          ForEach([this.positionKey()], (owner: string) => {
+            GameplayAnswerComposer({ view: this.composerView, reducedMotion: this.reducedMotion,
+              choicesOpen: this.sheet === 'choice' && this.sheetVisible,
+              choiceRevision: this.sheetRevision, choiceStatus: this.choicePopupStatus(),
+              choiceMaxHeight: Math.max(112, Math.min(620, this.viewportHeight - this.foregroundTopInset() -
+                this.composerInset() - this.composerHeight - 20)),
+              choicesContent: () => { this.choicePopupContent() }, openChoices: () => {
+                if (!this.composerOwnerCurrent(owner)) { return; }
+                if (this.sheet === 'choice' && this.sheetVisible) { this.dismissChoicePopup(this.sheetRevision); }
+                else { this.openGameplaySheet('choice'); }
+              }, closeChoices: (revision: number) => this.dismissChoicePopup(revision),
+              choiceStateChanged: (revision: number, visible: boolean) => this.choicePopupStateChanged(revision, visible),
+              changeAnswer: (value: string) => {
+                if (this.composerOwnerCurrent(owner)) { this.play.editAnswer(value); }
+              }, focusChanged: (focused: boolean) => {
+                if (this.composerOwnerCurrent(owner)) { this.answerFocused = focused; }
+              }, primaryAction: (action: GameplayComposerAction) => {
+                if (this.composerOwnerCurrent(owner)) { this.performComposerAction(action); }
+              }, heightChanged: (height: number) => {
+                if (this.composerOwnerCurrent(owner) && height !== this.composerHeight) { this.composerHeight = height; }
+              } })
+          }, (owner: string) => owner)
+        }.width('100%').height('100%').justifyContent(FlexAlign.End).alignItems(HorizontalAlign.Center)
+          .padding({ bottom: this.composerInset(), left: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.leftInset),
+            right: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.rightInset) }).hitTestBehavior(HitTestMode.None)
+      }
+      if (this.titlePresent()) {
+        Column() {
+          GameplayFloatingTitle({ title: this.play.snapshot?.detail.title ?? '', hidden: this.titleHidden,
+            reducedMotion: this.reducedMotion, back: () => { if (!this.handleBack()) { this.leave(); } } })
+            .constraintSize({ maxWidth: GAMEPLAY_MAX_CONTENT_WIDTH })
+        }.width('100%').alignItems(HorizontalAlign.Center)
+          .padding({ top: this.titleTopInset(), left: Math.max(GAMEPLAY_TITLE_SIDE_GUTTER, this.leftInset),
+            right: Math.max(GAMEPLAY_TITLE_SIDE_GUTTER, this.rightInset) })
+          .hitTestBehavior(HitTestMode.None)
+      }
+    }.width('100%').height(LayoutPolicy.matchParent).alignContent(Alignment.Top)
+      .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])
+      .accessibilityLevel(this.visibleAnswerBurst() === null ? 'auto' : 'no-hide-descendants')
+      .bindSheet(this.sheet === 'hint' && this.sheetVisible, this.hintSheet, this.gameplaySheetOptions())
   }
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
-      this.gameplayForeground()
+      if (this.play.loading && this.play.snapshot === null && this.play.error.length === 0) {
+        StarwardAssignmentRequest({ loadingId: 'gameplay-loading', loadingLabel: '正在展开你的旅程…',
+          motionEnabled: this.foreground &&
+          !this.reducedMotion && !this.narrativeCovered && !this.accountCovered, fullScreen: true,
+          topInset: this.statusInset, bottomInset: this.safeBottom() })
+      } else {
+        this.gameplayForeground()
+      }
+      StarwardGlassDialog({ visible: this.recoveryVisible && this.clueDialogHeight() > 0 && this.viewportWidth > 40,
+        panelWidth: Math.min(460, this.viewportWidth - 40), panelCornerRadius: 18, reducedMotion: this.reducedMotion,
+        content: () => { this.answerRecovery() }, back: () => this.stayOnQuestion(),
+        failed: () => this.stayOnQuestion() })
       StarwardJourneyNotificationDialog({ note: this.displayedJourneyNotification(), playerId: this.playerId,
         active: this.journeyPresentationReady(), displayFont: this.displayFont, reducedMotion: this.reducedMotion,
         queuedCount: this.manualJourneyNotification() === null ? this.journey.unreadCount : 1,
@@ -2164,9 +2310,19 @@ export struct GameplayPage {
         close: (id: string) => { this.closeJourneyNotification(id, false); },
         acknowledge: (id: string) => { this.closeJourneyNotification(id, true); },
         openInternalLink: (href: string) => this.openGameplayJourneyLink(href),
-        backHandlerChanged: (handler: (() => boolean) | null) => this.journeyBackHandlerChanged(handler),
+        backHandlerChanged: (handler: (() => boolean) | null) => { this.journeyBack = handler; },
         playingChanged: (open: boolean) => this.setJourneyVideo(open),
         playbackReady: () => this.atmosphere.whenQuiet(this.atmosphereOwner) })
+      if (this.visibleAnswerBurst() !== null) {
+        Stack() {
+          ForEach(this.visibleAnswerBursts(), (burst: GameplayAnswerBurst) => {
+            StarwardStarBurstOverlay({ title: burst.completed ? '全部完成' : '回答正确', xpDelta: burst.xpDelta,
+              actionLabel: burst.nextIndex >= 0 ? '下一题' : '继续', autoAdvance: burst.autoAdvance,
+              reducedMotion: this.reducedMotion,
+              proceed: () => this.finishAnswerBurst(burst, true), dismiss: () => this.finishAnswerBurst(burst, false) })
+          }, (burst: GameplayAnswerBurst) => burst.id.toString())
+        }.width('100%').height('100%')
+      }
     }.width('100%').height('100%')
   }
 }

@@ -5,7 +5,7 @@ import { GameFailure, Player } from '../main/ets/business/models';
 import { decodeGameplay } from '../main/ets/data/GameplayDecoder';
 import { decodePlayer } from '../main/ets/data/DtoDecoder';
 import { MockGameRepository } from '../main/ets/data/MockGameRepository';
-import { GameplayRankUp, GameplayViewModel } from '../main/ets/features/GameplayViewModel';
+import { GameplayAnswerBurst, GameplayRankUp, GameplayViewModel } from '../main/ets/features/GameplayViewModel';
 import { GAMEPLAY_CHOICE_JSON, GAMEPLAY_STARTED_JSON } from './fixtures/GameplayFixture';
 import { WEB_PLAYER_JSON } from './fixtures/WebFixture';
 
@@ -240,6 +240,8 @@ export default function gameplayAnswerViewModelTests(): void {
       repository.answers[0].succeed(withRank(answerResult('correct', settled)));
       await pending;
       expect(vm.advancing).assertTrue();
+      const obsoleteBurst: GameplayAnswerBurst | null = vm.answerBurst;
+      expect(obsoleteBurst?.xpDelta).assertEqual(50);
       expect(vm.rankUp).assertNull();
       await vm.refresh();
       expect(repository.reads).assertEqual(1);
@@ -250,8 +252,12 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.snapshot).assertNull();
       expect(vm.advancing).assertFalse();
       expect(vm.rankUp).assertNull();
+      expect(vm.answerBurst).assertNull();
       repository.server = textSnapshot();
       await vm.open('assignment1');
+      if (obsoleteBurst !== null) { vm.finishAnswerBurst(obsoleteBurst, true); }
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.rankUp).assertNull();
       vm.editAnswer('星辰大海');
       const reduced: Promise<void> = vm.submitAnswer(0);
       repository.answers[1].succeed(withRank(answerResult('correct', settled), 3));
@@ -259,6 +265,7 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.activeIndex).assertEqual(1);
       expect(vm.advancing).assertFalse();
       expect(vm.rankUp?.order).assertEqual(3);
+      expect(vm.answerBurst).assertNull();
       vm.leave();
     });
 
@@ -274,8 +281,15 @@ export default function gameplayAnswerViewModelTests(): void {
       await pending;
       expect(vm.activeIndex).assertEqual(0);
       expect(vm.rankUp).assertNull();
+      const burst: GameplayAnswerBurst | null = vm.answerBurst;
+      expect(burst?.nextIndex).assertEqual(1);
+      expect(burst?.autoAdvance).assertTrue();
+      if (burst !== null) { vm.finishAnswerBurst(burst, true); }
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.answerBurst === burst).assertTrue();
       await new Promise<void>((resolve: () => void) => { setTimeout(resolve, 40); });
       expect(vm.activeIndex).assertEqual(1);
+      expect(vm.answerBurst).assertNull();
       const rank: GameplayRankUp | null = vm.rankUp;
       expect(rank?.order).assertEqual(2);
       expect(vm.canRefresh()).assertFalse();
@@ -287,7 +301,109 @@ export default function gameplayAnswerViewModelTests(): void {
       repository.server = settled;
       await vm.reload();
       expect(vm.rankUp).assertNull();
+      expect(vm.answerBurst).assertNull();
       expect(repository.answers.length).assertEqual(1);
+    });
+
+    it('answerBurstUsesTheSettledXpAndManualAdvanceKeepsRank', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModelWithRank(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      const result: GameplayAnswerResult = withRank(answerResult('correct', choiceSnapshot(), 777));
+      result.xpDelta = 37;
+      repository.answers[0].succeed(result);
+      await pending;
+      const burst: GameplayAnswerBurst | null = vm.answerBurst;
+      expect(burst?.xpDelta).assertEqual(37);
+      expect(burst?.completed).assertFalse();
+      expect(burst?.autoAdvance).assertFalse();
+      expect(vm.rankUp).assertNull();
+      if (burst !== null) { vm.finishAnswerBurst(burst, true); }
+      expect(vm.activeIndex).assertEqual(1);
+      expect(vm.answerBurst).assertNull();
+      const rank: GameplayRankUp | null = vm.rankUp;
+      expect(rank?.order).assertEqual(2);
+      if (rank !== null) { vm.dismissRankUp(rank); }
+      if (burst !== null) { vm.finishAnswerBurst(burst, true); }
+      expect(vm.rankUp).assertNull();
+      expect(repository.answers.length).assertEqual(1);
+      vm.leave();
+    });
+
+    it('answerBurstDismissalCancelsAutoNextAndKeepsRankOnTheCurrentQuestion', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModelWithRank(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer(40);
+      const settled: GameplaySnapshot = choiceSnapshot();
+      settled.levels[0].autoNext = true;
+      repository.answers[0].succeed(withRank(answerResult('correct', settled)));
+      await pending;
+      expect(vm.advancing).assertTrue();
+      const burst: GameplayAnswerBurst | null = vm.answerBurst;
+      if (burst !== null) { vm.finishAnswerBurst(burst, false); }
+      expect(vm.answerBurst).assertNull();
+      expect(vm.advancing).assertFalse();
+      await new Promise<void>((resolve: () => void) => { setTimeout(resolve, 60); });
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.rankUp?.order).assertEqual(2);
+      expect(repository.answers.length).assertEqual(1);
+      vm.leave();
+    });
+
+    it('anIdleManualBurstClosesOnTheSameQuestionAndReleasesTheQueuedRank', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      const vm: GameplayViewModel = viewModelWithRank(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer(20);
+      repository.answers[0].succeed(withRank(answerResult('correct', choiceSnapshot())));
+      await pending;
+      expect(vm.answerBurst?.autoAdvance).assertFalse();
+      expect(vm.advancing).assertFalse();
+      expect(vm.rankUp).assertNull();
+      await new Promise<void>((resolve: () => void) => { setTimeout(resolve, 3050); });
+      expect(vm.answerBurst).assertNull();
+      expect(vm.activeIndex).assertEqual(0);
+      expect(vm.rankUp?.order).assertEqual(2);
+      expect(repository.answers.length).assertEqual(1);
+      vm.leave();
+    });
+
+    it('ordinarySingleQuestionCompletionOffersContinueEvenWithZeroAward', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      repository.server.levels = repository.server.levels.slice(0, 1);
+      repository.server.detail.totalLevels = 1;
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      vm.editAnswer('星辰大海');
+      const pending: Promise<void> = vm.submitAnswer();
+      const settled: GameplaySnapshot = choiceSnapshot();
+      settled.levels = settled.levels.slice(0, 1);
+      settled.detail.totalLevels = 1;
+      settled.detail.completedLevels = 1;
+      settled.detail.currentIndex = 0;
+      settled.detail.status = 'completed';
+      settled.detail.completedAt = settled.detail.serverTime;
+      settled.levels[0].autoNext = true;
+      const result: GameplayAnswerResult = answerResult('correct', settled);
+      result.xpDelta = 0;
+      repository.answers[0].succeed(result);
+      await pending;
+      const burst: GameplayAnswerBurst | null = vm.answerBurst;
+      expect(burst?.completed).assertTrue();
+      expect(burst?.nextIndex).assertEqual(-1);
+      expect(burst?.autoAdvance).assertFalse();
+      expect(burst?.xpDelta).assertEqual(0);
+      if (burst !== null) { vm.finishAnswerBurst(burst, true); }
+      expect(vm.answerBurst).assertNull();
+      expect(vm.snapshot?.detail.status).assertEqual('completed');
+      expect(vm.completionRevision).assertEqual(0);
+      expect(repository.answers.length).assertEqual(1);
+      vm.leave();
     });
 
     it('mixedAutomaticCluesKeepTheSettledQuestionUntilTheLastGalleryCloses', 0, async () => {
@@ -302,6 +418,7 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.activeIndex).assertEqual(0);
       expect(vm.snapshot?.detail.currentIndex).assertEqual(1);
       expect(vm.automaticClue?.kind).assertEqual('text');
+      expect(vm.answerBurst).assertNull();
       expect(vm.canRefresh()).assertFalse();
       vm.finishAutomaticClue(result.assignment.clues[0], true);
       vm.finishAutomaticClue(result.assignment.clues[0], true);
@@ -590,6 +707,7 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.automaticClue).assertNull();
       expect(vm.completionRevision).assertEqual(1);
       expect(vm.completionClues[0]?.id).assertEqual('final-combination');
+      expect(vm.answerBurst).assertNull();
       expect(vm.activeIndex).assertEqual(1);
       expect(vm.rankUp).assertNull();
       vm.finishCompletionPresentation(0);
@@ -750,6 +868,7 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(vm.completionRevision).assertEqual(0);
       expect(vm.feedback).assertEqual('');
       expect(vm.rankUp).assertNull();
+      expect(vm.answerBurst).assertNull();
       vm.leave();
       repository.server = textSnapshot();
       await vm.open('assignment1');
@@ -761,6 +880,7 @@ export default function gameplayAnswerViewModelTests(): void {
       await cancelled;
       expect(vm.completionRevision).assertEqual(0);
       expect(vm.rankUp).assertNull();
+      expect(vm.answerBurst).assertNull();
       expect(vm.answerAllowed()).assertFalse();
       expect(vm.retryAnswer).assertFalse();
       vm.leave();

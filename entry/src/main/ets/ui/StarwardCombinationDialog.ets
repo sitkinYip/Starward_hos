@@ -16,7 +16,6 @@ export struct StarwardCombinationDialog {
   @Param inlineVideoSlot: string = '';
   @Require @Param panelWidth: number;
   @Require @Param maxHeight: number;
-  @Param displayFont: string = 'serif';
   @Param reducedMotion: boolean = true;
   @Param motionEnabled: boolean = false;
   @Event acknowledge: () => void = () => {};
@@ -29,22 +28,22 @@ export struct StarwardCombinationDialog {
 
   aboutToAppear(): void { this.revealed = !this.motionEnabled; }
 
-  private compact(): boolean { return this.panelWidth + 48 <= 620; }
-  private bodyPadding(): number { return Math.max(30, Math.min(62, (this.panelWidth + 48) * 0.06)); }
-  private footerPadding(): number { return Math.max(20, Math.min(62, (this.panelWidth + 48) * 0.06)); }
+  private compact(): boolean { return this.panelWidth + 40 <= 620; }
+  private bodyPadding(): number { return Math.max(24, Math.min(44, (this.panelWidth + 40) * 0.05)); }
+  private footerPadding(): number { return Math.max(20, Math.min(44, (this.panelWidth + 40) * 0.05)); }
 
   @Builder
   description() {
     Text(this.clue.content.description || '该本场线索会保留在当前会话中。')
       .id('gameplay-combination-description').fontSize(13).lineHeight('19.5fp')
-      .fontColor($r('app.color.combination_description')).wordBreak(WordBreak.BREAK_WORD)
+      .fontColor($r('app.color.muted')).wordBreak(WordBreak.BREAK_WORD)
   }
 
   @Builder
   ackButton(full: boolean) {
     Button(this.clue.content.buttonText || '我知道了', { type: ButtonType.Capsule })
       .id('gameplay-combination-ack').constraintSize({ minHeight: 46, maxWidth: this.panelWidth - this.footerPadding() * 2 })
-      .width(full ? '100%' : undefined).padding({ left: 22, right: 22, top: 8, bottom: 8 })
+      .width(full ? '100%' : undefined).padding({ left: 24, right: 24, top: 8, bottom: 8 })
       .fontSize(16).fontWeight(600).fontColor($r('app.color.on_accent'))
       .backgroundColor($r('app.color.accent')).onClick(() => this.acknowledge())
   }
@@ -54,14 +53,9 @@ export struct StarwardCombinationDialog {
     Flex({ direction: FlexDirection.Column }) {
       Scroll() {
         Column() {
-          Text('COMBINED REVELATION').fontFamily('monospace').fontSize(11).lineHeight('13.2fp')
-            .fontWeight(600).letterSpacing('1.76fp').fontColor($r('app.color.accent_muted'))
-            .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
-            .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
-            .animation(clueRevealAnimation(this.motionEnabled, 0))
           Text(this.clue.content.title || '隐藏的本场线索').id('gameplay-combination-title')
-            .fontFamily(this.displayFont).fontSize(Math.max(30, Math.min(50, (this.panelWidth + 48) * 0.06)))
-            .fontWeight(FontWeight.Medium).fontColor($r('app.color.combination_title')).margin({ top: 14 })
+            .fontSize(Math.max(24, Math.min(34, (this.panelWidth + 40) * 0.05)))
+            .fontWeight(FontWeight.Bold).fontColor($r('app.color.strong'))
             .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
             .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
             .animation(clueRevealAnimation(this.motionEnabled, 70))
@@ -69,28 +63,29 @@ export struct StarwardCombinationDialog {
             StarwardRichContent({ content: this.clue.content.text, nodeId: 'gameplay-combination',
               ownerKey: this.ownerKey, ownerIsCurrent: this.ownerIsCurrent, imageCache: this.imageCache,
               inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
-              color: $r('app.color.combination_body'), clueBody: true, maxMediaHeight: Math.min(660, (this.maxHeight + 48) * 0.58),
-              mediaMargin: 20, reducedMotion: this.reducedMotion,
+              color: $r('app.color.text'), clueBody: true, textSize: 15, lineHeight: '27.75fp',
+              maxMediaHeight: Math.min(640, (this.maxHeight + 40) * 0.58),
+              mediaMargin: 16, reducedMotion: this.reducedMotion,
               openImage: (index: number) => this.openImage(index),
               openVideo: (index: number) => this.openVideo(index), playVideo: (index: number) => this.playVideo(index),
               openLink: (href: string) => this.openLink(href) })
-          }.id('gameplay-combination-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 28 })
+          }.id('gameplay-combination-content').width('100%').alignItems(HorizontalAlign.Start).margin({ top: 18 })
             .opacity(this.revealed ? 1 : 0).translate({ y: this.revealed ? 0 : 28 })
             .scale({ x: this.revealed ? 1 : 0.98, y: this.revealed ? 1 : 0.98 })
             .animation(clueRevealAnimation(this.motionEnabled, 130))
         }.width('100%').alignItems(HorizontalAlign.Start)
-          .padding({ top: this.bodyPadding() + 16, right: this.bodyPadding(), bottom: 30, left: this.bodyPadding() })
+          .padding(this.bodyPadding())
       }.id('gameplay-combination-scroll').width('100%').flexShrink(1)
         .constraintSize({ maxHeight: this.maxHeight })
         .align(Alignment.Top).scrollBar(BarState.Off)
       Column() {
         if (this.compact()) {
-          Column({ space: 20 }) {
+          Column({ space: 16 }) {
             this.description()
             this.ackButton(true)
           }.width('100%').alignItems(HorizontalAlign.Start)
         } else {
-          Row({ space: 20 }) {
+          Row({ space: 16 }) {
             Column() {
               this.description()
             }.layoutWeight(1).alignItems(HorizontalAlign.Start)
@@ -98,9 +93,9 @@ export struct StarwardCombinationDialog {
           }.width('100%').alignItems(VerticalAlign.Center)
         }
       }.id('gameplay-combination-footer').width('100%').flexShrink(0)
-        .padding({ left: this.footerPadding(), right: this.footerPadding(), top: 18, bottom: 18 })
-        .backgroundColor($r('app.color.combination_footer'))
-        .border({ width: { top: 1 }, color: $r('app.color.combination_footer_border') })
+        .padding({ left: this.footerPadding(), right: this.footerPadding(), top: 16, bottom: 16 })
+        .backgroundColor($r('app.color.glass_floating'))
+        .border({ width: { top: 1 }, color: $r('app.color.border') })
     }.width('100%').height('auto').constraintSize({ maxHeight: this.maxHeight })
   }
 
@@ -114,8 +109,8 @@ export struct StarwardCombinationDialog {
       this.readingPanel()
     }.id('gameplay-combination-dialog').width(this.panelWidth)
       .constraintSize({ maxHeight: this.maxHeight })
-      .backgroundColor($r('app.color.combination_surface'))
-      .border({ width: 1, color: $r('app.color.combination_border') })
+      .backgroundColor($r('app.color.raised'))
+      .border({ width: 1, radius: 24, color: $r('app.color.border_strong') }).borderRadius(24).clip(true)
       .onAppear(() => UIUtils.applySync(() => { this.revealed = true; }))
       .onAreaChange((_previous: Area, current: Area) => {
         const height: number = Number(current.height);

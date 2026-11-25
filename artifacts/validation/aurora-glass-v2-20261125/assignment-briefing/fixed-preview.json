@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "mode": "dedicated fixed isolation preview over strict HTTPS",
+  "installedHapSha256": "0fcbcbef9aaef574577f35c812126be1d47e91ed135d6ff3407be1cadc4b5144",
+  "windowWidthVp": 387.6923076923077,
+  "topInsetPx": 123,
+  "cases": {
+    "expired-light": {
+      "startEnabled": false,
+      "boundsPx": {
+        "assignment-brief-header": [
+          0,
+          124,
+          1260,
+          298
+        ],
+        "assignment-brief-card": [
+          45,
+          337,
+          1215,
+          1814
+        ],
+        "briefing-session-title": [
+          249,
+          175,
+          1011,
+          247
+        ],
+        "return-home": [
+          80,
+          139,
+          223,
+          282
+        ],
+        "briefing-title": [
+          113,
+          465,
+          660,
+          583
+        ],
+        "briefing-description": [
+          113,
+          622,
+          601,
+          707
+        ],
+        "briefing-facts": [
+          113,
+          772,
+          1147,
+          1253
+        ],
+        "start-assignment": [
+          113,
+          1433,
+          665,
+          1576
+        ]
+      },
+      "alignedFactRows": 4,
+      "privateScreenshot": "expired-light.png"
+    },
+    "expired-dark": {
+      "startEnabled": false,
+      "boundsPx": {
+        "assignment-brief-header": [
+          0,
+          124,
+          1260,
+          298
+        ],
+        "assignment-brief-card": [
+          45,
+          337,
+          1215,
+          1814
+        ],
+        "briefing-session-title": [
+          249,
+          175,
+          1011,
+          247
+        ],
+        "return-home": [
+          80,
+          139,
+          223,
+          282
+        ],
+        "briefing-title": [
+          113,
+          465,
+          660,
+          583
+        ],
+        "briefing-description": [
+          113,
+          622,
+          601,
+          707
+        ],
+        "briefing-facts": [
+          113,
+          772,
+          1147,
+          1253
+        ],
+        "start-assignment": [
+          113,
+          1433,
+          665,
+          1576
+        ]
+      },
+      "alignedFactRows": 4,
+      "privateScreenshot": "expired-dark.png"
+    }
+  },
+  "checks": [
+    "light wide alignment, appropriate CTA state, shared header control returns",
+    "dark wide alignment and system back return",
+    "expired state shows hint and disabled entry, separate return works",
+    "active directly resumes and the answer-page shared return works",
+    "completed directly resumes and system back works",
+    "initial theme restored and application left on journey"
+  ]
+}

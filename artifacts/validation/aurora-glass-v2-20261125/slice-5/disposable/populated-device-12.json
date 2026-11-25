@@ -1,0 +1,24 @@
+{
+  "status": "incomplete",
+  "installedHapSha256": "f70d99e2b2c2e18a8384762491fee4c1f5e1a47b66ba1969bcf5aeeed80fc583",
+  "runtimeSha256": "77dcb7fd034dcf5f7dc6bc16f79342c1550a80dac64486f467fb248f930980dd",
+  "backendSourceCommit": "9377248537609a5bd4f4f12bca76d2040b53f956",
+  "checks": [
+    "The active password input is visible inside the native sheet with the real keyboard",
+    "Closing the password sheet clears its draft",
+    "Both matching reward cards occupy separate equal width columns",
+    "The Pending category excludes redeemed and voided grants",
+    "The native sheet shows the selected authoritative grant title"
+  ],
+  "states": [
+    {
+      "name": "pending-grid-light",
+      "pngSha256": "0064c7f6654c814ccc51a6a7d3d490ecfde5d7a7db3281158095f0290e977769"
+    }
+  ],
+  "thumbnailNodesObserved": [
+    true
+  ],
+  "failure": "Expected test control is not reachable: rewards-claim-details",
+  "stage": "exercise-populated"
+}

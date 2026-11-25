@@ -8,6 +8,7 @@ import { ReadCancellation } from '../business/ReadCancellation';
 import { createRequestIdentity } from '../platform/RequestIdentity';
 
 const GAMEPLAY_POLL_INTERVAL_MS: number = 5000;
+const MANUAL_BURST_IDLE_MS: number = 3000;
 
 export type FinaleStage = 'idle' | 'notice' | 'clues' | 'combination' | 'destination';
 
@@ -62,6 +63,27 @@ export class GameplayRankUp {
   }
 }
 
+export class GameplayAnswerBurst {
+  readonly id: number;
+  readonly owner: string;
+  readonly levelId: string;
+  readonly completed: boolean;
+  readonly xpDelta: number;
+  readonly nextIndex: number;
+  readonly autoAdvance: boolean;
+
+  constructor(id: number, owner: string, levelId: string, completed: boolean, xpDelta: number, nextIndex: number,
+    autoAdvance: boolean) {
+    this.id = id;
+    this.owner = owner;
+    this.levelId = levelId;
+    this.completed = completed;
+    this.xpDelta = xpDelta;
+    this.nextIndex = nextIndex;
+    this.autoAdvance = autoAdvance;
+  }
+}
+
 /** Server-owned gameplay facts; page lifetime and account lifetime are separate. */
 @ObservedV2
 export class GameplayViewModel {
@@ -89,6 +111,7 @@ export class GameplayViewModel {
   @Trace finaleStage: FinaleStage = 'idle';
   completionClues: GameplayClue[] = [];
   @Trace automaticClue: GameplayClue | null = null;
+  @Trace answerBurst: GameplayAnswerBurst | null = null;
   @Trace rankUp: GameplayRankUp | null = null;
   @Trace advancing: boolean = false;
   @Trace now: number = Date.now();
@@ -108,6 +131,7 @@ export class GameplayViewModel {
   private drafts: AnswerDraft[] = [];
   private serverOffset: number = 0;
   private advanceTimer: number = -1;
+  private burstDismissTimer: number = -1;
   private automaticClueQueue: GameplayClue[] = [];
   private finaleTarget: GameplayCompletionTarget | null = null;
   private entryClueSequence: boolean = false;
@@ -117,6 +141,7 @@ export class GameplayViewModel {
   private clueGeneration: number = 0;
   private rankGeneration: number = 0;
   private pendingRankUp: GameplayRankUp | null = null;
+  private answerBurstSequence: number = 0;
   private rankCompletionRevision: number = 0;
   private syncEpisodeSequence: number = 0;
   private assignmentSyncFailed: boolean = false;
@@ -282,6 +307,7 @@ export class GameplayViewModel {
     if (this.advanceTimer !== -1) {
       clearTimeout(this.advanceTimer);
       this.advanceTimer = -1;
+      if (this.answerBurst?.autoAdvance === true) { this.clearAnswerBurst(); }
       this.presentPendingRankUp();
     }
     this.clueAdvanceIndex = -1;
@@ -289,6 +315,8 @@ export class GameplayViewModel {
   }
 
   cancelAutomaticClues(keepDestination: boolean = false): void {
+    const hadBurst: boolean = this.answerBurst !== null;
+    this.clearAnswerBurst();
     this.clueGeneration++;
     this.automaticClueQueue = [];
     this.entryClueSequence = false;
@@ -299,6 +327,7 @@ export class GameplayViewModel {
       this.clearFinale();
       this.cancelRankUpPresentation();
     }
+    if (hadBurst) { this.cancelAutoAdvance(); }
   }
 
   private clearFinale(): void {
@@ -314,7 +343,7 @@ export class GameplayViewModel {
   }
 
   private presentPendingRankUp(): void {
-    if (this.pendingRankUp !== null) {
+    if (this.pendingRankUp !== null && this.answerBurst === null) {
       this.rankUp = this.pendingRankUp;
       this.pendingRankUp = null;
     }
@@ -322,6 +351,44 @@ export class GameplayViewModel {
 
   dismissRankUp(rank: GameplayRankUp): void {
     if (this.rankUp === rank) { this.rankUp = null; }
+  }
+
+  answerBurstCurrent(burst: GameplayAnswerBurst): boolean {
+    const level: GameplayLevel | null = this.currentLevel();
+    const detail = this.snapshot?.detail;
+    return this.answerBurst === burst && this.visible && this.error.length === 0 &&
+      burst.owner === this.imageOwnerKey() && detail !== undefined && detail.player === this.owner &&
+      (detail.status === 'active' || detail.status === 'completed') && level !== null &&
+      burst.completed === (detail.status === 'completed') &&
+      level.id === burst.levelId && level.completedAt.length > 0;
+  }
+
+  /** Continue the settled answer presentation. Navigation remains a local, authorized intent. */
+  finishAnswerBurst(burst: GameplayAnswerBurst, advance: boolean): void {
+    if (!this.answerBurstCurrent(burst) || (advance && burst.autoAdvance)) { return; }
+    const nextIndex: number = this.activeIndex + 1;
+    if (advance && burst.nextIndex >= 0 && !this.refreshing && this.canMoveTo(nextIndex)) {
+      this.moveTo(nextIndex);
+      return;
+    }
+    this.clearAnswerBurst();
+    this.cancelAutoAdvance();
+    this.presentPendingRankUp();
+  }
+
+  discardAnswerBurst(): void {
+    if (this.answerBurst === null) { return; }
+    this.clearAnswerBurst();
+    this.cancelRankUpPresentation();
+    this.cancelAutoAdvance();
+  }
+
+  private clearAnswerBurst(): void {
+    if (this.burstDismissTimer !== -1) {
+      clearTimeout(this.burstDismissTimer);
+      this.burstDismissTimer = -1;
+    }
+    this.answerBurst = null;
   }
 
   /** The page calls this after the completion notice and the last automatic combination disappear. */
@@ -524,6 +591,12 @@ export class GameplayViewModel {
     if (this.refreshing || !this.canMoveTo(index)) {
       return;
     }
+    if (this.answerBurst !== null && this.answerBurstCurrent(this.answerBurst)) {
+      this.clearAnswerBurst();
+      this.cancelAutoAdvance();
+      this.advanceSettledAnswer(index);
+      return;
+    }
     this.cancelAutomaticClues(this.finaleStage === 'destination');
     this.cancelAutoAdvance();
     this.selectQuestion(index);
@@ -707,6 +780,7 @@ export class GameplayViewModel {
       level.id === draft.levelId && level.question !== null && level.completedAt.length === 0));
     const index: number = snapshot.levels.findIndex((level: GameplayLevel) => level.id === levelId);
     this.restoreForm(index >= 0 ? index : snapshot.detail.currentIndex);
+    if (this.answerBurst !== null && !this.answerBurstCurrent(this.answerBurst)) { this.discardAnswerBurst(); }
   }
 
   private reportRefreshFailure(error: Object, manual: boolean): void {
@@ -825,6 +899,68 @@ export class GameplayViewModel {
     }
   }
 
+  private presentRegularSuccess(result: GameplayAnswerResult, level: GameplayLevel | undefined,
+    submittedIndex: number, autoNextDelay: number): void {
+    const snapshot: GameplaySnapshot = result.assignment;
+    const completed: boolean = snapshot.detail.status === 'completed';
+    if (level === undefined || level.id !== this.currentLevel()?.id || level.completedAt.length === 0 ||
+      (!completed && snapshot.detail.status !== 'active')) {
+      this.presentPendingRankUp();
+      return;
+    }
+    const autoIndex: number = snapshot.detail.currentIndex;
+    const autoAdvance: boolean = level.autoNext && !completed && autoIndex > submittedIndex &&
+      !!snapshot.levels[autoIndex]?.question;
+    const delay: number = Number.isFinite(autoNextDelay) ? Math.max(0, Math.min(1500, autoNextDelay)) : 0;
+    if (autoAdvance && delay === 0) {
+      this.advanceSettledAnswer(autoIndex);
+      return;
+    }
+    const nextIndex: number = autoAdvance ? autoIndex :
+      !completed && snapshot.levels[submittedIndex + 1]?.question ? submittedIndex + 1 : -1;
+    const burst: GameplayAnswerBurst = new GameplayAnswerBurst(++this.answerBurstSequence, this.imageOwnerKey(),
+      level.id, completed, result.xpDelta, nextIndex, autoAdvance);
+    this.answerBurst = burst;
+    if (!autoAdvance) {
+      this.scheduleManualBurstDismissal(burst);
+      return;
+    }
+    const epoch: number = this.epoch;
+    const revision: number = this.revision;
+    const id: string = this.assignmentId;
+    this.advancing = true;
+    const timer: number = setTimeout(() => {
+      if (this.advanceTimer !== timer) { return; }
+      this.advanceTimer = -1;
+      this.advancing = false;
+      if (!this.current(epoch, revision, id) || this.answerBurst !== burst) { return; }
+      if (!this.answerBurstCurrent(burst)) {
+        this.discardAnswerBurst();
+      } else if (this.activeIndex === submittedIndex && this.snapshot?.detail.currentIndex === autoIndex &&
+        this.canMoveTo(autoIndex)) {
+        this.advanceSettledAnswer(autoIndex);
+      } else {
+        this.finishAnswerBurst(burst, false);
+      }
+    }, delay);
+    this.advanceTimer = timer;
+  }
+
+  private scheduleManualBurstDismissal(burst: GameplayAnswerBurst): void {
+    const timer: number = setTimeout(() => {
+      if (this.burstDismissTimer !== timer) { return; }
+      this.burstDismissTimer = -1;
+      if (this.answerBurstCurrent(burst)) { this.finishAnswerBurst(burst, false); }
+    }, MANUAL_BURST_IDLE_MS);
+    this.burstDismissTimer = timer;
+  }
+
+  private advanceSettledAnswer(index: number): void {
+    this.clearAnswerBurst();
+    this.selectQuestion(index);
+    this.presentPendingRankUp();
+  }
+
   private async performAnswer(intent: AnswerIntent, autoNextDelay: number): Promise<void> {
     this.interruptPolling();
     const epoch: number = this.epoch;
@@ -891,33 +1027,12 @@ export class GameplayViewModel {
             this.clueAdvanceIndex = !completed && settled?.autoNext ? result.assignment.detail.currentIndex : -1;
             this.automaticClue = this.automaticClueQueue.shift() ?? null;
           }
-        } else if (completion !== null && clueGeneration === this.clueGeneration) {
-          this.presentCompletion(completion);
-        } else if (!completed && settled?.autoNext && result.assignment.detail.status === 'active') {
-          const nextIndex: number = result.assignment.detail.currentIndex;
-          const delay: number = Number.isFinite(autoNextDelay) ? Math.max(0, Math.min(1500, autoNextDelay)) : 0;
-          if (delay === 0) {
-            this.restoreForm(nextIndex);
-            this.presentPendingRankUp();
+        } else if (clueGeneration === this.clueGeneration) {
+          if (completion !== null) {
+            this.presentCompletion(completion);
           } else {
-            this.advancing = true;
-            let timer: number = -1;
-            timer = setTimeout(() => {
-              if (this.advanceTimer !== timer) {
-                return;
-              }
-              this.advanceTimer = -1;
-              if (this.current(epoch, revision, id) && this.activeIndex === submittedIndex) {
-                this.advancing = false;
-                this.restoreForm(nextIndex);
-                this.feedback = '';
-                this.presentPendingRankUp();
-              }
-            }, delay);
-            this.advanceTimer = timer;
+            this.presentRegularSuccess(result, settled, submittedIndex, autoNextDelay);
           }
-        } else {
-          this.presentPendingRankUp();
         }
       }
       if (this.feedback.length > 0) {

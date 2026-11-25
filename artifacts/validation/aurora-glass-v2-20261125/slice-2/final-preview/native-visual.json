@@ -1,0 +1,131 @@
+{
+  "status": "passed",
+  "states": [
+    {
+      "section": "current",
+      "theme": "dark",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "active",
+      "pngSha256": "dbc88192fee3ad458b6ca6bd2734055c9164c14781e4745cdbc1de8a8983656e"
+    },
+    {
+      "section": "history",
+      "theme": "dark",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "completed",
+      "pngSha256": "39c57c02884ed4ba76674485a720bf0a63ae97d0a4a1a741fd7071abe5f124e0"
+    },
+    {
+      "section": "current",
+      "theme": "light",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "active",
+      "pngSha256": "b8bfc3149ae4e7311eb39dc28d111a024a582c5bd37a918ee8fae596dbf8a5fe"
+    },
+    {
+      "section": "history",
+      "theme": "light",
+      "segmentPx": [
+        58,
+        570,
+        1202,
+        745
+      ],
+      "firstCardPx": [
+        77,
+        803,
+        1183,
+        1115
+      ],
+      "lobbyIdentityPx": [
+        58,
+        150,
+        590,
+        325
+      ],
+      "firstServerStatus": "completed",
+      "pngSha256": "79eb93b9a6a593bbbe314d1669754630b776f6c05c852eb51995f12c2c5261a9"
+    }
+  ],
+  "checks": [
+    "Both dark original PNG states share fixed preview data with the Web capture",
+    "Both light original PNG states share fixed preview data with the Web capture",
+    "Official content tab swipe returns from history to current"
+  ],
+  "installedHapSha256": "ceb64d08c8881f6909b393334b81889240423004a0d5a01c673394f317e65efb",
+  "sourceBindings": {
+    "driver": "2d73a58cdcf58110ffad749c96e07bbecccde0b5a5dbdc2f0b015d87ce1ab588",
+    "runtime": "f753a1a3476320b1bcc26aa192c675eef09b2f2327b26fcc789de61405c3c0c5",
+    "webReport": "59b0f7a2f8d08c3471f640620f62a067b609902c44c02b8550cf4cfa3bdba158"
+  },
+  "sweepSamples": [
+    {
+      "name": "active-sweep-0.png",
+      "sha256": "425dab3d6aefd18d9e3675cb20badd60a3bb226cc81cc71feb1588e2505cb33f"
+    },
+    {
+      "name": "active-sweep-1.png",
+      "sha256": "3f1ba9fd7e85915079257e8cc17ed87f4e170cdccad922330fc0c6cf05b342f2"
+    },
+    {
+      "name": "active-sweep-2.png",
+      "sha256": "3f1ba9fd7e85915079257e8cc17ed87f4e170cdccad922330fc0c6cf05b342f2"
+    },
+    {
+      "name": "active-sweep-3.png",
+      "sha256": "559fd1918cdfc5b61462fab979a56be0029bc8314664ce3c1fcf685918615382"
+    }
+  ],
+  "stage": "complete"
+}

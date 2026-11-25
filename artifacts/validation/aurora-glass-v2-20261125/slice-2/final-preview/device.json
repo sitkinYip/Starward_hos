@@ -1,0 +1,86 @@
+{
+  "status": "incomplete",
+  "checks": [
+    "Current HTTPS auth and me identify the fixed preview player",
+    "Complete login card and controls fit the first screen with no scrolling",
+    "Cold isolated device login reached home directly"
+  ],
+  "stage": "device-assignment-cards-current",
+  "installedHapSha256": "ceb64d08c8881f6909b393334b81889240423004a0d5a01c673394f317e65efb",
+  "sourceBindings": {
+    "hap": "ceb64d08c8881f6909b393334b81889240423004a0d5a01c673394f317e65efb",
+    "runtime": "f753a1a3476320b1bcc26aa192c675eef09b2f2327b26fcc789de61405c3c0c5",
+    "manifest": "c7448f0d17e556c832720f3bd89e1acd88bfd1e86d13566c3c9f3451a7bdadfe",
+    "runner": "2838d3c75232039ae2f69b21f280d6c578182d6ac6e2ce9ca73c8893afba5611",
+    "hostReadiness": "d6876ac7eb5d8046567873e58b138846a8753a006bf2861cdfbeebd49df64e10",
+    "config": "832a2a0c38a3a3044d5cc53b763e3a62814c6af3a8144e2a1ea0143393daf4ae",
+    "ca": "d0ca7877606a4028d050892bc23b6793d2293209f646c35207a067e0f79627e6",
+    "profileUI": "9e4dd780f226984a821fa7b08de7d85d50717c7082d75334186505e64a3e5818",
+    "nativeUI": "e02fa7dcb66680b2b593d702d9dab5f1fe8bae784df44ff051812defb45b7106",
+    "refinementUI": "a90202ddf49f69d42538b2cc73c1e601981944c35b1340aff7e6e71fee6b00ad",
+    "driver": "a18d7e88226f9e303c9600418747f9e860e49116e7a8ea506275f126cdf9281e",
+    "auroraSmoke": "9c48ab83e7413b9691e38265c5bc8eea715f677473297c88e58b73e6101d843d"
+  },
+  "snapshotCounts": {
+    "seeded": 4,
+    "current": 10,
+    "ongoing": 5,
+    "history": 5
+  },
+  "untouchedLogin": {
+    "safeViewportPx": [
+      0,
+      422,
+      1260,
+      2629
+    ],
+    "controlsPx": {
+      "auth-entry": [
+        58,
+        1368,
+        1202,
+        2577
+      ],
+      "auth-form-card": [
+        58,
+        1368,
+        1202,
+        2500
+      ],
+      "account": [
+        126,
+        1537,
+        1135,
+        1707
+      ],
+      "password": [
+        126,
+        1847,
+        1135,
+        2017
+      ],
+      "primary-action": [
+        126,
+        2068,
+        1134,
+        2237
+      ],
+      "login-help": [
+        126,
+        2276,
+        1134,
+        2419
+      ],
+      "auth-environment-note": [
+        532,
+        2539,
+        728,
+        2577
+      ]
+    },
+    "environmentGapPx": 39,
+    "bottomGapPx": 52
+  },
+  "verifiedRows": 0,
+  "failure": "Preview verification stopped at the recorded stage. Private values omitted."
+}
