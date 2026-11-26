@@ -22,6 +22,8 @@ export class ProgressAttempt {
   position: number = 0;
   result: string = '';
   submittedAt: string = '';
+  submittedAnswer: string = '';
+  submittedOptionLabel: string = '';
 }
 
 export class ProgressWatchDetail {

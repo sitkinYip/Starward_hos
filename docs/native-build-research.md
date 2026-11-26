@@ -120,6 +120,8 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 
 原图与报告见[隔离验收证据](../artifacts/validation/progress-watches-20261126/)，授权模型见 [ADR-042](architecture-decisions.md#adr-042指定场次的进度订阅)。签名、安装和隔离业务验证分别记录，设备标识、登录凭据及生产数据留在验收范围外。
 
+同日补充答错详情。`scripts/hm.sh build` 成功，`scripts/hm.sh test` 340 通过、0 失败、0 忽略，`scripts/hm.sh lint` 0 错误、0 警告，保留一条既有模糊效果建议。通过 `scripts/hm.sh run` 构建并安装签名 HAP `8af153bd…`。在直板机亮色主题通过隔离 HTTPS 实际读取合成玩家与场次，核对选择题作答的选项键和文案、填空长文本原始换行和自动换行、正确记录只显示判题结果，以及返回设置与退出账号。补充内容的夜间原图及华为锁屏通知送达和点击待后续验证。[测试报告](../artifacts/validation/progress-watches-followup-20261126-native/local-test-summary.json) · [真机报告](../artifacts/validation/progress-watches-followup-20261126-native/isolated-device-report.json) · [亮色原图](../artifacts/validation/progress-watches-followup-20261126-native/isolated-wrong-answers.png)
+
 ## 2026-11-26 答题横滑落定闪屏
 
 - 用户录屏的 2.631–2.679 秒内，连续三帧显示保留下来的顶栏和底部控件。中间区域的近白像素占比约 98.6%，前后两帧约 14%。题面、进度和背景同时消失的范围支持优先处理 `Scroll.fadingEdge`。ArkUI 官方实现为整个滚动区绘制遮罩并进行离屏混合。 [ArkUI 边缘渐隐文档](https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#fadingedge14)

@@ -351,6 +351,18 @@ export function decodeProgressWatchDetail(body: string, id: string): ProgressWat
     attempt.result = stringField(row, 'result');
     attempt.submittedAt = dateField(row, 'submittedAt', true);
     if (attempt.position < 1 || !['correct', 'incorrect'].includes(attempt.result)) { throw contractFailure(); }
+    const submittedAnswer: Object = row['submittedAnswer'];
+    const submittedOptionLabel: Object = row['submittedOptionLabel'];
+    if (submittedAnswer !== undefined) {
+      if (attempt.result !== 'incorrect' || typeof submittedAnswer !== 'string' ||
+        submittedAnswer.length === 0 || submittedAnswer.length > 4000) { throw contractFailure(); }
+      attempt.submittedAnswer = submittedAnswer;
+    }
+    if (submittedOptionLabel !== undefined) {
+      if (attempt.submittedAnswer.length === 0 || typeof submittedOptionLabel !== 'string' ||
+        submittedOptionLabel.length === 0 || submittedOptionLabel.length > 4000) { throw contractFailure(); }
+      attempt.submittedOptionLabel = submittedOptionLabel;
+    }
     return attempt;
   });
   return detail;

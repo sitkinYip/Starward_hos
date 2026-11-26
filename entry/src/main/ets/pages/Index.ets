@@ -1065,13 +1065,12 @@ struct Index {
 
   private openProgressWatches(id: string = ''): void {
     if (!this.privacyAllowed || this.vm.gate !== 'home' || this.vm.securityBusy || this.vm.securityUnconfirmed) { return; }
-    if (this.topDestination() === 'progress-watches') {
-      this.vm.progressWatches.select(id);
-      return;
-    }
+    const onTop: boolean = this.topDestination() === 'progress-watches';
+    if (id.length > 0) { this.vm.progressWatches.selectFromPush(id, onTop); }
+    if (onTop) { return; }
     if (id.length === 0 && (!this.settingsOnTop() || !this.vm.progressWatches.settingsVisible)) { return; }
     this.lobbyRouteTransitioning = true;
-    this.paths.pushPath({ name: 'progress-watches', param: id }, !this.motion.reduced);
+    this.paths.pushPath({ name: 'progress-watches' }, !this.motion.reduced);
   }
 
   private closeProgressWatches(): boolean {
@@ -1767,7 +1766,7 @@ struct Index {
     } else if (name === 'progress-watches') {
       NavDestination() {
         if (this.privacyAllowed && this.vm.gate === 'home' && !this.vm.securityBusy && !this.vm.securityUnconfirmed) {
-          ProgressWatchPage({ model: this.vm.progressWatches, requestedId: typeof param === 'string' ? param : '',
+          ProgressWatchPage({ model: this.vm.progressWatches,
             active: this.foreground && this.topDestination() === 'progress-watches', permission: this.pushFlow?.permission ?? null,
             localPushEnabled: AppEnvironment.pushEnabled,
             bottomInset: this.safeBottom(), leftInset: this.safeLeft(), rightInset: this.safeRight(),

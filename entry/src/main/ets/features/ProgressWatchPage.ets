@@ -5,6 +5,8 @@ import { StarwardGlassDialog } from '../ui/StarwardGlassDialog';
 import { STARWARD_RADIUS_PANEL } from '../ui/StarwardRadii';
 import { ProgressWatchViewModel } from './ProgressWatchViewModel';
 
+const EVENT_LABELS: Record<string, string> = { 'correct': '答对', 'incorrect': '答错', 'completed': '通关' };
+
 function localTime(value: string): string {
   const time: Date = new Date(value);
   return `${time.getMonth() + 1}月${time.getDate()}日 ${time.getHours().toString().padStart(2, '0')}:` +
@@ -14,7 +16,6 @@ function localTime(value: string): string {
 @ComponentV2
 export struct ProgressWatchPage {
   @Require @Param model: ProgressWatchViewModel;
-  @Param requestedId: string = '';
   @Param active: boolean = false;
   @Param bottomInset: number = 0;
   @Param leftInset: number = 0;
@@ -27,7 +28,7 @@ export struct ProgressWatchPage {
   @Local private confirmation: ProgressWatch | null = null;
 
   aboutToAppear(): void {
-    this.model.openPage(this.requestedId, this.active);
+    this.model.openPage(this.active);
   }
 
   aboutToDisappear(): void {
@@ -40,8 +41,18 @@ export struct ProgressWatchPage {
     this.model.setPageActive(this.active);
   }
 
-  @Monitor('model.selectedId')
-  private selectionChanged(): void { this.confirmation = null; }
+  @Monitor('model.detail', 'model.draft', 'permission')
+  private consentChanged(): void {
+    if (this.confirmation !== null && !this.canConfirmNotifications) { this.confirmation = null; }
+  }
+
+  @Computed
+  get canConfirmNotifications(): boolean {
+    const watch: ProgressWatch | undefined = this.model.detail?.watch;
+    return this.active && this.permission === true && this.localPushEnabled && this.model.detail?.pushAvailable === true &&
+      this.confirmation !== null && watch !== undefined && watch.subscribed && !watch.pushEnabled &&
+      this.confirmation.id === watch.id && this.confirmation.revision === watch.revision && !this.model.hasUnsavedSelection();
+  }
 
   private selectedIndex(): number {
     return this.model.items.findIndex((item: ProgressWatch) => item.id === this.model.selectedId);
@@ -49,10 +60,10 @@ export struct ProgressWatchPage {
 
   private confirmNotifications(): void {
     const watch: ProgressWatch | null = this.confirmation;
-    this.confirmation = null;
-    if (watch !== null && this.active && this.permission === true) {
+    if (watch !== null && this.canConfirmNotifications && !this.model.loading && !this.model.saving) {
       void this.model.setPush(watch.id, watch.revision, true);
     }
+    this.confirmation = null;
   }
 
   @Builder
@@ -60,11 +71,13 @@ export struct ProgressWatchPage {
     Column({ space: 14 }) {
       Text('接收场次进度通知？').fontSize(20).fontWeight(FontWeight.Medium)
         .fontColor($r('app.color.strong')).textAlign(TextAlign.Center)
-      Text(`《${this.confirmation?.title ?? ''}》发生你选中的答题动态时，手机会收到系统通知。`)
+      Text(`开启后，手机会收到《${this.confirmation?.title ?? ''}》的` +
+        `${this.confirmation?.eventKinds.map((kind: string) => EVENT_LABELS[kind]).join('、') ?? ''}通知。`)
         .fontSize(14).lineHeight('22fp').fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
       Button('接收通知', { type: ButtonType.Capsule }).id('progress-watch-confirm-push')
         .width('100%').constraintSize({ minHeight: 44 }).fontSize(15)
         .backgroundColor($r('app.color.accent')).fontColor($r('app.color.on_accent'))
+        .enabled(!this.model.loading && !this.model.saving)
         .onClick(() => this.confirmNotifications())
       Button('暂不接收', { type: ButtonType.Capsule }).id('progress-watch-decline-push')
         .width('100%').constraintSize({ minHeight: 44 }).fontSize(14)
@@ -112,9 +125,9 @@ export struct ProgressWatchPage {
   private subscription() {
     Column({ space: 8 }) {
       Text('提醒事件').fontSize(16).fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
-      this.eventOption('答对', 'correct')
-      this.eventOption('答错', 'incorrect')
-      this.eventOption('通关', 'completed')
+      this.eventOption(EVENT_LABELS['correct'], 'correct')
+      this.eventOption(EVENT_LABELS['incorrect'], 'incorrect')
+      this.eventOption(EVENT_LABELS['completed'], 'completed')
       Button(this.model.detail?.watch.subscribed ? '保存提醒事件' : '订阅进度', { type: ButtonType.Capsule })
         .id('progress-watch-save').width('100%').constraintSize({ minHeight: 44 })
         .fontSize(15).backgroundColor($r('app.color.accent')).fontColor($r('app.color.on_accent'))
@@ -128,15 +141,19 @@ export struct ProgressWatchPage {
           .id('progress-watch-notification-state').fontSize(13).fontColor($r('app.color.muted')).lineHeight('20fp')
         if (this.model.detail.watch.pushEnabled ||
           (this.model.detail.pushAvailable && this.localPushEnabled && this.permission === true)) {
+          if (!this.model.detail.watch.pushEnabled && this.model.hasUnsavedSelection()) {
+            Text('请先保存提醒事件，再开启通知。').fontSize(13).fontColor($r('app.color.muted')).lineHeight('20fp')
+          }
           Button(this.model.detail.watch.pushEnabled ? '关闭进度通知' : '开启进度通知', { type: ButtonType.Capsule })
             .id('progress-watch-push').constraintSize({ minHeight: 44 }).fontSize(14)
             .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-            .enabled(!this.model.saving && !this.model.loading && !this.model.retryPending && this.confirmation === null)
+            .enabled(!this.model.saving && !this.model.loading && !this.model.retryPending && this.confirmation === null &&
+              (this.model.detail.watch.pushEnabled || !this.model.hasUnsavedSelection()))
             .onClick(() => {
               const watch: ProgressWatch | undefined = this.model.detail?.watch;
               if (watch?.pushEnabled) {
                 void this.model.setPush(watch.id, watch.revision, false);
-              } else {
+              } else if (!this.model.hasUnsavedSelection()) {
                 this.confirmation = watch ?? null;
               }
             })
@@ -165,7 +182,8 @@ export struct ProgressWatchPage {
     if (this.model.retryPending) {
       Button('重试保存', { type: ButtonType.Capsule }).id('progress-watch-retry-save')
         .constraintSize({ minHeight: 44 }).backgroundColor($r('app.color.accent_faint'))
-        .fontColor($r('app.color.accent_text')).onClick(() => { void this.model.retrySave(); })
+        .fontColor($r('app.color.accent_text')).enabled(!this.model.loading)
+        .onClick(() => { void this.model.retrySave(); })
     }
   }
 
@@ -177,12 +195,20 @@ export struct ProgressWatchPage {
         Text('还没有答题记录').fontSize(14).fontColor($r('app.color.muted')).lineHeight('21fp')
       }
       ForEach(this.model.detail?.recent ?? [], (attempt: ProgressAttempt) => {
-        Row({ space: 8 }) {
-          Text(`第 ${attempt.position} 关 · ${attempt.result === 'correct' ? '答对' : '答错'}`)
-            .layoutWeight(1).fontSize(14).fontColor($r('app.color.text')).fontFeature("'tnum' 1")
-          Text(localTime(attempt.submittedAt)).fontSize(13).fontColor($r('app.color.muted')).fontFeature("'tnum' 1")
+        Column({ space: 4 }) {
+          Row({ space: 8 }) {
+            Text(`第 ${attempt.position} 关 · ${attempt.result === 'correct' ? '答对' : '答错'}`)
+              .layoutWeight(1).fontSize(14).fontColor($r('app.color.text')).fontFeature("'tnum' 1")
+            Text(localTime(attempt.submittedAt)).fontSize(13).fontColor($r('app.color.muted')).fontFeature("'tnum' 1")
+          }.width('100%')
+          if (attempt.result === 'incorrect' && attempt.submittedAnswer.length > 0) {
+            Text(`作答 · ${attempt.submittedAnswer}` +
+              (attempt.submittedOptionLabel.length > 0 ? ` · ${attempt.submittedOptionLabel}` : ''))
+              .width('100%').fontSize(13).fontColor($r('app.color.muted')).lineHeight('20fp')
+              .wordBreak(WordBreak.BREAK_WORD)
+          }
         }.width('100%').padding({ top: 5, bottom: 5 })
-      }, (attempt: ProgressAttempt) => attempt.id)
+      }, (attempt: ProgressAttempt) => `${attempt.id}:${attempt.submittedAnswer.length > 0}:${attempt.submittedOptionLabel.length > 0}`)
     }.width('100%').alignItems(HorizontalAlign.Start).padding(16).backgroundColor($r('app.color.surface'))
       .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
   }
@@ -224,8 +250,7 @@ export struct ProgressWatchPage {
     Stack() {
       StarwardRefresh({ refreshEnabled: !this.model.saving && !this.model.retryPending,
         request: () => this.model.refresh(), content: () => { this.content() } })
-      StarwardGlassDialog({ visible: this.active && this.confirmation !== null &&
-        this.confirmation.id === this.model.detail?.watch.id,
+      StarwardGlassDialog({ visible: this.canConfirmNotifications,
         panelWidth: this.panelWidth, reducedMotion: this.reducedMotion, dismissOnTapOutside: true,
         content: () => { this.notificationConsent() }, back: () => { this.confirmation = null; },
         failed: () => { this.confirmation = null; } })
