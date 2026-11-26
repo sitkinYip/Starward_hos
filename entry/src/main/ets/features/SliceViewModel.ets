@@ -12,6 +12,7 @@ import { createRequestIdentity } from '../platform/RequestIdentity';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { PushDevice, PushStatus } from '../business/PushRegistration';
 import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
+import { ProgressWatchViewModel } from './ProgressWatchViewModel';
 import { LobbyFeed } from '../business/LobbyFeed';
 import { LobbyUnread } from './LobbyUnread';
 
@@ -79,6 +80,7 @@ export class SliceViewModel {
   readonly rewards: RewardsViewModel;
   readonly lobbyUnread: LobbyUnread = new LobbyUnread();
   readonly pushSubscriptions: PushSubscriptionsViewModel;
+  readonly progressWatches: ProgressWatchViewModel;
   readonly onboardingSubscriptions: PushSubscriptionsViewModel;
   private readonly repository: GameRepository;
   private generation: number = 0;
@@ -122,6 +124,7 @@ export class SliceViewModel {
     });
     this.rewards = new RewardsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.pushSubscriptions = new PushSubscriptionsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
+    this.progressWatches = new ProgressWatchViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.onboardingSubscriptions = new PushSubscriptionsViewModel(repository, (error: Object) => this.rejectPlayerSession(error));
     this.play = new GameplayViewModel(repository, (snapshot: GameplaySnapshot) => {
       if (this.gate === 'home' && snapshot.detail.player === this.player.id) {
@@ -189,6 +192,7 @@ export class SliceViewModel {
     this.rewards.bindOwner(player.mustChangePassword ? '' : player.id);
     this.lobbyUnread.bindOwner(player.mustChangePassword ? '' : player.id);
     this.pushSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.progressWatches.bindOwner(player.mustChangePassword ? '' : player.id);
     this.onboardingSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
       this.avatarRequest++;
@@ -394,6 +398,7 @@ export class SliceViewModel {
       this.journey.bindOwner('');
       this.rewards.bindOwner('');
       this.pushSubscriptions.bindOwner('');
+      this.progressWatches.bindOwner('');
       this.onboardingSubscriptions.bindOwner('');
       this.listBusy = false;
       this.avatarRequest++;
@@ -1019,6 +1024,7 @@ export class SliceViewModel {
     this.rewards.bindOwner('');
     this.lobbyUnread.bindOwner('');
     this.pushSubscriptions.bindOwner('');
+    this.progressWatches.bindOwner('');
     this.onboardingSubscriptions.bindOwner('');
     this.profileRevision++;
     this.avatarRequest++;

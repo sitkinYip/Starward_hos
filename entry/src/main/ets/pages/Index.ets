@@ -23,6 +23,7 @@ import { LobbyUnreadPreference } from '../platform/LobbyUnreadPreference';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
 import { SettingsPage } from '../features/SettingsPage';
+import { ProgressWatchPage } from '../features/ProgressWatchPage';
 import { AvatarEditor, AvatarSelection } from '../platform/AvatarEditor';
 import { assignmentKind } from '../business/assignmentState';
 import { AppLifecycle } from '../platform/AppLifecycle';
@@ -295,6 +296,8 @@ struct Index {
       const alreadyOnInbox: boolean = this.mainIndex === 2;
       this.goMain(2);
       if (alreadyOnInbox) { void this.vm.journey.refresh(); }
+    } else if (route.kind === 'progress') {
+      this.openProgressWatches(route.target);
     } else {
       this.vm.narrative.close();
       this.paths.clear(!this.motion.reduced);
@@ -1060,6 +1063,23 @@ struct Index {
     return true;
   }
 
+  private openProgressWatches(id: string = ''): void {
+    if (!this.privacyAllowed || this.vm.gate !== 'home' || this.vm.securityBusy || this.vm.securityUnconfirmed) { return; }
+    if (this.topDestination() === 'progress-watches') {
+      this.vm.progressWatches.select(id);
+      return;
+    }
+    if (id.length === 0 && (!this.settingsOnTop() || !this.vm.progressWatches.settingsVisible)) { return; }
+    this.lobbyRouteTransitioning = true;
+    this.paths.pushPath({ name: 'progress-watches', param: id }, !this.motion.reduced);
+  }
+
+  private closeProgressWatches(): boolean {
+    if (this.topDestination() !== 'progress-watches') { return false; }
+    this.paths.pop(!this.motion.reduced);
+    return true;
+  }
+
   private topDestination(): string {
     const destinations: string[] = this.paths.getAllPathName();
     return destinations[destinations.length - 1] ?? '';
@@ -1733,7 +1753,8 @@ struct Index {
             pushBusy: this.pushFlow?.busy ?? false, pushPermission: this.pushFlow?.permission ?? null,
             pushStatus: this.pushFlow?.status ?? 'unknown',
             pushSettingsError: this.pushFlow?.settingsError ?? '', appearanceControls: () => { this.themePicker() },
-            subscriptions: this.vm.pushSubscriptions, active: this.foreground && this.settingsOnTop(),
+            subscriptions: this.vm.pushSubscriptions, progressWatches: this.vm.progressWatches,
+            active: this.foreground && this.settingsOnTop(), openProgressWatches: () => this.openProgressWatches(),
             openNotificationSettings: () => this.syncPush('settings'),
             retryNotificationSync: () => this.syncPush('retry')
           })
@@ -1743,6 +1764,21 @@ struct Index {
         .title({ builder: this.settingsTitle, height: 60 + this.safeTop() }, StarwardMaterial.titleOptions())
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
         .onBackPressed(() => this.closeSettings())
+    } else if (name === 'progress-watches') {
+      NavDestination() {
+        if (this.privacyAllowed && this.vm.gate === 'home' && !this.vm.securityBusy && !this.vm.securityUnconfirmed) {
+          ProgressWatchPage({ model: this.vm.progressWatches, requestedId: typeof param === 'string' ? param : '',
+            active: this.foreground && this.topDestination() === 'progress-watches', permission: this.pushFlow?.permission ?? null,
+            localPushEnabled: AppEnvironment.pushEnabled,
+            bottomInset: this.safeBottom(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
+            panelWidth: Math.min(400, this.windowSize.width - this.safeLeft() - this.safeRight() - 40),
+            reducedMotion: this.motion.reduced,
+            openSystemSettings: () => this.syncPush('settings') })
+        }
+      }.systemTransition(this.motion.reduced ? NavigationSystemTransitionType.NONE : NavigationSystemTransitionType.SLIDE_RIGHT)
+        .title({ builder: this.progressWatchesTitle, height: 60 + this.safeTop() }, StarwardMaterial.titleOptions())
+        .hideBackButton(true).backgroundColor($r('app.color.canvas'))
+        .onBackPressed(() => this.closeProgressWatches())
     } else if (name === 'narrative') {
       NavDestination() {
         if (this.vm.gate === 'home' && this.vm.narrative.route !== null) {
@@ -1834,18 +1870,24 @@ struct Index {
   @Builder
   settingsTitle() {
     StarwardTitleSurface({ titleHeight: 60, horizontalGutter: 16, topInset: this.safeTop(), reducedMotion: this.motion.reduced,
-      titleContent: () => { this.settingsTitleContent() } })
+      titleContent: () => { this.settingsTitleContent('设置', 'settings', () => { this.closeSettings(); }) } })
   }
 
   @Builder
-  settingsTitleContent() {
+  progressWatchesTitle() {
+    StarwardTitleSurface({ titleHeight: 60, horizontalGutter: 16, topInset: this.safeTop(), reducedMotion: this.motion.reduced,
+      titleContent: () => { this.settingsTitleContent('进度订阅', 'progress-watch', () => { this.closeProgressWatches(); }) } })
+  }
+
+  @Builder
+  settingsTitleContent(title: string, nodeId: string, close: () => void) {
     Row({ space: 10 }) {
       Button({ type: ButtonType.Normal }) {
         this.icon($r('app.media.icon_arrow_left'), 20, $r('app.color.accent_text'))
-      }.id('settings-back').width(44).height(44).padding(0).borderRadius(STARWARD_RADIUS_CONTROL)
-        .backgroundColor($r('app.color.accent_faint')).accessibilityText('返回').onClick(() => this.closeSettings())
-      Text('设置')
-        .id('settings-heading').fontSize(23)
+      }.id(nodeId + '-back').width(44).height(44).padding(0).borderRadius(STARWARD_RADIUS_CONTROL)
+        .backgroundColor($r('app.color.accent_faint')).accessibilityText('返回').onClick(() => close())
+      Text(title)
+        .id(nodeId + '-heading').fontSize(23)
         .fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
     }.width('100%').padding({ left: this.safeLeft(), right: this.safeRight() })
   }

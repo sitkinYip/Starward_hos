@@ -41,12 +41,13 @@ export class LaunchRoutes {
     const event: Object = parameters['starwardPushEventId'];
     const profile: Object = parameters['starwardPushProfileId'];
     const target: Object = parameters['starwardPushTargetId'];
-    if ((kind !== 'inbox' && kind !== 'assignment') || typeof event !== 'string' ||
+    if ((kind !== 'inbox' && kind !== 'assignment' && kind !== 'progress') || typeof event !== 'string' ||
       !/^[A-Za-z0-9_-]{1,100}$/.test(event as string) || typeof profile !== 'string' ||
-      !/^[A-Za-z0-9_-]{16,64}$/.test(profile as string) || (kind === 'assignment' &&
+      !/^[A-Za-z0-9_-]{16,64}$/.test(profile as string) || (kind !== 'inbox' &&
       (typeof target !== 'string' || !/^[A-Za-z0-9_-]{1,100}$/.test(target as string)))) { return false; }
+    if (kind === 'progress' && !/^[a-z0-9]{15}$/.test(target as string)) { return false; }
     const route: PushRoute = new PushRoute(kind as string, event as string, profile as string,
-      kind === 'assignment' ? target as string : '');
+      kind !== 'inbox' ? target as string : '');
     if (LaunchRoutes.processed.includes(LaunchRoutes.key(route)) ||
       (LaunchRoutes.push !== null && LaunchRoutes.key(LaunchRoutes.push) === LaunchRoutes.key(route))) { return false; }
     LaunchRoutes.pending = '';

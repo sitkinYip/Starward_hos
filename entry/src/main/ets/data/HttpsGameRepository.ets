@@ -12,13 +12,16 @@ import { ReadCancellation } from '../business/ReadCancellation';
 import { GameNotification } from '../business/GameNotification';
 import { GameReward } from '../business/GameReward';
 import { LobbyFeed } from '../business/LobbyFeed';
+import { ProgressWatchCommand, ProgressWatchDetail, ProgressWatchList } from '../business/ProgressWatch';
 import { PushDevice, PushRegistration, PushStatus } from '../business/PushRegistration';
 import { PushBindingClient } from './PushBindingClient';
 import { JourneyPushSubscription, PERSONAL_JOURNEY_SCOPE, PushSubscriptionCommand } from '../business/PushSubscription';
 import { decodeJourneyPushSubscription } from './PushSubscriptionDecoder';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
   decodeLobbyFeed, decodeNotificationReceipt, decodeNotificationReceipts, decodeNotifications, decodeRewards,
-  LoginResult, PasswordResult } from './DtoDecoder';
+  decodeProgressWatchDetail, decodeProgressWatchList, LoginResult, PasswordResult } from './DtoDecoder';
+
+const PROGRESS_WATCH_PATH: string = '/api/questions/v1/me/progress-watches';
 
 class LoginCommand {
   identity: string;
@@ -475,6 +478,24 @@ export class HttpsGameRepository implements GameRepository {
     }
     return decodeJourneyPushSubscription(await this.request('/api/questions/v1/me/push/journey-subscription',
       'PUT', JSON.stringify(command), this.token, generation));
+  }
+
+  async progressWatches(cancellation?: ReadCancellation): Promise<ProgressWatchList> {
+    const generation: number = this.requireSession();
+    return decodeProgressWatchList(await this.request(PROGRESS_WATCH_PATH, 'GET', '', this.token,
+      generation, cancellation));
+  }
+
+  async progressWatch(id: string, cancellation?: ReadCancellation): Promise<ProgressWatchDetail> {
+    const generation: number = this.requireSession();
+    const path: string = PROGRESS_WATCH_PATH + '/' + encodeURIComponent(id);
+    return decodeProgressWatchDetail(await this.request(path, 'GET', '', this.token, generation, cancellation), id);
+  }
+
+  async updateProgressWatch(id: string, command: ProgressWatchCommand): Promise<ProgressWatchDetail> {
+    const generation: number = this.requireSession();
+    const path: string = PROGRESS_WATCH_PATH + '/' + encodeURIComponent(id);
+    return decodeProgressWatchDetail(await this.request(path, 'PUT', JSON.stringify(command), this.token, generation), id);
   }
 
   async assignment(id: string): Promise<AssignmentDetail> {

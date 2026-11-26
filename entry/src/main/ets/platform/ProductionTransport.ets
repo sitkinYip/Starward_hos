@@ -8,6 +8,10 @@ const FILE_TOKEN_PATH: string = '/api/files/token';
 const PLAYER_PATH: string = '/api/questions/v1/me';
 const ASSIGNMENTS_PATH: string = '/api/questions/v1/assignments';
 
+function progressSubscriptionPath(path: string): boolean {
+  return /^\/api\/questions\/v1\/me\/progress-watches\/[a-z0-9]{15}$/.test(path);
+}
+
 export class ProductionTransport implements HttpTransport {
   private readonly transport: HttpTransport;
   private readonly readOnly: boolean;
@@ -30,6 +34,7 @@ export class ProductionTransport implements HttpTransport {
     if (request.method === 'PUT' && path === '/api/questions/v1/me/push/journey-subscription') {
       return 'journey-push-subscription';
     }
+    if (request.method === 'PUT' && progressSubscriptionPath(path)) { return 'progress-watch-subscription'; }
     if (request.method === 'PATCH' || request.method === 'PUT') { return 'write'; }
     if (path === PLAYER_PATH) { return request.token.length === 0 ? 'preflight' : 'player'; }
     if (path === ASSIGNMENTS_PATH) { return 'assignments'; }
@@ -44,7 +49,7 @@ export class ProductionTransport implements HttpTransport {
     }
     const path: string = request.url.substring(PRODUCTION_API_ORIGIN.length);
     const subscriptionPut: boolean = request.method === 'PUT' &&
-      path === '/api/questions/v1/me/push/journey-subscription';
+      (path === '/api/questions/v1/me/push/journey-subscription' || progressSubscriptionPath(path));
     if (request.method !== 'GET' && request.method !== 'POST' && request.method !== 'PATCH' && !subscriptionPut) {
       throw new GameFailure('CONFIG_ERROR', '生产联调请求的方法无效。');
     }

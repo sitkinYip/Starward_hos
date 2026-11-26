@@ -6,6 +6,7 @@ import {
 } from '../ui/StarwardRadii';
 import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
 import { StarwardPushSubscriptions } from './StarwardPushSubscriptions';
+import { ProgressWatchViewModel } from './ProgressWatchViewModel';
 
 /** Settings content uses the system notification options and the shared appearance controls. */
 @ComponentV2
@@ -23,17 +24,25 @@ export struct SettingsPage {
   @Param pushStatus: PushStatus = 'unknown';
   @Param pushSettingsError: string = '';
   @Require @Param subscriptions: PushSubscriptionsViewModel;
+  @Require @Param progressWatches: ProgressWatchViewModel;
   @Param active: boolean = false;
   @BuilderParam appearanceControls: () => void;
   @Event openNotificationSettings: () => void = () => {};
   @Event retryNotificationSync: () => void = () => {};
   @Event answerHapticsChanged: (enabled: boolean) => void = () => {};
   @Event openSystemHapticsSettings: () => void = () => {};
+  @Event openProgressWatches: () => void = () => {};
   @Local private version: InstalledAppVersion | null = null;
 
   aboutToAppear(): void {
     this.version = readInstalledAppVersion();
+    this.updateProgressAccess();
   }
+
+  aboutToDisappear(): void { this.progressWatches.setSettingsActive(false); }
+
+  @Monitor('active')
+  private updateProgressAccess(): void { this.progressWatches.setSettingsActive(this.active); }
 
   private notificationState(): string {
     if (this.pushBusy) { return '检查中'; }
@@ -144,6 +153,20 @@ export struct SettingsPage {
             StarwardPushSubscriptions({ model: this.subscriptions, active: this.active,
               permission: this.pushPermission, openSystemSettings: () => this.openNotificationSettings() })
           }.width('100%').alignItems(HorizontalAlign.Start)
+        }
+        if (this.progressWatches.settingsVisible) {
+          Button({ type: ButtonType.Normal }) {
+            Row({ space: 12 }) {
+              this.rowIcon($r('sys.symbol.bell'))
+              Text('进度订阅').layoutWeight(1).fontSize(16).fontWeight(FontWeight.Medium)
+                .fontColor($r('app.color.text'))
+              SymbolGlyph($r('sys.symbol.chevron_right')).fontSize('13vp').fontColor([$r('app.color.subtle')])
+                .accessibilityLevel('no')
+            }.width('100%').padding(14)
+          }.id('settings-progress-watches').width('100%').padding(0).constraintSize({ minHeight: 64 })
+            .backgroundColor($r('app.color.surface')).accessibilityText('进度订阅')
+            .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
+            .onClick(() => this.openProgressWatches())
         }
         if (this.version !== null) {
           Text(`版本 ${this.version.name}（${this.version.code}）`).id('settings-version')

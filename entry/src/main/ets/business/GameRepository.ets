@@ -7,6 +7,7 @@ import { GameReward } from './GameReward';
 import { PushDevice, PushStatus } from './PushRegistration';
 import { JourneyPushSubscription, PushSubscriptionCommand } from './PushSubscription';
 import { LobbyFeed } from './LobbyFeed';
+import { ProgressWatchCommand, ProgressWatchDetail, ProgressWatchList } from './ProgressWatch';
 
 export interface GameRepository {
   readonly mode: string;
@@ -34,5 +35,8 @@ export interface GameRepository {
   retryPushRemoval?(): void;
   journeyPushSubscription?(cancellation?: ReadCancellation): Promise<JourneyPushSubscription>;
   updateJourneyPushSubscription?(command: PushSubscriptionCommand): Promise<JourneyPushSubscription>;
+  progressWatches?(cancellation?: ReadCancellation): Promise<ProgressWatchList>;
+  progressWatch?(id: string, cancellation?: ReadCancellation): Promise<ProgressWatchDetail>;
+  updateProgressWatch?(id: string, command: ProgressWatchCommand): Promise<ProgressWatchDetail>;
   logout(): Promise<void>;
 }

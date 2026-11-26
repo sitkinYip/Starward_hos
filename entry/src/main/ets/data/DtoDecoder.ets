@@ -2,6 +2,7 @@ import { AssignmentDetail, AssignmentSummary, ExtraDisplay, GameFailure, Player,
 import { GameNotification } from '../business/GameNotification';
 import { GameReward } from '../business/GameReward';
 import { LobbyFeed } from '../business/LobbyFeed';
+import { PROGRESS_EVENT_KINDS, ProgressAttempt, ProgressWatch, ProgressWatchDetail, ProgressWatchList } from '../business/ProgressWatch';
 
 export class LoginResult {
   token: string = '';
@@ -291,6 +292,67 @@ export function decodeAssignment(body: string): AssignmentDetail {
     const values: Object[] = clues as Object[];
     detail.clueIds = values.map((item: Object) => stringField(record(item), 'id', true));
   }
+  return detail;
+}
+
+function decodeProgressWatch(value: Object): ProgressWatch {
+  const source: Record<string, Object> = record(value);
+  const watch: ProgressWatch = new ProgressWatch();
+  watch.id = stringField(source, 'id', true);
+  watch.assignmentId = stringField(source, 'assignmentId', true);
+  watch.playerName = stringField(source, 'playerName', true);
+  watch.title = stringField(source, 'title', true);
+  watch.expiresAt = dateField(source, 'expiresAt', true);
+  watch.status = stringField(source, 'status');
+  watch.revision = intField(source, 'revision');
+  watch.subscribed = boolField(source, 'subscribed');
+  watch.pushEnabled = boolField(source, 'pushEnabled');
+  const kinds: Object = source['eventKinds'];
+  if (!/^[a-z0-9]{15}$/.test(watch.id) || !['assigned', 'active', 'completed'].includes(watch.status) ||
+    !Number.isSafeInteger(watch.revision) || watch.revision < 1 || !Array.isArray(kinds)) { throw contractFailure(); }
+  for (const kind of kinds as Object[]) {
+    if (typeof kind !== 'string' || !PROGRESS_EVENT_KINDS.includes(kind as string) ||
+      watch.eventKinds.includes(kind as string)) { throw contractFailure(); }
+    watch.eventKinds.push(kind as string);
+  }
+  if (watch.subscribed !== (watch.eventKinds.length > 0) || (watch.pushEnabled && !watch.subscribed)) {
+    throw contractFailure();
+  }
+  return watch;
+}
+
+export function decodeProgressWatchList(body: string): ProgressWatchList {
+  const source: Record<string, Object> = parse(body);
+  const items: Object = source['items'];
+  if (!Array.isArray(items)) { throw contractFailure(); }
+  const list: ProgressWatchList = new ProgressWatchList();
+  list.items = (items as Object[]).map((item: Object) => decodeProgressWatch(item));
+  return list;
+}
+
+export function decodeProgressWatchDetail(body: string, id: string): ProgressWatchDetail {
+  const source: Record<string, Object> = parse(body);
+  const detail: ProgressWatchDetail = new ProgressWatchDetail();
+  detail.watch = decodeProgressWatch(source['watch']);
+  detail.pushAvailable = boolField(source, 'pushAvailable');
+  detail.solved = intField(source, 'solved');
+  detail.total = intField(source, 'total');
+  detail.currentPosition = intField(source, 'currentPosition');
+  detail.completedAt = dateField(source, 'completedAt');
+  const recent: Object = source['recent'];
+  if (detail.watch.id !== id || detail.solved > detail.total || !Array.isArray(recent) || recent.length > 20) {
+    throw contractFailure();
+  }
+  detail.recent = (recent as Object[]).map((item: Object): ProgressAttempt => {
+    const row: Record<string, Object> = record(item);
+    const attempt: ProgressAttempt = new ProgressAttempt();
+    attempt.id = stringField(row, 'id', true);
+    attempt.position = intField(row, 'position');
+    attempt.result = stringField(row, 'result');
+    attempt.submittedAt = dateField(row, 'submittedAt', true);
+    if (attempt.position < 1 || !['correct', 'incorrect'].includes(attempt.result)) { throw contractFailure(); }
+    return attempt;
+  });
   return detail;
 }
 
