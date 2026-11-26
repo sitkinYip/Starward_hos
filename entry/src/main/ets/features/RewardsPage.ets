@@ -1,4 +1,4 @@
-import { curves, SegmentButtonV2Items, UIUtils } from '@kit.ArkUI';
+import { curves, LengthMetrics, SegmentButtonV2Items, UIUtils } from '@kit.ArkUI';
 import { GameReward } from '../business/GameReward';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { InlineError } from '../ui/ErrorMessages';
@@ -7,6 +7,9 @@ import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { StarwardCapsuleSegment, StarwardPaneTabs } from '../ui/StarwardTabs';
+import {
+  STARWARD_RADIUS_BADGE, STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND
+} from '../ui/StarwardRadii';
 import { RewardCard } from './RewardCard';
 import { RewardDetails } from './RewardDetails';
 import { RewardsViewModel } from './RewardsViewModel';
@@ -18,10 +21,12 @@ struct RewardLoadingCard {
 
   build() {
     Column({ space: 12 }) {
-      Column().width('100%').height(92).borderRadius(16).backgroundColor($r('app.color.accent_soft'))
-      Column().width('65%').height(18).borderRadius(9).backgroundColor($r('app.color.accent_faint'))
+      Column().width('100%').height(92).borderRadius(STARWARD_RADIUS_CONTROL)
+        .backgroundColor($r('app.color.accent_soft'))
+      Column().width('65%').height(18).borderRadius(STARWARD_RADIUS_BADGE).backgroundColor($r('app.color.accent_faint'))
     }.width('100%').alignItems(HorizontalAlign.Start).padding(12)
-      .backgroundColor($r('app.color.glass_card_top')).border({ width: 1, color: $r('app.color.border'), radius: 24 })
+      .backgroundColor($r('app.color.glass_card_top'))
+      .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
       .opacity(this.animated ? (this.pulsed ? 0.85 : 0.4) : 1).accessibilityLevel('no-hide-descendants')
       .onAppear(() => {
         if (this.animated) {
@@ -137,12 +142,13 @@ export struct RewardsPage {
       Text('还没有获得奖品。完成场次后，再来看看你的收获。').fontSize(13).lineHeight('24.7fp')
         .fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
       Button('去探索新的故事', { type: ButtonType.Normal }).id('rewards-explore').constraintSize({ minHeight: 46 })
-        .fontSize(13).fontWeight(600).fontColor($r('app.color.accent_text')).padding({ left: 20, right: 20 }).borderRadius(10)
-        .backgroundColor(Color.Transparent).border({ width: 1, color: $r('app.color.accent_border') })
+        .fontSize(13).fontWeight(600).fontColor($r('app.color.accent_text')).padding({ left: 20, right: 20 })
+        .backgroundColor(Color.Transparent)
+        .border({ width: 1, color: $r('app.color.accent_border'), radius: STARWARD_RADIUS_ROUND })
         .onClick(() => this.returnHome())
     }.id('rewards-empty').width('100%').constraintSize({ minHeight: 280 })
       .padding({ top: 32, bottom: 32, left: 20, right: 20 }).justifyContent(FlexAlign.Center)
-      .backgroundColor($r('app.color.accent_faint')).borderRadius(18)
+      .backgroundColor($r('app.color.accent_faint')).borderRadius(STARWARD_RADIUS_PANEL)
   }
 
   @Builder
@@ -155,7 +161,7 @@ export struct RewardsPage {
         .fontSize(13).lineHeight('22fp').fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
     }.id('rewards-category-empty').width('100%').constraintSize({ minHeight: 116 })
       .justifyContent(FlexAlign.Center).padding(16).backgroundColor($r('app.color.glass_card_top'))
-      .border({ width: 1, radius: 24, color: $r('app.color.border') })
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.border') })
   }
 
   @Builder
@@ -172,7 +178,7 @@ export struct RewardsPage {
           Column({ space: 4 }) {
             InlineError({ message: this.model.error, fieldId: 'rewards-error-message' })
             Button('重新尝试', { type: ButtonType.Normal }).id('rewards-retry')
-              .constraintSize({ minHeight: 44 }).padding({ left: 12, right: 12 })
+              .constraintSize({ minHeight: 44 }).borderRadius(STARWARD_RADIUS_ROUND).padding({ left: 12, right: 12 })
               .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
               .enabled(!this.model.loading).onClick(() => { void this.model.refresh(); })
           }.id('rewards-error').width('100%').alignItems(HorizontalAlign.Start).padding({ bottom: 12 })
@@ -227,6 +233,7 @@ export struct RewardsPage {
       .onAppear(() => { this.updateReveal(); this.syncDetailVisibility(); })
       .bindSheet(this.detailVisible!!, this.detail(), {
         height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: false,
+        radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
         backgroundColor: $r('app.color.raised'), blurStyle: BlurStyle.Thin, maskColor: $r('app.color.modal_mask'),
         onDisappear: () => { this.model.close(); }
       })

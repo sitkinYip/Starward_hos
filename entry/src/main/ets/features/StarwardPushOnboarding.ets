@@ -1,4 +1,5 @@
 import { PromptAction } from '@kit.ArkUI';
+import { STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
 import { PushOnboardingViewModel } from './PushOnboardingViewModel';
 
 /** An optional native dialog; the host owns every eligibility and OS-permission decision. */
@@ -96,14 +97,15 @@ export struct StarwardPushOnboarding {
               })
           }
           Button(this.model.phase === 'subscription' ? '以后再说' : '暂不接收', { type: ButtonType.Normal })
-            .id('push-onboarding-decline').width('100%').constraintSize({ minHeight: 44 }).fontSize(14)
+            .id('push-onboarding-decline').width('100%').constraintSize({ minHeight: 44 })
+            .borderRadius(STARWARD_RADIUS_ROUND).fontSize(14)
             .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent)
             .enabled(!this.model.busy).onClick(() => this.model.dismiss())
         }.width('100%')
       }.width('100%').padding(24)
     }.width('100%').constraintSize({ maxHeight: Math.max(200, Math.min(600, this.heightVp - 80)) })
       .scrollBar(BarState.Auto).backgroundColor($r('app.color.raised'))
-      .border({ width: 1, color: $r('app.color.border'), radius: 22 }).borderRadius(22)
+      .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
   }
 
   private async openDialog(): Promise<void> {
@@ -114,7 +116,7 @@ export struct StarwardPushOnboarding {
       const action: PromptAction = this.getUIContext().getPromptAction();
       const id: number = await action.openCustomDialog({
         builder: () => { this.content(); }, alignment: DialogAlignment.Center,
-        width: Math.min(400, Math.max(240, this.widthVp - 40)), cornerRadius: 22,
+        width: Math.min(400, Math.max(240, this.widthVp - 40)), cornerRadius: STARWARD_RADIUS_PANEL,
         backgroundColor: $r('app.color.raised'), maskColor: $r('app.color.modal_mask'),
         isModal: true, autoCancel: true, showInSubWindow: false,
         onWillDismiss: (event: DismissDialogAction) => {

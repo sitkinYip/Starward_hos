@@ -2,6 +2,7 @@ import { curves, UIUtils } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
 import { QUEST_BGM_SIZE, questBgmRatio } from '../business/QuestBgmDock';
 import { JourneyLauncherPosition } from '../platform/JourneyLauncherPosition';
+import { STARWARD_RADIUS_BADGE, STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 export const JOURNEY_LAUNCHER_SIZE: number = 54;
 const DOCK_MARGIN: number = 12;
@@ -56,7 +57,7 @@ struct StarwardJourneyArchiveItem {
           .fillColor($r('app.color.accent_muted')).accessibilityLevel('no')
       }.width('100%').padding({ left: 2, right: 2, top: 12, bottom: 12 })
     }.id('gameplay-journey-note-' + this.index).width('100%').padding(0)
-      .constraintSize({ minHeight: 44 }).backgroundColor(Color.Transparent).borderRadius(0)
+      .constraintSize({ minHeight: 44 }).backgroundColor(Color.Transparent).borderRadius(STARWARD_RADIUS_CONTROL)
       .border({ width: { top: 1 }, color: this.index === 0 ? Color.Transparent : $r('app.color.accent_border') })
       .accessibilityText(archiveTitle(this.item)).accessibilityDescription(archiveTime(this.item.sentAt))
       .onClick(() => this.select(this.item.id))
@@ -202,7 +203,7 @@ export struct StarwardJourneyLauncher {
       placement: below ? (this.x < 0.5 ? Placement.BottomLeft : Placement.BottomRight) :
         (this.x < 0.5 ? Placement.TopLeft : Placement.TopRight),
       width: this.popupWidth(), targetSpace: 12, enableArrow: false, mask: false, focusable: true,
-      popupColor: $r('app.color.raised'), backgroundBlurStyle: BlurStyle.NONE, radius: 16,
+      popupColor: $r('app.color.raised'), backgroundBlurStyle: BlurStyle.NONE, radius: STARWARD_RADIUS_PANEL,
       transition: this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.opacity(0)
         .combine(TransitionEffect.scale({ x: 0.97, y: 0.97 }))
         .animation({ duration: 220, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) }),
@@ -245,9 +246,9 @@ export struct StarwardJourneyLauncher {
           this.opened = false;
           this.openInbox();
         })
-    }.id('gameplay-journey-archive').width(this.popupWidth()).borderRadius(16)
+    }.id('gameplay-journey-archive').width(this.popupWidth())
       .padding({ left: 16, right: 16, top: 2, bottom: 5 }).backgroundColor($r('app.color.raised'))
-      .border({ width: 1, color: $r('app.color.accent_border') })
+      .border({ width: 1, color: $r('app.color.accent_border'), radius: STARWARD_RADIUS_PANEL })
   }
 
   @Builder
@@ -269,7 +270,8 @@ export struct StarwardJourneyLauncher {
             .position({ top: -4, right: -4 }).constraintSize({ minWidth: 20 }).height(20)
             .textAlign(TextAlign.Center).padding({ left: 5, right: 5 }).fontSize(10).fontWeight(700).maxFontScale(1)
             .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-            .borderRadius(10).draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
+            .borderRadius(STARWARD_RADIUS_BADGE)
+            .draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
         }
       }.width('100%').height('100%').hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
     }.id('gameplay-journey-launcher').width(JOURNEY_LAUNCHER_SIZE).height(JOURNEY_LAUNCHER_SIZE).padding(0)

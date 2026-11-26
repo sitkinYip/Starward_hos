@@ -1,4 +1,5 @@
 import { curves, LengthMetrics, UIUtils } from '@kit.ArkUI';
+import { STARWARD_RADIUS_CONTROL } from './StarwardRadii';
 
 /** A single feedback event. Its lifetime affects this card only. */
 @ComponentV2
@@ -96,7 +97,7 @@ export struct StarwardQuestFeedback {
       }.id('gameplay-feedback').width('100%')
         .backgroundColor(this.danger ? $r('app.color.danger_surface') : $r('app.color.success_surface'))
         .border({ width: 1, color: this.danger ? $r('app.color.danger_border') : $r('app.color.success_border'),
-          radius: 16 }).clip(true)
+          radius: STARWARD_RADIUS_CONTROL }).clip(true)
         .opacity(this.shown ? 1 : 0).translate({ y: this.shown ? 0 : 12 })
         .scale({ x: this.shown ? 1 : 0.985, y: this.shown ? 1 : 0.985 })
         .onAppear(() => this.start())

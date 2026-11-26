@@ -1,4 +1,5 @@
 import { UIUtils } from '@kit.ArkUI';
+import { STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 @ComponentV2
 struct StarwardRecoveryPulse {
@@ -112,7 +113,7 @@ export struct StarwardAnswerRecovery {
             }.id('gameplay-answer-retry').width('100%').constraintSize({ minHeight: 46 })
               .accessibilityText(this.pending ? '正在重新连接…' : '重新连接')
               .backgroundColor(Color.Transparent)
-              .border({ width: 1, color: $r('app.color.answer_recovery_button_border') })
+              .border({ width: 1, color: $r('app.color.answer_recovery_button_border'), radius: STARWARD_RADIUS_ROUND })
               .enabled(!this.pending)
               .onClick(() => this.retry())
             Button('留在当前页面', { type: ButtonType.Capsule })
@@ -121,7 +122,8 @@ export struct StarwardAnswerRecovery {
               .backgroundColor(Color.Transparent).enabled(!this.pending).onClick(() => this.stay())
           }.width('100%').margin({ top: 28 })
         }.id('gameplay-answer-retry-dialog').width('100%').padding(24)
-          .backgroundColor($r('app.color.raised')).border({ width: 1, color: $r('app.color.accent_border'), radius: 18 })
+          .backgroundColor($r('app.color.raised'))
+          .border({ width: 1, color: $r('app.color.accent_border'), radius: STARWARD_RADIUS_PANEL })
           .clip(true)
           .onAreaChange((_previous: Area, current: Area) => {
             const width: number = Number(current.width);

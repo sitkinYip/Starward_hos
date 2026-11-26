@@ -1,0 +1,590 @@
+{
+  "status": "passed",
+  "mode": "final-package-touch",
+  "signedHapSha256": "223263aee30331b1baf1fed3844de80838dc1eda1c5a6195f6bc03a5b872cce6",
+  "fixture": "already-active fixed isolated preview, no game writes",
+  "states": {
+    "q5-idle": {
+      "boundsPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-swiper": [
+          45,
+          512,
+          1215,
+          2150
+        ],
+        "gameplay-answer-form": [
+          91,
+          2466,
+          1169,
+          2629
+        ],
+        "gameplay-answer-input": [
+          91,
+          2466,
+          974,
+          2629
+        ],
+        "gameplay-submit": [
+          1007,
+          2466,
+          1170,
+          2629
+        ],
+        "gameplay-title-back": [
+          77,
+          136,
+          220,
+          279
+        ]
+      },
+      "composerPathTypes": [
+        null,
+        "root",
+        "Stack",
+        "Stack",
+        "__Common__",
+        "Stack",
+        "Navigation",
+        "NavigationContent",
+        "NavDestination",
+        "NavDestinationContent",
+        "Stack",
+        "Stack",
+        "Stack",
+        "Tabs",
+        "TabBar",
+        "Column",
+        "Column",
+        "Row"
+      ],
+      "nativeTabBarBoundsPx": [
+        52,
+        2453,
+        1208,
+        2642
+      ],
+      "question": 5,
+      "pngSha256": "690cfabbd164c08f9dbe18a149df86d2cf70709bcd5bb1acc7818838ac9baf75"
+    },
+    "q5-ime": {
+      "boundsPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          1699
+        ],
+        "gameplay-question-swiper": [
+          45,
+          512,
+          1215,
+          1699
+        ],
+        "gameplay-answer-form": [
+          52,
+          1510,
+          1208,
+          1673
+        ],
+        "gameplay-answer-input": [
+          52,
+          1510,
+          1014,
+          1673
+        ],
+        "gameplay-submit": [
+          1046,
+          1510,
+          1209,
+          1673
+        ],
+        "gameplay-title-back": [
+          77,
+          136,
+          220,
+          279
+        ]
+      },
+      "composerPathTypes": [
+        null,
+        "root",
+        "Stack",
+        "Stack",
+        "__Common__",
+        "Stack",
+        "Navigation",
+        "NavigationContent",
+        "NavDestination",
+        "NavDestinationContent",
+        "Stack",
+        "Stack",
+        "Stack",
+        "Tabs",
+        "TabBar",
+        "Column",
+        "Column",
+        "Row"
+      ],
+      "nativeTabBarBoundsPx": [
+        52,
+        1484,
+        1208,
+        1699
+      ],
+      "question": 5,
+      "pngSha256": "6f1649134c34900f920725a8a4050e9db90ec7ef3fec28e88809ddd43b88cb7b"
+    },
+    "q5-back": {
+      "boundsPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-swiper": [
+          45,
+          512,
+          1215,
+          2150
+        ],
+        "gameplay-answer-form": [
+          91,
+          2466,
+          1169,
+          2629
+        ],
+        "gameplay-answer-input": [
+          91,
+          2466,
+          974,
+          2629
+        ],
+        "gameplay-submit": [
+          1007,
+          2466,
+          1170,
+          2629
+        ],
+        "gameplay-title-back": [
+          77,
+          136,
+          220,
+          279
+        ]
+      },
+      "composerPathTypes": [
+        null,
+        "root",
+        "Stack",
+        "Stack",
+        "__Common__",
+        "Stack",
+        "Navigation",
+        "NavigationContent",
+        "NavDestination",
+        "NavDestinationContent",
+        "Stack",
+        "Stack",
+        "Stack",
+        "Tabs",
+        "TabBar",
+        "Column",
+        "Column",
+        "Row"
+      ],
+      "nativeTabBarBoundsPx": [
+        52,
+        2453,
+        1208,
+        2642
+      ],
+      "question": 5,
+      "pngSha256": "b70b34b5d666a8664564d90cd1c7185b5b5ad6297dae1efe81741f09a8d4c686"
+    }
+  },
+  "checks": [
+    "Real IME resizes the viewport while the input and primary action remain inside the TabBar.",
+    "System Back dismisses the IME and restores the idle floating dock at its initial bounds.",
+    "Disabling the native divider restores the editing backdrop to within one RGB value at each sampled channel."
+  ],
+  "baseline": {
+    "signedHapSha256": "511a058014d194781bcece607fddf9f0fabc48d9d9224afc7060464df3b50a33",
+    "reportSha256": "a25e97c0493b567ce4b0ab6b2ca128a13b82d6ee1badd20dda8340aedfab0ba5",
+    "q4Dock": [
+      52,
+      2467,
+      1208,
+      2630
+    ],
+    "q5Dock": [
+      52,
+      2467,
+      1208,
+      2630
+    ],
+    "q5ImeDock": [
+      52,
+      1511,
+      1208,
+      1674
+    ]
+  },
+  "imeBackdropSamples": {
+    "coordinatesPx": [
+      [
+        200,
+        1484
+      ],
+      [
+        330,
+        1504
+      ],
+      [
+        700,
+        1681
+      ]
+    ],
+    "approvedBaseline": {
+      "signedHapSha256": "511a058014d194781bcece607fddf9f0fabc48d9d9224afc7060464df3b50a33",
+      "pngSha256": "30d0e91b92ede6bf253c6cfd4c97ffac547280b3731ba3475c1b88a93d846a34",
+      "rgb": [
+        [
+          247,
+          247,
+          251
+        ],
+        [
+          132,
+          41,
+          42
+        ],
+        [
+          105,
+          26,
+          38
+        ]
+      ]
+    },
+    "candidateWithSeparator": {
+      "signedHapSha256": "0f6b5a9b06249a4932cd96567ee6dc3c753f0c82a55c084af3cf9fb5c63ead9d",
+      "pngSha256": "ddf0bf89c62c21e17e21b0bcdc7b7080d0e6db4a80b878799ff2fd85a4cd8a34",
+      "rgb": [
+        [
+          198,
+          198,
+          201
+        ],
+        [
+          132,
+          41,
+          42
+        ],
+        [
+          105,
+          26,
+          38
+        ]
+      ]
+    },
+    "finalPackage": {
+      "signedHapSha256": "223263aee30331b1baf1fed3844de80838dc1eda1c5a6195f6bc03a5b872cce6",
+      "pngSha256": "6f1649134c34900f920725a8a4050e9db90ec7ef3fec28e88809ddd43b88cb7b",
+      "rgb": [
+        [
+          248,
+          247,
+          251
+        ],
+        [
+          132,
+          41,
+          42
+        ],
+        [
+          105,
+          26,
+          38
+        ]
+      ]
+    },
+    "maxChannelDifferenceFromApprovedBaseline": 1
+  },
+  "verticalScroll": {
+    "status": "passed",
+    "checks": [
+      "vertical scroll hides and restores the header while dock and body viewport stay fixed",
+      "visible progress star returns to Q5"
+    ],
+    "states": {
+      "q4-top": {
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-swiper": [
+            45,
+            512,
+            1215,
+            2720
+          ],
+          "gameplay-answer-form": [
+            91,
+            2466,
+            1169,
+            2629
+          ],
+          "gameplay-choice-trigger": [
+            91,
+            2466,
+            701,
+            2629
+          ],
+          "gameplay-next": [
+            733,
+            2466,
+            1169,
+            2629
+          ],
+          "gameplay-title-back": [
+            77,
+            136,
+            220,
+            279
+          ]
+        },
+        "composerPathTypes": [
+          null,
+          "root",
+          "Stack",
+          "Stack",
+          "__Common__",
+          "Stack",
+          "Navigation",
+          "NavigationContent",
+          "NavDestination",
+          "NavDestinationContent",
+          "Stack",
+          "Stack",
+          "Stack",
+          "Tabs",
+          "TabBar",
+          "Column",
+          "Column",
+          "Row"
+        ],
+        "nativeTabBarBoundsPx": [
+          52,
+          2453,
+          1208,
+          2642
+        ],
+        "question": 4
+      },
+      "q4-title-hidden": {
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-swiper": [
+            45,
+            124,
+            1215,
+            2200
+          ],
+          "gameplay-answer-form": [
+            91,
+            2466,
+            1169,
+            2629
+          ],
+          "gameplay-choice-trigger": [
+            91,
+            2466,
+            701,
+            2629
+          ],
+          "gameplay-next": [
+            733,
+            2466,
+            1169,
+            2629
+          ]
+        },
+        "composerPathTypes": [
+          null,
+          "root",
+          "Stack",
+          "Stack",
+          "__Common__",
+          "Stack",
+          "Navigation",
+          "NavigationContent",
+          "NavDestination",
+          "NavDestinationContent",
+          "Stack",
+          "Stack",
+          "Stack",
+          "Tabs",
+          "TabBar",
+          "Column",
+          "Column",
+          "Row"
+        ],
+        "nativeTabBarBoundsPx": [
+          52,
+          2453,
+          1208,
+          2642
+        ],
+        "question": null
+      },
+      "q4-title-restored": {
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-swiper": [
+            45,
+            512,
+            1215,
+            2720
+          ],
+          "gameplay-answer-form": [
+            91,
+            2466,
+            1169,
+            2629
+          ],
+          "gameplay-choice-trigger": [
+            91,
+            2466,
+            701,
+            2629
+          ],
+          "gameplay-next": [
+            733,
+            2466,
+            1169,
+            2629
+          ],
+          "gameplay-title-back": [
+            77,
+            136,
+            220,
+            279
+          ]
+        },
+        "composerPathTypes": [
+          null,
+          "root",
+          "Stack",
+          "Stack",
+          "__Common__",
+          "Stack",
+          "Navigation",
+          "NavigationContent",
+          "NavDestination",
+          "NavDestinationContent",
+          "Stack",
+          "Stack",
+          "Stack",
+          "Tabs",
+          "TabBar",
+          "Column",
+          "Column",
+          "Row"
+        ],
+        "nativeTabBarBoundsPx": [
+          52,
+          2453,
+          1208,
+          2642
+        ],
+        "question": 4
+      },
+      "q5-star-selected": {
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-swiper": [
+            45,
+            512,
+            1215,
+            2150
+          ],
+          "gameplay-answer-form": [
+            91,
+            2466,
+            1169,
+            2629
+          ],
+          "gameplay-answer-input": [
+            91,
+            2466,
+            974,
+            2629
+          ],
+          "gameplay-submit": [
+            1007,
+            2466,
+            1170,
+            2629
+          ],
+          "gameplay-title-back": [
+            77,
+            136,
+            220,
+            279
+          ]
+        },
+        "composerPathTypes": [
+          null,
+          "root",
+          "Stack",
+          "Stack",
+          "__Common__",
+          "Stack",
+          "Navigation",
+          "NavigationContent",
+          "NavDestination",
+          "NavDestinationContent",
+          "Stack",
+          "Stack",
+          "Stack",
+          "Tabs",
+          "TabBar",
+          "Column",
+          "Column",
+          "Row"
+        ],
+        "nativeTabBarBoundsPx": [
+          52,
+          2453,
+          1208,
+          2642
+        ],
+        "question": 5
+      }
+    }
+  }
+}

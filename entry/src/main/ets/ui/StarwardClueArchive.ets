@@ -1,6 +1,7 @@
 import { ClueSpan, clueTextParts, clueTitle } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
 import { narrativeAttentionLabel } from './StarwardNarrativeAttention';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 function clueIcon(kind: string): Resource {
   switch (kind) {
@@ -42,7 +43,7 @@ export struct StarwardClueArchive {
         Stack() {
           Image(clueIcon(clue.kind)).width(20).height(20).fillColor(this.isPending(clue) ?
             $r('app.color.on_accent') : $r('app.color.accent_text'))
-        }.width(38).height(38).borderRadius(999).backgroundColor(this.isPending(clue) ?
+        }.width(38).height(38).borderRadius(STARWARD_RADIUS_ROUND).backgroundColor(this.isPending(clue) ?
           $r('app.color.accent') : $r('app.color.accent_soft')).accessibilityLevel('no-hide-descendants')
 
         Column({ space: 3 }) {
@@ -72,14 +73,14 @@ export struct StarwardClueArchive {
           Image(clue.kind === 'link' ? $r('app.media.icon_arrow_up_right') : $r('app.media.icon_arrow_right'))
             .width(16).height(16).fillColor(this.isPending(clue) ? $r('app.color.on_accent') :
               $r('app.color.accent_text'))
-        }.width(32).height(32).borderRadius(999).backgroundColor(this.isPending(clue) ?
+        }.width(32).height(32).borderRadius(STARWARD_RADIUS_ROUND).backgroundColor(this.isPending(clue) ?
           $r('app.color.accent') : $r('app.color.accent_faint')).accessibilityLevel('no-hide-descendants')
       }.width('100%').padding({ top: 12, right: 14, bottom: 12, left: 14 })
     }.id(clue.kind === 'letter' || clue.kind === 'bless' ? `gameplay-clue-${clue.id}` : `gameplay-clue-${index}`)
-      .width('100%').padding(0).borderRadius(16).clip(true).backgroundColor(this.cardFill(clue))
-      .border({ width: 1, radius: 16, color: this.isPending(clue) ? $r('app.color.accent') :
+      .width('100%').padding(0).backgroundColor(this.cardFill(clue))
+      .border({ width: 1, radius: STARWARD_RADIUS_CONTROL, color: this.isPending(clue) ? $r('app.color.accent') :
         clue.kind === 'letter' || clue.kind === 'bless' ? $r('app.color.accent_border') :
-          $r('app.color.border_strong') })
+          $r('app.color.border_strong') }).clip(true)
       .clickEffect(this.reducedMotion ? null : { level: ClickEffectLevel.LIGHT, scale: 0.99 })
       .accessibilityText(this.isPending(clue) ?
         `${clueTitle(clue)}，${narrativeAttentionLabel(clue.kind)}` : clueTitle(clue))
@@ -91,7 +92,7 @@ export struct StarwardClueArchive {
       Row({ space: 12 }) {
         Text('通关线索').layoutWeight(1).fontSize(13).fontWeight(600).fontColor($r('app.color.muted'))
         Text(this.clues.length.toString()).constraintSize({ minWidth: 24, minHeight: 24 })
-          .padding({ left: 8, right: 8 }).borderRadius(999).textAlign(TextAlign.Center)
+          .padding({ left: 8, right: 8 }).borderRadius(STARWARD_RADIUS_ROUND).textAlign(TextAlign.Center)
           .backgroundColor($r('app.color.accent_soft')).fontColor($r('app.color.accent_text'))
           .fontSize(12).fontWeight(600).fontFeature("'tnum' 1").accessibilityText(`已解锁 ${this.clues.length} 件线索`)
       }.id('gameplay-clue-archive-heading').width('100%').margin({ bottom: 12 })

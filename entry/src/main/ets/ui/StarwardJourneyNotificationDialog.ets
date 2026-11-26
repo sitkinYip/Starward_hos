@@ -16,6 +16,7 @@ import { starwardMediaCoverOptions } from './StarwardMediaCover';
 import { StarwardQuestionImages } from './StarwardQuestionImages';
 import { StarwardVideoPoster } from './StarwardVideoPoster';
 import { StarwardVideoViewer, StarwardVideoViewerState } from './StarwardVideoViewer';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 const NOTICE_CURVE: ICurve = curves.cubicBezierCurve(0.16, 1, 0.3, 1);
 const SIGNAL_CURVE: ICurve = curves.cubicBezierCurve(0.32, 0.72, 0, 1);
@@ -167,13 +168,13 @@ struct JourneyNotificationPanel {
               ownerIsCurrent: this.accountCurrent, active: this.active, groupId: `journey-notification-image-${index}`,
               imageLabel: '查看通知图片', maxHeight: 420, reducedMotion: this.reducedMotion,
               opened: () => this.openImage(this.note.id, block.url) }).margin({ top: 18, bottom: 18 })
-              .borderRadius(16).clip(true)
+              .borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
           } else if (block.kind === 'video') {
             StarwardVideoPoster({ source: block.poster, ownerKey: this.playerId, ownerIsCurrent: this.accountCurrent,
               imageCache: this.imageCache, nodeId: `journey-notification-video-${index}`, playLabel: '播放通知视频',
               placeholderLabel: '点击播放视频', active: this.active, maxHeight: 420,
               play: () => this.openVideo(this.note.id, block.url, block.poster) }).margin({ top: 18, bottom: 18 })
-              .borderRadius(16).clip(true)
+              .borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
           } else {
             this.paragraph(block, index)
           }
@@ -228,7 +229,8 @@ struct JourneyNotificationPanel {
       }.width('100%').height('auto').constraintSize({ maxHeight: this.maxHeight })
     }.id('journey-notification-dialog').width(this.widthVp).constraintSize({ maxHeight: this.maxHeight })
       .backgroundColor(this.material ? Color.Transparent : $r('app.color.raised'))
-      .systemMaterial(this.material).border({ width: 1, radius: 24, color: $r('app.color.border') }).clip(true)
+      .systemMaterial(this.material)
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.border') }).clip(true)
       .shadow({ radius: 44, color: $r('app.color.journey_notice_shadow'), offsetY: 22 })
       .hitTestBehavior(HitTestMode.BLOCK_HIERARCHY)
       .onAppear(() => {

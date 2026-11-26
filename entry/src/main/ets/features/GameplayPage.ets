@@ -1,5 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { curves, PromptAction, promptAction } from '@kit.ArkUI';
+import { curves, LengthMetrics, PromptAction, promptAction } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
 import { clueImageSources, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
@@ -7,12 +7,13 @@ import { GameplayClue, GameplayCompletionTarget, GameplayContentBlock, GameplayL
   GameplaySnapshot } from '../business/GameplayModels';
 import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, questBgmCoordinate } from '../business/QuestBgmDock';
 import { AppLifecycle } from '../platform/AppLifecycle';
+import { playAnswerHaptics } from '../platform/AnswerHaptics';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
 import { externalClueLinkHref, openExternalClueLink } from '../platform/ExternalClueLink';
 import { AssignmentAtmosphereState } from './AssignmentAtmosphereState';
 import { QuestNarrativeAttentionPreference } from '../platform/QuestNarrativeAttentionPreference';
-import { GameplayAnswerBurst, GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
+import { GameplayAnswerBurst, GameplayAnswerJudgment, GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { GAMEPLAY_COMPOSER_MIN_HEIGHT, GAMEPLAY_COMPOSER_SIDE_GUTTER, GAMEPLAY_MAX_CONTENT_WIDTH,
   GAMEPLAY_TITLE_CLEARANCE, GAMEPLAY_TITLE_MIN_TOP,
   GameplayProgress, GameplayProgressItem, GameplayQuestionHeading, GameplaySurface } from './GameplayChrome';
@@ -23,6 +24,8 @@ import { isLegacyInternalLink, LegacyRichBlock, LegacyRichSpan, legacyImageSourc
   legacyRichBlocks } from '../business/LegacyRichContent';
 import { InlineError } from '../ui/ErrorMessages';
 import { StarwardAssignmentRequest } from '../ui/StarwardAssignmentRequest';
+import { STARWARD_ANSWER_BAR_HEIGHT, STARWARD_ANSWER_BAR_VERTICAL_PADDING, StarwardAnswerDock } from '../ui/StarwardAnswerDock';
+import { starwardImmersiveTabsAvailable } from '../ui/StarwardTabs';
 import { PrimaryAction } from '../ui/PrimaryAction';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
@@ -48,6 +51,8 @@ import { StarwardCombinationLauncher } from '../ui/StarwardCombinationLauncher';
 import { StarwardCombinationNotice } from '../ui/StarwardCombinationNotice';
 import { StarwardFinalDestination } from '../ui/StarwardFinalDestination';
 import { StarwardRankUpDialog } from '../ui/StarwardRankUpDialog';
+import { StarwardIncorrectAnswer } from '../ui/StarwardIncorrectAnswer';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL } from '../ui/StarwardRadii';
 import { StarwardStarBurstOverlay } from '../ui/StarwardStarBurstOverlay';
 import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
@@ -145,6 +150,7 @@ export struct GameplayPage {
   @Require @Param atmosphereOwner: string;
   @Require @Param playerId: string;
   @Param autoNextDelay: number = 0;
+  @Param answerHapticsEnabled: boolean = true;
   @Param displayFont: string = 'serif';
   @Param bottomClearance: number = 24;
   @Param statusInset: number = 0;
@@ -179,6 +185,8 @@ export struct GameplayPage {
   @Local private destinationHeight: number = 0;
   @Local private destinationLaunching: boolean = false;
   @Local private rankNotice: RankDialogRequest | null = null;
+  @Local private incorrectAnswer: GameplayAnswerJudgment | null = null;
+  private handledJudgment: GameplayAnswerJudgment | null = null;
   @Local private journeyVideoOpen: boolean = false;
   @Local private combinationDock: JourneyDockObstacle | null = null;
   private clueDialog: ClueDialogRequest | null = null;
@@ -188,6 +196,8 @@ export struct GameplayPage {
   @Local private foreground: boolean = true;
   @Local private titleHidden: boolean = false;
   @Local private answerFocused: boolean = false;
+  @Local private answerEditing: boolean = false;
+  private readonly nativeAnswerDock: boolean = starwardImmersiveTabsAvailable();
   @Local private composerHeight: number = GAMEPLAY_COMPOSER_MIN_HEIGHT;
   @Local private sheet: GameplaySheet | null = null;
   @Local private sheetVisible: boolean = false;
@@ -210,6 +220,7 @@ export struct GameplayPage {
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
     this.foreground = foreground;
     if (!foreground) {
+      this.incorrectAnswer = null;
       this.play.setPollingActive(false);
       this.closeGameplaySheet(true);
       this.stopInlineVideo();
@@ -257,6 +268,7 @@ export struct GameplayPage {
   private readonly questionScroller: Scroller = new Scroller();
   @Local private questionContentWidth: number = 0;
   private positionOwner: string = '';
+  @Local private composerRevealOwner: string = '';
   private swiperSettledOwner: string = '';
   private lastSwipeableQuestionIds: string[] = [];
   private positionPending: boolean = false;
@@ -269,6 +281,7 @@ export struct GameplayPage {
     // A completed GET or remount is not a new successful answer.
     this.seenCompletionRevision = this.play.completionRevision;
     this.consumedFeedbackRevision = this.play.feedbackVersion;
+    this.handledJudgment = this.play.answerJudgment;
     this.recoveryChanged();
     this.loadNarrativeAttention();
     this.journeyBackHandlerChanged(() => this.handleBack());
@@ -283,6 +296,7 @@ export struct GameplayPage {
   aboutToDisappear(): void {
     AppLifecycle.unsubscribe(this.clueLifecycle);
     this.foreground = false;
+    this.incorrectAnswer = null;
     this.closeGameplaySheet(true);
     this.journeyBackHandlerChanged(null);
     this.play.setPollingActive(false);
@@ -308,6 +322,9 @@ export struct GameplayPage {
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error', 'playerId')
   imageOwnerChanged(): void {
+    if (this.incorrectAnswer !== null && !this.isAnswerJudgmentCurrent(this.incorrectAnswer)) {
+      this.incorrectAnswer = null;
+    }
     if (this.attentionReserveOwner !== this.positionKey()) { this.attentionReserveOwner = ''; }
     if (this.clueLinkHandoff !== null && !this.clueLinkHandoff.isCurrent()) { this.clearClueLinkHandoff(); }
     if (this.sheet !== null && !this.gameplaySheetOwnerCurrent()) { this.closeGameplaySheet(true); }
@@ -403,8 +420,16 @@ export struct GameplayPage {
 
   private composerInset(): number { return this.keyboardVisible ? 8 : Math.max(18, this.safeBottom()); }
 
+  private dockBottomMargin(): number {
+    // This destination spans the immersive viewport. HdsTabs adds padding around its controls.
+    return this.nativeAnswerDock ? Math.max(0, this.composerInset() - STARWARD_ANSWER_BAR_VERTICAL_PADDING) :
+      this.composerInset();
+  }
+
   private composerClearance(): number {
-    return this.showComposer() ? this.composerInset() + this.composerHeight + 10 : this.safeBottom() + 12;
+    if (!this.showComposer()) { return this.safeBottom() + 12; }
+    const dockHeight: number = this.nativeAnswerDock ? STARWARD_ANSWER_BAR_HEIGHT : this.composerHeight;
+    return this.dockBottomMargin() + dockHeight + 10;
   }
 
   private bgmBottomInset(): number { return this.composerClearance(); }
@@ -452,7 +477,7 @@ export struct GameplayPage {
 
   @Computed
   private get titleCovered(): boolean {
-    return this.visibleAnswerBurst() !== null;
+    return this.visibleAnswerBurst() !== null || this.incorrectAnswerVisible();
   }
 
   @Monitor('titleHidden', 'titleCovered')
@@ -490,7 +515,9 @@ export struct GameplayPage {
   private trackQuestionPosition(): void {
     const owner: string = this.positionKey();
     if (owner !== this.positionOwner) {
+      this.composerRevealOwner = this.positionOwner.length > 0 ? owner : '';
       this.answerFocused = false;
+      this.answerEditing = false;
       this.positionOwner = owner;
       this.swiperSettledOwner = '';
       this.positionPending = owner.length > 0;
@@ -622,6 +649,7 @@ export struct GameplayPage {
   @Monitor('accountCovered', 'narrativeCovered', 'recoveryVisible', 'play.answerBurst')
   questionCoversChanged(): void {
     if (this.accountCovered || this.narrativeCovered || this.recoveryVisible) {
+      this.incorrectAnswer = null;
       this.closeGameplaySheet(true);
       this.play.discardAnswerBurst();
     }
@@ -631,6 +659,10 @@ export struct GameplayPage {
     if (this.closeClueMedia()) { return true; }
     if (this.sheet !== null) {
       this.closeGameplaySheet();
+      return true;
+    }
+    if (this.incorrectAnswer !== null) {
+      this.incorrectAnswer = null;
       return true;
     }
     const burst: GameplayAnswerBurst | null = this.visibleAnswerBurst();
@@ -650,6 +682,7 @@ export struct GameplayPage {
   private gameplaySheetOptions(): SheetOptions {
     const revision: number = this.sheetRevision;
     return { height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: false,
+      radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
       backgroundColor: $r('app.color.gameplay_overlay_tint'), blurStyle: BlurStyle.NONE, maskColor: Color.Transparent,
       onWillAppear: () => {
         if (revision === this.sheetRevision && this.sheet === 'hint' && this.sheetVisible) {
@@ -1077,7 +1110,7 @@ export struct GameplayPage {
           .animation({ duration: 240, curve: curves.cubicBezierCurve(0.4, 0, 0.8, 0.4) }));
     const options: promptAction.CustomDialogOptions = {
       builder: () => { this.clueDialogContent(request); },
-      alignment: DialogAlignment.Center, width: this.clueDialogWidth(), cornerRadius: 24,
+      alignment: DialogAlignment.Center, width: this.clueDialogWidth(), cornerRadius: STARWARD_RADIUS_PANEL,
       isModal: true, autoCancel: !combination, showInSubWindow: false,
       backgroundColor: $r('app.color.raised'), backgroundBlurStyle: BlurStyle.NONE,
       maskColor: Color.Transparent, dialogTransition,
@@ -1541,7 +1574,7 @@ export struct GameplayPage {
     try {
       request.id = await request.action.openCustomDialog({
         builder: () => { this.rankNoticeContent(request, width, height); },
-        alignment: DialogAlignment.Center, width, cornerRadius: 24, isModal: true, showInSubWindow: false,
+        alignment: DialogAlignment.Center, width, cornerRadius: STARWARD_RADIUS_PANEL, isModal: true, showInSubWindow: false,
         backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
         maskColor: $r('app.color.modal_mask'), dialogTransition, maskTransition, autoCancel: false,
         onWillDismiss: (action: DismissDialogAction) => {
@@ -1717,7 +1750,8 @@ export struct GameplayPage {
 
   private gameplayOverlayReady(allowsKeyboard: boolean = false, allowsSheet: boolean = false): boolean {
     return !this.narrativeCovered && this.interactionReady() && (allowsKeyboard || !this.keyboardVisible) &&
-      !this.recoveryVisible && this.play.answerBurst === null && (allowsSheet || this.sheet === null) &&
+      !this.recoveryVisible && this.play.answerBurst === null && this.incorrectAnswer === null &&
+      (allowsSheet || this.sheet === null) &&
       this.textClue === null && !this.viewer.visible && !this.viewer.closing &&
       !this.videoViewer.visible && !this.videoViewer.closing &&
       !this.combinationSequenceActive && this.completionNotice === null && this.rankNotice === null;
@@ -1731,6 +1765,41 @@ export struct GameplayPage {
     const snapshot: GameplaySnapshot | null = this.play.snapshot;
     return this.playerId.length > 0 && this.play.visible && this.play.error.length === 0 &&
       snapshot !== null && snapshot.detail.player === this.playerId && snapshot.detail.status !== 'cancelled';
+  }
+
+  private isAnswerJudgmentCurrent(judgment: GameplayAnswerJudgment): boolean {
+    return this.gameplayOwnerCurrent() && this.play.answerJudgment === judgment &&
+      this.play.currentLevel()?.id === judgment.levelId;
+  }
+
+  @Monitor('play.answerJudgment')
+  private answerJudgmentChanged(): void {
+    const judgment: GameplayAnswerJudgment | null = this.play.answerJudgment;
+    if (this.handledJudgment === judgment) { return; }
+    this.handledJudgment = judgment;
+    this.incorrectAnswer = null;
+    if (judgment === null || !this.foreground || this.accountCovered || this.narrativeCovered ||
+      !this.isAnswerJudgmentCurrent(judgment)) { return; }
+    if (this.answerHapticsEnabled) {
+      void playAnswerHaptics(judgment.correct, () => this.answerHapticsEnabled && this.foreground &&
+        !this.accountCovered && !this.narrativeCovered && this.isAnswerJudgmentCurrent(judgment));
+    }
+    if (!judgment.correct) { this.incorrectAnswer = judgment; }
+  }
+
+  private incorrectAnswerVisible(): boolean {
+    return this.incorrectAnswer !== null && this.isAnswerJudgmentCurrent(this.incorrectAnswer) &&
+      this.foreground && !this.accountCovered && !this.narrativeCovered &&
+      !this.keyboardVisible && !this.play.submitting && !this.recoveryVisible &&
+      this.sheet === null && this.viewportWidth > 40;
+  }
+
+  @Builder
+  private incorrectAnswerContent() {
+    if (this.incorrectAnswer !== null) {
+      StarwardIncorrectAnswer({ message: this.incorrectAnswer.message, reducedMotion: this.reducedMotion,
+        dismiss: () => { this.incorrectAnswer = null; } })
+    }
   }
 
   private visibleAnswerBurst(): GameplayAnswerBurst | null {
@@ -1831,7 +1900,8 @@ export struct GameplayPage {
   }
 
   private hasAnswerFeedback(): boolean {
-    return !this.play.retryAnswer && (this.play.answerError.length > 0 || this.play.feedback.length > 0);
+    return !this.play.retryAnswer && (this.play.answerError.length > 0 ||
+      (this.play.feedback.length > 0 && this.play.answerJudgment?.correct !== false));
   }
 
   private answerFeedbackDanger(): boolean { return this.play.answerError.length > 0 || this.play.feedbackDanger; }
@@ -1929,7 +1999,7 @@ export struct GameplayPage {
       if (!this.currentCompleted() && this.play.blockedReason().length > 0) {
         Text(this.play.blockedReason()).id('gameplay-penalty').width('100%')
           .fontSize(16).lineHeight('25.6fp').fontColor($r('app.color.accent_text'))
-          .padding({ top: 6, bottom: 6, left: 12, right: 12 }).borderRadius(12)
+          .padding({ top: 6, bottom: 6, left: 12, right: 12 }).borderRadius(STARWARD_RADIUS_CONTROL)
           .backgroundColor($r('app.color.accent_faint'))
       }
       if (this.hasAnswerFeedback()) {
@@ -1984,7 +2054,7 @@ export struct GameplayPage {
           Column() {
             this.questionLegacyBody(this.readableQuestionId(), index, true)
           }.width('100%').padding({ top: 15, bottom: 15, left: 17, right: 17 })
-            .border({ width: 1, radius: 16, color: $r('app.color.border') })
+            .border({ width: 1, radius: STARWARD_RADIUS_CONTROL, color: $r('app.color.border') })
             .backgroundColor($r('app.color.input'))
         }
       }, (block: GameplayContentBlock, index: number) => `${index}:${block.hint}`)
@@ -2050,7 +2120,7 @@ export struct GameplayPage {
                       `question-video-preview-${this.levelById(levelId)?.position || 0}-${index}`,
                     playLabel: `播放题目视频 ${index + 1}`, maxHeight: this.questionMediaHeight(),
                     playable: this.questionMediaReady(),
-                    play: () => this.openQuestionVideo(levelId, index) }).borderRadius(16).clip(true)
+                    play: () => this.openQuestionVideo(levelId, index) }).borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
                 } else if (this.blockImages(block).length > 0) {
                   StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.questionImageOwner(levelId),
                     ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null &&
@@ -2062,7 +2132,7 @@ export struct GameplayPage {
                     maxHeight: this.questionMediaHeight(), reducedMotion: this.reducedMotion,
                     opened: (imageIndex: number) => {
                       if (levelId === this.readableQuestionId()) { this.openImages(index, imageIndex); }
-                    } }).borderRadius(16).clip(true)
+                    } }).borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
                 }
               }, (block: GameplayContentBlock, index: number) =>
                 `${index}:${JSON.stringify([block.videoUrl, block.imageUrl, block.imageUrls])}`)
@@ -2147,14 +2217,14 @@ export struct GameplayPage {
             .fontSize(26).lineHeight('37.7fp').fontColor($r('app.color.strong'))
           Text('如需继续，请联系游戏管理员重新安排。').width('100%').fontSize(14).lineHeight('25.2fp')
             .fontColor($r('app.color.muted'))
-          Button('回到首页', { type: ButtonType.Normal }).id('gameplay-leave').height(44)
+          Button('回到首页', { type: ButtonType.Capsule }).id('gameplay-leave').height(44)
             .fontSize(14).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
             .onClick(() => this.leave())
         } else if (this.play.snapshot !== null && this.play.snapshot.detail.id.length > 0) {
           if (this.play.refreshError.length > 0) {
             Column({ space: 6 }) {
               InlineError({ message: this.play.refreshError, fieldId: 'gameplay-refresh-error' })
-              Button('重新同步', { type: ButtonType.Normal }).id('gameplay-refresh-retry').height(44)
+              Button('重新同步', { type: ButtonType.Capsule }).id('gameplay-refresh-retry').height(44)
                 .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
                 .enabled(this.play.canRefresh()).onClick(() => { this.refreshQuestion(); })
             }.width('100%').alignItems(HorizontalAlign.Start)
@@ -2198,7 +2268,7 @@ export struct GameplayPage {
   }
 
   @Builder
-  gameplayForeground() {
+  private gameplayContent() {
     Stack() {
       StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
         request: () => this.refreshQuestion(),
@@ -2285,37 +2355,50 @@ export struct GameplayPage {
             left: 16 + this.leftInset, right: 16 + this.rightInset })
           .hitTestBehavior(HitTestMode.Transparent)
       }
-      if (this.showComposer()) {
-        Column() {
-          ForEach([this.positionKey()], (owner: string) => {
-            GameplayAnswerComposer({ view: this.composerView, reducedMotion: this.reducedMotion,
-              choicesOpen: this.sheet === 'choice' && this.sheetVisible,
-              choiceRevision: this.sheetRevision, choiceStatus: this.choicePopupStatus(),
-              choiceMaxHeight: Math.max(112, Math.min(620, this.viewportHeight - this.foregroundTopInset() -
-                this.composerInset() - this.composerHeight - 20)),
-              choicesContent: () => { this.choicePopupContent() }, openChoices: () => {
-                if (!this.composerOwnerCurrent(owner)) { return; }
-                if (this.sheet === 'choice' && this.sheetVisible) { this.dismissChoicePopup(this.sheetRevision); }
-                else { this.openGameplaySheet('choice'); }
-              }, closeChoices: (revision: number) => this.dismissChoicePopup(revision),
-              choiceStateChanged: (revision: number, visible: boolean) => this.choicePopupStateChanged(revision, visible),
-              changeAnswer: (value: string) => {
-                if (this.composerOwnerCurrent(owner)) { this.play.editAnswer(value); }
-              }, focusChanged: (focused: boolean) => {
-                if (this.composerOwnerCurrent(owner)) { this.answerFocused = focused; }
-              }, primaryAction: (action: GameplayComposerAction) => {
-                if (this.composerOwnerCurrent(owner)) { this.performComposerAction(action); }
-              }, heightChanged: (height: number) => {
-                if (this.composerOwnerCurrent(owner) && height !== this.composerHeight) { this.composerHeight = height; }
-              } })
-          }, (owner: string) => owner)
-        }.width('100%').height('100%').justifyContent(FlexAlign.End).alignItems(HorizontalAlign.Center)
-          .padding({ bottom: this.composerInset(), left: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.leftInset),
-            right: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.rightInset) }).hitTestBehavior(HitTestMode.None)
-      }
     }.width('100%').height(LayoutPolicy.matchParent).alignContent(Alignment.Top)
       .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])
-      .accessibilityLevel(this.visibleAnswerBurst() === null ? 'auto' : 'no-hide-descendants')
+  }
+
+  @Builder
+  private answerComposer() {
+    ForEach([this.positionKey()], (owner: string) => {
+      GameplayAnswerComposer({ view: this.composerView, nativeDock: this.nativeAnswerDock,
+        reducedMotion: this.reducedMotion, revealOnMount: owner === this.composerRevealOwner,
+        choicesOpen: this.sheet === 'choice' && this.sheetVisible,
+        choiceRevision: this.sheetRevision, choiceStatus: this.choicePopupStatus(),
+        choiceMaxHeight: Math.max(112, Math.min(620, this.viewportHeight - this.foregroundTopInset() -
+          this.composerClearance() - 10)),
+        choicesContent: () => { this.choicePopupContent() }, openChoices: () => {
+          if (!this.composerOwnerCurrent(owner)) { return; }
+          if (this.sheet === 'choice' && this.sheetVisible) { this.dismissChoicePopup(this.sheetRevision); }
+          else { this.openGameplaySheet('choice'); }
+        }, closeChoices: (revision: number) => this.dismissChoicePopup(revision),
+        choiceStateChanged: (revision: number, visible: boolean) => this.choicePopupStateChanged(revision, visible),
+        changeAnswer: (value: string) => {
+          if (this.composerOwnerCurrent(owner)) { this.play.editAnswer(value); }
+        }, focusChanged: (focused: boolean) => {
+          if (this.composerOwnerCurrent(owner)) { this.answerFocused = focused; }
+        }, editingChanged: (editing: boolean) => {
+          if (this.composerOwnerCurrent(owner)) { this.answerEditing = editing; }
+        }, primaryAction: (action: GameplayComposerAction) => {
+          if (this.composerOwnerCurrent(owner)) { this.performComposerAction(action); }
+        }, heightChanged: (height: number) => {
+          if (this.composerOwnerCurrent(owner) && height !== this.composerHeight) { this.composerHeight = height; }
+        } })
+    }, (owner: string) => owner)
+  }
+
+  @Builder
+  private gameplayForeground() {
+    Stack() {
+      StarwardAnswerDock({ nativeGlass: this.nativeAnswerDock, visible: this.showComposer(),
+        editing: this.answerEditing && this.composerView.editable, reducedMotion: this.reducedMotion,
+        viewportWidth: this.viewportWidth, leftMargin: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.leftInset),
+        rightMargin: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.rightInset), bottomMargin: this.dockBottomMargin(),
+        content: () => { this.gameplayContent() }, composer: () => { this.answerComposer() } })
+    }.width('100%').height(LayoutPolicy.matchParent).alignContent(Alignment.Top)
+      .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])
+      .accessibilityLevel(this.titleCovered ? 'no-hide-descendants' : 'auto')
       .bindSheet(this.sheet === 'hint' && this.sheetVisible, this.hintSheet, this.gameplaySheetOptions())
   }
 
@@ -2330,7 +2413,7 @@ export struct GameplayPage {
         this.gameplayForeground()
       }
       StarwardGlassDialog({ visible: this.recoveryVisible && this.clueDialogHeight() > 0 && this.viewportWidth > 40,
-        panelWidth: Math.min(460, this.viewportWidth - 40), panelCornerRadius: 18, reducedMotion: this.reducedMotion,
+        panelWidth: Math.min(460, this.viewportWidth - 40), reducedMotion: this.reducedMotion,
         content: () => { this.answerRecovery() }, back: () => this.stayOnQuestion(),
         failed: () => this.stayOnQuestion() })
       StarwardJourneyNotificationDialog({ note: this.displayedJourneyNotification(), playerId: this.playerId,
@@ -2343,6 +2426,9 @@ export struct GameplayPage {
         backHandlerChanged: (handler: (() => boolean) | null) => { this.journeyBack = handler; },
         playingChanged: (open: boolean) => this.setJourneyVideo(open),
         playbackReady: () => this.atmosphere.whenQuiet(this.atmosphereOwner) })
+      if (this.incorrectAnswerVisible()) {
+        this.incorrectAnswerContent()
+      }
       if (this.visibleAnswerBurst() !== null) {
         Stack() {
           ForEach(this.visibleAnswerBursts(), (burst: GameplayAnswerBurst) => {

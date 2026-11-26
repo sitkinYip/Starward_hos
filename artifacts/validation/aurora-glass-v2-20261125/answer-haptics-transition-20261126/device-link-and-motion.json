@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "mode": "temporary owned HTTPS and official phone UiTest",
+  "hapSha256": "179bcf299205889d79bd12319fc96428f1819c12d07c488e76e6c2a449f440f9",
+  "checks": [
+    "Short cancelled swipe keeps the choice and sends no answer.",
+    "One touch submitted one owned result and dispatched one failure vibration, including after auto dismissal.",
+    "App switch remains on in the final build.",
+    "The app shortcut opens the official system Sounds and vibration page."
+  ],
+  "hapticRequests": {
+    "isolatedChoiceFailure": [
+      {
+        "stage": "preset",
+        "code": 0,
+        "count": 1
+      }
+    ]
+  },
+  "boundsPx": {}
+}

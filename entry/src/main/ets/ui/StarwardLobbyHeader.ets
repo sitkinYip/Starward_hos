@@ -1,10 +1,10 @@
 import { uiMaterial } from '@kit.ArkUI';
 import { AvatarImage, Player } from '../business/models';
-import { STARWARD_HEADER_CAPSULE_RADIUS } from './StarwardGlassHeader';
 import { StarwardMaterial } from './StarwardMaterial';
 import { starwardPageReveal } from './StarwardMotion';
 import { playerExperiencePercent } from './StarwardPassport';
 import { StarwardPlayerAvatar } from './StarwardPlayerAvatar';
+import { STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 export const STARWARD_LOBBY_TITLE_HEIGHT: number = 70;
 const HORIZONTAL_GUTTER: number = 18;
@@ -82,7 +82,7 @@ export struct StarwardLobbyHeader {
       }.padding({ left: 6, right: 12, top: 5, bottom: 5 })
     }.id('lobby-identity').padding(0).constraintSize({ minHeight: 52 })
       .backgroundColor(this.identityMaterial ? Color.Transparent : $r('app.color.surface'))
-      .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
+      .border({ width: 1, radius: STARWARD_RADIUS_ROUND, color: $r('app.color.border_strong') })
       .systemMaterial(this.identityMaterial)
       .accessibilityText(`打开护照，${this.player.displayName}，${this.levelLabel()}，经验 ${this.player.totalXp}`)
       .onClick(() => this.openPassport())
@@ -91,7 +91,7 @@ export struct StarwardLobbyHeader {
       Image($r('app.media.starward_mark')).width(34).height(34).objectFit(ImageFit.Contain)
     }.id('lobby-brand-mark').width(44).height(44)
       .backgroundColor(this.brandMaterial ? Color.Transparent : $r('app.color.surface'))
-      .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
+      .border({ width: 1, radius: STARWARD_RADIUS_ROUND, color: $r('app.color.border_strong') })
       .systemMaterial(this.brandMaterial)
       .accessibilityText('赴星之约')
   }

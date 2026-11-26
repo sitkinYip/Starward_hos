@@ -1,3 +1,5 @@
+import { STARWARD_RADIUS_ROUND } from './StarwardRadii';
+
 /** Reactive error presentation: @Param keeps empty-to-error and retry updates observable. */
 @ComponentV2
 export struct InlineError {
@@ -31,12 +33,14 @@ export struct ErrorNotice {
           Row({ space: 8 }) {
             if (this.retryable) {
               Button('重新尝试', { type: ButtonType.Normal }).id('request-retry').constraintSize({ minHeight: 44 })
+                .borderRadius(STARWARD_RADIUS_ROUND)
                 .fontSize(14).fontWeight(FontWeight.Medium).padding({ left: 10, right: 10 })
                 .fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent).onClick(() => this.retry())
             }
             if (this.showReturn) {
               Button(this.returnLabel, { type: ButtonType.Normal }).id('error-return-home')
-                .constraintSize({ minHeight: 44 }).fontSize(14).padding({ left: 10, right: 10 })
+                .constraintSize({ minHeight: 44 }).borderRadius(STARWARD_RADIUS_ROUND)
+                .fontSize(14).padding({ left: 10, right: 10 })
                 .fontColor($r('app.color.muted')).backgroundColor(Color.Transparent).onClick(() => this.returnHome())
             }
           }.width('100%')

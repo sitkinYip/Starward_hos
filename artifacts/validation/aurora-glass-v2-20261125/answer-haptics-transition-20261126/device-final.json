@@ -1,0 +1,41 @@
+{
+  "status": "incomplete",
+  "mode": "temporary owned HTTPS and official phone UiTest",
+  "hapSha256": "179bcf299205889d79bd12319fc96428f1819c12d07c488e76e6c2a449f440f9",
+  "checks": [
+    "Wrong answer reaches HarmonyOS haptic service.",
+    "Correct answer reaches HarmonyOS haptic service and shows the XP feedback.",
+    "Swipe settles on choice with stable native floating glass bounds.",
+    "Returning through consecutive swipes restores the selection to its own question."
+  ],
+  "hapticRequests": {
+    "failure": [
+      {
+        "stage": "preset",
+        "code": 0,
+        "count": 2
+      }
+    ],
+    "success": [
+      {
+        "stage": "preset",
+        "code": 0,
+        "count": 1
+      }
+    ]
+  },
+  "boundsPx": {
+    "completedTextDock": [
+      52,
+      2453,
+      1208,
+      2642
+    ],
+    "editableChoiceDock": [
+      52,
+      2453,
+      1208,
+      2642
+    ]
+  }
+}

@@ -7,6 +7,15 @@ import { STARWARD_PAGE_TRANSITION_MS } from './StarwardMotion';
 
 const PANE_TRANSITION_CURVE: ICurve = curves.cubicBezierCurve(0.2, 0, 0, 1);
 
+export function starwardImmersiveTabsAvailable(): boolean {
+  try {
+    return StarwardMaterial.immersiveAvailable() &&
+      hdsMaterial.getSystemMaterialTypes().includes(hdsMaterial.MaterialType.IMMERSIVE);
+  } catch {
+    return false;
+  }
+}
+
 /** A declarative index seeds native Tabs, while subsequent owner requests use the animated controller. */
 class NativeTabIndex {
   index: number = 0;
@@ -73,12 +82,7 @@ export struct StarwardBottomTabs {
 
   @Monitor('materialInteractionEnabled')
   private updateMaterial(): void {
-    try {
-      this.immersiveBar = StarwardMaterial.immersiveAvailable() &&
-        hdsMaterial.getSystemMaterialTypes().includes(hdsMaterial.MaterialType.IMMERSIVE);
-    } catch {
-      this.immersiveBar = false;
-    }
+    this.immersiveBar = starwardImmersiveTabsAvailable();
   }
 
   @Monitor('unreadLetters', 'selectedIndex', 'floatingGap')

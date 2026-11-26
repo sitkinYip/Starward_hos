@@ -10,6 +10,7 @@ import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardIma
 import { starwardMediaCoverOptions } from '../ui/StarwardMediaCover';
 import { StarwardRichContent } from '../ui/StarwardRichContent';
 import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVideoViewer';
+import { STARWARD_RADIUS_CONTROL } from '../ui/StarwardRadii';
 
 const rewardDate = new Intl.DateTimeFormat('zh-CN', {
   year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
@@ -175,7 +176,7 @@ export struct RewardDetails {
       Button({ type: ButtonType.Normal }) {
         Image($r('app.media.icon_close')).width(24).height(24).objectFit(ImageFit.Contain)
           .fillColor($r('app.color.muted')).accessibilityLevel('no')
-      }.id('rewards-detail-close').width(44).height(44).padding(0).borderRadius(10)
+      }.id('rewards-detail-close').width(44).height(44).padding(0).borderRadius(STARWARD_RADIUS_CONTROL)
         .backgroundColor($r('app.color.surface_hover')).accessibilityText('关闭详情').onClick(() => this.close())
     }.width('100%').alignItems(VerticalAlign.Top).padding({ bottom: 12 })
       .border({ width: { bottom: 1 }, color: $r('app.color.border_strong') })
@@ -212,7 +213,8 @@ export struct RewardDetails {
               Text('你的领取线索').fontSize(15).fontWeight(FontWeight.Medium).fontColor($r('app.color.accent_text'))
               this.rich(this.reward.claimDetails, 'rewards-private-instructions')
             }.id('rewards-claim-details').width('100%').alignItems(HorizontalAlign.Start).padding(16).margin({ top: 20 })
-              .backgroundColor($r('app.color.reward_soft')).border({ width: 1, radius: 16, color: $r('app.color.reward_border') })
+              .backgroundColor($r('app.color.reward_soft'))
+              .border({ width: 1, radius: STARWARD_RADIUS_CONTROL, color: $r('app.color.reward_border') })
           }
           if (this.reward.redeemedAt.length > 0) {
             Text(`领取于 ${formattedRewardDate(this.reward.redeemedAt)}`).id('rewards-redeemed-at')

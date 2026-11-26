@@ -1,4 +1,5 @@
 import { curves } from '@kit.ArkUI';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 const NOTICE_TIMEOUT_MS: number = 8000;
 const SWIPE_DISTANCE: number = 50;
@@ -48,11 +49,12 @@ export struct StarwardSyncNotice {
         Image($r('app.media.icon_close')).width(16).height(16).fillColor($r('app.color.subtle'))
           .accessibilityLevel('no')
       }.id(this.nodePrefix + '-dismiss').width(44).height(44).padding(0)
-        .backgroundColor(Color.Transparent).borderRadius(0).focusOnTouch(false)
+        .backgroundColor(Color.Transparent).borderRadius(STARWARD_RADIUS_ROUND).focusOnTouch(false)
         .accessibilityText('关闭同步暂时中断').onClick(() => this.dismiss())
     }.id(this.nodePrefix).width('100%').constraintSize({ maxWidth: 420 })
       .alignItems(VerticalAlign.Center).padding({ left: 16, right: 8, top: 10, bottom: 10 })
-      .backgroundColor($r('app.color.raised')).border({ width: 1, color: $r('app.color.accent_border') })
+      .backgroundColor($r('app.color.raised'))
+      .border({ width: 1, color: $r('app.color.accent_border'), radius: STARWARD_RADIUS_CONTROL })
       .shadow({ radius: 26, color: $r('app.color.choice_shadow'), offsetY: 10 })
       .translate({ y: this.reducedMotion ? 0 : this.swipeY }).transition(this.noticeTransition())
       .gesture(PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 8 })

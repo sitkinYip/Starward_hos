@@ -5,6 +5,7 @@ import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { StarwardRichContent } from './StarwardRichContent';
 import { StarwardVideoViewerState } from './StarwardVideoViewer';
 import { clueRevealAnimation, StarwardClueDialogDecoration } from './StarwardClueMotion';
+import { STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 /** The reading surface within ArkUI's centered native dialog. */
 @ComponentV2
@@ -74,8 +75,8 @@ export struct StarwardClueTextDialog {
         .border({ width: 1, color: $r('app.color.border_strong') }).margin({ top: 14, right: 14 })
         .accessibilityText('关闭线索').onClick(() => this.close())
     }.id('gameplay-clue-text-dialog').width(this.panelWidth).constraintSize({ maxHeight: this.maxHeight })
-      .backgroundColor($r('app.color.raised')).border({ width: 1, radius: 24,
-        color: $r('app.color.border_strong') }).borderRadius(24).clip(true)
+      .backgroundColor($r('app.color.raised')).border({ width: 1, radius: STARWARD_RADIUS_PANEL,
+        color: $r('app.color.border_strong') }).clip(true)
       .onAppear(() => UIUtils.applySync(() => { this.revealed = true; }))
       .onAreaChange((_previous: Area, current: Area) => {
         const height: number = Number(current.height);

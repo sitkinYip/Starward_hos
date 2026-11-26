@@ -1,4 +1,5 @@
 import { StarwardLoadingStage } from './StarwardLoadingStage';
+import { STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 @ComponentV2
 export struct StarwardAssignmentRequest {
@@ -33,7 +34,7 @@ export struct StarwardAssignmentRequest {
     Column({ space: 10 }) {
       Stack() {
         Image($r('app.media.icon_warning')).width(22).height(22).fillColor($r('app.color.danger'))
-      }.width(38).height(38).borderRadius(19).backgroundColor($r('app.color.danger_surface'))
+      }.width(38).height(38).borderRadius(STARWARD_RADIUS_ROUND).backgroundColor($r('app.color.danger_surface'))
         .accessibilityLevel('no-hide-descendants')
       Text('暂时无法打开旅程').fontFamily(this.displayFont).fontSize(20).lineHeight('28fp')
         .fontWeight(FontWeight.Medium).fontColor($r('app.color.strong')).textAlign(TextAlign.Center)
@@ -43,17 +44,20 @@ export struct StarwardAssignmentRequest {
       Column({ space: 4 }) {
         if (this.retryable) {
           Button('重新尝试', { type: ButtonType.Normal }).id('request-retry').width('100%')
-            .constraintSize({ minHeight: 46 }).borderRadius(10).fontSize(14).fontWeight(FontWeight.Medium)
+            .constraintSize({ minHeight: 46 }).borderRadius(STARWARD_RADIUS_ROUND)
+            .fontSize(14).fontWeight(FontWeight.Medium)
             .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
             .onClick(() => this.retry())
         }
         Button('回到首页', { type: ButtonType.Normal }).id('error-return-home').width('100%')
-          .constraintSize({ minHeight: 44 }).borderRadius(10).fontSize(14).fontColor($r('app.color.accent_text'))
+          .constraintSize({ minHeight: 44 }).borderRadius(STARWARD_RADIUS_ROUND)
+          .fontSize(14).fontColor($r('app.color.accent_text'))
           .backgroundColor(Color.Transparent).onClick(() => this.returnHome())
       }.width('100%').constraintSize({ maxWidth: 224 }).margin({ top: 6 })
     }.width('100%').constraintSize({ maxWidth: 360 })
       .padding({ left: 20, right: 20, top: 22, bottom: 14 })
-      .backgroundColor($r('app.color.surface')).border({ width: 1, radius: 16, color: $r('app.color.border') })
+      .backgroundColor($r('app.color.surface'))
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.border') })
   }
 
   build() {

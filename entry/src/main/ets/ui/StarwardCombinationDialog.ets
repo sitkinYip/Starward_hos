@@ -4,6 +4,7 @@ import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { StarwardRichContent } from './StarwardRichContent';
 import { StarwardVideoViewerState } from './StarwardVideoViewer';
 import { clueRevealAnimation, StarwardClueDialogDecoration } from './StarwardClueMotion';
+import { STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 /** Only the reading viewport shrinks when the dialog reaches its height limit. */
 @ComponentV2
@@ -110,7 +111,7 @@ export struct StarwardCombinationDialog {
     }.id('gameplay-combination-dialog').width(this.panelWidth)
       .constraintSize({ maxHeight: this.maxHeight })
       .backgroundColor($r('app.color.raised'))
-      .border({ width: 1, radius: 24, color: $r('app.color.border_strong') }).borderRadius(24).clip(true)
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.border_strong') }).clip(true)
       .onAppear(() => UIUtils.applySync(() => { this.revealed = true; }))
       .onAreaChange((_previous: Area, current: Area) => {
         const height: number = Number(current.height);

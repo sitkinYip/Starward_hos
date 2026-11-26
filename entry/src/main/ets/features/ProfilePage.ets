@@ -1,10 +1,11 @@
-import { uiMaterial, window } from '@kit.ArkUI';
+import { LengthMetrics, uiMaterial, window } from '@kit.ArkUI';
 import { AvatarImage } from '../business/models';
 import { InlineError } from '../ui/ErrorMessages';
 import { StarwardModalBackdropState } from '../ui/StarwardGlassBackdrop';
 import { StarwardMaterial } from '../ui/StarwardMaterial';
 import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardPassport } from '../ui/StarwardPassport';
+import { STARWARD_RADIUS_PANEL } from '../ui/StarwardRadii';
 import { PassportSummary, summarizePassport } from './PassportSummary';
 import { PassportPasswordEditor, PassportProfileEditor } from './ProfileEditors';
 import { SliceViewModel } from './SliceViewModel';
@@ -112,6 +113,7 @@ export struct ProfilePage {
     const revision: number = this.editorRevision;
     return {
       height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: true,
+      radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
       title: { title: this.editorTitle() }, keyboardAvoidMode: SheetKeyboardAvoidMode.TRANSLATE_AND_SCROLL,
       backgroundColor: this.editorMaterial ? Color.Transparent : $r('app.color.raised'),
       systemMaterial: this.editorMaterial,
@@ -179,7 +181,7 @@ export struct ProfilePage {
         label: '退出登录', destructive: true, action: () => this.logout() })
     }.id('passport-settings-group').width('100%')
       .linearGradient({ angle: 180, colors: [[$r('app.color.glass_card_top'), 0], [$r('app.color.glass_card_bottom'), 1]] })
-      .border({ width: 1, color: $r('app.color.border_strong'), radius: 24 }).clip(true)
+      .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_PANEL }).clip(true)
       .shadow({ radius: 14, offsetY: 6, color: $r('app.color.shadow') })
   }
 

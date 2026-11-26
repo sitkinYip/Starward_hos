@@ -4,6 +4,7 @@ import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
 import { StarwardVideoPoster } from './StarwardVideoPoster';
+import { STARWARD_RADIUS_BADGE, STARWARD_RADIUS_CONTROL } from './StarwardRadii';
 
 /** The platform owns Radio selection; its content modifier supplies the brand layout. */
 class ChoiceRadioStyle implements ContentModifier<RadioConfiguration> {
@@ -30,7 +31,7 @@ function choiceRadioContent(config: RadioConfiguration) {
         .width(28).height(28).textAlign(TextAlign.Center).fontSize(13).fontWeight(FontWeight.Bold)
         .fontColor(config.checked ? $r('app.color.on_accent') : $r('app.color.accent_text'))
         .backgroundColor(config.checked ? $r('app.color.accent') : $r('app.color.accent_soft'))
-        .border({ width: 1, radius: 10,
+        .border({ width: 1, radius: STARWARD_RADIUS_BADGE,
           color: config.checked ? $r('app.color.accent') : $r('app.color.accent_border') })
         .scale({ x: config.checked ? 1.04 : 1, y: config.checked ? 1.04 : 1 })
         .animation({ duration: (config.contentModifier as ChoiceRadioStyle).reducedMotion ? 0 : 240,
@@ -209,7 +210,8 @@ export struct StarwardChoiceOption {
       }
     }.id(this.cardId).width('100%').alignItems(HorizontalAlign.Start)
       .backgroundColor(this.selected ? $r('app.color.accent_soft') : $r('app.color.input'))
-      .border({ width: 1, color: this.selected ? $r('app.color.accent') : $r('app.color.border_strong'), radius: 16 })
+      .border({ width: 1, color: this.selected ? $r('app.color.accent') : $r('app.color.border_strong'),
+        radius: STARWARD_RADIUS_CONTROL })
       .animation({ duration: this.reducedMotion ? 0 : 240, curve: Curve.EaseOut })
       .clip(true)
   }

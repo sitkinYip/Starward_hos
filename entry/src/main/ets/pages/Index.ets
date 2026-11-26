@@ -28,6 +28,8 @@ import { AppLifecycle } from '../platform/AppLifecycle';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { HostedPrivacy, HostedPrivacyRequestResult, HostedPrivacyState } from '../platform/HostedPrivacy';
 import { AppTheme, ThemePreference, ThemeSelection } from '../platform/AppTheme';
+import { AnswerHapticsPreference } from '../platform/AnswerHapticsPreference';
+import { openSystemHapticsSettings } from '../platform/AnswerHaptics';
 import { LaunchRoutes, PushRoute } from '../platform/LaunchRoutes';
 import { HarmonyPushDevice } from '../platform/HarmonyPush';
 import { PushOnboardingViewModel } from '../features/PushOnboardingViewModel';
@@ -67,6 +69,7 @@ import { StarwardBgmControl } from '../ui/StarwardBgmControl';
 import { StarwardQuestBackground } from '../ui/StarwardQuestBackground';
 import { StarwardQuestAtmosphere } from '../ui/StarwardQuestAtmosphere';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
 
 const AUTH_TITLE_HEIGHT: number = 92;
 
@@ -187,6 +190,8 @@ struct Index {
   @Local avatarPicking: boolean = false;
   @Local theme: ThemePreference = AppTheme.preference;
   @Local themeError: string = '';
+  @Local private answerHapticsEnabled: boolean = true;
+  @Local private answerHapticsError: string = '';
   @Local private narrativeFont: string = 'serif';
   @Local private showFinaleBackdrop: boolean = false;
   @Local private foreground: boolean = true;
@@ -396,6 +401,8 @@ struct Index {
     } catch (error) {
       this.narrativeFont = 'serif';
     }
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context !== undefined) { this.answerHapticsEnabled = AnswerHapticsPreference.load(context); }
     this.getUIContext().setKeyboardAvoidMode(PageKeyboardAvoidMode.RESIZE);
     this.motion.start();
     AppLifecycle.subscribe(this.lifecycle);
@@ -417,15 +424,12 @@ struct Index {
       }
     });
     this.foreground = AppLifecycle.isForeground();
-    if (AppEnvironment.pushEnabled) {
-      const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-      if (context !== undefined) {
-        this.vm.attachPush(new HarmonyPushDevice(context));
-        this.pushFlow = createPushPermissionFlow(context, () => this.privacyAllowed ? this.vm.pushSyncOwner() : '',
-          () => this.foreground, (force: boolean) => this.vm.syncPush(force));
-        this.pushOnboarding = new PushOnboardingViewModel(this.vm.onboardingSubscriptions,
-          new PushOnboardingPreference(context));
-      }
+    if (AppEnvironment.pushEnabled && context !== undefined) {
+      this.vm.attachPush(new HarmonyPushDevice(context));
+      this.pushFlow = createPushPermissionFlow(context, () => this.privacyAllowed ? this.vm.pushSyncOwner() : '',
+        () => this.foreground, (force: boolean) => this.vm.syncPush(force));
+      this.pushOnboarding = new PushOnboardingViewModel(this.vm.onboardingSubscriptions,
+        new PushOnboardingPreference(context));
     }
     if (AppEnvironment.hostedPrivacy) {
       this.privacyOwnerActive = true;
@@ -884,6 +888,21 @@ struct Index {
     this.themeError = result === ThemeSelection.SaveFailed ? '主题已切换，保存失败，请重试。' : '';
   }
 
+  private setAnswerHaptics(enabled: boolean): void {
+    if (this.answerHapticsEnabled === enabled && this.answerHapticsError.length === 0) { return; }
+    this.answerHapticsEnabled = enabled;
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    const saved: boolean = context !== undefined && AnswerHapticsPreference.save(context, enabled);
+    this.answerHapticsError = saved ? '' : '振动设置暂未保存。';
+  }
+
+  private showSystemHapticsSettings(): void {
+    const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
+    if (context === undefined || !openSystemHapticsSettings(context)) {
+      StarwardFeedback.toast(this.getUIContext(), '暂时无法打开系统设置。');
+    }
+  }
+
   private visibleItems(history: boolean): AssignmentSummary[] {
     return this.vm.items.filter((item: AssignmentSummary) => history ?
       item.status === 'completed' || item.status === 'cancelled' :
@@ -948,7 +967,7 @@ struct Index {
       Image(source).width(17).height(17)
         .fillColor(this.theme === mode ? $r('app.color.accent_text') : $r('app.color.subtle'))
         .objectFit(ImageFit.Contain).accessibilityLevel('no')
-    }.id(id).height(40).width(40).padding(10).borderRadius(999)
+    }.id(id).height(40).width(40).padding(10).borderRadius(STARWARD_RADIUS_ROUND)
       .backgroundColor(this.theme === mode ? $r('app.color.accent_soft') : Color.Transparent)
       .accessibilityText(label).accessibilitySelected(this.theme === mode).onClick(() => this.setTheme(mode))
   }
@@ -960,7 +979,7 @@ struct Index {
       this.themeChoice(ThemePreference.Light, '浅色', $r('app.media.icon_sun'), 'theme-light')
       this.themeChoice(ThemePreference.Dark, '深色', $r('app.media.icon_moon'), 'theme-dark')
     }.id('theme-picker').padding(3).backgroundColor($r('app.color.glass_floating'))
-      .border({ width: 1, color: $r('app.color.border'), radius: 999 })
+      .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_ROUND })
       .accessibilityText('主题')
   }
 
@@ -979,7 +998,7 @@ struct Index {
         Text(label).fontSize(13).fontWeight(FontWeight.Medium)
           .fontColor(this.theme === mode ? $r('app.color.on_accent') : $r('app.color.muted'))
       }.justifyContent(FlexAlign.Center)
-    }.id(nodeId).layoutWeight(1).constraintSize({ minHeight: 44 }).padding(4).borderRadius(999)
+    }.id(nodeId).layoutWeight(1).constraintSize({ minHeight: 44 }).padding(4).borderRadius(STARWARD_RADIUS_ROUND)
       .backgroundColor(this.theme === mode ? $r('app.color.accent') : Color.Transparent)
       .accessibilityText(label).accessibilitySelected(this.theme === mode).onClick(() => this.setTheme(mode))
   }
@@ -991,7 +1010,7 @@ struct Index {
       this.passportThemeChoice(ThemePreference.Light, '浅色', $r('app.media.icon_sun'), 'theme-light')
       this.passportThemeChoice(ThemePreference.Dark, '深色', $r('app.media.icon_moon'), 'theme-dark')
     }.id('theme-picker').width('100%').padding(4).backgroundColor($r('app.color.inset'))
-      .border({ width: 1, color: $r('app.color.border'), radius: 999 }).accessibilityText('主题')
+      .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_ROUND }).accessibilityText('主题')
   }
 
   private openSettings(notificationsOnly: boolean = false): void {
@@ -1100,7 +1119,7 @@ struct Index {
         if (!this.vm.loginNetworkError) {
           InlineError({ message: this.vm.error, fieldId: 'error-message' })
         }
-        PrimaryAction({ label: this.vm.busy ? '正在打开故事…' : '进入冒险', arrow: true, pill: true,
+        PrimaryAction({ label: this.vm.busy ? '正在打开故事…' : '进入冒险', arrow: true,
           actionEnabled: !this.vm.busy && this.vm.mode !== 'unavailable',
           action: () => { void this.submitLogin(); } })
       }.width('100%')
@@ -1148,7 +1167,7 @@ struct Index {
         LabeledInput({ label: '确认新密码', fieldId: 'confirm-password', value: this.confirmation,
           inputType: InputType.Password, disabled: this.vm.busy, changed: (value: string) => this.confirmation = value })
         InlineError({ message: this.vm.error, fieldId: 'error-message' })
-        PrimaryAction({ label: this.vm.busy ? '正在保存…' : '保存新密码', pill: true,
+        PrimaryAction({ label: this.vm.busy ? '正在保存…' : '保存新密码',
           actionEnabled: !this.vm.busy && this.vm.mode !== 'unavailable',
           action: () => { this.vm.changePassword(this.oldPassword, this.newPassword, this.confirmation); } })
         Button('退出登录', { type: ButtonType.Normal }).id('forced-logout').width('100%').height(44)
@@ -1196,7 +1215,7 @@ struct Index {
           this.changePassword()
         }
       }.id('auth-form-card').width('100%').padding({ left: 20, right: 20, top: 24, bottom: 24 })
-        .border({ width: 1, color: $r('app.color.border_strong'), radius: 24 })
+        .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_PANEL })
         .linearGradient({ angle: 180,
           colors: [[$r('app.color.glass_card_top'), 0], [$r('app.color.glass_card_bottom'), 1]] })
       if (AppEnvironment.hostedPrivacy) {
@@ -1255,7 +1274,8 @@ struct Index {
         .fontSize(13).lineHeight('24.7fp').fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
     }.id(history ? 'journey-history-empty' : 'journey-current-empty').width('100%')
       .constraintSize({ minHeight: 280 }).padding({ top: 32, bottom: 32, left: 20, right: 20 })
-      .justifyContent(FlexAlign.Center).backgroundColor($r('app.color.accent_faint')).borderRadius(24)
+      .justifyContent(FlexAlign.Center)
+      .backgroundColor($r('app.color.accent_faint')).borderRadius(STARWARD_RADIUS_PANEL)
   }
 
   @Builder
@@ -1613,6 +1633,7 @@ struct Index {
               motionEnabled: this.foreground && !this.showAvatarCrop && !this.motion.reduced })
           } else if (this.vm.play.visible) {
             GameplayPage({ play: this.vm.play, journey: this.vm.journey, autoNextDelay: 1500,
+              answerHapticsEnabled: this.answerHapticsEnabled,
               openInbox: () => this.openJourneyInbox(),
               atmosphere: this.atmosphere, atmosphereOwner: this.atmosphereOwner(param),
               playerId: this.vm.gate === 'home' ? this.vm.player.id : '',
@@ -1669,6 +1690,9 @@ struct Index {
           SettingsPage({
             bottomInset: this.safeBottom(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
             notificationsOnly: name === 'notification-settings',
+            answerHapticsEnabled: this.answerHapticsEnabled, answerHapticsError: this.answerHapticsError,
+            answerHapticsChanged: (enabled: boolean) => this.setAnswerHaptics(enabled),
+            openSystemHapticsSettings: () => this.showSystemHapticsSettings(),
             themeError: this.themeError, pushVisible: AppEnvironment.pushEnabled, pushAvailable: this.pushAvailable(),
             pushBusy: this.pushFlow?.busy ?? false, pushPermission: this.pushFlow?.permission ?? null,
             pushStatus: this.pushFlow?.status ?? 'unknown',
@@ -1782,7 +1806,7 @@ struct Index {
     Row({ space: 10 }) {
       Button({ type: ButtonType.Normal }) {
         this.icon($r('app.media.icon_arrow_left'), 20, $r('app.color.accent_text'))
-      }.id('settings-back').width(44).height(44).padding(0).borderRadius(10)
+      }.id('settings-back').width(44).height(44).padding(0).borderRadius(STARWARD_RADIUS_CONTROL)
         .backgroundColor($r('app.color.accent_faint')).accessibilityText('返回').onClick(() => this.closeSettings())
       Text(this.topDestination() === 'notification-settings' ? '旅途通知与订阅设置' : '设置')
         .id('settings-heading').fontSize(23)

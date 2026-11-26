@@ -1,8 +1,8 @@
 import { curves, UIUtils } from '@kit.ArkUI';
 import { assignmentKind, assignmentState } from '../business/assignmentState';
 import { AssignmentSummary } from '../business/models';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
 
-const CARD_RADIUS: number = 24;
 const RING_SIZE: number = 54;
 const CARD_ENTRANCE_DELAYS: number[] = [0, 120, 240, 320];
 
@@ -14,7 +14,7 @@ struct JourneyCardGlow {
 
   build() {
     Column() {}.id('journey-card-glow').width(this.cardWidth).height(this.cardHeight)
-      .border({ width: 1, radius: CARD_RADIUS, color: $r('app.color.glow_accent') })
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.glow_accent') })
       .radialGradient({ center: ['76%', '50%'], radius: 84,
         colors: [[$r('app.color.glow_accent_soft'), 0], [$r('app.color.glow_accent_faint'), 0.48],
           [Color.Transparent, 1]] })
@@ -121,7 +121,7 @@ export struct StarwardJourneyCard {
         this.progressRing()
         Stack() {
           Image($r('app.media.icon_arrow_right')).width(16).height(16).fillColor($r('app.color.accent_text'))
-        }.width(32).height(32).borderRadius(999).backgroundColor($r('app.color.accent_soft'))
+        }.width(32).height(32).borderRadius(STARWARD_RADIUS_ROUND).backgroundColor($r('app.color.accent_soft'))
       }
     }
   }
@@ -153,7 +153,7 @@ export struct StarwardJourneyCard {
           this.cardHeight = Number(current.height);
         })
     }.id(`assignment-${this.item.id}`).width('100%').padding(0)
-      .border({ width: 1, radius: CARD_RADIUS,
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL,
         color: this.kind === 'active' ? $r('app.color.accent_border') : $r('app.color.border') })
       .linearGradient({ angle: 180, colors: [
         [this.kind === 'active' ? $r('app.color.glass_card_active_top') : $r('app.color.glass_card_top'), 0],
@@ -190,13 +190,17 @@ export struct StarwardJourneyLoading {
     Column({ space: 16 }) {
       ForEach([0, 1], () => {
         Row({ space: 16 }) {
-          Column().width(70).height(110).backgroundColor($r('app.color.accent_soft')).borderRadius(16)
+          Column().width(70).height(110)
+            .backgroundColor($r('app.color.accent_soft')).borderRadius(STARWARD_RADIUS_CONTROL)
           Column({ space: 16 }) {
-            Row().height(46).width('100%').backgroundColor($r('app.color.accent_soft')).borderRadius(16)
-            Row().height(46).width('65%').backgroundColor($r('app.color.accent_soft')).borderRadius(16)
+            Row().height(46).width('100%')
+              .backgroundColor($r('app.color.accent_soft')).borderRadius(STARWARD_RADIUS_CONTROL)
+            Row().height(46).width('65%')
+              .backgroundColor($r('app.color.accent_soft')).borderRadius(STARWARD_RADIUS_CONTROL)
           }.layoutWeight(1).alignItems(HorizontalAlign.Start)
         }.width('100%').constraintSize({ minHeight: 160 }).padding(24)
-          .backgroundColor($r('app.color.surface')).border({ width: 1, color: $r('app.color.border'), radius: CARD_RADIUS })
+          .backgroundColor($r('app.color.surface'))
+          .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
           .accessibilityLevel('no-hide-descendants')
       }, (index: number) => index.toString())
     }.id('journey-loading').width('100%').accessibilityText('正在展开你的旅程…')

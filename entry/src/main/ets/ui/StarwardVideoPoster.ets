@@ -2,6 +2,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
+import { STARWARD_RADIUS_CONTROL } from './StarwardRadii';
 
 /** A playable media surface even when the optional poster has not loaded. */
 @ComponentV2
@@ -140,7 +141,7 @@ export struct StarwardVideoPoster {
       .radialGradient({ center: ['50%', '50%'], radius: this.widthVp * 0.35,
         colors: [[$r('app.color.accent_faint'), 0], [Color.Transparent, 1]] })
       .border({ width: { top: 1, bottom: this.option ? 0 : 1, left: this.option ? 0 : 1, right: this.option ? 0 : 1 },
-        color: $r('app.color.border_strong') }).clip(true)
+        color: $r('app.color.border_strong'), radius: this.option ? 0 : STARWARD_RADIUS_CONTROL }).clip(true)
       .onAreaChange((_previous: Area, current: Area) => {
         const width: number = Number(current.width);
         if (Number.isFinite(width) && width > 2 && width !== this.widthVp) { this.widthVp = width; }

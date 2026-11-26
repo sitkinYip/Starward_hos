@@ -9,6 +9,7 @@ import { starwardListReveal } from '../ui/StarwardMotion';
 import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardCapsuleSegment, StarwardPaneTabs } from '../ui/StarwardTabs';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { StarLettersReadError, StarLettersViewModel } from './StarLettersViewModel';
 import { StarwardMailboxRow } from './StarwardMailboxRow';
@@ -20,13 +21,16 @@ struct StarLettersSkeleton {
 
   build() {
     Row({ space: 16 }) {
-      Column().width(70).height(110).borderRadius(10).backgroundColor($r('app.color.accent_soft'))
+      Column().width(70).height(110).borderRadius(STARWARD_RADIUS_CONTROL).backgroundColor($r('app.color.accent_soft'))
       Column({ space: 16 }) {
-        Column().width('100%').height(47).borderRadius(10).backgroundColor($r('app.color.accent_soft'))
-        Column().width('65%').height(47).borderRadius(10).backgroundColor($r('app.color.accent_soft'))
+        Column().width('100%').height(47).borderRadius(STARWARD_RADIUS_CONTROL)
+          .backgroundColor($r('app.color.accent_soft'))
+        Column().width('65%').height(47).borderRadius(STARWARD_RADIUS_CONTROL)
+          .backgroundColor($r('app.color.accent_soft'))
       }.layoutWeight(1).alignItems(HorizontalAlign.Start)
     }.width('100%').constraintSize({ minHeight: 160 }).padding(24).alignItems(VerticalAlign.Center)
-      .backgroundColor($r('app.color.glass_card_top')).border({ width: 1, color: $r('app.color.border'), radius: 24 })
+      .backgroundColor($r('app.color.glass_card_top'))
+      .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
       .opacity(this.animated ? (this.pulsed ? 0.85 : 0.4) : 1).accessibilityLevel('no-hide-descendants')
       .onAppear(() => {
         if (this.animated) {
@@ -50,11 +54,11 @@ struct JourneyNotificationFailure {
     Column({ space: 12 }) {
       Text(this.message).fontSize(14).lineHeight('23.8fp').fontColor($r('app.color.danger_strong')).width('100%')
       Button('重新尝试', { type: ButtonType.Normal }).id(this.nodeId + '-retry').constraintSize({ minHeight: 40 })
-        .fontSize(13).padding({ left: 14, right: 14 }).borderRadius(10).fontColor($r('app.color.text'))
+        .fontSize(13).padding({ left: 14, right: 14 }).borderRadius(STARWARD_RADIUS_ROUND).fontColor($r('app.color.text'))
         .backgroundColor($r('app.color.surface')).enabled(this.retryable).onClick(() => this.retry())
     }.id(this.nodeId).width('100%').alignItems(HorizontalAlign.Start).padding(16)
       .backgroundColor($r('app.color.danger_surface'))
-      .border({ width: 1, color: $r('app.color.danger_border'), radius: 10 })
+      .border({ width: 1, color: $r('app.color.danger_border'), radius: STARWARD_RADIUS_CONTROL })
   }
 }
 
@@ -176,7 +180,8 @@ export struct StarLettersPage {
         .fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
     }.id('star-letters-empty').width('100%').constraintSize({ minHeight: 280 })
       .padding({ top: 32, bottom: 32, left: 20, right: 20 }).justifyContent(FlexAlign.Center)
-      .backgroundColor($r('app.color.glass_card_top')).border({ width: 1, radius: 24, color: $r('app.color.border') })
+      .backgroundColor($r('app.color.glass_card_top'))
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.border') })
   }
 
   @Builder
@@ -227,7 +232,8 @@ export struct StarLettersPage {
         .fontColor($r('app.color.muted')).textAlign(TextAlign.Center)
     }.id('journey-notifications-empty').width('100%').constraintSize({ minHeight: 280 })
       .padding({ top: 32, bottom: 32, left: 20, right: 20 }).justifyContent(FlexAlign.Center)
-      .backgroundColor($r('app.color.glass_card_top')).border({ width: 1, radius: 24, color: $r('app.color.border') })
+      .backgroundColor($r('app.color.glass_card_top'))
+      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.border') })
   }
 
   @Builder
@@ -271,7 +277,7 @@ export struct StarLettersPage {
             actionId: `journey-notification-actions-${note.id}`, motionEnabled: this.active && !this.reducedMotion,
             revealDelay: Math.min(120, index * 70), open: () => this.openJourneyNote(note.id),
             markRead: () => { void this.journey.markRead(note.id); } })
-        }.width('100%').borderRadius(24).clip(true)
+        }.width('100%').borderRadius(STARWARD_RADIUS_PANEL).clip(true)
           .swipeAction({ end: note.readAt.length === 0 ? () => this.swipeAccept(note.id) : undefined,
             edgeEffect: SwipeEdgeEffect.None })
         if (this.journey.readErrorId === note.id && this.journey.activeNotificationId !== note.id) {

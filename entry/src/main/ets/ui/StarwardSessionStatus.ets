@@ -1,4 +1,5 @@
 import { StarwardLoadingStage } from './StarwardLoadingStage';
+import { STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 @ComponentV2
 export struct StarwardSessionStatus {
@@ -17,12 +18,12 @@ export struct StarwardSessionStatus {
     Column({ space: 8 }) {
       Button('重新尝试', { type: ButtonType.Normal })
         .id(this.restoring ? 'session-restore-retry' : 'session-signout-retry')
-        .width('100%').constraintSize({ minHeight: 48 }).borderRadius(10)
+        .width('100%').constraintSize({ minHeight: 48 }).borderRadius(STARWARD_RADIUS_ROUND)
         .fontSize(14).fontWeight(600).fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
         .onClick(() => this.retry())
       if (this.restoring) {
         Button('重新登录', { type: ButtonType.Normal }).id('session-use-login')
-          .width('100%').constraintSize({ minHeight: 44 })
+          .width('100%').constraintSize({ minHeight: 44 }).borderRadius(STARWARD_RADIUS_ROUND)
           .fontSize(14).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
           .onClick(() => this.useLogin())
       }

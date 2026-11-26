@@ -3,6 +3,7 @@ import { clueTitle } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
 import { StarwardMaterial } from './StarwardMaterial';
 import { starwardPageReveal } from './StarwardMotion';
+import { STARWARD_RADIUS_BADGE, STARWARD_RADIUS_CONTROL } from './StarwardRadii';
 
 export function narrativeAttentionLabel(kind: string): string {
   return kind === 'letter' ? '一封来信等待开启' : '一份祝福正在回响';
@@ -52,7 +53,8 @@ export struct StarwardNarrativeSignal {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Column() {}.width(Math.max(0, this.frameWidth - 12)).height(Math.max(0, this.frameHeight - 12))
-        .position({ x: 6, y: 6 }).border({ width: 1, color: $r('app.color.accent_border') })
+        .position({ x: 6, y: 6 })
+        .border({ width: 1, color: $r('app.color.accent_border'), radius: STARWARD_RADIUS_BADGE })
         .opacity(this.lit ? 1 : 0.34).scale({ x: this.lit ? 1.012 : 0.985, y: this.lit ? 1.012 : 0.985 })
       if (this.running) {
         Column() {}.width(this.frameWidth * 0.18).height(this.frameHeight)
@@ -131,8 +133,8 @@ export struct StarwardNarrativeAttention {
           this.signal()
         }.width(0).height(0).clip(false).position({ x: 0, y: 0 }).hitTestBehavior(HitTestMode.None)
       }.width('100%')
-    }.id('gameplay-narrative-attention').width('100%').padding(0).borderRadius(0)
-      .border({ width: 1, color: $r('app.color.accent') })
+    }.id('gameplay-narrative-attention').width('100%').padding(0)
+      .border({ width: 1, color: $r('app.color.accent'), radius: STARWARD_RADIUS_CONTROL })
       .backgroundColor(this.material ? $r('app.color.glass_floating') : $r('app.color.raised'))
       .systemMaterial(this.material)
       .radialGradient({ center: ['0%', '50%'], radius: '50%',

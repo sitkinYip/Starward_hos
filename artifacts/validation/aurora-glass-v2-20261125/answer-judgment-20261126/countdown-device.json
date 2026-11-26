@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "mode": "disposable real HTTPS / official phone UiTest",
+  "signedHapSha256": "4bec2c673b9545393f5be1edf363cc95086d25d6ce78eb83f7d85323ba026292",
+  "checks": [
+    "Wrong answer feedback spans the entire gameplay width.",
+    "Countdown dismisses to the choice with one owned real server result and no extra submission.",
+    "Full-screen confirm restores the same choice and prevents an extra submit.",
+    "Tap on the shared backdrop closes the full-screen feedback.",
+    "Rounded retry control after one injected 503 returns to the same choice."
+  ],
+  "boundsPx": {
+    "overlay": [
+      0,
+      124,
+      1260,
+      2720
+    ],
+    "confirm": [
+      416,
+      1742,
+      845,
+      1898
+    ],
+    "roundedRetry": [
+      266,
+      820,
+      994,
+      970
+    ]
+  },
+  "images": {
+    "countdown-early": "ca2fe6cef74d1e951015e76768788ef27bd121bfb5710893808fb45084a4d477",
+    "countdown-late": "e12bc659a94d587a36b7e1c3374782bd84b599e01b69e8a94e7a66431f9a21f4",
+    "rounded-error-retry": "e95e4fe7ba9a5bc9c5b29dbfed710f42ded53b95d6442b3c70f309ddb0878a11"
+  },
+  "flow": "choice question on the same disposable isolated account",
+  "elapsedFromSubmitUntilAfterAutoCloseMs": 8174,
+  "countdownVisual": {
+    "early": {
+      "solidSegmentWidthPx": 245,
+      "rowPx": 1960
+    },
+    "late": {
+      "solidSegmentWidthPx": 69,
+      "rowPx": 1960
+    },
+    "fillColorRgb": [
+      166,
+      53,
+      63
+    ],
+    "reviewed": "Two light-mode captures show live blur across the question and dock, with shorter remaining time in the second frame."
+  }
+}

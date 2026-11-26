@@ -1,3 +1,5 @@
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
+
 @ComponentV2
 struct GameplayOverlayClose {
   @Param compact: boolean = false;
@@ -9,7 +11,7 @@ struct GameplayOverlayClose {
       Image($r('app.media.icon_close_bold')).width(this.compact ? 15 : 24).height(this.compact ? 15 : 24)
         .fillColor($r('app.color.muted')).accessibilityLevel('no')
     }.id('gameplay-sheet-close').width(this.compact ? 30 : 44).height(this.compact ? 30 : 44).padding(0)
-      .borderRadius(this.compact ? 15 : 16)
+      .borderRadius(this.compact ? STARWARD_RADIUS_ROUND : STARWARD_RADIUS_CONTROL)
       .backgroundColor(this.compact ? $r('app.color.input') : $r('app.color.surface_hover'))
       .borderWidth(this.compact ? 1 : 0).borderColor($r('app.color.border'))
       .responseRegion({ x: this.compact ? -7 : 0, y: this.compact ? -7 : 0, width: 44, height: 44 })
@@ -41,7 +43,8 @@ export struct GameplayChoicePopup {
         .constraintSize({ maxHeight: Math.max(60, this.maxHeight - 53) }).scrollBar(BarState.Auto)
     }.id('gameplay-choice-sheet').width('100%')
       .backgroundColor(this.usesSystemMaterial ? Color.Transparent : $r('app.color.gameplay_overlay_tint'))
-      .border({ width: this.usesSystemMaterial ? 0 : 1, color: $r('app.color.border_strong'), radius: 24 }).clip(true)
+      .border({ width: this.usesSystemMaterial ? 0 : 1, color: $r('app.color.border_strong'),
+        radius: STARWARD_RADIUS_PANEL }).clip(true)
   }
 }
 

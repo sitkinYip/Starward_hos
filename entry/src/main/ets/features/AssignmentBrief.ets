@@ -126,7 +126,7 @@ export struct AssignmentBrief {
 
   build() {
     Column() {
-      GameplaySurface({ lightweight: true, radius: 24 }) {
+      GameplaySurface({ lightweight: true }) {
         if (this.detail.status === 'cancelled') {
           this.cancelled()
         } else {

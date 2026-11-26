@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "mode": "disposable real HTTPS / official phone UiTest",
+  "signedHapSha256": "304eebd967c062bc5ce3547c8de117cd14b84ee85757241e8f7d194d5949a4e8",
+  "checks": [
+    "Authoritative wrong response opens the centered dialog. Confirm dismisses with the draft and question intact.",
+    "System Back closes the dialog on the same question.",
+    "Tap outside closes the dialog and leaves the draft.",
+    "Idle dialog dismisses on its own. Four submissions received exactly four answers.",
+    "Cleared input remains empty after leaving the scene and reopening the assignment.",
+    "Correct submission keeps the original experience celebration. All five POST responses are owned HTTPS 200s."
+  ],
+  "boundsPx": {
+    "beforeSubmit": [
+      91,
+      2466,
+      1169,
+      2629
+    ],
+    "wrongPanel": [
+      52,
+      952,
+      1208,
+      1768
+    ]
+  },
+  "images": {
+    "wrong-answer": "42ed86dd324b9e857d0ec3a6319fdd2f7770c8f3fa478946ac3b514eeed3045e",
+    "correct-answer": "47d62e6c0e6fa38a7ca1a02e8cf0589a70a54aad83d1589e0608f1521d10a04b"
+  },
+  "answerPosts": {
+    "count": 5,
+    "ownedBackend2026ResponsesVerified": true
+  }
+}

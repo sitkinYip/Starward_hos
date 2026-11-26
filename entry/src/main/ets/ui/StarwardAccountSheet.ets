@@ -1,5 +1,6 @@
-import { uiMaterial } from '@kit.ArkUI';
+import { LengthMetrics, uiMaterial } from '@kit.ArkUI';
 import { StarwardMaterial } from './StarwardMaterial';
+import { STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 /** Controlled V2 state around the system sheet. Keep its anchor mounted while open. */
 @ComponentV2
@@ -25,6 +26,7 @@ export struct StarwardAccountSheet {
     }.bindSheet(this.visible, this.sheetBody, {
       height: this.sheetHeight,
       preferType: this.preferType,
+      radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
       dragBar: true,
       showClose: true,
       title: { title: this.title },

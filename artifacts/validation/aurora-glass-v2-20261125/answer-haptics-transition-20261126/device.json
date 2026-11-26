@@ -1,0 +1,16 @@
+{
+  "status": "incomplete",
+  "mode": "temporary owned HTTPS and official phone UiTest",
+  "hapSha256": "122bdf19199fe6318ec1f917b7ca5af4092eef2597ca90256d7d80bf06c804e8",
+  "checks": [
+    "App switch defaults to on.",
+    "Turning the native Switch off is visible in raw UI state.",
+    "Off state survives a cold launch and isolated session restore.",
+    "A real wrong result keeps its visual feedback with haptics turned off.",
+    "Native Switch can be re-enabled."
+  ],
+  "hapticRequests": {
+    "failure": []
+  },
+  "boundsPx": {}
+}

@@ -1,5 +1,6 @@
 import { PromptAction } from '@kit.ArkUI';
 import { StarwardModalBackdropState } from './StarwardGlassBackdrop';
+import { STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 export const STARWARD_GLASS_DIALOG_FADE: number = 180;
 
@@ -18,7 +19,7 @@ export struct StarwardGlassDialog {
   @Consumer('starwardModalBackdrop') private backdrop: StarwardModalBackdropState = new StarwardModalBackdropState();
   @Param visible: boolean = false;
   @Param panelWidth: number = 400;
-  @Param panelCornerRadius: number = 24;
+  @Param panelCornerRadius: number = STARWARD_RADIUS_PANEL;
   @Param dismissOnTapOutside: boolean = false;
   @Param reducedMotion: boolean = true;
   @BuilderParam content: () => void = this.emptyContent;

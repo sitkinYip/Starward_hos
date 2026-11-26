@@ -4,6 +4,7 @@ import { StarwardClueParagraph } from './StarwardClueParagraph';
 import { StarwardQuestionImages } from './StarwardQuestionImages';
 import { StarwardVideoPoster } from './StarwardVideoPoster';
 import { StarwardInlineVideo, StarwardVideoViewerState } from './StarwardVideoViewer';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 /** Inline text runs and ordered media share the containers already used by the quest. */
 @ComponentV2
@@ -72,11 +73,11 @@ export struct StarwardRichContent {
               nodeId: `${this.nodeId}-video-${index}-inline`, reducedMotion: this.reducedMotion })
           }.width('100%').height(this.posterHeights.get(index) ?? 182).position({ x: 0, y: 0 })
         }
-      }.width('100%')
+      }.width('100%').borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
       Button('展开视频', { type: ButtonType.Normal }).id(`${this.nodeId}-video-${index}-open`)
         .constraintSize({ minHeight: 44 }).padding({ left: 14, right: 14 })
         .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
-        .border({ width: 1, color: $r('app.color.border_strong'), radius: 6 })
+        .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_ROUND })
         .enabled(this.active && this.interactive).onClick(() => {
           if (this.active && this.interactive && this.ownerIsCurrent(this.ownerKey)) { this.openVideo(index); }
         })

@@ -1,9 +1,10 @@
+import { STARWARD_RADIUS_ROUND } from './StarwardRadii';
+
 @ComponentV2
 export struct PrimaryAction {
   @Param label: string = '';
   @Param actionEnabled: boolean = true;
   @Param arrow: boolean = false;
-  @Param pill: boolean = false;
   @Event action: () => void = () => {};
 
   build() {
@@ -16,7 +17,7 @@ export struct PrimaryAction {
         }
       }.justifyContent(FlexAlign.Center).width('100%')
     }.id('primary-action').width('100%').constraintSize({ minHeight: 52 })
-      .height(52).padding({ left: 16, right: 16 }).borderRadius(this.pill ? 999 : 10)
+      .height(52).padding({ left: 16, right: 16 }).borderRadius(STARWARD_RADIUS_ROUND)
       .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
       .enabled(this.actionEnabled).onClick(() => this.action())
   }

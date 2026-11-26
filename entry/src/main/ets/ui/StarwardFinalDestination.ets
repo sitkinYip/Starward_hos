@@ -1,5 +1,6 @@
 import { LengthMetrics } from '@kit.ArkUI';
 import { starwardPageReveal } from './StarwardMotion';
+import { STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 /** The nonmodal passage prompt uses the same inset and actions as the mobile Web. */
 @ComponentV2
@@ -30,7 +31,7 @@ export struct StarwardFinalDestination {
       }.width('100%')
     }.id('gameplay-final-destination').width(this.panelWidth).padding({ top: 18, bottom: 18, left: 20, right: 20 })
       .alignItems(HorizontalAlign.Start).backgroundColor($r('app.color.raised'))
-      .border({ width: 1, color: $r('app.color.accent_border') })
+      .border({ width: 1, color: $r('app.color.accent_border'), radius: STARWARD_RADIUS_PANEL })
       .shadow({ radius: 36, offsetY: 12, color: $r('app.color.choice_shadow') })
       .transition(starwardPageReveal(this.reducedMotion, 8))
   }

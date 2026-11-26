@@ -1,8 +1,8 @@
 import { uiMaterial } from '@kit.ArkUI';
 import { StarwardMaterial } from './StarwardMaterial';
+import { STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 export const STARWARD_SESSION_TITLE_HEIGHT: number = 52;
-export const STARWARD_HEADER_CAPSULE_RADIUS: number = 999;
 
 /** Shared glass capsule for a session title. */
 @ComponentV2
@@ -26,7 +26,7 @@ struct StarwardGlassHeader {
         .padding({ left: 10, right: 10 })
     }.width('100%')
       .backgroundColor(this.material ? Color.Transparent : $r('app.color.raised'))
-      .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
+      .border({ width: 1, radius: STARWARD_RADIUS_ROUND, color: $r('app.color.border_strong') })
       .systemMaterial(this.material)
   }
 }

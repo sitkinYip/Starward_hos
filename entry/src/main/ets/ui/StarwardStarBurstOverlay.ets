@@ -1,5 +1,5 @@
 import { curves, UIUtils } from '@kit.ArkUI';
-import { StarwardGlassBackdrop } from './StarwardGlassBackdrop';
+import { StarwardAnswerResultOverlay } from './StarwardAnswerResultOverlay';
 import { starwardCountUp } from './StarwardMotion';
 
 // Motion Prompt #003 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#003
@@ -130,40 +130,42 @@ export struct StarwardStarBurstOverlay {
       });
   }
 
-  build() {
-    Stack({ alignContent: Alignment.Center }) {
-      StarwardGlassBackdrop({ nodeId: 'gameplay-burst-backdrop', dismissible: !this.autoAdvance,
-        dismiss: () => this.dismiss() })
-      Column({ space: 18 }) {
-        StarwardBurstStage({ reducedMotion: this.reducedMotion })
-        Column({ space: 8 }) {
-          Text(this.title).id('gameplay-burst-title').fontSize(28).fontWeight(FontWeight.Bold)
-            .fontColor($r('app.color.strong')).textAlign(TextAlign.Center)
-          if (this.xpDelta > 0) {
-            Text('+' + this.displayedXp.toString() + ' EXP').id('gameplay-burst-xp')
-              .fontSize(16).fontWeight(600).fontColor($r('app.color.accent_text')).fontFeature("'tnum' 1")
-              .accessibilityText('获得 ' + this.xpDelta.toString() + ' 经验值')
-              .scale({ x: this.reducedMotion ? 1 : this.xpScale, y: this.reducedMotion ? 1 : this.xpScale })
-          }
-        }.padding({ top: 12, bottom: 12, left: 28, right: 28 })
-          .radialGradient({ center: ['50%', '50%'], radius: '58%',
-            colors: [[$r('app.color.burst_glow_card'), 0], [$r('app.color.burst_glow_card_clear'), 1]] })
-        if (this.autoAdvance) {
-          Text('正在跳转下一题').id('gameplay-burst-auto-next').constraintSize({ minHeight: 48 })
-            .fontSize(16).fontWeight(600).fontColor($r('app.color.accent_text')).textAlign(TextAlign.Center)
-        } else {
-          Button(this.actionLabel, { type: ButtonType.Capsule })
-            .id('gameplay-burst-action').constraintSize({ minHeight: 48, minWidth: 132 })
-            .padding({ left: 20, right: 20 }).fontSize(16).fontWeight(600)
-            .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-            .linearGradient({ direction: GradientDirection.Bottom,
-              colors: [[$r('app.color.accent_strong'), 0], [$r('app.color.accent'), 1]] })
-            .shadow({ radius: 16, offsetY: 6, color: $r('app.color.glow_accent_soft') })
-            .defaultFocus(true).onClick(() => this.proceed())
+  @Builder
+  private resultContent() {
+    Column({ space: 18 }) {
+      StarwardBurstStage({ reducedMotion: this.reducedMotion })
+      Column({ space: 8 }) {
+        Text(this.title).id('gameplay-burst-title').fontSize(28).fontWeight(FontWeight.Bold)
+          .fontColor($r('app.color.strong')).textAlign(TextAlign.Center)
+        if (this.xpDelta > 0) {
+          Text('+' + this.displayedXp.toString() + ' EXP').id('gameplay-burst-xp')
+            .fontSize(16).fontWeight(600).fontColor($r('app.color.accent_text')).fontFeature("'tnum' 1")
+            .accessibilityText('获得 ' + this.xpDelta.toString() + ' 经验值')
+            .scale({ x: this.reducedMotion ? 1 : this.xpScale, y: this.reducedMotion ? 1 : this.xpScale })
         }
-      }.padding({ left: 22, right: 22 }).width('100%').constraintSize({ maxWidth: 384 })
-    }.id('gameplay-star-burst').width('100%').height('100%').hitTestBehavior(HitTestMode.BLOCK_HIERARCHY)
+      }.padding({ top: 12, bottom: 12, left: 28, right: 28 })
+        .radialGradient({ center: ['50%', '50%'], radius: '58%',
+          colors: [[$r('app.color.burst_glow_card'), 0], [$r('app.color.burst_glow_card_clear'), 1]] })
+      if (this.autoAdvance) {
+        Text('正在跳转下一题').id('gameplay-burst-auto-next').constraintSize({ minHeight: 48 })
+          .fontSize(16).fontWeight(600).fontColor($r('app.color.accent_text')).textAlign(TextAlign.Center)
+      } else {
+        Button(this.actionLabel, { type: ButtonType.Capsule })
+          .id('gameplay-burst-action').constraintSize({ minHeight: 48, minWidth: 132 })
+          .padding({ left: 20, right: 20 }).fontSize(16).fontWeight(600)
+          .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
+          .linearGradient({ direction: GradientDirection.Bottom,
+            colors: [[$r('app.color.accent_strong'), 0], [$r('app.color.accent'), 1]] })
+          .shadow({ radius: 16, offsetY: 6, color: $r('app.color.glow_accent_soft') })
+          .defaultFocus(true).onClick(() => this.proceed())
+      }
+    }.padding({ left: 22, right: 22 }).width('100%').constraintSize({ maxWidth: 384 })
+  }
+
+  build() {
+    StarwardAnswerResultOverlay({ nodeId: 'gameplay-star-burst', backdropId: 'gameplay-burst-backdrop',
+      reducedMotion: this.reducedMotion, dismissible: !this.autoAdvance, dismiss: () => this.dismiss(),
+      content: () => { this.resultContent() } })
       .onAppear(() => this.countUp())
-      .transition(TransitionEffect.OPACITY.animation({ duration: this.reducedMotion ? 0 : 240, curve: Curve.EaseOut }))
   }
 }

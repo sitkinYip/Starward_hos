@@ -2,6 +2,7 @@ import { curves, UIUtils } from '@kit.ArkUI';
 import { AvatarImage, ExtraDisplay, Player } from '../business/models';
 import { StarwardPlayerAvatar } from './StarwardPlayerAvatar';
 import { starwardCountUp } from './StarwardMotion';
+import { STARWARD_RADIUS_PANEL } from './StarwardRadii';
 
 export function playerExperiencePercent(player: Player): number {
   if (player.nextLevel === null) { return 100; }
@@ -142,7 +143,7 @@ export struct StarwardPassport {
     }.id('profile-passport').width('100%').alignItems(HorizontalAlign.Center)
       .padding({ top: 28, bottom: 22, left: 22, right: 22 })
       .linearGradient({ angle: 180, colors: [[$r('app.color.glass_card_top'), 0], [$r('app.color.glass_card_bottom'), 1]] })
-      .border({ width: 1, color: $r('app.color.border_strong'), radius: 24 }).clip(true)
+      .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_PANEL }).clip(true)
       .shadow({ radius: 14, offsetY: 6, color: $r('app.color.shadow') })
   }
 }

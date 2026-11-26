@@ -1,6 +1,8 @@
 import { curves, uiMaterial } from '@kit.ArkUI';
 import { StarwardAnswerCapsuleMaterial, StarwardAnswerInput, StarwardAnswerSubmit } from '../ui/StarwardAnswerInput';
 import { StarwardMaterial } from '../ui/StarwardMaterial';
+import { starwardPageReveal } from '../ui/StarwardMotion';
+import { STARWARD_RADIUS_BADGE, STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
 import { GameplayChoicePopup } from './GameplayQuestionOverlays';
 
 export type GameplayComposerAction = 'submit' | 'retry' | 'next' | 'none';
@@ -24,7 +26,9 @@ export interface GameplayComposerView {
 @ComponentV2
 export struct GameplayAnswerComposer {
   @Require @Param view: GameplayComposerView;
+  @Param nativeDock: boolean = false;
   @Param reducedMotion: boolean = true;
+  @Param revealOnMount: boolean = false;
   @Param choicesOpen: boolean = false;
   @Param choiceRevision: number = 0;
   @Param choiceStatus: string = '';
@@ -35,6 +39,7 @@ export struct GameplayAnswerComposer {
   @Event choiceStateChanged: (revision: number, visible: boolean) => void = () => {};
   @Event changeAnswer: (value: string) => void = () => {};
   @Event focusChanged: (focused: boolean) => void = () => {};
+  @Event editingChanged: (editing: boolean) => void = () => {};
   @Event primaryAction: (action: GameplayComposerAction) => void = () => {};
   @Event heightChanged: (height: number) => void = () => {};
   @Local private dockWidth: number = 0;
@@ -49,7 +54,7 @@ export struct GameplayAnswerComposer {
   private popupOptions(): CustomPopupOptions {
     const revision: number = this.choiceRevision;
     return { builder: () => { this.choicePopup(); }, placement: Placement.Top,
-      targetSpace: 12, width: this.dockWidth > 0 ? this.dockWidth : undefined, radius: 24,
+      targetSpace: 12, width: this.dockWidth > 0 ? this.dockWidth : undefined, radius: STARWARD_RADIUS_PANEL,
       enableArrow: false, mask: true, showInSubWindow: false, autoCancel: true, focusable: true,
       systemMaterial: this.choiceMaterial,
       popupColor: this.choiceMaterial ? undefined : Color.Transparent,
@@ -72,15 +77,16 @@ export struct GameplayAnswerComposer {
   @Builder
   private choices() {
     Stack() {
-      StarwardAnswerCapsuleMaterial()
+      if (!this.nativeDock) { StarwardAnswerCapsuleMaterial() }
       Button({ type: ButtonType.Capsule, stateEffect: !this.reducedMotion }) {
         Row({ space: 10 }) {
           if (this.view.choiceKey.length > 0) {
             Text(this.view.choiceKey).constraintSize({ minWidth: 30 }).height(30).padding({ left: 7, right: 7 })
-              .textAlign(TextAlign.Center).borderRadius(15).fontFeature("'tnum' 1")
+              .textAlign(TextAlign.Center).fontFeature("'tnum' 1")
               .fontSize(13).fontWeight(FontWeight.Bold).fontColor($r('app.color.accent_text'))
               .backgroundColor($r('app.color.accent_soft'))
-              .border({ width: 1, radius: 15, color: $r('app.color.accent_border') }).accessibilityLevel('no')
+              .border({ width: 1, radius: STARWARD_RADIUS_BADGE, color: $r('app.color.accent_border') })
+              .accessibilityLevel('no')
           }
           Text(this.view.choiceKey.length > 0 ? this.view.choiceLabel : this.view.editable ? '选择答案' : '查看选项')
             .layoutWeight(1).maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis }).fontSize(15)
@@ -94,8 +100,8 @@ export struct GameplayAnswerComposer {
         }.width('100%')
       }.id('gameplay-choice-trigger').width('100%').height(50)
         .padding({ left: this.view.choiceKey.length > 0 ? 10 : 18, right: 14 }).backgroundColor(Color.Transparent)
-        .border({ width: 1, radius: 999, color: this.choiceBorder() })
-        .outline({ width: this.choicesOpen ? 3 : 0, radius: 999, color: $r('app.color.accent_soft') })
+        .border({ width: this.nativeDock && !this.choicesOpen ? 0 : 1, radius: 999, color: this.choiceBorder() })
+        .outline({ width: this.choicesOpen ? 3 : 0, radius: STARWARD_RADIUS_ROUND, color: $r('app.color.accent_soft') })
         .accessibilityText(this.choiceAccessibilityText()).accessibilityStateDescription(this.choicesOpen ? '已展开' : '')
         .enabled(this.view.interactionReady || this.choicesOpen).onClick(() => this.openChoices())
     }.layoutWeight(1).height(50)
@@ -131,16 +137,19 @@ export struct GameplayAnswerComposer {
   }
 
   build() {
-    Row({ space: 10 }) {
-      if (this.view.choice) {
-        this.choices()
-      } else {
-        StarwardAnswerInput({ value: this.view.answer, placeholder: this.view.placeholder,
-          editable: this.view.editable, reducedMotion: this.reducedMotion,
-          focusChanged: (focused: boolean) => this.focusChanged(focused),
-          changed: (value: string) => this.changeAnswer(value) }).layoutWeight(1)
-      }
-      this.actionButton()
+    Stack() {
+      Row({ space: 10 }) {
+        if (this.view.choice) {
+          this.choices()
+        } else {
+          StarwardAnswerInput({ value: this.view.answer, placeholder: this.view.placeholder,
+            editable: this.view.editable, nativeDock: this.nativeDock, reducedMotion: this.reducedMotion,
+            focusChanged: (focused: boolean) => this.focusChanged(focused),
+            editingChanged: (editing: boolean) => this.editingChanged(editing),
+            changed: (value: string) => this.changeAnswer(value) }).layoutWeight(1)
+        }
+        this.actionButton()
+      }.width('100%').transition(starwardPageReveal(this.reducedMotion || !this.revealOnMount, 4))
     }.id('gameplay-answer-form').width('100%').constraintSize({ maxWidth: 680 })
       .bindPopup(this.view.choice && this.choicesOpen, this.popupOptions())
       .onAreaChange((_previous: Area, area: Area) => {

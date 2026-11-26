@@ -84,6 +84,12 @@ export class GameplayAnswerBurst {
   }
 }
 
+export interface GameplayAnswerJudgment {
+  readonly levelId: string;
+  readonly correct: boolean;
+  readonly message: string;
+}
+
 /** Server-owned gameplay facts; page lifetime and account lifetime are separate. */
 @ObservedV2
 export class GameplayViewModel {
@@ -112,6 +118,7 @@ export class GameplayViewModel {
   completionClues: GameplayClue[] = [];
   @Trace automaticClue: GameplayClue | null = null;
   @Trace answerBurst: GameplayAnswerBurst | null = null;
+  @Trace answerJudgment: GameplayAnswerJudgment | null = null;
   @Trace rankUp: GameplayRankUp | null = null;
   @Trace advancing: boolean = false;
   @Trace now: number = Date.now();
@@ -129,6 +136,7 @@ export class GameplayViewModel {
   private intents: EntryIntent[] = [];
   private answers: AnswerIntent[] = [];
   private drafts: AnswerDraft[] = [];
+  private readonly clearedAnswerHistory: Map<string, string> = new Map();
   private serverOffset: number = 0;
   private advanceTimer: number = -1;
   private burstDismissTimer: number = -1;
@@ -173,6 +181,7 @@ export class GameplayViewModel {
     this.owner = '';
     this.intents = [];
     this.answers = [];
+    this.clearedAnswerHistory.clear();
     this.leave();
   }
 
@@ -201,6 +210,7 @@ export class GameplayViewModel {
     this.answerError = '';
     this.feedback = '';
     this.feedbackDanger = false;
+    this.answerJudgment = null;
     this.completionRevision = 0;
     this.completionClues = [];
     this.drafts = [];
@@ -280,6 +290,7 @@ export class GameplayViewModel {
     this.answerError = '';
     this.feedback = '';
     this.feedbackDanger = false;
+    this.answerJudgment = null;
     this.completionRevision = 0;
     this.completionClues = [];
   }
@@ -515,7 +526,18 @@ export class GameplayViewModel {
     const level: GameplayLevel | null = this.currentLevel();
     const draft: AnswerDraft | undefined = this.drafts.find((item: AnswerDraft) => item.levelId === level?.id);
     this.draftAnswer = unresolved !== undefined ? unresolved.answer : level !== null && level.completedAt.length > 0 ?
-      level.lastAnswer : draft !== undefined ? draft.answer : level?.lastAnswer || '';
+      level.lastAnswer : draft?.answer ?? this.answerHistorySuggestion(level);
+  }
+
+  private answerHistoryKey(levelId: string): string {
+    return `${this.assignmentId}:${levelId}`;
+  }
+
+  private answerHistorySuggestion(level: GameplayLevel | null): string {
+    if (level === null || this.clearedAnswerHistory.get(this.answerHistoryKey(level.id)) === level.lastAnswer) {
+      return '';
+    }
+    return level.lastAnswer;
   }
 
   blockedReason(): string {
@@ -570,6 +592,9 @@ export class GameplayViewModel {
       return;
     }
     this.draftAnswer = value;
+    if (value.length === 0 && level.lastAnswer.length > 0) {
+      this.clearedAnswerHistory.set(this.answerHistoryKey(level.id), level.lastAnswer);
+    }
     const existing: AnswerDraft | undefined = this.drafts.find((item: AnswerDraft) => item.levelId === level.id);
     if (existing !== undefined) {
       existing.answer = value;
@@ -606,6 +631,7 @@ export class GameplayViewModel {
     this.restoreForm(index);
     this.answerError = '';
     this.feedback = '';
+    this.answerJudgment = null;
   }
 
   nextQuestion(): void {
@@ -705,6 +731,7 @@ export class GameplayViewModel {
     this.setAssignmentSyncFailed(false);
     this.answerError = '';
     this.feedback = '';
+    this.answerJudgment = null;
     this.completionRevision = 0;
     this.completionClues = [];
     try {
@@ -974,6 +1001,7 @@ export class GameplayViewModel {
     this.retryAnswer = true;
     this.answerError = '';
     this.feedback = '';
+    this.answerJudgment = null;
     try {
       const result: GameplayAnswerResult = await this.repository.answerAssignment(id,
         intent.sessionLevelId, intent.answer, intent.requestId);
@@ -991,6 +1019,7 @@ export class GameplayViewModel {
         return;
       }
       this.answers = this.answers.filter((item: AnswerIntent) => item !== intent);
+      this.clearedAnswerHistory.delete(this.answerHistoryKey(intent.sessionLevelId));
       this.restoreForm(submittedIndex);
       const settled: GameplayLevel | undefined = result.assignment.levels.find((level: GameplayLevel) =>
         level.id === intent.sessionLevelId);
@@ -998,8 +1027,8 @@ export class GameplayViewModel {
       if (result.assignment.detail.status === 'cancelled') {
         this.feedback = '本场冒险已取消，进度已同步。';
       } else if (result.result === 'incorrect') {
-        this.feedback = settled?.locked ? '回答错误，当前题目已永久锁定。请联系游戏管理员处理。' :
-          (settled?.cooldownUntil || '').length > 0 ? '回答错误，已进入惩罚时间。' : '答案不正确，可以继续尝试。';
+        this.feedback = settled?.locked ? '当前题目已永久锁定。请联系游戏管理员处理。' :
+          (settled?.cooldownUntil || '').length > 0 ? '惩罚倒计时结束后可以再次作答。' : '可以继续尝试。';
       } else if (result.result === 'correct') {
         const completed: boolean = result.assignment.detail.status === 'completed';
         const newCompletion: boolean = completed && previous?.detail.status !== 'completed';
@@ -1036,7 +1065,13 @@ export class GameplayViewModel {
         }
       }
       if (this.feedback.length > 0) {
-        this.announceFeedback(result.result === 'incorrect' && result.assignment.detail.status !== 'cancelled');
+        if (result.assignment.detail.status !== 'cancelled' &&
+          (result.result === 'correct' || result.result === 'incorrect')) {
+          this.answerJudgment = {
+            levelId: intent.sessionLevelId, correct: result.result === 'correct', message: this.feedback
+          };
+        }
+        this.announceFeedback(false);
       }
     } catch (error) {
       if (this.current(epoch, revision, id)) {

@@ -1,6 +1,7 @@
 import { Binding, uiMaterial, UIUtils } from '@kit.ArkUI';
 import { STARWARD_SESSION_TITLE_HEIGHT } from '../ui/StarwardGlassHeader';
 import { StarwardMaterial } from '../ui/StarwardMaterial';
+import { STARWARD_RADIUS_PANEL } from '../ui/StarwardRadii';
 
 export const GAMEPLAY_TITLE_MIN_TOP: number = 14;
 export const GAMEPLAY_TITLE_SIDE_GUTTER: number = 14;
@@ -27,7 +28,7 @@ export interface GameplayProgressItem {
 /** Shared native material for the visible gameplay surfaces. */
 @ComponentV2
 export struct GameplaySurface {
-  @Param radius: number = 24;
+  @Param radius: number = STARWARD_RADIUS_PANEL;
   @Param lightweight: boolean = false;
   @Param interactive: boolean = true;
   @Param reducedMotion: boolean = true;

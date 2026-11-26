@@ -1,4 +1,5 @@
 import { PromptAction } from '@kit.ArkUI';
+import { STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from '../ui/StarwardRadii';
 import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
 
 /** One personal journey scope with independent native notification consent. */
@@ -67,7 +68,7 @@ export struct StarwardPushSubscriptions {
           .onClick(() => this.model.dismissConfirmation())
       }.width('100%')
     }.width('100%').padding(24).backgroundColor($r('app.color.raised'))
-      .border({ width: 1, color: $r('app.color.border'), radius: 22 }).borderRadius(22)
+      .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
   }
 
   private async openConfirmation(): Promise<void> {
@@ -79,7 +80,7 @@ export struct StarwardPushSubscriptions {
       const action: PromptAction = this.getUIContext().getPromptAction();
       const nativeId: number = await action.openCustomDialog({
         builder: () => { this.confirmation(); },
-        alignment: DialogAlignment.Center, width: Math.min(400, this.panelWidth), cornerRadius: 22,
+        alignment: DialogAlignment.Center, width: Math.min(400, this.panelWidth), cornerRadius: STARWARD_RADIUS_PANEL,
         backgroundColor: $r('app.color.raised'), maskColor: $r('app.color.modal_mask'),
         isModal: true, autoCancel: true, showInSubWindow: false,
         onWillDismiss: (event: DismissDialogAction) => {
@@ -123,7 +124,7 @@ export struct StarwardPushSubscriptions {
           Button('订阅', { type: ButtonType.Normal })
             .id('push-journey-subscribe')
             .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
-            .constraintSize({ minHeight: 44, minWidth: 62 }).borderRadius(10)
+            .constraintSize({ minHeight: 44, minWidth: 62 }).borderRadius(STARWARD_RADIUS_ROUND)
             .enabled(!this.model.pending && !this.model.busy && !this.model.saving &&
               !this.model.needsSync && this.model.error.length === 0)
             .onClick(() => { void this.model.subscribe(); })
@@ -167,7 +168,7 @@ export struct StarwardPushSubscriptions {
               .fontColor($r('app.color.muted'))
             Button('重新读取', { type: ButtonType.Normal }).id('push-subscriptions-retry')
               .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
-              .constraintSize({ minHeight: 44 }).enabled(!this.model.busy)
+              .constraintSize({ minHeight: 44 }).borderRadius(STARWARD_RADIUS_ROUND).enabled(!this.model.busy)
               .onClick(() => { void this.model.refresh(); })
           }.width('100%').alignItems(HorizontalAlign.Start).padding(14)
         }
@@ -178,12 +179,13 @@ export struct StarwardPushSubscriptions {
             if (!this.model.saving && this.model.pending) {
               Button('重试确认', { type: ButtonType.Normal }).id('push-subscription-retry')
                 .fontSize(13).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
-                .constraintSize({ minHeight: 44 }).onClick(() => { void this.model.retry(); })
+                .constraintSize({ minHeight: 44 }).borderRadius(STARWARD_RADIUS_ROUND)
+                .onClick(() => { void this.model.retry(); })
             }
           }.width('100%').alignItems(HorizontalAlign.Start).padding(14)
         }
       }.width('100%').backgroundColor($r('app.color.surface'))
-        .border({ width: 1, color: $r('app.color.border'), radius: 14 })
+        .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_PANEL })
       if (this.permission === false && this.model.subscription?.pushEnabled) {
         Button('系统通知尚未开启，前往设置', { type: ButtonType.Normal }).id('push-subscriptions-system')
           .fontSize(12).fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)

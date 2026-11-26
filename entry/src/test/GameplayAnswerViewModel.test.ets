@@ -154,6 +154,7 @@ export default function gameplayAnswerViewModelTests(): void {
       await vm.submitAnswer();
       expect(repository.answers.length).assertEqual(0);
       expect(vm.answerError).assertEqual('请先输入或选择答案。');
+      expect(vm.answerJudgment).assertNull();
       vm.editAnswer(' 星辰大海 ');
       const pending: Promise<void> = vm.submitAnswer();
       await vm.submitAnswer();
@@ -169,6 +170,7 @@ export default function gameplayAnswerViewModelTests(): void {
       expect(repository.reads).assertEqual(1);
       repository.answers[0].succeed(answerResult('correct', choiceSnapshot()));
       await pending;
+      expect(vm.answerJudgment?.correct).assertTrue();
       vm.leave();
     });
 
@@ -184,6 +186,8 @@ export default function gameplayAnswerViewModelTests(): void {
       repository.answers[0].succeed(withRank(answerResult('incorrect', incorrect, 0)));
       await attempt;
       expect(vm.feedbackDanger).assertTrue();
+      expect(vm.answerJudgment?.correct).assertFalse();
+      expect(vm.answerJudgment?.levelId).assertEqual('step0');
       expect(vm.snapshot?.detail.completedLevels).assertEqual(0);
       expect(vm.currentLevel()?.wrongCount).assertEqual(0);
       expect(player.totalXp).assertEqual(0);
@@ -196,6 +200,31 @@ export default function gameplayAnswerViewModelTests(): void {
       repository.answers[1].succeed(withRank(answerResult('correct', choiceSnapshot())));
       await next;
       expect(vm.rankUp).assertNull();
+      vm.leave();
+    });
+
+    it('clearedHistoricalAnswerStaysEmptyAcrossReopenUntilServerHistoryChanges', 0, async () => {
+      const repository: AnswerRepository = new AnswerRepository();
+      repository.server.levels[0].lastAnswer = 'PreviousAttempt';
+      const vm: GameplayViewModel = viewModel(repository);
+      await vm.open('assignment1');
+      expect(vm.draftAnswer).assertEqual('PreviousAttempt');
+      vm.editAnswer('');
+      await vm.refresh();
+      expect(vm.draftAnswer).assertEqual('');
+      vm.leave();
+      await vm.open('assignment1');
+      expect(vm.draftAnswer).assertEqual('');
+      expect(vm.answerJudgment).assertNull();
+      vm.leave();
+      repository.server.levels[0].lastAnswer = 'NewAttempt';
+      await vm.open('assignment1');
+      expect(vm.draftAnswer).assertEqual('NewAttempt');
+      vm.editAnswer('');
+      vm.reset();
+      vm.bindOwner('playeralice');
+      await vm.open('assignment1');
+      expect(vm.draftAnswer).assertEqual('NewAttempt');
       vm.leave();
     });
 

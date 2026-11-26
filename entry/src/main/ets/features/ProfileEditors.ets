@@ -2,6 +2,7 @@ import { AvatarImage } from '../business/models';
 import { InlineError } from '../ui/ErrorMessages';
 import { LabeledInput } from '../ui/LabeledInput';
 import { StarwardPlayerAvatar } from '../ui/StarwardPlayerAvatar';
+import { STARWARD_RADIUS_CONTROL } from '../ui/StarwardRadii';
 import { SliceViewModel } from './SliceViewModel';
 
 @ComponentV2
@@ -45,7 +46,7 @@ export struct PassportProfileEditor {
         Text(this.vm.player.account).id('profile-account').layoutWeight(1).fontSize(14)
           .fontColor($r('app.color.text')).fontWeight(FontWeight.Medium).fontFeature("'tnum' 1")
           .textAlign(TextAlign.End).wordBreak(WordBreak.BREAK_WORD)
-      }.width('100%').padding(12).backgroundColor($r('app.color.accent_faint')).borderRadius(10)
+      }.width('100%').padding(12).backgroundColor($r('app.color.accent_faint')).borderRadius(STARWARD_RADIUS_CONTROL)
       InlineError({ message: this.vm.profileError, fieldId: 'profile-error' })
       if (this.vm.profileSaved) {
         Text('资料已保存。新的名片，新的出发。').id('profile-saved').fontSize(13).lineHeight('22fp')

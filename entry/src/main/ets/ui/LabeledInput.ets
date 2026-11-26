@@ -1,3 +1,5 @@
+import { STARWARD_RADIUS_CONTROL } from './StarwardRadii';
+
 @ComponentV2
 export struct LabeledInput {
   @Param label: string = '';
@@ -28,7 +30,7 @@ export struct LabeledInput {
         .placeholderColor($r('app.color.subtle'))
         .backgroundColor($r('app.color.input'))
         .padding({ left: 12, right: 12 })
-        .border({ width: 1, color: $r('app.color.border_strong'), radius: 10 })
+        .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_CONTROL })
         .onChange((value: string) => {
           if (value !== this.value) {
             this.changed(value);

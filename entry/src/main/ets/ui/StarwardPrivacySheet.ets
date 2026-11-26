@@ -1,4 +1,6 @@
+import { LengthMetrics } from '@kit.ArkUI';
 import { InlineError } from './ErrorMessages';
+import { STARWARD_RADIUS_PANEL, STARWARD_RADIUS_ROUND } from './StarwardRadii';
 
 /** This drawer introduces the hosted agreement; the platform owns consent. */
 @ComponentV2
@@ -31,12 +33,12 @@ export struct StarwardPrivacySheet {
         InlineError({ message: this.error, fieldId: 'privacy-gate-error' })
         Row({ space: 12 }) {
           Button('隐私政策', { type: ButtonType.Normal }).id('privacy-gate-policy')
-            .constraintSize({ minHeight: 48 }).layoutWeight(4).borderRadius(10)
+            .constraintSize({ minHeight: 48 }).layoutWeight(4).borderRadius(STARWARD_RADIUS_ROUND)
             .padding({ left: 8, right: 8, top: 8, bottom: 8 }).fontSize(14).fontWeight(FontWeight.Medium)
             .fontColor($r('app.color.accent_text')).backgroundColor($r('app.color.accent_faint'))
             .enabled(!this.busy).onClick(() => this.openPolicy())
           Button(this.busy ? '正在打开…' : '继续', { type: ButtonType.Normal }).id('privacy-continue')
-            .constraintSize({ minHeight: 48 }).layoutWeight(5).borderRadius(10)
+            .constraintSize({ minHeight: 48 }).layoutWeight(5).borderRadius(STARWARD_RADIUS_ROUND)
             .padding({ left: 8, right: 8, top: 8, bottom: 8 }).fontSize(15).fontWeight(FontWeight.Medium)
             .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
             .enabled(!this.busy).onClick(() => this.continueConsent())
@@ -53,7 +55,7 @@ export struct StarwardPrivacySheet {
     }.width('100%').height('100%').bindSheet(this.visible, this.body, {
       height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: false, showClose: false,
       backgroundColor: $r('app.color.surface'), maskColor: $r('app.color.modal_mask'),
-      enableOutsideInteractive: false,
+      radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL), enableOutsideInteractive: false,
       onWillDismiss: (action: DismissSheetAction): void => {
         // A mask tap, swipe, or Back cannot bypass the agreement. The owner closes it after verification.
         if (!this.visible) { action.dismiss(); }

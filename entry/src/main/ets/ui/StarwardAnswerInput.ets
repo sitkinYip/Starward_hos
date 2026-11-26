@@ -52,14 +52,23 @@ export struct StarwardAnswerInput {
   @Require @Param value: string;
   @Require @Param placeholder: string;
   @Require @Param editable: boolean;
+  @Param nativeDock: boolean = false;
   @Param reducedMotion: boolean = true;
   @Event changed: (value: string) => void = () => {};
   @Event focusChanged: (focused: boolean) => void = () => {};
+  @Event editingChanged: (editing: boolean) => void = () => {};
   @Local private focused: boolean = false;
   @Local private editing: boolean = false;
 
   aboutToDisappear(): void {
+    this.updateEditing(false);
     this.updateFocus(false);
+  }
+
+  private updateEditing(editing: boolean): void {
+    if (this.editing === editing) { return; }
+    this.editing = editing;
+    this.editingChanged(editing && this.editable);
   }
 
   private updateFocus(focused: boolean): void {
@@ -82,7 +91,9 @@ export struct StarwardAnswerInput {
 
   build() {
     Stack() {
-      StarwardAnswerCapsuleMaterial({ editing: this.editable && this.editing })
+      if (!this.nativeDock || (this.editable && this.editing)) {
+        StarwardAnswerCapsuleMaterial({ editing: this.editable && this.editing })
+      }
       TextInput({ text: this.value, placeholder: this.placeholder })
         .id('gameplay-answer-input')
         .accessibilityText('答案')
@@ -100,18 +111,18 @@ export struct StarwardAnswerInput {
         .placeholderColor($r('app.color.muted'))
         .caretColor($r('app.color.accent'))
         .backgroundColor(Color.Transparent)
-        .border({ width: 1, radius: 999, color: this.answerLineColor() })
+        .border({ width: this.nativeDock && !this.showsFocus() ? 0 : 1, radius: 999, color: this.answerLineColor() })
         .outline({ width: this.showsFocus() ? 3 : 0, radius: 999, color: $r('app.color.accent_soft') })
         .animation({ duration: this.reducedMotion ? 0 : 320, curve: curves.cubicBezierCurve(0.22, 0.78, 0.18, 1) })
         .enabled(this.editable)
         .onFocus(() => this.updateFocus(true))
         .onBlur(() => {
-          this.editing = false;
+          this.updateEditing(false);
           this.updateFocus(false);
         })
-        .onEditChange((editing: boolean) => { this.editing = editing; })
+        .onEditChange((editing: boolean) => this.updateEditing(editing))
         .onChange((value: string) => {
-          if (this.editable && value !== this.value) {
+          if (this.editable) {
             this.changed(value);
           }
         })

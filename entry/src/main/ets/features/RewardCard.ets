@@ -3,6 +3,7 @@ import { GameReward, RewardStatus } from '../business/GameReward';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
 import { starwardListReveal } from '../ui/StarwardMotion';
+import { STARWARD_RADIUS_CONTROL, STARWARD_RADIUS_PANEL } from '../ui/StarwardRadii';
 import { RewardsViewModel } from './RewardsViewModel';
 
 function rewardStatus(status: RewardStatus): string {
@@ -114,7 +115,7 @@ struct RewardThumbnail {
         Image($r('app.media.icon_sparkle')).width(44).height(44).objectFit(ImageFit.Contain)
           .fillColor(this.pending ? $r('app.color.reward') : $r('app.color.accent_text')).accessibilityLevel('no')
       }
-    }.width('100%').height(92).borderRadius(16).clip(true)
+    }.width('100%').height(92).borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
       .backgroundColor(this.pending ? $r('app.color.reward_soft') : $r('app.color.accent_soft'))
       .onVisibleAreaChange([0], (_expanded: boolean, ratio: number) => {
         const entered: boolean = ratio > 0 && !this.inView;
@@ -178,8 +179,9 @@ export struct RewardCard {
           .onClick(() => { if (this.active) { this.model.open(this.rewardId); } })
       }.id('reward-card-' + this.rewardId).width('100%').backgroundColor($r('app.color.glass_card_top'))
         .background(this.sweep(), { align: Alignment.TopStart })
-        .border({ width: 1, radius: 24, color: this.pending ? $r('app.color.reward_border') : $r('app.color.border') })
-        .borderRadius(24).clip(true)
+        .border({ width: 1,
+          radius: STARWARD_RADIUS_PANEL, color: this.pending ? $r('app.color.reward_border') : $r('app.color.border') })
+        .clip(true)
         .shadow({ radius: this.pending ? 14 : 8, offsetY: 5,
           color: this.pending ? $r('app.color.reward_glow') : $r('app.color.shadow') })
         .opacity(this.reducedMotion || this.revealed ? 1 : 0)

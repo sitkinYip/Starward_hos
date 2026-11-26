@@ -141,6 +141,25 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - 答题在透明 `NavDestination.title` 中绘制返回与场次名胶囊，材质为 `THICK`，背景延续原有页面与状态栏过渡。浅色真机同题取胶囊外和状态栏 8 个点，与原页面最大通道差 1。上下滚动显隐时答题视口尺寸一致，真实 IME 期间标题常显，点返回到启程。选择浮层打开和 Back 返回在最终包通过。用私有 `native-glass-hosts-20261126/gameplay-title-probe.py` 复现。正确星芒期间标题按实际遮挡状态隐藏，该状态及深色标题本轮未单独实测。 [答题真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-glass-hosts-20261126/gameplay-title.json)
 - 调试包 `511a058014d194781bcece607fddf9f0fabc48d9d9224afc7060464df3b50a33` 完成 `scripts/hm.sh build`、HAP 和签名 profile 双验签，以及 `scripts/hm.sh run --skip-build` 安装启动。`scripts/hm.sh test` 通过 323 项。`scripts/hm.sh lint` 无错误或警告，保留一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/native-glass-hosts-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/native-glass-hosts-20261126/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/native-glass-hosts-20261126/source/lint.json)
 
+## 2026-11-26 正式作答栏浮动页签
+
+- 用户批准在已推送的 `a00fc45` 上接入。单内容页 HdsTabs 承载答题视口和原生浮动底板，现有题目 Swiper 管理切题。50vp 输入和主操作位于 58vp 原生栏内，启用原生背景折射时只使用一层底板。编辑时切到透明栏，保留原生输入实例及局部 18vp 高斯模糊。设备不支持沉浸材质时采用已有作答容器。 [HdsTabs 原生材质](https://developer.huawei.com/consumer/cn/doc/doccenter-references/api/ui-design-hdstabs/)
+- 隔离真机运行私有 `native-answer-dock-20261126/probe.py --hap <签名包> --label final`。`0f6b5a9b…` 隔离预览通过只读填空、下一题主操作、原生选项及四个禁用 Radio、点击外侧与系统返回、真实 IME、草稿及双向横滑。三个状态的作答栏上下边缘均与推送版相差 1px，编辑态恢复原先宽度。 [完整真机行为](../artifacts/validation/aurora-glass-v2-20261125/native-answer-dock-20261126/device.json)
+- 最终包 `223263aee30331b1baf1fed3844de80838dc1eda1c5a6195f6bc03a5b872cce6` 额外关掉编辑态的系统分隔线，完成构建、双验签和安装启动。`scripts/hm.sh test` 323 项通过，lint 零错误、零警告与一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/native-answer-dock-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/native-answer-dock-20261126/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/native-answer-dock-20261126/source/lint.json)
+- 最终包用私有 `ime_quick.py` 和 `scroll_check.py` 在同一隔离预览复验。真实 IME 收起后，浮动栏和内容视口恢复原坐标。输入框外三个采样点与已批准编辑态的最大 RGB 通道差为 1。上下滚动时题面移动、标题隐显，作答栏与视口位置固定，随后通过进度星点切题。本轮使用浅色主题及触控，未单独测试深色、无材质设备、无作答内容状态、读屏和外接键盘。 [最终包真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-answer-dock-20261126/final-package-device.json)
+
+## 2026-11-26 全屏判题反馈与圆角
+
+- 最终包复用答对星芒的全屏蒙层和位置。答错暖玫瑰色双环、提示图标与进度条直叠玻璃。一次性真机 HTTPS 选择题验证关闭后的原题、有效答题回执以及 503 的胶囊重试恢复。两帧进度线实心段从 245px 缩到 69px，之后自动关闭。另用早期包验证草稿清空重进、各类关闭和正确 EXP 回执。保留两个签名包的独立行为记录。 [全屏反馈](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/countdown-device.json) · [草稿与回执](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/isolated-device.json)
+- `AnswerHaptics` 使用 API 26 SensorServiceKit。按有效回执选择成功、失败预设，不支持指定预设时各用一次不同时长的触摸反馈。两版 HAP 含 `ohos.permission.VIBRATE`。实际马达振感、系统触感关闭后的行为、减少动画和深色外观均未单独实测。 [华为振动接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-vibrator/)
+- 固定预览及一次性隔离包通过 SDK HAP 与 profile 验签，编译产物及模块清单逐字节一致。最终包已通过官方 `scripts/hm.sh run --skip-build` 装机并恢复到固定预览首页。 `scripts/hm.sh test` 通过 324 项，lint 零错误与警告，有一条既有建议。一次性测试环境已停止。 [验签](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/lint.json)
+
+## 2026-11-26 答题触感与作答栏切题过渡
+
+- `ohos.permission.VIBRATE` 为已声明的系统授权，权限校验拒绝使用 `201`。应用按 `physicalFeedback` 调用，受系统触感反馈开关控制。本机该开关原为关闭，预设及短振回退返回 `14600101`。临时启用后，两种预设都成功，随后恢复原系统状态。另核对应用开关默认开启、关闭值跨冷启动保留，以及应用内入口打开官方声音和振动页面。 [权限清单](https://developer.huawei.com/consumer/cn/doc/HarmonyOS-Guides/permissions-for-all/) · [振动场景和权限错误](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-vibrator/) · [设备操作错误](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/errorcode-vibrator/) · [系统开关复原](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/system-switch.json)
+- 最终隔离包验证已答填空与待答选择双向横滑、恢复已选项、相同的浮动底板边界和选择浮层命中。包含多次自动化输入的第一轮收到 3 个有效回执，超出原计划的 2 个，保留原报告并拆分补验。最终同包单次选择题点击产生 1 个新回执和 1 次成功下发的失败振动，短滑取消无额外回执。只记录系统接受调用，未人工判断触感强弱或逐帧量测动画。 [双向滑动与预设回执](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/device-final.json) · [单击与系统设置入口](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/device-link-and-motion.json)
+- 固定预览包和隔离包均完成 SDK 双验签，编译代码和模块清单一致。已安装固定预览包并停止一次性隔离环境。本地测试 324 项通过，lint 无错误和警告，保留一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/local-test-summary.json)
+
 ## 官方本机输入
 
 - IDE：`/Applications/DevEco-Studio.app/Contents`。

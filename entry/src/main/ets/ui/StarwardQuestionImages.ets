@@ -2,6 +2,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
+import { STARWARD_RADIUS_CONTROL } from './StarwardRadii';
 
 /** One mounted image holds a display reference and owns its pending load. */
 @ComponentV2
@@ -119,7 +120,7 @@ struct QuestionImageCell {
               .width(this.frameWidth() - 2).height(this.frameHeight() - 2).objectFit(ImageFit.Contain)
               .draggable(false).accessibilityText(this.imageLabel)
           }.id(this.imageId + '-frame').width(this.frameWidth()).height(this.frameHeight())
-            .border({ width: 1, color: $r('app.color.border_strong') })
+            .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_CONTROL }).clip(true)
         }.id(this.imageId + '-open').padding(0).borderRadius(0).backgroundColor(Color.Transparent)
           .width(Math.max(44, this.frameWidth())).height(Math.max(44, this.frameHeight()))
           .accessibilityText(`打开${this.imageLabel}`).onClick(() => {
