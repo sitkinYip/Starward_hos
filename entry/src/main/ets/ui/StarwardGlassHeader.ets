@@ -4,35 +4,30 @@ import { StarwardMaterial } from './StarwardMaterial';
 export const STARWARD_SESSION_TITLE_HEIGHT: number = 52;
 export const STARWARD_HEADER_CAPSULE_RADIUS: number = 999;
 
-/** A native header row can own its glass or sit inside an existing title surface. */
+/** Shared glass capsule for a session title. */
 @ComponentV2
-export struct StarwardGlassHeader {
-  @Param insideTitleSurface: boolean = false;
+struct StarwardGlassHeader {
+  @Param inNavigationTitle: boolean = false;
   @Param reducedMotion: boolean = true;
-  @Param nodeId: string = '';
   @BuilderParam content: () => void;
   @Local private material: uiMaterial.ImmersiveMaterial | undefined = undefined;
 
   aboutToAppear(): void { this.updateMaterial(); }
 
-  @Monitor('insideTitleSurface', 'reducedMotion')
+  @Monitor('inNavigationTitle', 'reducedMotion')
   private updateMaterial(): void {
-    this.material = this.insideTitleSurface ? undefined : StarwardMaterial.create(uiMaterial.ImmersiveStyle.THIN,
-      !this.reducedMotion, $r('app.color.accent'));
+    this.material = this.inNavigationTitle ? StarwardMaterial.titleCapsule(!this.reducedMotion) :
+      StarwardMaterial.create(uiMaterial.ImmersiveStyle.THIN, !this.reducedMotion, $r('app.color.accent'));
   }
 
   build() {
-    if (this.insideTitleSurface) {
-      Row({ space: 12 }) { this.content() }.id(this.nodeId).width('100%')
-    } else {
-      Column() {
-        Row({ space: 8 }) { this.content() }.width('100%').height(STARWARD_SESSION_TITLE_HEIGHT)
-          .padding({ left: 10, right: 10 })
-      }.id(this.nodeId).width('100%')
-        .backgroundColor(this.material ? Color.Transparent : $r('app.color.raised'))
-        .systemMaterial(this.material)
-        .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
-    }
+    Column() {
+      Row({ space: 8 }) { this.content() }.width('100%').height(STARWARD_SESSION_TITLE_HEIGHT)
+        .padding({ left: 10, right: 10 })
+    }.width('100%')
+      .backgroundColor(this.material ? Color.Transparent : $r('app.color.raised'))
+      .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
+      .systemMaterial(this.material)
   }
 }
 
@@ -40,6 +35,7 @@ export struct StarwardGlassHeader {
 @ComponentV2
 export struct StarwardSessionTitle {
   @Require @Param title: string;
+  @Param inNavigationTitle: boolean = false;
   @Param backId: string = '';
   @Param titleId: string = '';
   @Param backLabel: string = '返回';
@@ -47,7 +43,8 @@ export struct StarwardSessionTitle {
   @Event back: () => void = () => {};
 
   build() {
-    StarwardGlassHeader({ reducedMotion: this.reducedMotion, content: () => { this.sessionControls() } })
+    StarwardGlassHeader({ inNavigationTitle: this.inNavigationTitle, reducedMotion: this.reducedMotion,
+      content: () => { this.sessionControls() } })
   }
 
   @Builder

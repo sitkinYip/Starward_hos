@@ -14,7 +14,7 @@ import { AssignmentAtmosphereState } from './AssignmentAtmosphereState';
 import { QuestNarrativeAttentionPreference } from '../platform/QuestNarrativeAttentionPreference';
 import { GameplayAnswerBurst, GameplayRankUp, GameplayViewModel } from './GameplayViewModel';
 import { GAMEPLAY_COMPOSER_MIN_HEIGHT, GAMEPLAY_COMPOSER_SIDE_GUTTER, GAMEPLAY_MAX_CONTENT_WIDTH,
-  GAMEPLAY_TITLE_CLEARANCE, GAMEPLAY_TITLE_MIN_TOP, GAMEPLAY_TITLE_SIDE_GUTTER, GameplayFloatingTitle,
+  GAMEPLAY_TITLE_CLEARANCE, GAMEPLAY_TITLE_MIN_TOP,
   GameplayProgress, GameplayProgressItem, GameplayQuestionHeading, GameplaySurface } from './GameplayChrome';
 import { GameplayAnswerComposer, GameplayComposerAction, GameplayComposerView } from './GameplayAnswerComposer';
 import { GameplayHintSheet } from './GameplayQuestionOverlays';
@@ -137,6 +137,7 @@ export struct GameplayPage {
   @Consumer('starwardModalBackdrop') private modalBackdrop: StarwardModalBackdropState =
     new StarwardModalBackdropState();
   @Event journeyBackHandlerChanged: (handler: (() => boolean) | null) => void = () => {};
+  @Event titleVisibilityChanged: (hidden: boolean, covered: boolean) => void = () => {};
   @Event profilePollingChanged: (active: boolean) => void = () => {};
   @Require @Param play: GameplayViewModel;
   @Require @Param journey: JourneyNotificationsViewModel;
@@ -271,6 +272,7 @@ export struct GameplayPage {
     this.recoveryChanged();
     this.loadNarrativeAttention();
     this.journeyBackHandlerChanged(() => this.handleBack());
+    this.publishTitleVisibility();
     this.trackQuestionPosition();
     AppLifecycle.subscribe(this.clueLifecycle);
     this.play.setPollingActive(this.foreground && !this.narrativeCovered);
@@ -446,6 +448,16 @@ export struct GameplayPage {
   private revealTitle(): void {
     this.titleHidden = false;
     this.scrollMomentum = 0;
+  }
+
+  @Computed
+  private get titleCovered(): boolean {
+    return this.visibleAnswerBurst() !== null;
+  }
+
+  @Monitor('titleHidden', 'titleCovered')
+  private publishTitleVisibility(): void {
+    this.titleVisibilityChanged(this.titleHidden, this.titleCovered);
   }
 
   private syncTitle(): void {
@@ -2300,16 +2312,6 @@ export struct GameplayPage {
         }.width('100%').height('100%').justifyContent(FlexAlign.End).alignItems(HorizontalAlign.Center)
           .padding({ bottom: this.composerInset(), left: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.leftInset),
             right: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.rightInset) }).hitTestBehavior(HitTestMode.None)
-      }
-      if (this.titlePresent()) {
-        Column() {
-          GameplayFloatingTitle({ title: this.play.snapshot?.detail.title ?? '', hidden: this.titleHidden,
-            reducedMotion: this.reducedMotion, back: () => { if (!this.handleBack()) { this.leave(); } } })
-            .constraintSize({ maxWidth: GAMEPLAY_MAX_CONTENT_WIDTH })
-        }.width('100%').alignItems(HorizontalAlign.Center)
-          .padding({ top: this.titleTopInset(), left: Math.max(GAMEPLAY_TITLE_SIDE_GUTTER, this.leftInset),
-            right: Math.max(GAMEPLAY_TITLE_SIDE_GUTTER, this.rightInset) })
-          .hitTestBehavior(HitTestMode.None)
       }
     }.width('100%').height(LayoutPolicy.matchParent).alignContent(Alignment.Top)
       .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])

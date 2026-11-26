@@ -44,7 +44,7 @@ import { StarwardMaterial, StarwardTitleSurface } from '../ui/StarwardMaterial';
 import { StarwardBottomTabs, StarwardJourneyTabs, StarwardSyncNote } from '../ui/StarwardTabs';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardAccountSheet } from '../ui/StarwardAccountSheet';
-import { StarwardLobbyHeader } from '../ui/StarwardLobbyHeader';
+import { STARWARD_LOBBY_TITLE_HEIGHT, StarwardLobbyHeader } from '../ui/StarwardLobbyHeader';
 import { STARWARD_SESSION_TITLE_HEIGHT, StarwardSessionTitle } from '../ui/StarwardGlassHeader';
 import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
@@ -199,6 +199,8 @@ struct Index {
   @Local private navigationDepth: number = 0;
   @Local private lobbyRouteTransitioning: boolean = false;
   @Local private gameplayDestinationShown: boolean = false;
+  @Local private gameplayTitleHidden: boolean = false;
+  @Local private gameplayTitleCovered: boolean = false;
   @Local private briefViewportWidth: number = 0;
   @Local private briefViewportHeight: number = 0;
   @Local private briefViewportTop: number = 0;
@@ -214,6 +216,7 @@ struct Index {
   private gameplayJourneyBack: (() => boolean) | null = null;
   private briefJourneyBack: (() => boolean) | null = null;
   private paths: NavPathStack = new NavPathStack();
+  private readonly lobbyTitlePaths: NavPathStack = new NavPathStack();
   private assignmentDestinationRevision: number = 0;
   private timer: number = -1;
   private privacyOwnerActive: boolean = false;
@@ -913,6 +916,8 @@ struct Index {
     this.atmosphere.release();
     this.vm.stopBriefingSync();
     this.gameplayDestinationShown = false;
+    this.gameplayTitleHidden = false;
+    this.gameplayTitleCovered = false;
     this.selectedId = id;
     this.vm.journey.setPolling(false);
     this.vm.journey.clearRouteArchive();
@@ -1301,22 +1306,30 @@ struct Index {
 
   @Builder
   journeys() {
-    Column() {
-      StarwardLobbyHeader({ player: this.vm.player, avatar: this.vm.avatarImage, reducedMotion: this.motion.reduced,
-        selected: this.mainIndex === 0, viewportWidth: this.windowSize.width,
-        topInset: this.safeTop(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
-        openPassport: () => {
-          if (this.vm.gate === 'home' && this.mainIndex === 0 && this.paths.size() === 0) { this.selectMain(3); }
-        }, decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar)
-      })
+    Navigation(this.lobbyTitlePaths) {
       Column() {
         StarwardPageHeading({ title: '启程', nodeId: 'journey-heading' }).margin({ bottom: 14 })
         StarwardJourneyTabs({ selectedCategory: this.history ? 1 : 0, reducedMotion: this.motion.reduced,
           categoryChanged: (index: number) => { this.history = index === 1; },
           currentJourneys: () => { this.currentJourneys() }, pastJourneys: () => { this.pastJourneys() }
         }).layoutWeight(1)
-      }.width('100%').layoutWeight(1).padding({ left: 18, right: 18, top: 16 })
-    }.width('100%').height('100%')
+      }.width('100%').height('100%')
+        .padding({ left: 18, right: 18, top: 16 + STARWARD_LOBBY_TITLE_HEIGHT + this.safeTop() })
+    }.mode(NavigationMode.Stack).hideBackButton(true)
+      .title({ builder: this.lobbyTitle, height: STARWARD_LOBBY_TITLE_HEIGHT + this.safeTop() },
+        StarwardMaterial.overlayTitleOptions())
+      .width('100%').height('100%').backgroundColor(Color.Transparent)
+  }
+
+  @Builder
+  lobbyTitle() {
+    StarwardLobbyHeader({ player: this.vm.player, avatar: this.vm.avatarImage, reducedMotion: this.motion.reduced,
+      selected: this.mainIndex === 0, viewportWidth: this.windowSize.width,
+      topInset: this.safeTop(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
+      openPassport: () => {
+        if (this.vm.gate === 'home' && this.mainIndex === 0 && this.paths.size() === 0) { this.selectMain(3); }
+      }, decodeFailed: (avatar: AvatarImage) => this.vm.reportAvatarDecodeFailure(avatar)
+    })
   }
 
   @Builder
@@ -1568,6 +1581,24 @@ struct Index {
       this.vm.detail.id.length === 0 && this.vm.detailError.length === 0;
   }
 
+  private gameplayTitleText(): string {
+    return this.vm.play.visible && this.vm.play.error.length === 0 ? this.vm.play.snapshot?.detail.title ?? '' : '';
+  }
+
+  private gameplayTitleTop(): number { return Math.max(GAMEPLAY_TITLE_MIN_TOP, this.safeTop()); }
+
+  @Builder
+  private gameplayTitle() {
+    Column() {
+      StarwardSessionTitle({ title: this.gameplayTitleText(), backId: 'gameplay-title-back',
+        titleId: 'gameplay-session-title', inNavigationTitle: true, reducedMotion: this.motion.reduced, back: () => {
+          if (!this.handleAssignmentJourneyBack()) { this.leaveGameplay(); }
+        } }).constraintSize({ maxWidth: GAMEPLAY_MAX_CONTENT_WIDTH })
+    }.id('gameplay-floating-title').width('100%').alignItems(HorizontalAlign.Center)
+      .padding({ top: this.gameplayTitleTop(), left: Math.max(GAMEPLAY_TITLE_SIDE_GUTTER, this.safeLeft()),
+        right: Math.max(GAMEPLAY_TITLE_SIDE_GUTTER, this.safeRight()) })
+  }
+
   @Builder
   destination(name: string, param: Object) {
     if (name === 'assignment') {
@@ -1594,6 +1625,12 @@ struct Index {
                 !this.vm.securityUnconfirmed,
               openJourneyLink: (href: string) => this.openJourneyLink(href),
               journeyBackHandlerChanged: (handler: (() => boolean) | null) => { this.gameplayJourneyBack = handler; },
+              titleVisibilityChanged: (hidden: boolean, covered: boolean) => {
+                if (param === this.assignmentDestinationRevision) {
+                  this.gameplayTitleHidden = hidden;
+                  this.gameplayTitleCovered = covered;
+                }
+              },
               profilePollingChanged: (active: boolean) => { this.vm.setGameplayPlayerPolling(active); },
               openNarrative: (assignmentId: string, contentId: string) => this.openFinaleNarrative(assignmentId, contentId),
               openNarrativeClue: (assignmentId: string, clueId: string, contentId: string) =>
@@ -1605,7 +1642,10 @@ struct Index {
           }
         }.width('100%').height('100%')
       }.systemTransition(this.motion.reduced ? NavigationSystemTransitionType.NONE : NavigationSystemTransitionType.FADE)
-        .hideTitleBar(true)
+        .title({ builder: this.gameplayTitle, height: this.gameplayTitleTop() + STARWARD_SESSION_TITLE_HEIGHT },
+          StarwardMaterial.overlayTitleOptions())
+        .hideTitleBar(this.gameplayTitleHidden || this.gameplayTitleCovered || this.gameplayTitleText().length === 0,
+          !this.gameplayTitleCovered && !this.motion.reduced)
         .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
         .onBackPressed(() => param === this.assignmentDestinationRevision && this.handleAssignmentJourneyBack())

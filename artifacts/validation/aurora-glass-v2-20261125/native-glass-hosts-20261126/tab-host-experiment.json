@@ -1,0 +1,1364 @@
+{
+  "status": "measured",
+  "fixture": "Private same-bundle signed API 26 probe with synthetic, no-network body and draft",
+  "install": {
+    "defaultGeometry": "DevEco CLI replace and launch",
+    "explicitGeometry": "DevEco CLI replace and launch",
+    "uninstalled": false
+  },
+  "defaultGeometry": {
+    "signedHapSha256": "ddb34ee320e95386d7e3214d1890639ddb900ffd33057b13dd32d8185a3c3434",
+    "verifyApp": true,
+    "verifyProfile": true,
+    "bundleName": "com.sitkin.starward",
+    "versionCode": 1,
+    "hosts": {
+      "arkui": {
+        "checks": {
+          "actionControlExposed": true,
+          "inputExposed": true,
+          "touchFocusAndKeyboard": true,
+          "editingViewportResizes": true,
+          "draftEntered": true,
+          "nativeBackRetainsDraft": true,
+          "idleGeometryRestored": true,
+          "separateActionWorks": true,
+          "readingAreaStillInteractive": true
+        },
+        "notes": [],
+        "idle": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            422,
+            2453,
+            604,
+            2590
+          ],
+          "action": [
+            630,
+            2463,
+            838,
+            2590
+          ],
+          "dock": [
+            396,
+            2453,
+            864,
+            2590
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-arkui-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "d41090308a7a2f14ef44f1f8483089841771e6e7a4c87f2038b2f87f46bfb41d",
+          "counters": {
+            "focused": false,
+            "draftLength": 0,
+            "actionCount": 0,
+            "tabClicks": 0,
+            "bodyClicks": 0
+          }
+        },
+        "focused": {
+          "keyboard": true,
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "input": [
+            422,
+            1523,
+            604,
+            1660
+          ],
+          "counters": {
+            "focused": true,
+            "draftLength": 0,
+            "actionCount": 0,
+            "tabClicks": 1,
+            "bodyClicks": 0
+          }
+        },
+        "typing": {
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            1699
+          ],
+          "input": [
+            422,
+            1523,
+            604,
+            1660
+          ],
+          "action": [
+            630,
+            1533,
+            838,
+            1660
+          ],
+          "dock": [
+            396,
+            1523,
+            864,
+            1660
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-arkui-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "ee394af19b4d63296a5929dc94c8812c6af8e487664ebdeb56e9213669fbb2f3",
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 0,
+            "tabClicks": 1,
+            "bodyClicks": 0
+          }
+        },
+        "afterBack": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            422,
+            2453,
+            604,
+            2590
+          ],
+          "action": [
+            630,
+            2463,
+            838,
+            2590
+          ],
+          "dock": [
+            396,
+            2453,
+            864,
+            2590
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-arkui-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "23630130576f0f30c8587f5b82773e9580941243936c74153af003c0df6b3ec5",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 0,
+            "tabClicks": 1,
+            "bodyClicks": 0
+          }
+        },
+        "actionTabClicks": 1,
+        "nativeTabBarObserved": true,
+        "nativeTabBarInInputPath": true,
+        "fieldTabClicks": 1,
+        "nativeTabBarBoundsPx": [
+          357,
+          2440,
+          903,
+          2603
+        ],
+        "actionExtendsBeyondTabBar": false
+      },
+      "hds": {
+        "checks": {
+          "actionControlExposed": true,
+          "inputExposed": true,
+          "touchFocusAndKeyboard": true,
+          "editingViewportResizes": true,
+          "draftEntered": true,
+          "nativeBackRetainsDraft": true,
+          "idleGeometryRestored": true,
+          "separateActionWorks": true,
+          "readingAreaStillInteractive": true
+        },
+        "notes": [],
+        "idle": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            558,
+            2479,
+            662,
+            2590
+          ],
+          "action": [
+            688,
+            2463,
+            896,
+            2606
+          ],
+          "dock": [
+            532,
+            2453,
+            727,
+            2616
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-hds-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "f53bd7b5cba615439d5e8e294f06ba78cc234ea06952715d1adc8066a57f8a8d",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "focused": {
+          "keyboard": true,
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "input": [
+            558,
+            1549,
+            662,
+            1660
+          ],
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "typing": {
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            1699
+          ],
+          "input": [
+            558,
+            1549,
+            662,
+            1660
+          ],
+          "action": [
+            688,
+            1533,
+            896,
+            1676
+          ],
+          "dock": [
+            532,
+            1523,
+            727,
+            1686
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-hds-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "e217cd57e4a8535dd414644da4d6c3546d35365e0061ed258c0c189e7f55fbc0",
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "afterBack": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            558,
+            2479,
+            662,
+            2590
+          ],
+          "action": [
+            688,
+            2463,
+            896,
+            2606
+          ],
+          "dock": [
+            532,
+            2453,
+            727,
+            2616
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-hds-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "f53bd7b5cba615439d5e8e294f06ba78cc234ea06952715d1adc8066a57f8a8d",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "actionTabClicks": 0,
+        "nativeTabBarObserved": true,
+        "nativeTabBarInInputPath": true,
+        "fieldTabClicks": 0,
+        "nativeTabBarBoundsPx": [
+          493,
+          2440,
+          767,
+          2603
+        ],
+        "actionExtendsBeyondTabBar": true
+      },
+      "control": {
+        "checks": {
+          "actionControlExposed": true,
+          "inputExposed": true,
+          "touchFocusAndKeyboard": true,
+          "editingViewportResizes": true,
+          "draftEntered": true,
+          "nativeBackRetainsDraft": true,
+          "idleGeometryRestored": true,
+          "separateActionWorks": true,
+          "readingAreaStillInteractive": true
+        },
+        "notes": [],
+        "idle": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2629
+          ],
+          "input": [
+            78,
+            2441,
+            948,
+            2604
+          ],
+          "action": [
+            974,
+            2451,
+            1182,
+            2594
+          ],
+          "dock": [
+            52,
+            2441,
+            1208,
+            2604
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Stack",
+              "id": "probe-control-host"
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "2e10051af8f97e1352260e6c6fa69aacfc8b59dcc1b3c2aa338a985669c06779",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 2,
+            "tabClicks": 2,
+            "bodyClicks": 2
+          }
+        },
+        "focused": {
+          "keyboard": true,
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "input": [
+            78,
+            1511,
+            948,
+            1674
+          ],
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 2,
+            "tabClicks": 2,
+            "bodyClicks": 2
+          }
+        },
+        "typing": {
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            1699
+          ],
+          "input": [
+            78,
+            1511,
+            948,
+            1674
+          ],
+          "action": [
+            974,
+            1521,
+            1182,
+            1664
+          ],
+          "dock": [
+            52,
+            1511,
+            1208,
+            1674
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Stack",
+              "id": "probe-control-host"
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "1c1226d9ba37a07c13b30db9cf8a0bcdafd0b56e3e24ad29af40fc4de553af3a",
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 2,
+            "tabClicks": 2,
+            "bodyClicks": 2
+          }
+        },
+        "afterBack": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2629
+          ],
+          "input": [
+            78,
+            2441,
+            948,
+            2604
+          ],
+          "action": [
+            974,
+            2451,
+            1182,
+            2594
+          ],
+          "dock": [
+            52,
+            2441,
+            1208,
+            2604
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Stack",
+              "id": "probe-control-host"
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "cf36f5af47424e018d4b6dd9d84e4bf350133b4c8d3dd12b2b9d585af17a1e14",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 2,
+            "tabClicks": 2,
+            "bodyClicks": 2
+          }
+        },
+        "actionTabClicks": 0,
+        "nativeTabBarObserved": false,
+        "nativeTabBarInInputPath": false,
+        "fieldTabClicks": 0,
+        "nativeTabBarBoundsPx": null
+      }
+    }
+  },
+  "explicitGeometry": {
+    "signedHapSha256": "a91be720889791ab81dffd5a099ea69cf2383eb2a7a167d5270e30d470073d0a",
+    "verifyApp": true,
+    "verifyProfile": true,
+    "bundleName": "com.sitkin.starward",
+    "versionCode": 1,
+    "hosts": {
+      "arkui": {
+        "checks": {
+          "actionControlExposed": true,
+          "inputExposed": true,
+          "touchFocusAndKeyboard": true,
+          "editingViewportResizes": true,
+          "draftEntered": true,
+          "nativeBackRetainsDraft": true,
+          "idleGeometryRestored": true,
+          "separateActionWorks": true,
+          "readingAreaStillInteractive": true
+        },
+        "notes": [],
+        "idle": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            117,
+            2427,
+            909,
+            2590
+          ],
+          "action": [
+            935,
+            2437,
+            1143,
+            2580
+          ],
+          "dock": [
+            91,
+            2427,
+            1169,
+            2590
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-arkui-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "7946c31f625ca6956a18106c985cccc0b9401363b71fcc817ea22bc43434d98e",
+          "counters": {
+            "focused": false,
+            "draftLength": 0,
+            "actionCount": 0,
+            "tabClicks": 0,
+            "bodyClicks": 0
+          }
+        },
+        "focused": {
+          "keyboard": true,
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "input": [
+            117,
+            1497,
+            909,
+            1660
+          ],
+          "counters": {
+            "focused": true,
+            "draftLength": 0,
+            "actionCount": 0,
+            "tabClicks": 1,
+            "bodyClicks": 0
+          }
+        },
+        "typing": {
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            1699
+          ],
+          "input": [
+            117,
+            1497,
+            909,
+            1660
+          ],
+          "action": [
+            935,
+            1507,
+            1143,
+            1650
+          ],
+          "dock": [
+            91,
+            1497,
+            1169,
+            1660
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-arkui-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "2b1ee078b41e2704ba4e9c46a3251d4aa9219dfd88fafb4ada0fe5693635247e",
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 0,
+            "tabClicks": 1,
+            "bodyClicks": 0
+          }
+        },
+        "afterBack": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            117,
+            2427,
+            909,
+            2590
+          ],
+          "action": [
+            935,
+            2437,
+            1143,
+            2580
+          ],
+          "dock": [
+            91,
+            2427,
+            1169,
+            2590
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-arkui-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "03cc5d5676ef7fc2f7514badd996b483eb08a6e0da541371e082d1025dca1c7c",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 0,
+            "tabClicks": 1,
+            "bodyClicks": 0
+          }
+        },
+        "actionTabClicks": 1,
+        "nativeTabBarObserved": true,
+        "nativeTabBarInInputPath": true,
+        "fieldTabClicks": 1,
+        "nativeTabBarBoundsPx": [
+          52,
+          2414,
+          1208,
+          2603
+        ],
+        "actionExtendsBeyondTabBar": false
+      },
+      "hds": {
+        "checks": {
+          "actionControlExposed": true,
+          "inputExposed": true,
+          "touchFocusAndKeyboard": true,
+          "editingViewportResizes": true,
+          "draftEntered": true,
+          "nativeBackRetainsDraft": true,
+          "idleGeometryRestored": true,
+          "separateActionWorks": true,
+          "readingAreaStillInteractive": true
+        },
+        "notes": [],
+        "idle": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            117,
+            2427,
+            909,
+            2590
+          ],
+          "action": [
+            935,
+            2437,
+            1143,
+            2580
+          ],
+          "dock": [
+            91,
+            2427,
+            1169,
+            2590
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-hds-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "f6ee6c266f37c67f6684c09a1b74b986524b63205e5e4fe947642d13c5fb5949",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "focused": {
+          "keyboard": true,
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "input": [
+            117,
+            1497,
+            909,
+            1660
+          ],
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "typing": {
+          "app": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            1699
+          ],
+          "input": [
+            117,
+            1497,
+            909,
+            1660
+          ],
+          "action": [
+            935,
+            1507,
+            1143,
+            1650
+          ],
+          "dock": [
+            91,
+            1497,
+            1169,
+            1660
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-hds-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "2ec33021e90c515d594c7e37d573f744fdfa3fdbe310c1ea7d545b3b989cf19f",
+          "counters": {
+            "focused": true,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "afterBack": {
+          "app": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "host": [
+            0,
+            354,
+            1260,
+            2720
+          ],
+          "input": [
+            117,
+            2427,
+            909,
+            2590
+          ],
+          "action": [
+            935,
+            2437,
+            1143,
+            2580
+          ],
+          "dock": [
+            91,
+            2427,
+            1169,
+            2590
+          ],
+          "inputPath": [
+            {
+              "type": null,
+              "id": null
+            },
+            {
+              "type": "root",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Tabs",
+              "id": "probe-hds-host"
+            },
+            {
+              "type": "TabBar",
+              "id": null
+            },
+            {
+              "type": "Column",
+              "id": null
+            },
+            {
+              "type": "Row",
+              "id": "probe-dock"
+            },
+            {
+              "type": "TextInput",
+              "id": "probe-answer"
+            }
+          ],
+          "screenshotSha256": "bd30e1175b15089588f47741ef281120ab3a8af3a289f09a649dc2c15aa802c6",
+          "counters": {
+            "focused": false,
+            "draftLength": 7,
+            "actionCount": 1,
+            "tabClicks": 2,
+            "bodyClicks": 1
+          }
+        },
+        "actionTabClicks": 0,
+        "nativeTabBarObserved": true,
+        "nativeTabBarInInputPath": true,
+        "fieldTabClicks": 0,
+        "nativeTabBarBoundsPx": [
+          52,
+          2414,
+          1208,
+          2603
+        ],
+        "actionExtendsBeyondTabBar": false
+      }
+    }
+  },
+  "interpretation": {
+    "visualCheck": "Native backplate refracts the colored body in both TabBar variants; synthetic control has no TabBar backplate.",
+    "tabSemantics": "UITest exposes both native dock variants below Tabs / TabBar / Column even with one tab.",
+    "scope": "One real TextInput, one local action Button and synthetic scroll content. No gameplay submissions.",
+    "unverified": [
+      "TalkBack announcements and external-keyboard traversal",
+      "Integration with gameplay Swiper, question changes and nested native choice popup",
+      "Dark theme, landscape and alternate screen classes"
+    ]
+  }
+}

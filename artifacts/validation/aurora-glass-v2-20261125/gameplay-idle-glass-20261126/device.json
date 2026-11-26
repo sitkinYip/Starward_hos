@@ -1,0 +1,1002 @@
+{
+  "status": "passed",
+  "fixture": "Fixed isolated preview, one previously active gameplay session. No answers, account writes or new starts.",
+  "before": {
+    "status": "passed",
+    "fixture": "fixed preview gameplay; read only",
+    "signedHapSha256": "161083c5023728c14ccc4b8e3f2e02a95f9debf0b7b1b79c703ee848c7ec3ed7",
+    "theme": "light",
+    "states": {
+      "q3-readonly-idle": {
+        "pngSha256": "aa9eeb5c5341b5cff221f7ac206182b4e1bd4da61b5b8470f47d7f25fe3685c3",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-card": [
+            48,
+            515,
+            1212,
+            2720
+          ],
+          "question-images-0": [
+            106,
+            1203,
+            1154,
+            2178
+          ],
+          "question-images-0-0": [
+            106,
+            1203,
+            1154,
+            2178
+          ],
+          "question-images-0-0-open": [
+            294,
+            1203,
+            966,
+            2178
+          ],
+          "question-images-0-0-frame": [
+            294,
+            1203,
+            965,
+            2178
+          ],
+          "question-images-0-0-pixels": [
+            297,
+            1206,
+            962,
+            2175
+          ],
+          "gameplay-answer-form": [
+            52,
+            2467,
+            1208,
+            2630
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            740,
+            2630
+          ],
+          "gameplay-next": [
+            772,
+            2467,
+            1208,
+            2630
+          ]
+        }
+      },
+      "q4-choice-idle": {
+        "pngSha256": "955824989a00566742367cf790fccb66883fe06879f64ce0fc06f5a0a563a5b2",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-card": [
+            48,
+            515,
+            1212,
+            2720
+          ],
+          "question-images-0": [
+            106,
+            1299,
+            1154,
+            2274
+          ],
+          "question-images-0-0": [
+            106,
+            1299,
+            1154,
+            2274
+          ],
+          "question-images-0-0-open": [
+            143,
+            1299,
+            1118,
+            2274
+          ],
+          "question-images-0-0-frame": [
+            143,
+            1299,
+            1118,
+            2274
+          ],
+          "question-images-0-0-pixels": [
+            146,
+            1302,
+            1115,
+            2271
+          ],
+          "gameplay-answer-form": [
+            52,
+            2467,
+            1208,
+            2630
+          ],
+          "gameplay-choice-trigger": [
+            52,
+            2467,
+            740,
+            2630
+          ],
+          "gameplay-next": [
+            772,
+            2467,
+            1208,
+            2630
+          ]
+        }
+      },
+      "q5-fill-idle": {
+        "pngSha256": "e1be054f940be04c62e0279d3aa803131d5555a6ddd57f959efeb8d1bac1c50a",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-card": [
+            48,
+            515,
+            1212,
+            2147
+          ],
+          "question-images-0": [
+            106,
+            1107,
+            1154,
+            2082
+          ],
+          "question-images-0-0": [
+            106,
+            1107,
+            1154,
+            2082
+          ],
+          "question-images-0-0-open": [
+            264,
+            1107,
+            997,
+            2082
+          ],
+          "question-images-0-0-frame": [
+            264,
+            1107,
+            997,
+            2082
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-form": [
+            52,
+            2467,
+            1208,
+            2630
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      }
+    }
+  },
+  "after": {
+    "light": {
+      "status": "passed",
+      "fixture": "fixed preview gameplay; read only",
+      "signedHapSha256": "9a15bb5bb9b2e429e8aef3188d234cc38ae9f41df3e506fe289221eee4a82ad0",
+      "theme": "light",
+      "states": {
+        "q3-readonly-idle": {
+          "pngSha256": "ae811c41e52e4d9efa36f7d62c746a41f152964d51ba515121068b23c484c42e",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2720
+            ],
+            "question-images-0": [
+              106,
+              1203,
+              1154,
+              2178
+            ],
+            "question-images-0-0": [
+              106,
+              1203,
+              1154,
+              2178
+            ],
+            "question-images-0-0-open": [
+              294,
+              1203,
+              966,
+              2178
+            ],
+            "question-images-0-0-frame": [
+              294,
+              1203,
+              965,
+              2178
+            ],
+            "question-images-0-0-pixels": [
+              297,
+              1206,
+              962,
+              2175
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-answer-input": [
+              52,
+              2467,
+              740,
+              2630
+            ],
+            "gameplay-next": [
+              772,
+              2467,
+              1208,
+              2630
+            ]
+          }
+        },
+        "q4-choice-idle": {
+          "pngSha256": "c29328f6959e0b6443bdf08961e7483752eeafa5ce4d1d8ba060b034bba93819",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2720
+            ],
+            "question-images-0": [
+              106,
+              1299,
+              1154,
+              2274
+            ],
+            "question-images-0-0": [
+              106,
+              1299,
+              1154,
+              2274
+            ],
+            "question-images-0-0-open": [
+              143,
+              1299,
+              1118,
+              2274
+            ],
+            "question-images-0-0-frame": [
+              143,
+              1299,
+              1118,
+              2274
+            ],
+            "question-images-0-0-pixels": [
+              146,
+              1302,
+              1115,
+              2271
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-choice-trigger": [
+              52,
+              2467,
+              740,
+              2630
+            ],
+            "gameplay-next": [
+              772,
+              2467,
+              1208,
+              2630
+            ]
+          }
+        },
+        "q5-fill-idle": {
+          "pngSha256": "c5df3c1921066144dded7d49279a761b780fa5e33e8659c110e95a09c5e5d006",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2147
+            ],
+            "question-images-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0-open": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-frame": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-pixels": [
+              267,
+              1110,
+              994,
+              2079
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-answer-input": [
+              52,
+              2467,
+              1014,
+              2630
+            ],
+            "gameplay-submit": [
+              1046,
+              2467,
+              1209,
+              2630
+            ]
+          }
+        },
+        "q5-fill-editing": {
+          "pngSha256": "55802d870d082566079cc3b0c92e7e59dd86d2b79ea3b96f2632aa2753fba5c3",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              1699
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              1699
+            ],
+            "question-images-0": [
+              106,
+              1107,
+              1154,
+              1699
+            ],
+            "question-images-0-0": [
+              106,
+              1107,
+              1154,
+              1699
+            ],
+            "question-images-0-0-open": [
+              264,
+              1107,
+              997,
+              1699
+            ],
+            "question-images-0-0-frame": [
+              264,
+              1107,
+              997,
+              1699
+            ],
+            "question-images-0-0-pixels": [
+              267,
+              1110,
+              994,
+              1699
+            ],
+            "gameplay-answer-form": [
+              52,
+              1511,
+              1208,
+              1674
+            ],
+            "gameplay-answer-input": [
+              52,
+              1511,
+              1014,
+              1674
+            ],
+            "gameplay-submit": [
+              1046,
+              1511,
+              1209,
+              1674
+            ]
+          }
+        },
+        "q5-fill-closed": {
+          "pngSha256": "53c1f1d5f2a4e54655dad12a3aa1f299e9dfe0fa131e3e26ddded2dad6768325",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2147
+            ],
+            "question-images-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0-open": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-frame": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-pixels": [
+              267,
+              1110,
+              994,
+              2079
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-answer-input": [
+              52,
+              2467,
+              1014,
+              2630
+            ],
+            "gameplay-submit": [
+              1046,
+              2467,
+              1209,
+              2630
+            ]
+          }
+        }
+      },
+      "choicePanelOpenedAndClosed": true
+    },
+    "dark": {
+      "status": "passed",
+      "fixture": "fixed preview gameplay; read only",
+      "signedHapSha256": "9a15bb5bb9b2e429e8aef3188d234cc38ae9f41df3e506fe289221eee4a82ad0",
+      "theme": "dark",
+      "states": {
+        "q3-readonly-idle": {
+          "pngSha256": "4a485fe7a5f20cc24c490f7f46267221abbdae47cdeb259e970c194f6b017ccc",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2720
+            ],
+            "question-images-0": [
+              106,
+              1203,
+              1154,
+              2178
+            ],
+            "question-images-0-0": [
+              106,
+              1203,
+              1154,
+              2178
+            ],
+            "question-images-0-0-open": [
+              294,
+              1203,
+              966,
+              2178
+            ],
+            "question-images-0-0-frame": [
+              294,
+              1203,
+              965,
+              2178
+            ],
+            "question-images-0-0-pixels": [
+              297,
+              1206,
+              962,
+              2175
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-answer-input": [
+              52,
+              2467,
+              740,
+              2630
+            ],
+            "gameplay-next": [
+              772,
+              2467,
+              1208,
+              2630
+            ]
+          }
+        },
+        "q4-choice-idle": {
+          "pngSha256": "120024edec995a6a4ad814521bd7c30adcda3d89994da9f075e5ef7ac6cbab36",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2720
+            ],
+            "question-images-0": [
+              106,
+              1299,
+              1154,
+              2274
+            ],
+            "question-images-0-0": [
+              106,
+              1299,
+              1154,
+              2274
+            ],
+            "question-images-0-0-open": [
+              143,
+              1299,
+              1118,
+              2274
+            ],
+            "question-images-0-0-frame": [
+              143,
+              1299,
+              1118,
+              2274
+            ],
+            "question-images-0-0-pixels": [
+              146,
+              1302,
+              1115,
+              2271
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-choice-trigger": [
+              52,
+              2467,
+              740,
+              2630
+            ],
+            "gameplay-next": [
+              772,
+              2467,
+              1208,
+              2630
+            ]
+          }
+        },
+        "q5-fill-idle": {
+          "pngSha256": "32d8a5c7efc1726b6818d32b9812d4a68414172778104a31e84ec7023bc83e10",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2147
+            ],
+            "question-images-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0-open": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-frame": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-pixels": [
+              267,
+              1110,
+              994,
+              2079
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-answer-input": [
+              52,
+              2467,
+              1014,
+              2630
+            ],
+            "gameplay-submit": [
+              1046,
+              2467,
+              1209,
+              2630
+            ]
+          }
+        },
+        "q5-fill-editing": {
+          "pngSha256": "8542cee68473376d5222e08862ab8718a455764751083d1fe4d2fda9c0ac5dfd",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              1699
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              1699
+            ],
+            "question-images-0": [
+              106,
+              1107,
+              1154,
+              1699
+            ],
+            "question-images-0-0": [
+              106,
+              1107,
+              1154,
+              1699
+            ],
+            "question-images-0-0-open": [
+              264,
+              1107,
+              997,
+              1699
+            ],
+            "question-images-0-0-frame": [
+              264,
+              1107,
+              997,
+              1699
+            ],
+            "question-images-0-0-pixels": [
+              267,
+              1110,
+              994,
+              1699
+            ],
+            "gameplay-answer-form": [
+              52,
+              1511,
+              1208,
+              1674
+            ],
+            "gameplay-answer-input": [
+              52,
+              1511,
+              1014,
+              1674
+            ],
+            "gameplay-submit": [
+              1046,
+              1511,
+              1209,
+              1674
+            ]
+          }
+        },
+        "q5-fill-closed": {
+          "pngSha256": "2f6f13f17b7e718f29529e1fa533f10380db1946c6d91b4da6506314008ef49e",
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-card": [
+              48,
+              515,
+              1212,
+              2147
+            ],
+            "question-images-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0": [
+              106,
+              1107,
+              1154,
+              2082
+            ],
+            "question-images-0-0-open": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-frame": [
+              264,
+              1107,
+              997,
+              2082
+            ],
+            "question-images-0-0-pixels": [
+              267,
+              1110,
+              994,
+              2079
+            ],
+            "gameplay-answer-form": [
+              52,
+              2467,
+              1208,
+              2630
+            ],
+            "gameplay-answer-input": [
+              52,
+              2467,
+              1014,
+              2630
+            ],
+            "gameplay-submit": [
+              1046,
+              2467,
+              1209,
+              2630
+            ]
+          }
+        }
+      },
+      "choicePanelOpenedAndClosed": true,
+      "originalThemeRestored": true
+    }
+  },
+  "readOnlyGeometryStable": {
+    "q3-readonly-idle": true,
+    "q4-choice-idle": true
+  },
+  "samples": {
+    "q3-readonly-idle": {
+      "regionsPx": {
+        "inside": [
+          316,
+          2481,
+          352,
+          45
+        ],
+        "above": [
+          320,
+          2460,
+          330,
+          6
+        ]
+      },
+      "before": {
+        "inside": {
+          "meanGray": 182.789,
+          "meanHorizontalEdge": 12.372,
+          "strongEdgeFraction": 0.113454
+        },
+        "above": {
+          "meanGray": 244.0,
+          "meanHorizontalEdge": 0.0,
+          "strongEdgeFraction": 0.0
+        }
+      },
+      "after": {
+        "inside": {
+          "meanGray": 240.178,
+          "meanHorizontalEdge": 1.176,
+          "strongEdgeFraction": 0.0
+        },
+        "above": {
+          "meanGray": 243.0,
+          "meanHorizontalEdge": 0.0,
+          "strongEdgeFraction": 0.0
+        }
+      }
+    },
+    "q4-choice-idle": {
+      "regionsPx": {
+        "inside": [
+          316,
+          2580,
+          205,
+          39
+        ],
+        "above": [
+          106,
+          2414,
+          178,
+          42
+        ]
+      },
+      "before": {
+        "inside": {
+          "meanGray": 169.335,
+          "meanHorizontalEdge": 17.809,
+          "strongEdgeFraction": 0.169809
+        },
+        "above": {
+          "meanGray": 207.872,
+          "meanHorizontalEdge": 8.342,
+          "strongEdgeFraction": 0.109228
+        }
+      },
+      "after": {
+        "inside": {
+          "meanGray": 237.528,
+          "meanHorizontalEdge": 1.164,
+          "strongEdgeFraction": 0.0
+        },
+        "above": {
+          "meanGray": 207.872,
+          "meanHorizontalEdge": 8.342,
+          "strongEdgeFraction": 0.109228
+        }
+      }
+    }
+  },
+  "editing": {
+    "light": {
+      "sampleRectPx": [
+        456,
+        1539,
+        389,
+        107
+      ],
+      "identicalToPreviouslyAcceptedEditingRGB": true,
+      "geometryMatchesPreviouslyAcceptedEditing": true,
+      "idleSampleRectPx": [
+        431,
+        2502,
+        428,
+        91
+      ],
+      "idleInteriorRestoredWithKeyboardBack": true,
+      "idleGeometryRestoredWithKeyboardBack": true
+    },
+    "dark": {
+      "sampleRectPx": [
+        456,
+        1539,
+        389,
+        107
+      ],
+      "identicalToPreviouslyAcceptedEditingRGB": true,
+      "geometryMatchesPreviouslyAcceptedEditing": true,
+      "idleSampleRectPx": [
+        431,
+        2502,
+        428,
+        91
+      ],
+      "idleInteriorRestoredWithKeyboardBack": true,
+      "idleGeometryRestoredWithKeyboardBack": true
+    }
+  }
+}

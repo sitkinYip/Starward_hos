@@ -1,19 +1,48 @@
-import { curves, uiMaterial } from '@kit.ArkUI';
+import { CommonModifier, curves } from '@kit.ArkUI';
+import { hdsEffect } from '@kit.UIDesignKit';
 import { StarwardMaterial } from './StarwardMaterial';
 
-/** Native material behind a real TextInput or Button, with a solid theme fallback. */
+const ANSWER_EDIT_BLUR_RADIUS: number = 18;
+const ANSWER_IDLE_BLUR_RADIUS: number = 10;
+
+/** Shared ArkUI glass behind the native input or choice button. */
 @ComponentV2
 export struct StarwardAnswerCapsuleMaterial {
-  private material: uiMaterial.ImmersiveMaterial | undefined = undefined;
+  @Param editing: boolean = false;
+  private blurAllowed: boolean = false;
+  private readonly idleLight: CommonModifier = new CommonModifier();
 
   aboutToAppear(): void {
-    this.material = StarwardMaterial.create(uiMaterial.ImmersiveStyle.THIN, false);
+    this.blurAllowed = StarwardMaterial.backgroundBlurAllowed();
+    if (this.blurAllowed && canIUse('SystemCapability.UIDesign.HDSComponent.Core')) {
+      try {
+        this.idleLight.visualEffect(new hdsEffect.HdsEffectBuilder().pointLight({
+          sourceType: hdsEffect.PointLightSourceType.SOFT,
+          illuminatedType: hdsEffect.PointLightIlluminatedType.DEFAULT_FEATHERING_BORDER
+        }).buildEffect());
+      } catch {
+        // The glass surface remains available when the optional light effect fails.
+      }
+    }
   }
 
   build() {
-    Row() {}.width('100%').height(50).borderRadius(999)
-      .backgroundColor(this.material ? Color.Transparent : $r('app.color.raised')).systemMaterial(this.material)
-      .hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
+    if (this.editing) {
+      Row() {}.width('100%').height(50).borderRadius(999).clip(true)
+        .backgroundColor(this.blurAllowed ? $r('app.color.gameplay_overlay_tint') : $r('app.color.raised'))
+        .backdropBlur(this.blurAllowed ? ANSWER_EDIT_BLUR_RADIUS : 0)
+        .hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
+    } else {
+      Row() {}.width('100%').height(50).borderRadius(25).clip(true)
+        .backgroundColor(this.blurAllowed ? Color.Transparent : $r('app.color.raised'))
+        .backgroundEffect(this.blurAllowed ? {
+          radius: ANSWER_IDLE_BLUR_RADIUS, color: $r('app.color.glass_floating'),
+          policy: BlurStyleActivePolicy.FOLLOWS_WINDOW_ACTIVE_STATE, inactiveColor: $r('app.color.raised')
+        } : undefined)
+        .attributeModifier(this.idleLight)
+        .shadow({ radius: 10, offsetY: 3, color: $r('app.color.shadow') })
+        .hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
+    }
   }
 }
 
@@ -27,6 +56,7 @@ export struct StarwardAnswerInput {
   @Event changed: (value: string) => void = () => {};
   @Event focusChanged: (focused: boolean) => void = () => {};
   @Local private focused: boolean = false;
+  @Local private editing: boolean = false;
 
   aboutToDisappear(): void {
     this.updateFocus(false);
@@ -52,7 +82,7 @@ export struct StarwardAnswerInput {
 
   build() {
     Stack() {
-      StarwardAnswerCapsuleMaterial()
+      StarwardAnswerCapsuleMaterial({ editing: this.editable && this.editing })
       TextInput({ text: this.value, placeholder: this.placeholder })
         .id('gameplay-answer-input')
         .accessibilityText('答案')
@@ -75,7 +105,11 @@ export struct StarwardAnswerInput {
         .animation({ duration: this.reducedMotion ? 0 : 320, curve: curves.cubicBezierCurve(0.22, 0.78, 0.18, 1) })
         .enabled(this.editable)
         .onFocus(() => this.updateFocus(true))
-        .onBlur(() => this.updateFocus(false))
+        .onBlur(() => {
+          this.editing = false;
+          this.updateFocus(false);
+        })
+        .onEditChange((editing: boolean) => { this.editing = editing; })
         .onChange((value: string) => {
           if (this.editable && value !== this.value) {
             this.changed(value);

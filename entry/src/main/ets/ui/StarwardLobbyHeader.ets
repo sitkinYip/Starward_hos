@@ -1,11 +1,12 @@
+import { uiMaterial } from '@kit.ArkUI';
 import { AvatarImage, Player } from '../business/models';
-import { STARWARD_HEADER_CAPSULE_RADIUS, StarwardGlassHeader } from './StarwardGlassHeader';
-import { StarwardTitleSurface } from './StarwardMaterial';
+import { STARWARD_HEADER_CAPSULE_RADIUS } from './StarwardGlassHeader';
+import { StarwardMaterial } from './StarwardMaterial';
 import { starwardPageReveal } from './StarwardMotion';
 import { playerExperiencePercent } from './StarwardPassport';
 import { StarwardPlayerAvatar } from './StarwardPlayerAvatar';
 
-const TITLE_HEIGHT: number = 70;
+export const STARWARD_LOBBY_TITLE_HEIGHT: number = 70;
 const HORIZONTAL_GUTTER: number = 18;
 
 @ComponentV2
@@ -20,6 +21,16 @@ export struct StarwardLobbyHeader {
   @Param reducedMotion: boolean = true;
   @Event openPassport: () => void = () => {};
   @Event decodeFailed: (avatar: AvatarImage) => void = () => {};
+  @Local private identityMaterial: uiMaterial.ImmersiveMaterial | undefined = undefined;
+  private readonly brandMaterial: uiMaterial.ImmersiveMaterial | undefined =
+    StarwardMaterial.titleCapsule(false);
+
+  aboutToAppear(): void { this.updateIdentityMaterial(); }
+
+  @Monitor('reducedMotion')
+  private updateIdentityMaterial(): void {
+    this.identityMaterial = StarwardMaterial.titleCapsule(!this.reducedMotion);
+  }
 
   private levelLabel(): string {
     const name: string = this.player.level.name;
@@ -41,19 +52,16 @@ export struct StarwardLobbyHeader {
   build() {
     Column() {
       if (this.selected) {
-        Column() {
-          StarwardTitleSurface({ titleHeight: TITLE_HEIGHT, horizontalGutter: HORIZONTAL_GUTTER,
-            topInset: this.topInset, reducedMotion: this.reducedMotion,
-            titleContent: () => { this.titleContent() } })
-        }.width('100%').transition(starwardPageReveal(this.reducedMotion))
+        Row() {
+          Row({ space: 12 }) {
+            this.identityControls()
+          }.id('lobby-identity-header').width('100%')
+        }.width('100%').height(STARWARD_LOBBY_TITLE_HEIGHT)
+          .padding({ left: HORIZONTAL_GUTTER + this.leftInset, right: HORIZONTAL_GUTTER + this.rightInset })
+          .transition(starwardPageReveal(this.reducedMotion))
       }
-    }.width('100%').height(TITLE_HEIGHT + this.topInset)
-  }
-
-  @Builder
-  private titleContent() {
-    StarwardGlassHeader({ insideTitleSurface: true, nodeId: 'lobby-identity-header',
-      content: () => { this.identityControls() } }).padding({ left: this.leftInset, right: this.rightInset })
+    }.width('100%').height(STARWARD_LOBBY_TITLE_HEIGHT + this.topInset).padding({ top: this.topInset })
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP])
   }
 
   @Builder
@@ -73,16 +81,18 @@ export struct StarwardLobbyHeader {
           .accessibilityLevel('no')
       }.padding({ left: 6, right: 12, top: 5, bottom: 5 })
     }.id('lobby-identity').padding(0).constraintSize({ minHeight: 52 })
-      .backgroundColor($r('app.color.surface'))
+      .backgroundColor(this.identityMaterial ? Color.Transparent : $r('app.color.surface'))
       .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
+      .systemMaterial(this.identityMaterial)
       .accessibilityText(`打开护照，${this.player.displayName}，${this.levelLabel()}，经验 ${this.player.totalXp}`)
       .onClick(() => this.openPassport())
     Blank()
     Stack() {
       Image($r('app.media.starward_mark')).width(34).height(34).objectFit(ImageFit.Contain)
     }.id('lobby-brand-mark').width(44).height(44)
-      .backgroundColor($r('app.color.surface'))
+      .backgroundColor(this.brandMaterial ? Color.Transparent : $r('app.color.surface'))
       .border({ width: 1, radius: STARWARD_HEADER_CAPSULE_RADIUS, color: $r('app.color.border_strong') })
+      .systemMaterial(this.brandMaterial)
       .accessibilityText('赴星之约')
   }
 }

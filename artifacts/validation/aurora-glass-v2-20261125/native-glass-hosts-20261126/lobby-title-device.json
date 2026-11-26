@@ -1,0 +1,610 @@
+{
+  "status": "passed",
+  "device": "API26 physical phone",
+  "windowEvidence": "fixed preview",
+  "hapSha256": "511a058014d194781bcece607fddf9f0fabc48d9d9224afc7060464df3b50a33",
+  "checks": [
+    "identity and brand are mounted in the native title",
+    "settled Journey geometry stays within 2vp of the previous build",
+    "Rewards to Journey shows the entire title",
+    "Letters and Passport return to Journey with their own title state",
+    "Journey identity opens Passport and system Back returns to Journey",
+    "rapid switching and repeat tapping settle on Journey",
+    "20 frames preserve visible content with stable Journey heading position",
+    "canvas pixels match across the native title bottom at identity, center, and icon columns"
+  ],
+  "geometry": {
+    "nav-home": {
+      "headerPx": [
+        58,
+        152,
+        1202,
+        321
+      ],
+      "contentPx": [
+        58,
+        402,
+        1202,
+        524
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    },
+    "nav-rewards": {
+      "headerPx": null,
+      "contentPx": [
+        0,
+        124,
+        1260,
+        2720
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    },
+    "nav-notifications": {
+      "headerPx": null,
+      "contentPx": [
+        65,
+        349,
+        1195,
+        524
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    },
+    "nav-profile": {
+      "headerPx": null,
+      "contentPx": [
+        58,
+        190,
+        1202,
+        312
+      ],
+      "tabsPx": [
+        0,
+        124,
+        1260,
+        2720
+      ]
+    }
+  },
+  "sampleTiming": [
+    "frame-start 0 1795660002649",
+    "frame-start 1 1795660002704",
+    "frame-start 2 1795660002764",
+    "tap-start 1795660002804",
+    "frame-start 3 1795660002823",
+    "frame-start 4 1795660002889",
+    "frame-start 5 1795660002933",
+    "frame-start 6 1795660002985",
+    "frame-start 7 1795660003043",
+    "frame-end 0 1795660003073",
+    "frame-start 8 1795660003094",
+    "frame-end 1 1795660003143",
+    "frame-start 9 1795660003178",
+    "tap-end 1795660003217",
+    "frame-start 10 1795660003220",
+    "frame-end 2 1795660003241",
+    "frame-start 11 1795660003297",
+    "frame-end 3 1795660003315",
+    "frame-start 12 1795660003349",
+    "frame-start 13 1795660003435",
+    "frame-start 14 1795660003505",
+    "frame-end 5 1795660003513",
+    "frame-start 15 1795660003531",
+    "frame-end 4 1795660003541",
+    "frame-end 6 1795660003551",
+    "frame-start 16 1795660003568",
+    "frame-start 17 1795660003599",
+    "frame-end 7 1795660003613",
+    "frame-end 8 1795660003688",
+    "frame-start 18 1795660003702",
+    "frame-start 19 1795660003740",
+    "frame-end 9 1795660003776",
+    "frame-end 10 1795660003842",
+    "frame-end 11 1795660003936",
+    "frame-end 12 1795660003970",
+    "frame-end 13 1795660004114",
+    "frame-end 14 1795660004114",
+    "frame-end 15 1795660004121",
+    "frame-end 17 1795660004138",
+    "frame-end 16 1795660004181",
+    "frame-end 18 1795660004199",
+    "frame-end 19 1795660004205"
+  ],
+  "nativeTitlePaths": {
+    "lobby-identity": [
+      "root",
+      "Stack",
+      "Stack",
+      "__Common__",
+      "Stack",
+      "Navigation",
+      "NavBar",
+      "NavBarContent",
+      "Stack",
+      "Tabs",
+      "Swiper",
+      "TabContent",
+      "Navigation",
+      "NavBar",
+      "TitleBar",
+      "Column",
+      "Row",
+      "Row",
+      "Button"
+    ],
+    "lobby-brand-mark": [
+      "root",
+      "Stack",
+      "Stack",
+      "__Common__",
+      "Stack",
+      "Navigation",
+      "NavBar",
+      "NavBarContent",
+      "Stack",
+      "Tabs",
+      "Swiper",
+      "TabContent",
+      "Navigation",
+      "NavBar",
+      "TitleBar",
+      "Column",
+      "Row",
+      "Row",
+      "Stack"
+    ]
+  },
+  "baselineGeometry": {
+    "headerPx": [
+      58,
+      150,
+      1202,
+      325
+    ],
+    "contentPx": [
+      58,
+      403,
+      1202,
+      525
+    ],
+    "tabsPx": [
+      0,
+      124,
+      1260,
+      2720
+    ]
+  },
+  "geometryTolerancePx": 7,
+  "motionEvidence": {
+    "scaledRasterPx": [
+      630,
+      1360
+    ],
+    "bodyRegionPx": [
+      0,
+      180,
+      630,
+      1080
+    ],
+    "frames": [
+      {
+        "frame": 0,
+        "bodyMeanGray": 0.9215,
+        "bodyGrayDeviation": 0.1286,
+        "identityInk": 2341,
+        "identityInkRows": [
+          95,
+          139
+        ],
+        "headingFirstInkRow": null
+      },
+      {
+        "frame": 1,
+        "bodyMeanGray": 0.9215,
+        "bodyGrayDeviation": 0.1286,
+        "identityInk": 2341,
+        "identityInkRows": [
+          95,
+          139
+        ],
+        "headingFirstInkRow": null
+      },
+      {
+        "frame": 2,
+        "bodyMeanGray": 0.9215,
+        "bodyGrayDeviation": 0.1286,
+        "identityInk": 2341,
+        "identityInkRows": [
+          95,
+          139
+        ],
+        "headingFirstInkRow": null
+      },
+      {
+        "frame": 3,
+        "bodyMeanGray": 0.9215,
+        "bodyGrayDeviation": 0.1286,
+        "identityInk": 2341,
+        "identityInkRows": [
+          95,
+          139
+        ],
+        "headingFirstInkRow": null
+      },
+      {
+        "frame": 4,
+        "bodyMeanGray": 0.9281,
+        "bodyGrayDeviation": 0.1493,
+        "identityInk": 742,
+        "identityInkRows": [
+          95,
+          115
+        ],
+        "headingFirstInkRow": 211
+      },
+      {
+        "frame": 5,
+        "bodyMeanGray": 0.9281,
+        "bodyGrayDeviation": 0.1493,
+        "identityInk": 742,
+        "identityInkRows": [
+          95,
+          115
+        ],
+        "headingFirstInkRow": 211
+      },
+      {
+        "frame": 6,
+        "bodyMeanGray": 0.924,
+        "bodyGrayDeviation": 0.1569,
+        "identityInk": 258,
+        "identityInkRows": [
+          102,
+          140
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 7,
+        "bodyMeanGray": 0.9241,
+        "bodyGrayDeviation": 0.1567,
+        "identityInk": 259,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 8,
+        "bodyMeanGray": 0.924,
+        "bodyGrayDeviation": 0.1567,
+        "identityInk": 259,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 9,
+        "bodyMeanGray": 0.9238,
+        "bodyGrayDeviation": 0.1567,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 10,
+        "bodyMeanGray": 0.9236,
+        "bodyGrayDeviation": 0.1567,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 11,
+        "bodyMeanGray": 0.9232,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 12,
+        "bodyMeanGray": 0.9231,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 13,
+        "bodyMeanGray": 0.9228,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 14,
+        "bodyMeanGray": 0.9228,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 15,
+        "bodyMeanGray": 0.9225,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 16,
+        "bodyMeanGray": 0.9221,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 17,
+        "bodyMeanGray": 0.9223,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 18,
+        "bodyMeanGray": 0.9221,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      },
+      {
+        "frame": 19,
+        "bodyMeanGray": 0.9221,
+        "bodyGrayDeviation": 0.1566,
+        "identityInk": 258,
+        "identityInkRows": [
+          108,
+          126
+        ],
+        "headingFirstInkRow": 210
+      }
+    ]
+  },
+  "contourEvidence": {
+    "sampleYPx": [
+      330,
+      340,
+      350,
+      360,
+      375
+    ],
+    "before": {
+      "hapSha256": "8716ce176028a79508f1b21a5d687280935c16852a4ff1fb87436ee0b368e0b4",
+      "screenshotSha256": "93165d33e02fc17bd4a3fbf33863f68f0271282d204ae9a8903c6bca2cd0a537",
+      "rgbByX": {
+        "200": [
+          [
+            231,
+            233,
+            239
+          ],
+          [
+            233,
+            235,
+            241
+          ],
+          [
+            235,
+            237,
+            243
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ]
+        ],
+        "850": [
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ]
+        ],
+        "1140": [
+          [
+            237,
+            239,
+            245
+          ],
+          [
+            238,
+            240,
+            246
+          ],
+          [
+            239,
+            241,
+            247
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ]
+        ]
+      }
+    },
+    "after": {
+      "hapSha256": "511a058014d194781bcece607fddf9f0fabc48d9d9224afc7060464df3b50a33",
+      "screenshotSha256": "d4d472c0ac106878b318d3f848a46440c72b71dda9c21378409272d95c4df980",
+      "rgbByX": {
+        "200": [
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ]
+        ],
+        "850": [
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ]
+        ],
+        "1140": [
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ],
+          [
+            244,
+            246,
+            252
+          ]
+        ]
+      }
+    },
+    "afterMatchesCanvas": true
+  }
+}

@@ -1,5 +1,6 @@
-import { curves } from '@kit.ArkUI';
+import { curves, uiMaterial } from '@kit.ArkUI';
 import { StarwardAnswerCapsuleMaterial, StarwardAnswerInput, StarwardAnswerSubmit } from '../ui/StarwardAnswerInput';
+import { StarwardMaterial } from '../ui/StarwardMaterial';
 import { GameplayChoicePopup } from './GameplayQuestionOverlays';
 
 export type GameplayComposerAction = 'submit' | 'retry' | 'next' | 'none';
@@ -37,6 +38,8 @@ export struct GameplayAnswerComposer {
   @Event primaryAction: (action: GameplayComposerAction) => void = () => {};
   @Event heightChanged: (height: number) => void = () => {};
   @Local private dockWidth: number = 0;
+  private readonly choiceMaterial: uiMaterial.ImmersiveMaterial | undefined =
+    StarwardMaterial.create(uiMaterial.ImmersiveStyle.THICK, false);
 
   private choiceAccessibilityText(): string {
     if (this.view.choiceKey.length === 0) { return this.view.editable ? '选择答案' : '查看全部选项'; }
@@ -48,7 +51,9 @@ export struct GameplayAnswerComposer {
     return { builder: () => { this.choicePopup(); }, placement: Placement.Top,
       targetSpace: 12, width: this.dockWidth > 0 ? this.dockWidth : undefined, radius: 24,
       enableArrow: false, mask: true, showInSubWindow: false, autoCancel: true, focusable: true,
-      popupColor: Color.Transparent, backgroundBlurStyle: BlurStyle.COMPONENT_ULTRA_THIN,
+      systemMaterial: this.choiceMaterial,
+      popupColor: this.choiceMaterial ? undefined : Color.Transparent,
+      backgroundBlurStyle: this.choiceMaterial ? undefined : BlurStyle.COMPONENT_ULTRA_THIN,
       transition: this.reducedMotion ? TransitionEffect.IDENTITY :
         TransitionEffect.OPACITY.combine(TransitionEffect.translate({ y: 12 }))
           .combine(TransitionEffect.scale({ x: 0.98, y: 0.98, centerY: '100%' }))
@@ -60,6 +65,7 @@ export struct GameplayAnswerComposer {
   @Builder
   private choicePopup() {
     GameplayChoicePopup({ status: this.choiceStatus, maxHeight: this.choiceMaxHeight,
+      usesSystemMaterial: this.choiceMaterial !== undefined,
       content: () => { this.choicesContent() }, close: () => { this.closeChoices(this.choiceRevision); } })
   }
 

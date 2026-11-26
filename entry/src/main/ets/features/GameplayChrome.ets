@@ -1,12 +1,11 @@
-import { Binding, curves, uiMaterial, UIUtils } from '@kit.ArkUI';
-import { STARWARD_SESSION_TITLE_HEIGHT, StarwardSessionTitle } from '../ui/StarwardGlassHeader';
+import { Binding, uiMaterial, UIUtils } from '@kit.ArkUI';
+import { STARWARD_SESSION_TITLE_HEIGHT } from '../ui/StarwardGlassHeader';
 import { StarwardMaterial } from '../ui/StarwardMaterial';
 
 export const GAMEPLAY_TITLE_MIN_TOP: number = 14;
 export const GAMEPLAY_TITLE_SIDE_GUTTER: number = 14;
 export const GAMEPLAY_MAX_CONTENT_WIDTH: number = 920;
-export const GAMEPLAY_TITLE_HEIGHT: number = STARWARD_SESSION_TITLE_HEIGHT;
-export const GAMEPLAY_TITLE_CLEARANCE: number = GAMEPLAY_TITLE_HEIGHT + 14;
+export const GAMEPLAY_TITLE_CLEARANCE: number = STARWARD_SESSION_TITLE_HEIGHT + 14;
 export const GAMEPLAY_COMPOSER_SIDE_GUTTER: number = 16;
 export const GAMEPLAY_COMPOSER_MIN_HEIGHT: number = 50;
 
@@ -58,28 +57,6 @@ export struct GameplaySurface {
           .border({ width: 1, radius: this.radius, color: $r('app.color.border_strong') })
       }
     }.width('100%')
-  }
-}
-
-@ComponentV2
-export struct GameplayFloatingTitle {
-  @Require @Param title: string;
-  @Param hidden: boolean = false;
-  @Param reducedMotion: boolean = true;
-  @Event back: () => void = () => {};
-
-  build() {
-    Column() {
-      StarwardSessionTitle({ title: this.title, reducedMotion: this.reducedMotion,
-        backId: 'gameplay-title-back', titleId: 'gameplay-session-title', back: () => this.back() })
-    }.id(this.hidden ? 'gameplay-floating-title-hidden' : 'gameplay-floating-title')
-      .width('100%').opacity(this.hidden ? 0 : 1)
-      .animation({ duration: this.reducedMotion ? 0 : 240, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) })
-      .translate({ y: this.hidden ? -GAMEPLAY_TITLE_HEIGHT - 24 : 0 })
-      .animation({ duration: this.reducedMotion ? 0 : 320, curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) })
-      .enabled(!this.hidden)
-      .hitTestBehavior(this.hidden ? HitTestMode.None : HitTestMode.Default)
-      .accessibilityLevel(this.hidden ? 'no-hide-descendants' : 'auto')
   }
 }
 

@@ -21,6 +21,7 @@ struct GameplayOverlayClose {
 export struct GameplayChoicePopup {
   @Require @Param status: string;
   @Require @Param maxHeight: number;
+  @Param usesSystemMaterial: boolean = false;
   @BuilderParam content: () => void;
   @Event close: () => void = () => {};
 
@@ -38,8 +39,9 @@ export struct GameplayChoicePopup {
         }.width('100%').padding({ top: 12, right: 14, bottom: 14, left: 14 })
       }.id('gameplay-choice-scroll').width('100%').height(LayoutPolicy.wrapContent).align(Alignment.Top)
         .constraintSize({ maxHeight: Math.max(60, this.maxHeight - 53) }).scrollBar(BarState.Auto)
-    }.id('gameplay-choice-sheet').width('100%').backgroundColor($r('app.color.gameplay_overlay_tint'))
-      .border({ width: 1, color: $r('app.color.border_strong'), radius: 24 }).clip(true)
+    }.id('gameplay-choice-sheet').width('100%')
+      .backgroundColor(this.usesSystemMaterial ? Color.Transparent : $r('app.color.gameplay_overlay_tint'))
+      .border({ width: this.usesSystemMaterial ? 0 : 1, color: $r('app.color.border_strong'), radius: 24 }).clip(true)
   }
 }
 

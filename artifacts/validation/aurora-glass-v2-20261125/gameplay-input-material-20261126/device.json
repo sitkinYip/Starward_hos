@@ -1,0 +1,335 @@
+{
+  "status": "passed",
+  "fixture": "Already active fill question of fixed isolated preview; no business write initiated",
+  "measurement": "Same native UI geometry. Pixel edge is adjacent horizontal 8-bit grayscale difference; strong means at least 20.",
+  "sampleRectanglesPx": {
+    "insideEditingCapsule": [
+      456,
+      1539,
+      389,
+      107
+    ],
+    "outsideOnSameImage": [
+      456,
+      1376,
+      389,
+      107
+    ]
+  },
+  "before": {
+    "hapSha256": "a29f71d4a34e28a84eea6fa78f405d2b706488be8ed2cac48ffce7f0ed9bdb09",
+    "provenance": "Last known signed preview package installed before this change",
+    "light": {
+      "idle": {
+        "pngSha256": "0d32704e87e98e884671845a5ddea2d40d93f0a9029b4f30a8cd65074a88462e",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      },
+      "editing": {
+        "pngSha256": "53a9551d8f39e24a5ce9a50fa6626041939a540c2349929789140d09fe1eb4b8",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            1699
+          ],
+          "gameplay-answer-input": [
+            52,
+            1511,
+            1014,
+            1674
+          ],
+          "gameplay-submit": [
+            1046,
+            1511,
+            1209,
+            1674
+          ]
+        }
+      },
+      "closed": {
+        "pngSha256": "d6ed6477e5950069d8a1e9b175fbc633523c021e6dc989bcdff49bf2592c64e2",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      },
+      "pixels": {
+        "insideEditingCapsule": {
+          "meanGray": 60.07,
+          "meanHorizontalEdge": 5.149,
+          "strongEdgeFraction": 0.065083
+        },
+        "outsideOnSameImage": {
+          "meanGray": 49.204,
+          "meanHorizontalEdge": 3.665,
+          "strongEdgeFraction": 0.043718
+        }
+      },
+      "restoredIdleInteriorRGBIdentical": true
+    }
+  },
+  "after": {
+    "hapSha256": "161083c5023728c14ccc4b8e3f2e02a95f9debf0b7b1b79c703ee848c7ec3ed7",
+    "light": {
+      "idle": {
+        "pngSha256": "200e708dc42d96fe95481308cb6cc09bd3b78e6eead1dbf3533f4c17408f740a",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      },
+      "editing": {
+        "pngSha256": "5a0987bb2b36e75b6054a190225bf6986d073f4385f01875a2b8883d5c2ae4b5",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            1699
+          ],
+          "gameplay-answer-input": [
+            52,
+            1511,
+            1014,
+            1674
+          ],
+          "gameplay-submit": [
+            1046,
+            1511,
+            1209,
+            1674
+          ]
+        }
+      },
+      "closed": {
+        "pngSha256": "e631b4083f225012f69cebc4e639ef612440e438d515f8ff84db2268113238dd",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      },
+      "pixels": {
+        "insideEditingCapsule": {
+          "meanGray": 231.219,
+          "meanHorizontalEdge": 1.177,
+          "strongEdgeFraction": 0.0
+        },
+        "outsideOnSameImage": {
+          "meanGray": 49.204,
+          "meanHorizontalEdge": 3.665,
+          "strongEdgeFraction": 0.043718
+        }
+      },
+      "restoredIdleInteriorRGBIdentical": true
+    },
+    "dark": {
+      "idle": {
+        "pngSha256": "851c82ab8cb97ae7e0892e1f9c223b233fb1395949ca980449bcc42a4c40fd82",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      },
+      "editing": {
+        "pngSha256": "dedf51ad6177d9d2d3b0255625c3149ee23e4e626cf3a987a73abaa87c66fdef",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            1699
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            1699
+          ],
+          "gameplay-answer-input": [
+            52,
+            1511,
+            1014,
+            1674
+          ],
+          "gameplay-submit": [
+            1046,
+            1511,
+            1209,
+            1674
+          ]
+        }
+      },
+      "closed": {
+        "pngSha256": "f4872274a066411077f0aada194c92487713135d7a78aba18454137b03f879a5",
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "question-images-0-0-pixels": [
+            267,
+            1110,
+            994,
+            2079
+          ],
+          "gameplay-answer-input": [
+            52,
+            2467,
+            1014,
+            2630
+          ],
+          "gameplay-submit": [
+            1046,
+            2467,
+            1209,
+            2630
+          ]
+        }
+      },
+      "pixels": {
+        "insideEditingCapsule": {
+          "meanGray": 32.75,
+          "meanHorizontalEdge": 1.171,
+          "strongEdgeFraction": 0.0
+        },
+        "outsideOnSameImage": {
+          "meanGray": 49.204,
+          "meanHorizontalEdge": 3.665,
+          "strongEdgeFraction": 0.043718
+        }
+      },
+      "restoredIdleInteriorRGBIdentical": true
+    },
+    "draftPreservedAcrossKeyboardBackAndReopenThenCleared": true,
+    "originalAppearancePreferenceRestored": true,
+    "leftOnSamePreviewQuestion": true
+  }
+}

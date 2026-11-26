@@ -1,4 +1,4 @@
-import { uiMaterial } from '@kit.ArkUI';
+import { StarwardMaterial } from './StarwardMaterial';
 
 const BLUR_RADIUS: number = 9;
 
@@ -27,11 +27,7 @@ export struct StarwardGlassBackdrop {
   private blurRadius: number = 0;
 
   aboutToAppear(): void {
-    try {
-      this.blurRadius = uiMaterial.getMaterialInfo().state === uiMaterial.MaterialState.DISABLE ? 0 : BLUR_RADIUS;
-    } catch {
-      this.blurRadius = 0;
-    }
+    this.blurRadius = StarwardMaterial.backgroundBlurAllowed() ? BLUR_RADIUS : 0;
   }
 
   build() {

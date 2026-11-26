@@ -2,10 +2,17 @@ import { uiMaterial } from '@kit.ArkUI';
 
 /** API 26 ArkUI system material; no blur/shadow imitation or HDS enums. */
 export class StarwardMaterial {
+  static backgroundBlurAllowed(): boolean {
+    try {
+      return uiMaterial.getMaterialInfo().state !== uiMaterial.MaterialState.DISABLE;
+    } catch {
+      return false;
+    }
+  }
+
   static immersiveAvailable(): boolean {
     try {
-      return uiMaterial.isImmersiveMaterialSupported() &&
-        uiMaterial.getMaterialInfo().state !== uiMaterial.MaterialState.DISABLE;
+      return uiMaterial.isImmersiveMaterialSupported() && StarwardMaterial.backgroundBlurAllowed();
     } catch {
       return false;
     }
@@ -13,12 +20,13 @@ export class StarwardMaterial {
 
   static create(style: uiMaterial.ImmersiveStyle,
     interactionEnabled: boolean | undefined = undefined,
-    lightEffectColor: ResourceColor | undefined = undefined): uiMaterial.ImmersiveMaterial | undefined {
+    lightEffectColor: ResourceColor | undefined = undefined,
+    applyShadow: boolean = true): uiMaterial.ImmersiveMaterial | undefined {
     try {
       if (!StarwardMaterial.immersiveAvailable()) {
         return undefined;
       }
-      const options: uiMaterial.ImmersiveOptions = { style: style };
+      const options: uiMaterial.ImmersiveOptions = { style: style, applyShadow: applyShadow };
       if (interactionEnabled !== undefined) {
         options.interactive = interactionEnabled;
         if (interactionEnabled) {
@@ -40,6 +48,16 @@ export class StarwardMaterial {
       systemMaterial: StarwardMaterial.create(uiMaterial.ImmersiveStyle.ULTRA_THIN),
       scrollEffectOptions: { scrollEffectType: ScrollEffectType.COMMON_BLUR }
     };
+  }
+
+  /** Lets the title content own rounded materials over the full-width navigation host. */
+  static overlayTitleOptions(): NavigationTitleOptions {
+    return { barStyle: BarStyle.STACK, backgroundColor: Color.Transparent, backgroundBlurStyle: BlurStyle.NONE,
+      systemMaterial: uiMaterial.Material.empty };
+  }
+
+  static titleCapsule(interactionEnabled: boolean): uiMaterial.ImmersiveMaterial | undefined {
+    return StarwardMaterial.create(uiMaterial.ImmersiveStyle.THICK, interactionEnabled, $r('app.color.accent'), false);
   }
 }
 
