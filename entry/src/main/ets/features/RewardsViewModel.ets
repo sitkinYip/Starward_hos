@@ -16,6 +16,8 @@ export class RewardsViewModel {
   private owner: string = '';
   private active: boolean = false;
   private summaryActive: boolean = false;
+  private homeFeedActive: boolean = false;
+  private readRevision: number = 0;
   private syncFailed: boolean = false;
   private pending: ReadCancellation | null = null;
   private timer: number = -1;
@@ -48,9 +50,30 @@ export class RewardsViewModel {
     }
     if (!this.canRead()) {
       this.cancelRead();
-    } else if (!wasReading) {
+    } else if (!wasReading && !this.homeFeedActive) {
       void this.refresh();
     }
+  }
+
+  setHomeFeedActive(active: boolean): void {
+    if (this.homeFeedActive === active) { return; }
+    this.homeFeedActive = active;
+    if (active) { this.cancelRead(); }
+    else if (this.canRead()) { void this.refresh(); }
+  }
+
+  feedRevision(): number { return this.readRevision; }
+
+  acceptHomeEntries(entries: GameReward[], revision: number): void {
+    if (this.currentHomeFeed(revision)) { this.acceptEntries(entries); }
+  }
+
+  acceptHomeFailure(error: Object, revision: number): void {
+    if (this.currentHomeFeed(revision)) { this.acceptError(error); }
+  }
+
+  private currentHomeFeed(revision: number): boolean {
+    return this.homeFeedActive && this.pending === null && revision === this.readRevision && this.owner.length > 0;
   }
 
   private canRead(): boolean { return this.active || this.summaryActive; }
@@ -102,6 +125,7 @@ export class RewardsViewModel {
     const attempt: ReadCancellation = new ReadCancellation();
     const owner: string = this.owner;
     this.pending = attempt;
+    this.readRevision++;
     this.loading = showProgress || !this.loaded;
     if (showProgress) { this.error = ''; }
     try {
@@ -110,15 +134,7 @@ export class RewardsViewModel {
       if (rewards.some((reward: GameReward) => reward.player !== owner)) {
         throw new GameFailure('REWARDS_SCOPE_MISMATCH', '收藏与当前账号不一致，请重试。');
       }
-      const open: GameReward | null = this.selected;
-      this.entries = rewards;
-      if (open !== null) {
-        const latest: GameReward | undefined = rewards.find((reward: GameReward) => reward.id === open.id);
-        if (latest === undefined || !open.sameDetails(latest)) { this.selected = latest ?? null; }
-      }
-      this.loaded = true;
-      this.error = '';
-      this.resolveSyncFailure();
+      this.acceptEntries(rewards);
     } catch (error) {
       if (this.pending !== attempt) { return; }
       this.acceptError(error as Object);
@@ -126,12 +142,26 @@ export class RewardsViewModel {
       if (this.pending === attempt) {
         this.pending = null;
         this.loading = false;
-        this.timer = setTimeout(() => {
-          this.timer = -1;
-          void this.load(false);
-        }, POLL_MS);
+        if (!this.homeFeedActive) {
+          this.timer = setTimeout(() => {
+            this.timer = -1;
+            void this.load(false);
+          }, POLL_MS);
+        }
       }
     }
+  }
+
+  private acceptEntries(rewards: GameReward[]): void {
+    const open: GameReward | null = this.selected;
+    this.entries = rewards;
+    if (open !== null) {
+      const latest: GameReward | undefined = rewards.find((reward: GameReward) => reward.id === open.id);
+      if (latest === undefined || !open.sameDetails(latest)) { this.selected = latest ?? null; }
+    }
+    this.loaded = true;
+    this.error = '';
+    this.resolveSyncFailure();
   }
 
   private acceptError(error: Object): void {

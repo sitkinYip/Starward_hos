@@ -49,15 +49,16 @@ export struct StarwardBottomTabs {
   @Param hideBar: boolean = false;
   @Param materialInteractionEnabled: boolean = false;
   @Param reducedMotion: boolean = true;
+  @Param unreadAssignments: number = 0;
+  @Param unreadRewards: number = 0;
   @Param unreadLetters: number = 0;
   @Local private tabBarModifier: CommonModifier = UIUtils.makeObserved(new CommonModifier());
-  @Local private badgeX: number = 0;
-  @Local private badgeY: number = 0;
-  @Local private badgeMeasured: boolean = false;
+  @Local private badgePositions: Map<string, Position> = new Map();
   @Local private immersiveBar: boolean = false;
   private readonly controller: HdsTabsController = new HdsTabsController();
   private readonly nativeIndex: NativeTabIndex = new NativeTabIndex();
   private mounted: boolean = false;
+  private badgeMeasureQueued: boolean = false;
 
   private validIndex(index: number): boolean { return Number.isInteger(index) && index >= 0 && index <= 3; }
 
@@ -85,10 +86,15 @@ export struct StarwardBottomTabs {
     this.immersiveBar = starwardImmersiveTabsAvailable();
   }
 
-  @Monitor('unreadLetters', 'selectedIndex', 'floatingGap')
+  @Monitor('unreadAssignments', 'unreadRewards', 'unreadLetters', 'selectedIndex', 'floatingGap', 'followHandedness')
   private scheduleBadge(): void {
-    if (!this.mounted || this.hideBar || this.unreadLetters <= 0) { return; }
-    this.getUIContext().postFrameCallback(new TabBadgeMeasure(() => this.measureBadge()));
+    if (!this.mounted || this.hideBar || this.badgeMeasureQueued ||
+      this.unreadAssignments + this.unreadRewards + this.unreadLetters <= 0) { return; }
+    this.badgeMeasureQueued = true;
+    this.getUIContext().postFrameCallback(new TabBadgeMeasure(() => {
+      this.badgeMeasureQueued = false;
+      this.measureBadges();
+    }));
   }
 
   private findIcon(node: FrameNode, depth: number): FrameNode | null {
@@ -103,26 +109,37 @@ export struct StarwardBottomTabs {
     return null;
   }
 
-  private measureBadge(): void {
-    if (!this.mounted || this.hideBar || this.unreadLetters <= 0) { return; }
+  private unreadCount(tabId: string): number {
+    if (tabId === 'nav-home') { return this.unreadAssignments; }
+    if (tabId === 'nav-rewards') { return this.unreadRewards; }
+    return this.unreadLetters;
+  }
+
+  private measureBadges(): void {
+    if (!this.mounted || this.hideBar) { return; }
+    const positions: Map<string, Position> = new Map();
     try {
       const context = this.getUIContext();
-      const tab: FrameNode | null = context.getFrameNodeById('nav-notifications');
       const frame: FrameNode | null = context.getFrameNodeById('starward-tab-frame');
-      if (tab === null || frame === null) { return; }
-      const icon: FrameNode | null = this.findIcon(tab, 4);
-      if (icon === null) { return; }
-      const position = icon.getPositionToWindowWithTransform();
-      const origin = frame.getPositionToWindowWithTransform();
-      const width: number = context.px2vp(icon.getMeasuredSize().width);
-      if (width <= 0) { return; }
-      this.badgeX = position.x - origin.x + width - 8;
-      this.badgeY = position.y - origin.y - 7;
-      this.badgeMeasured = true;
+      if (frame !== null) {
+        const origin = frame.getPositionToWindowWithTransform();
+        for (const tabId of ['nav-home', 'nav-rewards', 'nav-notifications']) {
+          if (this.unreadCount(tabId) <= 0) { continue; }
+          const tab: FrameNode | null = context.getFrameNodeById(tabId);
+          const icon: FrameNode | null = tab === null ? null : this.findIcon(tab, 4);
+          if (icon === null) { continue; }
+          const position = icon.getPositionToWindowWithTransform();
+          const width: number = context.px2vp(icon.getMeasuredSize().width);
+          if (width > 0) {
+            positions.set(tabId, { x: position.x - origin.x + width - 8, y: position.y - origin.y - 7 });
+          }
+        }
+      }
     } catch {
       // The native bar may be leaving the tree during a navigation change.
-      this.badgeMeasured = false;
+      positions.clear();
     }
+    this.badgePositions = positions;
   }
 
   @Monitor('hideBar')
@@ -136,6 +153,20 @@ export struct StarwardBottomTabs {
     return BottomTabBarStyle.of(icon, label).id(nodeId)
       .labelStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted') })
       .iconStyle({ selectedColor: $r('app.color.accent_text'), unselectedColor: $r('app.color.muted') });
+  }
+
+  @Builder
+  private unreadBadge(tabId: string, nodeId: string, label: string) {
+    if (!this.hideBar && this.unreadCount(tabId) > 0 && this.badgePositions.has(tabId)) {
+      Badge({ count: this.unreadCount(tabId), maxCount: 99, position: { x: 0, y: 0 },
+        style: { color: $r('app.color.on_accent'), badgeColor: $r('app.color.accent'),
+          fontSize: 10, badgeSize: 17, fontWeight: FontWeight.Medium,
+          borderWidth: 0, borderColor: $r('app.color.accent') } }) {
+        Row().width(17).height(17)
+      }.id(nodeId).width(17).height(17).position(this.badgePositions.get(tabId) ?? { x: 0, y: 0 })
+        .hitTestBehavior(HitTestMode.None)
+        .accessibilityText(`${label}，${this.unreadCount(tabId)} ${tabId === 'nav-notifications' ? '封' : '项'}未读`)
+    }
   }
 
   build() {
@@ -194,15 +225,9 @@ export struct StarwardBottomTabs {
           this.nativeIndex.attached = true;
           this.applyOwnerIndex();
         })
-      if (!this.hideBar && this.unreadLetters > 0 && this.badgeMeasured) {
-        Badge({ count: this.unreadLetters, maxCount: 99, position: { x: 0, y: 0 },
-          style: { color: $r('app.color.on_accent'), badgeColor: $r('app.color.accent'),
-            fontSize: 10, badgeSize: 17, fontWeight: FontWeight.Medium,
-            borderWidth: 0, borderColor: $r('app.color.accent') } }) {
-          Row().width(17).height(17)
-        }.id('journey-nav-unread').width(17).height(17).position({ x: this.badgeX, y: this.badgeY })
-          .hitTestBehavior(HitTestMode.None).accessibilityText(`旅途来信，${this.unreadLetters} 封未读`)
-      }
+      this.unreadBadge('nav-home', 'assignment-nav-unread', '新场次')
+      this.unreadBadge('nav-rewards', 'rewards-nav-unread', '待领奖品')
+      this.unreadBadge('nav-notifications', 'journey-nav-unread', '旅途来信')
     }.id('starward-tab-frame').width('100%').height('100%').onAreaChange(() => this.scheduleBadge())
   }
 }

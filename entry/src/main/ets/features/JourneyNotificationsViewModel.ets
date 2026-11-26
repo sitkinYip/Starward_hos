@@ -4,6 +4,7 @@ import { ReadCancellation } from '../business/ReadCancellation';
 import { GameFailure } from '../business/models';
 
 const POLL_MS: number = 5000;
+const READ_BATCH_LIMIT: number = 200;
 
 class RouteArchiveNote {
   readonly assignmentId: string;
@@ -22,6 +23,7 @@ export class JourneyNotificationsViewModel {
   @Trace error: string = '';
   @Trace activeNotificationId: string = '';
   @Trace readingId: string = '';
+  @Trace clearingUnread: boolean = false;
   @Trace readErrorId: string = '';
   @Trace readErrorMessage: string = '';
   @Trace gameplayReady: boolean = false;
@@ -40,6 +42,8 @@ export class JourneyNotificationsViewModel {
   private questDelayReady: boolean = false;
   private questReadReady: boolean = false;
   private inboxPolling: boolean = false;
+  private homeFeedActive: boolean = false;
+  private readRevision: number = 0;
   private hasBaseline: boolean = false;
   private readonly seenIds: Set<string> = new Set<string>();
   private readonly pendingUnreadIds: Set<string> = new Set<string>();
@@ -91,6 +95,7 @@ export class JourneyNotificationsViewModel {
     this.entries = [];
     this.error = '';
     this.readingId = '';
+    this.clearingUnread = false;
     this.readErrorId = '';
     this.readErrorMessage = '';
     this.hasBaseline = false;
@@ -133,7 +138,34 @@ export class JourneyNotificationsViewModel {
     const starting: boolean = active && !this.inboxPolling && this.owner.length > 0;
     this.inboxPolling = active && this.owner.length > 0;
     this.updatePolling();
-    if (starting) { void this.load(false); }
+    if (starting && !this.homeFeedActive) { void this.load(false); }
+  }
+
+  setHomeFeedActive(active: boolean): void {
+    if (this.homeFeedActive === active) { return; }
+    this.homeFeedActive = active;
+    this.updatePolling();
+  }
+
+  feedRevision(): number { return this.readRevision; }
+
+  acceptHomeEntries(entries: GameNotification[], revision: number): void {
+    if (!this.currentHomeFeed(revision)) { return; }
+    this.acceptEntries(entries);
+    this.error = '';
+    if (this.activeNotificationId.length > 0 && this.current === null) { this.close(); }
+  }
+
+  acceptHomeFailure(error: Object, revision: number): void {
+    if (this.currentHomeFeed(revision) && !this.hasBaseline &&
+      !(error instanceof GameFailure && error.code === 'CANCELLED')) {
+      this.error = this.message(error, '来信暂时无法读取，请重试。');
+    }
+  }
+
+  private currentHomeFeed(revision: number): boolean {
+    return this.homeFeedActive && this.owner.length > 0 && this.pending === null && !this.clearingUnread &&
+      this.readingId.length === 0 && revision === this.readRevision;
   }
 
   dismissNewUnread(): void {
@@ -142,7 +174,7 @@ export class JourneyNotificationsViewModel {
   }
 
   private updatePolling(): void {
-    if ((this.questPolling || this.inboxPolling) && this.owner.length > 0) {
+    if ((this.questPolling || (this.inboxPolling && !this.homeFeedActive)) && this.owner.length > 0) {
       if (this.timer === -1) {
         this.timer = setInterval(() => { void this.load(false); }, POLL_MS);
       }
@@ -234,6 +266,11 @@ export class JourneyNotificationsViewModel {
   }
 
   async markRead(id: string): Promise<boolean> {
+    if (this.clearingUnread) { return false; }
+    return await this.markOneRead(id);
+  }
+
+  private async markOneRead(id: string): Promise<boolean> {
     if (this.owner.length === 0 || this.readingId.length > 0) { return false; }
     const note: GameNotification | undefined = this.entries.find((item: GameNotification) => item.id === id);
     if (note === undefined) { return false; }
@@ -241,6 +278,7 @@ export class JourneyNotificationsViewModel {
 
     // Supersede a GET started before the receipt write, so it cannot restore an old unread state.
     this.cancelRead();
+    this.readRevision++;
     const generation: number = this.generation;
     this.readingId = id;
     this.readErrorId = '';
@@ -248,10 +286,9 @@ export class JourneyNotificationsViewModel {
     try {
       const readAt: string = await this.repository.readNotification(id);
       if (generation !== this.generation) { return false; }
-      this.entries = this.entries.map((item: GameNotification) => item.id === id ? item.withReadAt(readAt) : item);
-      this.pendingUnreadIds.delete(id);
-      this.newUnreadCount = this.pendingUnreadIds.size;
-      if (this.unreadCount === 0) { this.unreadClearedRevision++; }
+      const receipts: Map<string, string> = new Map();
+      receipts.set(id, readAt);
+      this.applyReadReceipts(receipts);
       return true;
     } catch (error) {
       if (generation === this.generation && !this.endExpiredSession(error as Object)) {
@@ -264,10 +301,68 @@ export class JourneyNotificationsViewModel {
     }
   }
 
+  async markAllRead(): Promise<boolean> {
+    if (this.owner.length === 0 || this.clearingUnread || this.readingId.length > 0) { return false; }
+    const ids: string[] = this.unreadEntries.map((note: GameNotification) => note.id);
+    if (ids.length === 0) { return true; }
+    const generation: number = this.generation;
+    this.cancelRead();
+    this.readRevision++;
+    this.clearingUnread = true;
+    this.readErrorId = '';
+    this.readErrorMessage = '';
+    try {
+      return await this.writeUnreadSnapshot(ids, generation);
+    } finally {
+      if (generation === this.generation) { this.clearingUnread = false; }
+    }
+  }
+
+  private async writeUnreadSnapshot(ids: string[], generation: number): Promise<boolean> {
+    let allRead: boolean = true;
+    for (let offset: number = 0; offset < ids.length; offset += READ_BATCH_LIMIT) {
+      if (generation !== this.generation) { return false; }
+      const batch: string[] = ids.slice(offset, offset + READ_BATCH_LIMIT);
+      if (this.repository.readNotifications !== undefined) {
+        try {
+          const receipts: Map<string, string> = await this.repository.readNotifications(batch);
+          if (generation !== this.generation) { return false; }
+          this.applyReadReceipts(receipts);
+          allRead = receipts.size === batch.length && allRead;
+          continue;
+        } catch (error) {
+          if (generation !== this.generation) { return false; }
+          if (!(error instanceof GameFailure && error.status === 404 && error.code === 'NOT_FOUND')) {
+            this.endExpiredSession(error as Object);
+            return false;
+          }
+        }
+      }
+      for (const id of batch) {
+        if (generation !== this.generation) { return false; }
+        if (!await this.markOneRead(id)) { allRead = false; }
+      }
+    }
+    return allRead && generation === this.generation;
+  }
+
+  private applyReadReceipts(receipts: Map<string, string>): void {
+    if (receipts.size === 0) { return; }
+    this.readRevision++;
+    this.entries = this.entries.map((note: GameNotification) => {
+      const readAt: string | undefined = receipts.get(note.id);
+      return readAt === undefined ? note : note.withReadAt(readAt);
+    });
+    receipts.forEach((_readAt: string, id: string) => this.pendingUnreadIds.delete(id));
+    this.newUnreadCount = this.pendingUnreadIds.size;
+    if (this.unreadCount === 0) { this.unreadClearedRevision++; }
+  }
+
   private async load(manual: boolean): Promise<void> {
-    if (this.owner.length === 0 || this.pending !== null || this.readingId.length > 0) { return; }
+    if (this.owner.length === 0 || this.pending !== null || this.readingId.length > 0 || this.clearingUnread) { return; }
     const attempt: ReadCancellation = new ReadCancellation();
     this.pending = attempt;
+    this.readRevision++;
     if (manual) {
       this.loading = true;
       this.error = '';

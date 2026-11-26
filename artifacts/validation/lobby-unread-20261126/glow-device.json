@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "signedHapSha256": "54f9522b76f239ae6c451e3607dde60a44d17fe7b37c212c981517ac9de818f8",
+  "checks": [
+    "Both themes show a full-card animated unread halo and the original ongoing glow plus both progress rings",
+    "Visiting the briefing clears only its unread halo and badge; cards and ongoing glow remain"
+  ],
+  "themes": {
+    "dark": {
+      "frameSamples": [
+        {
+          "name": "dark-0.png",
+          "sha256": "44dfeeb406af495bd64f3428fb93d29c22c9ca12208492afd2370be38f4d2b9b",
+          "edgeBlueMinusRed": 42.867
+        },
+        {
+          "name": "dark-1.png",
+          "sha256": "ba7f312d5b13967b16a53a507198b0d54fec8d48cf9920bfd37fc81bd955f33a",
+          "edgeBlueMinusRed": 53.962
+        },
+        {
+          "name": "dark-2.png",
+          "sha256": "124a8c37cc412a29ae829e36e2b5c02a59170b4958513bcab7da89baa5f21250",
+          "edgeBlueMinusRed": 58.233
+        },
+        {
+          "name": "dark-3.png",
+          "sha256": "2a57afee575980ec245db399d54494374196f1e2903cb0efdc29141943666067",
+          "edgeBlueMinusRed": 39.919
+        }
+      ],
+      "edgeChromaRange": 18.314,
+      "cardBoundsPx": [
+        77,
+        1180,
+        1183,
+        1492
+      ],
+      "unreadHaloBoundsPx": [
+        80,
+        1183,
+        1180,
+        1489
+      ],
+      "ongoingGlowBoundsPx": [
+        80,
+        826,
+        1180,
+        1132
+      ]
+    },
+    "light": {
+      "frameSamples": [
+        {
+          "name": "light-0.png",
+          "sha256": "561472acef8251909ae45aaf6abc2c452dff5affe0aab19ed8f657d0079f8da6",
+          "edgeBlueMinusRed": 28.738
+        },
+        {
+          "name": "light-1.png",
+          "sha256": "83086ae51d85705ad1bce898732f9da34f67ac86e86cda05466c32911f0353f4",
+          "edgeBlueMinusRed": 47.953
+        },
+        {
+          "name": "light-2.png",
+          "sha256": "879fe8203b7f9caee9d52012bca51d239867d0e709740c1113762ec93263caaf",
+          "edgeBlueMinusRed": 47.341
+        },
+        {
+          "name": "light-3.png",
+          "sha256": "5982657f26382d364fdef048f0bd8b4134dfbbde47b43be6298b95da6c0708e4",
+          "edgeBlueMinusRed": 22.835
+        }
+      ],
+      "edgeChromaRange": 25.118,
+      "cardBoundsPx": [
+        77,
+        1180,
+        1183,
+        1492
+      ],
+      "unreadHaloBoundsPx": [
+        80,
+        1183,
+        1180,
+        1489
+      ],
+      "ongoingGlowBoundsPx": [
+        80,
+        826,
+        1180,
+        1132
+      ]
+    }
+  }
+}

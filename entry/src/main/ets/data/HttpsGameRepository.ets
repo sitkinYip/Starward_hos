@@ -11,12 +11,14 @@ import { HttpTransport, NativeHttpTransport, TransportPart, TransportRequest, Tr
 import { ReadCancellation } from '../business/ReadCancellation';
 import { GameNotification } from '../business/GameNotification';
 import { GameReward } from '../business/GameReward';
+import { LobbyFeed } from '../business/LobbyFeed';
 import { PushDevice, PushRegistration, PushStatus } from '../business/PushRegistration';
 import { PushBindingClient } from './PushBindingClient';
 import { JourneyPushSubscription, PERSONAL_JOURNEY_SCOPE, PushSubscriptionCommand } from '../business/PushSubscription';
 import { decodeJourneyPushSubscription } from './PushSubscriptionDecoder';
 import { decodeApiFailure, decodeAssignment, decodeAssignments, decodeFileToken, decodeLogin, decodePassword, decodePlayer,
-  decodeNotificationReceipt, decodeNotifications, decodeRewards, LoginResult, PasswordResult } from './DtoDecoder';
+  decodeLobbyFeed, decodeNotificationReceipt, decodeNotificationReceipts, decodeNotifications, decodeRewards,
+  LoginResult, PasswordResult } from './DtoDecoder';
 
 class LoginCommand {
   identity: string;
@@ -546,6 +548,13 @@ export class HttpsGameRepository implements GameRepository {
       generation, cancellation));
   }
 
+  async home(cancellation?: ReadCancellation): Promise<LobbyFeed> {
+    const generation: number = this.requireSession();
+    const playerId: string = this.playerId;
+    const body: string = await this.request('/api/questions/v1/home', 'GET', '', this.token, generation, cancellation);
+    return decodeLobbyFeed(body, playerId);
+  }
+
   async rewards(cancellation?: ReadCancellation): Promise<GameReward[]> {
     const generation: number = this.requireSession();
     const playerId: string = this.playerId;
@@ -557,6 +566,13 @@ export class HttpsGameRepository implements GameRepository {
     const generation: number = this.requireSession();
     return decodeNotificationReceipt(await this.request(`/api/questions/v1/notifications/${encodeURIComponent(id)}/read`,
       'POST', '{}', this.token, generation));
+  }
+
+  async readNotifications(ids: string[]): Promise<Map<string, string>> {
+    const generation: number = this.requireSession();
+    const body: string = await this.request('/api/questions/v1/notifications/read-all', 'POST',
+      JSON.stringify({ ids }), this.token, generation);
+    return decodeNotificationReceipts(body, ids);
   }
 
   async answerAssignment(id: string, sessionLevelId: string, rawAnswer: string,

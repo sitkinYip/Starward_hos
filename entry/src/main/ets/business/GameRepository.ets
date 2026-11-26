@@ -6,6 +6,7 @@ import { GameNotification } from './GameNotification';
 import { GameReward } from './GameReward';
 import { PushDevice, PushStatus } from './PushRegistration';
 import { JourneyPushSubscription, PushSubscriptionCommand } from './PushSubscription';
+import { LobbyFeed } from './LobbyFeed';
 
 export interface GameRepository {
   readonly mode: string;
@@ -22,7 +23,9 @@ export interface GameRepository {
   narrative(assignmentId: string, contentId: string, cancellation?: ReadCancellation): Promise<NarrativeContent>;
   rewards(cancellation?: ReadCancellation): Promise<GameReward[]>;
   notifications(cancellation?: ReadCancellation): Promise<GameNotification[]>;
+  home?(cancellation?: ReadCancellation): Promise<LobbyFeed>;
   readNotification(id: string): Promise<string>;
+  readNotifications?(ids: string[]): Promise<Map<string, string>>;
   answerAssignment(id: string, sessionLevelId: string, rawAnswer: string, requestId: string): Promise<GameplayAnswerResult>;
   suspendSession?(): void;
   attachPush?(device: PushDevice): void;

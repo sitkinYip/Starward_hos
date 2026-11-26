@@ -44,8 +44,56 @@ class NotificationRepository extends MockGameRepository {
   }
 }
 
+class BatchNotificationRepository extends NotificationRepository {
+  requested: string[] = [];
+  resolveBatch: ((receipts: Map<string, string>) => void) | null = null;
+  missingRoute: boolean = false;
+
+  async readNotifications(ids: string[]): Promise<Map<string, string>> {
+    this.requested = ids;
+    if (this.missingRoute) { throw new GameFailure('NOT_FOUND', '旧服务', 404); }
+    return new Promise<Map<string, string>>((resolve) => { this.resolveBatch = resolve; });
+  }
+}
+
 export default function journeyNotificationsViewModelTests(): void {
   describe('JourneyNotificationsViewModel', () => {
+    it('clearsSnapshotInOneBatchAndRejectsAnOverlappingStaleHomeFeed', 0, async () => {
+      const repository: BatchNotificationRepository = new BatchNotificationRepository();
+      repository.entries = [note('first'), note('second'), note('history', READ_AT)];
+      const model: JourneyNotificationsViewModel = new JourneyNotificationsViewModel(repository, () => {});
+      model.bindOwner('owner');
+      model.setHomeFeedActive(true);
+      await model.refresh();
+      const write: Promise<boolean> = model.markAllRead();
+      const inFlightFeed: number = model.feedRevision();
+      expect(model.clearingUnread).assertTrue();
+      expect(await model.markRead('first')).assertFalse();
+      expect(repository.requested.join(',')).assertEqual('first,second');
+      const receipts: Map<string, string> = new Map();
+      receipts.set('first', READ_AT);
+      receipts.set('second', READ_AT);
+      repository.resolveBatch?.(receipts);
+      expect(await write).assertTrue();
+      model.acceptHomeEntries(repository.entries, inFlightFeed);
+      expect(model.unreadCount).assertEqual(0);
+      model.acceptHomeEntries([note('arrived-after'), note('first', READ_AT), note('second', READ_AT)], model.feedRevision());
+      expect(model.unreadEntries[0].id).assertEqual('arrived-after');
+      expect(repository.readIds.length).assertEqual(0);
+    });
+
+    it('fallsBackToExistingReceiptsWhenBatchRouteIsUnavailable', 0, async () => {
+      const repository: BatchNotificationRepository = new BatchNotificationRepository();
+      repository.entries = [note('first'), note('second')];
+      repository.missingRoute = true;
+      const model: JourneyNotificationsViewModel = new JourneyNotificationsViewModel(repository, () => {});
+      model.bindOwner('owner');
+      await model.refresh();
+      expect(await model.markAllRead()).assertTrue();
+      expect(repository.readIds.join(',')).assertEqual('first,second');
+      expect(model.unreadCount).assertEqual(0);
+    });
+
     it('opensAndClosesManualReadingWithoutWritingThenUsesServerReceipt', 0, async () => {
       const repository = new NotificationRepository();
       repository.entries = [note('newer'), note('older'), note('already-read', READ_AT)];

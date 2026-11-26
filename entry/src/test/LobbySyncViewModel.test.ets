@@ -3,6 +3,9 @@ import { AssignmentSummary, GameFailure, Player } from '../main/ets/business/mod
 import { ReadCancellation } from '../main/ets/business/ReadCancellation';
 import { MockGameRepository, sampleAssignment } from '../main/ets/data/MockGameRepository';
 import { SliceViewModel } from '../main/ets/features/SliceViewModel';
+import { LobbyFeed } from '../main/ets/business/LobbyFeed';
+import { GameReward } from '../main/ets/business/GameReward';
+import { GameNotification } from '../main/ets/business/GameNotification';
 
 const INTERVAL_MS: number = 30;
 
@@ -52,6 +55,20 @@ class LobbyRepository extends MockGameRepository {
   }
 }
 
+class AggregateLobbyRepository extends LobbyRepository {
+  async home(): Promise<LobbyFeed> {
+    this.calls.push('home');
+    const feed: LobbyFeed = new LobbyFeed();
+    feed.assignments = assignments('new-session');
+    const reward: GameReward = new GameReward();
+    reward.id = 'unclaimed';
+    reward.player = 'playeralice';
+    feed.rewards = [reward];
+    feed.notifications = [new GameNotification('new-note', '新来信', '测试', '', '', '2026-11-26T00:00:00Z', '', '')];
+    return feed;
+  }
+}
+
 function player(name: string, forcePassword: boolean = false): Player {
   const value: Player = new Player();
   value.id = 'playeralice';
@@ -92,6 +109,32 @@ async function enterHome(vm: SliceViewModel, repository: LobbyRepository): Promi
 
 export default function lobbySyncViewModelTests(): void {
   describe('LobbySyncViewModel', () => {
+    it('aggregatesThreeSnapshotsOnTheFirstReadAndDuringPolling', 0, async () => {
+      const repository: AggregateLobbyRepository = new AggregateLobbyRepository();
+      const vm: SliceViewModel = new SliceViewModel(repository, INTERVAL_MS);
+      await enterHome(vm, repository);
+      vm.setHomeFeedActive(true);
+      try {
+        await vm.refresh();
+        expect(repository.calls.join(',')).assertEqual('me,home');
+        expect(vm.items[0].id).assertEqual('new-session');
+        expect(vm.rewards.entries[0].id).assertEqual('unclaimed');
+        expect(vm.journey.unreadCount).assertEqual(1);
+        repository.calls.length = 0;
+        vm.journey.setInboxPolling(true);
+        vm.rewards.setActive(true);
+        vm.setLobbyPolling(true);
+        await waitUntil(() => repository.calls.includes('home'));
+        vm.setLobbyPolling(false);
+        expect(repository.calls.join(',')).assertEqual('me,home');
+      } finally {
+        vm.journey.setInboxPolling(false);
+        vm.rewards.setActive(false);
+        vm.setLobbyPolling(false);
+        vm.setHomeFeedActive(false);
+      }
+    });
+
     it('visibleLobbyReadsBothServerSnapshotsWithoutBusyOrBusinessWrites', 0, async () => {
       const repository: LobbyRepository = new LobbyRepository();
       const vm: SliceViewModel = new SliceViewModel(repository, INTERVAL_MS);

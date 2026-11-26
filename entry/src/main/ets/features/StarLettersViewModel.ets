@@ -76,17 +76,17 @@ export class StarLettersViewModel {
   }
 
   /** Return transient feedback only when previous data can still support the manual refresh UI. */
-  async refresh(): Promise<string> {
+  async refresh(readyAssignments?: AssignmentSummary[]): Promise<string> {
     if (this.owner.length === 0 || this.loading) { return ''; }
     const revision: number = ++this.revision;
     this.loading = true;
     this.error = '';
     let keptPreviousSource: boolean = false;
     try {
-      const summaries: AssignmentSummary[] = await this.read((attempt: ReadCancellation) =>
-        this.repository.assignments(attempt));
+      const summaries: AssignmentSummary[] = readyAssignments !== undefined && this.ownsDirectory(readyAssignments) ?
+        readyAssignments : await this.read((attempt: ReadCancellation) => this.repository.assignments(attempt));
       if (revision !== this.revision) { return ''; }
-      if (summaries.some((item: AssignmentSummary) => item.player !== this.owner || item.id.length === 0)) {
+      if (!this.ownsDirectory(summaries)) {
         throw new GameFailure(SCOPE_MISMATCH, '信笺目录与当前账号不一致，请重试。');
       }
       this.acceptAssignments(summaries);
@@ -110,6 +110,10 @@ export class StarLettersViewModel {
       if (revision === this.revision) { this.loading = false; }
     }
     return revision === this.revision && keptPreviousSource ? '部分信笺暂未同步，请下拉重试。' : '';
+  }
+
+  private ownsDirectory(summaries: AssignmentSummary[]): boolean {
+    return summaries.every((item: AssignmentSummary) => item.player === this.owner && item.id.length > 0);
   }
 
   async retryAssignment(assignmentId: string): Promise<void> {

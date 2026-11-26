@@ -106,6 +106,44 @@ class StarLettersRepository extends MockGameRepository {
 
 export default function starLettersViewModelTests(): void {
   describe('StarLettersViewModel', () => {
+    it('ReusesAnOwnedLobbyDirectoryAndReadsAFreshDirectoryForManualRefresh', 0, async () => {
+      const repository: StarLettersRepository = new StarLettersRepository();
+      const cached: GameplaySnapshot = assignment('cached', 'active', [clue('first', '缓存场次的信笺')]);
+      const latest: GameplaySnapshot = assignment('fresh', 'active', [clue('second', '新场次的信笺')]);
+      repository.setup([cached, latest]);
+      const model: StarLettersViewModel = new StarLettersViewModel(repository, () => {});
+      model.bindOwner('owner');
+
+      await model.refresh([cached.detail]);
+      expect(repository.listCalls).assertEqual(0);
+      expect(repository.detailIds.join(',')).assertEqual('cached');
+      expect(model.canOpen('cached', 'first')).assertTrue();
+
+      await model.refresh();
+      expect(repository.listCalls).assertEqual(1);
+      expect(repository.detailIds.join(',')).assertEqual('cached,cached,fresh');
+      expect(model.canOpen('fresh', 'second')).assertTrue();
+    });
+
+    it('TreatsAnOwnedEmptyLobbyAsReadyAndRejectsAForeignDirectory', 0, async () => {
+      const repository: StarLettersRepository = new StarLettersRepository();
+      const owned: GameplaySnapshot = assignment('owned', 'active', [clue('valid', '自己的信笺')]);
+      const foreign: GameplaySnapshot = assignment('foreign', 'active', [clue('private', '他人的信笺')], '', 'other');
+      repository.setup([owned]);
+      const model: StarLettersViewModel = new StarLettersViewModel(repository, () => {});
+      model.bindOwner('owner');
+
+      await model.refresh([]);
+      expect(repository.listCalls).assertEqual(0);
+      expect(model.archiveReady).assertTrue();
+
+      await model.refresh([foreign.detail]);
+      expect(repository.listCalls).assertEqual(1);
+      expect(repository.detailIds.join(',')).assertEqual('owned');
+      expect(model.canOpen('owned', 'valid')).assertTrue();
+      expect(model.canOpen('foreign', 'private')).assertFalse();
+    });
+
     it('ProjectsGrantedLettersAndBlessingsAndOnlyAuthorizedFinalesInStableOrder', 0, async () => {
       const repository: StarLettersRepository = new StarLettersRepository();
       repository.setup([

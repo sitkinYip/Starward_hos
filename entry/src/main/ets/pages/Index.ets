@@ -19,6 +19,7 @@ import { assignmentBgmSource, gameplayBgmSource } from '../business/GameplayBgm'
 import { assignmentBackgroundSource, gameplayBackgroundSource } from '../business/GameplayBackground';
 import { QUEST_BGM_MARGIN, QUEST_BGM_SIZE, questBgmCoordinate } from '../business/QuestBgmDock';
 import { createSliceViewModel } from '../features/createSliceViewModel';
+import { LobbyUnreadPreference } from '../platform/LobbyUnreadPreference';
 import { AssignmentSummary, AvatarImage, AvatarUpload, GameFailure } from '../business/models';
 import { ProfilePage } from '../features/ProfilePage';
 import { SettingsPage } from '../features/SettingsPage';
@@ -199,7 +200,7 @@ struct Index {
   @Local private privacyBusy: boolean = false;
   @Local private privacyError: string = '';
   @Local private pushFlow: PushPermissionFlow | null = null;
-  @Local private pushInboxRevision: number = 0;
+  @Local private mailboxCategory: number = 0;
   @Local private pushOnboarding: PushOnboardingViewModel | null = null;
   @Local private navigationDepth: number = 0;
   @Local private lobbyRouteTransitioning: boolean = false;
@@ -247,8 +248,8 @@ struct Index {
           this.vm.openAssignment(this.selectedId);
         }
         if (this.mainIndex === 2 && this.paths.size() === 0 && !this.vm.securityUnconfirmed) {
-          this.vm.starLetters.refresh();
-          this.vm.journey.refresh();
+          this.refreshVisibleStarLetters();
+          if (!this.vm.usesHomeFeed()) { this.vm.journey.refresh(); }
         }
       }
     } else {
@@ -290,7 +291,7 @@ struct Index {
     if (!this.privacyAllowed || !this.foreground || this.vm.gate !== 'home' || this.vm.player.id !== owner ||
       this.vm.securityUnconfirmed || this.vm.securityBusy || !LaunchRoutes.consumePush(route) || !matches) { return; }
     if (route.kind === 'inbox') {
-      this.pushInboxRevision++;
+      this.selectMailboxCategory(0);
       const alreadyOnInbox: boolean = this.mainIndex === 2;
       this.goMain(2);
       if (alreadyOnInbox) { void this.vm.journey.refresh(); }
@@ -402,7 +403,10 @@ struct Index {
       this.narrativeFont = 'serif';
     }
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
-    if (context !== undefined) { this.answerHapticsEnabled = AnswerHapticsPreference.load(context); }
+    if (context !== undefined) {
+      this.answerHapticsEnabled = AnswerHapticsPreference.load(context);
+      this.vm.lobbyUnread.attach(new LobbyUnreadPreference(context));
+    }
     this.getUIContext().setKeyboardAvoidMode(PageKeyboardAvoidMode.RESIZE);
     this.motion.start();
     AppLifecycle.subscribe(this.lifecycle);
@@ -455,6 +459,7 @@ struct Index {
     this.unsubscribePrivacy = null;
     if (AppEnvironment.hostedPrivacy && this.privacyAllowed) { this.suspendPrivateSession(); }
     this.paths.setInterception({});
+    this.vm.setHomeFeedActive(false);
     this.vm.setLobbyPolling(false);
     this.atmosphere.release();
     this.vm.stopBriefingSync();
@@ -474,7 +479,7 @@ struct Index {
   @Monitor('mainIndex', 'navigationDepth', 'foreground', 'privacyAllowed', 'vm.gate', 'vm.player',
     'vm.securityBusy', 'vm.securityUnconfirmed', 'vm.narrative.route')
   rewardsVisibilityChanged(): void {
-    this.vm.rewards.setActive(this.rewardsVisible(), this.profileStatsVisible());
+    this.vm.rewards.setActive(this.rewardsVisible(), this.mainTabsReading());
   }
 
   private rewardsVisible(): boolean {
@@ -482,10 +487,26 @@ struct Index {
       this.vm.narrative.route === null && this.vm.gate === 'home' && !this.vm.securityUnconfirmed;
   }
 
-  @Monitor('mainIndex', 'navigationDepth', 'foreground', 'privacyAllowed', 'vm.gate', 'vm.securityUnconfirmed')
+  @Monitor('navigationDepth', 'foreground', 'privacyAllowed', 'vm.gate', 'vm.securityBusy', 'vm.securityUnconfirmed')
   lobbyVisibilityChanged(): void {
-    this.vm.setLobbyPolling(this.lobbyVisible() || this.profileStatsVisible());
+    const root: boolean = this.privacyAllowed && this.foreground && this.paths.size() === 0 &&
+      !this.lobbyRouteTransitioning && !this.vm.securityBusy && !this.vm.securityUnconfirmed;
+    if (root) { this.vm.setHomeFeedActive(true); }
+    this.rewardsVisibilityChanged();
+    if (!root) { this.vm.setHomeFeedActive(false); }
+    this.vm.setLobbyPolling(this.mainTabsReading());
   }
+
+  private mainTabsReading(): boolean {
+    return this.journeySessionReady() && !this.lobbyRouteTransitioning && this.paths.size() === 0 &&
+      this.vm.narrative.route === null;
+  }
+
+  @Computed
+  get unreadAssignmentIds(): string[] { return this.vm.lobbyUnread.assignments(this.vm.items); }
+
+  @Computed
+  get unreadRewardIds(): string[] { return this.vm.lobbyUnread.rewards(this.vm.rewards.entries); }
 
   private lobbyVisible(): boolean {
     return this.privacyAllowed && this.foreground && this.mainIndex === 0 && !this.lobbyRouteTransitioning &&
@@ -494,10 +515,6 @@ struct Index {
 
   private profileActive(): boolean {
     return this.mainIndex === 3 && this.navigationDepth === 0 && this.privacyAllowed && this.vm.gate === 'home';
-  }
-
-  private profileStatsVisible(): boolean {
-    return this.profileActive() && this.foreground && !this.vm.securityBusy && !this.vm.securityUnconfirmed;
   }
 
   private journeySessionReady(): boolean {
@@ -555,7 +572,7 @@ struct Index {
   private openJourneyInbox(): void {
     if (!this.journeySessionReady()) { return; }
     this.clearJourneyToast();
-    this.pushInboxRevision++;
+    this.selectMailboxCategory(0);
     this.goMain(2);
     this.vm.journey.clearRouteArchive();
     void this.vm.journey.refresh();
@@ -721,17 +738,31 @@ struct Index {
     if (this.mainIndex !== index) {
       if (this.mainIndex === 2) {
         this.vm.starLetters.suspend();
-        this.vm.journey.suspend();
+        this.vm.journey.close();
       }
       this.mainIndex = index;
       this.lobbyVisibilityChanged();
       this.journeyScopeChanged();
-      if (index === 2 && this.foreground) {
-        this.vm.starLetters.refresh();
-        this.vm.journey.refresh();
-      }
+      if (index === 2) { this.refreshVisibleStarLetters(); }
     }
     if (index === 3) { this.vm.openProfile(); }
+  }
+
+  private selectMailboxCategory(index: number): void {
+    if ((index !== 0 && index !== 1) || this.mailboxCategory === index) { return; }
+    this.mailboxCategory = index;
+    if (index === 1) { this.refreshVisibleStarLetters(); }
+    else { this.vm.starLetters.suspend(); }
+  }
+
+  private refreshVisibleStarLetters(): void {
+    if (this.mainIndex === 2 && this.mailboxCategory === 1 && this.mainTabsReading()) {
+      this.refreshStarLettersFromLobby();
+    }
+  }
+
+  private refreshStarLettersFromLobby(): void {
+    void this.vm.starLetters.refresh(this.vm.lobbyHasList ? this.vm.items : undefined);
   }
 
   private leaveGameplay(popPath: boolean = true): void {
@@ -821,9 +852,9 @@ struct Index {
     this.paths.pop(!this.motion.reduced);
     if (route?.source === 'star-letters') {
       if (lost) { this.vm.starLetters.hideEntry(route.assignmentId, route.contentId); }
-      if (this.foreground && this.vm.gate === 'home') {
+      if (this.journeySessionReady() && this.mainIndex === 2 && this.mailboxCategory === 1) {
         if (interrupted) {
-          this.vm.starLetters.refresh();
+          this.refreshStarLettersFromLobby();
         } else if (lost) {
           this.vm.starLetters.retryAssignment(route.assignmentId);
         }
@@ -869,6 +900,7 @@ struct Index {
     this.history = false;
     this.selectedId = '';
     this.mainIndex = 0;
+    this.mailboxCategory = 0;
     this.returnAssignmentId = '';
     this.cancelAvatarCrop();
   }
@@ -1013,14 +1045,13 @@ struct Index {
       .border({ width: 1, color: $r('app.color.border'), radius: STARWARD_RADIUS_ROUND }).accessibilityText('主题')
   }
 
-  private openSettings(notificationsOnly: boolean = false): void {
-    if (!this.privacyAllowed || this.vm.gate !== 'home' || this.settingsOnTop() ||
-      (notificationsOnly && !AppEnvironment.pushEnabled)) {
+  private openSettings(): void {
+    if (!this.privacyAllowed || this.vm.gate !== 'home' || this.settingsOnTop()) {
       return;
     }
     this.lobbyRouteTransitioning = true;
     this.pushOnboarding?.setEligible(false);
-    this.paths.pushPath({ name: notificationsOnly ? 'notification-settings' : 'settings' }, !this.motion.reduced);
+    this.paths.pushPath({ name: 'settings' }, !this.motion.reduced);
   }
 
   private closeSettings(): boolean {
@@ -1035,8 +1066,7 @@ struct Index {
   }
 
   private settingsOnTop(): boolean {
-    const name: string = this.topDestination();
-    return name === 'settings' || name === 'notification-settings';
+    return this.topDestination() === 'settings';
   }
 
   private environmentLabel(): string {
@@ -1293,6 +1323,7 @@ struct Index {
         // Server projection only: time does not change component identity.
         ForEach(this.visibleItems(history), (item: AssignmentSummary, index: number) => {
           StarwardJourneyCard({ item, rank: this.vm.player.level.order, now: this.vm.now,
+            unread: !history && this.unreadAssignmentIds.includes(item.id),
             levelLabel: this.levelLabel(item), order: index,
             opensAtText: item.startsAt.length > 0 ? this.timeLabel(item.startsAt) : '',
             closesAtText: item.endsAt.length > 0 ? this.timeLabel(item.endsAt) : '',
@@ -1328,7 +1359,10 @@ struct Index {
   journeys() {
     Navigation(this.lobbyTitlePaths) {
       Column() {
-        StarwardPageHeading({ title: '启程', nodeId: 'journey-heading' }).margin({ bottom: 14 })
+        StarwardPageHeading({ title: '启程', nodeId: 'journey-heading', unreadCount: this.unreadAssignmentIds.length,
+          clearUnread: () => {
+            if (this.lobbyVisible()) { this.vm.lobbyUnread.acknowledgeAssignments(this.unreadAssignmentIds); }
+          } }).margin({ bottom: 14 })
         StarwardJourneyTabs({ selectedCategory: this.history ? 1 : 0, reducedMotion: this.motion.reduced,
           categoryChanged: (index: number) => { this.history = index === 1; },
           currentJourneys: () => { this.currentJourneys() }, pastJourneys: () => { this.pastJourneys() }
@@ -1355,6 +1389,7 @@ struct Index {
   @Builder
   home() {
     StarwardBottomTabs({ floatingGap: 10 + this.safeBottom(), selectedIndex: this.mainIndex,
+      unreadAssignments: this.unreadAssignmentIds.length, unreadRewards: this.unreadRewardIds.length,
       unreadLetters: this.vm.journey.unreadCount,
       reducedMotion: this.motion.reduced,
       hideBar: this.keyboardOccupiesViewport(), materialInteractionEnabled: !this.motion.reduced,
@@ -1375,6 +1410,9 @@ struct Index {
   rewards() {
     Column() {
       RewardsPage({ model: this.vm.rewards, playerId: this.vm.player.id,
+        unreadRewardIds: this.unreadRewardIds, clearUnread: () => {
+          if (this.rewardsVisible()) { this.vm.lobbyUnread.acknowledgeRewards(this.unreadRewardIds); }
+        },
         bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced, active: this.rewardsVisible(),
         canReturnToAssignment: this.returnAssignmentId.length > 0,
         returnToAssignment: () => { if (this.returnAssignmentId.length > 0) { void this.openAssignment(this.returnAssignmentId); } },
@@ -1388,7 +1426,7 @@ struct Index {
       StarLettersPage({ model: this.vm.starLetters, journey: this.vm.journey, playerId: this.vm.player.id,
         displayFont: this.displayFont, openInternalLink: (href: string) => this.openJourneyLink(href),
         bottomClearance: this.bottomContentClearance(), reducedMotion: this.motion.reduced,
-        inboxRouteRevision: this.pushInboxRevision,
+        category: this.mailboxCategory, categoryChanged: (index: number) => this.selectMailboxCategory(index),
         active: this.foreground && this.mainIndex === 2 && this.vm.narrative.route === null && !this.vm.securityUnconfirmed,
         openLetter: (entry: StarLetterEntry) => this.openStarLetter(entry) })
     }.width('100%').height('100%').padding({ top: this.safeTop(), left: this.safeLeft(), right: this.safeRight() })
@@ -1400,12 +1438,11 @@ struct Index {
       ProfilePage({ vm: this.vm, active: this.profileActive(),
         motionEnabled: this.foreground && !this.motion.reduced,
         bottomClearance: this.bottomContentClearance(), pickingAvatar: this.avatarPicking,
-        showPrivacyPolicy: AppEnvironment.hostedPrivacy, showNotifications: AppEnvironment.pushEnabled,
+        showPrivacyPolicy: AppEnvironment.hostedPrivacy,
         themeLabel: this.themeLabel(), themeError: this.themeError,
         environmentLabel: AppEnvironment.showEnvironmentDiagnostics ? this.environmentLabel() : '',
         appearanceControls: () => { this.passportThemePicker() },
         chooseAvatar: () => this.pickAvatar(), openSettings: () => this.openSettings(),
-        openNotifications: () => this.openSettings(true),
         openPrivacyPolicy: () => { void this.openHostedPrivacyPolicy(); }, logout: () => this.logout() })
     }.width('100%').height('100%').padding({ top: this.safeTop(), left: this.safeLeft(), right: this.safeRight() })
   }
@@ -1684,12 +1721,11 @@ struct Index {
           this.vm.journey.setPolling(false);
           this.vm.journey.clearRouteArchive();
         })
-    } else if (name === 'settings' || name === 'notification-settings') {
+    } else if (name === 'settings') {
       NavDestination() {
         if (this.vm.gate === 'home') {
           SettingsPage({
             bottomInset: this.safeBottom(), leftInset: this.safeLeft(), rightInset: this.safeRight(),
-            notificationsOnly: name === 'notification-settings',
             answerHapticsEnabled: this.answerHapticsEnabled, answerHapticsError: this.answerHapticsError,
             answerHapticsChanged: (enabled: boolean) => this.setAnswerHaptics(enabled),
             openSystemHapticsSettings: () => this.showSystemHapticsSettings(),
@@ -1808,7 +1844,7 @@ struct Index {
         this.icon($r('app.media.icon_arrow_left'), 20, $r('app.color.accent_text'))
       }.id('settings-back').width(44).height(44).padding(0).borderRadius(STARWARD_RADIUS_CONTROL)
         .backgroundColor($r('app.color.accent_faint')).accessibilityText('返回').onClick(() => this.closeSettings())
-      Text(this.topDestination() === 'notification-settings' ? '旅途通知与订阅设置' : '设置')
+      Text('设置')
         .id('settings-heading').fontSize(23)
         .fontWeight(FontWeight.Medium).fontColor($r('app.color.strong'))
     }.width('100%').padding({ left: this.safeLeft(), right: this.safeRight() })

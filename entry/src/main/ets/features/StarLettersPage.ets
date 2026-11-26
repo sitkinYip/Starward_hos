@@ -64,7 +64,6 @@ struct JourneyNotificationFailure {
 
 @ComponentV2
 export struct StarLettersPage {
-  @Param inboxRouteRevision: number = 0;
   @Require @Param model: StarLettersViewModel;
   @Require @Param journey: JourneyNotificationsViewModel;
   @Require @Param playerId: string;
@@ -72,13 +71,11 @@ export struct StarLettersPage {
   @Param bottomClearance: number = 112;
   @Param reducedMotion: boolean = true;
   @Param active: boolean = true;
+  @Param category: number = 0;
+  @Event categoryChanged: (index: number) => void = () => {};
   @Event openLetter: (entry: StarLetterEntry) => void = () => {};
   @Event openInternalLink: (href: string) => boolean = () => false;
   @Local private revealed: boolean = false;
-  @Local private category: number = 0;
-
-  @Monitor('inboxRouteRevision')
-  openJourneyInboxForPush(): void { this.category = 0; }
   private readonly scroller: Scroller = new Scroller();
   private readonly journeyScroller: ListScroller = new ListScroller();
   private readonly refreshToast: StarwardErrorToast = new StarwardErrorToast();
@@ -102,10 +99,6 @@ export struct StarLettersPage {
     this.sections[0].accessibilityText = unread > 0 ? `旅途来信，${unread} 封未读` : '旅途来信';
   }
 
-  private selectCategory(index: number): void {
-    if (index === 0 || index === 1) { this.category = index; }
-  }
-
   private isFinale(entry: StarLetterEntry): boolean {
     return entry.title === '旅途终章' && entry.sessionTitle.length > 0 && entry.description === entry.sessionTitle;
   }
@@ -121,6 +114,7 @@ export struct StarLettersPage {
   }
 
   private async refreshArchive(): Promise<void> {
+    if (!this.active || this.category !== 1) { return; }
     this.clearRefreshToast();
     const revision: number = this.refreshRevision;
     const message: string = await this.model.refresh();
@@ -151,9 +145,21 @@ export struct StarLettersPage {
     if (acknowledged && revision === this.inboxReadingRevision) { this.closeJourneyNote(id); }
   }
 
+  private async clearUnread(): Promise<void> {
+    if (!this.active || this.journey.clearingUnread || this.journey.readingId.length > 0) { return; }
+    const owner: string = this.playerId;
+    this.clearRefreshToast();
+    const revision: number = this.refreshRevision;
+    const completed: boolean = await this.journey.markAllRead();
+    if (!completed && this.active && owner === this.playerId && revision === this.refreshRevision) {
+      this.refreshToast.show(this.getUIContext(), '部分来信未能标为已读，请重试。', this.bottomClearance);
+    }
+  }
+
   @Builder
   private heading() {
-    StarwardPageHeading({ title: '来信', nodeId: 'star-letters-heading' }).margin({ bottom: 16 })
+    StarwardPageHeading({ title: '来信', nodeId: 'star-letters-heading', unreadCount: this.journey.unreadCount,
+      clearingUnread: this.journey.clearingUnread, clearUnread: () => { void this.clearUnread(); } }).margin({ bottom: 16 })
   }
 
   @Builder
@@ -241,7 +247,7 @@ export struct StarLettersPage {
     Button(this.journey.readingId === id ? '正在收下…' : '收下', { type: ButtonType.Normal })
       .id(`journey-notification-swipe-accept-${id}`).width(88).height('100%').padding(0).borderRadius(0)
       .fontSize(14).fontWeight(FontWeight.Medium).fontColor($r('app.color.on_accent'))
-      .backgroundColor($r('app.color.accent')).enabled(this.journey.readingId.length === 0)
+      .backgroundColor($r('app.color.accent')).enabled(this.journey.readingId.length === 0 && !this.journey.clearingUnread)
       .onClick(() => { void this.journey.markRead(id); })
   }
 
@@ -273,7 +279,7 @@ export struct StarLettersPage {
             title: note.title || note.popupTitle || '一封新来信', summary: journeyNotificationPreview(note.content),
             source: note.readAt.length === 0 ? '一封新来信' : '已收下',
             icon: note.readAt.length === 0 ? $r('app.media.icon_envelope') : $r('app.media.icon_envelope_open'),
-            unread: note.readAt.length === 0, reading: this.journey.readingId.length > 0,
+            unread: note.readAt.length === 0, reading: this.journey.readingId.length > 0 || this.journey.clearingUnread,
             actionId: `journey-notification-actions-${note.id}`, motionEnabled: this.active && !this.reducedMotion,
             revealDelay: Math.min(120, index * 70), open: () => this.openJourneyNote(note.id),
             markRead: () => { void this.journey.markRead(note.id); } })
@@ -283,7 +289,8 @@ export struct StarLettersPage {
         if (this.journey.readErrorId === note.id && this.journey.activeNotificationId !== note.id) {
           ListItem() {
             JourneyNotificationFailure({ message: this.journey.readErrorMessage, nodeId: `journey-notification-error-${note.id}`,
-              retryable: this.journey.readingId.length === 0, retry: () => { void this.journey.markRead(note.id); } })
+              retryable: this.journey.readingId.length === 0 && !this.journey.clearingUnread,
+              retry: () => { void this.journey.markRead(note.id); } })
           }
         }
       }, (note: GameNotification) => JSON.stringify(note))
@@ -297,13 +304,13 @@ export struct StarLettersPage {
 
   @Builder
   private journeyPane() {
-    StarwardRefresh({ refreshEnabled: this.active && !this.journey.loading,
+    StarwardRefresh({ refreshEnabled: this.active && this.category === 0 && !this.journey.loading,
       request: async () => { await this.journey.refresh(); }, content: () => { this.journeyScroll() } })
   }
 
   @Builder
   private archivePane() {
-    StarwardRefresh({ refreshEnabled: this.active && !this.model.loading,
+    StarwardRefresh({ refreshEnabled: this.active && this.category === 1 && !this.model.loading,
       request: async () => { await this.refreshArchive(); }, content: () => { this.scrollContent() } })
   }
 
@@ -311,9 +318,9 @@ export struct StarLettersPage {
     Column() {
       this.heading()
       StarwardCapsuleSegment({ items: this.sections, selectedIndex: this.category, reducedMotion: this.reducedMotion,
-        nodeId: 'mailbox-segment', selectionChanged: (index: number) => this.selectCategory(index) }).margin({ bottom: 18 })
+        nodeId: 'mailbox-segment', selectionChanged: (index: number) => this.categoryChanged(index) }).margin({ bottom: 18 })
       StarwardPaneTabs({ selectedIndex: this.category, reducedMotion: this.reducedMotion, nodeId: 'mailbox-panes',
-        selectionChanged: (index: number) => this.selectCategory(index),
+        selectionChanged: (index: number) => this.categoryChanged(index),
         first: () => { this.journeyPane() }, second: () => { this.archivePane() }
       }).layoutWeight(1)
       StarwardJourneyNotificationDialog({ note: this.journey.current, playerId: this.playerId,

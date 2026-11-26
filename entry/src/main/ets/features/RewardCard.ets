@@ -134,6 +134,7 @@ export struct RewardCard {
   @Require @Param ownerValid: (owner: string) => boolean;
   @Param active: boolean = false;
   @Param reducedMotion: boolean = true;
+  @Param unread: boolean = false;
   @Param delay: number = 0;
   @Local private revealed: boolean = false;
   @Local private inView: boolean = false;
@@ -169,13 +170,17 @@ export struct RewardCard {
               Text(this.entry.snapshot.name).fontSize(15).fontWeight(FontWeight.Medium)
                 .maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis }).fontColor($r('app.color.strong'))
                 .layoutWeight(1).constraintSize({ minWidth: 0 })
+              if (this.pending && this.unread) {
+                Circle().id('reward-unread-' + this.rewardId).width(8).height(8).fill($r('app.color.accent'))
+                  .flexShrink(0).accessibilityLevel('no')
+              }
               Text('×' + this.entry.quantity.toString()).fontSize(13).fontFeature("'tnum' 1").fontWeight(FontWeight.Medium)
                 .fontColor(this.pending ? $r('app.color.reward') : $r('app.color.muted')).flexShrink(0)
             }.width('100%')
           }.width('100%').padding(12)
         }.id('reward-details-' + this.rewardId).width('100%').padding(0).backgroundColor(Color.Transparent)
-          .accessibilityText('查看' + this.entry.snapshot.name + '详情，' + rewardStatus(this.entry.status) + '，数量 ' +
-            this.entry.quantity.toString())
+          .accessibilityText('查看' + this.entry.snapshot.name + '详情，' + rewardStatus(this.entry.status) +
+            (this.pending && this.unread ? '，未读' : '') + '，数量 ' + this.entry.quantity.toString())
           .onClick(() => { if (this.active) { this.model.open(this.rewardId); } })
       }.id('reward-card-' + this.rewardId).width('100%').backgroundColor($r('app.color.glass_card_top'))
         .background(this.sweep(), { align: Alignment.TopStart })

@@ -10,21 +10,35 @@ const CARD_ENTRANCE_DELAYS: number[] = [0, 120, 240, 320];
 struct JourneyCardGlow {
   @Require @Param cardWidth: number;
   @Require @Param cardHeight: number;
+  @Param unreadId: string = '';
+  @Param animated: boolean = true;
   @Local private bright: boolean = false;
 
+  @Monitor('animated')
+  private updatePulse(): void {
+    this.getUIContext().animateTo({ duration: this.animated ? 2200 : 0, iterations: this.animated ? -1 : 1,
+      playMode: PlayMode.Alternate, curve: Curve.EaseInOut },
+      () => UIUtils.applySync(() => { this.bright = this.animated; }));
+  }
+
   build() {
-    Column() {}.id('journey-card-glow').width(this.cardWidth).height(this.cardHeight)
-      .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.glow_accent') })
-      .radialGradient({ center: ['76%', '50%'], radius: 84,
-        colors: [[$r('app.color.glow_accent_soft'), 0], [$r('app.color.glow_accent_faint'), 0.48],
-          [Color.Transparent, 1]] })
-      .opacity(this.bright ? 0.86 : 0.26)
+    Stack() {
+      if (this.unreadId.length > 0) {
+        Column() {}.width('100%').height('100%')
+          .border({ width: 4, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.glow_accent') }).blur(4)
+        Column() {}.width('100%').height('100%')
+          .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.accent_border') })
+      } else {
+        Column() {}.width('100%').height('100%')
+          .border({ width: 1, radius: STARWARD_RADIUS_PANEL, color: $r('app.color.glow_accent') })
+          .radialGradient({ center: ['76%', '50%'], radius: 84,
+            colors: [[$r('app.color.glow_accent_soft'), 0], [$r('app.color.glow_accent_faint'), 0.48],
+              [Color.Transparent, 1]] })
+      }
+    }.id(this.unreadId || 'journey-card-glow').width(this.cardWidth).height(this.cardHeight)
+      .opacity(this.animated ? (this.bright ? 0.86 : 0.26) : 0.56)
       .hitTestBehavior(HitTestMode.None).accessibilityLevel('no-hide-descendants')
-      .onAppear(() => {
-        this.getUIContext().animateTo({ duration: 2200, iterations: -1,
-          playMode: PlayMode.Alternate, curve: Curve.EaseInOut },
-          () => UIUtils.applySync(() => { this.bright = true; }));
-      })
+      .onAppear(() => { if (this.animated) { this.updatePulse(); } })
   }
 }
 
@@ -39,6 +53,7 @@ export struct StarwardJourneyCard {
   @Param closesAtText: string = '';
   @Param active: boolean = false;
   @Param reducedMotion: boolean = true;
+  @Param unread: boolean = false;
   @Event open: (id: string) => void = () => {};
   @Local private entered: boolean = false;
   @Local private inView: boolean = false;
@@ -67,6 +82,9 @@ export struct StarwardJourneyCard {
     return !this.entered && !this.reducedMotion;
   }
 
+  @Computed
+  get glowAnimated(): boolean { return this.active && this.inView && !this.reducedMotion; }
+
   private scheduleLabel(): string {
     const start: string = this.opensAtText.length > 0 ? `开放 ${this.opensAtText}` : '';
     const end: string = this.closesAtText.length > 0 ? `截止 ${this.closesAtText}` : '';
@@ -78,7 +96,8 @@ export struct StarwardJourneyCard {
     const progress: string = this.kind === 'locked' ? '' :
       `，已解开 ${this.item.completedLevels} / ${this.item.totalLevels}`;
     const schedule: string = this.scheduleLabel();
-    return `${this.item.title}，${state}，${this.levelLabel}${progress}${schedule.length > 0 ? `，${schedule}` : ''}`;
+    const arrival: string = this.unread ? '，未读场次' : '';
+    return `${this.item.title}${arrival}，${state}，${this.levelLabel}${progress}${schedule.length > 0 ? `，${schedule}` : ''}`;
   }
 
   @Builder
@@ -129,9 +148,11 @@ export struct StarwardJourneyCard {
   build() {
     Button({ type: ButtonType.Normal }) {
       Stack({ alignContent: Alignment.TopStart }) {
-        if (this.kind === 'active' && this.active && this.inView && !this.reducedMotion &&
-          this.cardWidth > 0 && this.cardHeight > 0) {
-          JourneyCardGlow({ cardWidth: this.cardWidth, cardHeight: this.cardHeight }).position({ x: 0, y: 0 })
+        if (this.cardWidth > 0 && this.cardHeight > 0 &&
+          ((this.unread && this.inView) || (this.kind === 'active' && this.glowAnimated))) {
+          JourneyCardGlow({ cardWidth: this.cardWidth, cardHeight: this.cardHeight,
+            unreadId: this.unread ? `assignment-unread-${this.item.id}` : '',
+            animated: this.glowAnimated }).position({ x: 0, y: 0 })
         }
         Row({ space: 14 }) {
           Column() {

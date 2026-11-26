@@ -47,9 +47,11 @@ export struct RewardsPage {
   @Param reducedMotion: boolean = true;
   @Param active: boolean = false;
   @Param canReturnToAssignment: boolean = false;
+  @Param unreadRewardIds: string[] = [];
   @Event returnHome: () => void = () => {};
   @Event returnToAssignment: () => void = () => {};
   @Event openInternalLink: (href: string) => boolean = () => false;
+  @Event clearUnread: () => void = () => {};
   @Local private revealed: boolean = false;
   @Local private selectedCategory: number = 0;
   @Local private detailVisible: boolean = false;
@@ -124,7 +126,8 @@ export struct RewardsPage {
         }.id('rewards-return-assignment').constraintSize({ minHeight: 44 }).padding({ left: 0, right: 10 })
           .backgroundColor(Color.Transparent).margin({ bottom: 12 }).onClick(() => this.returnToAssignment())
       }
-      StarwardPageHeading({ title: '收藏', nodeId: 'rewards-heading' }).margin({ bottom: 16 })
+      StarwardPageHeading({ title: '收藏', nodeId: 'rewards-heading', unreadCount: this.unreadRewardIds.length,
+        clearUnread: () => { if (this.active) { this.clearUnread(); } } }).margin({ bottom: 16 })
       StarwardCapsuleSegment({ items: this.categories, selectedIndex: this.selectedCategory,
         nodeId: 'rewards-segment', reducedMotion: this.reducedMotion,
         selectionChanged: (index: number) => this.selectCategory(index) }).margin({ bottom: 18 })
@@ -189,6 +192,7 @@ export struct RewardsPage {
               GridCol({ span: 1 }) {
                 RewardCard({ model: this.model, rewardId: reward.id, imageCache: this.artCache,
                   ownerValid: (player: string) => this.validOwner(player), active: this.active && this.selectedCategory === category,
+                  unread: category === 0 && this.unreadRewardIds.includes(reward.id),
                   reducedMotion: this.reducedMotion, delay: index === 0 ? 0 : (index === 1 ? 70 : 120) })
               }
             }, (reward: GameReward) => reward.id)

@@ -109,6 +109,18 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - 改用滚动层之外、仅覆盖状态栏边缘的主题渐变。签名包 `3bd6bf8487163a443037f2ac443e3e56111599432fb8df05588bc25d08212e6a` 构建、双验签、安装启动成功，Hypium 323 项通过，lint 无错误或警告。 [验签](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/source/local-test-summary.json)
 - 固定隔离预览浅色直板机的第 4、5 题交替横滑六次，48 张分时画面中的中间区域近白比例最高 32.8%，近黑比例最高 0.8%。题目均落到对应位置。向下滚动时内容到达视口上缘，顶栏隐藏后可恢复，点返回可到启程。验证结束把应用留在第 4 题。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/device.json)
 
+## 2026-11-26 启程、收藏与来信未读
+
+- API 26 调试包通过 `scripts/hm.sh build` 和 SDK 双验签。`scripts/hm.sh test` 330 项通过。codelinter 零错误、零警告，保留原有模糊性能建议。 [验签](../artifacts/validation/lobby-unread-20261126/signature.json) · [单测](../artifacts/validation/lobby-unread-20261126/local-test-summary.json) · [lint](../artifacts/validation/lobby-unread-20261126/lint.json)
+- 使用相同功能源码的独立测试包经 DevEco 安装，在独立 PocketBase 库中用测试账号验证。直板机首屏同时显示三个数量角标，一次空闲采样记录 1 次 `/home`、1 次 `/me`，以及 0 次独立列表请求。打开场次简介后对应未读点消失，场次继续显示待赴。清空待领奖品提示后卡片仍在。清空来信用 1 次批量回执，邮件仍可访问。冷启动保留清空结果，护照通过「设置」打开完整设置页。 [真机报告](../artifacts/validation/lobby-unread-20261126/device.json)
+- 清空并重启后，隔离库为原账号各新增一个场次、一份奖品和一封来信。三栏角标分别恢复为 1。随后按用户反馈将待赴未读点改为圆角呼吸光晕，帧采样核对深浅两色的边缘明暗变化，真机确认进行中卡片的原有光晕和两张卡的进度环均可见。浏览简介后，新场次卡与进度环保留，未读光晕和底栏数字消失。最终源码再次构建并通过 330 项测试，系统减少动画开关尚待直板机操作验证。 [最终包验签](../artifacts/validation/lobby-unread-20261126/glow-signature.json) · [光晕真机报告](../artifacts/validation/lobby-unread-20261126/glow-device.json)
+
+### 主界面切栏请求复核
+
+- Web 正式构建经浏览器请求拦截验证。聚合模式和 404 回退模式各连续切换主栏六次，切换采样窗均为零 GET。聚合模式的空闲周期各发一次 `/home` 和 `/me`。两个可见性事件共用在途 `/home`。选择星海信笺后，原有详情查询按两个可读场次分别发出，切回旅途来信后停止详情轮询。 [浏览器请求序列](../artifacts/validation/lobby-tab-poll-20261126/web-requests.json)
+- 鸿蒙独立真实 HTTPS 直板机首屏读取 `/home` 一次。七次主栏切换的采样窗只有 12 轮 `/home` 与 `/me`。主动切到星海信笺复用当前目录，只读两个场次详情各一次，随后空闲周期继续走聚合。用一次 404 `NOT_FOUND` 模拟旧服务后，七次主栏切换保留各独立轮询，旅途来信相邻请求间隔 4.989 至 5.020 秒。 [真机请求计数](../artifacts/validation/lobby-tab-poll-20261126/device-requests.json)
+- DevEco 构建与 332 项本地测试通过。真机使用独立回环端口及 CA 的调试包。前后台、手动刷新及信笺正文往返本轮完成源码复核，未逐项采集真机请求。 [本地测试](../artifacts/validation/lobby-tab-poll-20261126/local-test-summary.json)
+
 ## 2026-11-26 答题横滑题图与线索过渡
 
 - 冻结 Web `46188fc` 的 `GamePlayPage.tsx` 在切题时从已读场次数据切换题目。原生继续使用 ArkUI Swiper 跟手滑动，前后可读题的题卡同时从 `ordinaryClues` 投影各自已授权的线索与未读标记。未选中题的点击及读屏仍由 Swiper 屏蔽。真实新增的当前题线索面板复用项目的短入场。 [ArkUI Swiper](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-swiper/) · [ArkUI 组件内转场](https://developer.huawei.com/consumer/en/doc/HarmonyOS-Guides/arkts-enter-exit-transition/)

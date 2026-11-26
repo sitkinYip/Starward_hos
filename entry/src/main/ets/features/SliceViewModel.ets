@@ -12,6 +12,8 @@ import { createRequestIdentity } from '../platform/RequestIdentity';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { PushDevice, PushStatus } from '../business/PushRegistration';
 import { PushSubscriptionsViewModel } from './PushSubscriptionsViewModel';
+import { LobbyFeed } from '../business/LobbyFeed';
+import { LobbyUnread } from './LobbyUnread';
 
 const ASSIGNMENT_SYNC_INTERVAL_MS: number = 5000;
 
@@ -75,6 +77,7 @@ export class SliceViewModel {
   readonly starLetters: StarLettersViewModel;
   readonly journey: JourneyNotificationsViewModel;
   readonly rewards: RewardsViewModel;
+  readonly lobbyUnread: LobbyUnread = new LobbyUnread();
   readonly pushSubscriptions: PushSubscriptionsViewModel;
   readonly onboardingSubscriptions: PushSubscriptionsViewModel;
   private readonly repository: GameRepository;
@@ -92,6 +95,8 @@ export class SliceViewModel {
   private playerPollTimer: number = -1;
   private playerPollRead: ReadCancellation | null = null;
   private lobbyPolling: boolean = false;
+  private homeFeedActive: boolean = false;
+  private homeFeedUnavailable: boolean = false;
   private lobbyPollTimer: number = -1;
   private lobbyRead: LobbyRead | null = null;
   private lobbyPlayerReadFailed: boolean = false;
@@ -182,6 +187,7 @@ export class SliceViewModel {
     this.starLetters.bindOwner(player.mustChangePassword ? '' : player.id);
     this.journey.bindOwner(player.mustChangePassword ? '' : player.id);
     this.rewards.bindOwner(player.mustChangePassword ? '' : player.id);
+    this.lobbyUnread.bindOwner(player.mustChangePassword ? '' : player.id);
     this.pushSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
     this.onboardingSubscriptions.bindOwner(player.mustChangePassword ? '' : player.id);
     if (avatarChanged) {
@@ -589,7 +595,8 @@ export class SliceViewModel {
         if (this.gate !== 'home') { return; }
         this.setLobbyReadFailed(true, false);
       }
-      const items: AssignmentSummary[] = await this.repository.assignments();
+      const items: AssignmentSummary[] = await this.fetchLobbyAssignments(() =>
+        generation === this.generation && this.gate === 'home' && profileRevision === this.profileRevision);
       if (generation !== this.generation || this.gate !== 'home' || profileRevision !== this.profileRevision) {
         return;
       }
@@ -627,6 +634,43 @@ export class SliceViewModel {
       this.lobbyListReadFailed = false;
       this.dismissLobbySyncNotice();
     }
+  }
+
+  setHomeFeedActive(active: boolean): void {
+    const enabled: boolean = active && !this.homeFeedUnavailable && this.repository.home !== undefined;
+    if (this.homeFeedActive === enabled) { return; }
+    this.homeFeedActive = enabled;
+    this.rewards.setHomeFeedActive(enabled);
+    this.journey.setHomeFeedActive(enabled);
+  }
+
+  usesHomeFeed(): boolean { return this.homeFeedActive; }
+
+  private async fetchLobbyAssignments(current: () => boolean, cancellation?: ReadCancellation): Promise<AssignmentSummary[]> {
+    if (this.homeFeedActive && this.repository.home !== undefined) {
+      const rewardRevision: number = this.rewards.feedRevision();
+      const journeyRevision: number = this.journey.feedRevision();
+      try {
+        const feed: LobbyFeed = await this.repository.home(cancellation);
+        if (current()) {
+          this.rewards.acceptHomeEntries(feed.rewards, rewardRevision);
+          this.journey.acceptHomeEntries(feed.notifications, journeyRevision);
+        }
+        return feed.assignments;
+      } catch (error) {
+        if (!current()) { return []; }
+        if (!(error instanceof GameFailure && error.status === 404 && error.code === 'NOT_FOUND')) {
+          const failure: Error = error instanceof Error ? error : new Error('暂时无法同步旅途更新。');
+          this.rewards.acceptHomeFailure(failure, rewardRevision);
+          this.journey.acceptHomeFailure(failure, journeyRevision);
+          throw failure;
+        }
+        this.homeFeedUnavailable = true;
+        this.setHomeFeedActive(false);
+        void this.journey.refresh();
+      }
+    }
+    return await this.repository.assignments(cancellation);
   }
 
   dismissLobbySyncNotice(): void {
@@ -686,7 +730,8 @@ export class SliceViewModel {
 
   private async pollLobbyAssignments(read: LobbyRead): Promise<void> {
     try {
-      const items: AssignmentSummary[] = await this.repository.assignments(read.assignments);
+      const items: AssignmentSummary[] = await this.fetchLobbyAssignments(() => this.currentLobbyRead(read),
+        read.assignments);
       if (!this.currentLobbyRead(read)) { return; }
       this.publishLobbyAssignments(items);
       this.setLobbyReadFailed(false, false);
@@ -874,6 +919,7 @@ export class SliceViewModel {
       if (snapshot.detail.id !== id || snapshot.detail.player !== playerId) {
         throw new GameFailure('CONTRACT_ERROR', '服务返回的场次身份不一致。');
       }
+      if (!quiet && snapshot.detail.status === 'assigned') { this.lobbyUnread.acknowledgeAssignments([id]); }
       this.play.setAssignmentSyncFailed(false);
       if (!this.play.restoreFromBriefing(snapshot)) {
         if (snapshot.detail.status === 'assigned') { this.briefingPresentation = snapshot.presentation; }
@@ -962,6 +1008,7 @@ export class SliceViewModel {
     this.restoreRead = null;
     restore?.cancel();
     this.setLobbyPolling(false);
+    this.setHomeFeedActive(false);
     this.lobbyHasList = false;
     this.stopBriefingSync();
     this.setGameplayPlayerPolling(false);
@@ -970,6 +1017,7 @@ export class SliceViewModel {
     this.starLetters.bindOwner('');
     this.journey.bindOwner('');
     this.rewards.bindOwner('');
+    this.lobbyUnread.bindOwner('');
     this.pushSubscriptions.bindOwner('');
     this.onboardingSubscriptions.bindOwner('');
     this.profileRevision++;

@@ -53,14 +53,12 @@ export struct ProfilePage {
   @Param bottomClearance: number = 112;
   @Param pickingAvatar: boolean = false;
   @Param showPrivacyPolicy: boolean = false;
-  @Param showNotifications: boolean = false;
   @Param themeLabel: string = '跟随系统';
   @Param themeError: string = '';
   @Param environmentLabel: string = '';
   @BuilderParam appearanceControls: () => void;
   @Event chooseAvatar: () => void = () => {};
   @Event openSettings: () => void = () => {};
-  @Event openNotifications: () => void = () => {};
   @Event openPrivacyPolicy: () => void = () => {};
   @Event logout: () => void = () => {};
   @Env(ReadonlyEnvKey.WINDOW_SIZE) private windowSize: window.SizeInVP;
@@ -171,11 +169,6 @@ export struct ProfilePage {
         action: () => this.openEditor('theme') })
       this.settingDivider()
       PassportSettingRow({ nodeId: 'passport-settings', label: '设置', action: () => this.openSettings() })
-      if (this.showNotifications) {
-        this.settingDivider()
-        PassportSettingRow({ nodeId: 'passport-notifications', label: '旅途通知与订阅设置',
-          action: () => this.openNotifications() })
-      }
       this.settingDivider()
       PassportSettingRow({ nodeId: this.vm.securityUnconfirmed ? 'profile-unconfirmed-logout' : 'logout',
         label: '退出登录', destructive: true, action: () => this.logout() })

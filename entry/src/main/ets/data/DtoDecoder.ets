@@ -1,6 +1,7 @@
 import { AssignmentDetail, AssignmentSummary, ExtraDisplay, GameFailure, Player, Rank } from '../business/models';
 import { GameNotification } from '../business/GameNotification';
 import { GameReward } from '../business/GameReward';
+import { LobbyFeed } from '../business/LobbyFeed';
 
 export class LoginResult {
   token: string = '';
@@ -174,8 +175,10 @@ export function decodeFileToken(body: string): string {
 }
 
 export function decodeAssignments(body: string): AssignmentSummary[] {
-  const source: Record<string, Object> = parse(body);
-  const items: Object = source['items'];
+  return decodeAssignmentItems(parse(body)['items']);
+}
+
+function decodeAssignmentItems(items: Object): AssignmentSummary[] {
   if (!Array.isArray(items)) {
     throw contractFailure();
   }
@@ -190,7 +193,10 @@ export function decodeAssignments(body: string): AssignmentSummary[] {
 }
 
 export function decodeNotifications(body: string): GameNotification[] {
-  const items: Object = parse(body)['items'];
+  return decodeNotificationItems(parse(body)['items']);
+}
+
+function decodeNotificationItems(items: Object): GameNotification[] {
   if (!Array.isArray(items)) { throw contractFailure(); }
   const ids: Set<string> = new Set<string>();
   return (items as Object[]).map((value: Object) => {
@@ -205,7 +211,10 @@ export function decodeNotifications(body: string): GameNotification[] {
 }
 
 export function decodeRewards(body: string, playerId: string): GameReward[] {
-  const items: Object = parse(body)['items'];
+  return decodeRewardItems(parse(body)['items'], playerId);
+}
+
+function decodeRewardItems(items: Object, playerId: string): GameReward[] {
   if (!Array.isArray(items)) { throw contractFailure(); }
   const ids: Set<string> = new Set<string>();
   return (items as Object[]).map((value: Object) => {
@@ -242,6 +251,30 @@ export function decodeRewards(body: string, playerId: string): GameReward[] {
 
 export function decodeNotificationReceipt(body: string): string {
   return dateField(parse(body), 'readAt', true);
+}
+
+export function decodeLobbyFeed(body: string, playerId: string): LobbyFeed {
+  const source: Record<string, Object> = parse(body);
+  const result: LobbyFeed = new LobbyFeed();
+  result.assignments = decodeAssignmentItems(record(source['assignments'])['items']);
+  if (result.assignments.some((item: AssignmentSummary) => item.player !== playerId)) { throw contractFailure(); }
+  result.rewards = decodeRewardItems(record(source['rewards'])['items'], playerId);
+  result.notifications = decodeNotificationItems(record(source['notifications'])['items']);
+  return result;
+}
+
+export function decodeNotificationReceipts(body: string, requested: string[]): Map<string, string> {
+  const items: Object = parse(body)['items'];
+  if (!Array.isArray(items)) { throw contractFailure(); }
+  const allowed: Set<string> = new Set(requested);
+  const receipts: Map<string, string> = new Map();
+  for (const item of items as Object[]) {
+    const source: Record<string, Object> = record(item);
+    const id: string = stringField(source, 'id', true);
+    if (!allowed.has(id) || receipts.has(id)) { throw contractFailure(); }
+    receipts.set(id, dateField(source, 'readAt', true));
+  }
+  return receipts;
 }
 
 export function decodeAssignment(body: string): AssignmentDetail {

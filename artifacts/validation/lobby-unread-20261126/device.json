@@ -1,0 +1,114 @@
+{
+  "status": "passed",
+  "mode": "disposable real PocketBase HTTPS over official USB reverse forwarding",
+  "testPackageUsesDiscreteLoopbackPort": true,
+  "isolatedHapSha256": "4cbf7a991c6cdb3a1ceb49df65bd98c254bc919a69d54f47d5a703c24641d1cf",
+  "checks": [
+    "Initial and idle root screens use /home for all three lists with /me tracked separately",
+    "Successful briefing clears just its dot and remaining assignment reminders can be cleared without entry",
+    "Clearing Collection removes both unread dots and its nav count while pending reward cards remain",
+    "Clearing Mail sends one authoritative batch and retains both letters in history",
+    "Passport exposes one Settings entry and returns from full Settings",
+    "Relaunch keeps local assignment and reward acknowledgements and server mail read receipts",
+    "One new assignment, reward, and mail relight all three root badges after clearance"
+  ],
+  "pictures": {
+    "arrival": {
+      "hash": "3723087e1d4c1f8b71ab4906cf79113e8181d1ebaf73cdb8ef2fbc15db646306",
+      "boundsPx": {
+        "journey-heading": [
+          58,
+          413,
+          874,
+          535
+        ],
+        "journey-heading-clear-unread": [
+          913,
+          402,
+          1202,
+          545
+        ],
+        "assignment-nav-unread": [
+          273,
+          2422,
+          328,
+          2477
+        ],
+        "rewards-nav-unread": [
+          520,
+          2422,
+          575,
+          2477
+        ],
+        "journey-nav-unread": [
+          767,
+          2422,
+          822,
+          2477
+        ]
+      }
+    },
+    "rewards-unread": {
+      "hash": "0081106b90fb7f09c5d57120c9fe0b1361fa14d5c33fa5a8de777022cd102c85",
+      "boundsPx": {
+        "rewards-heading": [
+          65,
+          186,
+          867,
+          308
+        ],
+        "rewards-heading-clear-unread": [
+          906,
+          175,
+          1195,
+          318
+        ],
+        "rewards-nav-unread": [
+          520,
+          2422,
+          575,
+          2477
+        ]
+      }
+    },
+    "mail-unread": {
+      "hash": "96fd71a5500f62ed93d4a7ab435d99d91ddecebbe1fa6b6d9af188f418ccea89",
+      "boundsPx": {
+        "star-letters-heading": [
+          65,
+          186,
+          867,
+          308
+        ],
+        "star-letters-heading-clear-unread": [
+          906,
+          175,
+          1195,
+          318
+        ],
+        "journey-nav-unread": [
+          767,
+          2422,
+          822,
+          2477
+        ]
+      }
+    }
+  },
+  "mainScreenReads": {
+    "home": 1,
+    "me": 1,
+    "assignments": 0,
+    "rewards": 0,
+    "notifications": 0
+  },
+  "lateDispatchAndDarkTheme": {
+    "status": "passed",
+    "screenshots": {
+      "journey-heading": "9dbfe02e9eac0478edda37c86303ac875253a75edf12789bd7603d439364d891",
+      "rewards-heading": "a2eb9ea9b71e423a6410106da113f6601838561a6615de7a6a9843673b9e6382",
+      "star-letters-heading": "1cbc83a40269b60479277a96c4fe2566d0c545e551271e52c99d0fa5dc25f504"
+    },
+    "themeRestored": true
+  }
+}

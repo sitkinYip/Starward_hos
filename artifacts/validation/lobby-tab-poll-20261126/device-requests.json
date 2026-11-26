@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "signedHapSha256": "cfffc041b5dafe00477b06cdb3b0c3b0b8944d8c189cce1338d63b09f7638e48",
+  "checks": {
+    "initial": {
+      "me": 2,
+      "home": 1
+    },
+    "aggregateDuringSevenTabChanges": {
+      "me": 12,
+      "home": 12
+    },
+    "archiveEntryAndIdle": {
+      "assignment-detail": 2,
+      "me": 2,
+      "home": 2
+    },
+    "fallback": {
+      "me": 1,
+      "home": 1,
+      "rewards": 1,
+      "notifications": 1,
+      "assignments": 1
+    },
+    "legacyDuringSevenTabChanges": {
+      "notifications": 8,
+      "rewards": 8,
+      "me": 8,
+      "assignments": 8
+    },
+    "legacyInboxPollGapsSeconds": [
+      5.02,
+      5.016,
+      4.989,
+      5.003,
+      4.99,
+      5.007,
+      5.005
+    ]
+  }
+}
