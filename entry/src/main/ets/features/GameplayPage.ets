@@ -175,8 +175,8 @@ export struct GameplayPage {
   @Local private viewportHeight: number = 0;
   private readonly imageCache: QuestionImageCache = new QuestionImageCache(() => this.imageCacheOwner());
   @Local private viewer: StarwardImageViewerState = new StarwardImageViewerState(this.imageCache);
-  @Local private videoViewer: StarwardVideoViewerState = new StarwardVideoViewerState();
-  @Local private inlineVideo: StarwardVideoViewerState = new StarwardVideoViewerState(true);
+  @Local private videoViewer: StarwardVideoViewerState = new StarwardVideoViewerState(false, true);
+  @Local private inlineVideo: StarwardVideoViewerState = new StarwardVideoViewerState(true, true);
   @Local private inlineVideoSlot: string = '';
   private inlineVideoRevision: number = 0;
   @Local private textClue: GameplayClue | null = null;
@@ -864,8 +864,24 @@ export struct GameplayPage {
   }
 
   private currentClues(): GameplayClue[] {
-    return this.play.visible && this.play.error.length === 0 ?
-      ordinaryClues(this.play.snapshot, this.play.currentLevel()) : [];
+    return this.cluesForLevel(this.play.currentLevel());
+  }
+
+  private cluesForLevel(level: GameplayLevel | null): GameplayClue[] {
+    return this.play.visible && this.play.error.length === 0 && this.play.snapshot?.detail.player === this.playerId ?
+      ordinaryClues(this.play.snapshot, level) : [];
+  }
+
+  @Computed
+  get questionPreviewClues(): Map<string, GameplayClue[]> {
+    const clues: Map<string, GameplayClue[]> = new Map();
+    const levels: GameplayLevel[] = this.play.snapshot?.levels ?? [];
+    const active: number = this.play.activeIndex;
+    for (const level of levels.slice(Math.max(0, active - 1), active + 2)) {
+      const grants: GameplayClue[] = this.cluesForLevel(level);
+      if (grants.length > 0) { clues.set(level.id, grants); }
+    }
+    return clues;
   }
 
   @Monitor('playerId', 'play.snapshot', 'play.visible')
@@ -879,11 +895,6 @@ export struct GameplayPage {
     const context = this.getUIContext().getHostContext() as common.UIAbilityContext | undefined;
     this.openedNarrativeIds = context && account.length > 0 && id.length > 0 ?
       QuestNarrativeAttentionPreference.load(context, account, id) : [];
-  }
-
-  private pendingNarrativeIds(): string[] {
-    return this.currentClues().filter((clue: GameplayClue) =>
-      isNarrativeClue(clue) && !this.openedNarrativeIds.includes(clue.id)).map((clue: GameplayClue) => clue.id);
   }
 
   private attentionInset(): number { return Math.max(18, this.bgmBottomInset() + 8); }
@@ -2075,6 +2086,7 @@ export struct GameplayPage {
       active: levelId === this.readableQuestionId(),
       interactive: this.questionMediaReady(hint ? 'hint' : null),
       showMedia: this.showsQuestionImages(levelId), availableWidth: hint ? 0 : this.questionContentWidth,
+      reserveImageSpace: !hint,
       maxMediaHeight: hint && this.viewportWidth <= 620 ? 340 : this.questionMediaHeight(), reducedMotion: this.reducedMotion,
       openImage: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex),
       openVideo: (partIndex: number) => this.openQuestionLegacyMedia(levelId, index, hint, partIndex),
@@ -2113,7 +2125,7 @@ export struct GameplayPage {
               ForEach(this.contentBlocks(levelId), (block: GameplayContentBlock, index: number) => {
                 if (block.videoUrl.trim().length > 0) {
                   StarwardVideoPoster({ source: block.imageUrl, ownerKey: this.questionImageOwner(levelId),
-                    ownerIsCurrent: (key: string) => this.imageCacheOwner().length > 0 &&
+                    ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null &&
                       this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
                     imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
                     nodeId: levelId === this.readableQuestionId() ? `gameplay-question-video-${index}` :
@@ -2123,10 +2135,10 @@ export struct GameplayPage {
                     play: () => this.openQuestionVideo(levelId, index) }).borderRadius(STARWARD_RADIUS_CONTROL).clip(true)
                 } else if (this.blockImages(block).length > 0) {
                   StarwardQuestionImages({ sources: this.blockImages(block), ownerKey: this.questionImageOwner(levelId),
-                    ownerIsCurrent: (key: string) => this.play.visible && this.play.snapshot !== null &&
+                    ownerIsCurrent: (key: string) => this.imageCacheOwner().length > 0 &&
                       this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
                     imageCache: this.imageCache, active: levelId === this.readableQuestionId(),
-                    availableWidth: this.questionContentWidth,
+                    availableWidth: this.questionContentWidth, reserveLoadingSpace: true,
                     groupId: levelId === this.readableQuestionId() ? `question-images-${index}` :
                       `question-preview-${this.levelById(levelId)?.position || 0}-${index}`,
                     maxHeight: this.questionMediaHeight(), reducedMotion: this.reducedMotion,
@@ -2151,10 +2163,13 @@ export struct GameplayPage {
               this.answerFeedback(levelId)
             }.width('100%').margin({ top: 16 })
           }
-          if (this.currentClues().length > 0) {
-            StarwardClueArchive({ clues: this.currentClues(), reducedMotion: this.reducedMotion,
-              pendingNarrativeIds: this.pendingNarrativeIds(), opened: (id: string) => this.openClue(id) })
-          }
+        }
+        if (this.questionPreviewClues.has(levelId)) {
+          StarwardClueArchive({ clues: this.questionPreviewClues.get(levelId) ?? [],
+            active: levelId === this.readableQuestionId(), reducedMotion: this.reducedMotion,
+            openedNarrativeIds: this.openedNarrativeIds, opened: (id: string) => {
+              if (levelId === this.readableQuestionId()) { this.openClue(id); }
+            } })
         }
       }.id(levelId === this.readableQuestionId() ? 'gameplay-question-card' : '')
         .width('100%').alignItems(HorizontalAlign.Start)

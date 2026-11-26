@@ -2,6 +2,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
+import { STARWARD_PAGE_TRANSITION_MS, starwardPageReveal } from './StarwardMotion';
 import { STARWARD_RADIUS_CONTROL } from './StarwardRadii';
 
 /** One mounted image holds a display reference and owns its pending load. */
@@ -17,9 +18,11 @@ struct QuestionImageCell {
   @Param imageId: string = '';
   @Param imageLabel: string = '题图';
   @Param reducedMotion: boolean = true;
+  @Param reserveLoadingSpace: boolean = false;
   @Event opened: () => void = () => {};
   @Local private value: QuestionImageResult | undefined = undefined;
   @Local private state: string = 'idle';
+  @Local private revealLoadedImage: boolean = false;
   private readonly loader: QuestionImageLoader = new QuestionImageLoader();
   private generation: number = 0;
   private mounted: boolean = false;
@@ -43,6 +46,7 @@ struct QuestionImageCell {
     const previous: QuestionImageResult | undefined = this.value;
     this.value = undefined;
     this.state = 'idle';
+    this.revealLoadedImage = false;
     previous?.release();
   }
 
@@ -69,6 +73,7 @@ struct QuestionImageCell {
     const previous: QuestionImageResult | undefined = this.value;
     this.value = undefined;
     this.state = 'idle';
+    this.revealLoadedImage = false;
     previous?.release();
     if (!this.current(generation, owner, source) || source.length === 0) {
       return;
@@ -91,6 +96,7 @@ struct QuestionImageCell {
         return;
       }
       this.imageCache.remember(source, value, cacheVersion);
+      this.revealLoadedImage = this.reserveLoadingSpace;
       this.value = value;
       this.state = 'ready';
       this.record('ready', 200, value);
@@ -111,8 +117,22 @@ struct QuestionImageCell {
   private frameWidth(): number { return (this.value?.naturalWidthPx || 0) * this.imageScale() + 2; }
   private frameHeight(): number { return (this.value?.naturalHeightPx || 0) * this.imageScale() + 2; }
 
+  private slotHeight(): number | undefined {
+    // The source does not carry dimensions before decode. Keep the same estimate while sliding and loading.
+    if (!this.reserveLoadingSpace || this.state === 'failed') { return undefined; }
+    const height: number = this.value === undefined ? Math.min(this.maxHeight, this.cellWidth * 9 / 16) :
+      this.frameHeight();
+    return Math.max(44, height);
+  }
+
+  @Builder
+  private loadingIndicator() {
+    LoadingProgress().id(this.imageId + '-loading').width(24).height(24)
+      .color($r('app.color.accent')).enableLoading(!this.reducedMotion).accessibilityText('正在载入题图')
+  }
+
   build() {
-    Column() {
+    Stack({ alignContent: this.reserveLoadingSpace ? Alignment.Top : Alignment.Center }) {
       if (this.value !== undefined && this.state === 'ready') {
         Button({ type: ButtonType.Normal }) {
           Stack() {
@@ -123,14 +143,12 @@ struct QuestionImageCell {
             .border({ width: 1, color: $r('app.color.border_strong'), radius: STARWARD_RADIUS_CONTROL }).clip(true)
         }.id(this.imageId + '-open').padding(0).borderRadius(0).backgroundColor(Color.Transparent)
           .width(Math.max(44, this.frameWidth())).height(Math.max(44, this.frameHeight()))
-          .accessibilityText(`打开${this.imageLabel}`).onClick(() => {
+          .transition(starwardPageReveal(this.reducedMotion || !this.revealLoadedImage))
+          .focusable(this.active).accessibilityText(`打开${this.imageLabel}`).onClick(() => {
             if (this.active && this.state === 'ready' && this.value !== undefined && this.ownerIsCurrent(this.ownerKey)) {
               this.opened();
             }
           })
-      } else if (this.active && this.state === 'loading') {
-        LoadingProgress().id(this.imageId + '-loading').width(24).height(24)
-          .color($r('app.color.accent')).enableLoading(!this.reducedMotion).accessibilityText('正在载入题图')
       } else if (this.active && this.state === 'failed') {
         Column({ space: 4 }) {
           Text('图片加载失败').id(this.imageId + '-error').fontSize(13).lineHeight('22.1fp')
@@ -140,9 +158,22 @@ struct QuestionImageCell {
             .fontColor($r('app.color.accent_text')).backgroundColor(Color.Transparent)
             .onClick(() => { if (this.active && this.state === 'failed') { this.load(); } })
         }.width('100%').alignItems(HorizontalAlign.Start)
+      } else if (this.reserveLoadingSpace) {
+        Column() {
+          if (this.active && this.state === 'loading') { this.loadingIndicator(); }
+        }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+          .backgroundColor($r('app.color.media_surface')).borderRadius(STARWARD_RADIUS_CONTROL)
+          .transition(this.reducedMotion ? TransitionEffect.IDENTITY : TransitionEffect.asymmetric(
+            TransitionEffect.IDENTITY,
+            TransitionEffect.opacity(0).animation({ duration: STARWARD_PAGE_TRANSITION_MS, curve: Curve.EaseOut })))
+          .hitTestBehavior(HitTestMode.None)
+      } else if (this.active && this.state === 'loading') {
+        this.loadingIndicator()
       }
-    }.id(this.imageId).width(this.cellWidth).constraintSize({ minHeight: this.active ? 44 : 0 })
-      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+    }.width(this.cellWidth).height(this.slotHeight())
+      .animation({ duration: this.reducedMotion || !this.revealLoadedImage ? 0 : STARWARD_PAGE_TRANSITION_MS,
+        curve: Curve.EaseOut })
+      .id(this.imageId).constraintSize({ minHeight: this.active ? 44 : 0 }).clip(this.reserveLoadingSpace)
   }
 }
 
@@ -159,6 +190,7 @@ export struct StarwardQuestionImages {
   @Param imageLabel: string = '题图';
   @Param maxHeight: number = 340;
   @Param reducedMotion: boolean = true;
+  @Param reserveLoadingSpace: boolean = false;
   @Event opened: (index: number) => void = () => {};
   @Local private contentWidth: number = 0;
 
@@ -190,7 +222,7 @@ export struct StarwardQuestionImages {
                 imageCache: this.imageCache, active: this.active,
                 cellWidth: this.cellWidth(), maxHeight: this.maxHeight, imageId: `${this.groupId}-${start + index}`,
                 imageLabel: `${this.imageLabel} ${start + index + 1}，共 ${this.sources.length} 张`,
-                reducedMotion: this.reducedMotion,
+                reducedMotion: this.reducedMotion, reserveLoadingSpace: this.reserveLoadingSpace,
                 opened: () => this.opened(start + index) })
             }, (source: string) => `${this.ownerKey}:${source}`)
           }.width('100%').alignItems(VerticalAlign.Top)

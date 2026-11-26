@@ -20,6 +20,7 @@ export struct StarwardRichContent {
   @Param active: boolean = true;
   @Param interactive: boolean = true;
   @Param showMedia: boolean = true;
+  @Param reserveImageSpace: boolean = false;
   @Param clueBody: boolean = false;
   @Param textSize: number = 16;
   @Param textWeight: number = 400;
@@ -102,7 +103,7 @@ export struct StarwardRichContent {
             ownerIsCurrent: this.ownerIsCurrent, active: this.active, availableWidth: this.availableWidth,
             groupId: `${this.nodeId}-${this.clueBody ? 'inline' : 'image'}-${index}`,
             imageLabel: this.imageLabel || (this.clueBody ? '线索图片' : '题目图片'), maxHeight: this.maxMediaHeight,
-            reducedMotion: this.reducedMotion,
+            reducedMotion: this.reducedMotion, reserveLoadingSpace: this.reserveImageSpace,
             opened: () => { if (this.active && this.interactive) { this.openImage(index); } } })
             .margin({ top: this.mediaMargin, bottom: this.mediaMargin })
         } else if (this.showMedia && block.kind === 'video') {

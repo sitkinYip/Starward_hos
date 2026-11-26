@@ -304,6 +304,8 @@
 
 ## ADR-022：普通视频线索的播放与临时文件
 
+2026-11-26 补充。答题页的内嵌及独立播放器在收到有效的 ArkUI 原生全屏事件后，按旋转校正后的显示尺寸选择主窗口方向。主窗口平台层串行处理进入与退出，恢复进入前的方向策略。授权、播放尝试、预览层、临时文件与 BGM 仍由现有播放器生命周期管理。
+
 2026-11-12，冻结 Web 的 7 个已发布视频样本均为 HTTPS MP4，约 0.31–2.72 MB。去掉 Web 站点 `Referer` 的单字节 GET 均返回 403，带该来源的请求均返回 206。固定 API 26 的 ArkUI [Video](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-media-components-video) 自带播控，其数据源参数接收 URL 或资源。
 
 - 普通已授权视频由 [NetworkKit HTTP](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-http) 附固定 Web 来源取回完整 MP4，使用严格 HTTPS，拒绝重定向，关闭代理、缓存和 Cookie，不发送玩家凭据。16 MiB 上限覆盖已检查样本，限制播放器前置缓冲占用。隔离包只对已配置的同源本机媒体夹具使用专用 CA。

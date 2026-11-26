@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "mode": "fixed isolated preview; completed assignment; read & media only",
+  "hapSha256": "52822b77115a24f9493459bb19a3b5139e4a600c2bd533b1bb9bb8f19c7c1e61",
+  "checks": [
+    "ArkUI Video opened its original cover without changing the question window orientation.",
+    "Ordinary video cover is portrait before native fullscreen.",
+    "Native fullscreen rotates the actual display to landscape.",
+    "System Back leaves native fullscreen and restores portrait while keeping the player cover.",
+    "Closing the cover preserves the prior completed question."
+  ],
+  "screenSizesPx": {
+    "before": [
+      1260,
+      2720
+    ],
+    "landscape": [
+      2720,
+      1260
+    ],
+    "after-exit": [
+      1260,
+      2720
+    ]
+  }
+}

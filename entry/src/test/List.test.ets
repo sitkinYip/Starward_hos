@@ -28,6 +28,7 @@ import questionImageLoaderTests from './QuestionImageLoader.test';
 import questionImageCacheTests from './QuestionImageCache.test';
 import questionSwiperSelectionTests from './QuestionSwiperSelection.test';
 import immersiveSurfacesTests from './ImmersiveSurfaces.test';
+import videoFullscreenOrientationTests from './VideoFullscreenOrientation.test';
 import pushRegistrationTests from './PushRegistration.test';
 import pushPermissionFlowTests from './PushPermissionFlow.test';
 import pushSubscriptionsTests from './PushSubscriptions.test';
@@ -64,6 +65,7 @@ export default function testsuite(): void {
   questionImageCacheTests();
   questionSwiperSelectionTests();
   immersiveSurfacesTests();
+  videoFullscreenOrientationTests();
   pushRegistrationTests();
   pushPermissionFlowTests();
   pushSubscriptionsTests();

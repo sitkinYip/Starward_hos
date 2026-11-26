@@ -2,6 +2,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { ImmersiveSurfaces } from './ImmersiveSurfaces';
+import { VideoFullscreenOrientation } from './VideoFullscreenOrientation';
 
 /** Main-window edge-to-edge policy. System bars stay visible above the app. */
 export class ImmersiveWindow {
@@ -16,6 +17,7 @@ export class ImmersiveWindow {
   attach(target: window.Window, colorMode: ConfigurationConstant.ColorMode | undefined): Promise<void> {
     this.detach();
     this.target = target;
+    VideoFullscreenOrientation.attach(target);
     const generation: number = this.generation;
     this.updates = this.updates.then(() => this.enableLayout(target, generation));
     this.unsubscribeSurfaces = ImmersiveSurfaces.subscribe((dark: boolean): void => {
@@ -29,14 +31,15 @@ export class ImmersiveWindow {
   }
 
   detach(): void {
-    const hadTarget: boolean = this.target !== null;
+    const target = this.target;
     this.generation++;
     this.revision++;
     this.unsubscribeSurfaces();
     this.unsubscribeSurfaces = () => {};
     this.target = null;
     this.surfaceDark = false;
-    if (hadTarget) {
+    if (target !== null) {
+      VideoFullscreenOrientation.detach(target);
       ImmersiveSurfaces.reset();
     }
   }

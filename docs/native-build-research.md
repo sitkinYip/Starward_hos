@@ -109,6 +109,13 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - 改用滚动层之外、仅覆盖状态栏边缘的主题渐变。签名包 `3bd6bf8487163a443037f2ac443e3e56111599432fb8df05588bc25d08212e6a` 构建、双验签、安装启动成功，Hypium 323 项通过，lint 无错误或警告。 [验签](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/source/local-test-summary.json)
 - 固定隔离预览浅色直板机的第 4、5 题交替横滑六次，48 张分时画面中的中间区域近白比例最高 32.8%，近黑比例最高 0.8%。题目均落到对应位置。向下滚动时内容到达视口上缘，顶栏隐藏后可恢复，点返回可到启程。验证结束把应用留在第 4 题。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/device.json)
 
+## 2026-11-26 答题横滑题图与线索过渡
+
+- 冻结 Web `46188fc` 的 `GamePlayPage.tsx` 在切题时从已读场次数据切换题目。原生继续使用 ArkUI Swiper 跟手滑动，前后可读题的题卡同时从 `ordinaryClues` 投影各自已授权的线索与未读标记。未选中题的点击及读屏仍由 Swiper 屏蔽。真实新增的当前题线索面板复用项目的短入场。 [ArkUI Swiper](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-swiper/) · [ArkUI 组件内转场](https://developer.huawei.com/consumer/en/doc/HarmonyOS-Guides/arkts-enter-exit-transition/)
+- 结构化题图和题干内联图片复用同一主题占位与 ArkUI 渐显。先按可用宽度和 16:9 预留空间，解码后按自然尺寸及原有高度上限布局，过渡时长复用 240ms。缓存命中直接显示，冷加载沿用选中题的下载时机和重试。减少动画时直接应用尺寸与内容。
+- 调试包 `4f3e2eefa7515fd54d7cfd8db392eedd12459c5c7408b53f7114ad12403767dc` 完成 `scripts/hm.sh build`、HAP 和签名 profile 双验签及 `scripts/hm.sh run --skip-build` 安装启动。`scripts/hm.sh test` 通过 326 项，`scripts/hm.sh lint` 零错误、零警告，保留一条既有模糊性能建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/question-media-transition-20261126/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/question-media-transition-20261126/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/question-media-transition-20261126/lint.json)
+- 固定隔离预览直板机执行 `python3 artifacts/private/aurora-glass-v2-20261125/question-media-transition-20261126/probe.py`。从第 4 题滑到第 5 题、滑回第 4 题、再滑到第 5 题。题图均显示，第 4、5 题分别显示 1、2 张对应线索卡。第 5 题题图和图片线索可打开，系统返回保留原题，再次返回启程。深色原图核对题图完整。受控弱网的动画逐帧时序、失败重试、读屏及减少动画开关待专项复测。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/question-media-transition-20261126/device.json)
+
 ## 2026-11-26 看图器双击缩放
 
 - 共享看图器使用 ArkUI API 26 的单指 `TapGesture`，与原生拖动、双指捏合并行识别。双击在已有缩放边界内保持点按位置，放大后再次双击回到 100%。系统减少动画时直接应用缩放结果。
@@ -159,6 +166,12 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - `ohos.permission.VIBRATE` 为已声明的系统授权，权限校验拒绝使用 `201`。应用按 `physicalFeedback` 调用，受系统触感反馈开关控制。本机该开关原为关闭，预设及短振回退返回 `14600101`。临时启用后，两种预设都成功，随后恢复原系统状态。另核对应用开关默认开启、关闭值跨冷启动保留，以及应用内入口打开官方声音和振动页面。 [权限清单](https://developer.huawei.com/consumer/cn/doc/HarmonyOS-Guides/permissions-for-all/) · [振动场景和权限错误](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-vibrator/) · [设备操作错误](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/errorcode-vibrator/) · [系统开关复原](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/system-switch.json)
 - 最终隔离包验证已答填空与待答选择双向横滑、恢复已选项、相同的浮动底板边界和选择浮层命中。包含多次自动化输入的第一轮收到 3 个有效回执，超出原计划的 2 个，保留原报告并拆分补验。最终同包单次选择题点击产生 1 个新回执和 1 次成功下发的失败振动，短滑取消无额外回执。只记录系统接受调用，未人工判断触感强弱或逐帧量测动画。 [双向滑动与预设回执](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/device-final.json) · [单击与系统设置入口](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/device-link-and-motion.json)
 - 固定预览包和隔离包均完成 SDK 双验签，编译代码和模块清单一致。已安装固定预览包并停止一次性隔离环境。本地测试 324 项通过，lint 无错误和警告，保留一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/answer-haptics-transition-20261126/local-test-summary.json)
+
+## 2026-11-26 答题视频全屏方向
+
+- 答题的原生 ArkUI Video 收到当前尝试的全屏事件后，使用现有旋转校正后的显示尺寸选择方向。主窗口通过 `getPreferredOrientation` 保存原策略并串行更新。离开全屏、失败、关闭和授权失效释放对应请求。 [华为窗口方向 API](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-window-window/)
+- 固定隔离预览已完成场次「清宫那点事」的通关线索，普通封面打开保持 1260×2720，点原生全屏后为 2720×1260，第一次系统返回回到竖屏视频预览，第二次返回第 1 题。试验只读取现有进度和视频。竖版、旋转元数据样本的实播以及独立的 BGM 交互未复验。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/video-fullscreen-20261126/landscape-device.json)
+- 官方调试构建、安装与 SDK 双验签通过。本地 Hypium 326 项通过，两项新增覆盖比例选择、保存原策略和并发进入退出。lint 无错误和警告，有一条既有建议。 [签名](../artifacts/validation/aurora-glass-v2-20261125/video-fullscreen-20261126/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/video-fullscreen-20261126/local-test-summary.json)
 
 ## 官方本机输入
 

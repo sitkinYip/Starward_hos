@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "signedHapSha256": "4f3e2eefa7515fd54d7cfd8db392eedd12459c5c7408b53f7114ad12403767dc",
+  "mode": "fixed isolated preview, existing progress, read-only actions",
+  "states": [
+    {
+      "label": "q4-before",
+      "question": 4,
+      "clueCards": 1,
+      "cluesPanel": true,
+      "images": [
+        "question-images-0-0-pixels"
+      ]
+    },
+    {
+      "label": "q5-first",
+      "question": 5,
+      "clueCards": 2,
+      "cluesPanel": true,
+      "images": [
+        "question-images-0-0-pixels"
+      ],
+      "pngSha256": "c9f26f1c10166b95c504b37075541d9977fe59a9aad38dc2558850c1c1a357a9"
+    },
+    {
+      "label": "q4-return",
+      "question": 4,
+      "clueCards": 1,
+      "cluesPanel": true,
+      "images": [
+        "question-images-0-0-pixels"
+      ]
+    },
+    {
+      "label": "q5-return",
+      "question": 5,
+      "clueCards": 2,
+      "cluesPanel": true,
+      "images": [
+        "question-images-0-0-pixels"
+      ],
+      "pngSha256": "e67bdf25c80a5290a074a544fed0fef4bc531228956175086637f4633f5969d5"
+    }
+  ],
+  "checks": [
+    "Native Q4\u2192Q5\u2192Q4\u2192Q5 gestures settle each time and preserve the visible per-question grants",
+    "Q5 ready question image opens and native Back returns to Q5",
+    "Current Q5 image clue opens and native Back returns to the same question",
+    "Native Back leaves gameplay for Journey"
+  ]
+}

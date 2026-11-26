@@ -2,6 +2,7 @@ import { curves, window } from '@kit.ArkUI';
 import { ClueVideoFile, ClueVideoFileLoader } from '../platform/ClueVideoFile';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
+import { VideoFullscreenOrientation } from '../platform/VideoFullscreenOrientation';
 import { StarwardMediaAmbient, StarwardMediaFrame } from './StarwardClueMotion';
 import { STARWARD_PAGE_TRANSITION_MS } from './StarwardMotion';
 
@@ -35,11 +36,13 @@ export class StarwardVideoViewerState {
   private fullscreen: boolean = false;
   private lease: number = 0;
   private readonly embedded: boolean;
+  private readonly orientFullscreen: boolean;
   private pausedAt: number = 0;
   private playbackTime: number = 0;
 
-  constructor(embedded: boolean = false) {
+  constructor(embedded: boolean = false, orientFullscreen: boolean = false) {
     this.embedded = embedded;
+    this.orientFullscreen = orientFullscreen;
   }
 
   open(source: string, cacheDir: string, ownerCurrent: () => boolean,
@@ -136,7 +139,14 @@ export class StarwardVideoViewerState {
   }
 
   fullscreenChanged(sessionId: number, attempt: VideoAttempt, fullscreen: boolean): void {
-    if (this.current(sessionId, attempt)) { this.fullscreen = fullscreen; }
+    if (!this.current(sessionId, attempt) || this.fullscreen === fullscreen) { return; }
+    this.fullscreen = fullscreen;
+    if (!this.orientFullscreen) { return; }
+    if (fullscreen && attempt.file !== null) {
+      VideoFullscreenOrientation.begin(attempt, attempt.file.width, attempt.file.height);
+    } else {
+      VideoFullscreenOrientation.end(attempt);
+    }
   }
 
   exitFullscreen(sessionId: number): boolean {
@@ -189,6 +199,7 @@ export class StarwardVideoViewerState {
     if (fullscreen && attempt !== null) {
       try { attempt.controller.exitFullscreen(); } catch { /* Closing also unmounts the player. */ }
     }
+    if (this.orientFullscreen && attempt !== null) { VideoFullscreenOrientation.end(attempt); }
     attempt?.release();
     this.attempt = null;
   }
