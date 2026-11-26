@@ -1,9 +1,10 @@
-import { window } from '@kit.ArkUI';
+import { UIUtils, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { AppEnvironment } from '../platform/AppEnvironment';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { StarwardMediaAmbient, StarwardMediaFrame } from './StarwardClueMotion';
+import { STARWARD_PAGE_TRANSITION_MS } from './StarwardMotion';
 import { QuestionImageFailure, QuestionImageLoader, QuestionImageResult } from '../platform/QuestionImageLoader';
 
 /** UI-only cover/resource owner. It never changes gameplay or owns an application Window. */
@@ -238,6 +239,23 @@ export struct StarwardImageViewer {
 
   private blockCycle(): void { this.swipeBlocked = true; this.panActive = false; this.pinching = false; }
 
+  private doubleTap(event: GestureEvent): void {
+    if (!this.interactive() || this.pinching || this.model.loadState !== 'ready') { return; }
+    const centerX: number = this.stageWidth() / 2;
+    const centerY: number = this.actualStageHeight() / 2;
+    const halfImageWidth: number = this.imageWidth() / 2;
+    const halfImageHeight: number = this.imageHeight() / 2;
+    const finger: FingerInfo | undefined = event.fingerInfos?.[0] ?? event.fingerList[0];
+    const offsetX: number = (event.tapLocation?.x ?? finger?.localX ?? centerX) - centerX;
+    const offsetY: number = (event.tapLocation?.y ?? finger?.localY ?? centerY) - centerY;
+    const focusX: number = Math.max(-halfImageWidth, Math.min(halfImageWidth, offsetX));
+    const focusY: number = Math.max(-halfImageHeight, Math.min(halfImageHeight, offsetY));
+    const zoom: number = this.model.zoom > 1 ? 1 : 2;
+    this.blockCycle();
+    this.getUIContext().animateTo({ duration: this.motionEnabled && !this.reducedMotion ? STARWARD_PAGE_TRANSITION_MS : 0,
+      curve: Curve.EaseOut }, () => UIUtils.applySync(() => this.pose(zoom, (1 - zoom) * focusX, (1 - zoom) * focusY)));
+  }
+
   private touch(event: TouchEvent): void {
     // Lifecycle only: all distances/centres come from the official gesture recognizers below.
     if (!this.interactive()) { return; }
@@ -350,6 +368,8 @@ export struct StarwardImageViewer {
       })
       .onTouch((event: TouchEvent) => this.touch(event))
       .gesture(GestureGroup(GestureMode.Parallel,
+        TapGesture({ count: 2, fingers: 1, isFingerCountLimited: true, distanceThreshold: 8 })
+          .onAction((event: GestureEvent) => this.doubleTap(event)),
         PinchGesture({ fingers: 2, distance: 1, isFingerCountLimited: true })
           .onActionStart((event: GestureEvent) => this.pinchStart(event))
           .onActionUpdate((event: GestureEvent) => this.pinchUpdate(event))
@@ -375,7 +395,7 @@ export struct StarwardImageViewer {
         .enabled(this.interactive()).onClick(() => {
           if (this.interactive()) { this.blockCycle(); this.model.reset(); }
         })
-      Text('双指缩放 · 放大后拖动').id('image-viewer-help').fontSize(13.3333).lineHeight(19).fontColor('#b8b7ae')
+      Text('双击或双指缩放 · 放大后拖动').id('image-viewer-help').fontSize(13.3333).lineHeight(19).fontColor('#b8b7ae')
     }.height(40).justifyContent(FlexAlign.Center)
   }
 

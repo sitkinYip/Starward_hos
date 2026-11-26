@@ -1,0 +1,221 @@
+{
+  "status": "passed",
+  "fixture": "fixed isolated preview, no writes",
+  "before": {
+    "status": "passed",
+    "mode": "fixed isolated preview, no writes",
+    "themes": {
+      "light": {
+        "reference": {
+          "meanGray": 215.925,
+          "edgeMean": 3.474,
+          "strongEdgeFraction": 0.02929
+        },
+        "headingRegionPx": [
+          50,
+          182,
+          498,
+          320
+        ],
+        "profile": {
+          "stats": {
+            "meanGray": 173.58,
+            "edgeMean": 2.705,
+            "strongEdgeFraction": 0.02803
+          },
+          "edgeRatio": 0.779,
+          "strongEdgeRatio": 0.957,
+          "sheetBodyBoundsPx": [
+            0,
+            1609,
+            1260,
+            2720
+          ],
+          "dismissal": "outside-tap"
+        },
+        "password": {
+          "stats": {
+            "meanGray": 173.58,
+            "edgeMean": 2.705,
+            "strongEdgeFraction": 0.02803
+          },
+          "edgeRatio": 0.779,
+          "strongEdgeRatio": 0.957,
+          "sheetBodyBoundsPx": [
+            0,
+            1505,
+            1260,
+            2720
+          ],
+          "dismissal": "system-back"
+        },
+        "appearance": {
+          "stats": {
+            "meanGray": 173.58,
+            "edgeMean": 2.705,
+            "strongEdgeFraction": 0.02803
+          },
+          "edgeRatio": 0.779,
+          "strongEdgeRatio": 0.957,
+          "sheetBodyBoundsPx": [
+            0,
+            2428,
+            1260,
+            2720
+          ],
+          "dismissal": "system-back"
+        },
+        "closed": {
+          "meanGray": 215.925,
+          "edgeMean": 3.474,
+          "strongEdgeFraction": 0.02929
+        }
+      }
+    },
+    "hapSha256": "3966e4fb76f5febcc3b187a32cf1f018787e743ddfa63e0baa6749c39a243770",
+    "themeRestored": true,
+    "packageProvenance": "Last signed package installed and exercised on this device before this probe. The workspace rebuilt its HAP during baseline capture without installing it."
+  },
+  "after": {
+    "status": "passed",
+    "mode": "fixed isolated preview, no writes",
+    "themes": {
+      "light": {
+        "reference": {
+          "meanGray": 215.925,
+          "edgeMean": 3.474,
+          "strongEdgeFraction": 0.02929
+        },
+        "headingRegionPx": [
+          50,
+          182,
+          498,
+          320
+        ],
+        "profile": {
+          "stats": {
+            "meanGray": 173.522,
+            "edgeMean": 2.223,
+            "strongEdgeFraction": 0.0
+          },
+          "edgeRatio": 0.64,
+          "strongEdgeRatio": 0.0,
+          "sheetBodyBoundsPx": [
+            0,
+            1609,
+            1260,
+            2720
+          ],
+          "dismissal": "outside-tap"
+        },
+        "password": {
+          "stats": {
+            "meanGray": 173.522,
+            "edgeMean": 2.223,
+            "strongEdgeFraction": 0.0
+          },
+          "edgeRatio": 0.64,
+          "strongEdgeRatio": 0.0,
+          "sheetBodyBoundsPx": [
+            0,
+            1505,
+            1260,
+            2720
+          ],
+          "dismissal": "system-back"
+        },
+        "appearance": {
+          "stats": {
+            "meanGray": 173.522,
+            "edgeMean": 2.223,
+            "strongEdgeFraction": 0.0
+          },
+          "edgeRatio": 0.64,
+          "strongEdgeRatio": 0.0,
+          "sheetBodyBoundsPx": [
+            0,
+            2428,
+            1260,
+            2720
+          ],
+          "dismissal": "system-back"
+        },
+        "closed": {
+          "meanGray": 215.925,
+          "edgeMean": 3.474,
+          "strongEdgeFraction": 0.02929
+        }
+      },
+      "dark": {
+        "reference": {
+          "meanGray": 41.006,
+          "edgeMean": 3.582,
+          "strongEdgeFraction": 0.02937
+        },
+        "headingRegionPx": [
+          50,
+          182,
+          498,
+          320
+        ],
+        "profile": {
+          "stats": {
+            "meanGray": 31.669,
+            "edgeMean": 2.117,
+            "strongEdgeFraction": 0.0
+          },
+          "edgeRatio": 0.591,
+          "strongEdgeRatio": 0.0,
+          "sheetBodyBoundsPx": [
+            0,
+            1609,
+            1260,
+            2720
+          ],
+          "dismissal": "outside-tap"
+        },
+        "password": {
+          "stats": {
+            "meanGray": 31.669,
+            "edgeMean": 2.117,
+            "strongEdgeFraction": 0.0
+          },
+          "edgeRatio": 0.591,
+          "strongEdgeRatio": 0.0,
+          "sheetBodyBoundsPx": [
+            0,
+            1505,
+            1260,
+            2720
+          ],
+          "dismissal": "system-back"
+        },
+        "appearance": {
+          "stats": {
+            "meanGray": 31.669,
+            "edgeMean": 2.117,
+            "strongEdgeFraction": 0.0
+          },
+          "edgeRatio": 0.591,
+          "strongEdgeRatio": 0.0,
+          "sheetBodyBoundsPx": [
+            0,
+            2428,
+            1260,
+            2720
+          ],
+          "dismissal": "system-back"
+        },
+        "closed": {
+          "meanGray": 41.006,
+          "edgeMean": 3.582,
+          "strongEdgeFraction": 0.02937
+        }
+      }
+    },
+    "hapSha256": "a29f71d4a34e28a84eea6fa78f405d2b706488be8ed2cac48ffce7f0ed9bdb09",
+    "keyboard": "keyboard opened, Back dismissed keyboard first, second Back dismissed sheet",
+    "themeRestored": true
+  },
+  "measurement": "Fraction of adjacent grayscale pixels differing by 25 or more within a fixed uncovered Passport heading crop. Sheet-open ratios use the same theme with its sheet closed as the denominator."
+}

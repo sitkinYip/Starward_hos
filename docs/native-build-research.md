@@ -103,6 +103,24 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - 同一签名包在固定隔离预览直板机核对左右滑、星点远距跳题、作答栏、提示和只读选项关闭、场次返回。第一题到第二题的 8 个分时画面显示连续位移及正确题面。启程、收藏和来信分别验证胶囊点按与横滑，护照和设置验证程序跳转、原生入场与系统返回。帧耗指标和真机减少动画开关本轮未采集。 [答题真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/quest-after.json) · [页签与设置真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/shell-device.json)
 - 固定预览的已完成场次「清宫那点事」通过通关线索打开六秒视频。真机观察到原生播放画面，复跑在播放中按系统返回，关闭全屏并保留第 1 题。设备最终回到启程。 [视频真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/media-device.json)
 
+## 2026-11-26 答题横滑落定闪屏
+
+- 用户录屏的 2.631–2.679 秒内，连续三帧显示保留下来的顶栏和底部控件。中间区域的近白像素占比约 98.6%，前后两帧约 14%。题面、进度和背景同时消失的范围支持优先处理 `Scroll.fadingEdge`。ArkUI 官方实现为整个滚动区绘制遮罩并进行离屏混合。 [ArkUI 边缘渐隐文档](https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#fadingedge14)
+- 改用滚动层之外、仅覆盖状态栏边缘的主题渐变。签名包 `3bd6bf8487163a443037f2ac443e3e56111599432fb8df05588bc25d08212e6a` 构建、双验签、安装启动成功，Hypium 323 项通过，lint 无错误或警告。 [验签](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/source/local-test-summary.json)
+- 固定隔离预览浅色直板机的第 4、5 题交替横滑六次，48 张分时画面中的中间区域近白比例最高 32.8%，近黑比例最高 0.8%。题目均落到对应位置。向下滚动时内容到达视口上缘，顶栏隐藏后可恢复，点返回可到启程。验证结束把应用留在第 4 题。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/switch-black-flash-20261126/device.json)
+
+## 2026-11-26 看图器双击缩放
+
+- 共享看图器使用 ArkUI API 26 的单指 `TapGesture`，与原生拖动、双指捏合并行识别。双击在已有缩放边界内保持点按位置，放大后再次双击回到 100%。系统减少动画时直接应用缩放结果。
+- 调试包 `3966e4fb76f5febcc3b187a32cf1f018787e743ddfa63e0baa6749c39a243770` 完成 `scripts/hm.sh build`、HAP 与签名 profile 双验签和 `scripts/hm.sh run --skip-build` 安装启动。`scripts/hm.sh test` 通过 323 项，`scripts/hm.sh lint` 零错误、零警告，有一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/source/lint.json)
+- 固定隔离预览直板机，通过 `python3 artifacts/private/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/probe.py` 在第 5 题实测。偏心双击放大到 200%，偏移约 `-35.8vp / 24.1vp`，单指拖动后偏移随手势更新，再次双击恢复到 100% 和零偏移。单击、复位按钮与关闭返回通过，实机原图核对底部提示完整。双指捏合、图集切换与减少动画开关未在本轮真机复测。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/device.json)
+
+## 2026-11-26 护照抽屉玻璃蒙层
+
+- 「修改资料」「修改密码」「外观」沿用同一个原生 `bindSheet`。此前仅设定背景蒙层颜色，面板材质只影响面板自身。现在通过现有 `StarwardModalBackdropState` 在入场时登记根窗口的 `StarwardGlassBackdrop`，关闭完成或编辑会话失效时释放。原生 Sheet 继续处理蒙层点击、手势和键盘避让。 [ArkUI 半模态参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition)
+- 调试包 `a29f71d4a34e28a84eea6fa78f405d2b706488be8ed2cac48ffce7f0ed9bdb09` 完成 `scripts/hm.sh build`、HAP 和签名 profile 双验签以及 `scripts/hm.sh run --skip-build` 安装启动。`scripts/hm.sh test` 323 项通过，`scripts/hm.sh lint` 无错误和警告，保留一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/passport-sheet-backdrop-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/passport-sheet-backdrop-20261126/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/passport-sheet-backdrop-20261126/source/lint.json)
+- 固定隔离预览直板机以 `python3 artifacts/private/aurora-glass-v2-20261125/passport-sheet-backdrop-20261126/probe.py after` 顺序核对资料、密码、外观。护照标题采样区在旧版浅色蒙层下保留 95.7% 强边缘，改后的三个抽屉在深浅两色均为 0%，关闭后的采样恢复到无抽屉基准。两主题密码抽屉原图核对状态栏背景连续，底层卡片轮廓和表单文字可辨。点遮罩、系统返回、重新打开、切换主题，以及昵称输入时先返回收键盘、再返回关闭均实测通过。未触发资料或密码保存，测试后恢复原主题。账号切换清理及关闭系统材质的回退本轮未单独注入。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/passport-sheet-backdrop-20261126/device.json)
+
 ## 官方本机输入
 
 - IDE：`/Applications/DevEco-Studio.app/Contents`。

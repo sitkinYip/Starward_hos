@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "fixture": "fixed isolated preview, read-only question image",
+  "checks": [
+    "a single tap keeps 100% and centered pose",
+    "off-center double tap enlarges to 200% while keeping the focal pixels under the tap",
+    "one finger pans the same enlarged image",
+    "second double tap restores 100% and zero offsets",
+    "existing reset button also clears the double-tap zoom",
+    "close returns to the same question"
+  ],
+  "hapSha256": "3966e4fb76f5febcc3b187a32cf1f018787e743ddfa63e0baa6749c39a243770",
+  "poses": {
+    "single tap": {
+      "zoomPercent": 100,
+      "xVp": 0.0,
+      "yVp": 0.0
+    },
+    "off-center double tap": {
+      "zoomPercent": 200,
+      "xVp": -35.8,
+      "yVp": 24.1
+    },
+    "zoomed drag": {
+      "zoomPercent": 200,
+      "xVp": -10.0,
+      "yVp": 45.1
+    },
+    "repeat double tap": {
+      "zoomPercent": 100,
+      "xVp": 0.0,
+      "yVp": 0.0
+    }
+  }
+}

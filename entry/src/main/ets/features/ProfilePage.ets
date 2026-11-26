@@ -1,6 +1,7 @@
 import { uiMaterial, window } from '@kit.ArkUI';
 import { AvatarImage } from '../business/models';
 import { InlineError } from '../ui/ErrorMessages';
+import { StarwardModalBackdropState } from '../ui/StarwardGlassBackdrop';
 import { StarwardMaterial } from '../ui/StarwardMaterial';
 import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardPassport } from '../ui/StarwardPassport';
@@ -43,6 +44,8 @@ struct PassportSettingRow {
 /** Passport editors retain their own native sheet anchor. The root owns the picker, crop, and routes. */
 @ComponentV2
 export struct ProfilePage {
+  @Consumer('starwardModalBackdrop') private modalBackdrop: StarwardModalBackdropState =
+    new StarwardModalBackdropState();
   @Require @Param vm: SliceViewModel;
   @Param active: boolean = false;
   @Param motionEnabled: boolean = false;
@@ -62,6 +65,7 @@ export struct ProfilePage {
   @Env(ReadonlyEnvKey.WINDOW_SIZE) private windowSize: window.SizeInVP;
   @Local private editor: PassportEditor | null = null;
   @Local private editorVisible: boolean = false;
+  private readonly editorBackdropOwner: Object = new Object();
   private editorOwner: string = '';
   private editorRevision: number = 0;
   private editorMaterial: uiMaterial.ImmersiveMaterial | undefined =
@@ -84,6 +88,7 @@ export struct ProfilePage {
 
   private resetEditor(): void {
     this.editorRevision++;
+    this.modalBackdrop.hide(this.editorBackdropOwner);
     this.editorVisible = false;
     this.editor = null;
     this.editorOwner = '';
@@ -110,7 +115,13 @@ export struct ProfilePage {
       title: { title: this.editorTitle() }, keyboardAvoidMode: SheetKeyboardAvoidMode.TRANSLATE_AND_SCROLL,
       backgroundColor: this.editorMaterial ? Color.Transparent : $r('app.color.raised'),
       systemMaterial: this.editorMaterial,
-      maskColor: $r('app.color.modal_mask'),
+      maskColor: Color.Transparent,
+      onWillAppear: () => {
+        if (revision === this.editorRevision && this.editorVisible && this.active &&
+          this.editorOwner === this.vm.player.id) {
+          this.modalBackdrop.show(this.editorBackdropOwner);
+        }
+      },
       onWillDismiss: (action: DismissSheetAction) => {
         if (revision !== this.editorRevision) { return; }
         this.editorVisible = false;

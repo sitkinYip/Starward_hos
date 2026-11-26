@@ -1,5 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { curves, LengthMetrics, PromptAction, promptAction } from '@kit.ArkUI';
+import { curves, PromptAction, promptAction } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
 import { clueImageSources, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
@@ -2164,7 +2164,6 @@ export struct GameplayPage {
           bottom: this.scrollBottomClearance() })
     }.id('gameplay-page').width('100%').height('100%').align(Alignment.Top).scrollBar(BarState.Off)
       .clipContent(ContentClipMode.BOUNDARY)
-      .fadingEdge(this.statusInset > 0, { fadingEdgeLength: LengthMetrics.vp(this.statusInset + 6) })
       .onDidScroll(() => this.syncTitle())
       .onAreaChange((_previous: Area, current: Area) => {
         const width: number = Number(current.width);
@@ -2194,6 +2193,14 @@ export struct GameplayPage {
         content: () => { this.gameplayScroll() } })
         .bindContentCover(this.textClue === null && this.sheet === null && this.viewer.visible,
           this.imageViewer(), this.viewerOptions())
+      if (this.foregroundTopInset() > 0) {
+        // Keep the status-bar fade separate from the moving Scroll surface.
+        Column().width('100%').height(this.foregroundTopInset() + 6)
+          .linearGradient({ direction: GradientDirection.Bottom,
+            colors: [[$r('app.color.canvas'), 0], [Color.Transparent, 1]] })
+          .position({ x: 0, y: 0 }).hitTestBehavior(HitTestMode.None)
+          .accessibilityLevel('no-hide-descendants')
+      }
       if (this.showCombinationLauncher()) {
         StarwardCombinationLauncher({ viewportWidth: this.viewportWidth, viewportHeight: this.viewportHeight,
           topInset: this.foregroundTopInset(), bottomInset: this.bgmLayoutBottomInset(),

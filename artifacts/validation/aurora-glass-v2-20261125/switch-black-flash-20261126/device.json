@@ -1,0 +1,426 @@
+{
+  "status": "passed",
+  "fixture": "fixed isolated preview, scenes only read",
+  "checks": [
+    "the recording fixture and initial question are displayed",
+    "six alternating native gestures settle on their exact target without a sampled blank frame",
+    "vertical scrolling reaches the status area, hides the floating title and restores it on return to question 4",
+    "the native title back action returns to Journey",
+    "the preview is left on the recording fixture at question 4"
+  ],
+  "samples": [
+    {
+      "direction": "4→5",
+      "index": 0,
+      "frames": [
+        {
+          "file": "swipe-0-00.jpeg",
+          "nearWhiteBodyFraction": 0.3167,
+          "nearBlackBodyFraction": 0.008
+        },
+        {
+          "file": "swipe-0-01.jpeg",
+          "nearWhiteBodyFraction": 0.3255,
+          "nearBlackBodyFraction": 0.0071
+        },
+        {
+          "file": "swipe-0-02.jpeg",
+          "nearWhiteBodyFraction": 0.3255,
+          "nearBlackBodyFraction": 0.0071
+        },
+        {
+          "file": "swipe-0-03.jpeg",
+          "nearWhiteBodyFraction": 0.3281,
+          "nearBlackBodyFraction": 0.0051
+        },
+        {
+          "file": "swipe-0-04.jpeg",
+          "nearWhiteBodyFraction": 0.2921,
+          "nearBlackBodyFraction": 0.0042
+        },
+        {
+          "file": "swipe-0-05.jpeg",
+          "nearWhiteBodyFraction": 0.2827,
+          "nearBlackBodyFraction": 0.0032
+        },
+        {
+          "file": "swipe-0-06.jpeg",
+          "nearWhiteBodyFraction": 0.2978,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-0-07.jpeg",
+          "nearWhiteBodyFraction": 0.2823,
+          "nearBlackBodyFraction": 0.0
+        }
+      ],
+      "timing": [
+        "frame-start 0 1795656529131",
+        "swipe-start 1795656529231",
+        "frame-start 1 1795656529400",
+        "frame-start 2 1795656529483",
+        "frame-start 3 1795656529582",
+        "frame-end 0 1795656529608",
+        "frame-start 4 1795656529674",
+        "frame-start 5 1795656529753",
+        "frame-start 6 1795656529860",
+        "frame-end 1 1795656529878",
+        "frame-end 2 1795656529879",
+        "frame-end 3 1795656529995",
+        "swipe-end 1795656530023",
+        "frame-start 7 1795656530037",
+        "frame-end 4 1795656530075",
+        "frame-end 5 1795656530128",
+        "frame-end 6 1795656530268",
+        "frame-end 7 1795656530441"
+      ]
+    },
+    {
+      "direction": "5→4",
+      "index": 1,
+      "frames": [
+        {
+          "file": "swipe-1-00.jpeg",
+          "nearWhiteBodyFraction": 0.2835,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-1-01.jpeg",
+          "nearWhiteBodyFraction": 0.2699,
+          "nearBlackBodyFraction": 0.0036
+        },
+        {
+          "file": "swipe-1-02.jpeg",
+          "nearWhiteBodyFraction": 0.278,
+          "nearBlackBodyFraction": 0.004
+        },
+        {
+          "file": "swipe-1-03.jpeg",
+          "nearWhiteBodyFraction": 0.293,
+          "nearBlackBodyFraction": 0.0031
+        },
+        {
+          "file": "swipe-1-04.jpeg",
+          "nearWhiteBodyFraction": 0.2956,
+          "nearBlackBodyFraction": 0.0062
+        },
+        {
+          "file": "swipe-1-05.jpeg",
+          "nearWhiteBodyFraction": 0.2919,
+          "nearBlackBodyFraction": 0.0052
+        },
+        {
+          "file": "swipe-1-06.jpeg",
+          "nearWhiteBodyFraction": 0.2674,
+          "nearBlackBodyFraction": 0.0064
+        },
+        {
+          "file": "swipe-1-07.jpeg",
+          "nearWhiteBodyFraction": 0.3179,
+          "nearBlackBodyFraction": 0.008
+        }
+      ],
+      "timing": [
+        "frame-start 0 1795656534000",
+        "swipe-start 1795656534096",
+        "frame-start 1 1795656534266",
+        "frame-start 2 1795656534363",
+        "frame-end 0 1795656534427",
+        "frame-start 3 1795656534446",
+        "frame-start 4 1795656534539",
+        "frame-start 5 1795656534631",
+        "frame-end 1 1795656534636",
+        "frame-start 6 1795656534724",
+        "frame-end 2 1795656534762",
+        "frame-end 3 1795656534809",
+        "swipe-end 1795656534863",
+        "frame-end 4 1795656534873",
+        "frame-start 7 1795656534899",
+        "frame-end 5 1795656535007",
+        "frame-end 6 1795656535096",
+        "frame-end 7 1795656535246"
+      ]
+    },
+    {
+      "direction": "4→5",
+      "index": 2,
+      "frames": [
+        {
+          "file": "swipe-2-00.jpeg",
+          "nearWhiteBodyFraction": 0.3173,
+          "nearBlackBodyFraction": 0.008
+        },
+        {
+          "file": "swipe-2-01.jpeg",
+          "nearWhiteBodyFraction": 0.3227,
+          "nearBlackBodyFraction": 0.0063
+        },
+        {
+          "file": "swipe-2-02.jpeg",
+          "nearWhiteBodyFraction": 0.3278,
+          "nearBlackBodyFraction": 0.0062
+        },
+        {
+          "file": "swipe-2-03.jpeg",
+          "nearWhiteBodyFraction": 0.317,
+          "nearBlackBodyFraction": 0.0043
+        },
+        {
+          "file": "swipe-2-04.jpeg",
+          "nearWhiteBodyFraction": 0.2858,
+          "nearBlackBodyFraction": 0.0028
+        },
+        {
+          "file": "swipe-2-05.jpeg",
+          "nearWhiteBodyFraction": 0.2921,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-2-06.jpeg",
+          "nearWhiteBodyFraction": 0.2882,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-2-07.jpeg",
+          "nearWhiteBodyFraction": 0.2845,
+          "nearBlackBodyFraction": 0.0
+        }
+      ],
+      "timing": [
+        "frame-start 0 1795656538733",
+        "swipe-start 1795656538818",
+        "frame-start 1 1795656538988",
+        "frame-start 2 1795656539089",
+        "frame-end 0 1795656539129",
+        "frame-start 3 1795656539164",
+        "frame-start 4 1795656539260",
+        "frame-start 5 1795656539361",
+        "frame-end 1 1795656539414",
+        "frame-start 6 1795656539448",
+        "frame-end 2 1795656539502",
+        "swipe-end 1795656539518",
+        "frame-end 3 1795656539552",
+        "frame-start 7 1795656539643",
+        "frame-end 4 1795656539654",
+        "frame-end 5 1795656539768",
+        "frame-end 6 1795656539832",
+        "frame-end 7 1795656540016"
+      ]
+    },
+    {
+      "direction": "5→4",
+      "index": 3,
+      "frames": [
+        {
+          "file": "swipe-3-00.jpeg",
+          "nearWhiteBodyFraction": 0.2844,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-3-01.jpeg",
+          "nearWhiteBodyFraction": 0.2891,
+          "nearBlackBodyFraction": 0.0007
+        },
+        {
+          "file": "swipe-3-02.jpeg",
+          "nearWhiteBodyFraction": 0.2725,
+          "nearBlackBodyFraction": 0.0039
+        },
+        {
+          "file": "swipe-3-03.jpeg",
+          "nearWhiteBodyFraction": 0.2725,
+          "nearBlackBodyFraction": 0.0039
+        },
+        {
+          "file": "swipe-3-04.jpeg",
+          "nearWhiteBodyFraction": 0.298,
+          "nearBlackBodyFraction": 0.0063
+        },
+        {
+          "file": "swipe-3-05.jpeg",
+          "nearWhiteBodyFraction": 0.2915,
+          "nearBlackBodyFraction": 0.0058
+        },
+        {
+          "file": "swipe-3-06.jpeg",
+          "nearWhiteBodyFraction": 0.286,
+          "nearBlackBodyFraction": 0.0055
+        },
+        {
+          "file": "swipe-3-07.jpeg",
+          "nearWhiteBodyFraction": 0.2665,
+          "nearBlackBodyFraction": 0.0075
+        }
+      ],
+      "timing": [
+        "frame-start 0 1795656543488",
+        "swipe-start 1795656543582",
+        "frame-start 1 1795656543753",
+        "frame-start 2 1795656543858",
+        "frame-start 3 1795656543935",
+        "frame-end 0 1795656543943",
+        "frame-start 4 1795656544039",
+        "frame-start 5 1795656544114",
+        "frame-start 6 1795656544211",
+        "frame-end 1 1795656544211",
+        "frame-end 2 1795656544342",
+        "frame-end 3 1795656544346",
+        "frame-start 7 1795656544396",
+        "swipe-end 1795656544446",
+        "frame-end 4 1795656544483",
+        "frame-end 5 1795656544522",
+        "frame-end 6 1795656544547",
+        "frame-end 7 1795656544711"
+      ]
+    },
+    {
+      "direction": "4→5",
+      "index": 4,
+      "frames": [
+        {
+          "file": "swipe-4-00.jpeg",
+          "nearWhiteBodyFraction": 0.318,
+          "nearBlackBodyFraction": 0.008
+        },
+        {
+          "file": "swipe-4-01.jpeg",
+          "nearWhiteBodyFraction": 0.3179,
+          "nearBlackBodyFraction": 0.0068
+        },
+        {
+          "file": "swipe-4-02.jpeg",
+          "nearWhiteBodyFraction": 0.3263,
+          "nearBlackBodyFraction": 0.0057
+        },
+        {
+          "file": "swipe-4-03.jpeg",
+          "nearWhiteBodyFraction": 0.3188,
+          "nearBlackBodyFraction": 0.0045
+        },
+        {
+          "file": "swipe-4-04.jpeg",
+          "nearWhiteBodyFraction": 0.2808,
+          "nearBlackBodyFraction": 0.0031
+        },
+        {
+          "file": "swipe-4-05.jpeg",
+          "nearWhiteBodyFraction": 0.306,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-4-06.jpeg",
+          "nearWhiteBodyFraction": 0.2877,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-4-07.jpeg",
+          "nearWhiteBodyFraction": 0.2845,
+          "nearBlackBodyFraction": 0.0
+        }
+      ],
+      "timing": [
+        "frame-start 0 1795656548011",
+        "swipe-start 1795656548121",
+        "frame-start 1 1795656548281",
+        "frame-start 2 1795656548379",
+        "frame-end 0 1795656548412",
+        "frame-start 3 1795656548464",
+        "frame-start 4 1795656548565",
+        "frame-start 5 1795656548650",
+        "frame-end 1 1795656548696",
+        "frame-start 6 1795656548733",
+        "frame-end 2 1795656548791",
+        "swipe-end 1795656548843",
+        "frame-end 3 1795656548858",
+        "frame-start 7 1795656548925",
+        "frame-end 4 1795656548979",
+        "frame-end 5 1795656549044",
+        "frame-end 6 1795656549118",
+        "frame-end 7 1795656549318"
+      ]
+    },
+    {
+      "direction": "5→4",
+      "index": 5,
+      "frames": [
+        {
+          "file": "swipe-5-00.jpeg",
+          "nearWhiteBodyFraction": 0.2842,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-5-01.jpeg",
+          "nearWhiteBodyFraction": 0.2939,
+          "nearBlackBodyFraction": 0.0
+        },
+        {
+          "file": "swipe-5-02.jpeg",
+          "nearWhiteBodyFraction": 0.2706,
+          "nearBlackBodyFraction": 0.0013
+        },
+        {
+          "file": "swipe-5-03.jpeg",
+          "nearWhiteBodyFraction": 0.2706,
+          "nearBlackBodyFraction": 0.0013
+        },
+        {
+          "file": "swipe-5-04.jpeg",
+          "nearWhiteBodyFraction": 0.2927,
+          "nearBlackBodyFraction": 0.0031
+        },
+        {
+          "file": "swipe-5-05.jpeg",
+          "nearWhiteBodyFraction": 0.2969,
+          "nearBlackBodyFraction": 0.0047
+        },
+        {
+          "file": "swipe-5-06.jpeg",
+          "nearWhiteBodyFraction": 0.2919,
+          "nearBlackBodyFraction": 0.0067
+        },
+        {
+          "file": "swipe-5-07.jpeg",
+          "nearWhiteBodyFraction": 0.2757,
+          "nearBlackBodyFraction": 0.0067
+        }
+      ],
+      "timing": [
+        "frame-start 0 1795656552764",
+        "swipe-start 1795656552871",
+        "frame-start 1 1795656553052",
+        "frame-start 2 1795656553140",
+        "frame-start 3 1795656553212",
+        "frame-end 0 1795656553216",
+        "frame-start 4 1795656553306",
+        "frame-start 5 1795656553400",
+        "frame-end 1 1795656553487",
+        "frame-start 6 1795656553492",
+        "frame-end 2 1795656553592",
+        "frame-end 3 1795656553601",
+        "frame-start 7 1795656553692",
+        "frame-end 4 1795656553694",
+        "swipe-end 1795656553730",
+        "frame-end 5 1795656553755",
+        "frame-end 6 1795656553867",
+        "frame-end 7 1795656554035"
+      ]
+    }
+  ],
+  "hapSha256": "3bd6bf8487163a443037f2ac443e3e56111599432fb8df05588bc25d08212e6a",
+  "recordingComparison": {
+    "sourceFlashStartSeconds": 2.630911,
+    "sourceRestoredSeconds": 2.678656,
+    "sourceNearWhiteBodyFractions": [
+      0.1395,
+      0.9859,
+      0.9861,
+      0.9862,
+      0.1366
+    ],
+    "deviceSamples": 48,
+    "deviceAppearance": "light",
+    "devicePeakNearWhiteBodyFraction": 0.3281,
+    "devicePeakNearBlackBodyFraction": 0.008,
+    "deviceMethod": "staggered native device screenshots on six alternate gestures"
+  }
+}
