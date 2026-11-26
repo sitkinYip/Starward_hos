@@ -1,8 +1,23 @@
-import { CapsuleSegmentButtonV2, ColorMetrics, CommonModifier, FrameCallback, FrameNode, LengthMetrics,
+import { CapsuleSegmentButtonV2, ColorMetrics, CommonModifier, curves, FrameCallback, FrameNode, LengthMetrics,
   SegmentButtonV2Items, UIUtils } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { HdsTabs, hdsMaterial } from '@kit.UIDesignKit';
+import { HdsTabs, HdsTabsController, hdsMaterial } from '@kit.UIDesignKit';
 import { StarwardMaterial } from './StarwardMaterial';
+import { STARWARD_PAGE_TRANSITION_MS } from './StarwardMotion';
+
+const PANE_TRANSITION_CURVE: ICurve = curves.cubicBezierCurve(0.2, 0, 0, 1);
+
+/** A declarative index seeds native Tabs, while subsequent owner requests use the animated controller. */
+class NativeTabIndex {
+  index: number = 0;
+  attached: boolean = false;
+
+  sync(index: number, controller: TabsController): void {
+    if (!this.attached || this.index === index) { return; }
+    this.index = index;
+    controller.changeIndex(index);
+  }
+}
 
 class TabBadgeMeasure extends FrameCallback {
   private readonly measure: () => void;
@@ -24,25 +39,37 @@ export struct StarwardBottomTabs {
   @Param floatingGap: number = 10;
   @Param hideBar: boolean = false;
   @Param materialInteractionEnabled: boolean = false;
+  @Param reducedMotion: boolean = true;
   @Param unreadLetters: number = 0;
   @Local private tabBarModifier: CommonModifier = UIUtils.makeObserved(new CommonModifier());
   @Local private badgeX: number = 0;
   @Local private badgeY: number = 0;
   @Local private badgeMeasured: boolean = false;
   @Local private immersiveBar: boolean = false;
+  private readonly controller: HdsTabsController = new HdsTabsController();
+  private readonly nativeIndex: NativeTabIndex = new NativeTabIndex();
   private mounted: boolean = false;
 
   private validIndex(index: number): boolean { return Number.isInteger(index) && index >= 0 && index <= 3; }
 
   aboutToAppear(): void {
     this.mounted = true;
+    this.nativeIndex.index = this.selectedIndex;
     this.updateMaterial();
     this.tabBarModifier.id('starward-native-tabbar');
     this.tabBarModifier.onAreaChange(() => this.scheduleBadge());
     this.barVisibilityChanged();
   }
 
-  aboutToDisappear(): void { this.mounted = false; }
+  aboutToDisappear(): void {
+    this.nativeIndex.attached = false;
+    this.mounted = false;
+  }
+
+  @Monitor('selectedIndex')
+  private applyOwnerIndex(): void {
+    if (this.validIndex(this.selectedIndex)) { this.nativeIndex.sync(this.selectedIndex, this.controller); }
+  }
 
   @Monitor('materialInteractionEnabled')
   private updateMaterial(): void {
@@ -109,7 +136,8 @@ export struct StarwardBottomTabs {
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
-      HdsTabs({ barPosition: BarPosition.End, index: this.selectedIndex, barModifier: this.tabBarModifier }) {
+      HdsTabs({ barPosition: BarPosition.End, index: this.nativeIndex.index, controller: this.controller,
+        barModifier: this.tabBarModifier }) {
         TabContent() {
           this.journeys()
         }.tabBar(this.tabStyle(this.selectedIndex === 0 ? $r('app.media.icon_nav_compass_fill') :
@@ -127,6 +155,7 @@ export struct StarwardBottomTabs {
         }.tabBar(this.tabStyle(this.selectedIndex === 3 ? $r('app.media.icon_nav_passport_fill') :
           $r('app.media.icon_nav_passport_regular'), '护照', 'nav-profile'))
       }.width('100%').height('100%').vertical(false).scrollable(false).barOverlap(true)
+        .animationDuration(this.reducedMotion ? 0 : STARWARD_PAGE_TRANSITION_MS)
         .barBackgroundColor(this.immersiveBar ? Color.Transparent : $r('app.color.raised'))
         .barFloatingStyle({
           barSideMargin: 20,
@@ -148,13 +177,18 @@ export struct StarwardBottomTabs {
         .onSelected((index: number) => {
           // The native selection is committed at the start of the transition.
           // Animation completion can arrive after the next selection.
-          if (index !== this.selectedIndex && this.validIndex(index) && this.canSelect(index)) {
-            this.selected(index);
+          if (this.validIndex(index) && (index === this.selectedIndex || this.canSelect(index))) {
+            this.nativeIndex.index = index;
+            if (index !== this.selectedIndex) { this.selected(index); }
           }
           hilog.info(0x0000, 'StarwardNavigation', 'selected index=%{public}d param=%{public}d', index, this.selectedIndex);
         })
         .onChange((index: number) => {
           hilog.info(0x0000, 'StarwardNavigation', 'change index=%{public}d param=%{public}d', index, this.selectedIndex);
+        })
+        .onAppear(() => {
+          this.nativeIndex.attached = true;
+          this.applyOwnerIndex();
         })
       if (!this.hideBar && this.unreadLetters > 0 && this.badgeMeasured) {
         Badge({ count: this.unreadLetters, maxCount: 99, position: { x: 0, y: 0 },
@@ -210,14 +244,31 @@ export struct StarwardPaneTabs {
   @Event selectionChanged: (index: number) => void = () => {};
   @BuilderParam first: () => void;
   @BuilderParam second: () => void;
+  private readonly controller: TabsController = new TabsController();
+  private readonly nativeIndex: NativeTabIndex = new NativeTabIndex();
+
+  aboutToAppear(): void { this.nativeIndex.index = this.selectedIndex; }
+
+  aboutToDisappear(): void { this.nativeIndex.attached = false; }
+
+  @Monitor('selectedIndex')
+  private applyOwnerIndex(): void { this.nativeIndex.sync(this.selectedIndex, this.controller); }
 
   build() {
-    Tabs({ barPosition: BarPosition.Start, index: this.selectedIndex }) {
+    Tabs({ barPosition: BarPosition.Start, index: this.nativeIndex.index, controller: this.controller }) {
       TabContent() { this.first() }
       TabContent() { this.second() }
     }.id(this.nodeId).width('100%').height('100%').barHeight(0)
-      .animationDuration(this.reducedMotion ? 0 : 250)
-      .onSelected((index: number) => this.selectionChanged(index))
+      .animationCurve(PANE_TRANSITION_CURVE)
+      .animationDuration(this.reducedMotion ? 0 : STARWARD_PAGE_TRANSITION_MS)
+      .onSelected((index: number) => {
+        this.nativeIndex.index = index;
+        if (index !== this.selectedIndex) { this.selectionChanged(index); }
+      })
+      .onAppear(() => {
+        this.nativeIndex.attached = true;
+        this.applyOwnerIndex();
+      })
   }
 }
 

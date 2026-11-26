@@ -1,12 +1,12 @@
 import { AvatarImage, Player } from '../business/models';
 import { STARWARD_HEADER_CAPSULE_RADIUS, StarwardGlassHeader } from './StarwardGlassHeader';
 import { StarwardTitleSurface } from './StarwardMaterial';
+import { starwardPageReveal } from './StarwardMotion';
 import { playerExperiencePercent } from './StarwardPassport';
 import { StarwardPlayerAvatar } from './StarwardPlayerAvatar';
 
 const TITLE_HEIGHT: number = 70;
 const HORIZONTAL_GUTTER: number = 18;
-const TITLE_REVEAL_DURATION: number = 240;
 
 @ComponentV2
 export struct StarwardLobbyHeader {
@@ -45,9 +45,7 @@ export struct StarwardLobbyHeader {
           StarwardTitleSurface({ titleHeight: TITLE_HEIGHT, horizontalGutter: HORIZONTAL_GUTTER,
             topInset: this.topInset, reducedMotion: this.reducedMotion,
             titleContent: () => { this.titleContent() } })
-        }.width('100%').transition(this.reducedMotion ? TransitionEffect.IDENTITY :
-          TransitionEffect.asymmetric(TransitionEffect.opacity(0)
-            .animation({ duration: TITLE_REVEAL_DURATION, curve: Curve.EaseOut }), TransitionEffect.IDENTITY))
+        }.width('100%').transition(starwardPageReveal(this.reducedMotion))
       }
     }.width('100%').height(TITLE_HEIGHT + this.topInset)
   }

@@ -256,6 +256,8 @@ export struct GameplayPage {
   private readonly questionScroller: Scroller = new Scroller();
   @Local private questionContentWidth: number = 0;
   private positionOwner: string = '';
+  private swiperSettledOwner: string = '';
+  private lastSwipeableQuestionIds: string[] = [];
   private positionPending: boolean = false;
   private positionTimer: number = -1;
 
@@ -299,6 +301,7 @@ export struct GameplayPage {
     clearTimeout(this.positionTimer);
     this.positionTimer = -1;
     this.positionPending = false;
+    this.swiperSettledOwner = '';
   }
 
   @Monitor('play.visible', 'play.snapshot', 'play.activeIndex', 'play.error', 'playerId')
@@ -472,11 +475,12 @@ export struct GameplayPage {
       this.imageOwner() : '';
   }
 
-  private trackQuestionPosition(force: boolean = false): void {
+  private trackQuestionPosition(): void {
     const owner: string = this.positionKey();
-    if (owner !== this.positionOwner) { this.answerFocused = false; }
-    if (owner !== this.positionOwner || force) {
+    if (owner !== this.positionOwner) {
+      this.answerFocused = false;
       this.positionOwner = owner;
+      this.swiperSettledOwner = '';
       this.positionPending = owner.length > 0;
       this.revealTitle();
     }
@@ -504,12 +508,21 @@ export struct GameplayPage {
       if (!this.questionPositionReady() || this.positionOwner !== this.positionKey()) { return; }
       this.positionPending = false;
       this.lastScrollOffset = 0;
-      this.questionScroller.scrollTo({ xOffset: 0, yOffset: 0, animation: false });
+      if (this.scrollOffset() > 0) {
+        this.questionScroller.scrollTo({ xOffset: 0, yOffset: 0, animation: false });
+      }
     }, 0);
   }
 
   private questionPositionReady(): boolean {
-    return this.positionPending && this.viewportHeight > 0 && this.questionInteractionReady();
+    return this.positionPending && this.viewportHeight > 0 && this.questionInteractionReady() &&
+      (!this.hasQuestionSwiper() || this.swiperSettledOwner === this.positionKey());
+  }
+
+  private questionSwiperSettled(id: string): void {
+    if (id !== this.readableQuestionId()) { return; }
+    this.swiperSettledOwner = this.positionKey();
+    this.scheduleQuestionPosition();
   }
 
   private measureNewFeedback(levelId: string, revision: number, area: Area): void {
@@ -1562,7 +1575,10 @@ export struct GameplayPage {
     return this.play.snapshot?.levels.find((level: GameplayLevel) => level.id === id);
   }
 
-  private swipeableQuestionIds(): string[] {
+  private hasQuestionSwiper(): boolean { return (this.play.snapshot?.detail.totalLevels || 0) > 1; }
+
+  @Computed
+  get swipeableQuestionIds(): string[] {
     const levels: GameplayLevel[] = this.play.snapshot?.levels || [];
     const current: number = this.play.activeIndex;
     if (!levels[current]?.question) { return []; }
@@ -1570,7 +1586,11 @@ export struct GameplayPage {
     let last: number = current;
     while (first > 0 && levels[first - 1].question !== null) { first--; }
     while (last + 1 < levels.length && levels[last + 1].question !== null) { last++; }
-    return levels.slice(first, last + 1).map((level: GameplayLevel) => level.id);
+    if (this.lastSwipeableQuestionIds.length !== last - first + 1 ||
+      !this.lastSwipeableQuestionIds.every((id: string, index: number) => id === levels[first + index].id)) {
+      this.lastSwipeableQuestionIds = levels.slice(first, last + 1).map((level: GameplayLevel) => level.id);
+    }
+    return this.lastSwipeableQuestionIds;
   }
 
   private questionNavigationItems(): GameplayProgressItem[] {
@@ -1587,9 +1607,9 @@ export struct GameplayPage {
       return;
     }
     this.stopInlineVideo();
-    StarwardKeyboard.dismiss(this.getUIContext());
+    if (this.keyboardVisible || this.answerFocused) { StarwardKeyboard.dismiss(this.getUIContext()); }
     this.play.moveTo(index);
-    this.trackQuestionPosition(true);
+    this.trackQuestionPosition();
   }
 
   private selectSwipedQuestion(id: string): boolean {
@@ -2065,12 +2085,13 @@ export struct GameplayPage {
   questionBody() {
     Column({ space: 16 }) {
       if (this.readableQuestionId().length > 0) {
-        if ((this.play.snapshot?.detail.totalLevels || 0) > 1) {
-          StarwardQuestionSwiper({ pages: this.swipeableQuestionIds(), currentId: this.readableQuestionId(),
+        if (this.hasQuestionSwiper()) {
+          StarwardQuestionSwiper({ pages: this.swipeableQuestionIds, currentId: this.readableQuestionId(),
             swipeEnabled: this.questionInteractionReady() && this.play.canMoveTo(this.play.activeIndex),
             reducedMotion: this.reducedMotion,
             content: (id: string) => { this.questionCard(id) },
-            select: (id: string) => this.selectSwipedQuestion(id) })
+            select: (id: string) => this.selectSwipedQuestion(id),
+            settled: (id: string) => this.questionSwiperSettled(id) })
         } else {
           this.questionCard(this.readableQuestionId())
         }
@@ -2221,7 +2242,7 @@ export struct GameplayPage {
       if (this.foreground && this.finalDestination() !== null && this.viewportWidth - this.leftInset - this.rightInset > 28) {
         Column() {
           StarwardFinalDestination({ panelWidth: Math.min(760, this.viewportWidth - 28 - this.leftInset - this.rightInset),
-            displayFont: this.displayFont, launching: this.destinationLaunching,
+            displayFont: this.displayFont, launching: this.destinationLaunching, reducedMotion: this.reducedMotion,
             later: () => {
               this.clearClueLinkHandoff();
               this.play.dismissFinaleDestination(this.play.completionRevision);

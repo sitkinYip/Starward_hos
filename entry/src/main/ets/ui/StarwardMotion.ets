@@ -1,6 +1,16 @@
 import { accessibility } from '@kit.AccessibilityKit';
 import { curves, FrameCallback } from '@kit.ArkUI';
 
+export const STARWARD_PAGE_TRANSITION_MS: number = 240;
+
+/** Single entrance for content that already owns its layout slot. */
+export function starwardPageReveal(reducedMotion: boolean, offsetY: number = 0): TransitionEffect {
+  if (reducedMotion) { return TransitionEffect.IDENTITY; }
+  const reveal: TransitionEffect = TransitionEffect.opacity(0).combine(TransitionEffect.translate({ y: offsetY }));
+  return TransitionEffect.asymmetric(reveal.animation({ duration: STARWARD_PAGE_TRANSITION_MS,
+    curve: curves.cubicBezierCurve(0.2, 0, 0, 1) }), TransitionEffect.IDENTITY);
+}
+
 // Motion Prompt #002 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#002
 export function starwardListReveal(motionEnabled: boolean, delay: number = 0): AnimateParam {
   return { duration: motionEnabled ? 640 : 0, delay: motionEnabled ? delay : 0,

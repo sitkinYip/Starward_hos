@@ -95,6 +95,14 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - API 26 直板机固定预览采集收藏切回启程的 20 帧。启程标题首次出现时的位置与落定帧相同，期间能看到身份和星标逐步显现。原生标题、正文的落定位置与修改前一致。逐帧仅证明可见过渡与位置，时长为源码配置。实机系统减少动画开关未切换验证。 [真机切换记录](../artifacts/validation/aurora-glass-v2-20261125/lobby-header-transition/device.json)
 - 最终调试包 `bb955bdb5674e41bf5f037d290c795177badbeae48e22d6679d6d8e62319011f` 构建、双验签、安装启动成功。`scripts/hm.sh test` 318 项通过。`scripts/hm.sh lint` 零错误、零警告，有一条既有性能建议。 [单测](../artifacts/validation/aurora-glass-v2-20261125/lobby-header-transition/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/lobby-header-transition/source/lint.json)
 
+## 2026-11-25 原生转场补齐
+
+- 按冻结 Web `46188fc` 的动效令牌和已生效样式核对 ArkUI API 26。主、分类页签使用原生控制器，场次和剧情使用系统淡入淡出，设置使用系统横向转场。简介、信笺提示、终章入口和视频准备完毕使用一次短入场。普通原生 Sheet 继续使用系统转场，可缩放图片沿用整层过渡。
+- 答题恢复按题目 ID 固定原生页节点。真机复现响应式修饰器重写声明式初始索引，会闪回初始题。最终移除 `.index`，让控制器等首次布局完成后定位。相邻题由 ArkUI 跟手和落定，远距跳题直接定位，落定后才在必要时滚回题首。手势、程序切题和迟到结束信号有独立回归断言。
+- 调试包 `416fa953e6d48103344a2667c87b12d4823706315641f4e8595bd948252d4ea5` 完成构建、双验签、安装和启动。Hypium 323 项通过，lint 无错误或警告。 [单测](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/source/lint.json)
+- 同一签名包在固定隔离预览直板机核对左右滑、星点远距跳题、作答栏、提示和只读选项关闭、场次返回。第一题到第二题的 8 个分时画面显示连续位移及正确题面。启程、收藏和来信分别验证胶囊点按与横滑，护照和设置验证程序跳转、原生入场与系统返回。帧耗指标和真机减少动画开关本轮未采集。 [答题真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/quest-after.json) · [页签与设置真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/shell-device.json)
+- 固定预览的已完成场次「清宫那点事」通过通关线索打开六秒视频。真机观察到原生播放画面，复跑在播放中按系统返回，关闭全屏并保留第 1 题。设备最终回到启程。 [视频真机报告](../artifacts/validation/aurora-glass-v2-20261125/native-transitions/media-device.json)
+
 ## 官方本机输入
 
 - IDE：`/Applications/DevEco-Studio.app/Contents`。

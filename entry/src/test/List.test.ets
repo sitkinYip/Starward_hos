@@ -26,6 +26,7 @@ import letterAudioTests from './LetterAudioPlayer.test';
 import blessPlaybackTests from './BlessPlayback.test';
 import questionImageLoaderTests from './QuestionImageLoader.test';
 import questionImageCacheTests from './QuestionImageCache.test';
+import questionSwiperSelectionTests from './QuestionSwiperSelection.test';
 import immersiveSurfacesTests from './ImmersiveSurfaces.test';
 import pushRegistrationTests from './PushRegistration.test';
 import pushPermissionFlowTests from './PushPermissionFlow.test';
@@ -61,6 +62,7 @@ export default function testsuite(): void {
   blessPlaybackTests();
   questionImageLoaderTests();
   questionImageCacheTests();
+  questionSwiperSelectionTests();
   immersiveSurfacesTests();
   pushRegistrationTests();
   pushPermissionFlowTests();

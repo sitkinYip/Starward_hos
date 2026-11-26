@@ -1,8 +1,9 @@
-import { window } from '@kit.ArkUI';
+import { curves, window } from '@kit.ArkUI';
 import { ClueVideoFile, ClueVideoFileLoader } from '../platform/ClueVideoFile';
 import { ImmersiveSurfaces } from '../platform/ImmersiveSurfaces';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
 import { StarwardMediaAmbient, StarwardMediaFrame } from './StarwardClueMotion';
+import { STARWARD_PAGE_TRANSITION_MS } from './StarwardMotion';
 
 class VideoAttempt {
   readonly controller: VideoController = new VideoController();
@@ -264,6 +265,11 @@ export struct StarwardVideoViewer {
   @Param reducedMotion: boolean = true;
   @Param motionEnabled: boolean = false;
 
+  @Computed
+  get awaitingReveal(): boolean {
+    return this.motionEnabled && !this.reducedMotion && this.model.phase === 'loading';
+  }
+
   private safeTop(): number {
     return Math.max(this.avoidArea.statusBar.topRect.height, this.avoidArea.cutout.topRect.height);
   }
@@ -304,13 +310,20 @@ export struct StarwardVideoViewer {
   @Builder
   stage() {
     Stack() {
-      if (this.model.phase === 'loading' && this.model.poster !== undefined && this.model.attempt === null) {
+      if (this.model.phase === 'loading' && this.model.poster !== undefined &&
+        (this.model.attempt === null || this.awaitingReveal)) {
         Image(this.model.poster.pixels).width('100%').height('100%').objectFit(ImageFit.Contain)
           .draggable(false).hitTestBehavior(HitTestMode.None).accessibilityLevel('no')
       }
       if (this.model.attempt !== null) {
-        StarwardNativeVideo({ model: this.model, sessionId: this.sessionId, attempt: this.model.attempt,
-          nodeId: 'gameplay-video-player' })
+        Stack() {
+          StarwardNativeVideo({ model: this.model, sessionId: this.sessionId, attempt: this.model.attempt,
+            nodeId: 'gameplay-video-player' })
+        }.width('100%').height('100%')
+          .opacity(this.awaitingReveal ? 0 : 1).translate({ y: this.awaitingReveal ? 24 : 0 })
+          .scale({ x: this.awaitingReveal ? 0.9 : 1, y: this.awaitingReveal ? 0.9 : 1 })
+          .animation({ duration: this.motionEnabled && !this.reducedMotion ? STARWARD_PAGE_TRANSITION_MS : 0,
+            curve: curves.cubicBezierCurve(0.16, 1, 0.3, 1) })
       }
       if (this.model.phase === 'loading') {
         LoadingProgress().id('gameplay-video-loading').width(28).height(28).color($r('app.color.media_viewer_accent'))

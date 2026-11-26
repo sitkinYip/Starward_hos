@@ -3,6 +3,7 @@ import { assignmentKind, assignmentState } from '../business/assignmentState';
 import { AssignmentDetail } from '../business/models';
 import { DetailFact } from '../ui/DetailFact';
 import { ErrorNotice } from '../ui/ErrorMessages';
+import { starwardPageReveal } from '../ui/StarwardMotion';
 import { GameplaySurface } from './GameplayChrome';
 
 /** Read-only presentation of the authorized detail and the entry actions it offers. */
@@ -15,6 +16,7 @@ export struct AssignmentBrief {
   @Require @Param opensAt: string;
   @Param closesAt: string = '';
   @Param viewportWidth: number = 0;
+  @Param reducedMotion: boolean = true;
   @Param entryAvailable: boolean = false;
   @Param starting: boolean = false;
   @Param retryEntry: boolean = false;
@@ -131,6 +133,6 @@ export struct AssignmentBrief {
           this.content()
         }
       }
-    }.id('assignment-brief-card').width('100%')
+    }.id('assignment-brief-card').width('100%').transition(starwardPageReveal(this.reducedMotion, 8))
   }
 }

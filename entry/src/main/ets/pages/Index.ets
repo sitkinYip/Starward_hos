@@ -272,7 +272,7 @@ struct Index {
       return;
     }
     this.vm.narrative.close();
-    this.paths.clear();
+    this.paths.clear(!this.motion.reduced);
     this.openAssignment(id);
   }
 
@@ -288,7 +288,7 @@ struct Index {
       if (alreadyOnInbox) { void this.vm.journey.refresh(); }
     } else {
       this.vm.narrative.close();
-      this.paths.clear();
+      this.paths.clear(!this.motion.reduced);
       void this.openAssignment(route.target);
     }
   }
@@ -564,7 +564,7 @@ struct Index {
     if (this.vm.gate !== 'home') {
       this.pushFlow?.reset();
       this.atmosphere.release();
-      this.paths.clear();
+      this.paths.clear(false);
       this.mainIndex = 0;
       this.returnAssignmentId = '';
       this.cancelAvatarCrop();
@@ -699,7 +699,7 @@ struct Index {
     this.vm.play.leave();
     this.vm.journey.setPolling(false);
     this.vm.journey.leaveRoute(this.selectedId);
-    this.paths.clear();
+    this.paths.clear(!this.motion.reduced);
     this.selectMain(index);
     if (gameplayVisible) {
       this.vm.refresh();
@@ -735,7 +735,7 @@ struct Index {
     this.vm.journey.leaveRoute(this.selectedId);
     this.vm.play.leave();
     if (popPath) {
-      this.paths.pop();
+      this.paths.pop(!this.motion.reduced);
     }
     if (gameplayVisible) {
       this.vm.refresh();
@@ -797,7 +797,7 @@ struct Index {
     if (assignment === null) { return false; }
     this.vm.journey.close();
     if (!this.vm.play.visible || assignment[1] !== this.selectedId) {
-      this.paths.clear();
+      this.paths.clear(!this.motion.reduced);
       this.openAssignment(assignment[1]);
     }
     return true;
@@ -856,7 +856,7 @@ struct Index {
     LaunchRoutes.clear();
     this.atmosphere.release();
     this.showFinaleBackdrop = false;
-    this.paths.clear();
+    this.paths.clear(false);
     this.clearPasswords();
     this.account = '';
     this.history = false;
@@ -918,7 +918,7 @@ struct Index {
     this.vm.journey.clearRouteArchive();
     this.vm.narrative.close();
     this.vm.play.leave();
-    this.paths.pushPath({ name: 'assignment', param: ++this.assignmentDestinationRevision });
+    this.paths.pushPath({ name: 'assignment', param: ++this.assignmentDestinationRevision }, !this.motion.reduced);
     this.lobbyVisibilityChanged();
     await this.vm.openAssignment(id);
   }
@@ -1323,6 +1323,7 @@ struct Index {
   home() {
     StarwardBottomTabs({ floatingGap: 10 + this.safeBottom(), selectedIndex: this.mainIndex,
       unreadLetters: this.vm.journey.unreadCount,
+      reducedMotion: this.motion.reduced,
       hideBar: this.keyboardOccupiesViewport(), materialInteractionEnabled: !this.motion.reduced,
       canSelect: (index: number): boolean => {
         if (this.vm.gate !== 'home' || this.paths.size() > 0) { return false; }
@@ -1485,7 +1486,7 @@ struct Index {
                 rankLabel: this.levelLabel(this.vm.detail),
                 opensAt: this.vm.detail.startsAt.length > 0 ? this.timeLabel(this.vm.detail.startsAt) : '现在就能出发',
                 closesAt: this.vm.detail.endsAt.length > 0 ? this.timeLabel(this.vm.detail.endsAt) : '',
-                viewportWidth: this.briefViewportWidth,
+                viewportWidth: this.briefViewportWidth, reducedMotion: this.motion.reduced,
                 entryAvailable: !this.vm.play.starting && !this.vm.detailBusy && this.briefJourneyNote() === null,
                 starting: this.vm.play.starting, retryEntry: this.vm.play.retryEntry, error: this.vm.play.error,
                 start: () => this.enterBriefing(), returnHome: () => this.leaveGameplay() })
@@ -1603,7 +1604,8 @@ struct Index {
             this.assignmentBrief(this.atmosphereOwner(param))
           }
         }.width('100%').height('100%')
-      }.hideTitleBar(true)
+      }.systemTransition(this.motion.reduced ? NavigationSystemTransitionType.NONE : NavigationSystemTransitionType.FADE)
+        .hideTitleBar(true)
         .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
         .onBackPressed(() => param === this.assignmentDestinationRevision && this.handleAssignmentJourneyBack())
@@ -1636,7 +1638,9 @@ struct Index {
             retryNotificationSync: () => this.syncPush('retry')
           })
         }
-      }.title({ builder: this.settingsTitle, height: 60 + this.safeTop() }, StarwardMaterial.titleOptions())
+      }.systemTransition(this.motion.reduced ? NavigationSystemTransitionType.NONE :
+        NavigationSystemTransitionType.SLIDE_RIGHT)
+        .title({ builder: this.settingsTitle, height: 60 + this.safeTop() }, StarwardMaterial.titleOptions())
         .hideBackButton(true).backgroundColor($r('app.color.canvas'))
         .onBackPressed(() => this.closeSettings())
     } else if (name === 'narrative') {
@@ -1652,13 +1656,16 @@ struct Index {
               }
             } })
         }
-      }.title({ builder: this.narrativeTitle, height: (this.vm.narrative.route?.source === 'star-letters' ?
+      }.systemTransition(this.motion.reduced ? NavigationSystemTransitionType.NONE : NavigationSystemTransitionType.FADE)
+        .title({ builder: this.narrativeTitle, height: (this.vm.narrative.route?.source === 'star-letters' ?
         84 : this.detailTitleHeight() + 24) + this.safeTop() },
         StarwardMaterial.titleOptions())
         .hideTitleBar(this.vm.narrative.content !== null).hideBackButton(true)
         .backgroundColor($r('app.color.canvas'))
         .onBackPressed(() => this.closeNarrative())
-        .onWillDisappear(() => this.vm.narrative.close())
+        .onWillDisappear(() => {
+          if (this.vm.narrative.route === param) { this.vm.narrative.close(); }
+        })
     }
   }
 

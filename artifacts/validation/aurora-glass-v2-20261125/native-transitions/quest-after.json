@@ -1,0 +1,97 @@
+{
+  "mode": "after",
+  "status": "passed",
+  "fixture": "fixed isolated preview, no answer submission",
+  "checks": [
+    "native left swipe advances from question 1 to question 2",
+    "reverse swipe returns to question 1",
+    "progress-star programmatic nonadjacent navigation settles correctly",
+    "composer remains available after programmatic switching",
+    "hint and read-only choice overlays return without changing the selected question",
+    "native route back leaves gameplay and returns to Journey"
+  ],
+  "positions": {
+    "1": {
+      "questionNumberPx": [
+        106,
+        615,
+        248,
+        668
+      ],
+      "swiperPx": [
+        45,
+        512,
+        1215,
+        2720
+      ]
+    },
+    "2": {
+      "questionNumberPx": [
+        106,
+        615,
+        248,
+        668
+      ],
+      "swiperPx": [
+        45,
+        512,
+        1215,
+        2720
+      ]
+    },
+    "4": {
+      "questionNumberPx": [
+        106,
+        612,
+        248,
+        665
+      ],
+      "swiperPx": [
+        45,
+        512,
+        1215,
+        2720
+      ]
+    },
+    "3": {
+      "questionNumberPx": [
+        106,
+        612,
+        248,
+        665
+      ],
+      "swiperPx": [
+        45,
+        512,
+        1215,
+        2720
+      ]
+    }
+  },
+  "hapSha256": "416fa953e6d48103344a2667c87b12d4823706315641f4e8595bd948252d4ea5",
+  "timing": [
+    "frame-start 0 1795605679362",
+    "swipe-start 1795605679495",
+    "frame-start 1 1795605679502",
+    "frame-start 2 1795605679660",
+    "frame-end 0 1795605679778",
+    "frame-start 3 1795605679778",
+    "frame-start 4 1795605679911",
+    "frame-end 1 1795605679920",
+    "frame-start 5 1795605680052",
+    "frame-end 2 1795605680052",
+    "frame-end 3 1795605680142",
+    "frame-start 6 1795605680181",
+    "swipe-end 1795605680264",
+    "frame-end 4 1795605680270",
+    "frame-start 7 1795605680323",
+    "frame-end 5 1795605680398",
+    "frame-end 6 1795605680522",
+    "frame-end 7 1795605680650"
+  ],
+  "visualEvidence": {
+    "frames": 8,
+    "method": "staggered ArkUI device snapshots; not a frame-time benchmark",
+    "observed": "Questions 1 and 2 follow the gesture in sequence; no unrelated question or white frame in this sample."
+  }
+}

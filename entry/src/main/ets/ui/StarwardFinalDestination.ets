@@ -1,4 +1,5 @@
 import { LengthMetrics } from '@kit.ArkUI';
+import { starwardPageReveal } from './StarwardMotion';
 
 /** The nonmodal passage prompt uses the same inset and actions as the mobile Web. */
 @ComponentV2
@@ -6,6 +7,7 @@ export struct StarwardFinalDestination {
   @Require @Param panelWidth: number;
   @Param displayFont: string = 'serif';
   @Param launching: boolean = false;
+  @Param reducedMotion: boolean = true;
   @Event later: () => void = () => {};
   @Event proceed: () => void = () => {};
 
@@ -30,5 +32,6 @@ export struct StarwardFinalDestination {
       .alignItems(HorizontalAlign.Start).backgroundColor($r('app.color.raised'))
       .border({ width: 1, color: $r('app.color.accent_border') })
       .shadow({ radius: 36, offsetY: 12, color: $r('app.color.choice_shadow') })
+      .transition(starwardPageReveal(this.reducedMotion, 8))
   }
 }

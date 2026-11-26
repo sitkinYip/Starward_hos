@@ -2,6 +2,7 @@ import { curves, uiMaterial, UIUtils } from '@kit.ArkUI';
 import { clueTitle } from '../business/GameplayClues';
 import { GameplayClue } from '../business/GameplayModels';
 import { StarwardMaterial } from './StarwardMaterial';
+import { starwardPageReveal } from './StarwardMotion';
 
 export function narrativeAttentionLabel(kind: string): string {
   return kind === 'letter' ? '一封来信等待开启' : '一份祝福正在回响';
@@ -138,6 +139,7 @@ export struct StarwardNarrativeAttention {
         colors: [[$r('app.color.glow_accent_soft'), 0], [Color.Transparent, 1]] })
       .shadow({ radius: 24, color: $r('app.color.glow_accent_soft'), offsetY: 6 })
       .clip(true)
+      .transition(starwardPageReveal(this.reducedMotion, 8))
       .accessibilityText(`${narrativeAttentionLabel(this.clue.kind)}：${clueTitle(this.clue)}`)
       .onAppear(() => { this.mounted = true; this.animateEmblem(); })
       .onClick(() => this.opened(this.clue.id))
