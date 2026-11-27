@@ -1,0 +1,54 @@
+{
+  "status": "interactions_captured",
+  "fixture": "fixed isolated HTTPS preview, existing grants only",
+  "signedHapSha256": "55ee1455d3142b035120b65bb9f5117faa7b14535a9cac0c90fcb1a6885d6b17",
+  "checks": [
+    "A slow touchscreen drag gives the moving frame and settles at the next decoded image",
+    "Short and edge drags retain the index, with native buttons and direction changes using the same index",
+    "Double tap, zoomed drag, reset and a fresh slide work in one viewer session",
+    "Two simultaneous touchscreen paths pinch the current image and a button page change resets the pose",
+    "Close button, system Back and backdrop each return to the original scroll position",
+    "Three open-plus-early-Back sequences leave a usable preview and can reopen immediately after dismissal",
+    "Returning to the same still-authorized clue keeps its current image and system Back remains usable",
+    "Single photo opens without gallery controls and closes to the original thumbnail"
+  ],
+  "frames": {
+    "gallery-1": "ad77df40466c92d904df2f1419ce43f6fc91df8b11d29a1c3e3b65d14b985a38",
+    "1-to-2-before-lift": "0f1d99219f8530b7c721e113896dc00c05dd2705d99ff7b22b3fcd560820f8ce",
+    "gallery-2": "77afff0ad6bc4e373b74e99293315cffadc1547c3dd4cf28fda9a2ca094032c1",
+    "zoomed-before-pan": "6acb723d5da67c5066b87926d0f0b626b6a609856876354e6955cf6a66d51a18",
+    "zoomed-after-pan": "1ab81dfca8c37b36cba132d7588451497f468c7c51a2f38ec2331747809e06d7",
+    "pinch-enlarges-current": "e69edcb8eed4476973eedf4843cc349845680c2f0dd23c68ca735ff928455a39",
+    "single-source": "6200de877c7afd82d607510fcf33f5ce4a65da1b2785ef050128435872ebfb8b",
+    "single-enter-sample": "d67bb0e3a23821ed325fa8d6428e1454650fe0daa423d9e8ff19e334298bcffe",
+    "single-opened": "29d1fddb8de74844d9dd75613dbf0a1b8fb9acd2c95c98bdc75085b5dd123946",
+    "single-exit-sample": "c9c1a357016af1c7f9b6e7b142c0b2e2f0cf2c18c6bdc217c2cbebf192cb67a7",
+    "single-returned": "67db1ba4e14ea8a338212528a50a7dbe8dd29630da26101140d19c6bedc3f573"
+  },
+  "viewportPx": [
+    1260,
+    2720
+  ],
+  "stagePx": [
+    46,
+    354,
+    1215,
+    1983
+  ],
+  "pinchPercent": "299%",
+  "motionReview": {
+    "scope": "Full-device still frames sampled during touch and from the final native modal",
+    "heldDragShowsCurrentAndAdjacentImages": true,
+    "singlePhotoEntranceAndExitSampled": true,
+    "sampledBackdropReachedDisplayEdges": true,
+    "continuousRecording": false,
+    "reducedMotionSettingExercised": false
+  },
+  "previewWriteAudit": {
+    "startTimeUtc": "2026-11-27T06:28:00Z",
+    "newSubmissions": 0,
+    "newCommandReceipts": 0,
+    "newXpEntries": 0,
+    "newReadReceipts": 0
+  }
+}

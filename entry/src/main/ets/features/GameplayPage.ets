@@ -37,7 +37,8 @@ import { StarwardSheetStyle } from '../ui/StarwardSheet';
 import { starwardMediaCoverOptions } from '../ui/StarwardMediaCover';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardQuestionImages } from '../ui/StarwardQuestionImages';
-import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
+import { StarwardImageViewerCover } from '../ui/StarwardImageViewer';
+import { StarwardImageViewerState } from '../ui/StarwardImageViewerState';
 import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVideoViewer';
 import { StarwardVideoPoster } from '../ui/StarwardVideoPoster';
 import { StarwardChoiceOption } from '../ui/StarwardChoiceOption';
@@ -712,11 +713,6 @@ export struct GameplayPage {
     if (visible) { this.sheetMounted = true; } else { this.finishGameplaySheet(revision); }
   }
 
-  @Monitor('viewer.visible')
-  coverVisibilityChanged(): void {
-    if (!this.viewer.visible && !this.viewer.closing) { this.viewer.close(this.viewer.sessionId); }
-  }
-
   private openImages(blockIndex: number, index: number): void {
     const block: GameplayContentBlock | undefined = this.play.currentLevel()?.question?.content[blockIndex];
     if (!this.questionMediaReady() || this.imageCacheOwner().length === 0 || block === undefined ||
@@ -827,26 +823,6 @@ export struct GameplayPage {
     } finally {
       poster?.release();
     }
-  }
-
-  private viewerOptions(): ContentCoverOptions {
-    const sessionId: number = this.viewer.sessionId;
-    return starwardMediaCoverOptions(this.reducedMotion, (action: DismissContentCoverAction) => {
-      this.viewer.close(sessionId);
-      action.dismiss();
-    }, () => this.viewer.disappeared(sessionId));
-  }
-
-  private viewerCloseAction(): () => void {
-    const sessionId: number = this.viewer.sessionId;
-    return () => this.viewer.close(sessionId);
-  }
-
-  @Builder
-  imageViewer() {
-    StarwardImageViewer({ model: this.viewer, sessionId: this.viewer.sessionId, reducedMotion: this.reducedMotion,
-      motionEnabled: this.foreground && !this.reducedMotion && this.viewer.visible && !this.viewer.closing,
-      close: this.viewerCloseAction() })
   }
 
   private videoViewerOptions(): ContentCoverOptions {
@@ -1304,7 +1280,7 @@ export struct GameplayPage {
             playVideo: (index: number) => this.openInlineClueMedia(request, index, true),
             openLink: (href: string) => this.openClueLink(request, href) })
         }
-        Column() {}.width(0).height(0).bindContentCover(this.viewer.visible, this.imageViewer(), this.viewerOptions())
+        StarwardImageViewerCover({ model: this.viewer, active: this.foreground, reducedMotion: this.reducedMotion })
         Column() {}.width(0).height(0)
           .bindContentCover(this.videoViewer.visible, this.gameplayVideoViewer(), this.videoViewerOptions())
       }.width(this.clueDialogWidth())
@@ -2035,7 +2011,7 @@ export struct GameplayPage {
 
   @Builder
   private gameplaySheetMediaCovers() {
-    Column() {}.width(0).height(0).bindContentCover(this.viewer.visible, this.imageViewer(), this.viewerOptions())
+    StarwardImageViewerCover({ model: this.viewer, active: this.foreground, reducedMotion: this.reducedMotion })
     Column() {}.width(0).height(0)
       .bindContentCover(this.videoViewer.visible, this.gameplayVideoViewer(), this.videoViewerOptions())
   }
@@ -2279,8 +2255,8 @@ export struct GameplayPage {
       StarwardRefresh({ refreshEnabled: this.play.canRefresh(),
         request: () => this.refreshQuestion(),
         content: () => { this.gameplayScroll() } })
-        .bindContentCover(this.textClue === null && this.sheet === null && this.viewer.visible,
-          this.imageViewer(), this.viewerOptions())
+      StarwardImageViewerCover({ model: this.viewer, active: this.foreground, reducedMotion: this.reducedMotion,
+        acceptsPresentation: this.textClue === null && this.sheet === null })
       if (this.foregroundTopInset() > 0) {
         // Keep the status-bar fade separate from the moving Scroll surface.
         Column().width('100%').height(this.foregroundTopInset() + 6)

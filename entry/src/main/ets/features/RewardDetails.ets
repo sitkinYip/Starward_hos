@@ -6,7 +6,8 @@ import { openExternalClueLink } from '../platform/ExternalClueLink';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
-import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
+import { StarwardImageViewerCover } from '../ui/StarwardImageViewer';
+import { StarwardImageViewerState } from '../ui/StarwardImageViewerState';
 import { starwardMediaCoverOptions } from '../ui/StarwardMediaCover';
 import { StarwardRichContent } from '../ui/StarwardRichContent';
 import { StarwardSheetHeader } from '../ui/StarwardSheet';
@@ -126,25 +127,11 @@ export struct RewardDetails {
     if (inline && opened) { this.inlineSlot = `${nodeId}-video-${index}`; }
   }
 
-  private imageCoverOptions(): ContentCoverOptions {
-    const sessionId: number = this.image.sessionId;
-    return starwardMediaCoverOptions(this.reducedMotion, (action: DismissContentCoverAction) => {
-      this.image.close(sessionId);
-      action.dismiss();
-    }, () => this.image.disappeared(sessionId));
-  }
-
   private videoCoverOptions(): ContentCoverOptions {
     const sessionId: number = this.video.sessionId;
     return starwardMediaCoverOptions(this.reducedMotion, (action: DismissContentCoverAction) => {
       if (!this.video.exitFullscreen(sessionId)) { this.video.close(sessionId); action.dismiss(); }
     }, () => this.video.disappeared(sessionId));
-  }
-
-  @Builder
-  private imageCover() {
-    StarwardImageViewer({ model: this.image, sessionId: this.image.sessionId, reducedMotion: this.reducedMotion,
-      motionEnabled: this.active && !this.reducedMotion && this.image.active(), close: () => this.image.close(this.image.sessionId) })
   }
 
   @Builder
@@ -215,7 +202,7 @@ export struct RewardDetails {
           .padding({ left: 16, right: 16, top: 12, bottom: this.bottomPadding() })
       }.id('rewards-detail-scroll').width('100%').constraintSize({ maxHeight: this.maximumBodyHeight() })
         .align(Alignment.Top).scrollBar(BarState.Off)
-      Column() {}.width(0).height(0).bindContentCover(this.image.visible, this.imageCover(), this.imageCoverOptions())
+      StarwardImageViewerCover({ model: this.image, active: this.active, reducedMotion: this.reducedMotion })
       Column() {}.width(0).height(0).bindContentCover(this.video.visible, this.videoCover(), this.videoCoverOptions())
     }.id('rewards-detail-sheet').width('100%').alignItems(HorizontalAlign.Start)
   }

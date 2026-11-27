@@ -10,7 +10,8 @@ import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { QuestionImageResult } from '../platform/QuestionImageLoader';
 import { StarwardFeedback } from './StarwardFeedback';
 import { StarwardGlassDialog } from './StarwardGlassDialog';
-import { StarwardImageViewer, StarwardImageViewerState } from './StarwardImageViewer';
+import { StarwardImageViewerCover } from './StarwardImageViewer';
+import { StarwardImageViewerState } from './StarwardImageViewerState';
 import { StarwardMaterial } from './StarwardMaterial';
 import { starwardMediaCoverOptions } from './StarwardMediaCover';
 import { StarwardQuestionImages } from './StarwardQuestionImages';
@@ -412,18 +413,6 @@ export struct StarwardJourneyNotificationDialog {
     return Math.max(0, this.windowSize.height - this.safeTop() - this.safeBottom() - 48);
   }
 
-  private imageOptions(): ContentCoverOptions {
-    const sessionId: number = this.image.sessionId;
-    return starwardMediaCoverOptions(this.reducedMotion,
-      (action: DismissContentCoverAction) => { this.image.close(sessionId); action.dismiss(); },
-      () => this.image.disappeared(sessionId));
-  }
-
-  private imageCloseAction(): () => void {
-    const sessionId: number = this.image.sessionId;
-    return () => this.image.close(sessionId);
-  }
-
   private videoOptions(): ContentCoverOptions {
     const sessionId: number = this.video.sessionId;
     return starwardMediaCoverOptions(this.reducedMotion,
@@ -431,13 +420,6 @@ export struct StarwardJourneyNotificationDialog {
         if (!this.video.exitFullscreen(sessionId)) { this.video.close(sessionId); action.dismiss(); }
       },
       () => this.video.disappeared(sessionId));
-  }
-
-  @Builder
-  private imageCover() {
-    StarwardImageViewer({ model: this.image, sessionId: this.image.sessionId, reducedMotion: this.reducedMotion,
-      motionEnabled: this.active && !this.reducedMotion && this.image.active(),
-      close: this.imageCloseAction() })
   }
 
   @Builder
@@ -460,7 +442,7 @@ export struct StarwardJourneyNotificationDialog {
           openVideo: (id: string, source: string, poster: string) => this.openVideoSource(id, presentation.owner, source, poster),
           openLink: (id: string, href: string) => { void this.openLinkHref(id, presentation.owner, href); } })
       }, (presentation: JourneyNotificationPresentation) => `${presentation.owner}:${presentation.note.id}`)
-      Column() {}.width(0).height(0).bindContentCover(this.image.visible, this.imageCover(), this.imageOptions())
+      StarwardImageViewerCover({ model: this.image, active: this.active, reducedMotion: this.reducedMotion })
       Column() {}.width(0).height(0).bindContentCover(this.video.visible, this.videoCover(), this.videoOptions())
     }
   }

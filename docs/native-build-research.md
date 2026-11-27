@@ -153,6 +153,25 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - 调试包 `3966e4fb76f5febcc3b187a32cf1f018787e743ddfa63e0baa6749c39a243770` 完成 `scripts/hm.sh build`、HAP 与签名 profile 双验签和 `scripts/hm.sh run --skip-build` 安装启动。`scripts/hm.sh test` 通过 323 项，`scripts/hm.sh lint` 零错误、零警告，有一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/source/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/source/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/source/lint.json)
 - 固定隔离预览直板机，通过 `python3 artifacts/private/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/probe.py` 在第 5 题实测。偏心双击放大到 200%，偏移约 `-35.8vp / 24.1vp`，单指拖动后偏移随手势更新，再次双击恢复到 100% 和零偏移。单击、复位按钮与关闭返回通过，实机原图核对底部提示完整。双指捏合、图集切换与减少动画开关未在本轮真机复测。 [真机报告](../artifacts/validation/aurora-glass-v2-20261125/image-viewer-double-tap-20261126/device.json)
 
+## 2026-11-27 看图器开合与跟手翻页
+
+- 题图、线索、收藏和来信共用 `StarwardImageViewerCover`。ArkUI 全屏模态负责 240ms 淡入缩放、反向关闭及系统返回。入场从 102.5% 缩放至原尺寸，四周在过渡中保持整窗遮罩。模态消失后退出暗色系统栏并释放该次查看。所有者失效时立即取消读图并清理。 [ArkUI 全屏模态](https://developer.huawei.com/consumer/en/doc/harmonyos-references/ts-universal-attributes-modal-transition/)
+- `Swiper` 负责跟手位移、首尾回弹和页码落定，按钮也通过同一个 `SwiperController` 翻页。缩放超过 100% 时单指拖动当前图片，双指序列由原生捏合手势处理。保留当前和相邻图片的内存引用，邻图调用同一加载器和缓存策略。系统减少动画时取消开合转场和翻页惯性动画。 [ArkUI Swiper](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-swiper/) · [手势拦截](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-gesture-blocking-enhancement)
+- 冻结 Web `46188fc` 的 `MediaViewer`、`ZoomableImage` 与实际样式在 388×771 的触屏视口重放。使用预览的三张有序图片，在浅色和深色下确认 Web 在松手后切图。原生沿用同样的内容结构、原图比例和控件，采用用户要求的跟手翻页。两端分别复核第一张原图。原生保留已确认的浅色缩放百分比。 [Web 对照](../artifacts/validation/image-viewer-swipe-20261127/web.json)
+
+```sh
+scripts/hm.sh build
+scripts/hm.sh run --skip-build
+STARWARD_VALIDATION_DIR=artifacts/validation/image-viewer-swipe-20261127 scripts/hm.sh lint
+STARWARD_VALIDATION_DIR=artifacts/validation/image-viewer-swipe-20261127 scripts/hm.sh test
+python3 artifacts/private/image-viewer-swipe-20261127/verify.py final
+python3 scripts/capture-window-evidence.py --font-scale 1 --require-tls --output artifacts/validation/image-viewer-swipe-20261127/runtime.json
+```
+
+- 固定 DevEco Studio 26.0.0.851、SDK 26.0.0.105 和 DevEco CLI 1.3.0-stable。调试包 `55ee1455d3142b035120b65bb9f5117faa7b14535a9cac0c90fcb1a6885d6b17` 已构建，SDK 已验证 HAP 和签名 Profile，官方 CLI 已安装并启动。Hypium 344 项全过。codelinter 无错误或警告，有一条信笺模糊的既有建议。 [验签](../artifacts/validation/image-viewer-swipe-20261127/signature.json) · [Hypium](../artifacts/validation/image-viewer-swipe-20261127/local-test-summary.json) · [codelinter](../artifacts/validation/image-viewer-swipe-20261127/lint.json)
+- 固定隔离 HTTPS 直板机验证单张题图和三张图片线索。三图在手指抬起前同时显示滑出的当前图和滑入的下一张，落定后通过短滑、首尾边界、反向滑动、上一张及下一张。双击、双指缩放、放大拖图与复位通过。关闭按钮、蒙层、系统返回均恢复原位置。点击后紧接系统返回做了三轮，每次回到原位并成功重新打开。已授权线索切回前台后仍停在原图。 [真机交互](../artifacts/validation/image-viewer-swipe-20261127/device.json)
+- 原生有效视口实测 387.69×771.08vp，三图舞台约 359.69×501.23vp。Web 对照舞台为 360×501.14px。从全屏原图复核单图入退场采样中的遮罩到屏幕边缘，关闭后状态栏前景恢复。采样用于确认可见变化，动画时长未做逐帧测量。隔离 TLS 及透明系统栏检查通过，验收窗口内答题、命令、经验和已读记录增量均为零。系统减少动画开关、余指接续和媒体失败重试未在本轮独立注入。 [运行时](../artifacts/validation/image-viewer-swipe-20261127/runtime.json)
+
 ## 2026-11-26 护照抽屉玻璃蒙层
 
 - 「修改资料」「修改密码」「外观」沿用同一个原生 `bindSheet`。此前仅设定背景蒙层颜色，面板材质只影响面板自身。现在通过现有 `StarwardModalBackdropState` 在入场时登记根窗口的 `StarwardGlassBackdrop`，关闭完成或编辑会话失效时释放。原生 Sheet 继续处理蒙层点击、手势和键盘避让。 [ArkUI 半模态参考](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition)
