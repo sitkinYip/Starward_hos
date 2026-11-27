@@ -154,7 +154,7 @@ export struct GameplayAnswerAction {
   @Event primaryAction: (action: GameplayComposerAction) => void = () => {};
 
   private foreground(): ResourceColor {
-    return this.view.actionEnabled ? Color.White : $r('app.color.muted');
+    return this.view.actionEnabled ? Color.White : $r('app.color.answer_action_disabled_content');
   }
 
   @Builder

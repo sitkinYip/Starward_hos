@@ -166,8 +166,9 @@ export struct StarwardAnswerDock {
       .linearGradient(this.actionEnabled ? { angle: 150,
         colors: [[$r('app.color.answer_action_glass_start'), 0], [$r('app.color.answer_action_glass_end'), 1]] } :
         undefined)
-      .shadow({ radius: this.actionEnabled && this.idleMaterial() === undefined ? 12 : 0,
-        offsetY: 4, color: $r('app.color.glow_accent_strong') })
+      .shadow(this.actionEnabled && this.idleMaterial() === undefined ? {
+        radius: 12, offsetY: 4, color: $r('app.color.glow_accent_strong')
+      } : undefined)
       .onAreaChange((_previous: Area, area: Area) => {
         const width: number = Number(area.width);
         if (width > 0 && Number.isFinite(width) && width !== this.actionWidth) { this.actionWidth = width; }

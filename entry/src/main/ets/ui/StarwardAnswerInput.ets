@@ -139,7 +139,7 @@ export struct StarwardAnswerSubmit {
   @Event action: () => void = () => {};
 
   private foreground(): ResourceColor {
-    return this.actionEnabled && !this.submitting ? Color.White : $r('app.color.muted');
+    return this.actionEnabled && !this.submitting ? Color.White : $r('app.color.answer_action_disabled_content');
   }
 
   build() {

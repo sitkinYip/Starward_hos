@@ -1,0 +1,105 @@
+{
+  "status": "passed",
+  "fixture": "replay of historical authoritative locked active choice, isolated synthetic actor",
+  "sourceDtoSha256": "4f8318795ca6c04c77a0820c3cdc0ae2ea438a88248a838f336673cec7221811",
+  "signedHapSha256": "ecea8c28c0cc23e184dca0058d8254beb5fd15033890ae0f123f0b542c7a6aa9",
+  "authoritativeBefore": {
+    "status": "active",
+    "levelPosition": 1,
+    "locked": true,
+    "wrongAttempts": 1,
+    "completed": false,
+    "hasStoredAnswer": true
+  },
+  "authoritativeAfter": {
+    "status": "active",
+    "levelPosition": 1,
+    "locked": true,
+    "wrongAttempts": 1,
+    "completed": false,
+    "hasStoredAnswer": true
+  },
+  "attempts": [
+    {
+      "target": "native disabled Submit center",
+      "noFocusOrNavigation": true
+    },
+    {
+      "target": "native disabled Radio center",
+      "unchanged": true,
+      "visibleDisabledRadios": 4
+    }
+  ],
+  "lockedGeometry": {
+    "fieldCapsule": [
+      52,
+      2453,
+      1013,
+      2642
+    ],
+    "actionCapsule": [
+      1046,
+      2466,
+      1209,
+      2629
+    ],
+    "lockLabel": [
+      106,
+      1499,
+      1154,
+      1620
+    ]
+  },
+  "serverRequestCounts": {
+    "before": {
+      "writeAttempts": 0,
+      "answerAttempts": 0,
+      "startAttempts": 0,
+      "lockedReads": 0
+    },
+    "after": {
+      "writeAttempts": 0,
+      "answerAttempts": 0,
+      "startAttempts": 0,
+      "lockedReads": 11
+    }
+  },
+  "authorityUnchanged": true,
+  "onlyApplicationSourceTreeDifference": "entry/src/main/resources/rawfile/integration-ca.pem",
+  "ordinaryPreviewHapSha256": "520aa0d308b91dfccf82feaec71041d3d68889a2fed9416563de06b6af8bdc45",
+  "ordinaryPreviewPackageAndUsbRestored": true,
+  "appearanceChanged": false,
+  "lightVisual": {
+    "label": "此题已永久锁定",
+    "tintedFillSampleRgb": [
+      230,
+      238,
+      253
+    ],
+    "sampleJustOutsideLowerEdgeRgb": [
+      244,
+      246,
+      252
+    ],
+    "surroundingCanvasSampleRgb": [
+      244,
+      246,
+      252
+    ],
+    "priorGrayFillSampleRgb": [
+      217,
+      222,
+      230
+    ],
+    "priorBlueShadowSampleRgb": [
+      122,
+      160,
+      232
+    ]
+  },
+  "screenshot": {
+    "file": "locked-ice-dock.png",
+    "sha256": "f50f1f6673afe4a9701ecc9cd4763c6a3860bc523ef856c6b21e34ba7411ac4f",
+    "scope": "two unretouched crops after a real disabled Submit tap, showing only lock label and dock"
+  }
+}

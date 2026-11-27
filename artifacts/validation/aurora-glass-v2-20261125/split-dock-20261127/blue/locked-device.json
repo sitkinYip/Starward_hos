@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "fixture": "replay of historical authoritative locked active choice, isolated synthetic actor",
+  "sourceDtoSha256": "4f8318795ca6c04c77a0820c3cdc0ae2ea438a88248a838f336673cec7221811",
+  "signedHapSha256": "d7b6e98ae919820447463307f97de569c7e1d8bf000aa60799166db3b4644725",
+  "authoritativeBefore": {
+    "status": "active",
+    "levelPosition": 1,
+    "locked": true,
+    "wrongAttempts": 1,
+    "completed": false,
+    "hasStoredAnswer": true
+  },
+  "authoritativeAfter": {
+    "status": "active",
+    "levelPosition": 1,
+    "locked": true,
+    "wrongAttempts": 1,
+    "completed": false,
+    "hasStoredAnswer": true
+  },
+  "attempts": [
+    {
+      "target": "native disabled Submit center",
+      "noFocusOrNavigation": true
+    },
+    {
+      "target": "native disabled Radio center",
+      "unchanged": true,
+      "visibleDisabledRadios": 4
+    }
+  ],
+  "lockedGeometry": {
+    "fieldCapsule": [
+      52,
+      2453,
+      1013,
+      2642
+    ],
+    "actionCapsule": [
+      1046,
+      2466,
+      1209,
+      2629
+    ],
+    "lockLabel": [
+      106,
+      1499,
+      1154,
+      1620
+    ]
+  },
+  "serverRequestCounts": {
+    "before": {
+      "writeAttempts": 0,
+      "answerAttempts": 0,
+      "startAttempts": 0,
+      "lockedReads": 7
+    },
+    "after": {
+      "writeAttempts": 0,
+      "answerAttempts": 0,
+      "startAttempts": 0,
+      "lockedReads": 17
+    }
+  },
+  "authorityUnchanged": true,
+  "sourceRevision": "dcfd5f3",
+  "onlyApplicationSourceTreeDifference": "entry/src/main/resources/rawfile/integration-ca.pem",
+  "ordinaryPreviewHapSha256": "8c1dfcac2c0fa49678cc155b6ef1a8d7135edc9e357842fed6c9872cf701e95b",
+  "ordinaryPreviewPackageAndUsbRestored": true,
+  "appearanceChanged": false,
+  "lightVisual": {
+    "label": "此题已永久锁定",
+    "fillRgb": [
+      217,
+      222,
+      230
+    ],
+    "foreground": "muted gray arrow",
+    "lowerEdge": "thin blue arc remains outside native button bounds",
+    "lowerEdgeRgb": [
+      122,
+      160,
+      232
+    ]
+  },
+  "screenshot": {
+    "file": "locked-question-dock.png",
+    "sha256": "b372a5b245da84bc2c2517bd73d1decde609007a9c5a60ad8f60cc773120b0d9",
+    "scope": "two unretouched crops of only the lock label and dock, omitting unrelated content and device chrome"
+  }
+}

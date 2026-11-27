@@ -188,11 +188,12 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 
 ## 2026-11-27 作答栏独立胶囊和智感握姿
 
-- 在直板机独立示例上验证 HdsTabs 的 MiniBar。收起时迷你栏固定 58vp，展开至 120vp 时主栏收缩为 58vp。正式作答栏保留透明的原生 TabBar。输入／选项与可执行的空闲主操作各用 `THICK`。主操作在材质上铺到边缘的半透明冰蓝渐变，使用白色前景。禁用改用中性灰原生背景模糊。 [MiniBar 探针](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/minibar-probe.json) · [系统材质生效范围](https://developer.huawei.com/consumer/cn/doc/HarmonyOS-Guides/arkts-immersive-light-sense-component-adaptation/)
+- 在直板机独立示例上验证 HdsTabs 的 MiniBar。收起时迷你栏固定 58vp，展开至 120vp 时主栏收缩为 58vp。正式作答栏保留透明的原生 TabBar。输入／选项与可执行的空闲主操作各用 `THICK`。主操作在材质上铺到边缘的半透明冰蓝渐变，使用白色前景。禁用使用原生背景模糊与低强调冰蓝色，取消操作阴影。 [MiniBar 探针](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/minibar-probe.json) · [系统材质生效范围](https://developer.huawei.com/consumer/cn/doc/HarmonyOS-Guides/arkts-immersive-light-sense-component-adaptation/)
 - `HoldingHand.ets` 使用 API 26 SDK 的 `motion.on('holdingHandChanged')`。仅在当前可见答题栏监听，离开时释放，识别结果只在本地驱动布局。清单中的 `ohos.permission.DETECT_GESTURE` 属系统授权。未握持、两手和未知状态按默认右侧显示。 [官方动作感知指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/motion-guidelines/) · [系统授权权限](https://developer.huawei.com/consumer/cn/doc/harmonyOS-guides/permissions-for-all/#ohospermissiondetect_gesture)
-- 先前候选在固定隔离直板机验证了实际键盘避让、重聚焦草稿、原生横滑及「前往下一题」。选择浮层居中，四项只读，关闭按钮、外侧点击与系统返回可关闭。独立包注入左侧事件后验证镜像及同一浮层锚点。实际左右手与识别结果的人工对应检查仍待补验。 [真机交互](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/device.json) · [左侧布局检查](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/injected-left.json)
+- 先前候选在固定隔离直板机验证了实际键盘避让、重聚焦草稿、原生横滑及「前往下一题」。选择浮层居中，四项只读，关闭按钮、外侧点击与系统返回可关闭。独立包注入左侧事件后验证镜像及同一浮层锚点。用户随后在真机确认真实左右手换握可切换按钮位置。 [真机交互](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/device.json) · [左侧布局检查](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/injected-left.json)
 - 蓝底白字版本 `scripts/hm.sh build` 成功，SDK 完成 HAP 与 profile 验签。 `scripts/hm.sh test` 通过 340 项，`scripts/hm.sh lint` 为零错误、零警告及一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/lint.json)
-- 最终签名包装至固定隔离直板机，浅色和深色均核对可用蓝底白色前景、无白色描边、浮层展开后的原生禁用灰态和浮层居中。外观已恢复「跟随系统」。锁定、无材质设备、读屏和外接键盘未在最终包单独实测。 [最终包真机报告](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/color-device.json)
+- 蓝底白字候选装至固定隔离直板机，浅色和深色均核对可用蓝底白色前景、无白色描边、浮层展开后的原生禁用和浮层居中。外观已恢复「跟随系统」。 [深浅主题真机报告](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/color-device.json)
+- 以归档的权威永久锁定选择题快照，在隔离 HTTPS 真机验证淡冰蓝禁用操作。测试包只更换隔离 CA。点击提交无效且下缘无残影，四个选项可看但不可改选，系统返回后锁定及错误次数保持原值。服务收到零次答题及入场请求。已恢复固定预览连接并安装最新签名包。深色锁定、无材质设备、读屏和外接键盘未单独实测。 [锁定真机报告](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/locked-ice-device.json) · [截图](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/locked-ice-dock.png) · [最新验签](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/inactive/signature.json)
 
 ## 2026-11-26 全屏判题反馈与圆角
 
