@@ -138,21 +138,21 @@ export struct StarwardAnswerSubmit {
   @Param reducedMotion: boolean = true;
   @Event action: () => void = () => {};
 
+  private foreground(): ResourceColor {
+    return this.actionEnabled && !this.submitting ? Color.White : $r('app.color.muted');
+  }
+
   build() {
     Button({ type: ButtonType.Circle, stateEffect: !this.reducedMotion }) {
       if (this.submitting) {
-        LoadingProgress().width(20).height(20).color($r('app.color.on_accent'))
+        LoadingProgress().width(20).height(20).color(this.foreground())
           .enableLoading(!this.reducedMotion).accessibilityLevel('no')
       } else {
         Image($r('app.media.icon_arrow_right_bold')).width(22).height(22).objectFit(ImageFit.Contain)
-          .fillColor($r('app.color.on_accent')).accessibilityLevel('no')
+          .fillColor(this.foreground()).accessibilityLevel('no')
       }
     }.id('gameplay-submit').width(50).height(50).padding(0).flexShrink(0)
-      .linearGradient({ angle: 180,
-        colors: [[$r('app.color.accent_strong'), 0], [$r('app.color.accent'), 1]] })
-      .backgroundColor($r('app.color.accent'))
-      .shadow({ radius: this.actionEnabled && !this.submitting ? 16 : 0, offsetY: 6,
-        color: $r('app.color.glow_accent_strong') })
+      .backgroundColor(Color.Transparent)
       .enabled(this.actionEnabled && !this.submitting)
       .accessibilityText(this.submitting ? '正在提交答案' : '提交答案')
       .onClick(() => this.action())

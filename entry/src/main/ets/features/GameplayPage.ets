@@ -1,5 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { curves, LengthMetrics, PromptAction, promptAction } from '@kit.ArkUI';
+import { Binding, curves, LengthMetrics, PromptAction, promptAction } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
 import { clueImageSources, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
@@ -17,14 +17,16 @@ import { GameplayAnswerBurst, GameplayAnswerJudgment, GameplayRankUp, GameplayVi
 import { GAMEPLAY_COMPOSER_MIN_HEIGHT, GAMEPLAY_COMPOSER_SIDE_GUTTER, GAMEPLAY_MAX_CONTENT_WIDTH,
   GAMEPLAY_TITLE_CLEARANCE, GAMEPLAY_TITLE_MIN_TOP,
   GameplayProgress, GameplayProgressItem, GameplayQuestionHeading, GameplaySurface } from './GameplayChrome';
-import { GameplayAnswerComposer, GameplayComposerAction, GameplayComposerView } from './GameplayAnswerComposer';
+import { GameplayAnswerAction, GameplayAnswerComposer, GameplayComposerAction,
+  GameplayComposerView } from './GameplayAnswerComposer';
 import { GameplayHintSheet } from './GameplayQuestionOverlays';
 import { JourneyNotificationsViewModel } from './JourneyNotificationsViewModel';
 import { isLegacyInternalLink, LegacyRichBlock, LegacyRichSpan, legacyImageSources,
   legacyRichBlocks } from '../business/LegacyRichContent';
 import { InlineError } from '../ui/ErrorMessages';
 import { StarwardAssignmentRequest } from '../ui/StarwardAssignmentRequest';
-import { STARWARD_ANSWER_BAR_HEIGHT, STARWARD_ANSWER_BAR_VERTICAL_PADDING, StarwardAnswerDock } from '../ui/StarwardAnswerDock';
+import { STARWARD_ANSWER_BAR_HEIGHT, STARWARD_ANSWER_BAR_VERTICAL_PADDING, StarwardAnswerDock,
+  StarwardAnswerDockLayout } from '../ui/StarwardAnswerDock';
 import { starwardImmersiveTabsAvailable } from '../ui/StarwardTabs';
 import { PrimaryAction } from '../ui/PrimaryAction';
 import { StarwardFeedback } from '../ui/StarwardFeedback';
@@ -2375,12 +2377,13 @@ export struct GameplayPage {
   }
 
   @Builder
-  private answerComposer() {
+  private answerComposer(layout: Binding<StarwardAnswerDockLayout>) {
     ForEach([this.positionKey()], (owner: string) => {
-      GameplayAnswerComposer({ view: this.composerView, nativeDock: this.nativeAnswerDock,
+      GameplayAnswerComposer({ view: this.composerView, nativeDock: layout.value.fieldGlass,
         reducedMotion: this.reducedMotion, revealOnMount: owner === this.composerRevealOwner,
         choicesOpen: this.sheet === 'choice' && this.sheetVisible,
         choiceRevision: this.sheetRevision, choiceStatus: this.choicePopupStatus(),
+        popupWidth: layout.value.popupWidth, popupAnchorLeft: layout.value.popupAnchorLeft,
         choiceMaxHeight: Math.max(112, Math.min(620, this.viewportHeight - this.foregroundTopInset() -
           this.composerClearance() - 10)),
         choicesContent: () => { this.choicePopupContent() }, openChoices: () => {
@@ -2395,10 +2398,19 @@ export struct GameplayPage {
           if (this.composerOwnerCurrent(owner)) { this.answerFocused = focused; }
         }, editingChanged: (editing: boolean) => {
           if (this.composerOwnerCurrent(owner)) { this.answerEditing = editing; }
-        }, primaryAction: (action: GameplayComposerAction) => {
-          if (this.composerOwnerCurrent(owner)) { this.performComposerAction(action); }
         }, heightChanged: (height: number) => {
           if (this.composerOwnerCurrent(owner) && height !== this.composerHeight) { this.composerHeight = height; }
+        } })
+    }, (owner: string) => owner)
+  }
+
+  @Builder
+  private answerAction(layout: Binding<StarwardAnswerDockLayout>) {
+    ForEach([this.positionKey()], (owner: string) => {
+      GameplayAnswerAction({ view: this.composerView, maxWidth: layout.value.actionMaxWidth,
+        reducedMotion: this.reducedMotion,
+        revealOnMount: owner === this.composerRevealOwner, primaryAction: (action: GameplayComposerAction) => {
+          if (this.composerOwnerCurrent(owner)) { this.performComposerAction(action); }
         } })
     }, (owner: string) => owner)
   }
@@ -2407,10 +2419,16 @@ export struct GameplayPage {
   private gameplayForeground() {
     Stack() {
       StarwardAnswerDock({ nativeGlass: this.nativeAnswerDock, visible: this.showComposer(),
+        active: this.foreground && !this.narrativeCovered && !this.accountCovered,
+        hasAction: this.composerView.action !== 'none', actionEnabled: this.composerView.actionEnabled,
+        placementLocked: this.answerFocused || this.keyboardVisible || this.sheet !== null || this.titleCovered ||
+          this.play.submitting || this.play.advancing,
         editing: this.answerEditing && this.composerView.editable, reducedMotion: this.reducedMotion,
         viewportWidth: this.viewportWidth, leftMargin: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.leftInset),
         rightMargin: Math.max(GAMEPLAY_COMPOSER_SIDE_GUTTER, this.rightInset), bottomMargin: this.dockBottomMargin(),
-        content: () => { this.gameplayContent() }, composer: () => { this.answerComposer() } })
+        content: () => { this.gameplayContent() },
+        composer: (layout: Binding<StarwardAnswerDockLayout>) => { this.answerComposer(layout) },
+        action: (layout: Binding<StarwardAnswerDockLayout>) => { this.answerAction(layout) } })
     }.width('100%').height(LayoutPolicy.matchParent).alignContent(Alignment.Top)
       .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP])
       .accessibilityLevel(this.titleCovered ? 'no-hide-descendants' : 'auto')

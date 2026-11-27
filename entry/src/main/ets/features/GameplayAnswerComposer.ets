@@ -33,6 +33,8 @@ export struct GameplayAnswerComposer {
   @Param choiceRevision: number = 0;
   @Param choiceStatus: string = '';
   @Param choiceMaxHeight: number = 620;
+  @Param popupWidth: number = 0;
+  @Param popupAnchorLeft: number = 0;
   @BuilderParam choicesContent: () => void;
   @Event openChoices: () => void = () => {};
   @Event closeChoices: (revision: number) => boolean = () => false;
@@ -40,7 +42,6 @@ export struct GameplayAnswerComposer {
   @Event changeAnswer: (value: string) => void = () => {};
   @Event focusChanged: (focused: boolean) => void = () => {};
   @Event editingChanged: (editing: boolean) => void = () => {};
-  @Event primaryAction: (action: GameplayComposerAction) => void = () => {};
   @Event heightChanged: (height: number) => void = () => {};
   @Local private dockWidth: number = 0;
   private readonly choiceMaterial: uiMaterial.ImmersiveMaterial | undefined =
@@ -54,7 +55,9 @@ export struct GameplayAnswerComposer {
   private popupOptions(): CustomPopupOptions {
     const revision: number = this.choiceRevision;
     return { builder: () => { this.choicePopup(); }, placement: Placement.Top,
-      targetSpace: 12, width: this.dockWidth > 0 ? this.dockWidth : undefined, radius: STARWARD_RADIUS_PANEL,
+      targetSpace: 12,
+      width: this.popupWidth > 0 ? this.popupWidth : this.dockWidth > 0 ? this.dockWidth : undefined,
+      radius: STARWARD_RADIUS_PANEL,
       enableArrow: false, mask: true, showInSubWindow: false, autoCancel: true, focusable: true,
       systemMaterial: this.choiceMaterial,
       popupColor: this.choiceMaterial ? undefined : Color.Transparent,
@@ -112,33 +115,9 @@ export struct GameplayAnswerComposer {
     return this.view.choiceKey.length > 0 ? $r('app.color.accent_border') : $r('app.color.border_strong');
   }
 
-  @Builder
-  private actionButton() {
-    if (this.view.action === 'submit') {
-      StarwardAnswerSubmit({ actionEnabled: this.view.actionEnabled, submitting: this.view.submitting,
-        reducedMotion: this.reducedMotion, action: () => this.primaryAction('submit') })
-    } else if (this.view.action === 'retry') {
-      Button('重新连接', { type: ButtonType.Capsule }).id('gameplay-answer-retry-inline')
-        .height(50).padding({ left: 12, right: 12 }).fontSize(14).fontWeight(FontWeight.Medium)
-        .fontColor($r('app.color.on_accent')).backgroundColor($r('app.color.accent'))
-        .enabled(this.view.actionEnabled).onClick(() => this.primaryAction('retry'))
-    } else if (this.view.action === 'next') {
-      Button({ type: ButtonType.Capsule, stateEffect: !this.reducedMotion }) {
-        Row({ space: 8 }) {
-          Text(this.view.advancing ? '即将前往下一题…' : '前往下一题').fontSize(14).fontWeight(FontWeight.Medium)
-            .fontColor($r('app.color.on_accent'))
-          Image($r('app.media.icon_arrow_right_bold')).width(16).height(16).fillColor($r('app.color.on_accent'))
-            .accessibilityLevel('no')
-        }
-      }.id('gameplay-next').height(50).padding({ left: 20, right: 20 }).flexShrink(0)
-        .backgroundColor($r('app.color.accent'))
-        .enabled(this.view.actionEnabled).onClick(() => this.primaryAction(this.view.action))
-    }
-  }
-
   build() {
     Stack() {
-      Row({ space: 10 }) {
+      Row() {
         if (this.view.choice) {
           this.choices()
         } else {
@@ -148,15 +127,66 @@ export struct GameplayAnswerComposer {
             editingChanged: (editing: boolean) => this.editingChanged(editing),
             changed: (value: string) => this.changeAnswer(value) }).layoutWeight(1)
         }
-        this.actionButton()
       }.width('100%').transition(starwardPageReveal(this.reducedMotion || !this.revealOnMount, 4))
-    }.id('gameplay-answer-form').width('100%').constraintSize({ maxWidth: 680 })
-      .bindPopup(this.view.choice && this.choicesOpen, this.popupOptions())
+      if (this.view.choice) {
+        // A full-width layout anchor lets the system keep the popup inside the viewport on either side.
+        Row().width(this.popupWidth > 0 ? this.popupWidth : '100%').height(50)
+          .position({ x: this.popupAnchorLeft, y: 0 }).hitTestBehavior(HitTestMode.None)
+          .accessibilityLevel('no-hide-descendants')
+          .bindPopup(this.choicesOpen, this.popupOptions())
+      }
+    }.id('gameplay-answer-form').width('100%').height(50)
       .onAreaChange((_previous: Area, area: Area) => {
         const width: number = Number(area.width);
         if (Number.isFinite(width) && width > 0 && width !== this.dockWidth) { this.dockWidth = width; }
         const height: number = Number(area.height);
         if (Number.isFinite(height) && height > 0) { this.heightChanged(height); }
       })
+  }
+}
+
+@ComponentV2
+export struct GameplayAnswerAction {
+  @Require @Param view: GameplayComposerView;
+  @Require @Param maxWidth: number;
+  @Param reducedMotion: boolean = true;
+  @Param revealOnMount: boolean = false;
+  @Event primaryAction: (action: GameplayComposerAction) => void = () => {};
+
+  private foreground(): ResourceColor {
+    return this.view.actionEnabled ? Color.White : $r('app.color.muted');
+  }
+
+  @Builder
+  private actionButton() {
+    if (this.view.action === 'submit') {
+      StarwardAnswerSubmit({ actionEnabled: this.view.actionEnabled, submitting: this.view.submitting,
+        reducedMotion: this.reducedMotion, action: () => this.primaryAction('submit') })
+    } else if (this.view.action === 'retry') {
+      Button('重新连接', { type: ButtonType.Capsule }).id('gameplay-answer-retry-inline')
+        .height(50).padding({ left: 12, right: 12 }).fontSize(14).fontWeight(FontWeight.Medium)
+        .constraintSize({ maxWidth: this.maxWidth })
+        .fontColor(this.foreground()).backgroundColor(Color.Transparent)
+        .enabled(this.view.actionEnabled).onClick(() => this.primaryAction('retry'))
+    } else if (this.view.action === 'next') {
+      Button({ type: ButtonType.Capsule, stateEffect: !this.reducedMotion }) {
+        Row({ space: 8 }) {
+          Text(this.view.advancing ? '即将前往下一题…' : '前往下一题').fontSize(14).fontWeight(FontWeight.Medium)
+            .fontColor(this.foreground()).maxLines(1).textOverflow({ overflow: TextOverflow.Ellipsis }).flexShrink(1)
+          Image($r('app.media.icon_arrow_right_bold')).width(16).height(16).fillColor(this.foreground())
+            .accessibilityLevel('no')
+        }
+      }.id('gameplay-next').height(50).padding({ left: 20, right: 20 }).flexShrink(0)
+        .constraintSize({ maxWidth: this.maxWidth })
+        .backgroundColor(Color.Transparent)
+        .enabled(this.view.actionEnabled).onClick(() => this.primaryAction(this.view.action))
+    }
+  }
+
+  build() {
+    Row() {
+      this.actionButton()
+    }.width(LayoutPolicy.wrapContent).height(50).flexShrink(0)
+      .transition(starwardPageReveal(this.reducedMotion || !this.revealOnMount, 4))
   }
 }

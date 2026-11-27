@@ -1,0 +1,67 @@
+{
+  "mode": "isolated synthetic ArkUI probe",
+  "os": "HarmonyOS 7.0 debug device",
+  "scope": "native layout and synthetic local button taps; physical grip changes were not exercised",
+  "fixedParameters": {
+    "material": "IMMERSIVE/ADAPTIVE",
+    "barHeightVp": 58,
+    "sideMarginVp": 16,
+    "bottomMarginVp": 8,
+    "adaptToHandedness": true,
+    "tabWidthVp": 250
+  },
+  "fullDeviceWidthVp": 387.69,
+  "cases": [
+    {
+      "miniStyle": "EXPAND",
+      "requestedMiniWidthVp": 50,
+      "reportedMiniWidthVp": 50,
+      "reportedTabStyle": "COLLAPSE",
+      "reportedTabWidthVp": 58,
+      "miniFirstClickIncrement": 1,
+      "mainAtAccessibilityCenterClickIncrement": 0,
+      "screenshot": "initial50.png",
+      "screenshotSha256": "df828b88ac26afeb68c9b23138be8cf773a54c3548fa665cd97a1706f9b33e8a"
+    },
+    {
+      "miniStyle": "EXPAND",
+      "requestedMiniWidthVp": 120,
+      "reportedMiniWidthVp": 120,
+      "reportedTabStyle": "COLLAPSE",
+      "reportedTabWidthVp": 58,
+      "miniFirstClickIncrement": 1,
+      "mainAtAccessibilityCenterClickIncrement": 0,
+      "screenshot": "initial120.png",
+      "screenshotSha256": "72b35fac56481b0b48404ed7e23e98a13e87cf2ef6345ecd3ab88b2a113f8b39"
+    },
+    {
+      "miniStyle": "COLLAPSE",
+      "requestedMiniWidthVp": 120,
+      "reportedMiniWidthVp": 58,
+      "reportedTabStyle": "EXPAND",
+      "reportedTabWidthVp": 250,
+      "miniFirstClickIncrement": 1,
+      "screenshot": "collapse120.png",
+      "screenshotSha256": "398ada215fb6252874d9a4f3ce48ceb4009003d435dceb7dc875fece1f60b8b5"
+    },
+    {
+      "constrainedWidthVp": 360,
+      "miniStyle": "COLLAPSE",
+      "requestedMiniWidthVp": 50,
+      "reportedMiniWidthVp": 58,
+      "reportedTabStyle": "EXPAND",
+      "reportedTabWidthVp": 250,
+      "mainFirstClickIncrement": 1,
+      "miniFirstClickIncrement": 1,
+      "gapVp": 20,
+      "screenshot": "initial360.png",
+      "rawMeasurements": "geometry-360.txt",
+      "screenshotSha256": "daac4c4580041f08d0a3584199ae6bf3ec0a3dfe7e00344039cdcdd86961877d"
+    }
+  ],
+  "builderCompatibility": {
+    "unboundInstanceBuilder": "runtime TypeError at builder: Cannot read property observeComponentCreation2 of undefined",
+    "bindThis": "works with ArkTS arkts-no-func-bind warning",
+    "arrowClosingOverThis": "compiles without that warning and works"
+  }
+}

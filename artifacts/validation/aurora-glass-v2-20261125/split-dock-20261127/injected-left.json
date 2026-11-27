@@ -1,0 +1,213 @@
+{
+  "status": "passed",
+  "mode": "injected-left-dock-q4",
+  "signedHapSha256": "3626089a4171188c41de14c965d57af3c24ca62172fd1e8416f1dd46ae885264",
+  "fixture": "预先完成的固定隔离选择题，使用软件注入左侧布局事件",
+  "states": {
+    "q4-idle": {
+      "boundsPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-swiper": [
+          45,
+          512,
+          1215,
+          2720
+        ],
+        "gameplay-answer-form": [
+          521,
+          2466,
+          1209,
+          2629
+        ],
+        "gameplay-choice-trigger": [
+          521,
+          2466,
+          1209,
+          2629
+        ],
+        "gameplay-next": [
+          52,
+          2466,
+          488,
+          2629
+        ],
+        "gameplay-title-back": [
+          77,
+          136,
+          220,
+          279
+        ]
+      },
+      "composerPathTypes": [
+        null,
+        "root",
+        "Stack",
+        "Stack",
+        "__Common__",
+        "Stack",
+        "Navigation",
+        "NavigationContent",
+        "NavDestination",
+        "NavDestinationContent",
+        "Stack",
+        "Stack",
+        "Stack",
+        "Tabs",
+        "TabBar",
+        "Column",
+        "Row",
+        "Column",
+        "Stack"
+      ],
+      "nativeTabBarBoundsPx": [
+        52,
+        2375,
+        1208,
+        2720
+      ],
+      "question": 4,
+      "pngSha256": "5375bf04a33ef6c463b12a769f0cbea37ed7fb884f5e7fcf36644329a4b8b726"
+    },
+    "q4-popup": {
+      "boundsPx": {
+        "gameplay-page": [
+          0,
+          124,
+          1260,
+          2720
+        ],
+        "gameplay-question-swiper": [
+          45,
+          512,
+          1215,
+          2720
+        ],
+        "gameplay-answer-form": [
+          521,
+          2466,
+          1209,
+          2629
+        ],
+        "gameplay-choice-trigger": [
+          521,
+          2466,
+          1209,
+          2629
+        ],
+        "gameplay-next": [
+          52,
+          2466,
+          488,
+          2629
+        ],
+        "gameplay-choice-sheet": [
+          53,
+          1348,
+          1209,
+          2427
+        ],
+        "gameplay-choice-scroll": [
+          53,
+          1520,
+          1209,
+          2427
+        ],
+        "gameplay-title-back": [
+          77,
+          136,
+          220,
+          279
+        ]
+      },
+      "composerPathTypes": [
+        null,
+        "root",
+        "Stack",
+        "Stack",
+        "__Common__",
+        "Stack",
+        "Navigation",
+        "NavigationContent",
+        "NavDestination",
+        "NavDestinationContent",
+        "Stack",
+        "Stack",
+        "Stack",
+        "Tabs",
+        "TabBar",
+        "Column",
+        "Row",
+        "Column",
+        "Stack"
+      ],
+      "nativeTabBarBoundsPx": [
+        52,
+        2375,
+        1208,
+        2720
+      ],
+      "question": 4,
+      "pngSha256": "6238e118728c279efd2e4db53bdaf2afadadc18fe6ae0ff7095d32c1993cc0ae"
+    }
+  },
+  "checks": [
+    "injected software event moved action left and popup stayed centered"
+  ],
+  "controls": [
+    {
+      "actionCapsule": [
+        52,
+        2466,
+        488,
+        2629
+      ],
+      "fieldCapsule": [
+        521,
+        2453,
+        1209,
+        2642
+      ],
+      "capsuleHorizontalGapPx": 33,
+      "question": 4,
+      "field": [
+        521,
+        2466,
+        1209,
+        2629
+      ],
+      "primary": [
+        52,
+        2466,
+        488,
+        2629
+      ],
+      "gapPx": 33,
+      "onSameRow": true,
+      "fieldSide": "right",
+      "nativeTabBarBoundsPx": [
+        52,
+        2375,
+        1208,
+        2720
+      ]
+    }
+  ],
+  "choice": {
+    "triggerGapPx": 39,
+    "panel": [
+      53,
+      1348,
+      1209,
+      2427
+    ],
+    "visibleDisabledRadios": 4,
+    "dismissals": [
+      "close-control"
+    ]
+  }
+}

@@ -1,0 +1,856 @@
+{
+  "status": "passed",
+  "testedHapSha256": "4287e952deb5ae5397a47bd26cbc10b7eaaf8260193df20106437f29549fedf6",
+  "device": {
+    "category": "physical portrait phone",
+    "screenWidthPx": 1260
+  },
+  "environment": "dedicated fixed-account isolated preview over strict HTTPS and official USB",
+  "exactApp": {
+    "completedReadOnly": {
+      "states": {
+        "q4-idle": {
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-swiper": [
+              45,
+              512,
+              1215,
+              2720
+            ],
+            "gameplay-answer-form": [
+              52,
+              2466,
+              740,
+              2629
+            ],
+            "gameplay-choice-trigger": [
+              52,
+              2466,
+              740,
+              2629
+            ],
+            "gameplay-next": [
+              772,
+              2466,
+              1208,
+              2629
+            ],
+            "gameplay-title-back": [
+              77,
+              136,
+              220,
+              279
+            ]
+          },
+          "composerPathTypes": [
+            null,
+            "root",
+            "Stack",
+            "Stack",
+            "__Common__",
+            "Stack",
+            "Navigation",
+            "NavigationContent",
+            "NavDestination",
+            "NavDestinationContent",
+            "Stack",
+            "Stack",
+            "Stack",
+            "Tabs",
+            "TabBar",
+            "Column",
+            "Row",
+            "Column",
+            "Stack"
+          ],
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ],
+          "question": 4,
+          "pngSha256": "d85e6b0977166bc5df3b3bf1a31d0f81ab48d6aca8c862c05a458776561cf93c"
+        },
+        "q4-popup": {
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-swiper": [
+              45,
+              512,
+              1215,
+              2720
+            ],
+            "gameplay-answer-form": [
+              52,
+              2466,
+              740,
+              2629
+            ],
+            "gameplay-choice-trigger": [
+              52,
+              2466,
+              740,
+              2629
+            ],
+            "gameplay-next": [
+              772,
+              2466,
+              1208,
+              2629
+            ],
+            "gameplay-choice-sheet": [
+              52,
+              1348,
+              1208,
+              2427
+            ],
+            "gameplay-choice-scroll": [
+              52,
+              1520,
+              1208,
+              2427
+            ],
+            "gameplay-title-back": [
+              77,
+              136,
+              220,
+              279
+            ]
+          },
+          "composerPathTypes": [
+            null,
+            "root",
+            "Stack",
+            "Stack",
+            "__Common__",
+            "Stack",
+            "Navigation",
+            "NavigationContent",
+            "NavDestination",
+            "NavDestinationContent",
+            "Stack",
+            "Stack",
+            "Stack",
+            "Tabs",
+            "TabBar",
+            "Column",
+            "Row",
+            "Column",
+            "Stack"
+          ],
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ],
+          "question": 4,
+          "pngSha256": "bab6239a849d224a7477c9e46e0a280fd63221ee42d1c35019f5e1a348a91215"
+        },
+        "q3-readonly-fill": {
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-question-swiper": [
+              45,
+              512,
+              1215,
+              2720
+            ],
+            "gameplay-answer-form": [
+              52,
+              2466,
+              740,
+              2629
+            ],
+            "gameplay-answer-input": [
+              52,
+              2466,
+              740,
+              2629
+            ],
+            "gameplay-next": [
+              772,
+              2466,
+              1208,
+              2629
+            ],
+            "gameplay-title-back": [
+              77,
+              136,
+              220,
+              279
+            ]
+          },
+          "composerPathTypes": [
+            null,
+            "root",
+            "Stack",
+            "Stack",
+            "__Common__",
+            "Stack",
+            "Navigation",
+            "NavigationContent",
+            "NavDestination",
+            "NavDestinationContent",
+            "Stack",
+            "Stack",
+            "Stack",
+            "Tabs",
+            "TabBar",
+            "Column",
+            "Row",
+            "Column",
+            "Stack"
+          ],
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ],
+          "question": 3,
+          "pngSha256": "a9202da41fdcfb0ed4a5fb8808745bdeeedb2d31e07b648a812745e7bc3dad33"
+        }
+      },
+      "controls": [
+        {
+          "actionCapsule": [
+            772,
+            2466,
+            1208,
+            2629
+          ],
+          "fieldCapsule": [
+            52,
+            2453,
+            740,
+            2642
+          ],
+          "capsuleHorizontalGapPx": 32,
+          "question": 4,
+          "field": [
+            52,
+            2466,
+            740,
+            2629
+          ],
+          "primary": [
+            772,
+            2466,
+            1208,
+            2629
+          ],
+          "gapPx": 32,
+          "onSameRow": true,
+          "fieldSide": "left",
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ]
+        },
+        {
+          "actionCapsule": [
+            772,
+            2466,
+            1208,
+            2629
+          ],
+          "fieldCapsule": [
+            52,
+            2453,
+            740,
+            2642
+          ],
+          "capsuleHorizontalGapPx": 32,
+          "question": 3,
+          "field": [
+            52,
+            2466,
+            740,
+            2629
+          ],
+          "primary": [
+            772,
+            2466,
+            1208,
+            2629
+          ],
+          "gapPx": 32,
+          "onSameRow": true,
+          "fieldSide": "left",
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ]
+        }
+      ],
+      "choice": {
+        "triggerGapPx": 39,
+        "panel": [
+          52,
+          1348,
+          1208,
+          2427
+        ],
+        "visibleDisabledRadios": 4,
+        "dismissals": [
+          "close-control",
+          "system-back",
+          "outside-tap"
+        ]
+      },
+      "checks": [
+        "native horizontal Swiper transitions read-only choice and fill in both directions",
+        "read-only input stays non-editable",
+        "native Next opens already-visible Q4 without a game write"
+      ]
+    },
+    "activeEditable": {
+      "states": {
+        "q1-editable-idle": {
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-answer-form": [
+              52,
+              2466,
+              1013,
+              2629
+            ],
+            "gameplay-answer-input": [
+              52,
+              2466,
+              1013,
+              2629
+            ],
+            "gameplay-submit": [
+              1046,
+              2466,
+              1209,
+              2629
+            ],
+            "gameplay-title-back": [
+              77,
+              136,
+              220,
+              279
+            ]
+          },
+          "composerPathTypes": [
+            null,
+            "root",
+            "Stack",
+            "Stack",
+            "__Common__",
+            "Stack",
+            "Navigation",
+            "NavigationContent",
+            "NavDestination",
+            "NavDestinationContent",
+            "Stack",
+            "Stack",
+            "Stack",
+            "Tabs",
+            "TabBar",
+            "Column",
+            "Row",
+            "Column",
+            "Stack"
+          ],
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ],
+          "question": 1,
+          "pngSha256": "d53a656c6d3ba93365dee759c9ad343521d5266487cef988fa352e1c3152061c"
+        },
+        "q1-real-ime": {
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              1699
+            ],
+            "gameplay-answer-form": [
+              52,
+              1510,
+              1013,
+              1673
+            ],
+            "gameplay-answer-input": [
+              52,
+              1510,
+              1014,
+              1673
+            ],
+            "gameplay-submit": [
+              1046,
+              1510,
+              1209,
+              1673
+            ],
+            "gameplay-title-back": [
+              77,
+              136,
+              220,
+              279
+            ]
+          },
+          "composerPathTypes": [
+            null,
+            "root",
+            "Stack",
+            "Stack",
+            "__Common__",
+            "Stack",
+            "Navigation",
+            "NavigationContent",
+            "NavDestination",
+            "NavDestinationContent",
+            "Stack",
+            "Stack",
+            "Stack",
+            "Tabs",
+            "TabBar",
+            "Column",
+            "Row",
+            "Column",
+            "Stack"
+          ],
+          "nativeTabBarBoundsPx": [
+            52,
+            1484,
+            1208,
+            1699
+          ],
+          "question": 1,
+          "pngSha256": "c78d9a6a24752cd3deda582c2b6f79e98cd7fc24f399b82ffdc031ad8d10c1b4"
+        },
+        "q1-ime-back": {
+          "boundsPx": {
+            "gameplay-page": [
+              0,
+              124,
+              1260,
+              2720
+            ],
+            "gameplay-answer-form": [
+              52,
+              2466,
+              1013,
+              2629
+            ],
+            "gameplay-answer-input": [
+              52,
+              2466,
+              1013,
+              2629
+            ],
+            "gameplay-submit": [
+              1046,
+              2466,
+              1209,
+              2629
+            ],
+            "gameplay-title-back": [
+              77,
+              136,
+              220,
+              279
+            ]
+          },
+          "composerPathTypes": [
+            null,
+            "root",
+            "Stack",
+            "Stack",
+            "__Common__",
+            "Stack",
+            "Navigation",
+            "NavigationContent",
+            "NavDestination",
+            "NavDestinationContent",
+            "Stack",
+            "Stack",
+            "Stack",
+            "Tabs",
+            "TabBar",
+            "Column",
+            "Row",
+            "Column",
+            "Stack"
+          ],
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ],
+          "question": 1,
+          "pngSha256": "9ec0e460066f25dc52cb5649e31b24f4a840e85b2dca0e231f171bb6083b5006"
+        }
+      },
+      "controls": [
+        {
+          "actionCapsule": [
+            1046,
+            2466,
+            1209,
+            2629
+          ],
+          "fieldCapsule": [
+            52,
+            2453,
+            1013,
+            2642
+          ],
+          "capsuleHorizontalGapPx": 33,
+          "question": 1,
+          "field": [
+            52,
+            2466,
+            1013,
+            2629
+          ],
+          "primary": [
+            1046,
+            2466,
+            1209,
+            2629
+          ],
+          "gapPx": 33,
+          "onSameRow": true,
+          "fieldSide": "left",
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ]
+        },
+        {
+          "actionCapsule": [
+            1046,
+            1510,
+            1209,
+            1673
+          ],
+          "fieldCapsule": [
+            52,
+            1497,
+            1013,
+            1686
+          ],
+          "capsuleHorizontalGapPx": 33,
+          "question": 1,
+          "field": [
+            52,
+            1510,
+            1014,
+            1673
+          ],
+          "primary": [
+            1046,
+            1510,
+            1209,
+            1673
+          ],
+          "gapPx": 32,
+          "onSameRow": true,
+          "fieldSide": "left",
+          "nativeTabBarBoundsPx": [
+            52,
+            1484,
+            1208,
+            1699
+          ]
+        },
+        {
+          "actionCapsule": [
+            1046,
+            2466,
+            1209,
+            2629
+          ],
+          "fieldCapsule": [
+            52,
+            2453,
+            1013,
+            2642
+          ],
+          "capsuleHorizontalGapPx": 33,
+          "question": 1,
+          "field": [
+            52,
+            2466,
+            1013,
+            2629
+          ],
+          "primary": [
+            1046,
+            2466,
+            1209,
+            2629
+          ],
+          "gapPx": 33,
+          "onSameRow": true,
+          "fieldSide": "left",
+          "nativeTabBarBoundsPx": [
+            52,
+            2375,
+            1208,
+            2720
+          ]
+        }
+      ],
+      "checks": [
+        "real IME resize and Back",
+        "draft retained on keyboard hide and refocus"
+      ],
+      "draftCleared": true
+    },
+    "fixtureProgressUnchanged": true
+  },
+  "physicalHoldingHandSensorVerified": false,
+  "injectedLeftLayout": {
+    "status": "passed",
+    "signedHapSha256": "3626089a4171188c41de14c965d57af3c24ca62172fd1e8416f1dd46ae885264",
+    "states": {
+      "q4-idle": {
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-swiper": [
+            45,
+            512,
+            1215,
+            2720
+          ],
+          "gameplay-answer-form": [
+            521,
+            2466,
+            1209,
+            2629
+          ],
+          "gameplay-choice-trigger": [
+            521,
+            2466,
+            1209,
+            2629
+          ],
+          "gameplay-next": [
+            52,
+            2466,
+            488,
+            2629
+          ],
+          "gameplay-title-back": [
+            77,
+            136,
+            220,
+            279
+          ]
+        },
+        "composerPathTypes": [
+          null,
+          "root",
+          "Stack",
+          "Stack",
+          "__Common__",
+          "Stack",
+          "Navigation",
+          "NavigationContent",
+          "NavDestination",
+          "NavDestinationContent",
+          "Stack",
+          "Stack",
+          "Stack",
+          "Tabs",
+          "TabBar",
+          "Column",
+          "Row",
+          "Column",
+          "Stack"
+        ],
+        "nativeTabBarBoundsPx": [
+          52,
+          2375,
+          1208,
+          2720
+        ],
+        "question": 4,
+        "pngSha256": "5375bf04a33ef6c463b12a769f0cbea37ed7fb884f5e7fcf36644329a4b8b726"
+      },
+      "q4-popup": {
+        "boundsPx": {
+          "gameplay-page": [
+            0,
+            124,
+            1260,
+            2720
+          ],
+          "gameplay-question-swiper": [
+            45,
+            512,
+            1215,
+            2720
+          ],
+          "gameplay-answer-form": [
+            521,
+            2466,
+            1209,
+            2629
+          ],
+          "gameplay-choice-trigger": [
+            521,
+            2466,
+            1209,
+            2629
+          ],
+          "gameplay-next": [
+            52,
+            2466,
+            488,
+            2629
+          ],
+          "gameplay-choice-sheet": [
+            53,
+            1348,
+            1209,
+            2427
+          ],
+          "gameplay-choice-scroll": [
+            53,
+            1520,
+            1209,
+            2427
+          ],
+          "gameplay-title-back": [
+            77,
+            136,
+            220,
+            279
+          ]
+        },
+        "composerPathTypes": [
+          null,
+          "root",
+          "Stack",
+          "Stack",
+          "__Common__",
+          "Stack",
+          "Navigation",
+          "NavigationContent",
+          "NavDestination",
+          "NavDestinationContent",
+          "Stack",
+          "Stack",
+          "Stack",
+          "Tabs",
+          "TabBar",
+          "Column",
+          "Row",
+          "Column",
+          "Stack"
+        ],
+        "nativeTabBarBoundsPx": [
+          52,
+          2375,
+          1208,
+          2720
+        ],
+        "question": 4,
+        "pngSha256": "6238e118728c279efd2e4db53bdaf2afadadc18fe6ae0ff7095d32c1993cc0ae"
+      }
+    },
+    "controls": [
+      {
+        "actionCapsule": [
+          52,
+          2466,
+          488,
+          2629
+        ],
+        "fieldCapsule": [
+          521,
+          2453,
+          1209,
+          2642
+        ],
+        "capsuleHorizontalGapPx": 33,
+        "question": 4,
+        "field": [
+          521,
+          2466,
+          1209,
+          2629
+        ],
+        "primary": [
+          52,
+          2466,
+          488,
+          2629
+        ],
+        "gapPx": 33,
+        "onSameRow": true,
+        "fieldSide": "right",
+        "nativeTabBarBoundsPx": [
+          52,
+          2375,
+          1208,
+          2720
+        ]
+      }
+    ],
+    "choice": {
+      "triggerGapPx": 39,
+      "panel": [
+        53,
+        1348,
+        1209,
+        2427
+      ],
+      "visibleDisabledRadios": 4,
+      "dismissals": [
+        "close-control"
+      ]
+    },
+    "checks": [
+      "injected software event moved action left and popup stayed centered"
+    ],
+    "sourceDifference": "Only platform/HoldingHand.ets replaces the native sensor listener with an injected left event",
+    "evidenceType": "software layout validation on physical device"
+  }
+}
