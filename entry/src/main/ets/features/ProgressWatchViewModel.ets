@@ -1,5 +1,5 @@
 import { GameRepository } from '../business/GameRepository';
-import { GameFailure } from '../business/models';
+import { GameFailure, isPlayerSessionFailure } from '../business/models';
 import {
   PROGRESS_EVENT_KINDS, ProgressWatch, ProgressWatchCommand, ProgressWatchDetail, ProgressWatchList
 } from '../business/ProgressWatch';
@@ -90,7 +90,9 @@ export class ProgressWatchViewModel {
         this.watchSettingsExpiry(expiresAt);
       }
     } catch (error) {
-      if (this.accessRead === read) { this.rejectSession(error as Object); }
+      if (this.accessRead === read && isPlayerSessionFailure(error as Object)) {
+        this.rejectSession(error as Object);
+      }
     } finally {
       if (this.accessRead === read) { this.accessRead = null; }
     }
@@ -212,7 +214,7 @@ export class ProgressWatchViewModel {
         this.watchPageExpiry();
       }
       this.readError = this.errorMessage(error as Object);
-      this.rejectSession(error as Object);
+      if (isPlayerSessionFailure(error as Object)) { this.rejectSession(error as Object); }
     } finally {
       if (this.read === read) {
         this.read = null;
@@ -333,7 +335,7 @@ export class ProgressWatchViewModel {
     } catch (error) {
       if (generation !== this.generation) { return; }
       const failure: Object = error as Object;
-      this.rejectSession(failure);
+      if (isPlayerSessionFailure(failure)) { this.rejectSession(failure); }
       if (generation !== this.generation) { return; }
       this.watchPageExpiry();
       if (this.pending !== write) { return; }

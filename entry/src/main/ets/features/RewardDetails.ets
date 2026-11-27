@@ -9,13 +9,13 @@ import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardImageViewer, StarwardImageViewerState } from '../ui/StarwardImageViewer';
 import { starwardMediaCoverOptions } from '../ui/StarwardMediaCover';
 import { StarwardRichContent } from '../ui/StarwardRichContent';
+import { StarwardSheetHeader } from '../ui/StarwardSheet';
 import { StarwardVideoViewer, StarwardVideoViewerState } from '../ui/StarwardVideoViewer';
 import { STARWARD_RADIUS_CONTROL } from '../ui/StarwardRadii';
 
 const rewardDate = new Intl.DateTimeFormat('zh-CN', {
   year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
 });
-const DETAIL_TOP_PADDING: number = 24;
 
 function formattedRewardDate(value: string): string {
   const date: Date = new Date(value);
@@ -74,7 +74,7 @@ export struct RewardDetails {
     const top: number = Math.max(this.avoidArea.statusBar.topRect.height, this.avoidArea.cutout.topRect.height);
     const bottom: number = this.avoidArea.navigationIndicator.bottomRect.height;
     const available: number = (this.windowSize.height - top - bottom) * 0.88 + bottom;
-    return Math.max(80, available - this.headerHeight - DETAIL_TOP_PADDING);
+    return Math.max(80, available - this.headerHeight);
   }
 
   private async openLink(href: string): Promise<void> {
@@ -169,17 +169,8 @@ export struct RewardDetails {
 
   @Builder
   private header() {
-    Row({ space: 12 }) {
-      Text(this.reward.snapshot.name).id('rewards-detail-title').layoutWeight(1)
-        .fontSize(21).fontWeight(FontWeight.Bold).lineHeight('30fp').wordBreak(WordBreak.BREAK_WORD)
-        .fontColor($r('app.color.strong')).margin({ top: 6 })
-      Button({ type: ButtonType.Normal }) {
-        Image($r('app.media.icon_close')).width(24).height(24).objectFit(ImageFit.Contain)
-          .fillColor($r('app.color.muted')).accessibilityLevel('no')
-      }.id('rewards-detail-close').width(44).height(44).padding(0).borderRadius(STARWARD_RADIUS_CONTROL)
-        .backgroundColor($r('app.color.surface_hover')).accessibilityText('关闭详情').onClick(() => this.close())
-    }.width('100%').alignItems(VerticalAlign.Top).padding({ bottom: 12 })
-      .border({ width: { bottom: 1 }, color: $r('app.color.border_strong') })
+    StarwardSheetHeader({ title: this.reward.snapshot.name, titleId: 'rewards-detail-title',
+      closeId: 'rewards-detail-close', closeLabel: '关闭详情', close: () => this.close() })
       .onAreaChange((_old: Area, area: Area) => {
         const measured: number = Number(area.height);
         if (Number.isFinite(measured) && measured > 0 && Math.abs(measured - this.headerHeight) > 0.5) {
@@ -220,12 +211,12 @@ export struct RewardDetails {
             Text(`领取于 ${formattedRewardDate(this.reward.redeemedAt)}`).id('rewards-redeemed-at')
               .width('100%').fontSize(13).lineHeight('23.4fp').fontColor($r('app.color.muted')).margin({ top: 12 })
           }
-        }.width('100%').alignItems(HorizontalAlign.Start).padding({ top: 12, bottom: this.bottomPadding() })
+        }.width('100%').alignItems(HorizontalAlign.Start)
+          .padding({ left: 16, right: 16, top: 12, bottom: this.bottomPadding() })
       }.id('rewards-detail-scroll').width('100%').constraintSize({ maxHeight: this.maximumBodyHeight() })
         .align(Alignment.Top).scrollBar(BarState.Off)
       Column() {}.width(0).height(0).bindContentCover(this.image.visible, this.imageCover(), this.imageCoverOptions())
       Column() {}.width(0).height(0).bindContentCover(this.video.visible, this.videoCover(), this.videoCoverOptions())
     }.id('rewards-detail-sheet').width('100%').alignItems(HorizontalAlign.Start)
-      .padding({ left: 16, right: 16, top: DETAIL_TOP_PADDING })
   }
 }

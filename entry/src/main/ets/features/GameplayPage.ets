@@ -1,5 +1,5 @@
 import { common } from '@kit.AbilityKit';
-import { Binding, curves, LengthMetrics, PromptAction, promptAction } from '@kit.ArkUI';
+import { Binding, curves, PromptAction, promptAction } from '@kit.ArkUI';
 import { GameNotification } from '../business/GameNotification';
 import { clueImageSources, combinationClues, isNarrativeClue,
   nextNarrativeAttention, ordinaryClues } from '../business/GameplayClues';
@@ -33,6 +33,7 @@ import { StarwardFeedback } from '../ui/StarwardFeedback';
 import { StarwardKeyboard } from '../ui/StarwardKeyboard';
 import { StarwardGlassDialog } from '../ui/StarwardGlassDialog';
 import { StarwardModalBackdropState } from '../ui/StarwardGlassBackdrop';
+import { StarwardSheetStyle } from '../ui/StarwardSheet';
 import { starwardMediaCoverOptions } from '../ui/StarwardMediaCover';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
 import { StarwardQuestionImages } from '../ui/StarwardQuestionImages';
@@ -217,6 +218,7 @@ export struct GameplayPage {
   private attentionAccount: string = '';
   private attentionAssignment: string = '';
   private readonly hintBackdropOwner: Object = new Object();
+  private readonly hintSheetStyle: StarwardSheetStyle = new StarwardSheetStyle();
   private bgmMounted: boolean = false;
   private clueLinkHandoff: ClueLinkHandoff | null = null;
   private readonly clueLifecycle: (foreground: boolean) => void = (foreground: boolean) => {
@@ -683,9 +685,8 @@ export struct GameplayPage {
 
   private gameplaySheetOptions(): SheetOptions {
     const revision: number = this.sheetRevision;
-    return { height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: false,
-      radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
-      backgroundColor: $r('app.color.gameplay_overlay_tint'), blurStyle: BlurStyle.NONE, maskColor: Color.Transparent,
+    return this.hintSheetStyle.apply({ height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM,
+      maskColor: Color.Transparent,
       onWillAppear: () => {
         if (revision === this.sheetRevision && this.sheet === 'hint' && this.sheetVisible) {
           this.sheetMounted = true;
@@ -697,7 +698,7 @@ export struct GameplayPage {
         this.closeGameplaySheet();
         action.dismiss();
       },
-      onDisappear: () => this.finishGameplaySheet(revision) };
+      onDisappear: () => this.finishGameplaySheet(revision) });
   }
 
   private dismissChoicePopup(revision: number): boolean {
@@ -1924,11 +1925,6 @@ export struct GameplayPage {
     return hidden === undefined ? this.play.snapshot?.presentation.hideTitle !== true : !hidden;
   }
 
-  private questionTitleSize(): number {
-    if (this.viewportWidth <= 620) { return Math.max(20, Math.min(24, this.viewportWidth * 0.054)); }
-    return Math.max(21, Math.min(26, this.viewportWidth * 0.05));
-  }
-
   private questionMediaHeight(): number { return this.viewportWidth <= 620 ? 300 : 420; }
 
   private shownAnswer(): string {
@@ -2082,9 +2078,9 @@ export struct GameplayPage {
       ownerKey: this.questionImageOwner(levelId), ownerIsCurrent: (key: string) =>
         this.imageCacheOwner().length > 0 && this.showsQuestionImages(levelId) && key === this.questionImageOwner(levelId),
       imageCache: this.imageCache, inlineVideo: this.inlineVideo, inlineVideoSlot: this.inlineVideoSlot,
-      color: hint ? $r('app.color.text') : $r('app.color.strong'),
-      textSize: hint ? 15 : this.viewportWidth <= 620 ? 19 : 20, textWeight: hint ? 400 : 600,
-      lineHeight: hint ? '26.25fp' : this.viewportWidth <= 620 ? '29.45fp' : '31.2fp',
+      color: $r('app.color.text'),
+      textSize: hint ? 15 : (this.viewportWidth <= 620 ? 17 : 18), textWeight: 400,
+      lineHeight: hint ? '26.25fp' : (this.viewportWidth <= 620 ? '28fp' : '30fp'),
       active: levelId === this.readableQuestionId(),
       interactive: this.questionMediaReady(hint ? 'hint' : null),
       showMedia: this.showsQuestionImages(levelId), availableWidth: hint ? 0 : this.questionContentWidth,
@@ -2101,18 +2097,11 @@ export struct GameplayPage {
     GameplaySurface({ lightweight: true, interactive: false, reducedMotion: this.reducedMotion }) {
       Column() {
         GameplayQuestionHeading({ questionNumber: this.levelById(levelId)?.position || 0,
+          title: this.titleVisible(levelId) ? this.levelById(levelId)?.question?.title ?? '' : '',
+          viewportWidth: this.viewportWidth,
           active: levelId === this.readableQuestionId(), hasHint: this.hasHints(levelId),
           hintExpanded: levelId === this.readableQuestionId() && this.sheet === 'hint' && this.sheetVisible,
           hintEnabled: this.questionMediaReady(), openHint: () => this.openGameplaySheet('hint') })
-        if (this.titleVisible(levelId) && (this.levelById(levelId)?.question?.title || '').length > 0) {
-          Text(this.levelById(levelId)?.question?.title || '')
-            .id(levelId === this.readableQuestionId() ? 'question-title' : '').width('100%')
-            .fontSize(this.questionTitleSize()).fontWeight(FontWeight.Bold)
-            .lineHeight(`${this.questionTitleSize() * 1.4}fp`)
-            .letterSpacing(`${-0.02 * this.questionTitleSize()}fp`)
-            .lineBreakStrategy(LineBreakStrategy.BALANCED)
-            .fontColor($r('app.color.strong')).margin({ top: this.viewportWidth <= 620 ? 10 : 12 })
-        }
         Column({ space: this.viewportWidth <= 620 ? 14 : 16 }) {
           if (this.contentBlocks(levelId).some((block: GameplayContentBlock) => block.text.length > 0)) {
             Column({ space: this.viewportWidth <= 620 ? 14 : 16 }) {

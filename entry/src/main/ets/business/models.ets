@@ -74,6 +74,12 @@ export class GameFailure extends Error {
   }
 }
 
+/** Session rejection reported by an account-scoped feature endpoint. */
+export function isPlayerSessionFailure(error: Object): boolean {
+  return error instanceof GameFailure && (error.status === 401 || error.code === 'ACCOUNT_DISABLED' ||
+    error.code === 'PASSWORD_CHANGE_REQUIRED');
+}
+
 export function utf8Length(value: string): number {
   let bytes: number = 0;
   for (let i: number = 0; i < value.length; i++) {

@@ -1,0 +1,223 @@
+{
+  "status": "passed",
+  "scope": "fixed isolated portrait preview, no business writes",
+  "reproBefore": {
+    "status": "observed",
+    "hapSha256": "56444a8c148c4fcf1fded139ee69f7c87de76a9f2789d570299ff1a597a95f82",
+    "networkBefore": {
+      "previewHostRunning": true,
+      "dedicatedLoginValidation": "verified_direct_login",
+      "credentialsPrinted": false
+    },
+    "before": {
+      "passport-heading": true,
+      "passport-settings": true,
+      "settings-page": false,
+      "settings-version": false,
+      "account": false,
+      "password": false,
+      "environment-badge": false,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": true,
+      "nav-profile": true
+    },
+    "targetCenterPx": [
+      630,
+      1975
+    ],
+    "targetBoundsPx": [
+      61,
+      1884,
+      1199,
+      2066
+    ],
+    "immediate": {
+      "passport-heading": false,
+      "passport-settings": false,
+      "settings-page": false,
+      "settings-version": false,
+      "account": true,
+      "password": true,
+      "environment-badge": true,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": false,
+      "nav-profile": false
+    },
+    "immediateCaptureElapsedSeconds": 5.48,
+    "settled": {
+      "passport-heading": false,
+      "passport-settings": false,
+      "settings-page": false,
+      "settings-version": false,
+      "account": true,
+      "password": true,
+      "environment-badge": true,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": false,
+      "nav-profile": false
+    },
+    "sameAppProcess": true,
+    "networkAfter": {
+      "previewHostRunning": true,
+      "dedicatedLoginValidation": "verified_direct_login",
+      "credentialsPrinted": false
+    },
+    "sanitizedAppLogCounts": {
+      "appRecords": 16,
+      "arkNativeCrash": 0,
+      "authorizationDenied": 0,
+      "transportError": 0,
+      "accountGateRelated": 0,
+      "settingsRouteRelated": 0
+    },
+    "outcome": "returned-to-auth",
+    "screenshotSha256": {
+      "before-settings.png": "35459f6d345a1d1fb209de30bd2b235137c0644eab58dfac72d8fdd0aadcd41f",
+      "after-settings-settled.png": "1777ae83cdfc749efcaed6dfbc7c28b98da01eb2f0a3785dc07cf7bf5c5967a8",
+      "after-settings-immediate.png": "5b134b7d53045664f13d2f944f3426caf531238be7ec84143429b70317ea145a"
+    }
+  },
+  "fixedAfter": {
+    "status": "observed",
+    "hapSha256": "593ebdd1303123df6b6193fa3822eb44cea228cb9c25c304eeb6ed5c1748e85e",
+    "networkBefore": {
+      "previewHostRunning": true,
+      "dedicatedLoginValidation": "verified_direct_login",
+      "credentialsPrinted": false
+    },
+    "before": {
+      "passport-heading": true,
+      "passport-settings": true,
+      "settings-page": false,
+      "settings-version": false,
+      "account": false,
+      "password": false,
+      "environment-badge": false,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": true,
+      "nav-profile": true,
+      "settings-progress-watches": false
+    },
+    "targetCenterPx": [
+      630,
+      1975
+    ],
+    "targetBoundsPx": [
+      61,
+      1884,
+      1199,
+      2066
+    ],
+    "immediate": {
+      "passport-heading": false,
+      "passport-settings": false,
+      "settings-page": true,
+      "settings-version": true,
+      "account": false,
+      "password": false,
+      "environment-badge": false,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": false,
+      "nav-profile": false,
+      "settings-progress-watches": false
+    },
+    "immediateCaptureElapsedSeconds": 6.9,
+    "settled": {
+      "passport-heading": false,
+      "passport-settings": false,
+      "settings-page": true,
+      "settings-version": true,
+      "account": false,
+      "password": false,
+      "environment-badge": false,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": false,
+      "nav-profile": false,
+      "settings-progress-watches": false
+    },
+    "sameAppProcess": true,
+    "networkAfter": {
+      "previewHostRunning": true,
+      "dedicatedLoginValidation": "verified_direct_login",
+      "credentialsPrinted": false
+    },
+    "sanitizedAppLogCounts": {
+      "appRecords": 22,
+      "arkNativeCrash": 0,
+      "authorizationDenied": 0,
+      "transportError": 0,
+      "accountGateRelated": 0,
+      "settingsRouteRelated": 0
+    },
+    "outcome": "settings-open",
+    "returned": {
+      "passport-heading": true,
+      "passport-settings": true,
+      "settings-page": false,
+      "settings-version": false,
+      "account": false,
+      "password": false,
+      "environment-badge": false,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": true,
+      "nav-profile": true,
+      "settings-progress-watches": false
+    },
+    "backToPassport": true,
+    "reopened": {
+      "passport-heading": false,
+      "passport-settings": false,
+      "settings-page": true,
+      "settings-version": true,
+      "account": false,
+      "password": false,
+      "environment-badge": false,
+      "session-restoring": false,
+      "forced-logout": false,
+      "privacy-gate-sheet": false,
+      "journey-heading": false,
+      "nav-home": false,
+      "nav-profile": false,
+      "settings-progress-watches": false
+    },
+    "reentryAndBack": true,
+    "screenshotSha256": {
+      "before-settings.png": "86d6e5d9f421c00d61cd91b68b71d71811a978789fbc8573510d71e2f6b5de2c",
+      "after-settings-settled.png": "f72fa87449529e035ecb81b4b3519e6069a0c150f6a6880e9e53a7d25cea4ccb",
+      "back-to-passport.png": "b5312cc90feb5be46f5dac655047fd3c7af9c3b37781c45818894e9f8fab3f62",
+      "reopened-settings.png": "11ddb69b6447c2d52a52cd7b29cdde676521d562ecf311619c2cb49d8ef48edc",
+      "after-settings-immediate.png": "b7163053a2a994ae73861aaa715dad89709f7c120fc4f7003b2c636df77606d7"
+    }
+  },
+  "ownedPreviewRoutesAfterTest": {
+    "me": {
+      "http": 200
+    },
+    "progressWatches": {
+      "http": 404,
+      "code": "NOT_FOUND"
+    }
+  },
+  "snapshotPrivacy": "All screenshots and full layout trees are private"
+}

@@ -135,13 +135,20 @@ export struct GameplayProgress {
 @ComponentV2
 export struct GameplayQuestionHeading {
   @Require @Param questionNumber: number;
+  @Param title: string = '';
+  @Param viewportWidth: number = 0;
   @Param active: boolean = false;
   @Param hasHint: boolean = false;
   @Param hintExpanded: boolean = false;
   @Param hintEnabled: boolean = false;
   @Event openHint: () => void = () => {};
 
-  build() {
+  private titleSize(): number {
+    return this.viewportWidth <= 620 ? Math.max(22, Math.min(25, this.viewportWidth * 0.062)) : 26;
+  }
+
+  @Builder
+  private questionNumberRow() {
     Row() {
       Text(`第 ${this.questionNumber} 题`).id(this.active ? 'question-number' : '')
         .fontSize(14).fontWeight(FontWeight.Medium).fontFeature("'tnum' 1").fontColor($r('app.color.accent_text'))
@@ -161,5 +168,19 @@ export struct GameplayQuestionHeading {
           .onClick(() => this.openHint())
       }
     }.width('100%').constraintSize({ minHeight: 36 })
+  }
+
+  build() {
+    Column() {
+      this.questionNumberRow()
+      if (this.title.length > 0) {
+        Text(this.title).id(this.active ? 'question-title' : '').width('100%')
+          .fontSize(this.titleSize()).fontWeight(FontWeight.Bold)
+          .lineHeight(`${this.titleSize() * 1.4}fp`)
+          .letterSpacing(`${-0.02 * this.titleSize()}fp`)
+          .lineBreakStrategy(LineBreakStrategy.BALANCED)
+          .fontColor($r('app.color.strong')).margin({ top: this.viewportWidth <= 620 ? 10 : 12 })
+      }
+    }.width('100%')
   }
 }

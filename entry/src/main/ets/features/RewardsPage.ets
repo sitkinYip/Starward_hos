@@ -1,10 +1,12 @@
-import { curves, LengthMetrics, SegmentButtonV2Items, UIUtils } from '@kit.ArkUI';
+import { curves, SegmentButtonV2Items, UIUtils } from '@kit.ArkUI';
 import { GameReward } from '../business/GameReward';
 import { QuestionImageCache } from '../platform/QuestionImageCache';
 import { InlineError } from '../ui/ErrorMessages';
+import { StarwardModalBackdropState } from '../ui/StarwardGlassBackdrop';
 import { starwardListReveal } from '../ui/StarwardMotion';
 import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardRefresh } from '../ui/StarwardRefresh';
+import { StarwardSheetStyle } from '../ui/StarwardSheet';
 import { StarwardSyncNotice } from '../ui/StarwardSyncNotice';
 import { StarwardCapsuleSegment, StarwardPaneTabs } from '../ui/StarwardTabs';
 import {
@@ -41,6 +43,8 @@ struct RewardLoadingCard {
 /** The collection uses the same native tab and refresh surfaces as other main destinations. */
 @ComponentV2
 export struct RewardsPage {
+  @Consumer('starwardModalBackdrop') private modalBackdrop: StarwardModalBackdropState =
+    new StarwardModalBackdropState();
   @Require @Param model: RewardsViewModel;
   @Require @Param playerId: string;
   @Param bottomClearance: number = 80;
@@ -56,6 +60,10 @@ export struct RewardsPage {
   @Local private selectedCategory: number = 0;
   @Local private detailVisible: boolean = false;
   private presentedDetail: string = '';
+  private detailMounted: boolean = false;
+  private detailRevision: number = 0;
+  private readonly detailBackdropOwner: Object = new Object();
+  private readonly detailStyle: StarwardSheetStyle = new StarwardSheetStyle();
   private readonly artCache: QuestionImageCache = new QuestionImageCache(() => this.active ? this.playerId : '');
   private readonly categories: SegmentButtonV2Items = new SegmentButtonV2Items([
     { text: '待领', accessibilityText: '待领' },
@@ -77,7 +85,10 @@ export struct RewardsPage {
   @Monitor('playerId')
   private ownerChanged(): void { this.selectedCategory = 0; }
 
-  aboutToDisappear(): void { this.artCache.clear(); }
+  aboutToDisappear(): void {
+    this.finishDetailPresentation(this.detailRevision);
+    this.artCache.clear();
+  }
 
   @Monitor('playerId', 'active')
   private scopeChanged(): void { this.artCache.validateOwner(); }
@@ -87,20 +98,60 @@ export struct RewardsPage {
 
   private validOwner(owner: string): boolean { return this.active && owner.length > 0 && this.playerId === owner; }
 
+  private detailIdentity(reward: GameReward): string { return `${reward.player}:${reward.id}`; }
+
+  private resetDetailPresentation(): void {
+    if (this.presentedDetail.length === 0) { return; }
+    this.detailRevision++;
+    this.modalBackdrop.hide(this.detailBackdropOwner);
+    this.detailMounted = false;
+    this.presentedDetail = '';
+    this.detailVisible = false;
+  }
+
+  private finishDetailPresentation(revision: number): void {
+    if (revision !== this.detailRevision || this.presentedDetail.length === 0) { return; }
+    const selected: GameReward | null = this.model.selected;
+    const isCurrentDetail: boolean = selected !== null && this.detailIdentity(selected) === this.presentedDetail;
+    this.resetDetailPresentation();
+    if (isCurrentDetail) { this.model.close(); }
+  }
+
   @Monitor('model.selected', 'playerId', 'active')
   private syncDetailVisibility(): void {
     const selected: GameReward | null = this.model.selected;
-    if (selected === null || !this.validOwner(selected.player)) {
-      this.presentedDetail = '';
+    if (selected === null && this.active && this.detailMounted &&
+      this.presentedDetail.startsWith(this.playerId + ':')) {
       this.detailVisible = false;
       return;
     }
-    const identity: string = `${selected.player}:${selected.id}`;
+    if (selected === null || !this.validOwner(selected.player)) {
+      this.resetDetailPresentation();
+      return;
+    }
+    const identity: string = this.detailIdentity(selected);
     // A live snapshot refresh must not reopen a sheet already dismissing this grant.
     if (identity !== this.presentedDetail) {
+      this.resetDetailPresentation();
+      this.detailRevision++;
       this.presentedDetail = identity;
       this.detailVisible = true;
     }
+  }
+
+  private detailOptions(): SheetOptions {
+    const revision: number = this.detailRevision;
+    return this.detailStyle.apply({
+      height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, maskColor: Color.Transparent,
+      onWillAppear: () => {
+        const selected: GameReward | null = this.model.selected;
+        if (revision === this.detailRevision && this.detailVisible && selected !== null && this.validOwner(selected.player)) {
+          this.detailMounted = true;
+          this.modalBackdrop.show(this.detailBackdropOwner);
+        }
+      },
+      onDisappear: () => { this.finishDetailPresentation(revision); }
+    });
   }
 
   @Builder
@@ -235,11 +286,6 @@ export struct RewardsPage {
       .translate({ y: this.reducedMotion || this.revealed ? 0 : 14 })
       .animation(starwardListReveal(this.active && !this.reducedMotion))
       .onAppear(() => { this.updateReveal(); this.syncDetailVisibility(); })
-      .bindSheet(this.detailVisible!!, this.detail(), {
-        height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: false,
-        radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
-        backgroundColor: $r('app.color.raised'), blurStyle: BlurStyle.Thin, maskColor: $r('app.color.modal_mask'),
-        onDisappear: () => { this.model.close(); }
-      })
+      .bindSheet(this.detailVisible!!, this.detail(), this.detailOptions())
   }
 }

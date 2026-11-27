@@ -1,5 +1,5 @@
 import { GameRepository } from '../business/GameRepository';
-import { GameFailure } from '../business/models';
+import { GameFailure, isPlayerSessionFailure } from '../business/models';
 import { JourneyPushSubscription, PERSONAL_JOURNEY_SCOPE, PushSubscriptionCommand } from '../business/PushSubscription';
 import { ReadCancellation } from '../business/ReadCancellation';
 import { createRequestIdentity } from '../platform/RequestIdentity';
@@ -70,11 +70,6 @@ export class PushSubscriptionsViewModel {
     this.busy = false;
   }
 
-  private sessionFailure(error: Object): boolean {
-    return error instanceof GameFailure && (error.status === 401 || error.code === 'PASSWORD_CHANGE_REQUIRED' ||
-      error.code === 'ACCOUNT_DISABLED');
-  }
-
   private message(error: Object): string {
     return error instanceof Error && error.message.length > 0 ? error.message : '暂时无法同步订阅，请重试。';
   }
@@ -105,7 +100,7 @@ export class PushSubscriptionsViewModel {
       }
     } catch (error) {
       if (generation === this.generation && this.read === read && !read.cancelled) {
-        if (this.sessionFailure(error as Object)) { this.rejectSession(error as Object); return; }
+        if (isPlayerSessionFailure(error as Object)) { this.rejectSession(error as Object); return; }
         this.error = this.message(error as Object);
       }
     } finally {
@@ -181,7 +176,7 @@ export class PushSubscriptionsViewModel {
       return true;
     } catch (error) {
       if (generation !== this.generation || this.command !== command) { return false; }
-      if (this.sessionFailure(error as Object)) { this.rejectSession(error as Object); return false; }
+      if (isPlayerSessionFailure(error as Object)) { this.rejectSession(error as Object); return false; }
       this.writeError = this.message(error as Object);
       if (error instanceof GameFailure && error.status >= 400 && error.status < 500 &&
         error.status !== 408 && error.status !== 429) {

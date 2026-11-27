@@ -30,6 +30,8 @@ class ProgressRepository extends MockGameRepository {
   other: ProgressWatchDetail | null = null;
   readIds: string[] = [];
   commands: ProgressWatchCommand[] = [];
+  listFailure: GameFailure | null = null;
+  detailFailure: GameFailure | null = null;
   failure: GameFailure | null = null;
   holdList: boolean = false;
   holdWrite: boolean = false;
@@ -43,12 +45,14 @@ class ProgressRepository extends MockGameRepository {
   }
 
   async progressWatches(_cancellation?: ReadCancellation): Promise<ProgressWatchList> {
+    if (this.listFailure !== null) { throw this.listFailure; }
     if (this.holdList) { return new Promise<ProgressWatchList>((resolve) => { this.finishList = resolve; }); }
     return this.list();
   }
 
   async progressWatch(id: string): Promise<ProgressWatchDetail> {
     this.readIds.push(id);
+    if (this.detailFailure !== null) { throw this.detailFailure; }
     const other: ProgressWatchDetail | null = this.other;
     return other !== null && id === other.watch.id ? other : this.current;
   }
@@ -73,6 +77,104 @@ async function turn(delay: number = 0): Promise<void> {
 
 export default function progressWatchesTests(): void {
   describe('ProgressWatches', () => {
+    it('keepsSettingsAvailableWhenOptionalProgressAccessFails', 0, async () => {
+      const repo: ProgressRepository = new ProgressRepository();
+      const rejected: Object[] = [];
+      const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, (error: Object) => { rejected.push(error); });
+      const optionalFailures: GameFailure[] = [
+        new GameFailure('NOT_FOUND', '旧版服务', 404),
+        new GameFailure('FORBIDDEN', '没有进度授权', 403),
+        new GameFailure('TIMEOUT', '查询超时'),
+        new GameFailure('SERVER_ERROR', '服务暂不可用', 503)
+      ];
+      model.bindOwner('watcher');
+      try {
+        for (const failure of optionalFailures) {
+          repo.listFailure = failure;
+          model.setSettingsActive(true);
+          await turn();
+          expect(model.settingsVisible).assertFalse();
+          expect(rejected.length).assertEqual(0);
+        }
+        repo.listFailure = null;
+        model.setSettingsActive(true);
+        await turn();
+        expect(model.settingsVisible).assertTrue();
+      } finally {
+        model.setSettingsActive(false);
+      }
+    });
+
+    it('reportsRealPlayerSessionFailuresFromSettingsAccess', 0, async () => {
+      const repo: ProgressRepository = new ProgressRepository();
+      const rejected: Object[] = [];
+      const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, (error: Object) => { rejected.push(error); });
+      const sessionFailures: GameFailure[] = [
+        new GameFailure('AUTH_REQUIRED', '请重新登录', 401),
+        new GameFailure('ACCOUNT_DISABLED', '账号停用', 403),
+        new GameFailure('PASSWORD_CHANGE_REQUIRED', '请修改密码', 403)
+      ];
+      model.bindOwner('watcher');
+      for (const failure of sessionFailures) {
+        repo.listFailure = failure;
+        model.setSettingsActive(true);
+        await turn();
+      }
+      expect(rejected.length).assertEqual(sessionFailures.length);
+      expect(sessionFailures.every((failure: GameFailure, index: number) => rejected[index] === failure)).assertTrue();
+    });
+
+    it('keepsAnExpiredDetailGrantLocalAndReportsARealSessionFailure', 0, async () => {
+      const repo: ProgressRepository = new ProgressRepository();
+      const rejected: Object[] = [];
+      const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, (error: Object) => { rejected.push(error); });
+      model.bindOwner('watcher');
+      repo.detailFailure = new GameFailure('NOT_FOUND', '场次授权失效', 404);
+      model.openPage(true);
+      try {
+        await turn();
+        expect(repo.readIds[0]).assertEqual(WATCH_ID);
+        expect(model.detail === null).assertTrue();
+        expect(model.readError).assertEqual('场次授权失效');
+        expect(rejected.length).assertEqual(0);
+
+        const expiredSession: GameFailure = new GameFailure('AUTH_REQUIRED', '请重新登录', 401);
+        repo.detailFailure = expiredSession;
+        await model.refresh();
+        expect(rejected.length).assertEqual(1);
+        expect(rejected[0] === expiredSession).assertTrue();
+      } finally {
+        model.closePage();
+      }
+    });
+
+    it('keepsAWritePermissionFailureLocalAndReportsARealSessionFailure', 0, async () => {
+      const repo: ProgressRepository = new ProgressRepository();
+      const rejected: Object[] = [];
+      const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, (error: Object) => { rejected.push(error); });
+      model.bindOwner('watcher');
+      model.openPage(true);
+      try {
+        await turn();
+        model.choose('correct', true);
+        repo.failure = new GameFailure('FORBIDDEN', '不能修改此订阅', 403);
+        await model.saveSelection();
+        expect(repo.commands.length).assertEqual(1);
+        expect(model.writeError).assertEqual('不能修改此订阅');
+        expect(model.retryPending).assertFalse();
+        expect(rejected.length).assertEqual(0);
+
+        const disabled: GameFailure = new GameFailure('ACCOUNT_DISABLED', '账号停用', 403);
+        repo.failure = disabled;
+        await model.saveSelection();
+        expect(repo.commands.length).assertEqual(2);
+        expect(rejected.length).assertEqual(1);
+        expect(rejected[0] === disabled).assertTrue();
+      } finally {
+        model.closePage();
+      }
+    });
+
     it('ignoresAccessAndWriteResultsFromAFormerAccount', 0, async () => {
       const repo: ProgressRepository = new ProgressRepository();
       const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, () => {});
@@ -98,7 +200,8 @@ export default function progressWatchesTests(): void {
 
     it('keepsConsentSeparateAndReusesTheConfirmedRequestOnRetry', 0, async () => {
       const repo: ProgressRepository = new ProgressRepository();
-      const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, () => {});
+      let sessionRejections: number = 0;
+      const model: ProgressWatchViewModel = new ProgressWatchViewModel(repo, () => { sessionRejections++; });
       model.bindOwner('watcher');
       model.openPage(true);
       await turn();
@@ -139,6 +242,7 @@ export default function progressWatchesTests(): void {
       expect(model.detail?.watch.pushEnabled).assertFalse();
       model.closePage();
       expect(model.items.length).assertEqual(0);
+      expect(sessionRejections).assertEqual(0);
     });
 
     it('defersPushTargetDuringSaveAndBackgroundThenAuthorizesTheTarget', 0, async () => {

@@ -195,6 +195,20 @@ python3 -B scripts/device-aurora-preview-smoke.py --runtime-report artifacts/val
 - 蓝底白字候选装至固定隔离直板机，浅色和深色均核对可用蓝底白色前景、无白色描边、浮层展开后的原生禁用和浮层居中。外观已恢复「跟随系统」。 [深浅主题真机报告](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/color-device.json)
 - 以归档的权威永久锁定选择题快照，在隔离 HTTPS 真机验证淡冰蓝禁用操作。测试包只更换隔离 CA。点击提交无效且下缘无残影，四个选项可看但不可改选，系统返回后锁定及错误次数保持原值。服务收到零次答题及入场请求。已恢复固定预览连接并安装最新签名包。深色锁定、无材质设备、读屏和外接键盘未单独实测。 [锁定真机报告](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/locked-ice-device.json) · [截图](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/blue/locked-ice-dock.png) · [最新验签](../artifacts/validation/aurora-glass-v2-20261125/split-dock-20261127/inactive/signature.json)
 
+## 2026-11-27 全局抽屉头部与玻璃
+
+- 五处原生 `bindSheet` 共用 `StarwardSheetStyle`。选择题的锚定浮层和各底部抽屉共用 `StarwardSheetHeader`，各功能仍持有滚动、关闭、账号与媒体生命周期。首次隐私同意保留不可跳过的系统门槛。 [API 26 系统材质](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-immersive-light-sense-component-adaptation/)
+- 同一题图、同一台直板机分别装包。显式透明底色与 `THICK` 仍录得均匀 RGB。给 `THICK` 叠加 `COMPONENT_THIN` 后五点各通道最大只差 1 级。单独采用透明底色与原生 `COMPONENT_THIN` 时，同一行红通道差 24 级且能看见题图的蓝色轮廓。最终底部抽屉使用这套原生参数，顶栏至系统区的共享透明蒙层在各次关闭后恢复。 [透明配置](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/explicit-transparent-experiment.json) · [叠加配置](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/thick-with-thin-experiment.json) · [原生模糊对照](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/native-thin-experiment.json)
+- 头部候选验证提示、护照资料／密码／外观、登录帮助和已领奖励，覆盖头部关闭、外点、返回和真实键盘优先 Back。最终固定预览包复验提示和护照资料。源码一致的隔离 CA 包复验登录帮助和已领奖励，回放零次业务写入。头像裁剪、首次隐私同意、深色和外接键盘本轮未单独复验。 [六处交互](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/device.json) · [最终包真机](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/final-native-thin-device.json)
+- 底部锚定 `bindPopup` 隔离原型以选择题相同的 `THICK` 渲染同一条提示。五点红通道差 46 级，相同位置最终 `bindSheet` 差 24 级。原型两侧各 12vp，距屏底约 29vp，点关闭、系统返回和点蒙层均留在原题。只验证了阅读提示，表单、拖拽和隐私门槛未用此宿主验证。设备已恢复固定预览签名包和原连接。 [THICK Popup 对照](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/hint-thick-popup-device.json)
+- 最终包构建及 HAP、profile 验签通过。测试 340 项通过。lint 无错误、无警告，保留一条叙事页面的既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/global-sheet-20261127/lint.json)
+
+## 2026-11-27 题卡文字层级与设置会话
+
+- 同一固定隔离真机用 `scripts/hm.sh run --skip-build` 对照旧包及新版。第 7 题保持两行标题和六行正文，标题框从 190px 增至 218px，题干框从 576px 收至 546px，配图尺寸一致。隐藏标题题保持正文起点和图文顺序。浅色原图保存在私有目录，报告保留几何及哈希。深色、宽窗和长纯文本题未单独实测。 [排版对照](../artifacts/validation/aurora-glass-v2-20261125/question-typography-20261127/device.json)
+- 旧包从护照点「设置」触发 `/me/progress-watches` 的 `404 NOT_FOUND`，同时 `/me` 为 200。进度订阅现在和 Push 订阅共用会话失效判定。相同真机和隔离接口再次验证进入、返回及重新进入设置，登录保留。 [设置复现与复验](../artifacts/validation/aurora-glass-v2-20261125/question-typography-20261127/settings-404-device.json)
+- `scripts/hm.sh build`、HAP 和 profile 双验签、安装启动通过。 `scripts/hm.sh test` 通过 344 项，包括 4 项进度订阅回归。 `scripts/hm.sh lint` 零错误、零警告及一条既有建议。 [验签](../artifacts/validation/aurora-glass-v2-20261125/question-typography-20261127/signature.json) · [单测](../artifacts/validation/aurora-glass-v2-20261125/question-typography-20261127/local-test-summary.json) · [lint](../artifacts/validation/aurora-glass-v2-20261125/question-typography-20261127/lint.json)
+
 ## 2026-11-26 全屏判题反馈与圆角
 
 - 最终包复用答对星芒的全屏蒙层和位置。答错暖玫瑰色双环、提示图标与进度条直叠玻璃。一次性真机 HTTPS 选择题验证关闭后的原题、有效答题回执以及 503 的胶囊重试恢复。两帧进度线实心段从 245px 缩到 69px，之后自动关闭。另用早期包验证草稿清空重进、各类关闭和正确 EXP 回执。保留两个签名包的独立行为记录。 [全屏反馈](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/countdown-device.json) · [草稿与回执](../artifacts/validation/aurora-glass-v2-20261125/answer-judgment-20261126/isolated-device.json)

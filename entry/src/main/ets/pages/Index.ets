@@ -1174,6 +1174,7 @@ struct Index {
       }.width('100%')
       StarwardAccountSheet({ visible: this.showHelp!!,
         title: '还没有账号，或忘记了密码？', sheetHeight: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM,
+        closeId: 'login-help-close', leftInset: this.safeLeft(), rightInset: this.safeRight(),
         anchor: () => { this.loginHelpLink() }, content: () => { this.loginHelpContent() }
       }).width('100%').margin({ top: 12 })
     }.width('100%').alignItems(HorizontalAlign.Start)
@@ -1923,6 +1924,7 @@ struct Index {
   @Builder
   appContent() {
     StarwardAccountSheet({ visible: this.showAvatarCrop!!, title: '裁剪头像',
+      closeId: 'avatar-crop-close', leftInset: this.safeLeft(), rightInset: this.safeRight(),
       anchor: () => { this.rootNavigation() }, content: () => { this.avatarCropContent() }
     }).width('100%').height('100%')
     if (this.pushOnboarding !== null) {
@@ -1967,7 +1969,7 @@ struct Index {
   build() {
     Stack() {
       StarwardPrivacySheet({
-        visible: !this.privacyAllowed, busy: this.privacyBusy, error: this.privacyError, displayFont: this.displayFont,
+        visible: !this.privacyAllowed, busy: this.privacyBusy, error: this.privacyError,
         viewportHeight: this.windowSize.height, leftInset: this.safeLeft(), rightInset: this.safeRight(),
         bottomInset: this.safeBottom(), continueConsent: () => { void this.requestHostedPrivacy(); },
         openPolicy: () => { void this.openHostedPrivacyPolicy(); }, anchor: () => { this.privacyGatedContent() }

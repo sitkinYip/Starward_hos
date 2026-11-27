@@ -1,11 +1,11 @@
-import { LengthMetrics, uiMaterial, window } from '@kit.ArkUI';
+import { window } from '@kit.ArkUI';
 import { AvatarImage } from '../business/models';
 import { InlineError } from '../ui/ErrorMessages';
 import { StarwardModalBackdropState } from '../ui/StarwardGlassBackdrop';
-import { StarwardMaterial } from '../ui/StarwardMaterial';
 import { StarwardPageHeading } from '../ui/StarwardPageHeading';
 import { StarwardPassport } from '../ui/StarwardPassport';
 import { STARWARD_RADIUS_PANEL } from '../ui/StarwardRadii';
+import { StarwardSheetHeader, StarwardSheetStyle } from '../ui/StarwardSheet';
 import { PassportSummary, summarizePassport } from './PassportSummary';
 import { PassportPasswordEditor, PassportProfileEditor } from './ProfileEditors';
 import { SliceViewModel } from './SliceViewModel';
@@ -67,8 +67,7 @@ export struct ProfilePage {
   private readonly editorBackdropOwner: Object = new Object();
   private editorOwner: string = '';
   private editorRevision: number = 0;
-  private editorMaterial: uiMaterial.ImmersiveMaterial | undefined =
-    StarwardMaterial.create(uiMaterial.ImmersiveStyle.THICK);
+  private readonly editorStyle: StarwardSheetStyle = new StarwardSheetStyle();
 
   @Computed
   get summary(): PassportSummary {
@@ -109,12 +108,9 @@ export struct ProfilePage {
 
   private editorOptions(): SheetOptions {
     const revision: number = this.editorRevision;
-    return {
-      height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM, dragBar: true, showClose: true,
-      radius: LengthMetrics.vp(STARWARD_RADIUS_PANEL),
-      title: { title: this.editorTitle() }, keyboardAvoidMode: SheetKeyboardAvoidMode.TRANSLATE_AND_SCROLL,
-      backgroundColor: this.editorMaterial ? Color.Transparent : $r('app.color.raised'),
-      systemMaterial: this.editorMaterial,
+    return this.editorStyle.apply({
+      height: SheetSize.FIT_CONTENT, preferType: SheetType.BOTTOM,
+      keyboardAvoidMode: SheetKeyboardAvoidMode.TRANSLATE_AND_SCROLL,
       maskColor: Color.Transparent,
       onWillAppear: () => {
         if (revision === this.editorRevision && this.editorVisible && this.active &&
@@ -128,27 +124,33 @@ export struct ProfilePage {
         action.dismiss();
       },
       onDisappear: () => { if (revision === this.editorRevision) { this.resetEditor(); } }
-    };
+    });
   }
 
   @Builder
   private editorContent() {
-    Scroll() {
-      if (this.editor === 'profile') {
-        PassportProfileEditor({ vm: this.vm, pickingAvatar: this.pickingAvatar,
-          chooseAvatar: () => this.chooseAvatar() })
-      } else if (this.editor === 'password') {
-        PassportPasswordEditor({ vm: this.vm, logout: () => this.logout() })
-      } else if (this.editor === 'theme') {
-        Column({ space: 8 }) {
-          this.appearanceControls()
-          InlineError({ message: this.themeError, fieldId: 'passport-theme-error' })
-        }.width('100%')
-      }
-    }.id(this.editor === 'profile' ? 'passport-profile-sheet' :
-      this.editor === 'password' ? 'passport-password-sheet' : 'passport-appearance-sheet')
-      .width('100%').constraintSize({ maxHeight: Math.max(140, this.windowSize.height * 0.8) })
-      .padding({ left: 20, right: 20, top: 12, bottom: 24 }).scrollBar(BarState.Auto)
+    Column() {
+      StarwardSheetHeader({ title: this.editorTitle(), titleId: 'passport-editor-title',
+        closeId: 'passport-editor-close', closeLabel: '关闭' + this.editorTitle(),
+        close: () => { this.editorVisible = false; } })
+      Scroll() {
+        if (this.editor === 'profile') {
+          PassportProfileEditor({ vm: this.vm, pickingAvatar: this.pickingAvatar,
+            chooseAvatar: () => this.chooseAvatar() })
+        } else if (this.editor === 'password') {
+          PassportPasswordEditor({ vm: this.vm, logout: () => this.logout() })
+        } else if (this.editor === 'theme') {
+          Column({ space: 8 }) {
+            this.appearanceControls()
+            InlineError({ message: this.themeError, fieldId: 'passport-theme-error' })
+          }.width('100%')
+        }
+      }.id(this.editor === 'profile' ? 'passport-profile-sheet' :
+        this.editor === 'password' ? 'passport-password-sheet' : 'passport-appearance-sheet')
+        .width('100%').height(LayoutPolicy.wrapContent)
+        .constraintSize({ maxHeight: Math.max(140, this.windowSize.height * 0.8) })
+        .padding({ left: 20, right: 20, top: 12, bottom: 24 }).scrollBar(BarState.Auto)
+    }.width('100%')
   }
 
   @Builder
